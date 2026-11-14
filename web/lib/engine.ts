@@ -13,6 +13,7 @@ export {
   REGIME_VALUES,
   SOURCES,
   buildEnvelopes,
+  canonicalJson,
   evaluate,
   locateTarget,
   parseConditionCsv,

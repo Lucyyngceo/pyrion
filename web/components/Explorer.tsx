@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import AskBox from "./AskBox";
+import type { ParsedTarget } from "@/lib/ask-core";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
@@ -192,8 +194,21 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const counts = result.evaluation?.counts.investigations;
   const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
+  // "Ask PYRION": the question was translated into a target by a model and validated by code.
+  // Axes the question left open stay open; O2 and pressure it did not state keep their current value.
+  const applyAsked = (p: ParsedTarget) =>
+    setState((st) => ({
+      presetId: null,
+      regime: { ...p.target.regime },
+      o2: p.target.continuous.o2_mole_fraction ?? st.o2,
+      pressure: p.target.continuous.pressure ?? st.pressure,
+      gravityLevel: p.target.continuous.gravity_level,
+    }));
+
   return (
     <>
+      <AskBox records={records} options={options} investigations={dataset.investigations} onTarget={applyAsked} />
+
       <div
         className="workbench"
         ref={benchRef}
@@ -228,7 +243,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             <p className="banner">The engine rejected this target: {result.error}</p>
           )}
         </section>
-        <aside className="card panel-card">
+        <aside className="card panel-card" id="target-panel">
           <TargetPanel
             state={state}
             onChange={setState}
@@ -298,6 +313,11 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           investigations={dataset.investigations}
           query={`${view ? view.preset.description : "Custom target."} ${targetRegimeName(target.regime)}`}
           onHover={setHighlight}
+          embedding={
+            dataset.embedding && deferred.presetId && dataset.embedding.rankings[deferred.presetId]
+              ? { label: `embedding search (${dataset.embedding.model}${dataset.embedding.license ? `, ${dataset.embedding.license}` : ""})`, ranking: dataset.embedding.rankings[deferred.presetId] }
+              : undefined
+          }
         />
       )}
     </>

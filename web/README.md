@@ -69,3 +69,28 @@ engine's `locateTarget` geometry.
 | `lib/engine.ts` | the one place that imports the engine |
 | `lib/data.ts` | server-side reading of `data/` (CSV text is passed to the browser and parsed there by the engine) |
 | `lib/presets.ts` | target presets: the engine's, plus the ISS cabin preset with its source |
+
+## Ask PYRION (optional language model)
+
+The page runs fully without a key (structured mode). With a key, an input at the top of the home page accepts a question. The language
+model translates and narrates; **the engine decides**.
+
+1. The model turns the question into a JSON target (regime axes and O₂, pressure, gravity, `null` where the question states nothing).
+   Code validates it with the engine's `validateTarget`, and the page shows "PYRION understood: …" before anything else.
+2. The deterministic engine computes the verdicts, exactly as without a model.
+3. The model narrates the engine's structured output in at most 120 words. A narration check in code (`lib/narration-check.ts`) requires
+   every number, investigation id and DOI to appear in that output and no banned phrase to be present. If it fails, the text is
+   withheld and the failures are listed.
+4. With several models configured, the same question can be re-run with another one. The SHA-256 of the engine's canonical output is
+   shown for each run; the same hash means the same verdict, different words.
+
+Configure on the server only, in `web/.env.local` (git-ignored; names in `.env.example`):
+
+```bash
+PYRION_LLM_BASE_URL=https://integrate.api.nvidia.com/v1   # any OpenAI-compatible endpoint
+PYRION_LLM_API_KEY=...                                     # never sent to the browser, never logged
+PYRION_LLM_MODELS=model-id-1,model-id-2                    # the first is the default
+```
+
+Without these, `/api/ask` answers 503 and the page shows "Structured mode: add a key to enable questions". All prompts are in
+[`lib/prompts.ts`](lib/prompts.ts) (plain text, versioned). Pure logic is unit-tested: `npm test`.

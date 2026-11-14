@@ -57,11 +57,14 @@ function TextVsPhysics({
   investigations,
   query,
   onHover,
+  embedding,
 }: {
   evaluation: Evaluation;
   investigations: Investigation[];
   query: string;
   onHover: (a: string | null) => void;
+  /** Precomputed embedding ranking for the current preset, when data/derived/text_similarity.json provides one. */
+  embedding?: { label: string; ranking: { accession: string; score: number }[] };
 }) {
   const verdictOf = useMemo(() => new Map(evaluation.investigations.map((i) => [i.accession, i.verdict])), [evaluation]);
   const inv = useMemo(() => new Map(investigations.map((i) => [i.accession, i])), [investigations]);
@@ -109,7 +112,7 @@ function TextVsPhysics({
           of that investigation.
         </p>
       </div>
-      <div className="tvp-cols">
+      <div className="tvp-cols" style={embedding ? { gridTemplateColumns: "repeat(3, minmax(0, 1fr))" } : undefined}>
         <div>
           <h3 className="tvp-h">By text similarity</h3>
           <ol className="tvp-list">
@@ -118,6 +121,16 @@ function TextVsPhysics({
             ))}
           </ol>
         </div>
+        {embedding && (
+          <div>
+            <h3 className="tvp-h">By {embedding.label}</h3>
+            <ol className="tvp-list">
+              {embedding.ranking.filter((e) => verdictOf.has(e.accession)).slice(0, N).map((e, i) => (
+                <Row key={e.accession} id={e.accession} i={i} right={<span className="tvp-score">{e.score.toFixed(2)}</span>} />
+              ))}
+            </ol>
+          </div>
+        )}
         <div>
           <h3 className="tvp-h">By physics</h3>
           <ol className="tvp-list">

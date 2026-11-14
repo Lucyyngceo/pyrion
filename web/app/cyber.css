@@ -700,3 +700,24 @@ input[type="range"]:focus-visible { outline: 1px dashed var(--neon); outline-off
 .loupe-tag { font-family: var(--font-mono), monospace; font-size: 10px; fill: var(--neon); }
 .loupe-btn { font: inherit; font-family: var(--font-mono), monospace; font-size: 11.5px; letter-spacing: 0.06em; padding: 4px 10px; background: transparent; color: var(--ink-2); border: 1px solid var(--border-strong); cursor: pointer; }
 .loupe-btn[aria-pressed="true"] { color: #001014; background: var(--neon); box-shadow: var(--glow); }
+
+/* ===== Ask PYRION ===== */
+.ask { margin-bottom: 16px; }
+.ask-form { display: flex; gap: 8px; }
+.ask-form input { flex: 1; min-width: 0; font: inherit; padding: 9px 12px; background: rgba(0, 240, 255, 0.04); color: var(--ink); border: 1px solid var(--border-strong); }
+.ask-form input:focus-visible { outline: 2px solid var(--neon); outline-offset: 1px; }
+.ask-form button { font: inherit; font-weight: 600; padding: 0 18px; color: #000; background: var(--neon); border: 0; cursor: pointer; }
+.ask-form button:disabled { opacity: 0.45; cursor: default; }
+.ask-ex { display: flex; flex-direction: column; gap: 3px; margin: 8px 0; align-items: flex-start; text-align: left; }
+.ask-off { margin: 0; padding: 8px 12px; border: 1px dashed var(--border-strong); color: var(--ink-2); }
+.ask-run { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.ask-understood { margin: 0 0 4px; }
+.ask-assume { margin: 0 0 6px; padding-left: 18px; }
+.ask-narr { margin: 6px 0; line-height: 1.65; max-width: 80ch; }
+.ask-withheld { margin: 6px 0; padding: 6px 10px; border-left: 3px solid var(--warn); }
+.ask-withheld ul { margin: 4px 0 0; padding-left: 18px; }
+.ask-meta { margin: 4px 0 0; }
+.ask-switch { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; }
+.ask-hash { margin: 8px 0 0; padding: 6px 10px; border-left: 3px solid var(--st-normal); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
