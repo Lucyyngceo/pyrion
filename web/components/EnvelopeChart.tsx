@@ -506,6 +506,37 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 </g>
               </g>
             )}
+            {/* instrument frame: minor ruler ticks on both axes and corner reticles */}
+            <g className="ruler" aria-hidden="true">
+              {xTicks.slice(0, -1).flatMap((v, k) => {
+                const nx = xTicks[k + 1];
+                return [1, 2, 3, 4].map((j) => {
+                  const x = sx(v + ((nx - v) * j) / 5);
+                  return <line key={`rx${k}-${j}`} x1={x} x2={x} y1={ih} y2={ih + (j === 0 ? 8 : 4)} />;
+                });
+              })}
+              {yTicks.slice(0, -1).flatMap((v, k) => {
+                const ny = yTicks[k + 1];
+                return [1, 2, 3, 4].map((j) => {
+                  const y = sy(v + ((ny - v) * j) / 5);
+                  return <line key={`ry${k}-${j}`} x1={-4} x2={0} y1={y} y2={y} />;
+                });
+              })}
+              {xTicks.map((v) => (
+                <line key={`mx${v}`} className="major" x1={sx(v)} x2={sx(v)} y1={ih} y2={ih + 8} />
+              ))}
+              {yTicks.map((v) => (
+                <line key={`my${v}`} className="major" x1={-8} x2={0} y1={sy(v)} y2={sy(v)} />
+              ))}
+              {[
+                [0, 0, 1, 1],
+                [iw, 0, -1, 1],
+                [0, ih, 1, -1],
+                [iw, ih, -1, -1],
+              ].map(([x, y, dx, dy], k) => (
+                <path key={`c${k}`} className="reticle" d={`M${x + dx * 16},${y} L${x},${y} L${x},${y + dy * 16}`} />
+              ))}
+            </g>
             <line x1={0} x2={iw} y1={ih} y2={ih} className="axis" />
             <line x1={0} x2={0} y1={0} y2={ih} className="axis" />
             {xTicks.map((v) => (

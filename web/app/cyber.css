@@ -453,3 +453,89 @@ kbd { font-family: var(--font-mono), ui-monospace, monospace; font-size: 10.5px;
 .sb-v { color: var(--neon); }
 .sb-normal .sb-v { color: var(--st-normal); text-shadow: 0 0 6px rgba(86, 240, 0, 0.5); }
 .sb-caution .sb-v { color: var(--st-caution); }
+
+/* ===== FUI pass: viewport instead of boxes ===== */
+/* display face for headings: condensed technical */
+.hero h1,
+.card-head h2,
+.results-top h2,
+.tvp h2,
+.panel-card h2,
+.lineage h2,
+.prose h2,
+.outcome-head,
+.preset-label,
+.sitenav-name {
+  font-family: var(--font-display), var(--font-mono), ui-monospace, monospace;
+}
+.hero h1 { font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0.02em; font-weight: 700; }
+
+/* the chart is the central viewport: no card, no clip, no brackets */
+.chart-card {
+  background: transparent;
+  border: 0;
+  clip-path: none;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.chart-card::before,
+.chart-card::after { display: none; }
+.chart-card .card-head { padding-left: 2px; }
+.plot-wrap {
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(0, 240, 255, 0.07), transparent 70%);
+}
+.ruler line { stroke: rgba(0, 240, 255, 0.45); stroke-width: 1; }
+.ruler line.major { stroke: var(--neon); stroke-width: 1.4; filter: drop-shadow(0 0 2px var(--neon)); }
+.ruler .reticle { fill: none; stroke: var(--neon-2); stroke-width: 2; filter: drop-shadow(0 0 3px var(--neon-2)); }
+.plot .axis { stroke: rgba(0, 240, 255, 0.25); }
+
+/* legend chips become a thin telemetry strip, not boxes */
+.legend .chip {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding-left: 2px;
+  padding-right: 8px;
+}
+.legend .chip:hover { border-bottom-color: var(--neon); box-shadow: none; background: transparent; text-shadow: var(--glow); }
+.legend .chip-open { border-bottom-style: dashed; }
+
+/* side panel: a HUD column with a rail, not a box */
+.panel-card {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), transparent 40%);
+  border: 0;
+  border-left: 1px solid var(--border-strong);
+  clip-path: none;
+  padding-left: 22px;
+}
+.panel-card::before {
+  width: 1px;
+  height: 64px;
+  border: 0;
+  background: var(--neon);
+  left: -1px;
+  box-shadow: var(--glow);
+}
+.panel-card::after { display: none; }
+
+/* evidence status: hairline, no frame */
+.statusbar { border-left: 0; border-right: 0; background: transparent; }
+/* verdict ring */
+.vring { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; margin-top: 18px; }
+.vring-track { fill: none; stroke: rgba(0, 240, 255, 0.08); stroke-width: 9; }
+.vring-tick { stroke: rgba(0, 240, 255, 0.4); stroke-width: 1; }
+.vring-seg { fill: none; stroke-width: 9; transition: stroke-dasharray var(--motion-base) var(--ease-expo), stroke-dashoffset var(--motion-base) var(--ease-expo); }
+.vring-seg.st-normal { stroke: var(--st-normal); filter: drop-shadow(0 0 4px var(--st-normal)); }
+.vring-seg.st-caution { stroke: var(--st-caution); filter: drop-shadow(0 0 4px var(--st-caution)); }
+.vring-seg.st-standby { stroke: var(--st-standby); filter: drop-shadow(0 0 4px var(--st-standby)); }
+.vring-seg.st-off { stroke: var(--st-off); opacity: 0.55; }
+.vring-n { font-family: var(--font-display), monospace; font-size: 30px; font-weight: 700; fill: var(--ink); }
+.vring-k { font-family: var(--font-mono), monospace; font-size: 7px; letter-spacing: 0.14em; fill: var(--muted); }
+.vring-legend { margin: 0; display: grid; gap: 6px; }
+.vring-legend > div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+.vring-legend dt { font-size: 12.5px; color: var(--ink-2); }
+.vring-legend dd { margin: 0; font-family: var(--font-mono), monospace; color: var(--ink); text-shadow: var(--glow); }
+.vring-legend .zero { opacity: 0.45; }
+@media (prefers-reduced-motion: reduce) { .vring-seg { transition: none; } }

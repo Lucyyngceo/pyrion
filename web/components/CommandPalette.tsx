@@ -49,7 +49,7 @@ export default function CommandPalette() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      const typing = (e.target as HTMLElement | null)?.closest("input, select, textarea, [contenteditable]");
+      const typing = e.target instanceof Element && e.target.closest("input, select, textarea, [contenteditable]");
       if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing)) {
         e.preventDefault();
         setOpen((o) => !o);
