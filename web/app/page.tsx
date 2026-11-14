@@ -13,13 +13,14 @@ export default async function Page() {
           <span className="logo" aria-hidden="true">
             Ω
           </span>
-          <span className="brand-name">PYRION</span>
           <span className="brand-sub">NASA Space Apps 2026 · Flame in Freefall</span>
         </div>
-        <h1>Which NASA combustion experiments apply to a target condition, and where the measured evidence ends.</h1>
+        <h1>
+          PYRION Ω <span className="h1-dash">—</span> The Evidence Envelope
+        </h1>
         <p className="lede">
-          Source: NASA Physical Sciences Informatics (PSI), its 24 Combustion Science investigations, each cited by DOI.
-          Physical regimes are barriers; O₂ and pressure are compared only inside the measured envelope.
+          Which NASA combustion tests apply to a target cabin condition, and where the measured evidence ends. Data: NASA
+          Physical Sciences Informatics (PSI), 24 combustion investigations, each cited by DOI.
         </p>
       </header>
 

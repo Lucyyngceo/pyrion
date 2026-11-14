@@ -197,6 +197,18 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     .map((e) => `${envelopeLongName(e)} (${e.points.length} points)`)
     .join("; ")}. Target ${targetLabel}: ${pctO2(target.o2)}, ${kPa(target.pressure)}. ${status.headline}. ${status.detail}`;
 
+  const incomplete = envelopes.filter((e) => e.points.length > 0 && colors.get(e.key) === "var(--s-other)");
+  const toggleIncomplete = () =>
+    setHidden((prev) => {
+      const next = new Set(prev);
+      const anyOn = incomplete.some((e) => !next.has(e.key));
+      for (const e of incomplete) {
+        if (anyOn) next.add(e.key);
+        else next.delete(e.key);
+      }
+      return next;
+    });
+
   const toggle = (key: string) =>
     setHidden((prev) => {
       const next = new Set(prev);
@@ -206,26 +218,43 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     });
 
   return (
-    <figure className={`chart${measured ? " anim" : ""}`}>
+    <figure className={`chart tone-${status.tone}${measured ? " anim" : ""}`}>
       <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
-        {envelopes.map((e) => {
-          const on = !hidden.has(e.key);
-          const em = layerState.get(e.key) ?? "dim";
-          return (
-            <button
-              key={e.key}
-              type="button"
-              className={`chip chip-${em}`}
-              aria-pressed={on}
-              onClick={() => toggle(e.key)}
-              title={`${envelopeLongName(e)}: ${e.points.length} plotted points from ${e.investigations.map((i) => i.accession).join(", ")}${e.regimeComplete ? "" : ". Regime not fully stated in the extracted records."}`}
-            >
-              <Glyph phase={fuelPhaseOf(e)} color={colors.get(e.key) ?? "var(--s-other)"} hollow={!e.regimeComplete} />
-              <span>{envelopeName(e)}</span>
-              <span className="chip-n">{e.points.length}</span>
-            </button>
-          );
-        })}
+        {envelopes
+          .filter((e) => colors.get(e.key) !== "var(--s-other)")
+          .map((e) => {
+            const on = !hidden.has(e.key);
+            const em = layerState.get(e.key) ?? "dim";
+            return (
+              <button
+                key={e.key}
+                type="button"
+                className={`chip chip-${em}`}
+                aria-pressed={on}
+                onClick={() => toggle(e.key)}
+                title={`${envelopeLongName(e)}: ${e.points.length} plotted points from ${e.investigations.map((i) => i.accession).join(", ")}${e.regimeComplete ? "" : ". Hollow: some regime axis is not stated in the extracted records."}`}
+              >
+                <Glyph phase={fuelPhaseOf(e)} color={colors.get(e.key) ?? "var(--s-other)"} hollow={!e.regimeComplete} />
+                <span>{envelopeName(e)}</span>
+                <span className="chip-n">{e.points.length}</span>
+              </button>
+            );
+          })}
+        {incomplete.length > 0 && (
+          <button
+            type="button"
+            className="chip chip-open"
+            aria-pressed={incomplete.some((e) => !hidden.has(e.key))}
+            onClick={toggleIncomplete}
+            title={`Tests whose regime is not fully stated in the extracted records (${incomplete.length} layers): ${incomplete
+              .map((e) => `${envelopeName(e)} (${e.points.length})`)
+              .join(", ")}`}
+          >
+            <Glyph phase="unknown" color="var(--s-other)" hollow />
+            <span>Regime not stated</span>
+            <span className="chip-n">{incomplete.reduce((n, e) => n + e.points.length, 0)}</span>
+          </button>
+        )}
         <span className="chip chip-static" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14">
             <circle cx="7" cy="7" r="5" fill="none" stroke="var(--ink)" strokeWidth="2" />
@@ -457,7 +486,8 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           Each shaded area is the convex hull of one investigation&apos;s measured test points: the exact hull its verdict
           uses. Color is the regime (gravity regime · fuel phase · diluent · flame type). Regimes are barriers: a layer of
           another regime is faded and never used for comparison. A line joins the two ends of a measured range. Hollow
-          gray markers are tests whose regime is not fully stated in the extracted records.
+          markers are tests with some regime axis not stated in the extracted records; gray ones lack gravity regime or fuel
+          phase.
         </p>
       </figcaption>
 

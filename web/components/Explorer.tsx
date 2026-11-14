@@ -19,7 +19,7 @@ import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
 
 const INITIAL: TargetState = applyPreset(
-  { presetId: null, regime: { fuel_phase: "solid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
+  { presetId: null, regime: { fuel_phase: "liquid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
   PRESET_VIEWS[0],
 );
 
@@ -129,6 +129,13 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             onVerifiedOnly={setVerifiedOnly}
             verifiedCount={verifiedCount}
           />
+          {status && (
+            <div className={`result result-${status.tone}`} role="status" aria-live="polite">
+              <div className="result-kicker">Result for {view ? view.short : "custom target"}</div>
+              <div className="result-head">{status.headline}</div>
+              <p className="result-detail">{status.detail}</p>
+            </div>
+          )}
           {counts && (
             <dl className="tally" aria-label="Verdict counts, by investigation">
               <div className="t-app">
