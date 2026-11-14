@@ -1,0 +1,425 @@
+/* PYRION cyber theme: neon HUD on black. Loaded after globals.css; dark in every color scheme.
+   Data rules still hold: status = shape + color, regime colors colorblind-safe, no looping motion. */
+
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #04050a;
+  --surface: rgba(10, 14, 24, 0.82);
+  --surface-2: rgba(0, 240, 255, 0.06);
+  --ink: #e6f6ff;
+  --ink-2: #9fb6c8;
+  --muted: #64798c;
+  --grid: rgba(0, 240, 255, 0.07);
+  --axis: rgba(0, 240, 255, 0.35);
+  --border: rgba(0, 240, 255, 0.16);
+  --border-strong: rgba(0, 240, 255, 0.38);
+  --neon: #00f0ff;
+  --neon-2: #ff2bd6;
+  --neon-3: #f7ff3c;
+  --accent: var(--neon);
+  --accent-ink: var(--neon);
+  --shadow: 0 0 0 1px rgba(0, 240, 255, 0.08), 0 0 24px rgba(0, 240, 255, 0.08);
+  --glow: 0 0 6px rgba(0, 240, 255, 0.55), 0 0 18px rgba(0, 240, 255, 0.25);
+  --glow-2: 0 0 6px rgba(255, 43, 214, 0.6), 0 0 18px rgba(255, 43, 214, 0.3);
+
+  /* regimes: Okabe-Ito hues pushed to neon brightness (still distinguishable) */
+  --s1: #33b6ff;
+  --s2: #ff7a1a;
+  --s3: #19f5a6;
+  --s4: #ff6fd0;
+  --s5: #ffd23f;
+  --s6: #8fe8ff;
+  --s7: #b98bff;
+  --s8: #e8e8f0;
+  --s-other: #4f6273;
+
+  /* status (Astro UXDS dark values) */
+  --st-normal: #56f000;
+  --st-caution: #fce83a;
+  --st-standby: #2dccff;
+  --st-off: #a4abb6;
+  --st-caution-edge: #fce83a;
+  --good: var(--st-normal);
+  --good-ink: #56f000;
+  --warn: var(--st-caution);
+  --warn-ink: #fce83a;
+  --neutral: var(--st-off);
+}
+
+/* ---------- the room ---------- */
+html {
+  background: var(--page);
+}
+body {
+  background:
+    radial-gradient(1200px 600px at 75% -10%, rgba(255, 43, 214, 0.1), transparent 60%),
+    radial-gradient(900px 500px at 0% 20%, rgba(0, 240, 255, 0.08), transparent 60%),
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 44px 44px,
+    var(--page);
+  background-attachment: fixed;
+  color: var(--ink);
+}
+/* static scanlines (no animation) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+::selection {
+  background: var(--neon-2);
+  color: #000;
+}
+
+/* ---------- type ---------- */
+.hero h1 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: clamp(26px, 2.8vw, 36px);
+  background: linear-gradient(90deg, #e6f6ff 0%, var(--neon) 55%, var(--neon-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.35));
+}
+.h1-dash {
+  color: var(--neon-2);
+  -webkit-text-fill-color: var(--neon-2);
+}
+.card-head h2,
+.results-top h2,
+.planned h2,
+.prose h2,
+.tvp h2 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.45);
+}
+.card-head h2::before,
+.results-top h2::before,
+.tvp h2::before {
+  content: "// ";
+  color: var(--neon-2);
+  text-shadow: var(--glow-2);
+}
+.lede,
+.prose p,
+.prose li {
+  color: var(--ink-2);
+}
+a {
+  color: var(--neon);
+}
+a:hover {
+  text-shadow: var(--glow);
+}
+
+/* ---------- panels: cut corners + HUD brackets ---------- */
+.card,
+.result,
+.outcome,
+.readout,
+.kpi {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  backdrop-filter: blur(6px);
+}
+.card::before,
+.result::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-top: 2px solid var(--neon);
+  border-left: 2px solid var(--neon);
+  filter: drop-shadow(0 0 4px var(--neon));
+  pointer-events: none;
+}
+.card::after,
+.result::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  border-right: 2px solid var(--neon-2);
+  border-bottom: 2px solid var(--neon-2);
+  filter: drop-shadow(0 0 4px var(--neon-2));
+  pointer-events: none;
+}
+.chart-card {
+  box-shadow: inset 0 0 60px rgba(0, 240, 255, 0.04);
+}
+
+/* ---------- nav as a HUD bar ---------- */
+.sitenav {
+  background: rgba(4, 5, 10, 0.78);
+  border-bottom: 1px solid var(--border-strong);
+  box-shadow: 0 1px 0 rgba(0, 240, 255, 0.15), 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+.sitenav ul a,
+.sitenav-sub,
+.sitenav-name {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+}
+.sitenav ul a {
+  border-radius: 0;
+  color: var(--ink-2);
+}
+.sitenav ul a:hover {
+  background: var(--surface-2);
+  color: var(--neon);
+  text-shadow: var(--glow);
+}
+.sitenav ul a[aria-current="page"] {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--neon);
+  box-shadow: inset 0 -2px 0 var(--neon), 0 6px 14px -8px var(--neon);
+  text-shadow: var(--glow);
+}
+.mark-bg {
+  fill: #000;
+  stroke: var(--neon);
+}
+.mark-hull {
+  fill: rgba(255, 43, 214, 0.35);
+  stroke: var(--neon-2);
+}
+.omega {
+  color: var(--neon-2);
+  text-shadow: var(--glow-2);
+}
+
+/* ---------- controls ---------- */
+.preset,
+.pin-btn,
+.seg button,
+.chip,
+select,
+input[type="number"],
+input[type="text"] {
+  border-radius: 0 !important;
+  background: rgba(0, 240, 255, 0.04);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+.preset {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+.preset:hover,
+.pin-btn:hover,
+.seg button:hover,
+.chip:hover {
+  border-color: var(--neon);
+  box-shadow: var(--glow);
+  background: rgba(0, 240, 255, 0.08);
+}
+.preset[aria-checked="true"] {
+  border-color: var(--neon-2);
+  background: rgba(255, 43, 214, 0.08);
+  box-shadow: var(--glow-2);
+}
+.preset[aria-checked="true"] .preset-label {
+  color: var(--neon-2);
+  text-shadow: var(--glow-2);
+}
+.preset-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12.5px;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--neon);
+  color: #001014;
+  box-shadow: var(--glow);
+}
+.pin-btn {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11.5px;
+}
+input[type="range"] {
+  accent-color: var(--neon-2);
+}
+
+/* ---------- readouts ---------- */
+.readout {
+  background: rgba(0, 240, 255, 0.04);
+}
+.ro-v {
+  color: var(--neon);
+  text-shadow: var(--glow);
+}
+.ro-v small {
+  color: var(--neon-2);
+}
+.outcome-head {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+}
+.outcome-inside .outcome-head {
+  color: var(--st-normal);
+  text-shadow: 0 0 10px rgba(86, 240, 0, 0.55);
+}
+.outcome-outside .outcome-head {
+  color: var(--st-caution);
+  text-shadow: 0 0 10px rgba(252, 232, 58, 0.5);
+}
+.outcome-outside {
+  background: repeating-linear-gradient(135deg, rgba(252, 232, 58, 0.07) 0 8px, transparent 8px 16px), var(--surface);
+}
+.tally > div {
+  border-radius: 0;
+  background: rgba(0, 240, 255, 0.03);
+}
+.tally dd {
+  color: var(--ink);
+  text-shadow: var(--glow);
+}
+
+/* ---------- chart ---------- */
+.plot .grid {
+  stroke: rgba(0, 240, 255, 0.08);
+}
+.plot .axis {
+  stroke: rgba(0, 240, 255, 0.5);
+}
+.plot .tick,
+.plot .axis-title {
+  fill: #7fa6bd;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.target-ring {
+  stroke: var(--neon-2) !important;
+  filter: drop-shadow(0 0 5px var(--neon-2));
+}
+.target-dot {
+  fill: var(--neon-2) !important;
+}
+.target-halo {
+  fill: var(--neon-2) !important;
+  fill-opacity: 0.12 !important;
+}
+.target-tick {
+  stroke: var(--neon-2) !important;
+}
+.target-guides line {
+  stroke: var(--neon-2);
+  stroke-opacity: 0.35;
+}
+.callout-inner {
+  border-radius: 0;
+  background: rgba(4, 5, 10, 0.92);
+  border-color: var(--neon-2);
+  box-shadow: var(--glow-2);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+.callout-head {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.gap-line {
+  stroke: var(--neon);
+  stroke-opacity: 0.09;
+}
+.cursor line {
+  stroke: var(--neon);
+  stroke-opacity: 0.6;
+}
+.cursor-tag {
+  fill: var(--neon);
+}
+.cursor-text {
+  fill: #001014;
+}
+.rail rect {
+  filter: drop-shadow(0 0 3px currentColor);
+}
+.tooltip {
+  border-radius: 0;
+  background: rgba(4, 5, 10, 0.94);
+  border-color: var(--neon);
+  box-shadow: var(--glow);
+}
+
+/* ---------- badges / evidence bar ---------- */
+.badge {
+  border-radius: 0;
+  background: rgba(0, 240, 255, 0.05);
+}
+.es-bar {
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+.es-ext {
+  background: var(--neon);
+  opacity: 0.7;
+}
+
+/* ---------- reduced motion keeps the look, drops the movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .preset:hover {
+    box-shadow: none;
+  }
+}
+.panel-card h2,
+.lineage h2,
+section.card > h2 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.45);
+}
+.panel-card h2::before {
+  content: "// ";
+  color: var(--neon-2);
+}
+.group-title {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.acc {
+  color: var(--neon);
+}
+.lin-steps b {
+  color: var(--neon);
+  text-shadow: var(--glow);
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.vtable th {
+  color: var(--neon);
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.bar > i {
+  background: linear-gradient(90deg, var(--neon), var(--neon-2));
+  box-shadow: 0 0 6px var(--neon);
+}
+.lin-steps b { font-size: 24px; white-space: nowrap; }
