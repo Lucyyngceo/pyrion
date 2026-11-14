@@ -100,22 +100,38 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
 
   // Verdict rail: the same target swept over pressure (O2 and regime fixed), so the viewer sees where the verdict changes.
-  const rail = useMemo(() => {
-    const out: { pressure: number; tone: string }[] = [];
+  // Computed in small chunks after the main verdict has rendered, so it never delays the result.
+  const [rail, setRail] = useState<{ pressure: number; tone: string }[]>([]);
+  useEffect(() => {
+    let cancelled = false;
     const STEPS = 36;
     const lo = 30;
     const hi = 130;
-    for (let i = 0; i <= STEPS; i++) {
-      const p = lo + ((hi - lo) * i) / STEPS;
-      const t = toTarget({ ...deferred, pressure: p });
-      try {
-        const ev = evaluate(records, t, options);
-        out.push({ pressure: p, tone: envelopeStatus(ev, locateTarget(t, envelopeSet), t).tone });
-      } catch {
-        out.push({ pressure: p, tone: "unknown" });
+    const out: { pressure: number; tone: string }[] = [];
+    let i = 0;
+    let timer = 0;
+    const work = () => {
+      if (cancelled) return;
+      const until = performance.now() + 12;
+      while (i <= STEPS && performance.now() < until) {
+        const p = lo + ((hi - lo) * i) / STEPS;
+        const t = toTarget({ ...deferred, pressure: p });
+        try {
+          const ev = evaluate(records, t, options);
+          out.push({ pressure: p, tone: envelopeStatus(ev, locateTarget(t, envelopeSet), t).tone });
+        } catch {
+          out.push({ pressure: p, tone: "unknown" });
+        }
+        i++;
       }
-    }
-    return out;
+      if (i <= STEPS) timer = window.setTimeout(work, 0);
+      else setRail(out);
+    };
+    timer = window.setTimeout(work, 120);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [deferred, records, options, envelopeSet]);
 
   // A pinned target stays on the chart for comparison; its verdict is recomputed with the same engine and options.

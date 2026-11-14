@@ -21,7 +21,7 @@ function HullDiagram() {
         a second regime drawn dashed: not comparable.
       </desc>
       <rect x="0.5" y="0.5" width="559" height="249" rx="10" fill="none" stroke="var(--border)" />
-      <path d={hull} fill="var(--s1)" fillOpacity="0.12" stroke="var(--s1)" strokeWidth="1.75" strokeLinejoin="round" />
+      <path d={hull} fill="var(--s1)" fillOpacity="0.12" stroke="var(--s1)" strokeWidth="1.75" strokeLinejoin="round" className="draw" />
       {pts.map(([x, y], i) => (
         <circle key={i} cx={x} cy={y} r="4.5" fill="var(--s1)" stroke="var(--surface)" strokeWidth="2" />
       ))}

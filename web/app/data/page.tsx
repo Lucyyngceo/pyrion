@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { parseConditionCsv } from "@/lib/engine";
+import CountUp from "@/components/CountUp";
 import { loadDataset, loadLineage } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -68,26 +69,26 @@ export default async function DataPage() {
         <ol className="lin-steps">
           <li>
             <span className="lin-k">NASA PSI</span>
-            <b>{n(lin.psiFiles)}</b>
+            <b><CountUp value={lin.psiFiles} /></b>
             <span>files listed in {ds.investigations.length} combustion investigations ({gb(lin.psiBytes)})</span>
             <code>data/manifest/coverage.csv</code>
           </li>
           <li>
             <span className="lin-k">Selected and checksummed</span>
-            <b>{n(lin.selectedFiles)}</b>
+            <b><CountUp value={lin.selectedFiles} /></b>
             <span>files downloaded with SHA-256 ({gb(lin.selectedBytes)}): tables, reports, test matrices</span>
             <code>data/manifest/checksums_P*.csv</code>
           </li>
           <li>
             <span className="lin-k">Extracted</span>
-            <b>{n(totals.records)}</b>
+            <b><CountUp value={totals.records} /></b>
             <span>condition values, each with file, location, original text and unit</span>
             <code>data/conditions/*.csv</code>
           </li>
           {v && (
             <li>
               <span className="lin-k">Traced to the source</span>
-              <b>{n(v.cellsTraced + v.quotesTraced)}</b>
+              <b><CountUp value={v.cellsTraced + v.quotesTraced} /></b>
               <span>
                 {n(v.cellsTraced)} table cells and {n(v.quotesTraced)} quotes re-read from the PSI file
                 {v.traceRan ? "" : " (trace not run in this report)"}

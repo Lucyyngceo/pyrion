@@ -5,6 +5,7 @@
   --motion-fast: 200ms;
   --motion-base: 400ms;
   --motion-slow: 600ms;
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --page: #f9f9f7;
   --surface: #fcfcfb;
   --surface-2: #f3f2ee;
@@ -341,7 +342,7 @@ code,
 .anim .target,
 .anim .target-guides line,
 .anim .callout {
-  transition: transform var(--motion-base) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform var(--motion-base) var(--ease-expo);
 }
 .target-guides line {
   stroke: var(--ink);
@@ -1319,3 +1320,23 @@ input[type="range"] {
 .rail-unknown { fill: var(--neutral); opacity: 0.45; }
 .rail-tick { stroke: var(--ink); stroke-width: 2; }
 .rail-label { font-size: 10px; fill: var(--muted); letter-spacing: 0.04em; }
+
+/* deeper dark mode: true black page, blue-white ink, hairline rules */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --page: #000; --surface: #0c0c0e; --surface-2: #141418; --ink: #f0f0fa; --border: rgba(240, 240, 250, 0.12); --border-strong: rgba(240, 240, 250, 0.3); --grid: #1a1a20; }
+}
+:root[data-theme="dark"] { --page: #000; --surface: #0c0c0e; --surface-2: #141418; --ink: #f0f0fa; --border: rgba(240, 240, 250, 0.12); --border-strong: rgba(240, 240, 250, 0.3); --grid: #1a1a20; }
+/* headline tracking */
+.hero h1 { letter-spacing: -0.02em; }
+/* line-art draw (method schematic) */
+@keyframes draw { from { stroke-dashoffset: var(--len, 900); } to { stroke-dashoffset: 0; } }
+.draw { stroke-dasharray: var(--len, 900); animation: draw 1.1s var(--ease-expo) both; }
+.draw-late { animation-delay: 0.35s; }
+@media (prefers-reduced-motion: reduce) { .draw { animation: none; stroke-dasharray: none; } }
+.lin-steps b { font-size: 30px; letter-spacing: -0.02em; }
+.countup { font-variant-numeric: tabular-nums; }
+/* spec-sheet rows: small uppercase labels, hairline rules */
+.vtable th { text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
+.vtable td, .vtable th { border-top: 0; border-bottom: 1px solid var(--border); padding: 12px 10px; }
+.ro-k, .lin-k, .outcome-kicker { text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; }
+.lin-steps b .countup { font-size: inherit; color: inherit; line-height: inherit; }
