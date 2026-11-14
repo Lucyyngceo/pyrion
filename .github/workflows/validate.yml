@@ -1,0 +1,19 @@
+# Layer 1 of VALIDATION.md on every push: the checks that do not need the PSI files.
+# The trace check (cell and quote against the source files) runs locally, where data/raw/ exists.
+name: validate
+on: push
+permissions:
+  contents: read
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validation gates (no trace)
+        run: python -I validation/run_all.py --no-trace
+      - name: Publish report
+        if: always()
+        run: cat validation/reports/latest.md >> "$GITHUB_STEP_SUMMARY"

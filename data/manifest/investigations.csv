@@ -1,22 +1,22 @@
 accession,acronym,title,doi,license,version,project_type,release_date,files_in_version,files_selected
 PSI-10,ACME/Flame Design,Advanced Combustion via Microgravity Experiments / Flame Design,10.60555/w4zy-bt45,,1,Microgravity Investigation,20-Nov-2025,3807,15
-PSI-20,ACME BRE,Advanced Combustion via Microgravity Experiments - Burning Rate Emulator,10.60555/vb93-3y72,CC0-1.0,4,Microgravity Investigation,15-Sep-2022,2361,43
+PSI-20,ACME BRE,Advanced Combustion via Microgravity Experiments - Burning Rate Emulator,10.60555/vb93-3y72,CC0-1.0,4,Microgravity Investigation,15-Sep-2022,2361,64
 PSI-21,ACME CLD Flame,Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame,10.60555/23e1-9950,CC0-1.0,4,Microgravity Investigation,15-Sep-2023,4883,2
-PSI-22,ACME E-FIELD Flames,Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames,10.60555/se5a-8c73,CC0-1.0,7,Microgravity Investigation,15-Apr-2019,2590,63
-PSI-23,ACME s-Flame,Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames,10.60555/k57n-p030,CC0-1.0,4,Microgravity Investigation,05-Apr-2018,4165,40
+PSI-22,ACME E-FIELD Flames,Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames,10.60555/se5a-8c73,CC0-1.0,7,Microgravity Investigation,15-Apr-2019,2590,88
+PSI-23,ACME s-Flame,Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames,10.60555/k57n-p030,CC0-1.0,4,Microgravity Investigation,05-Apr-2018,4165,107
 PSI-25,BASS-II,Burning and Suppression of Solids - II,10.60555/4qc4-de67,CC0-1.0,4,Microgravity Investigation,31-Dec-2022,695,10
 PSI-26,BASS,Burning and Suppression of Solids,10.60555/58h4-dy80,CC0-1.0,4,Microgravity Investigation,30-Jun-2013,210,37
 PSI-39,CFI,Cool Flames Investigation,10.60555/m6pj-a914,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,2812,41
 PSI-47,DAFT / DAFT-2,Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2,10.60555/ztgj-d202,CC0-1.0,5,Microgravity Investigation,01-Jun-2009,33,27
 PSI-60,,Computational and Experimental Analysis of SPICE Data Sets,10.60555/mzjm-yv57,CC0-1.0,1,Ground Investigation,30-Sep-2025,1,1
 PSI-62,,Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography,10.60555/e9xp-ex83,CC0-1.0,1,Ground Investigation,14-Nov-2025,1,1
-PSI-68,FLEX-2,Flame Extinguishment Experiment - 2,10.60555/byp8-h018,CC0-1.0,6,Microgravity Investigation,30-Sep-2019,10156,13
-PSI-69,FLEX,Flame Extinguishment Experiment,10.60555/mbq8-0451,CC0-1.0,5,Microgravity Investigation,31-Jul-2016,6555,108
+PSI-68,FLEX-2,Flame Extinguishment Experiment - 2,10.60555/byp8-h018,CC0-1.0,6,Microgravity Investigation,30-Sep-2019,10156,75
+PSI-69,FLEX,Flame Extinguishment Experiment,10.60555/mbq8-0451,CC0-1.0,5,Microgravity Investigation,31-Jul-2016,6555,131
 PSI-98,SAFFIRE-I,Spacecraft Fire Safety Experiment-I,10.60555/0t15-1z43,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,76,8
 PSI-99,SAFFIRE-II,Spacecraft Fire Experiment-II,10.60555/2chp-m469,CC0-1.0,5,Microgravity Investigation,18-Sep-2024,217,6
 PSI-100,SAFFIRE-III,Spacecraft Fire Experiment-III,10.60555/040q-4h36,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,87,12
-PSI-101,SAME-R,Smoke Aerosol Measurement Experiment-Reflight,10.60555/2np7-jv14,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,344,120
-PSI-102,SAME,Smoke and Aerosol Measurement Experiment,10.60555/gd4k-8h62,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,101,96
+PSI-101,SAME-R,Smoke Aerosol Measurement Experiment-Reflight,10.60555/2np7-jv14,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,344,121
+PSI-102,SAME,Smoke and Aerosol Measurement Experiment,10.60555/gd4k-8h62,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,101,101
 PSI-106,SLICE,Structure and Liftoff In Combustion Experiment,10.60555/pm12-rg61,CC0-1.0,3,Microgravity Investigation,18-Sep-2024,23463,2
 PSI-107,SPICE,Smoke Point In Co-flow Experiment,10.60555/9kbh-e962,CC0-1.0,4,Microgravity Investigation,18-Sep-2024,188,16
 PSI-115,,Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity,10.60555/q0v5-1v28,CC0-1.0,3,Ground Investigation,18-Sep-2024,47,47

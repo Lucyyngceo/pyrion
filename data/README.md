@@ -11,7 +11,8 @@ All experimental data come from NASA **Physical Sciences Informatics (PSI)**, <h
 | **P1** | experimental tables, metadata, read-me and data descriptions, requirement documents, test matrices, calibration and reference data, reports, summary results, analyzed-data CSV files | needed by the evidence engine |
 | P2 | other analyzed data, science documents, simulation, representative still images | supporting analysis |
 | P3 | presentations, engineering documents | context |
-| excluded | raw data, video, image sequences, archives (except metadata) | not needed to rank evidence; terabytes |
+| P4 | everything else outside Raw Data: archives (mostly calibration images), video, other file types | completeness |
+| excluded | Raw Data | flight video, image sequences and archived raw files; about 13.5 TB |
 
 NASA documents outside PSI (fact sheets, NASA Technical Reports Server papers, standards) are listed in `manifest/external_sources.json`.
 
@@ -61,10 +62,11 @@ The PSI investigation pages are built from the same public API this pipeline rea
 
 ## What is not downloaded
 
-`coverage.csv` lists everything PSI holds for these 24 investigations: 66,567 files, about 13.5 TB. PYRION selects about 2 GB. The rest is:
+`coverage.csv` lists everything PSI holds for these 24 investigations: 66,567 files, about 13.5 TB. Everything outside Raw Data is selected (P1 to P4: 938 files, about 14.6 GB) and downloaded, except the 5 SAFFIRE files that PSI's storage cannot serve (see above).
 
-- **Raw Data**: 65,629 files, about 13.5 TB: flight video, image sequences and archived raw files. The evidence engine works from the experimental tables, analyzed data and documents. It does not reprocess raw imagery.
-- **Archives and video inside document folders**: about 12.6 GB of `.zip` and `.mp4` files, mostly calibration image archives (9.9 GB). They can be added with the same pipeline if needed.
+**Raw Data is not downloaded**: 65,629 files, about 13.5 TB of flight video, image sequences and archived raw files. The evidence engine works from the experimental tables, analyzed data and documents. It does not reprocess raw imagery.
+
+P4 download, November 14, 2026: 204 files, all `ok`, 12,658.9 MB.
 
 Building the citation and coverage tables:
 

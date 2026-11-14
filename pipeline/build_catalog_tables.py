@@ -93,14 +93,14 @@ def main():
             c[f"files_{p}"] += 1
             c[f"bytes_{p}"] += size
     fields = ["accession", "folder", "files_in_psi", "bytes_in_psi",
-              "files_P1", "files_P2", "files_P3", "files_excluded", "bytes_selected", "bytes_excluded"]
+              "files_P1", "files_P2", "files_P3", "files_P4", "files_excluded", "bytes_selected", "bytes_excluded"]
     rows = []
     for (a, folder), c in sorted(cov.items(), key=lambda kv: (int(kv[0][0].split("-")[1]), kv[0][1])):
         rows.append({"accession": a, "folder": folder,
                      "files_in_psi": c["files_in_psi"], "bytes_in_psi": c["bytes_in_psi"],
                      "files_P1": c["files_P1"], "files_P2": c["files_P2"], "files_P3": c["files_P3"],
-                     "files_excluded": c["files_excluded"],
-                     "bytes_selected": c["bytes_P1"] + c["bytes_P2"] + c["bytes_P3"],
+                     "files_P4": c["files_P4"], "files_excluded": c["files_excluded"],
+                     "bytes_selected": c["bytes_P1"] + c["bytes_P2"] + c["bytes_P3"] + c["bytes_P4"],
                      "bytes_excluded": c["bytes_excluded"]})
     write_csv("coverage.csv", rows, fields)
 
