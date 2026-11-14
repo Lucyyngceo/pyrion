@@ -24,13 +24,16 @@ test("every tool has a definition and unknown tools are rejected", () => {
 test("argument validation accepts good arguments and names the problem in bad ones", () => {
   assert.equal(validateArgs("transfer_hypothesis", { gravity: "moon" }).ok, true);
   assert.equal(validateArgs("transfer_hypothesis", { gravity: "venus" }).ok, false);
-  assert.equal(validateArgs("fm2_balance", { limit_o2: 0.25 }).ok, true);
-  assert.match(JSON.stringify(validateArgs("fm2_balance", { limit_o2: 25 })), /mole fraction/);
-  assert.equal(validateArgs("find_evidence", { o2_range: [0.3, 0.2] }).ok, false);
+  assert.equal(validateArgs("fm2_balance", { limit_o2: "25 %" }).ok, true);
+  assert.equal(validateArgs("fm2_balance", { limit_o2: "60 %" }).ok, false);
+  assert.equal(validateArgs("fm2_balance", { limit_o2: 0.25 }).ok, false);
+  assert.equal(validateArgs("find_evidence", { o2_range: ["30 %", "20 %"] }).ok, false);
+  assert.equal(validateArgs("find_evidence", { o2_range: ["20 %", "30 %"], pressure_range: ["50 kPa", "10 psia"] }).ok, true);
   assert.equal(validateArgs("find_evidence", { limit: 99 }).ok, false);
   assert.equal(validateArgs("get_receipt", { accession: "PSI-9001" }).ok, false);
-  assert.equal(validateArgs("evaluate_target", { regime: { gravity_regime: "zero" }, continuous: {} }).ok, false);
-  assert.equal(validateArgs("evaluate_target", { regime: { gravity_regime: "microgravity" }, continuous: { o2_mole_fraction: 0.21, pressure_kpa: 101.3 } }).ok, true);
+  assert.equal(validateArgs("evaluate_target", { gravity_regime: "zero" }).ok, false);
+  assert.match(JSON.stringify(validateArgs("evaluate_target", { pressure: "10 psig" })), /gauge|psig/i);
+  assert.equal(validateArgs("evaluate_target", { gravity: "microgravity", o2: "21 %", pressure: "1 atm" }).ok, true);
 });
 
 test("truncation keeps the result under the cap and says so", () => {
@@ -43,11 +46,14 @@ test("truncation keeps the result under the cap and says so", () => {
 });
 
 test("evaluate_target is deterministic: same target, same hash", async () => {
-  const args = { regime: { gravity_regime: "microgravity", fuel_phase: "solid", diluent: "N2", flame_type: null }, continuous: { o2_mole_fraction: 0.21, pressure_kpa: 80 } };
+  const args = { gravity: "microgravity", fuel_phase: "solid", diluent: "N2", o2: "21 %", pressure: "8.2 psia" };
   const a = await runTool(ctx, "evaluate_target", args);
   const b = await runTool(ctx, "evaluate_target", args);
   assert.equal(a.engineHash, b.engineHash);
   assert.ok(a.engineHash);
+  const conv = (a.result as { conversions: string[] }).conversions.join(" | ");
+  assert.match(conv, /kPa/);
+  assert.match(conv, /psia/);
 });
 
 test("get_receipt and find_evidence answer from the records, and say so when nothing matches", async () => {
@@ -60,7 +66,10 @@ test("get_receipt and find_evidence answer from the records, and say so when not
 });
 
 test("fm2_balance and flex tools", async () => {
-  const f = await runTool(ctx, "fm2_balance", { limit_o2: 0.25, temperature_c: 22 });
+  const v = validateArgs("fm2_balance", { limit_o2: "25 %", temperature: "22 C" });
+  assert.equal(v.ok, true);
+  const f = await runTool(ctx, "fm2_balance", v.ok ? v.value : {});
   assert.equal((f.result as { tests: unknown[] }).tests.length, 4);
+  assert.ok((f.result as { conversions: string[] }).conversions.length === 2);
   assert.match(JSON.stringify((await runTool(ctx, "flex_model", { fuel: "heptane" })).result), /not available/);
 });

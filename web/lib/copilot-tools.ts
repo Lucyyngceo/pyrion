@@ -10,14 +10,17 @@ import {
   evaluate,
   fm2Balance,
   fm2Chamber,
+  parseQuantity,
   parseValues,
+  targetFromQuantities,
+  type TargetQuantities,
   transferHypotheses,
   transferTestsFromFlowSteps,
   withGravity,
   type ConditionRecord,
   type GravityTargetId,
 } from "../../engine/src/index.ts";
-import { buildNarrationInput, parseTargetReply } from "./ask-core.ts";
+import { buildNarrationInput } from "./ask-core.ts";
 import { tfidfRank } from "./textsearch.ts";
 
 export interface ToolContext {
@@ -44,32 +47,24 @@ const fn = (name: ToolName, description: string, properties: Record<string, unkn
   type: "function",
   function: { name, description, parameters: { type: "object", properties, required, additionalProperties: false } },
 });
-const range = { type: "array", items: { type: "number" }, minItems: 2, maxItems: 2 };
+const range = { type: "array", items: { type: "string" }, minItems: 2, maxItems: 2 };
 
 export const TOOL_DEFS: ToolDef[] = [
   fn(
     "evaluate_target",
-    "Run the deterministic applicability engine for a target condition. Returns verdict counts per investigation, the top investigations with DOI and reasons, and a hash of the full output. Use null for anything not stated.",
+    "Run the deterministic applicability engine for a target condition. Give every quantity as text WITH its unit, exactly as the user wrote it (for example \"8.2 psia\", \"34 %\", \"Moon\" or \"0.165 g\"); the engine converts units, you never do. Leave out anything not stated. Returns verdict counts per investigation, the top investigations with DOI and reasons, the unit conversions done, and a hash of the full output.",
     {
-      regime: {
-        type: "object",
-        properties: {
-          gravity_regime: { enum: ["microgravity", "partial_gravity", "normal_gravity", null] },
-          fuel_phase: { enum: ["solid", "liquid", "gas", null] },
-          diluent: { enum: ["N2", "He", "CO2", "Ar", "mixed", null] },
-          flame_type: { enum: ["normal", "inverse", null] },
-        },
-      },
-      continuous: {
-        type: "object",
-        properties: {
-          o2_mole_fraction: { type: ["number", "null"], description: "0 to 1" },
-          pressure_kpa: { type: ["number", "null"] },
-          gravity_level_g: { type: ["number", "null"] },
-        },
-      },
+      gravity: { type: "string", description: 'a level or a name, for example "0.165 g", "1/6 g", "Moon", "Mars", "microgravity"' },
+      o2: { type: "string", description: 'oxygen, for example "34 %" or "0.21"' },
+      pressure: { type: "string", description: 'for example "8.2 psia", "101.3 kPa", "1 atm"; psi means absolute' },
+      flow_velocity: { type: "string", description: 'for example "20 cm/s"' },
+      sample_thickness: { type: "string", description: 'for example "0.1 mm"' },
+      ambient_temperature: { type: "string", description: 'for example "22 C" or "295 K"' },
+      gravity_regime: { enum: ["microgravity", "partial_gravity", "normal_gravity"] },
+      fuel_phase: { enum: ["solid", "liquid", "gas"] },
+      diluent: { enum: ["N2", "He", "CO2", "Ar", "mixed"] },
+      flame_type: { enum: ["normal", "inverse"] },
     },
-    ["regime", "continuous"],
   ),
   fn(
     "find_evidence",
@@ -78,8 +73,8 @@ export const TOOL_DEFS: ToolDef[] = [
       accession: { type: "string" },
       variable: { type: "string", description: "for example o2_mole_fraction, pressure, material, fuel" },
       material: { type: "string", description: "substring of the material or fuel name" },
-      o2_range: { ...range, description: "mole fraction [lo, hi]" },
-      pressure_range: { ...range, description: "kPa [lo, hi]" },
+      o2_range: { ...range, description: 'two oxygen values with units, for example ["20 %", "30 %"]' },
+      pressure_range: { ...range, description: 'two pressures with units, for example ["50 kPa", "10 psia"]' },
       limit: { type: "integer", minimum: 1, maximum: 25 },
     },
   ),
@@ -92,8 +87,8 @@ export const TOOL_DEFS: ToolDef[] = [
     gravity: { enum: ["moon", "mars", "earth"] },
   }, ["gravity"]),
   fn("fm2_balance", "Closed-chamber oxygen balance of the FM2 instrument (not a flame model) for a hypothesised limiting oxygen.", {
-    limit_o2: { type: "number", description: "limiting O2 mole fraction, 0.15 to 0.40" },
-    temperature_c: { type: "number", description: "assumed chamber temperature, 5 to 45; default 22" },
+    limit_o2: { type: "string", description: 'limiting oxygen with its unit, for example "25 %"; between 15 % and 40 %' },
+    temperature: { type: "string", description: 'assumed chamber temperature with its unit, for example "22 C"; between 5 and 45 C; default 22 C' },
   }, ["limit_o2"]),
   fn("text_search", "Rank PSI investigations by text similarity (not physical applicability).", {
     query: { type: "string" },
@@ -111,10 +106,30 @@ export type Validated<T> = { ok: true; value: T } | { ok: false; error: string }
 const bad = (error: string): { ok: false; error: string } => ({ ok: false, error });
 const isObj = (x: unknown): x is Record<string, unknown> => typeof x === "object" && x !== null && !Array.isArray(x);
 
-function numRange(x: unknown, name: string): Validated<[number, number] | undefined> {
-  if (x === undefined || x === null) return { ok: true, value: undefined };
-  if (!Array.isArray(x) || x.length !== 2 || x.some((v) => typeof v !== "number" || !Number.isFinite(v)) || x[0] > x[1]) return bad(`${name} must be [lo, hi] with lo <= hi`);
-  return { ok: true, value: [x[0], x[1]] };
+/** Two quantity strings -> [lo, hi] in schema units, with the conversions done. */
+function qRange(x: unknown, name: string, variable: "o2_mole_fraction" | "pressure"): Validated<{ range: [number, number] | undefined; conversions: string[] }> {
+  if (x === undefined || x === null) return { ok: true, value: { range: undefined, conversions: [] } };
+  if (!Array.isArray(x) || x.length !== 2 || x.some((v) => typeof v !== "string")) return bad(`${name} must be two strings with units`);
+  const qs = x.map((v) => parseQuantity(v as string, variable));
+  for (const q of qs) if (!q.ok) return bad(`${name}: ${q.message}`);
+  const v = qs.map((q) => (q.ok ? q.value : 0));
+  if (v[0] > v[1]) return bad(`${name} must be [lo, hi] with lo <= hi`);
+  return { ok: true, value: { range: [v[0], v[1]], conversions: qs.map((q) => (q.ok ? q.display : "")) } };
+}
+
+const QFIELDS = ["gravity", "o2", "pressure", "flow_velocity", "sample_thickness", "ambient_temperature", "gravity_regime", "fuel_phase", "diluent", "flame_type"] as const;
+
+/** The engine's own conversion of the tool arguments into a target. */
+function toTarget(a: Record<string, unknown>) {
+  const q: Record<string, string> = {};
+  for (const k of QFIELDS) {
+    const v = a[k];
+    if (v === undefined || v === null || v === "") continue;
+    if (typeof v !== "string") return { ok: false as const, error: `${k} must be a string` };
+    q[k] = v;
+  }
+  const r = targetFromQuantities(q as TargetQuantities);
+  return r.ok ? r : { ok: false as const, error: r.errors.map((e) => `${e.field}: ${e.message}`).join("; ") };
 }
 
 /** Validate the arguments the model produced. Never throws. */
@@ -123,22 +138,18 @@ export function validateArgs(name: string, raw: unknown): Validated<Record<strin
   if (!isObj(a)) return bad("arguments must be a JSON object");
   switch (name) {
     case "evaluate_target": {
-      try {
-        parseTargetReply(JSON.stringify(a));
-        return { ok: true, value: a };
-      } catch (e) {
-        return bad(e instanceof Error ? e.message : String(e));
-      }
+      const t = toTarget(a);
+      return t.ok ? { ok: true, value: a } : bad(t.error);
     }
     case "find_evidence": {
-      const o2 = numRange(a.o2_range, "o2_range");
+      const o2 = qRange(a.o2_range, "o2_range", "o2_mole_fraction");
       if (!o2.ok) return o2;
-      const p = numRange(a.pressure_range, "pressure_range");
+      const p = qRange(a.pressure_range, "pressure_range", "pressure");
       if (!p.ok) return p;
       for (const k of ["accession", "variable", "material"]) if (a[k] !== undefined && typeof a[k] !== "string") return bad(`${k} must be a string`);
       const limit = a.limit === undefined ? 10 : a.limit;
       if (!Number.isInteger(limit) || (limit as number) < 1 || (limit as number) > 25) return bad("limit must be an integer from 1 to 25");
-      return { ok: true, value: { ...a, limit } };
+      return { ok: true, value: { ...a, limit, _o2: o2.value, _p: p.value } };
     }
     case "get_receipt":
       for (const k of ["accession", "test_id", "variable"]) if (typeof a[k] !== "string" || a[k] === "") return bad(`${k} is required (a string)`);
@@ -146,11 +157,14 @@ export function validateArgs(name: string, raw: unknown): Validated<Record<strin
     case "transfer_hypothesis":
       return a.gravity === "moon" || a.gravity === "mars" || a.gravity === "earth" ? { ok: true, value: a } : bad('gravity must be "moon", "mars" or "earth"');
     case "fm2_balance": {
-      const l = a.limit_o2;
-      if (typeof l !== "number" || !(l >= 0.15 && l <= 0.4)) return bad("limit_o2 must be a mole fraction from 0.15 to 0.40");
-      const t = a.temperature_c ?? 22;
-      if (typeof t !== "number" || !(t >= 5 && t <= 45)) return bad("temperature_c must be from 5 to 45");
-      return { ok: true, value: { limit_o2: l, temperature_c: t } };
+      if (typeof a.limit_o2 !== "string") return bad('limit_o2 is required: a string with its unit, for example "25 %"');
+      const l = parseQuantity(a.limit_o2, "o2_mole_fraction");
+      if (!l.ok) return bad(`limit_o2: ${l.message}`);
+      if (!(l.value >= 0.15 && l.value <= 0.4)) return bad("limit_o2 must be between 15 % and 40 %");
+      const t = parseQuantity(typeof a.temperature === "string" ? a.temperature : "22 C", "ambient_temperature");
+      if (!t.ok) return bad(`temperature: ${t.message}`);
+      if (!(t.value >= 278.15 && t.value <= 318.15)) return bad("temperature must be between 5 and 45 C");
+      return { ok: true, value: { limit: l, temperature: t } };
     }
     case "text_search": {
       if (typeof a.query !== "string" || a.query.trim() === "" || a.query.length > 500) return bad("query must be 1 to 500 characters");
@@ -210,13 +224,20 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
   const inv = new Map(ctx.investigations.map((i) => [i.accession, i]));
   switch (name) {
     case "evaluate_target": {
-      const parsed = parseTargetReply(JSON.stringify(args));
-      const evaluation = evaluate(ctx.records, parsed.target);
-      const { input } = buildNarrationInput(evaluation, ctx.investigations, parsed.target, 6);
-      return { result: { ...input, assumptions_unstated: parsed.unstated }, engineHash: await ctx.sha256(canonicalJson(evaluation)), target: parsed.target };
+      const t = toTarget(args);
+      if (!t.ok) return { result: { error: t.error } };
+      const evaluation = evaluate(ctx.records, t.target);
+      const { input } = buildNarrationInput(evaluation, ctx.investigations, t.target, 6);
+      return {
+        result: { ...input, conversions: t.conversions.map((c) => c.display), notes: t.conversions.flatMap((c) => c.notes), warnings: t.conversions.flatMap((c) => c.warnings) },
+        engineHash: await ctx.sha256(canonicalJson(evaluation)),
+        target: t.target,
+      };
     }
     case "find_evidence": {
-      const a = args as { accession?: string; variable?: string; material?: string; o2_range?: [number, number]; pressure_range?: [number, number]; limit: number };
+      const a = args as { accession?: string; variable?: string; material?: string; limit: number; _o2?: { range?: [number, number]; conversions: string[] }; _p?: { range?: [number, number]; conversions: string[] } };
+      const o2r = a._o2?.range;
+      const pr = a._p?.range;
       const byTest = new Map<string, ConditionRecord[]>();
       for (const r of ctx.records) {
         if (r.status === "insufficient_evidence") continue;
@@ -236,12 +257,12 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
         if (a.variable && val(a.variable).length === 0) continue;
         if (a.material && !recs.some((r) => (r.variable === "material" || r.variable === "fuel") && r.value.toLowerCase().includes(a.material!.toLowerCase()))) continue;
         const inR = (v: string, rg?: [number, number]) => !rg || val(v).some((r) => { const n = first(r.value); return n >= rg[0] && n <= rg[1]; });
-        if (!inR("o2_mole_fraction", a.o2_range) || !inR("pressure", a.pressure_range)) continue;
+        if (!inR("o2_mole_fraction", o2r) || !inR("pressure", pr)) continue;
         const [accession, test_id] = k.split("|");
         out.push({ accession, test_id, doi: inv.get(accession)?.doi ?? "", values: recs.filter((r) => !r.variable.startsWith("outcome:")).map((r) => ({ variable: r.variable, value: r.value, unit: r.unit, status: r.status })) });
         if (out.length >= a.limit) break;
       }
-      return { result: { count_returned: out.length, tests: out } };
+      return { result: { count_returned: out.length, tests: out, conversions: [...(a._o2?.conversions ?? []), ...(a._p?.conversions ?? [])] } };
     }
     case "get_receipt": {
       const a = args as { accession: string; test_id: string; variable: string };
@@ -259,13 +280,15 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
       return { result: { label: "HYPOTHESIS, NOT EVIDENCE", gravity_g: GRAVITY_TARGETS[id].level, analogs: rep.hypotheses.filter((h) => h.isAnalog).map(row), partial_overlap: rep.hypotheses.filter((h) => !h.isAnalog && h.relation === "overlap").map(row), tests_considered: rep.hypotheses.length, limits: TRANSFER_LIMITS } };
     }
     case "fm2_balance": {
-      const L = args.limit_o2 as number;
-      const T = (args.temperature_c as number) + 273.15;
+      const lq = (args as { limit: { value: number; display: string } }).limit;
+      const tq = (args as { temperature: { value: number; display: string } }).temperature;
+      const L = lq.value;
+      const T = tq.value;
       const rows = FM2_STARTS.map((x0) => {
         const b = fm2Balance(fm2Chamber({ temperatureK: { value: T, unit: "K", source: { note: "assumed, not in the source" } }, startO2Fraction: { value: x0, unit: "1", source: { note: "FM2 test start" } }, limitO2Fraction: { value: L, unit: "1", source: { note: "hypothesised limit" } }, stoichGO2PerGFuel: PMMA_STOICH }));
         return { start_o2: x0, o2_consumable_mol: b.o2ConsumableMol, o2_consumable_g: b.o2ConsumableG, final_o2: b.finalO2Fraction, pmma_burned_g_illustration: b.fuelBurnedG };
       });
-      return { result: { label: "closed-chamber mass balance, not a flame model", volume_l: 14.4, pressure_psia: 8.2, temperature_k_assumed: T, limit_o2_hypothesised: L, tests: rows } };
+      return { result: { label: "closed-chamber mass balance, not a flame model", volume_l: 14.4, pressure_psia: 8.2, temperature_k_assumed: T, limit_o2_hypothesised: L, conversions: [lq.display, tq.display], tests: rows } };
     }
     case "text_search": {
       const a = args as { query: string; k: number };
