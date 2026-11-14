@@ -1,0 +1,27 @@
+# Observed on the psi.nasa.gov investigation pages (https://psi.nasa.gov/physci/repo/data/investigations/<accession>) on 2026-11-14.
+# publications = entries with an "Authors:" line in the Publications section; publications_with_doi = "DOI:" lines in that section.
+accession,version,license,doi,publications,publications_with_doi
+PSI-10,1,,10.60555/w4zy-bt45,33,33
+PSI-20,4,CC0-1.0,10.60555/vb93-3y72,16,15
+PSI-21,4,CC0-1.0,10.60555/23e1-9950,18,18
+PSI-22,7,CC0-1.0,10.60555/se5a-8c73,25,22
+PSI-23,4,CC0-1.0,10.60555/k57n-p030,44,37
+PSI-25,4,CC0-1.0,10.60555/4qc4-de67,17,9
+PSI-26,4,CC0-1.0,10.60555/58h4-dy80,10,7
+PSI-39,4,CC0-1.0,10.60555/m6pj-a914,7,6
+PSI-47,5,CC0-1.0,10.60555/ztgj-d202,2,2
+PSI-60,1,CC0-1.0,10.60555/mzjm-yv57,1,1
+PSI-62,1,CC0-1.0,10.60555/e9xp-ex83,4,4
+PSI-68,6,CC0-1.0,10.60555/byp8-h018,48,36
+PSI-69,5,CC0-1.0,10.60555/mbq8-0451,51,45
+PSI-98,4,CC0-1.0,10.60555/0t15-1z43,6,3
+PSI-99,5,CC0-1.0,10.60555/2chp-m469,7,5
+PSI-100,4,CC0-1.0,10.60555/040q-4h36,3,0
+PSI-101,4,CC0-1.0,10.60555/2np7-jv14,6,3
+PSI-102,4,CC0-1.0,10.60555/gd4k-8h62,16,10
+PSI-106,3,CC0-1.0,10.60555/pm12-rg61,5,4
+PSI-107,4,CC0-1.0,10.60555/9kbh-e962,9,7
+PSI-115,3,CC0-1.0,10.60555/q0v5-1v28,0,0
+PSI-117,2,CC0-1.0,10.60555/gz0q-b577,10,5
+PSI-142,2,CC0-1.0,10.60555/80qf-vj95,12,10
+PSI-159,1,CC0-1.0,10.60555/cyt1-kh64,2,2

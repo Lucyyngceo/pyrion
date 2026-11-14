@@ -22,7 +22,12 @@ NASA documents outside PSI (fact sheets, NASA Technical Reports Server papers, s
 | `psi_manifest.json` | the selected PSI files with investigation, file version, size and priority, plus the time the catalog was read (`generated_at_utc`) |
 | `investigations.csv` | one row per investigation: accession, acronym, title, **DOI**, **license**, PSI version |
 | `external_sources.json` | NASA documents outside PSI, with their role in the project |
-| `checksums_P1.csv` | every downloaded P1 file: path, size, SHA-256, source, status |
+| `checksums_P1.csv`, `checksums_P2.csv`, `checksums_P3.csv` | every downloaded file: path, size, SHA-256, source, status |
+| `publications.csv` | every publication PSI lists for each investigation: title, authors, DOI, DOI link, status (352, of which 284 have a DOI) |
+| `hardware.csv` | experiment hardware and its NASA link, project type, flight program and mission per investigation |
+| `experimental_tables.csv` | the 22 experimental-table files PSI attaches to the investigations (all downloaded, sizes match) |
+| `coverage.csv` | per investigation and folder: files and bytes PSI holds, how many PYRION selected (P1/P2/P3) and how many it excluded |
+| `web_check_2026-11-14.csv` | version, license, DOI and publication counts read on the psi.nasa.gov page of each investigation |
 
 ## Rebuild
 
@@ -40,6 +45,23 @@ The PSI catalog is live. `psi_manifest.json` is a snapshot taken at `generated_a
 - 246 PSI files, 24 full PSI investigation records and 24 NASA documents: **294 files, all with status `ok`**.
 - Every PSI file matches the size in the PSI catalog.
 - Total: 377.9 MB.
+
+## Cross-check against the PSI website
+
+The PSI investigation pages are built from the same public API this pipeline reads: the investigation record, the file tree and the experimental-table download. On November 14, 2026 each of the 24 pages was opened. Version, license, DOI, number of publications and number of publications with a DOI were compared with the downloaded records (`web_check_2026-11-14.csv`). **0 differences in 120 comparisons.**
+
+## What is not downloaded
+
+`coverage.csv` lists everything PSI holds for these 24 investigations: 66,567 files, about 13.5 TB. PYRION selects about 2 GB. The rest is:
+
+- **Raw Data**: 65,629 files, about 13.5 TB: flight video, image sequences and archived raw files. The evidence engine works from the experimental tables, analyzed data and documents. It does not reprocess raw imagery.
+- **Archives and video inside document folders**: about 12.6 GB of `.zip` and `.mp4` files, mostly calibration image archives (9.9 GB). They can be added with the same pipeline if needed.
+
+Building the citation and coverage tables:
+
+```bash
+python -I pipeline/build_catalog_tables.py
+```
 
 ## Notes for analysts
 
