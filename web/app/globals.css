@@ -1137,11 +1137,11 @@ input[type="range"] {
 
 /* ---------- motion (pyrion-motion skill) ---------- */
 /* 1. Envelope reveal: points by layer (staggered, <=600 ms), then hull outlines (<=400 ms). Runs once on mount. */
-@keyframes pt-in { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
-@keyframes hull-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pt-in { from { opacity: 0; transform: scale(0.6); } }
+@keyframes hull-in { from { opacity: 0; } }
 @keyframes settle { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.reveal-pts > g { transform-box: fill-box; transform-origin: center; animation: pt-in 300ms ease-out both; animation-delay: calc(var(--i, 0) * 30ms); }
-.reveal-hull { animation: hull-in var(--motion-base) ease-out both; animation-delay: var(--motion-slow); }
+.reveal-pts > g { transform-box: fill-box; transform-origin: center; animation: pt-in 300ms ease-out backwards; animation-delay: calc(var(--i, 0) * 30ms); }
+.reveal-hull { animation: hull-in var(--motion-base) ease-out backwards; animation-delay: var(--motion-slow); }
 /* 3. Verdict change settles in. */
 .outcome-head, .outcome-detail { animation: settle 250ms ease-out both; }
 @media (prefers-reduced-motion: reduce) {

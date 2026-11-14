@@ -128,7 +128,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   const [viewportH, setViewportH] = useState(900);
   const [hidden, setHidden] = useState<Set<string>>(() => new Set());
   const [hover, setHover] = useState<Hover | null>(null);
-  const [view, setView] = useState<"all" | "cabin">("all");
+  const [view, setView] = useState<"all" | "cabin">("cabin");
   // No marker animation until the real width is known, so nothing slides in on page load.
   const [measured, setMeasured] = useState(false);
 
