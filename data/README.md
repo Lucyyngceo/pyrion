@@ -56,6 +56,22 @@ The PSI catalog is live. `psi_manifest.json` is a snapshot taken at `generated_a
 
 All three are context documents (P3). None of them is used as evidence.
 
+## Official challenge resources
+
+The challenge page (Resources tab) lists 10 resources. All are in `manifest/external_sources.json` (ids starting with `challenge-`):
+
+| Resource | What is stored |
+|---|---|
+| PSI Data Repository: Combustion Science | the 24 investigations, P1–P4 (this folder) |
+| A Researcher's Guide to ISS Combustion Science | the PDF and the web page |
+| NASA Glenn: Combustion Science | the web page |
+| Apollo 1, Apollo 13 (NASA Office of Safety and Mission Assurance) | the web pages and the 14 PDFs they link: 12 downloaded; 2 links on the NASA page return 404 (Apollo 13 Mission Report; Apollo 13 Review Board appendices B–E) |
+| 25 Years Ago: Fire Aboard Space Station Mir | the web page |
+| NASA Spinoff: Fireman's Air Tanks, Fire Detector, New Technology for the Fire Attire | the web pages |
+| NASA ScienceCasts video (YouTube) | cited by link, not downloaded |
+
+Web pages are saved as `page.html` with their SHA-256, as they were served on November 14, 2026.
+
 ## Cross-check against the PSI website
 
 The PSI investigation pages are built from the same public API this pipeline reads: the investigation record, the file tree and the experimental-table download. On November 14, 2026 each of the 24 pages was opened. Version, license, DOI, number of publications and number of publications with a DOI were compared with the downloaded records (`web_check_2026-11-14.csv`). **0 differences in 120 comparisons.**

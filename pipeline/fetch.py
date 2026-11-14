@@ -95,7 +95,7 @@ def task_record(accession):
 
 
 def task_external(src):
-    name = urllib.request.unquote(src["url"].split("/")[-1])
+    name = src.get("filename") or urllib.request.unquote(src["url"].split("/")[-1])
     rel = f"nasa/{src['id']}/{name}"
     dest = local_path(rel)
     if not dest.exists():

@@ -1,5 +1,12 @@
-# generated_at_utc=2026-11-14T16:09:19Z
+# generated_at_utc=2026-11-14T16:42:43Z
 path,bytes,sha256,source,status
+nasa/challenge-apollo1-as204_senate_956/as204_senate_956.pdf,5154848,31530c7062cc3a0bb400df933e5de41c58298ff2851b762a50982578561faa34,https://history.nasa.gov/as204_senate_956.pdf,ok
+nasa/challenge-apollo1-bormanhouse1/bormanhouse1.pdf,2982115,5ef06f1137c0d8bc16ce1783f1bff5da2ec266a41925d85a1b52c9fea86eb248,https://www.nasa.gov/wp-content/uploads/static/history/Apollo204/bormanhouse1.pdf,ok
+nasa/challenge-apollo1-bormanhouse2/bormanhouse2.pdf,3126182,d207604d37ca693941560a82da2ab575544eb69a1d280f241cf4177a2a4fd349,https://www.nasa.gov/wp-content/uploads/static/history/Apollo204/bormanhouse2.pdf,ok
+nasa/challenge-apollo1-bormansenate1/bormansenate1.pdf,1307456,629581f2455e42d1af46fd8aaf6a489652df78ca1dd97dc7ea1b072ecfb4cccc,https://www.nasa.gov/wp-content/uploads/static/history/Apollo204/bormansenate1.pdf,ok
+nasa/challenge-apollo1-bormansenate2/bormansenate2.pdf,1886845,c91720c6374c3f6a4d5080f54fdb2f71eabe006a26dd8f72d30e21ed837c4109,https://www.nasa.gov/wp-content/uploads/static/history/Apollo204/bormansenate2.pdf,ok
+nasa/challenge-apollo1-bormansenate3/bormansenate3.pdf,1702143,3540a6a01a15ec087b3d7158c7804313ee3554512a070c52bcfeb21ea7f1794b,https://www.nasa.gov/wp-content/uploads/static/history/Apollo204/bormansenate3.pdf,ok
+nasa/challenge-apollo13-gpo-chrg-91shrg4746/GPO-CHRG-91shrg4746.pdf,8902272,4e9490ad9b7df4b8fa814775583e4e6f73d9bb7b927d87df25a014bc9ddfb0fe,https://www.govinfo.gov/content/pkg/GPO-CHRG-91shrg4746/pdf/GPO-CHRG-91shrg4746.pdf,ok
 nasa/ntrs-20010074003/20010074003.pdf,385134,ba77167f2f8437f109f1849c5f20da0ddfcc482e4268707f3703738efbdc5edf,https://ntrs.nasa.gov/api/citations/20010074003/downloads/20010074003.pdf,ok
 nasa/ntrs-20060013463/20060013463.pdf,17010288,e148ec855216aab89cd42d80944a53af3f2549ccc1896aa4273e96f10150cceb,https://ntrs.nasa.gov/api/citations/20060013463/downloads/20060013463.pdf,ok
 nasa/ntrs-20120017346/20120017346.pdf,8510,06f8768f57f7e4a2ad904880b6c2dae58389e01f5edad1ee4be8c1c2ea63269a,https://ntrs.nasa.gov/api/citations/20120017346/downloads/20120017346.pdf,ok
@@ -283,3 +290,5 @@ psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX DoD.docx,18758,1
 psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX_Test_Plan.pdf,185799,0af43477a04b05e3c44558b22c16a69cfda837a6a17fa94178ce1f9fce361dc5,PSI PSI-69 v1: PSI-69_Science Documents_FLEX_Test_Plan.pdf,ok
 "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf",186259,6cff0b55b8f1416f5b5b768b7fd22ae31991791ef633865471b72ff19ff4159b,"PSI PSI-98 v1: PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf",ok
 "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf",186259,6cff0b55b8f1416f5b5b768b7fd22ae31991791ef633865471b72ff19ff4159b,"PSI PSI-99 v1: PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf",ok
+,,,https://www.nasa.gov/wp-content/uploads/static/history/afj/ap13fj/pdf/a13-review-report-app-b-c-d-e-19700078726.pdf,failed: HTTPError: HTTP Error 404: Not Found
+,,,https://history.nasa.gov/alsj/a13/A13_MissionReport.pdf,failed: HTTPError: HTTP Error 404: Not Found
