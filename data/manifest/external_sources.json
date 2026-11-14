@@ -523,6 +523,13 @@
    "title": "https://www.nasa.gov/wp-content/uploads/2026/01/iss-25th-science-infographic-20260121-print.pdf",
    "url": "https://www.nasa.gov/wp-content/uploads/2026/01/iss-25th-science-infographic-20260121-print.pdf",
    "found_on": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+  },
+  {
+   "id": "ntrs-20180005168",
+   "priority": "P1",
+   "role": "Saffire flight results: gravity condition during the burn (found by independent review, grok-regimen)",
+   "title": "Saffire results (NTRS 20180005168)",
+   "url": "https://ntrs.nasa.gov/api/citations/20180005168/downloads/20180005168.pdf"
   }
  ]
 }

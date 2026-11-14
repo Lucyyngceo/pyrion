@@ -1,4 +1,4 @@
-# generated_at_utc=2026-11-14T16:41:59Z
+# generated_at_utc=2026-11-14T18:01:51Z
 path,bytes,sha256,source,status
 nasa/challenge-apollo-1/page.html,76307,085adb082366300b7e159c8191fee587bb9a50ff290376bc57e9b69dff42a0ca,https://sma.nasa.gov/sma-disciplines/accllp/apollo-1,ok
 nasa/challenge-apollo-13/page.html,70836,76161511d301e71e625f4152dccc2e911555d0aabe3cd5c47f23b003c5f64702,https://sma.nasa.gov/sma-disciplines/accllp/apollo-13,ok
@@ -23,6 +23,7 @@ nasa/nasa-img-sibal/edge-view-of-sibal.png,181013,20e7113ff8fd15eb7755dff367c30c
 nasa/nasa-std-6001b/nasa-std-6001b.pdf,1514218,3565820b2267be5252ed48653d23491cf81dc151155ea176fe5480dc162ee03a,https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf,ok
 nasa/ntrs-20150008961/20150008961.pdf,449964,8cee8a023d9f0aab214996ebaeefb842080b0c935ba9e01db0096a47379519f7,https://ntrs.nasa.gov/api/citations/20150008961/downloads/20150008961.pdf,ok
 nasa/ntrs-20170004702/20170004702.pdf,226474,0a8c1da4af61697ca09fa3f7c58807e88981870ed63f024bad2577f577623c93,https://ntrs.nasa.gov/api/citations/20170004702/downloads/20170004702.pdf,ok
+nasa/ntrs-20180005168/20180005168.pdf,9049169,9ae2e365c850cbd0e136ea4e17cc5ecf68e5ac89d248b3c0a7b7b4bde9e2f402,https://ntrs.nasa.gov/api/citations/20180005168/downloads/20180005168.pdf,ok
 nasa/ntrs-20210020446/LSSW Presentation_8-12-2021_FINAL.pdf,1670196,f9f56694310386a5ee7506a73418b32a2e4505cb6e4f6179f31c5cee5d969c64,https://ntrs.nasa.gov/api/citations/20210020446/downloads/LSSW%20Presentation_8-12-2021_FINAL.pdf,ok
 nasa/ntrs-20210021318/Tech Dev for Spacecraft Fire Safety_Location_10-7-2021.pdf,3010670,bd7610e64a71601fe3e2a329bbdb33a8a4701eec68ce9b1a374c8d77649b38c4,https://ntrs.nasa.gov/api/citations/20210021318/downloads/Tech%20Dev%20for%20Spacecraft%20Fire%20Safety_Location_10-7-2021.pdf,ok
 nasa/ntrs-20220011152/Exploration Atmosphers OAF 20220805.pdf,9566921,cfc050aded4f9f8da9487d4279dc38c500375017e8562050bb9d15ed465e4d87,https://ntrs.nasa.gov/api/citations/20220011152/downloads/Exploration%20Atmosphers%20OAF%2020220805.pdf,ok
