@@ -1,0 +1,38 @@
+{
+  "accession": "PSI-22",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=approach; microgravity stated for the experiment; no electric-field sentence turned into gravity."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim on page 43; SAMS not evaluated and PaRIS not used (checked)."},
+    {"id": "R3", "verdict": "KEEP", "reason": "1-g lab flames from dissertations: SECONDARY_SOURCE; names no PSI test, never rescoped."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim at section=approach; 'gas-fueled'."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on page 61."},
+    {"id": "R6", "verdict": "KEEP", "reason": "flightProgram; platform only."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim; CIR; SHARED_LINEAGE."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Bottle sentence on page 11 linked to the chamber fill (pages 20-21): derived N2."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Covers only the paper's results; test_id stays a paper subset (not ingested)."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Table 4 caption covers four test points only (not ingested)."},
+    {"id": "R11", "verdict": "KEEP", "reason": "2010 SRD plan: ambiguous."},
+    {"id": "R12", "verdict": "KEEP", "reason": "Nominal fill, derived; unit 'on a volume basis' is not convertible by code (not ingested)."},
+    {"id": "R13", "verdict": "MODIFY", "reason": "Ratio notation and nominal fill: derived, not direct.",
+     "corrected": {"confidence": "derived", "derivation": "Ratio notation: '21/79 oxygen/nitrogen by volume' has no % sign; the parts sum to 100, so O2 = 21/(21+79) = 21 % by volume = 0.21 mole fraction (ideal gas). Nominal chamber-fill composition, not a measured value: the atmosphere is not refreshed between the tests of a day (page 20: 'Midway through a day’s E-FIELD Flames tests, the atmosphere is circulated for 15 minutes through a filter cartridge [...] to capture any soot and adsorb at least a portion of the combustion products'; page 11: flows 'constrained to limit the pressure rise and vitiation of the atmosphere'). Scope: tests shown in Chien et al. 2018 (text reproduced per note on page 19)."}},
+    {"id": "R14", "verdict": "MODIFY", "reason": "Ratio notation, nominal environment of four test points.",
+     "corrected": {"confidence": "derived", "derivation": "Ratio notation: '21/79 oxygen/nitrogen mixture (by volume)' has no % sign; O2 = 21/(21+79) = 21 % by volume = 0.21 mole fraction (ideal gas). Nominal environment of the four Table 4 test points (second round, gas-jet burner, 100% CH4 at 24 and 19 cm/s), not a measurement: the chamber atmosphere is not refreshed between the tests of a day and is partly filtered of combustion products midway (page 20); flows are limited to restrict vitiation (page 11). The caption does not cover whole test days 18282/18312."}},
+    {"id": "R15", "verdict": "KEEP", "reason": "Verbatim on page 61; free-text test_id (not ingested)."},
+    {"id": "R16", "verdict": "KEEP", "reason": "Plan with molar basis: ambiguous."},
+    {"id": "R17", "verdict": "MODIFY", "reason": "'nominal' must travel with the value.", "corrected": {"value_original": "nominal pressure of 100 kPa"}},
+    {"id": "R18", "verdict": "KEEP", "reason": "Verbatim; coflow used for only some tests; CLD burner lineage flagged."},
+    {"id": "R19", "verdict": "REJECT", "reason": "'without a coflow' is not 'quiescent': the field-driven ion wind moves the gas around the flame; tagging it quiescent is the electric-field trap on the flow axis."},
+    {"id": "R20", "verdict": "REJECT", "reason": "Same unsupported 'quiescent' mapping, from a burner capability sentence."}
+  ],
+  "missed": [
+    "Page 23: 'In microgravity, a facing upright burner is equivalent to one facing upside down ... because the buoyancy/gravitation force is zero.'",
+    "Page 65: gas-jet tests 'in the 0-g condition'.",
+    "Page 77: chamber environment of air (first round).",
+    "Lineage: CFI camera and HiBMs camera from earlier CIR droplet experiments; analysis code shared with CLD Flame."
+  ],
+  "could_not_check": "SRD, Chien et al. papers and other documents outside the allowed sources not opened; per-test pressure/O2 data not in data/raw; Table 1/4 cells read from text and images. Free-text test ids and 'by volume' units mean no O2 or pressure value reaches status extracted from this file.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

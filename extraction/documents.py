@@ -39,6 +39,8 @@ UNITS = {
                          "% by volume": (PERCENT_TO_FRACTION, None, "percent x 0.01"),
                          "vol%": (PERCENT_TO_FRACTION, None, "percent x 0.01"),
                          "% o2": (PERCENT_TO_FRACTION, None, "percent x 0.01"),
+                         "by volume": (PERCENT_TO_FRACTION, None, "percent x 0.01 (parts of a ratio summing to 100)"),
+                         "on a volume basis": (PERCENT_TO_FRACTION, None, "percent x 0.01 (parts of a ratio summing to 100)"),
                          "mole fraction": (None, None, ""), "": (None, None, "")},
     "flow_velocity": {"cm/s": (None, None, ""), "mm/s": (Decimal("0.1"), None, "mm/s x 0.1"),
                       "m/s": (Decimal("100"), None, "m/s x 100")},
@@ -136,6 +138,8 @@ def _value(rec: dict) -> tuple[str, str, str]:
     vals = [v for v, _ in conv]
     note = conv[0][1] if conv else ""
     kind = rec.get("kind", "point")
+    if kind == "list" and len(vals) > 1:
+        return vals, SCHEMA_UNIT[var], join_notes("one of the values listed in the source sentence", note)
     if kind == "range" and len(vals) == 2:
         return value_range(vals[0], vals[1]), SCHEMA_UNIT[var], join_notes("range stated in the source", note)
     if len(vals) == 1:
@@ -198,13 +202,14 @@ def load(table_ids_by_acc: dict[str, list[str]]):
                 f"{r['id']} extracted by the extractor agent; {verdict} by the verificador agent (separate run)",
                 "license not stated" if acc == "PSI-10" else "",
             )
-            for tid in ids:
-                key = (tid, r["variable"], value, r["source_file"], r["source_location"])
+            values = value if isinstance(value, list) else [value]
+            for tid, one in [(t, v) for t in ids for v in values]:
+                key = (tid, r["variable"], one, r["source_file"], r["source_location"])
                 if key in seen_keys:
                     continue
                 seen_keys.add(key)
                 recs.append({
-                    "accession": acc, "test_id": tid, "variable": r["variable"], "value": value, "unit": unit,
+                    "accession": acc, "test_id": tid, "variable": r["variable"], "value": one, "unit": unit,
                     "value_original": str(r.get("value_original", "")), "unit_original": r.get("unit_original", "") or "",
                     "method": "document", "source_file": r["source_file"], "source_location": r["source_location"],
                     "quote": r["quote"], "status": status, "note": note,
