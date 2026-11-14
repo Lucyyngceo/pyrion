@@ -4,15 +4,63 @@
   "date": "2026-11-14",
   "transcription": "Verdicts copied verbatim from the verificador's final message; reasons condensed by the build session.",
   "verdicts": [
-    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=objective; objective, so ambiguous. Same series-wide text as R4 (not independent)."},
-    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim in Readme paragraph 1 (typo 'that affect' kept); SAFFIRE-II objective; ambiguous; same lineage as R4."},
-    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim at section=researchImpacts; impact statement; ambiguous must not be raised."},
-    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim on PDF page 1; future-tense pre-flight plan for Saffire I-III; ambiguous + SHARED_LINEAGE. R1-R4 all trace to one paper: not several confirmations."},
-    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim at section=approach; no source names the phase; derived from material names is correct."},
-    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim, past tense, SAFFIRE-II specific; survived the negative control."},
-    {"id": "R7", "verdict": "KEEP", "reason": "Whole experimentHardware field verbatim; a label that names the value."},
-    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim on PDF page 1; future-tense plan; ambiguous + SHARED_LINEAGE; redundant with R6."},
-    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim; 'air' occurs; air -> N2 derivation per the rule. Caution: the same sentence says '20 or 30 cm/s' while the as-run table gives 20 cm/s for all nine samples."}
+    {
+      "id": "R1",
+      "verdict": "KEEP",
+      "reason": "Verbatim at section=objective; objective, so ambiguous. Same series-wide text as R4 (not independent)."
+    },
+    {
+      "id": "R2",
+      "verdict": "KEEP",
+      "reason": "Verbatim in Readme paragraph 1 (typo 'that affect' kept); SAFFIRE-II objective; ambiguous; same lineage as R4."
+    },
+    {
+      "id": "R3",
+      "verdict": "KEEP",
+      "reason": "Verbatim at section=researchImpacts; impact statement; ambiguous must not be raised."
+    },
+    {
+      "id": "R4",
+      "verdict": "KEEP",
+      "reason": "Verbatim on PDF page 1; future-tense pre-flight plan for Saffire I-III; ambiguous + SHARED_LINEAGE. R1-R4 all trace to one paper: not several confirmations."
+    },
+    {
+      "id": "R5",
+      "verdict": "KEEP",
+      "reason": "Verbatim at section=approach; no source names the phase; derived from material names is correct."
+    },
+    {
+      "id": "R6",
+      "verdict": "KEEP",
+      "reason": "Verbatim, past tense, SAFFIRE-II specific; survived the negative control."
+    },
+    {
+      "id": "R7",
+      "verdict": "KEEP",
+      "reason": "Whole experimentHardware field verbatim; a label that names the value."
+    },
+    {
+      "id": "R8",
+      "verdict": "KEEP",
+      "reason": "Verbatim on PDF page 1; future-tense plan; ambiguous + SHARED_LINEAGE; redundant with R6."
+    },
+    {
+      "id": "R9",
+      "verdict": "KEEP",
+      "reason": "Verbatim; 'air' occurs; air -> N2 derivation per the rule. Caution: the same sentence says '20 or 30 cm/s' while the as-run table gives 20 cm/s for all nine samples."
+    },
+    {
+      "id": "R101",
+      "verdict": "MODIFY",
+      "reason": "Slide 18 covers the large Saffire-I/III sample, not the 5 cm Saffire-II samples; slide 31 (µ-g columns for rows 2-1..2-9) does.",
+      "corrected": {
+        "source_location": "page=31",
+        "quote": "µ-g Burn Length µ-g Spread Rate 1-g Burn Length 1-g Spread Rate",
+        "value_original": "µ-g",
+        "confidence": "derived",
+        "derivation": "derived: Table 1 (continued), slide 31 of Urban et al., ASGSR 2017 (NTRS 20180005168), reports flight results for rows 2-1 to 2-9 under 'µ-g' columns, separated from '1-g' ground comparisons. Slide 30 lists these as Saffire-II samples II-1 to II-9. µ-g = microgravity. Results for I-III are in one table, so not independent per flight (SHARED_LINEAGE). The slide 18 bullet would be only ambiguous for Saffire-II: it is about the large Saffire-I/III sample."
+      }
+    }
   ],
   "missed": [
     "The PSI table has 1-g Burn Length / 1-g Spread Rate columns: normal-gravity comparisons with no test ids or stated location; the table adapter does not map them onto the flight samples.",
@@ -21,5 +69,6 @@
     "Pre-flight Table 1 (PDF page 3) differs from the as-run table on flow (30 vs 20 cm/s for S6, S9) and thickness (S1 0.25 vs 0.27 mm; S5/S6 0.33 mm vs '037 mm')."
   ],
   "could_not_check": "PDF read through its text layer; Readme Tables 1 and 3 appear only as captions; byte identity of the shared PDF not hash-checked; MergeResult xlsx, metadata zip and post-flight papers not opened; origin of the CSV 1-g columns and the '?' in its headers unresolved.",
-  "review_level": "segregated internal check by a language model; not expert or NASA review"
+  "review_level": "segregated internal check by a language model; not expert or NASA review",
+  "addendum2": "R101+ audited in a separate verificador run on 2026-11-14 (BASS/SAFFIRE gravity review); verdicts transcribed by the build session."
 }

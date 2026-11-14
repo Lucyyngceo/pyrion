@@ -310,7 +310,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=111`
-- As written: `roughly 14.7 psia` (psia)
+- As written: `14.7` (psia)
 - Applies to: 9 tests: `2020-Sept-3`, `2020-Oct-17`, `2020-Dec-5`, `2020-Dec-4`, `2020-Dec-11`, `2020-Dec-17`, `2020-Dec-23`, `2021-Jan-20`, `2021-Jan-28`
 - Note: confidence ambiguous ('most of' the round-2 tests, not all, and 'roughly'. Known exceptions: 2021-Jan-20 (0.57 bar for five tests, R18) and the p.149 test at roughly 0.6 atm (R20). Day mapping: report day 20261 (17 Sept. 2020) = CSV row 2020-Oct-17 and report day 20279 (5 Oct. 2020) = CSV row 2020-Dec-5. The CSV dates disagree with Table 1 (p.24) and Appendix F (p.139); the rows were matched by burner, fuel bottle, O2 list and flames ignited. Same sentence in the Data Interpretation PDF p.4.); psia x 6.894757; rounded to 6 significant digits; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -320,7 +320,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=154`
-- As written: `0.57 bar` (bar)
+- As written: `0.57` (bar)
 - Applies to: 1 tests: `2021-Jan-20`
 - Note: confidence direct (GMT 020 of 2021 = test day 21020 = CSV row 2021-Jan-20. Applies to five of that day's 15 flames only. The same paragraph reports other tests that day at 'normal atmospheric conditions (e.g., ~21% oxygen by volume)', so 0.57 bar is not the day's only pressure. The sentence also gives the value as '8.2 psia'.); bar x 100; R18 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -330,7 +330,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=154`
-- As written: `1 atm` (atm)
+- As written: `1` (atm)
 - Applies to: 1 tests: `2021-Jan-28`
 - Note: confidence direct (GMT 028 of 2021 = test day 21028 (50-mm burner, 13 flames; Table 1, p.24). Applies to all flames of that day.); atm x 101.325; R19 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -340,7 +340,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=25`
-- As written: `10.2 psia` (psia)
+- As written: `10.2` (psia)
 - Applies to: 1 tests: `2019-Feb-25`
 - Note: confidence direct (Figure caption text (not read from the plot). Skipped words: the heat-of-combustion and mass-flux terms, whose delta symbol is lost in the text layer.); psia x 6.894757; rounded to 6 significant digits; R21 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -350,7 +350,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=25`
-- As written: `10.2 psia` (psia)
+- As written: `10.2` (psia)
 - Applies to: 1 tests: `2019-March-11`
 - Note: confidence direct (Figure caption text (not read from the plot). Skipped words: the heat-of-combustion and mass-flux terms, whose delta symbol is lost in the text layer.); psia x 6.894757; rounded to 6 significant digits; R22 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -360,7 +360,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=26`
-- As written: `8.2 psia` (psia)
+- As written: `8.2` (psia)
 - Applies to: 1 tests: `2019-March-11`
 - Note: confidence direct (Figure caption text (not read from the plot). The text below it on the same page gives the same atmosphere as '34% oxygen and 0.56 atm'. Skipped words: the heat-of-combustion and mass-flux terms, whose delta symbol is lost in the text layer.); psia x 6.894757; rounded to 6 significant digits; R23 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -390,7 +390,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
 - Location: `page=103`
-- As written: `p = 14.7 psia` (psia)
+- As written: `14.7` (psia)
 - Applies to: 1 tests: `2020-Dec-5`
 - Note: confidence direct (Figure caption text (not read from the plot). Test 20279B4: day 20279 = 5 Oct. 2020 per Table 1 (p.24) and Appendix F (p.139), but the matching CSV row (100% CH4; 25; 34; 40; 21 flames) is dated 2020-Dec-5, so it is joined to that row. One test of that day. Same caption as 'Figure 28.' on p.130.); psia x 6.894757; rounded to 6 significant digits; R26 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
@@ -588,7 +588,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-22/Reports/PSI-22_Reports_E-FIELD Flames Final Report.pdf`
 - Location: `page=11`
-- As written: `21/79 oxygen/nitrogen mixture (on a volume basis)`
+- As written: `21` (on a volume basis)
 - Applies to: all tests (`*`)
 - Note: source gives a ratio with the label 'on a volume basis', not a % sign; confidence derived (Same sentence and same chamber-fill link as R8 (page 20: 'the oxygen/nitrogen bottles used to fill the chamber'; page 21: coflow ‘air’ 'which also fills the chamber'). Nominal fill composition, not a measured value: page 11 also says 'Burner flows are generally constrained to limit the pressure rise and vitiation of the atmosphere', and page 20 says that midway through a test day the atmosphere is filtered to remove part of 'the combustion products'. For second-round tests the 21/79 environment is stated explicitly only for the Table 4 test points (R14).); flags: UNIT_AMBIGUOUS; percent x 0.01 (parts of a ratio summing to 100); R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -598,7 +598,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-22/Reports/PSI-22_Reports_E-FIELD Flames Final Report.pdf`
 - Location: `page=4`
-- As written: `21% O2` (%)
+- As written: `21` (%)
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (Plan, not an as-run statement ('will have'); basis stated as molar. Same provenance as R11 (2010 SRD Executive Summary reproduced 'With minor editing', page 3; the SRD itself was not in the source list). As-run statements R12-R15 give the same 21.); flags: SECONDARY_SOURCE; percent x 0.01; R16 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -692,7 +692,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv`
 - Location: `row=2`
-- As written: `~1 atm` (atm)
+- As written: `1` (atm)
 - Applies to: all tests (`*`)
 - Note: confidence direct (Notes column, data row 2: the footnote for the Atmosphere column, applying to all test days. Approximate nominal chamber pressure; the same note says pressure increases with vitiation but gives no value for the increase.); atm x 101.325; R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -702,7 +702,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=24`
-- As written: `~1 atm` (atm)
+- As written: `1` (atm)
 - Applies to: all tests (`*`)
 - Note: confidence direct (Footnote 2 under Table 1 'Flames ignited for the s-Flame experiment' (preceded by a superscript '2' in the PDF). The same footnote is under the Appendix D table on page=60. Context, page=17: 'All ACME experiments will be constant volume (i.e., rather than constant pressure) studies, where the chamber’s free volume will be about 90 liters.'); atm x 101.325; R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -712,7 +712,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=78`
-- As written: `1 atm` (atm)
+- As written: `1` (atm)
 - Applies to: 1 tests: `20006`
 - Note: confidence direct (Appendix G (Payload Weekly Science Summary), 'Week 15: January 3 - 9', describing GMT 006, i.e. test day 20006. Agrees with the ~1 atm note (R10, R11).); atm x 101.325; R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -722,7 +722,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=79`
-- As written: `~1 atm` (atm)
+- As written: `1` (atm)
 - Applies to: 1 tests: `20013`
 - Note: confidence direct (Appendix G, 'Week 16: January 10 - 16', caption of a figure showing four tests from GMT 013 (test day 20013). The oxygen value in the same sentence is proposed in R14.); atm x 101.325; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -732,7 +732,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=79`
-- As written: `~19%` (%)
+- As written: `19` (%)
 - Applies to: 1 tests: `20013`
 - Note: confidence ambiguous (Disagrees with the PSI table: CSV row=7 (test day 20013) Atmosphere reads '~21% O2 with N4'. Inside the same report, Table 1 (page=24) gives '~21% O2, with N2' for this day and page=27 says 'Test day 20013 mainly investigates 30% H2 /15% CH4 / 55% N2 mixtures issuing into air.' This page-79 sentence comes from the weekly operations summary and describes four specific tests. The table note (CSV row=2) says 'O2% drops with vitiation'; the report does not say whether that explains ~19%. Both values kept, not resolved. Percent basis: the report states it elsewhere as volume (page=19: 'an oxygen concentration of nominally 21% (on a volume basis)').); flags: DISCREPANCY; percent x 0.01; R14 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -742,7 +742,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=69`
-- As written: `21%` (%)
+- As written: `21` (%)
 - Applies to: 1 tests: `20164`
 - Note: confidence ambiguous (PSI table CSV row=15 (test day 20164) Atmosphere reads only '~30% O2 with He'. The report says tests at 21% O2/He were also run that day, all without ignition; page=68: 'The 20164 tests began study of ethylene-based flames, where 20% C2H4/80% He issued into 30% O2/He and 21% O2/He atmospheres.' The table counts flames ignited; neither source says whether its Atmosphere column is meant to cover non-ignited tests. Percent basis: see R14.); flags: DISCREPANCY; percent x 0.01; R15 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -752,7 +752,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
 - Location: `page=69`
-- As written: `17.5%` (%)
+- As written: `17.5` (%)
 - Applies to: 1 tests: `20190`
 - Note: confidence ambiguous (PSI table CSV row=18 (test day 20190) Atmosphere reads '~30% and ~21% O2 with He'; the report adds a last set of tests at 17.5% O2 on that day. Also stated on page=29: 'Tests with a reduced oxygen concentration atmosphere of 17.5% O2 / 82.5% He seems to show both radiative and kinetic extinction.' The diluent (He) agrees with the table. Percent basis: see R14.); flags: DISCREPANCY; percent x 0.01; R16 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -886,7 +886,7 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* BASS as-run matrix (`psi-data/PSI-26/Science Documents/PSI-26_Science Documents_As Run_Test Matrix.xlsx`, sheet "as run matrix"): the column "O2 % by volume" holds values such as 0.221 and 0.1707. They are read as mole fractions (22.1 %, 17.07 %), not as 0.221 %: a flame cannot burn at 0.2 % oxygen and the tests did burn. Both this column and "pressure, atm" sit under the header group "ISS environment"; the table does not say whether they were read in the station cabin or inside the glovebox work volume (values down to 0.159 suggest a diluted work volume, which is not stated).
 - *Table reading:* BASS rows whose material reads "SOOT Cleaning" are not tests and give no record.
 
-### gravity_regime = microgravity  (extracted)
+### gravity_regime = microgravity  (insufficient_evidence)
 
 > BASS (Burning and Suppression of Solids) examines the burning and extinction characteristics of a wide variety of fuel samples in microgravity.
 
@@ -894,7 +894,7 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=1`
 - As written: `microgravity`
 - Applies to: all tests (`*`)
-- Note: confidence direct (Investigation-level description in the PSI Data Layout Document; the sentence spans two PDF lines (joined with one space).); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+- Note: confidence ambiguous (Scope sentence of the PSI Data Layout Document: says what BASS examines, not that the tests were run in microgravity. Same rule as the FLEX description-of-data sentence (PSI-69). Stronger candidates were audited and rejected or downgraded (2015 ISS Researcher's Guide pp.2, 31: they describe BASS-II or the whole campaign).); R1 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ### fuel_phase = solid  (extracted)
 
@@ -995,6 +995,16 @@ For each record below, open the file at the location given and check that the qu
 - As written: `at or above 21% O2` (%)
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (Lower bound only, and a requirement in the February 2010 planning SRD ('Ambient Oxygen Concentration Requirements', BASS column), not a measured value. The same restriction is repeated on page 8 for the MSG working volume. The as-run O2 is not stated in the record text or the 2013 paper. The percent basis (volume/mole or mass) is not stated. The '2' in 'O2' is a subscript in the PDF.); flags: UNIT_AMBIGUOUS; percent x 0.01; R16 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (insufficient_evidence)
+
+> Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.
+
+- File: `nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf`
+- Location: `page=31`
+- As written: `microgravity`
+- Applies to: all tests (`*`)
+- Note: confidence ambiguous (ambiguous: the 2015 ISS Researcher's Guide uses 'BASS' for the whole BASS/BASS-II campaign. A lower-oxygen result needs N2 vitiation, which the PSI-25 report says BASS-II introduced. The sentence cannot be attributed to PSI-26 tests. SHARED_LINEAGE: BASS, BASS-II, SPICE and SLICE share the MSG flow duct.); R102 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-39 CFI
 
@@ -1406,6 +1416,16 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: all tests (`*`)
 - Note: confidence derived (air: oxygen balanced mainly by nitrogen. The documents read do not state the composition of this air beyond O2.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
+### gravity_regime = microgravity  (extracted)
+
+> Flame spread over a large thin charring surface in low-gravity showed that steady flame spread was possible (unlike normal gravity)
+
+- File: `nasa/ntrs-20180005168/20180005168.pdf`
+- Location: `page=18`
+- As written: `low-gravity`
+- Applies to: all tests (`*`)
+- Note: confidence derived (derived: slide 18 ('Saffire-I-III Results', Urban et al., ASGSR 2017, NTRS 20180005168) says 'low-gravity' about the large thin charring surface. Slides 14/23/30 identify that sample as the 40.6 x 94 cm cotton-fiberglass of Saffire-I (I-1) and Saffire-III. The same deck labels these burns 'µ-g' (slide 31) and 'microgravity' (slide 17). The deck reports Saffire-I and III together, so it is not independent per flight (SHARED_LINEAGE). The deck does not itself tie 'low-gravity' to Cygnus in one sentence.); flags: SHARED_LINEAGE; R101 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
 ## PSI-99 SAFFIRE-II
 
 - *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them. NTRS 20180005168 (Urban et al. 2017) Table 1, page 30, writes 0.37 mm for the SIBAL fabric of Saffire-I, II and III; that supports mm, but PSI's own sources disagree, so the status stays `insufficient_evidence`.
@@ -1503,6 +1523,16 @@ For each record below, open the file at the location given and check that the qu
 - As written: `air`
 - Applies to: all tests (`*`)
 - Note: confidence derived (air: oxygen balanced mainly by nitrogen. None of the three sources names the balance gas of the Cygnus atmosphere.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (extracted)
+
+> µ-g Burn Length µ-g Spread Rate 1-g Burn Length 1-g Spread Rate
+
+- File: `nasa/ntrs-20180005168/20180005168.pdf`
+- Location: `page=31`
+- As written: `µ-g`
+- Applies to: all tests (`*`)
+- Note: confidence derived (derived: Table 1 (continued), slide 31 of Urban et al., ASGSR 2017 (NTRS 20180005168), reports flight results for rows 2-1 to 2-9 under 'µ-g' columns, separated from '1-g' ground comparisons. Slide 30 lists these as Saffire-II samples II-1 to II-9. µ-g = microgravity. Results for I-III are in one table, so not independent per flight (SHARED_LINEAGE). The slide 18 bullet would be only ambiguous for Saffire-II: it is about the large Saffire-I/III sample.); flags: SHARED_LINEAGE; R101 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-100 SAFFIRE-III
 
@@ -1628,6 +1658,16 @@ For each record below, open the file at the location given and check that the qu
 - As written: `air`
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (air: oxygen balanced mainly by nitrogen. Grammatically 'air' qualifies the SAFFIRE-I flow only; the SAFFIRE-III clause says 'a flow velocity' without naming the gas. Future tense (planning text). The same sentence (with 'Saffire-I' / 'Saffire-III') is on page 2 of the Objectives PDF.); flags: SHARED_LINEAGE; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (extracted)
+
+> Flame spread over a large thin charring surface in low-gravity showed that steady flame spread was possible (unlike normal gravity)
+
+- File: `nasa/ntrs-20180005168/20180005168.pdf`
+- Location: `page=18`
+- As written: `low-gravity`
+- Applies to: all tests (`*`)
+- Note: confidence derived (derived: slide 18 ('Saffire-I-III Results', Urban et al., ASGSR 2017, NTRS 20180005168) says 'low-gravity' about the large thin charring surface. Slides 14/23/30 identify that sample as the 40.6 x 94 cm cotton-fiberglass of Saffire-III (III-1) and Saffire-I. The same deck labels these burns 'µ-g' (slide 31) and 'microgravity' (slide 17). The deck reports Saffire-I and III together, so it is not independent per flight (SHARED_LINEAGE). The deck does not itself tie 'low-gravity' to Cygnus in one sentence.); flags: SHARED_LINEAGE; R101 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-101 SAME-R
 
@@ -2021,7 +2061,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
 - Location: `page=20`
-- As written: `21±1% O2` (%)
+- As written: `21` (%)
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (Footnote a of Table 1. The words left out are ', uf,'. The PDF text layer splits the subscripted u_f across lines. This is the condition ASSUMED when computing air velocity, fuel velocity and Reynolds number, not a stated measurement of the test atmosphere. The source gives a tolerance of ±1, which is not written into 'numbers'. 21±1% falls inside the 19 – 24% cabin-air band of R9, so the two do not conflict and no DISCREPANCY is raised. The same footnote is repeated on presentation page 24.); percent x 0.01; R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
@@ -2031,7 +2071,7 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
 - Location: `page=20`
-- As written: `101 kPa` (kPa)
+- As written: `101` (kPa)
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (Same footnote as R10. 101 kPa is the pressure ASSUMED for the velocity and Reynolds-number calculations. No sentence in the sources read states the actual MSG or cabin pressure during the tests (see not_found).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
