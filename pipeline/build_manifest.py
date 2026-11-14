@@ -10,8 +10,10 @@ lists the files of its current version and assigns each file a priority:
   P2  supporting analysis: other analyzed data, science documents, simulation,
       representative still images
   P3  context: presentations and engineering documents
-  --  excluded (not listed): raw data, video, image sequences, archives
-      (except metadata archives)
+  P4  everything else outside Raw Data: archives (calibration images,
+      reference and engineering bundles), video, other file types
+  --  excluded (not listed): Raw Data (flight video, image sequences and
+      archived raw files, about 13.5 TB)
 
 Usage:  python -I pipeline/build_manifest.py
 Output: data/manifest/psi_manifest.json, data/manifest/investigations.csv
@@ -43,14 +45,18 @@ def classify(key):
     folder = parts[2] if len(parts) > 3 else ""
     name = parts[-1].lower()
 
-    if "/Raw Data/" in key or VIDEO.search(key):
+    if "/Raw Data/" in key:
         return None
+    if VIDEO.search(key):
+        return ("P4", "video outside Raw Data")
     if IMAGE.search(key):
-        return ("P2", "representative image") if folder == "Representative Image(s)" else None
+        return ("P2", "representative image") if folder == "Representative Image(s)" else ("P4", "image outside Raw Data")
     if folder == "metadata":
         return ("P1", "metadata")
-    if ARCHIVE.search(key) or not DOCUMENT.search(key):
-        return None
+    if ARCHIVE.search(key):
+        return ("P4", "archive outside Raw Data")
+    if not DOCUMENT.search(key):
+        return ("P4", "other file type outside Raw Data")
     if folder == "Experimental table":
         return ("P1", "experimental table")
     if re.search(r"read.?me|faq|nomenclature|description|list_of_data", name):
@@ -147,7 +153,7 @@ def main():
         totals[(f["priority"], "n")] += 1
         totals[(f["priority"], "bytes")] += f["bytes"]
     print(f"catalog: {len(catalog)} investigations | combustion: {len(combustion)}")
-    for p in ("P1", "P2", "P3"):
+    for p in ("P1", "P2", "P3", "P4"):
         print(f"{p}: {totals[(p, 'n')]} files, {totals[(p, 'bytes')] / 1e6:.1f} MB")
     dup = sum(1 for f in files if not f["name_is_unique"])
     print(f"files whose name repeats inside their investigation: {dup}")

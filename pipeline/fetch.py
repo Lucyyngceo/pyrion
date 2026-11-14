@@ -106,7 +106,7 @@ def task_external(src):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--priority", default="P1", choices=["P1", "P2", "P3"])
+    ap.add_argument("--priority", default="P1", choices=["P1", "P2", "P3", "P4"])
     ap.add_argument("--workers", type=int, default=6)
     args = ap.parse_args()
 

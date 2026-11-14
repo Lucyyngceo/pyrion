@@ -1,5 +1,5 @@
 {
- "generated_at_utc": "2026-11-14T16:19:20Z",
+ "generated_at_utc": "2026-11-14T16:22:31Z",
  "source": "https://psi.nasa.gov/geode-py/ws",
  "catalog_size": 133,
  "selection": "PSI Research Area == 'Combustion Science'",
@@ -26,7 +26,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "15-Sep-2022",
    "files_in_version": 2361,
-   "files_selected": 43
+   "files_selected": 64
   },
   {
    "accession": "PSI-21",
@@ -50,7 +50,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "15-Apr-2019",
    "files_in_version": 2590,
-   "files_selected": 63
+   "files_selected": 88
   },
   {
    "accession": "PSI-23",
@@ -62,7 +62,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "05-Apr-2018",
    "files_in_version": 4165,
-   "files_selected": 40
+   "files_selected": 107
   },
   {
    "accession": "PSI-25",
@@ -146,7 +146,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "30-Sep-2019",
    "files_in_version": 10156,
-   "files_selected": 13
+   "files_selected": 75
   },
   {
    "accession": "PSI-69",
@@ -158,7 +158,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "31-Jul-2016",
    "files_in_version": 6555,
-   "files_selected": 108
+   "files_selected": 131
   },
   {
    "accession": "PSI-98",
@@ -206,7 +206,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "18-Sep-2024",
    "files_in_version": 344,
-   "files_selected": 120
+   "files_selected": 121
   },
   {
    "accession": "PSI-102",
@@ -218,7 +218,7 @@
    "project_type": "Microgravity Investigation",
    "release_date": "18-Sep-2024",
    "files_in_version": 101,
-   "files_selected": 96
+   "files_selected": 101
   },
   {
    "accession": "PSI-106",
@@ -666,6 +666,16 @@
   },
   {
    "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Science Documents/PSI-20_Science Documents_ACME BRE Data interpretation.zip",
+   "file": "PSI-20_Science Documents_ACME BRE Data interpretation.zip",
+   "file_version": 1,
+   "bytes": 1981506,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
    "key": "psi-data/PSI-20/Science Documents/PSI-20_Science Documents_ACME CDR Presentation Package.pdf",
    "file": "PSI-20_Science Documents_ACME CDR Presentation Package.pdf",
    "file_version": 1,
@@ -702,6 +712,176 @@
    "bytes": 776857,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME Gas flow.zip",
+   "file": "PSI-20_Engineering Documents_ACME Gas flow.zip",
+   "file_version": 1,
+   "bytes": 2419266,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME Imaging.zip",
+   "file": "PSI-20_Engineering Documents_ACME Imaging.zip",
+   "file_version": 1,
+   "bytes": 5892486,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME Instruments.zip",
+   "file": "PSI-20_Engineering Documents_ACME Instruments.zip",
+   "file_version": 1,
+   "bytes": 5603806,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file_version": 1,
+   "bytes": 3030445,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file_version": 1,
+   "bytes": 29410176,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_burners.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_burners.zip",
+   "file_version": 1,
+   "bytes": 13601550,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file_version": 1,
+   "bytes": 7160282,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file_version": 1,
+   "bytes": 17381053,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file_version": 1,
+   "bytes": 9378042,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file_version": 1,
+   "bytes": 2911357,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file_version": 1,
+   "bytes": 17347535,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file_version": 1,
+   "bytes": 3736550,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_igniter.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_igniter.zip",
+   "file_version": 1,
+   "bytes": 2943491,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file_version": 1,
+   "bytes": 5383717,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_QDs_and_hoses.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_QDs_and_hoses.zip",
+   "file_version": 1,
+   "bytes": 2412072,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file_version": 1,
+   "bytes": 4415134,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Engineering Documents/PSI-20_Engineering Documents_ACME_drawings_trainer.zip",
+   "file": "PSI-20_Engineering Documents_ACME_drawings_trainer.zip",
+   "file_version": 1,
+   "bytes": 1112713,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -856,6 +1036,36 @@
   },
   {
    "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Presentations/PSI-20_Presentations_wo662486_ACME_Urban_2_wf.mp4",
+   "file": "PSI-20_Presentations_wo662486_ACME_Urban_2_wf.mp4",
+   "file_version": 1,
+   "bytes": 29328781,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Presentations/PSI-20_Presentations_wo662486_ACME_Urban_wf.mp4",
+   "file": "PSI-20_Presentations_wo662486_ACME_Urban_wf.mp4",
+   "file_version": 1,
+   "bytes": 93346462,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
+   "key": "psi-data/PSI-20/Presentations/PSI-20_Presentations_wo662486_ACME_Urban_wf_3.mp4",
+   "file": "PSI-20_Presentations_wo662486_ACME_Urban_wf_3.mp4",
+   "file_version": 1,
+   "bytes": 35267843,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-20",
    "key": "psi-data/PSI-20/Presentations/PSI-20_Presentations_ACME_CSSCI_20140317.pdf",
    "file": "PSI-20_Presentations_ACME_CSSCI_20140317.pdf",
    "file_version": 1,
@@ -932,6 +1142,176 @@
    "bytes": 6951302,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME Imaging.zip",
+   "file": "PSI-22_Engineering Documents_ACME Imaging.zip",
+   "file_version": 1,
+   "bytes": 5892486,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME Instruments.zip",
+   "file": "PSI-22_Engineering Documents_ACME Instruments.zip",
+   "file_version": 1,
+   "bytes": 5603806,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file_version": 1,
+   "bytes": 5463710,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_QDs and hoses.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_QDs and hoses.zip",
+   "file_version": 1,
+   "bytes": 1363496,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_trainer.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_trainer.zip",
+   "file_version": 1,
+   "bytes": 1112713,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file_version": 1,
+   "bytes": 3736550,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file_version": 1,
+   "bytes": 17347535,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file_version": 1,
+   "bytes": 5383717,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_igniter.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_igniter.zip",
+   "file_version": 1,
+   "bytes": 1894915,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file_version": 1,
+   "bytes": 8208858,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_burners.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_burners.zip",
+   "file_version": 1,
+   "bytes": 14650126,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file_version": 1,
+   "bytes": 30458752,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file_version": 1,
+   "bytes": 3030445,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file_version": 1,
+   "bytes": 1862781,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_e-field_system.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_e-field_system.zip",
+   "file_version": 1,
+   "bytes": 8589689,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file_version": 1,
+   "bytes": 9378042,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file": "PSI-22_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file_version": 1,
+   "bytes": 17381053,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -1132,6 +1512,66 @@
    "bytes": 767030,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_wo662486_ACME_Urban_2_wf.mp4",
+   "file": "PSI-22_Presentations_wo662486_ACME_Urban_2_wf.mp4",
+   "file_version": 1,
+   "bytes": 29328781,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_wo662486_ACME_Urban_wf.mp4",
+   "file": "PSI-22_Presentations_wo662486_ACME_Urban_wf.mp4",
+   "file_version": 1,
+   "bytes": 93346462,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_wo662486_ACME_Urban_wf_3.mp4",
+   "file": "PSI-22_Presentations_wo662486_ACME_Urban_wf_3.mp4",
+   "file_version": 1,
+   "bytes": 35267843,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_WO666903_ACME_Interviews_Dunn-Rankin _V2_Stocker_WF.mp4",
+   "file": "PSI-22_Presentations_WO666903_ACME_Interviews_Dunn-Rankin _V2_Stocker_WF.mp4",
+   "file_version": 1,
+   "bytes": 203187798,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_WO666903_ACME_Interviews_Lopez-Camara_Stocker.mp4",
+   "file": "PSI-22_Presentations_WO666903_ACME_Interviews_Lopez-Camara_Stocker.mp4",
+   "file_version": 1,
+   "bytes": 231323951,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Presentations/PSI-22_Presentations_WO662486_ACME_Stocker_WF.mp4",
+   "file": "PSI-22_Presentations_WO662486_ACME_Stocker_WF.mp4",
+   "file_version": 1,
+   "bytes": 124601567,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -1362,6 +1802,26 @@
    "bytes": 1532064,
    "priority": "P2",
    "reason": "analysis / science document",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Science Documents/PSI-22_Science Documents_ACME Data interpretation.zip",
+   "file": "PSI-22_Science Documents_ACME Data interpretation.zip",
+   "file_version": 1,
+   "bytes": 1981506,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-22",
+   "key": "psi-data/PSI-22/Science Documents/PSI-22_Science Documents_ACME Gas flow.zip",
+   "file": "PSI-22_Science Documents_ACME Gas flow.zip",
+   "file_version": 1,
+   "bytes": 2419266,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -1706,6 +2166,346 @@
   },
   {
    "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19304Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_19304Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19727622,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19304Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_19304Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19699182,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19308Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_19308Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19723359,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19308Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_19308Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19696115,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20006Fiber1_Images.zip",
+   "file": "PSI-23_Reference Data_20006Fiber1_Images.zip",
+   "file_version": 1,
+   "bytes": 14262447,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20006Fiber2_Images.zip",
+   "file": "PSI-23_Reference Data_20006Fiber2_Images.zip",
+   "file_version": 1,
+   "bytes": 10164745,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20013Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20013Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19736447,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20013Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20013Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19699559,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19254Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_19254Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19708646,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19254Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_19254Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19671458,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19256Fiber1.zip",
+   "file": "PSI-23_Reference Data_19256Fiber1.zip",
+   "file_version": 1,
+   "bytes": 19718787,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19256Fiber2.zip",
+   "file": "PSI-23_Reference Data_19256Fiber2.zip",
+   "file_version": 1,
+   "bytes": 19692046,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20029Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20029Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19742019,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20029Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20029Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19706296,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19352Fiber1_Images.zip",
+   "file": "PSI-23_Reference Data_19352Fiber1_Images.zip",
+   "file_version": 1,
+   "bytes": 10395546,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_19352Fiber2_Images.zip",
+   "file": "PSI-23_Reference Data_19352Fiber2_Images.zip",
+   "file_version": 1,
+   "bytes": 9858383,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20024Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20024Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19737554,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20024Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20024Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19711738,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20160Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20160Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19755286,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20160Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20160Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19721144,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20132Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20132Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19743298,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20132Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20132Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19718467,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20136Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20136Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19741300,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_201356Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_201356Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19712571,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19753179,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19721793,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber3_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber3_ACME.zip",
+   "file_version": 1,
+   "bytes": 19641150,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber4_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber4_ACME.zip",
+   "file_version": 1,
+   "bytes": 19638734,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber5_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber5_ACME.zip",
+   "file_version": 1,
+   "bytes": 19769150,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber6_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber6_ACME.zip",
+   "file_version": 1,
+   "bytes": 19730094,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber7_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber7_ACME.zip",
+   "file_version": 1,
+   "bytes": 19639520,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber8_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber8_ACME.zip",
+   "file_version": 1,
+   "bytes": 19640564,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber9_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber9_ACME.zip",
+   "file_version": 1,
+   "bytes": 19759221,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20142Fiber10_ACME.zip",
+   "file": "PSI-23_Reference Data_20142Fiber10_ACME.zip",
+   "file_version": 1,
+   "bytes": 19720916,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
    "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_ACME-DOC-010_D.pdf",
    "file": "PSI-23_Reference Data_ACME-DOC-010_D.pdf",
    "file_version": 1,
@@ -1722,6 +2522,146 @@
    "bytes": 2151284,
    "priority": "P1",
    "reason": "read-me / data description",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_wo662486_ACME_Urban_2_wf.mp4",
+   "file": "PSI-23_Reference Data_wo662486_ACME_Urban_2_wf.mp4",
+   "file_version": 1,
+   "bytes": 29328781,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_wo662486_ACME_Urban_wf.mp4",
+   "file": "PSI-23_Reference Data_wo662486_ACME_Urban_wf.mp4",
+   "file_version": 1,
+   "bytes": 93346462,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_wo662486_ACME_Urban_wf_3.mp4",
+   "file": "PSI-23_Reference Data_wo662486_ACME_Urban_wf_3.mp4",
+   "file_version": 1,
+   "bytes": 35267843,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_WO662486_ACME_Stocker_WF.mp4",
+   "file": "PSI-23_Reference Data_WO662486_ACME_Stocker_WF.mp4",
+   "file_version": 1,
+   "bytes": 124601567,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20164Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20164Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19753453,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20164Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20164Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19726766,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20170Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20170Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19761155,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20170Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20170Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19730053,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20176Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20176Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19777289,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20176Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20176Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19748215,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20155Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20155Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19746206,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20155Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20155Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19725587,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20190Fiber1_ACME.zip",
+   "file": "PSI-23_Reference Data_20190Fiber1_ACME.zip",
+   "file_version": 1,
+   "bytes": 19785400,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Reference Data/PSI-23_Reference Data_20190Fiber2_ACME.zip",
+   "file": "PSI-23_Reference Data_20190Fiber2_ACME.zip",
+   "file_version": 1,
+   "bytes": 19759418,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -1806,12 +2746,202 @@
   },
   {
    "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME Data interpretation.zip",
+   "file": "PSI-23_Engineering Documents_ACME Data interpretation.zip",
+   "file_version": 1,
+   "bytes": 1981506,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME Gas flow.zip",
+   "file": "PSI-23_Engineering Documents_ACME Gas flow.zip",
+   "file_version": 1,
+   "bytes": 2419266,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME Imaging.zip",
+   "file": "PSI-23_Engineering Documents_ACME Imaging.zip",
+   "file_version": 1,
+   "bytes": 5892486,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME Instruments.zip",
+   "file": "PSI-23_Engineering Documents_ACME Instruments.zip",
+   "file_version": 1,
+   "bytes": 5603806,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
    "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_engineering_20210328.pdf",
    "file": "PSI-23_Engineering Documents_ACME_engineering_20210328.pdf",
    "file_version": 1,
    "bytes": 6843254,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_analog_camera.zip",
+   "file_version": 1,
+   "bytes": 3030445,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_avionics_package.zip",
+   "file_version": 1,
+   "bytes": 30458752,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_burners.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_burners.zip",
+   "file_version": 1,
+   "bytes": 14650126,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_common_electrical.zip",
+   "file_version": 1,
+   "bytes": 8208858,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_data_camera.zip",
+   "file_version": 1,
+   "bytes": 17381053,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_diagnostic_system.zip",
+   "file_version": 1,
+   "bytes": 9378042,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_e-field_system.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_e-field_system.zip",
+   "file_version": 1,
+   "bytes": 8589689,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_expt_mounting_structure.zip",
+   "file_version": 1,
+   "bytes": 2911357,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_gas_supply.zip",
+   "file_version": 1,
+   "bytes": 17347535,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_ground_equipment.zip",
+   "file_version": 1,
+   "bytes": 3736550,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_igniter.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_igniter.zip",
+   "file_version": 1,
+   "bytes": 2943491,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_measurement_system.zip",
+   "file_version": 1,
+   "bytes": 5383717,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME Drawings_QDs and hoses.zip",
+   "file": "PSI-23_Engineering Documents_ACME Drawings_QDs and hoses.zip",
+   "file_version": 1,
+   "bytes": 2412072,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_shipping_containers.zip",
+   "file_version": 1,
+   "bytes": 5463710,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-23",
+   "key": "psi-data/PSI-23/Engineering Documents/PSI-23_Engineering Documents_ACME_drawings_trainer.zip",
+   "file": "PSI-23_Engineering Documents_ACME_drawings_trainer.zip",
+   "file_version": 1,
+   "bytes": 1112713,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -3156,6 +4286,626 @@
   },
   {
    "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_IPSU3.zip",
+   "file": "PSI-68_Calibration_IPSU3.zip",
+   "file_version": 1,
+   "bytes": 3030041,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF039C.zip",
+   "file": "PSI-68_Calibration_LCTF039C.zip",
+   "file_version": 1,
+   "bytes": 46829096,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF042C.zip",
+   "file": "PSI-68_Calibration_LCTF042C.zip",
+   "file_version": 1,
+   "bytes": 46805946,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF050C.zip",
+   "file": "PSI-68_Calibration_LCTF050C.zip",
+   "file_version": 1,
+   "bytes": 50629808,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF055C.zip",
+   "file": "PSI-68_Calibration_LCTF055C.zip",
+   "file_version": 1,
+   "bytes": 46804074,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF060C.zip",
+   "file": "PSI-68_Calibration_LCTF060C.zip",
+   "file_version": 1,
+   "bytes": 47014609,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF070C.zip",
+   "file": "PSI-68_Calibration_LCTF070C.zip",
+   "file_version": 1,
+   "bytes": 46707226,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF091C.zip",
+   "file": "PSI-68_Calibration_LCTF091C.zip",
+   "file_version": 1,
+   "bytes": 46773131,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF109C.zip",
+   "file": "PSI-68_Calibration_LCTF109C.zip",
+   "file_version": 1,
+   "bytes": 46733268,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF134C.zip",
+   "file": "PSI-68_Calibration_LCTF134C.zip",
+   "file_version": 1,
+   "bytes": 46982013,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF005C.zip",
+   "file": "PSI-68_Calibration_LCTF005C.zip",
+   "file_version": 1,
+   "bytes": 66743026,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF030C.zip",
+   "file": "PSI-68_Calibration_LCTF030C.zip",
+   "file_version": 1,
+   "bytes": 63218973,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF033.zip",
+   "file": "PSI-68_Calibration_LCTF033.zip",
+   "file_version": 1,
+   "bytes": 2436,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF036.zip",
+   "file": "PSI-68_Calibration_LCTF036.zip",
+   "file_version": 1,
+   "bytes": 2448,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF089_2015.zip",
+   "file": "PSI-68_Calibration_LCTF089_2015.zip",
+   "file_version": 1,
+   "bytes": 2467,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF044C.zip",
+   "file": "PSI-68_Calibration_LCTF044C.zip",
+   "file_version": 1,
+   "bytes": 46592886,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF041C.zip",
+   "file": "PSI-68_Calibration_LCTF041C.zip",
+   "file_version": 1,
+   "bytes": 45231889,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF098C.zip",
+   "file": "PSI-68_Calibration_LCTF098C.zip",
+   "file_version": 1,
+   "bytes": 65168167,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF077C.zip",
+   "file": "PSI-68_Calibration_LCTF077C.zip",
+   "file_version": 1,
+   "bytes": 46432137,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF080C.zip",
+   "file": "PSI-68_Calibration_LCTF080C.zip",
+   "file_version": 1,
+   "bytes": 46551878,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF085C.zip",
+   "file": "PSI-68_Calibration_LCTF085C.zip",
+   "file_version": 1,
+   "bytes": 46471904,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF101C.zip",
+   "file": "PSI-68_Calibration_LCTF101C.zip",
+   "file_version": 1,
+   "bytes": 46317511,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF104C.zip",
+   "file": "PSI-68_Calibration_LCTF104C.zip",
+   "file_version": 1,
+   "bytes": 46626953,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF163.zip",
+   "file": "PSI-68_Calibration_LCTF163.zip",
+   "file_version": 1,
+   "bytes": 2318,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF169C.zip",
+   "file": "PSI-68_Calibration_LCTF169C.zip",
+   "file_version": 1,
+   "bytes": 46942576,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF178C.zip",
+   "file": "PSI-68_Calibration_LCTF178C.zip",
+   "file_version": 1,
+   "bytes": 47157180,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF352C.zip",
+   "file": "PSI-68_Calibration_LCTF352C.zip",
+   "file_version": 1,
+   "bytes": 64545611,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF356C.zip",
+   "file": "PSI-68_Calibration_LCTF356C.zip",
+   "file_version": 1,
+   "bytes": 64438914,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF358C.zip",
+   "file": "PSI-68_Calibration_LCTF358C.zip",
+   "file_version": 1,
+   "bytes": 64594965,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF021C.zip",
+   "file": "PSI-68_Calibration_LCTF021C.zip",
+   "file_version": 1,
+   "bytes": 45630226,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF066C.zip",
+   "file": "PSI-68_Calibration_LCTF066C.zip",
+   "file_version": 1,
+   "bytes": 45821639,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF073.zip",
+   "file": "PSI-68_Calibration_LCTF073.zip",
+   "file_version": 1,
+   "bytes": 2506,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF087C.zip",
+   "file": "PSI-68_Calibration_LCTF087C.zip",
+   "file_version": 1,
+   "bytes": 45733791,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF001A.zip",
+   "file": "PSI-68_Calibration_LCTF001A.zip",
+   "file_version": 1,
+   "bytes": 307889071,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF001C.zip",
+   "file": "PSI-68_Calibration_LCTF001C.zip",
+   "file_version": 1,
+   "bytes": 76059672,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF103C.zip",
+   "file": "PSI-68_Calibration_LCTF103C.zip",
+   "file_version": 1,
+   "bytes": 44270369,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF108C.zip",
+   "file": "PSI-68_Calibration_LCTF108C.zip",
+   "file_version": 1,
+   "bytes": 44410047,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF110C.zip",
+   "file": "PSI-68_Calibration_LCTF110C.zip",
+   "file_version": 1,
+   "bytes": 44247915,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF114C.zip",
+   "file": "PSI-68_Calibration_LCTF114C.zip",
+   "file_version": 1,
+   "bytes": 44287719,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF117C.zip",
+   "file": "PSI-68_Calibration_LCTF117C.zip",
+   "file_version": 1,
+   "bytes": 44709014,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF121C.zip",
+   "file": "PSI-68_Calibration_LCTF121C.zip",
+   "file_version": 1,
+   "bytes": 44954477,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF135C.zip",
+   "file": "PSI-68_Calibration_LCTF135C.zip",
+   "file_version": 1,
+   "bytes": 44772856,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF143C.zip",
+   "file": "PSI-68_Calibration_LCTF143C.zip",
+   "file_version": 1,
+   "bytes": 44623005,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF156C.zip",
+   "file": "PSI-68_Calibration_LCTF156C.zip",
+   "file_version": 1,
+   "bytes": 45139997,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF159C.zip",
+   "file": "PSI-68_Calibration_LCTF159C.zip",
+   "file_version": 1,
+   "bytes": 44933572,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF184C.zip",
+   "file": "PSI-68_Calibration_LCTF184C.zip",
+   "file_version": 1,
+   "bytes": 45221783,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF186C.zip",
+   "file": "PSI-68_Calibration_LCTF186C.zip",
+   "file_version": 1,
+   "bytes": 44995365,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF191C.zip",
+   "file": "PSI-68_Calibration_LCTF191C.zip",
+   "file_version": 1,
+   "bytes": 45350555,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF221C.zip",
+   "file": "PSI-68_Calibration_LCTF221C.zip",
+   "file_version": 1,
+   "bytes": 44506949,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF240C.zip",
+   "file": "PSI-68_Calibration_LCTF240C.zip",
+   "file_version": 1,
+   "bytes": 45185879,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF254C.zip",
+   "file": "PSI-68_Calibration_LCTF254C.zip",
+   "file_version": 1,
+   "bytes": 45180957,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF264C.zip",
+   "file": "PSI-68_Calibration_LCTF264C.zip",
+   "file_version": 1,
+   "bytes": 45329396,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF278C.zip",
+   "file": "PSI-68_Calibration_LCTF278C.zip",
+   "file_version": 1,
+   "bytes": 45406670,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF289C.zip",
+   "file": "PSI-68_Calibration_LCTF289C.zip",
+   "file_version": 1,
+   "bytes": 45346049,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF304C.zip",
+   "file": "PSI-68_Calibration_LCTF304C.zip",
+   "file_version": 1,
+   "bytes": 45412413,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF310C.zip",
+   "file": "PSI-68_Calibration_LCTF310C.zip",
+   "file_version": 1,
+   "bytes": 45216970,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF317C.zip",
+   "file": "PSI-68_Calibration_LCTF317C.zip",
+   "file_version": 1,
+   "bytes": 45366687,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF320C.zip",
+   "file": "PSI-68_Calibration_LCTF320C.zip",
+   "file_version": 1,
+   "bytes": 45206147,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF324C.zip",
+   "file": "PSI-68_Calibration_LCTF324C.zip",
+   "file_version": 1,
+   "bytes": 45092103,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_LCTF341C.zip",
+   "file": "PSI-68_Calibration_LCTF341C.zip",
+   "file_version": 1,
+   "bytes": 45113701,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/PSI-68_Calibration_FLEX2 Radiometer Calibration.zip",
+   "file": "PSI-68_Calibration_FLEX2 Radiometer Calibration.zip",
+   "file_version": 1,
+   "bytes": 86365016,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
+   "key": "psi-data/PSI-68/Calibration/FLEX2_LCTF Calibration 2013.zip",
+   "file": "FLEX2_LCTF Calibration 2013.zip",
+   "file_version": 1,
+   "bytes": 1396220750,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-68",
    "key": "psi-data/PSI-68/Engineering Documents/PSI-68_Engineering Documents_FLEX-2 Hardware Presentation.ppt",
    "file": "PSI-68_Engineering Documents_FLEX-2 Hardware Presentation.ppt",
    "file_version": 1,
@@ -4286,6 +6036,236 @@
   },
   {
    "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL08A.zip",
+   "file": "PSI-69_Calibration_20CAL08A.zip",
+   "file_version": 1,
+   "bytes": 400670004,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL08B.zip",
+   "file": "PSI-69_Calibration_20CAL08B.zip",
+   "file_version": 1,
+   "bytes": 120444922,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL08D.zip",
+   "file": "PSI-69_Calibration_20CAL08D.zip",
+   "file_version": 1,
+   "bytes": 248090174,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL10A.zip",
+   "file": "PSI-69_Calibration_20CAL10A.zip",
+   "file_version": 1,
+   "bytes": 297266769,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL10B.zip",
+   "file": "PSI-69_Calibration_20CAL10B.zip",
+   "file_version": 1,
+   "bytes": 107462780,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL12A.zip",
+   "file": "PSI-69_Calibration_20CAL12A.zip",
+   "file_version": 1,
+   "bytes": 303887319,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL12B.zip",
+   "file": "PSI-69_Calibration_20CAL12B.zip",
+   "file_version": 1,
+   "bytes": 107538012,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL12D.zip",
+   "file": "PSI-69_Calibration_20CAL12D.zip",
+   "file_version": 1,
+   "bytes": 238385808,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL13B.zip",
+   "file": "PSI-69_Calibration_20CAL13B.zip",
+   "file_version": 1,
+   "bytes": 92130463,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL13D.zip",
+   "file": "PSI-69_Calibration_20CAL13D.zip",
+   "file_version": 1,
+   "bytes": 266103657,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL02A.zip",
+   "file": "PSI-69_Calibration_30CAL02A.zip",
+   "file_version": 1,
+   "bytes": 324209148,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL02B.zip",
+   "file": "PSI-69_Calibration_30CAL02B.zip",
+   "file_version": 1,
+   "bytes": 128429200,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL02D.zip",
+   "file": "PSI-69_Calibration_30CAL02D.zip",
+   "file_version": 1,
+   "bytes": 280770657,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL03A.zip",
+   "file": "PSI-69_Calibration_30CAL03A.zip",
+   "file_version": 1,
+   "bytes": 385267808,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL03B.zip",
+   "file": "PSI-69_Calibration_30CAL03B.zip",
+   "file_version": 1,
+   "bytes": 144122714,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL03D.zip",
+   "file": "PSI-69_Calibration_30CAL03D.zip",
+   "file_version": 1,
+   "bytes": 273563174,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL06A.zip",
+   "file": "PSI-69_Calibration_30CAL06A.zip",
+   "file_version": 1,
+   "bytes": 417349326,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL06B.zip",
+   "file": "PSI-69_Calibration_30CAL06B.zip",
+   "file_version": 1,
+   "bytes": 120915558,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_30CAL06D.zip",
+   "file": "PSI-69_Calibration_30CAL06D.zip",
+   "file_version": 1,
+   "bytes": 292977000,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_40CAL01A.zip",
+   "file": "PSI-69_Calibration_40CAL01A.zip",
+   "file_version": 1,
+   "bytes": 298616396,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_40CAL01B.zip",
+   "file": "PSI-69_Calibration_40CAL01B.zip",
+   "file_version": 1,
+   "bytes": 143010315,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_40CAL01D.zip",
+   "file": "PSI-69_Calibration_40CAL01D.zip",
+   "file_version": 1,
+   "bytes": 277467222,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
+   "key": "psi-data/PSI-69/Calibration/PSI-69_Calibration_20CAL10D.zip",
+   "file": "PSI-69_Calibration_20CAL10D.zip",
+   "file_version": 1,
+   "bytes": 216209667,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-69",
    "key": "psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX DoD.docx",
    "file": "PSI-69_Science Documents_FLEX DoD.docx",
    "file_version": 1,
@@ -4772,6 +6752,16 @@
    "bytes": 1611750,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-101",
+   "key": "psi-data/PSI-101/Engineering Documents/PSI-101_Engineering Documents_SAME-R Flight Ops photos.zip",
+   "file": "PSI-101_Engineering Documents_SAME-R Flight Ops photos.zip",
+   "file_version": 1,
+   "bytes": 41201731,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
@@ -5786,6 +7776,26 @@
   },
   {
    "accession": "PSI-102",
+   "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_Resistive Heater Coil-TN002.mp4",
+   "file": "PSI-102_Engineering Documents_Resistive Heater Coil-TN002.mp4",
+   "file_version": 2,
+   "bytes": 6866548,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-102",
+   "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_Resistive Heater Coil-TN001.mp4",
+   "file": "PSI-102_Engineering Documents_Resistive Heater Coil-TN001.mp4",
+   "file_version": 2,
+   "bytes": 7339333,
+   "priority": "P4",
+   "reason": "video outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-102",
    "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_SAME VPRED Matrix PLN-005 Baseline.xls",
    "file": "PSI-102_Engineering Documents_SAME VPRED Matrix PLN-005 Baseline.xls",
    "file_version": 2,
@@ -5982,6 +7992,36 @@
    "bytes": 1163952,
    "priority": "P3",
    "reason": "context (presentation, engineering)",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-102",
+   "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_Resistive Heater Coil-TN001.zip",
+   "file": "PSI-102_Engineering Documents_Resistive Heater Coil-TN001.zip",
+   "file_version": 2,
+   "bytes": 168520317,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-102",
+   "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_Resistive Heater Coil-TN002.zip",
+   "file": "PSI-102_Engineering Documents_Resistive Heater Coil-TN002.zip",
+   "file_version": 2,
+   "bytes": 139833351,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
+   "name_is_unique": true
+  },
+  {
+   "accession": "PSI-102",
+   "key": "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_SAME OPS images.zip",
+   "file": "PSI-102_Engineering Documents_SAME OPS images.zip",
+   "file_version": 2,
+   "bytes": 25024013,
+   "priority": "P4",
+   "reason": "archive outside Raw Data",
    "name_is_unique": true
   },
   {
