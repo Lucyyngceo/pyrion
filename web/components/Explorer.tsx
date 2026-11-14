@@ -207,7 +207,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   return (
     <>
-      <AskBox records={records} options={options} investigations={dataset.investigations} onTarget={applyAsked} />
+      <AskBox onTarget={applyAsked} />
 
       <div
         className="workbench"

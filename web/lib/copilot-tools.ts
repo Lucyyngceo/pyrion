@@ -95,7 +95,10 @@ export const TOOL_DEFS: ToolDef[] = [
     k: { type: "integer", minimum: 1, maximum: 15 },
   }, ["query"]),
   fn("flex_model", "FLEX droplet-combustion model output. Returns not available when the model file is absent.", {
-    fuel: { type: "string" }, d0_mm: { type: "number" }, o2: { type: "number" }, pressure_kpa: { type: "number" },
+    fuel: { type: "string" },
+    d0: { type: "string", description: 'initial droplet diameter with its unit, for example "0.5 mm"' },
+    o2: { type: "string", description: 'oxygen with its unit, for example "21 %"' },
+    pressure: { type: "string", description: 'pressure with its unit, for example "101.3 kPa" or "1 atm"' },
   }, ["fuel"]),
   fn("suggest_experiments", "Suggested next experiments from the FLEX model. Returns not available when the model file is absent.", {
     fuel: { type: "string" },
@@ -173,8 +176,19 @@ export function validateArgs(name: string, raw: unknown): Validated<Record<strin
       return { ok: true, value: { query: a.query, k } };
     }
     case "flex_model":
-    case "suggest_experiments":
-      return typeof a.fuel === "string" && a.fuel !== "" ? { ok: true, value: a } : bad("fuel is required (a string)");
+    case "suggest_experiments": {
+      if (typeof a.fuel !== "string" || a.fuel === "") return bad("fuel is required (a string)");
+      if (name === "suggest_experiments") return { ok: true, value: a };
+      const conversions: string[] = [];
+      for (const [k, v] of [["d0", "sample_thickness"], ["o2", "o2_mole_fraction"], ["pressure", "pressure"]] as const) {
+        if (a[k] === undefined) continue;
+        if (typeof a[k] !== "string") return bad(`${k} must be text with its unit`);
+        const q = parseQuantity(a[k] as string, v);
+        if (!q.ok) return bad(`${k}: ${q.message}`);
+        conversions.push(q.display);
+      }
+      return { ok: true, value: { ...a, _conversions: conversions } };
+    }
     default:
       return bad(`unknown tool "${name}"`);
   }
@@ -266,10 +280,13 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
     }
     case "get_receipt": {
       const a = args as { accession: string; test_id: string; variable: string };
-      const r = ctx.records.find((x) => x.accession === a.accession && (x.test_id === a.test_id || x.test_id === "*") && x.variable === a.variable);
+      // The test's own record first; the investigation-wide record (test_id "*") only if there is none, and labelled as such.
+      const exact = ctx.records.find((x) => x.accession === a.accession && x.test_id === a.test_id && x.variable === a.variable);
+      const wide = exact ? undefined : ctx.records.find((x) => x.accession === a.accession && x.test_id === "*" && x.variable === a.variable);
+      const r = exact ?? wide;
       if (!r) return { result: { found: false, message: "no extracted record matches; PSI evidence is insufficient" } };
       const i = inv.get(r.accession);
-      return { result: { found: true, accession: r.accession, test_id: r.test_id, variable: r.variable, value: r.value, unit: r.unit, value_original: r.value_original, unit_original: r.unit_original, source_file: r.source_file, source_location: r.source_location, quote: r.quote, status: r.status, method: r.method, doi: i?.doi ?? "", psi_version: i?.version ?? "", license: i?.license || "not stated" } };
+      return { result: { found: true, scope: exact ? "this test" : "investigation-wide record (test_id *), not specific to this test", accession: r.accession, test_id: r.test_id, variable: r.variable, value: r.value, unit: r.unit, value_original: r.value_original, unit_original: r.unit_original, source_file: r.source_file, source_location: r.source_location, quote: r.quote, status: r.status, method: r.method, doi: i?.doi ?? "", psi_version: i?.version ?? "", license: i?.license || "not stated" } };
     }
     case "transfer_hypothesis": {
       if (!ctx.bassCsv) return { result: { available: false, message: "data/derived/bass2_flow_steps.csv is missing" } };
@@ -304,7 +321,7 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
     }
     case "flex_model":
     case "suggest_experiments":
-      return { result: ctx.flex === undefined ? NA(name) : { available: true, note: "flex_model.json exists but its schema is not wired into this tool yet; PSI evidence is insufficient to answer from it." } };
+      return { result: ctx.flex === undefined ? NA(name) : { available: true, conversions: (args as { _conversions?: string[] })._conversions ?? [], note: "flex_model.json exists but its schema is not wired into this tool yet; PSI evidence is insufficient to answer from it." } };
     default:
       return { result: { error: `unknown tool "${name}"` } };
   }

@@ -75,20 +75,24 @@ engine's `locateTarget` geometry.
 The page runs fully without a key (structured mode). With a key, an input at the top of the home page accepts a question. The language
 model translates and narrates; **the engine decides**.
 
-1. The model turns the question into a JSON target (regime axes and O₂, pressure, gravity, `null` where the question states nothing).
-   Code validates it with the engine's `validateTarget`, and the page shows "PYRION understood: …" before anything else.
-2. The deterministic engine computes the verdicts, exactly as without a model.
-3. The model narrates the engine's structured output in at most 120 words. A narration check in code (`lib/narration-check.ts`) requires
-   every number, investigation id and DOI to appear in that output and no banned phrase to be present. If it fails, the text is
-   withheld and the failures are listed.
-4. With several models configured, the same question can be re-run with another one. The SHA-256 of the engine's canonical output is
-   shown for each run; the same hash means the same verdict, different words.
+1. The model copies the quantities as the question wrote them (`"8.2 psia"`, `"30 %"`, `"lunar"`). Code checks that each value's numbers
+   (or words) are in the question, drops any that are not with a visible warning, and the engine converts the units. The page shows
+   "PYRION understood: …" with the conversions and the model's assumptions (short, free of banned phrases, no number the question lacks).
+2. The deterministic engine computes the verdicts. For the narration the client sends only the target; the server evaluates it on its
+   own copy of the data and writes the verdict counts and one verdict line per investigation with code.
+3. The model adds context only (at most 60 words). `lib/narration-check.ts` requires every integer to match a fact exactly, each number
+   to carry the unit of that fact, every verdict word beside an id to be that id's verdict, every DOI to be the one paired with the id
+   in its sentence, and rejects investigations or names that are not in the output, spelled-out numbers and banned phrases. If the
+   check fails the context is withheld and the failures are listed.
+4. With several models configured, the same question can be re-run with another one. The SHA-256 of the engine's canonical output
+   (computed by the server) is shown for each run; the same hash means the same verdict, different words.
 
 Configure on the server only, in `web/.env.local` (git-ignored; names in `.env.example`). Two providers, tried in this order:
 the requested model, the OpenRouter list (`OPENROUTER_*`), then the NVIDIA NIM list (`PYRION_LLM_*`). A request is retried once on
-429, 5xx or timeout, then the next model is tried. Every answer reports which model wrote it. A per-visitor limit (20 questions an
-hour) and a daily cap on the primary provider (`PYRION_DAILY_REQUEST_CAP`, default 300) send traffic to the fallback, and past both
-the page stays in structured mode. User questions are screened with a NIM safety model; if that model is down the question goes
+429, 5xx or timeout, then the next model is tried. Every answer reports which model wrote it. Limits: 20 questions an hour per visitor, a per-visitor quota on the primary provider, and a daily cap on it
+(`PYRION_DAILY_REQUEST_CAP`, default 300, `0` means 0, persisted in `web/.data/`) send traffic to the fallback; past both the page stays in
+structured mode. Visitors are told apart only by `x-real-ip` from our own proxy (`PYRION_TRUST_PROXY=1`); visitors may choose only
+`PYRION_CLIENT_MODELS` (default: qwen3.8-27b and kimi-k2.6). Each step has a 25 s deadline. User questions are screened with a NIM safety model; if that model is down the question goes
 through. `GET /api/llm/health` shows which providers answer and the cap left, with no key in the output.
 
 With no provider configured, `/api/ask` answers 503 and the page shows "Structured mode: add a key to enable questions". All prompts are in

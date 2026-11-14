@@ -73,3 +73,15 @@ test("fm2_balance and flex tools", async () => {
   assert.ok((f.result as { conversions: string[] }).conversions.length === 2);
   assert.match(JSON.stringify((await runTool(ctx, "flex_model", { fuel: "heptane" })).result), /not available/);
 });
+
+test("get_receipt prefers the test's own record and labels an investigation-wide one", async () => {
+  const wide = await runTool(ctx, "get_receipt", { accession: "PSI-9001", test_id: "T1", variable: "gravity_regime" });
+  assert.match(JSON.stringify(wide.result), /investigation-wide/);
+  const own = await runTool(ctx, "get_receipt", { accession: "PSI-9001", test_id: "T1", variable: "o2_mole_fraction" });
+  assert.equal((own.result as { scope: string }).scope, "this test");
+});
+
+test("flex_model takes strings with units, converted by the engine", () => {
+  assert.equal(validateArgs("flex_model", { fuel: "heptane", d0: "0.5 mm", o2: "21 %", pressure: "1 atm" }).ok, true);
+  assert.equal(validateArgs("flex_model", { fuel: "heptane", o2: 0.21 }).ok, false);
+});

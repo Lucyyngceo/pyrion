@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { buildNarrationInput, sha256Hex, type ParsedTarget } from "@/lib/ask-core";
-import { canonicalJson, evaluate, type ConditionRecord, type EngineOptions } from "@/lib/engine";
-import { checkNarration } from "@/lib/narration-check";
+import type { ParsedTarget } from "@/lib/ask-core";
 import { fmt, kpaToPsi, valueLabel } from "@/lib/units";
-import type { Investigation } from "@/lib/types";
 
 const EXAMPLES = [
   "Would solid fuel burn differently in a lunar base at 30% oxygen and 10.2 psi?",
@@ -13,30 +10,38 @@ const EXAMPLES = [
   "Which experiments cover a 34% oxygen cabin at 8.2 psia?",
 ];
 
-interface Run {
+interface Meta {
+  provider: string;
   model: string;
+  latency_ms: number;
+  fell_back_from: string | null;
+  open_weights: boolean;
+}
+
+interface Run {
   parsed: ParsedTarget;
+  parseMeta: Meta;
+  safety: string;
+  /** From the server: the engine run on the server's own data. */
   hash: string | null;
-  narration: string | null;
+  verdicts: string[];
+  context: string | null;
   failures: string[];
-  narrationError: string | null;
+  narrateMeta: Meta | null;
+  narrationUnavailable: boolean;
+  narrateError: string | null;
 }
 
 interface Props {
-  records: ConditionRecord[];
-  options: EngineOptions;
-  investigations: Investigation[];
   /** Send the understood target to the explorer (chart, panel, verdict rows). */
   onTarget: (p: ParsedTarget) => void;
 }
 
-async function call(step: "parse" | "narrate", model: string, payload: Record<string, unknown>): Promise<{ reply: string | null; failures: string[]; parsed?: ParsedTarget }> {
-  const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ step, model, ...payload }) });
-  const data = (await res.json().catch(() => ({}))) as { reply?: string | null; error?: string; check?: { failures?: string[] }; parsed?: ParsedTarget };
+async function post<T>(body: Record<string, unknown>): Promise<T> {
+  const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const data = (await res.json().catch(() => ({}))) as T & { error?: string };
   if (!res.ok) throw new Error(data.error ?? `the request failed (HTTP ${res.status})`);
-  if (data.parsed) return { reply: null, failures: [], parsed: data.parsed };
-  if (typeof data.reply !== "string" && !data.check) throw new Error("the request returned no text");
-  return { reply: typeof data.reply === "string" ? data.reply : null, failures: data.check?.failures ?? [] };
+  return data;
 }
 
 function describe(p: ParsedTarget): string {
@@ -49,7 +54,13 @@ function describe(p: ParsedTarget): string {
   return parts.length ? parts.join(" · ") : "nothing stated";
 }
 
-export default function AskBox({ records, options, investigations, onTarget }: Props) {
+/** "qwen/qwen3.8-27b via openrouter, 392 ms; asked for X". Only what the server reports. */
+function who(m: Meta | null, openLabel: boolean): string {
+  if (!m) return "no model";
+  return `${m.model}${openLabel && m.open_weights ? " (open weights)" : ""} via ${m.provider}, ${m.latency_ms} ms${m.fell_back_from ? `; fell back from ${m.fell_back_from}` : ""}`;
+}
+
+export default function AskBox({ onTarget }: Props) {
   const [cfg, setCfg] = useState<{ enabled: boolean; models: string[] } | null>(null);
   const [q, setQ] = useState("");
   const [model, setModel] = useState("");
@@ -78,30 +89,32 @@ export default function AskBox({ records, options, investigations, onTarget }: P
     setError(null);
     if (fresh) setRuns([]);
     try {
-      // Step A: the model translates the question into a target; code validates it.
-      const asked = await call("parse", m, { question });
-      // The server already converted the quantities with the engine; the model never outputs a converted number.
-      const parsed = asked.parsed;
-      if (!parsed) throw new Error("the question could not be turned into a target");
-      onTarget(parsed);
-      // Step B: the deterministic engine decides. No model involved.
-      const evaluation = evaluate(records, parsed.target, options);
-      const hash = await sha256Hex(canonicalJson(evaluation));
-      // Step C: the model narrates the engine's output only; code checks the narration.
-      const { input, facts } = buildNarrationInput(evaluation, investigations, parsed.target);
-      let narration: string | null = null;
-      let failures: string[] = [];
-      let narrationError: string | null = null;
+      // Step A: the model copies the quantities as written; code checks them against the question; the engine converts.
+      const a = await post<{ parsed: ParsedTarget; meta: Meta; safety: string }>({ step: "parse", model: m, question });
+      onTarget(a.parsed);
+      // Steps B and C run on the server: it evaluates the target itself, writes the verdicts, and checks the model's context.
+      let n: { meta: Meta | null; engine_sha256?: string; verdicts: string[]; context: string | null; check: { failures: string[] }; narration_unavailable?: boolean } | null = null;
+      let narrateError: string | null = null;
       try {
-        const out = await call("narrate", m, { input });
-        // The server already checked; the page checks again, so a withheld or altered text never shows.
-        const check = out.reply === null ? { ok: false, failures: out.failures } : checkNarration(out.reply, facts);
-        if (check.ok && out.reply) narration = out.reply.trim();
-        else failures = check.failures;
+        n = await post({ step: "narrate", model: m, target: a.parsed.target });
       } catch (e) {
-        narrationError = e instanceof Error ? e.message : String(e);
+        narrateError = e instanceof Error ? e.message : String(e);
       }
-      setRuns((r) => [...r, { model: m, parsed, hash, narration, failures, narrationError }]);
+      setRuns((r) => [
+        ...r,
+        {
+          parsed: a.parsed,
+          parseMeta: a.meta,
+          safety: a.safety,
+          hash: n?.engine_sha256 ?? null,
+          verdicts: n?.verdicts ?? [],
+          context: n?.context ?? null,
+          failures: n?.check.failures ?? [],
+          narrateMeta: n?.meta ?? null,
+          narrationUnavailable: !!n?.narration_unavailable,
+          narrateError,
+        },
+      ]);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -123,8 +136,8 @@ export default function AskBox({ records, options, investigations, onTarget }: P
       <div className="card-head">
         <h2 id="ask-h">Ask PYRION</h2>
         <p className="muted small">
-          The language model translates your question and narrates the result. <strong>The engine decides</strong>: verdicts come from
-          deterministic rules, and every sentence the model writes is checked by code before it is shown.
+          The language model translates your question and adds context. <strong>The engine decides</strong>: counts and verdicts are
+          written by code from the engine&apos;s output, and everything the model writes is checked by code before it is shown.
         </p>
       </div>
 
@@ -193,23 +206,33 @@ export default function AskBox({ records, options, investigations, onTarget }: P
               ))}
             </ul>
           )}
-          {r.narration ? (
-            <p className="ask-narr">{r.narration}</p>
-          ) : r.narrationError ? (
-            <p className="small muted">Narration unavailable: {r.narrationError}. The structured result below is unaffected.</p>
-          ) : (
+          {r.verdicts.length > 0 && (
+            <ul className="ask-verdicts">
+              {r.verdicts.map((v) => (
+                <li key={v}>{v}</li>
+              ))}
+            </ul>
+          )}
+          {r.context ? (
+            <p className="ask-narr">{r.context}</p>
+          ) : r.narrateError ? (
+            <p className="small muted">Context unavailable: {r.narrateError}.</p>
+          ) : r.narrationUnavailable ? (
+            <p className="small muted">The model's context is unavailable right now. The verdicts above are unaffected.</p>
+          ) : r.failures.length > 0 ? (
             <div className="small ask-withheld">
-              <strong>Narration withheld: failed the consistency check.</strong>
+              <strong>Context withheld: failed the consistency check.</strong>
               <ul>
                 {r.failures.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
             </div>
-          )}
+          ) : null}
           <p className="small muted ask-meta">
-            Written by <code>{r.model}</code> (open weights), checked by code. Engine output SHA-256:{" "}
-            <code title={r.hash ?? ""}>{r.hash ? `${r.hash.slice(0, 16)}…` : "unavailable here (no Web Crypto)"}</code>
+            Question read by <code>{who(r.parseMeta, true)}</code>. Context written by <code>{who(r.narrateMeta, true)}</code>, checked by code. Content check: {r.safety}.
+            <br />
+            Engine output SHA-256 (computed by the server): <code title={r.hash ?? ""}>{r.hash ? `${r.hash.slice(0, 16)}…` : "unavailable"}</code>
           </p>
         </div>
       ))}
@@ -218,7 +241,7 @@ export default function AskBox({ records, options, investigations, onTarget }: P
         <div className="ask-switch small">
           <span className="muted">Same question, another model:</span>
           {cfg.models
-            .filter((m) => !runs.some((r) => r.model === m))
+            .filter((m) => !runs.some((r) => r.parseMeta.model === m))
             .map((m) => (
               <button key={m} type="button" className="chip" disabled={busy} onClick={() => void run(asked.current, m, false)}>
                 {m}
