@@ -98,6 +98,20 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   }, [result.evaluation]);
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
+
+  // A pinned target stays on the chart for comparison; its verdict is recomputed with the same engine and options.
+  const [pinned, setPinned] = useState<{ state: TargetState; label: string } | null>(null);
+  const pinnedStatus = useMemo(() => {
+    if (!pinned) return null;
+    const t = toTarget(pinned.state);
+    try {
+      const ev = evaluate(records, t, options);
+      const locs = locateTarget(t, envelopeSet);
+      return envelopeStatus(ev, locs, t);
+    } catch {
+      return null;
+    }
+  }, [pinned, records, options, envelopeSet]);
   const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
   const total = counts ? counts.APPLICABLE + counts.EXTRAPOLATION + counts.INSUFFICIENT_EVIDENCE + counts.REGIME_BARRIER : 0;
@@ -121,6 +135,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               layerState={layerState}
               target={{ o2: deferred.o2, pressure: deferred.pressure }}
               targetLabel={view ? view.short : "Custom target"}
+              pinned={pinned && pinnedStatus ? { o2: pinned.state.o2, pressure: pinned.state.pressure, label: pinned.label, tone: pinnedStatus.tone } : null}
               status={status}
               seed={SEED}
               highlight={highlight}
@@ -145,6 +160,29 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
                   <div className="outcome-kicker">Result for {view ? view.short : "custom target"}</div>
                   <div className="outcome-head" key={status.headline}>{status.headline}</div>
                   <p className="outcome-detail" key={status.detail}>{status.detail}</p>
+                  <div className="compare">
+                    {pinned && pinnedStatus ? (
+                      <>
+                        <span className={`compare-chip tone-${pinnedStatus.tone}`}>
+                          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                            <circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
+                          </svg>
+                          {pinned.label}: {pinnedStatus.headline.toLowerCase()}
+                        </span>
+                        <button type="button" className="linklike small" onClick={() => setPinned(null)}>
+                          Clear
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        className="pin-btn"
+                        onClick={() => setPinned({ state, label: view ? view.short : "Custom target" })}
+                      >
+                        Pin to compare
+                      </button>
+                    )}
+                  </div>
                 </div>
               )
             }

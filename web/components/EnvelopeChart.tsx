@@ -20,6 +20,8 @@ interface Props {
   layerState: Map<string, LayerState>;
   target: { o2: number; pressure: number };
   targetLabel: string;
+  /** A second, pinned target drawn as a ghost marker for comparison. */
+  pinned?: { o2: number; pressure: number; label: string; tone: string } | null;
   status: EnvelopeStatus;
   /** Values the axes always include (presets), so switching presets never rescales the chart. */
   seed: DomainSeed;
@@ -124,7 +126,7 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned }: Props) {
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -442,6 +444,16 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               );
             })}
 
+            {pinned && (
+              <g className={`pinned tone-${pinned.tone}`} transform={`translate(${sx(pinned.o2)},${sy(pinned.pressure)})`} aria-hidden="true">
+                <line x1={0} y1={0} x2={tx - sx(pinned.o2)} y2={ty - sy(pinned.pressure)} className="pin-link" />
+                <circle r={9} className="pin-ring" />
+                <circle r={2.5} className="pin-dot" />
+                <text x={13} y={-10} className="pin-label">
+                  {pinned.label}
+                </text>
+              </g>
+            )}
             {/* target */}
             <g className="target-guides" aria-hidden="true">
               <line x1={0} x2={0} y1={0} y2={ih} style={{ transform: `translateX(${tx}px)` }} />
