@@ -59,7 +59,6 @@ body {
     linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 44px 44px,
     linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 44px 44px,
     var(--page);
-  background-attachment: fixed;
   color: var(--ink);
 }
 /* static scanlines (no animation) */
@@ -69,8 +68,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
-  mix-blend-mode: overlay;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px);
 }
 ::selection {
   background: var(--neon-2);
@@ -137,7 +135,6 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: 0;
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-  backdrop-filter: blur(6px);
 }
 .card::before,
 .result::before {
