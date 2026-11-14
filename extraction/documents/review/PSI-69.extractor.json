@@ -55,7 +55,9 @@
       "quote": "The Multi-user Droplet Combustion Apparatus is a mini-facility designed to support Principal Investigators (PI) interested in studying various aspects of droplet combustion in a microgravity environment.",
       "confidence": "ambiguous",
       "derivation": "Facility-purpose sentence about the MDCA, not about FLEX tests. Sentence spans three PDF lines, joined with one space. Two sentences later the same paragraph (section 3.1, printed page 4) says FLEX and FLEX-2 'have been selected for use in the MDCA', and the PSI record section=experimentHardware lists the MDCA for FLEX. The document itself is the FLEX-2 ERD (FLX-REQ-0001, February 04, 2010), filed in PSI-69 under the name 'FLEX Engineering Requirements Document'.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R4",
@@ -103,7 +105,9 @@
       "quote": "Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF), Multi-user Droplet Combustion Appartatus (MDCA)",
       "confidence": "direct",
       "derivation": "First item of the PSI hardware field. Shared with FLEX-2: the FLEX-2 ERD (page 12) places the MDCA, used by FLEX and FLEX-2, in the CIR of the FCF.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R7",
@@ -119,7 +123,9 @@
       "quote": "Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF), Multi-user Droplet Combustion Appartatus (MDCA)",
       "confidence": "direct",
       "derivation": "Second item of the PSI hardware field. 'Appartatus' is the source spelling (the ERD spells it 'Apparatus'); kept as written. Shared with FLEX-2: ERD page 12 says FLEX and FLEX-2 'have been selected for use in the MDCA'.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R8",
@@ -248,6 +254,40 @@
       "confidence": "ambiguous",
       "derivation": "Says slow-flow tests exist in the flight experiment but not which ones. The same paragraph says the flow is 'imparted by translating the droplet at a slow, uniform speed' and, in future tense, that 'a number of these tests will have droplets with a slow drift velocity'. This paragraph reproduces Test Plan section 5.3 (pages 4-5) with some verbs moved to past tense. No controlled term fits; kept as written. The record text never uses the word 'quiescent'.",
       "flags": []
+    },
+    {
+      "id": "R101",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+      "source_location": "page=36",
+      "quote": "FLEX and the follow-on FLEX–2 experiments are exploiting the microgravity environment to study the spherically symmetric combustion of liquid droplets.",
+      "confidence": "direct",
+      "derivation": "NASA ISS Researcher's Guide (2015), present-tense description of the FLEX experiments flown in the CIR; names FLEX and the microgravity environment.",
+      "flags": []
+    },
+    {
+      "id": "R102",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf",
+      "source_location": "page=3",
+      "quote": "FLEX series of experiments showed for the first time that quasi-steady stable flames can be established surrounding a droplet in microgravity under certain conditions",
+      "confidence": "direct",
+      "derivation": "Results sentence about the FLEX series in the CFI Science Final Report (a different investigation's document: SHARED_LINEAGE). Past tense, about what the FLEX experiments showed.",
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     }
   ],
   "not_found": [
@@ -268,5 +308,6 @@
       "looked_in": "Record text and DoD give no test ids for quiescent or slow-flow tests. The Test Plan gives only planned Test No. 1-290, and page 5 says the matrices 'do not represent the final test matrix'. R8-R14 carry the planned numbers with a 'Test Plan Table N' prefix so they cannot be joined by accident to PSI test ids."
     }
   ],
-  "lineage": "The PSI-69 file named 'FLEX Engineering Requirements Document' is the FLEX-2 ERD (FLX-REQ-0001, Final, February 04, 2010; page 1). FLEX and FLEX-2 share the MDCA in the CIR/FCF: ERD page 12, 'Currently, the Flame Extinguishment Experiment (FLEX) and the Flame Extinguishment Experiment 2 (FLEX-2) have been selected for use in the MDCA.' (the PDF breaks 'FLEX-' / '2)' across lines); page 9, 'FLEX-2 will use the existing Multi-User Droplet Combustion Apparatus (MDCA) hardware and software platform already developed as a baseline for meeting many of the requirements found in this document.' The Test Plan (page 1) was 'extracted from the Research Requirements Document for Droplet Flame Extinguishment in Microgravity (FLEX) by FA Williams, M Hicks, V Nayagam, MY Choi, FL Dryer and BD Shaw and dated November 4, 2005'. Its printed page numbers (11-12, 44-55) suggest pages taken from that RRD. Record section=approach reproduces Test Plan section 5.3."
+  "lineage": "The PSI-69 file named 'FLEX Engineering Requirements Document' is the FLEX-2 ERD (FLX-REQ-0001, Final, February 04, 2010; page 1). FLEX and FLEX-2 share the MDCA in the CIR/FCF: ERD page 12, 'Currently, the Flame Extinguishment Experiment (FLEX) and the Flame Extinguishment Experiment 2 (FLEX-2) have been selected for use in the MDCA.' (the PDF breaks 'FLEX-' / '2)' across lines); page 9, 'FLEX-2 will use the existing Multi-User Droplet Combustion Apparatus (MDCA) hardware and software platform already developed as a baseline for meeting many of the requirements found in this document.' The Test Plan (page 1) was 'extracted from the Research Requirements Document for Droplet Flame Extinguishment in Microgravity (FLEX) by FA Williams, M Hicks, V Nayagam, MY Choi, FL Dryer and BD Shaw and dated November 4, 2005'. Its printed page numbers (11-12, 44-55) suggest pages taken from that RRD. Record section=approach reproduces Test Plan section 5.3.",
+  "addendum": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session: targeted search for a gravity_regime sentence in Glenn fact sheets, the 2015 ISS Researcher's Guide, the PSI records and each investigation's reports; audited by a separate verificador run."
 }

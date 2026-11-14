@@ -1303,6 +1303,26 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: all tests (`*`)
 - Note: confidence direct (Second item of the PSI hardware field. 'Appartatus' is the source spelling (the ERD spells it 'Apparatus'); kept as written. Shared with FLEX-2: ERD page 12 says FLEX and FLEX-2 'have been selected for use in the MDCA'.); flags: SHARED_LINEAGE; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
+### gravity_regime = microgravity  (extracted)
+
+> FLEX and the follow-on FLEX–2 experiments are exploiting the microgravity environment to study the spherically symmetric combustion of liquid droplets.
+
+- File: `nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf`
+- Location: `page=36`
+- As written: `microgravity`
+- Applies to: all tests (`*`)
+- Note: confidence derived (Program-level NASA ISS Researcher's Guide (2015), page 36, 'Opportunities' section. Present-tense description that names FLEX and FLEX-2 together as 'exploiting the microgravity environment'. It does not state the gravity level of specific PSI-69 tests. Microgravity for FLEX tests is inferred from this sentence plus the same page's results statement ('identified an LOI that is both significantly lower than in normal gravity'). FLEX and FLEX-2 share CIR/MDCA hardware (SHARED_LINEAGE).); R101 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (extracted)
+
+> FLEX series of experiments showed for the first time that quasi-steady stable flames can be established surrounding a droplet in microgravity under certain conditions
+
+- File: `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Location: `page=3`
+- As written: `microgravity`
+- Applies to: all tests (`*`)
+- Note: confidence derived (CFI Science Final Report (PSI-39), page 3: past-tense results sentence saying the 'FLEX series' observed flames around a droplet 'in microgravity'. 'FLEX series' covers FLEX and FLEX-2 (page 5: 'Droplet-combustion experiments (FLEX, FLEX-2) conducted onboard the International Space Station ... have revealed'). The regime is assigned to PSI-69 because FLEX belongs to that series, not because the sentence names PSI-69's tests. Document from another investigation (SHARED_LINEAGE).); flags: SHARED_LINEAGE; R102 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
 ## PSI-98 SAFFIRE-I
 
 - *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
@@ -1898,6 +1918,16 @@ For each record below, open the file at the location given and check that the qu
 - As written: `coflow`
 - Applies to: all tests (`*`)
 - Note: confidence direct (Lead-in line of the 'Objectives' list (ends with a colon in the source); spans two PDF lines (joined with one space). Fact sheet outside PSI, future tense (see R2). Page 2 adds that the SPICE hardware 'was built to allow studies of coflow laminar diffusion flames'.); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (insufficient_evidence)
+
+> The microgravity combustion research program has conducted the SAME project in 2007 and 2010, SPICE project in 2009, SLICE project in 2012, and has been running the BASS experiments since 2012 in the MSG facility.
+
+- File: `nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf`
+- Location: `page=45`
+- As written: `microgravity`
+- Applies to: all tests (`*`)
+- Note: confidence ambiguous (Program-level sentence in the NASA ISS Researcher's Guide (2015), page 45. 'Microgravity' qualifies the research program and 'in the MSG facility' is a platform; neither states the gravity level of the SLICE tests. Same sentence names SAME, SPICE and BASS; SLICE uses the SPICE hardware/MSG flow duct shared with BASS (guide page 14) (SHARED_LINEAGE).); flags: SHARED_LINEAGE; R101 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-107 SPICE
 

@@ -134,7 +134,9 @@
       "quote": "The Combustion Integrated Rack (CIR) contains the Multi-User Droplet Combustion Apparatus (MDCA) which facilitates the controlled combustion of fuel droplets.",
       "confidence": "direct",
       "derivation": "",
-      "flags": ["SHARED_LINEAGE"],
+      "flags": [
+        "SHARED_LINEAGE"
+      ],
       "note": "SHARED_LINEAGE: same CIR/MDCA hardware as FLEX and FLEX-2 (Final Report page 6: 'The experimental hardware is same as that of the FLEX experiments with few minor modifications in the data acquisition systems.')."
     },
     {
@@ -151,7 +153,9 @@
       "quote": "The Combustion Integrated Rack (CIR) contains the Multi-User Droplet Combustion Apparatus (MDCA) which facilitates the controlled combustion of fuel droplets.",
       "confidence": "direct",
       "derivation": "",
-      "flags": ["SHARED_LINEAGE"],
+      "flags": [
+        "SHARED_LINEAGE"
+      ],
       "note": "SHARED_LINEAGE: same CIR/MDCA hardware as FLEX and FLEX-2 (Final Report page 6: 'The experimental hardware is same as that of the FLEX experiments with few minor modifications in the data acquisition systems.')."
     },
     {
@@ -200,7 +204,9 @@
       "quote": "The MDCA is capable of deploying both free and fiber-supported droplets in a quiescent microgravity environment.",
       "confidence": "ambiguous",
       "derivation": "Sentence is in the SRD's FLEX hardware section (2.3.1) and describes MDCA capability; it applies to CFI only through the shared hardware (Final Report page 6: 'The experimental hardware is same as that of the FLEX experiments').",
-      "flags": ["SHARED_LINEAGE"],
+      "flags": [
+        "SHARED_LINEAGE"
+      ],
       "note": "SHARED_LINEAGE: MDCA hardware shared with FLEX and FLEX-2."
     },
     {
@@ -210,14 +216,19 @@
       "value": "",
       "value_original": "18 − 27 C",
       "unit_original": "C",
-      "numbers": ["18", "27"],
+      "numbers": [
+        "18",
+        "27"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf",
       "source_location": "page=38",
       "quote": "Ambient temperature: initial chamber gas temperature shall be 18 − 27 C.",
       "confidence": "ambiguous",
       "derivation": "Pre-flight requirement band ('shall be', SRD dated November 7, 2014) for the initial chamber gas temperature; no as-run chamber temperature is reported in the Final Report or the record text. Unit written as 'C' without a degree sign. Same band appears in Table 1, page 35 ('initial gas temperature at 18 - 27 C').",
-      "flags": ["RANGE_NOT_POINT"]
+      "flags": [
+        "RANGE_NOT_POINT"
+      ]
     },
     {
       "id": "R14",
@@ -226,14 +237,36 @@
       "value": "",
       "value_original": "250 C",
       "unit_original": "C",
-      "numbers": ["250"],
+      "numbers": [
+        "250"
+      ],
       "kind": "point",
       "source_file": "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf",
       "source_location": "page=31",
       "quote": "The initial combustion chamber temperature will be maintained around 250 C and the relative humidity maintained at less than 10%.",
       "confidence": "ambiguous",
       "derivation": "PDF text layer reads '250 C', but the rendered page shows '25' followed by a superscript '0' used as a degree sign, i.e. about 25 degrees C, consistent with R13 (18 − 27 C). Do NOT use 250 as a value. Also a pre-flight plan ('will be maintained'), approximate ('around').",
-      "flags": ["UNIT_AMBIGUOUS"]
+      "flags": [
+        "UNIT_AMBIGUOUS"
+      ]
+    },
+    {
+      "id": "R101",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-39/Presentations/PSI-39_Presentations_Cool Flames in Space, a Hot Prospect on Earth_CFI.pdf",
+      "source_location": "page=23",
+      "quote": "A new phenomenon where a hot flame extinction leads to a low-temperature, “cool-flame” burning in microgravity has been observed for the first time",
+      "confidence": "derived",
+      "derivation": "Concluding remarks of a CFI presentation filed under PSI-39. Observation statement for the cool-flame work; the slide deck's background slide (page 3) is titled 'ISS FLEX Experiments', so the observation may come from FLEX tests that preceded CFI (SHARED_LINEAGE).",
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     }
   ],
   "not_found": [
@@ -250,5 +283,6 @@
       "looked_in": "Record text and Final Report pages 1-13 do not state the flow configuration (no 'quiescent', no forced flow mentioned); only SRD pre-flight statements and MDCA hardware description (R10-R12)."
     }
   ],
-  "lineage": "Same hardware as FLEX and FLEX-2 (MDCA in the CIR): Final Report page 6, 'The experimental hardware is same as that of the FLEX experiments with few minor modifications in the data acquisition systems.' CFI tests are archived under FLEX test numbers (Final Report page 7: 'Pure n-dodecane data: FLEX-1206 to FLEX-1284'). Caution: SRD sections 2.3-2.5 (pages 12-29, Figures 2-10) report FLEX/FLEX-2/FLEX-ICE-GA heptane, octane and decane tests, not CFI tests; their conditions must not be attributed to PSI-39."
+  "lineage": "Same hardware as FLEX and FLEX-2 (MDCA in the CIR): Final Report page 6, 'The experimental hardware is same as that of the FLEX experiments with few minor modifications in the data acquisition systems.' CFI tests are archived under FLEX test numbers (Final Report page 7: 'Pure n-dodecane data: FLEX-1206 to FLEX-1284'). Caution: SRD sections 2.3-2.5 (pages 12-29, Figures 2-10) report FLEX/FLEX-2/FLEX-ICE-GA heptane, octane and decane tests, not CFI tests; their conditions must not be attributed to PSI-39.",
+  "addendum": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session: targeted search for a gravity_regime sentence in Glenn fact sheets, the 2015 ISS Researcher's Guide, the PSI records and each investigation's reports; audited by a separate verificador run."
 }

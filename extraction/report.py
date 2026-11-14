@@ -27,6 +27,15 @@ SHORT = {"gravity_regime": "gravity", "fuel_phase": "phase", "diluent": "diluent
 
 # Why an investigation has no usable condition records, or only a few. Factual, checked
 # against the files in data/raw/ on 2026-11-14. Shown in SUMMARY.md.
+GRAVITY_NOTES = {
+    "PSI-98": "searched the Glenn Saffire fact sheet, the PSI record, the Readme, the Objectives paper and the Operations "
+              "document: they give purpose or plan sentences ('Understanding how fire behaves in microgravity ...', "
+              "'will conduct') and a publication title, never a statement that the Saffire-I burn itself was in microgravity. "
+              "Only ambiguous records exist.",
+    "PSI-99": "same sources and result as PSI-98 (the Objectives paper and fact sheet are shared by Saffire I-III).",
+    "PSI-100": "same sources and result as PSI-98 (the Objectives paper and fact sheet are shared by Saffire I-III).",
+}
+
 LIMITS = {
     "PSI-47": "DAFT / DAFT-2 tested aerosol instruments with Arizona Road Dust in ISS nitrogen: no flame, so there is no "
               "combustion condition to extract. Its table lists hardware, dust and sampling location only.",
@@ -129,6 +138,18 @@ def _summary(by_acc, skipped, inv, order, interp, doc_stats):
             L.append(f"- **{a} {inv[a]['acronym'] or inv[a]['title']}**: not extracted yet.")
     L.append("")
 
+    L += ["## Investigations with no usable `gravity_regime` record", "",
+          "The engine reads these as INSUFFICIENT_EVIDENCE for gravity. A gravity record is kept only when a source sentence "
+          "states the gravity condition of the tests; the platform (ISS, Cygnus) is never used for it. Investigations with "
+          "records but none usable:", ""]
+    missing = [a for a in order if by_acc.get(a) and not any(
+        r["variable"] == "gravity_regime" and _usable(r) for r in by_acc[a])]
+    for a in missing:
+        L.append(f"- **{a} {inv[a]['acronym'] or inv[a]['title']}**: " + GRAVITY_NOTES.get(
+            a, "no source sentence found that states the gravity condition of the tests."))
+    if not missing:
+        L.append("None.")
+    L.append("")
     L += ["## Document extraction: extractor, then verificador", "",
           "For each investigation, an extractor agent proposed records with verbatim quotes "
           "(`extraction/documents/review/<ACC>.extractor.json`); a verificador agent, in a separate run that did not see "
