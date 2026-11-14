@@ -128,14 +128,16 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             verifiedOnly={verifiedOnly}
             onVerifiedOnly={setVerifiedOnly}
             verifiedCount={verifiedCount}
+            result={
+              status && (
+                <div className={`result result-${status.tone}`} role="status" aria-live="polite">
+                  <div className="result-kicker">Result for {view ? view.short : "custom target"}</div>
+                  <div className="result-head">{status.headline}</div>
+                  <p className="result-detail">{status.detail}</p>
+                </div>
+              )
+            }
           />
-          {status && (
-            <div className={`result result-${status.tone}`} role="status" aria-live="polite">
-              <div className="result-kicker">Result for {view ? view.short : "custom target"}</div>
-              <div className="result-head">{status.headline}</div>
-              <p className="result-detail">{status.detail}</p>
-            </div>
-          )}
           {counts && (
             <dl className="tally" aria-label="Verdict counts, by investigation">
               <div className="t-app">

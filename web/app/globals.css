@@ -1129,3 +1129,5 @@ input[type="range"] {
 .result-outside .result-head { color: var(--ink); }
 .tone-outside .target-ring { stroke-dasharray: 3 3; }
 .chip-open { border-style: dashed; }
+.preset-sources summary { cursor: pointer; font-size: 12.5px; color: var(--accent-ink); margin: 2px 0 4px; }
+.preset-sources[open] summary { margin-bottom: 6px; }

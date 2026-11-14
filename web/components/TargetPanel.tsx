@@ -19,6 +19,8 @@ interface Props {
   verifiedOnly: boolean;
   onVerifiedOnly: (v: boolean) => void;
   verifiedCount: number;
+  /** The result for this target, shown right under the presets so it is visible with the chart. */
+  result?: React.ReactNode;
 }
 
 export function applyPreset(state: TargetState, view: PresetView): TargetState {
@@ -34,7 +36,7 @@ export function applyPreset(state: TargetState, view: PresetView): TargetState {
   };
 }
 
-export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount }: Props) {
+export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount, result }: Props) {
   const id = useId();
   const view = PRESET_VIEWS.find((v) => v.preset.id === state.presetId);
   const preset = view?.preset;
@@ -74,26 +76,33 @@ export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedO
         ))}
       </div>
 
+      {result}
+
       <div className="source-note">
         {preset ? (
           <>
             <p className="preset-desc">{preset.description}</p>
-            {sourcesOf(preset).map((s) => (
-              <p key={`${s.id}|${s.quote}`} className="cite">
-                <q>{s.quote}</q>{" "}
-                <a href={s.url} target="_blank" rel="noreferrer">
-                  {s.identifier}
-                </a>
-                <span className="muted">, {s.locator}</span>
-              </p>
-            ))}
-            {preset.limits.length > 0 && (
-              <ul className="limits">
-                {preset.limits.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
-            )}
+            <details className="preset-sources">
+              <summary>
+                Sources and limits ({sourcesOf(preset).map((s) => s.identifier.split(" (")[0]).filter((v, i, a) => a.indexOf(v) === i).join(", ")})
+              </summary>
+              {sourcesOf(preset).map((s) => (
+                <p key={`${s.id}|${s.quote}`} className="cite">
+                  <q>{s.quote}</q>{" "}
+                  <a href={s.url} target="_blank" rel="noreferrer">
+                    {s.identifier}
+                  </a>
+                  <span className="muted">, {s.locator}</span>
+                </p>
+              ))}
+              {preset.limits.length > 0 && (
+                <ul className="limits">
+                  {preset.limits.map((l) => (
+                    <li key={l}>{l}</li>
+                  ))}
+                </ul>
+              )}
+            </details>
           </>
         ) : (
           <p className="preset-desc">Custom target: values entered below.</p>
