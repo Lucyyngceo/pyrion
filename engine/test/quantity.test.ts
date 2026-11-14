@@ -270,3 +270,33 @@ describe('targetFromQuantities', () => {
     assert.deepEqual(r.conversions, []);
   });
 });
+
+describe('habitat plausibility warnings (never errors)', () => {
+  it('0.34 % O2 is converted to 0.0034 and warned, with the "did you mean 34 %" hint', () => {
+    const q = ok('0.34 %', 'o2_mole_fraction');
+    close(q.value, 0.0034);
+    assert.equal(q.warnings.length, 1);
+    assert.match(q.warnings[0], /far below any breathable atmosphere/);
+    assert.match(q.warnings[0], /did you mean 34 %\?/);
+  });
+  it('O2 outside 0.05–0.60 warns; inside does not', () => {
+    assert.equal(ok('34 %', 'o2_mole_fraction').warnings.length, 0);
+    assert.equal(ok('0.05', 'o2_mole_fraction').warnings.length, 0);
+    assert.equal(ok('0.6', 'o2_mole_fraction').warnings.length, 0);
+    assert.equal(ok('70 %', 'o2_mole_fraction').warnings.length, 1);
+    assert.equal(ok('3 %', 'o2_mole_fraction').warnings.length, 1);
+  });
+  it('pressure outside 20–120 kPa warns; inside does not', () => {
+    assert.equal(ok('8.2 psia', 'pressure').warnings.length, 0);
+    assert.equal(ok('1 atm', 'pressure').warnings.length, 0);
+    assert.match(ok('5 kPa', 'pressure').warnings[0], /outside 20–120 kPa/);
+    assert.equal(ok('2 atm', 'pressure').warnings.length, 1);
+  });
+  it('other variables never warn, and targetFromQuantities keeps the warnings in the conversions', () => {
+    assert.deepEqual(ok('5 cm/s', 'flow_velocity').warnings, []);
+    const r = targetFromQuantities({ o2: '0.34 %', pressure: '8.2 psia' });
+    assert.ok(r.ok);
+    assert.equal(r.conversions[0].warnings.length, 1);
+    close(r.target.continuous.o2_mole_fraction as number, 0.0034);
+  });
+});

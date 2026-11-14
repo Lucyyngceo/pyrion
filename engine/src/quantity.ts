@@ -70,6 +70,8 @@ export interface Quantity {
   gravity_regime?: 'microgravity' | 'partial_gravity' | 'normal_gravity';
   /** Things the reader should know (e.g. psi taken as absolute). */
   notes: string[];
+  /** Plausibility warnings for a habitat-type question (not errors; the value is still returned). */
+  warnings: string[];
   /** "8.2 psia → 56.54 kPa (×6.894757)" */
   display: string;
 }
@@ -153,14 +155,37 @@ function readNumber(text: string, variable: string): { n: number; unit: string }
   return { n, unit: m[2].trim() };
 }
 
-function bounded(q: Omit<Quantity, 'display'>): Quantity | QuantityError {
+/** Habitat-type plausibility windows: O2 fraction 0.05–0.60, pressure 20–120 kPa. Warnings only. */
+export const HABITAT_WINDOWS = { o2_mole_fraction: [0.05, 0.6], pressure: [20, 120] } as const;
+
+function warningsFor(q: Omit<Quantity, 'display' | 'warnings'>): string[] {
+  const out: string[] = [];
+  const v = q.value;
+  if (q.variable === 'o2_mole_fraction') {
+    const [lo, hi] = HABITAT_WINDOWS.o2_mole_fraction;
+    const asWritten = q.original.trim();
+    if (v < lo) {
+      const n = Number(/^[+-]?[\d.]+(?:e[+-]?\d+)?/i.exec(asWritten)?.[0]);
+      const hint = q.unit_original !== '' && q.factor === 0.01 && n > 0 && n <= 1 ? ` did you mean ${sig(n * 100)} %?` : '';
+      out.push(`${asWritten} O2 is far below any breathable atmosphere (${sig(v * 100)} % of the gas, window ${lo * 100}–${hi * 100} %).${hint}`);
+    } else if (v > hi) {
+      out.push(`${asWritten} O2 is far above the oxygen levels of habitat-type atmospheres (window ${lo * 100}–${hi * 100} %); check the unit.`);
+    }
+  } else if (q.variable === 'pressure') {
+    const [lo, hi] = HABITAT_WINDOWS.pressure;
+    if (v < lo || v > hi) out.push(`${sig(v)} kPa is outside ${lo}–${hi} kPa, the range of habitat-type atmospheres; check the unit.`);
+  }
+  return out;
+}
+
+function bounded(q: Omit<Quantity, 'display' | 'warnings'>): Quantity | QuantityError {
   const [lo, hi] = BOUNDS[q.variable];
   if (!(q.value >= lo && q.value <= hi)) {
     return fail('out_of_range', q.variable, q.original, `${q.value} ${q.unit} is outside the plausible range ${lo}–${hi} ${q.unit}; this usually means the wrong unit`);
   }
   const unit = q.unit === '1' ? '' : ` ${q.unit}`;
   const how = q.factor !== undefined ? `×${q.factor}` : q.factor_or_formula;
-  return { ...q, display: `${q.original.trim()} → ${sig(q.value)}${unit} (${how})` };
+  return { ...q, warnings: warningsFor(q), display: `${q.original.trim()} → ${sig(q.value)}${unit} (${how})` };
 }
 
 function viaTable(
@@ -304,12 +329,13 @@ function gravity(original: string): QuantityResult {
         factor_or_formula: 'name "microgravity" → regime microgravity; level 0 g is a convention, not a measurement',
         source: { table: 'engine rule: the name selects gravity_regime = microgravity; no gravity level is asserted' },
         gravity_regime: 'microgravity',
+        warnings: [],
         notes: ['The residual acceleration of a real microgravity platform is small but not zero; the engine uses the regime, not the number 0.'],
         display: `${text} → regime microgravity (no gravity level asserted)`,
       };
     }
     const g = GRAVITY_TARGETS[id];
-    const q: Omit<Quantity, 'display'> = {
+    const q: Omit<Quantity, 'display' | 'warnings'> = {
       ok: true,
       variable: 'gravity_level',
       value: g.level,

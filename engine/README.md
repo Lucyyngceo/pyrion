@@ -182,3 +182,7 @@ this file with that one. (`psi` there is 6.894757; the engine's `KPA_PER_PSI` ha
 
 `targetFromQuantities({ gravity, o2, pressure, ...})` returns a validated `Target` and the list of conversions
 (`display`: `"8.2 psia → 56.54 kPa (×6.894757)"`), or every error with its field name.
+
+Plausibility warnings (not errors; the value is still returned): `Quantity.warnings` is non-empty when O2 is
+outside 0.05–0.60 or pressure outside 20–120 kPa (`HABITAT_WINDOWS`), e.g. `0.34 %` O2 → 0.0034 with
+"far below any breathable atmosphere ... did you mean 34 %?".
