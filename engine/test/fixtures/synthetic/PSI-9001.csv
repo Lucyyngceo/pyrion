@@ -1,0 +1,21 @@
+accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note
+PSI-9001,*,gravity_regime,microgravity,,microgravity,,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=gravity_regime,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,*,fuel_phase,solid,,solid,,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=fuel_phase,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,*,diluent,N2,,N2,,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=diluent,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T1,o2_mole_fraction,0.17,1,0.17,1,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T1,pressure,101.3,kPa,101.3,kPa,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T1,flow_velocity,10,cm/s,10,cm/s,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T2,o2_mole_fraction,0.21,1,0.21,1,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T2,pressure,101.3,kPa,101.3,kPa,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T2,flow_velocity,20,cm/s,20,cm/s,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T3,o2_mole_fraction,0.30,1,0.30,1,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,extracted,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T3,pressure,70,kPa,70,kPa,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,extracted,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T3,flow_velocity,10,cm/s,10,cm/s,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T4,o2_mole_fraction,0.25,1,0.25,1,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T4,pressure,55,kPa,55,kPa,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T4,flow_velocity,5,cm/s,5,cm/s,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T5,o2_mole_fraction,0.50,1,0.50,1,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,insufficient_evidence,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T5,pressure,101.3,kPa,101.3,kPa,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,T5,flow_velocity,10,cm/s,10,cm/s,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,*,fuel,PMMA,,PMMA,,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=fuel,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9001,*,flame_type,normal,,normal,,table,SYNTHETIC/PSI-9001-fixture.csv,row=0;column=flame_type,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data

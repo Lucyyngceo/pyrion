@@ -1,0 +1,6 @@
+accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note
+PSI-9006,*,gravity_regime,microgravity,,microgravity,,table,SYNTHETIC/PSI-9006-fixture.csv,row=0;column=gravity_regime,SYNTHETIC TEST FIXTURE,insufficient_evidence,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9006,*,fuel_phase,solid,,solid,,table,SYNTHETIC/PSI-9006-fixture.csv,row=0;column=fuel_phase,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9006,*,diluent,N2,,N2,,table,SYNTHETIC/PSI-9006-fixture.csv,row=0;column=diluent,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9006,*,o2_mole_fraction,0.21,1,0.21,1,table,SYNTHETIC/PSI-9006-fixture.csv,row=0;column=o2_mole_fraction,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9006,*,pressure,101.3,kPa,101.3,kPa,table,SYNTHETIC/PSI-9006-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data

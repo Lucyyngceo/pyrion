@@ -1,0 +1,8 @@
+// PYRION applicability engine: public API (pure, no Node built-ins; see load.ts for file loading).
+export * from './types.ts';
+export { parseCsv } from './csv.ts';
+export { parseConditionCsv, parseNumber, parseValues, type ParseResult } from './records.ts';
+export { evaluate, validateTarget } from './verdict.ts';
+export { buildEnvelopes, locateTarget, type EnvelopeOptions, type EnvelopePoint, type EnvelopeSet, type RegimeEnvelope, type TargetLocation } from './envelope.ts';
+export { PRESETS, SOURCES, KPA_PER_PSI, presetTarget, type Preset, type PresetValue, type SourceRef } from './presets.ts';
+export { canonicalJson } from './json.ts';

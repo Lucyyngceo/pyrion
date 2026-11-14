@@ -1,0 +1,7 @@
+accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note
+PSI-9003,*,gravity_regime,microgravity,,microgravity,,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=gravity_regime,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9003,*,fuel_phase,solid,,solid,,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=fuel_phase,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9003,*,diluent,N2,,N2,,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=diluent,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9003,*,pressure,101.3,kPa,101.3,kPa,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=pressure,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9003,M1,flow_velocity,5,cm/s,5,cm/s,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
+PSI-9003,M2,flow_velocity,15,cm/s,15,cm/s,table,SYNTHETIC/PSI-9003-fixture.csv,row=0;column=flow_velocity,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC TEST FIXTURE - not NASA data
