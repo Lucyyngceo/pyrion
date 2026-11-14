@@ -100,6 +100,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
   const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
+  const total = counts ? counts.APPLICABLE + counts.EXTRAPOLATION + counts.INSUFFICIENT_EVIDENCE + counts.REGIME_BARRIER : 0;
   const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
   return (
@@ -153,18 +154,22 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               <div className="t-app">
                 <dt>Applicable</dt>
                 <dd>{counts.APPLICABLE}</dd>
+                <i className="tally-bar" style={{ width: `${(100 * counts.APPLICABLE) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-ext">
                 <dt>Extrapolation</dt>
                 <dd>{counts.EXTRAPOLATION}</dd>
+                <i className="tally-bar" style={{ width: `${(100 * counts.EXTRAPOLATION) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-ins">
                 <dt>Insufficient evidence</dt>
                 <dd>{counts.INSUFFICIENT_EVIDENCE}</dd>
+                <i className="tally-bar" style={{ width: `${(100 * counts.INSUFFICIENT_EVIDENCE) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-bar">
                 <dt>Not comparable</dt>
                 <dd>{counts.REGIME_BARRIER}</dd>
+                <i className="tally-bar" style={{ width: `${(100 * counts.REGIME_BARRIER) / Math.max(1, total)}%` }} />
               </div>
             </dl>
           )}
