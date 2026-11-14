@@ -4464,6 +4464,96 @@ For each record below, open the file at the location given and check that the qu
 
 - *Table reading:* CLD "Fuel Bottle" shows a spreadsheet fill series ("40% CH4", "40% CH5", "40% CH6" ... "100% C2H11"). Only CH4 and C2H4, the fuels named by the "Test Type" column, are taken as stated; every other formula (including C2H6 inside an ethylene series) is `insufficient_evidence`.
 
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> For sooty flames, results show that the absence of gravity can have a major effect. Flames are taller, wider, cooler, and far sootier in microgravity as compared to normal gravity.
+
+- File: `nasa/glenn-factsheet-acme/advanced-combustion-via-microgravity-experiments-acme.pdf`
+- Location: `page=3`
+- As written: `microgravity`
+- Note: confidence direct (Under 'SELECTED FINDINGS' in the CLD Flame section of a NASA Glenn fact sheet (outside PSI). It reports this experiment's results for sooty flames burned in microgravity; R2 covers the diluted flames. The same page says the experiment covers both ends: 'pure-fuel flames that produce soot, and highly diluted flames that are close to extinction'. The fact sheet does not list test days.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> The data has shown that for highly diluted weak flames, microgravity flames are more stable than their normal gravity counterparts.
+
+- File: `nasa/glenn-factsheet-acme/advanced-combustion-via-microgravity-experiments-acme.pdf`
+- Location: `page=4`
+- As written: `microgravity`
+- Note: confidence direct (Same 'SELECTED FINDINGS' list as R1, for the diluted flames. The fact sheet does not list test days.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The enhanced time and spatial scales in a microgravity environment will be important for achieving both goals.
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=approach`
+- As written: `microgravity`
+- Note: confidence ambiguous (A plan ('will be important'), not a statement that the tests were run in microgravity. section=researchImpacts has another goal sentence of the same kind: 'A goal of the study will be to apply sophisticated numerical tools and quantitative diagnostic techniques to the study of hydrocarbon diffusion flames in a microgravity environment.'); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Microgravity Investigation
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=projectType`
+- As written: `Microgravity`
+- Note: confidence ambiguous (PSI category label for the whole investigation, not a sentence about the test conditions.); R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> Flames of gaseous fuel
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=subResearchArea`
+- As written: `gaseous fuel`
+- Note: confidence direct (PSI record label for the whole investigation. The fuels named in section=objective are methane and ethylene.); R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR), ACME
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=experimentHardware`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (The ACME chamber insert in the CIR is shared by the six ACME experiments listed in the fact sheet (BRE, CLD Flame, E-FIELD Flames, Flame Design, s-Flame, CFI-G). See lineage.); flags: SHARED_LINEAGE; R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, insufficient_evidence)
+
+> Measurements will be made of the structure of diluted methane and ethylene flames in an air coflow.
+
+- File: `nasa/glenn-factsheet-acme/advanced-combustion-via-microgravity-experiments-acme.pdf`
+- Location: `page=3`
+- As written: `air`
+- Note: confidence ambiguous (Planned oxidizer coflow (fact sheet p.3, future tense 'will be made ... in an air coflow'): air = oxygen balanced mainly by nitrogen. Oxidizer stream only. No allowed source states the coflow or chamber gas actually used in the flown tests (the CSV lists only Fuel and N2 MFCs; fact sheet p.18: ACME runs are constant-volume). The fuel-stream diluent N2 (CSV row=1 Notes) is a separate item.); R9 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> Characterize the behavior of weak coflow diffusion flames of methane and ethylene, as a function of velocity and fuel dilution, through measurement of flame shape, lift-off heights, temperatures and extinction limits.
+
+- File: `psi-data/PSI-21/_investigation/PSI-21.json`
+- Location: `section=objective`
+- As written: `coflow`
+- Note: confidence direct (Objective A of the PSI record. The investigation title (section=title) also names the configuration: 'Coflow Laminar Diffusion Flame'.); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> Measurements will be made of the structure of diluted methane and ethylene flames in an air coflow.
+
+- File: `nasa/glenn-factsheet-acme/advanced-combustion-via-microgravity-experiments-acme.pdf`
+- Location: `page=3`
+- As written: `coflow`
+- Note: confidence direct (The sentence is written as a plan ('will be made').); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-22 ACME E-FIELD Flames
 
 - *Table reading:* E-FIELD Flames applies an electric field to coflow and gas-jet flames. The field is an analog of a body force, not a gravity level: no gravity record comes from it.
@@ -4471,6 +4561,204 @@ For each record below, open the file at the location given and check that the qu
 ## PSI-23 ACME s-Flame
 
 - *Table reading:* s-Flame "Atmosphere*" cells ("~21% O2 with N2") give approximate initial O2 (the table's note: "O2% drops with vitiation") and the diluent after "with". The column shows a spreadsheet fill series ("with N3", "with N4", "with N5", "with N6"): those diluents, and fuels written "with N3", are `insufficient_evidence`.
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Fundamentally, the unique buoyancy-free environment offered by microgravity affords simple aerodynamic flow fields to acquire diffusion flame data of high fidelity, with the prospect of understanding unit thermochemical processes as well as quantifying the associated physico-chemical parameters.
+
+- File: `psi-data/PSI-23/_investigation/PSI-23.json`
+- Location: `section=researchImpacts`
+- As written: `microgravity`
+- Note: confidence ambiguous (Rationale for the investigation, not a statement that these tests were run in microgravity. section=projectType is only the PSI category label 'Microgravity Investigation'. The direct statements are in the final report (R2, R3).); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> The project has completed two (2) rounds of microgravity experimentation.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=25`
+- As written: `microgravity`
+- Note: confidence direct (Section 4.C 'Summary of Preliminary Results'. Covers both rounds (test days 19254 to 20190). The report adds that the acceleration environment was not evaluated, page=42: 'It is possible that the tests are subtly affected by the acceleration environment, but there is not obvious indication of this and it has thus far not been evaluated with available measurements from the Space Acceleration Measurement System (SAMS).'); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, insufficient_evidence)
+
+> Conventional gaseous fuels including hydrogen, methane, and ethylene will be used.
+
+- File: `psi-data/PSI-23/_investigation/PSI-23.json`
+- Location: `section=approach`
+- As written: `gaseous fuels`
+- Note: confidence ambiguous (PSI record text, written as a plan ('will be used'). section=subResearchArea also reads 'Flames of gaseous fuels'.); R4 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> Conventional gaseous fuels including hydrogen, methane, and ethylene are used.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=25`
+- As written: `gaseous fuels`
+- Note: confidence direct (Section 4.C of the final report, written after both test rounds.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-23/_investigation/PSI-23.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR), ACME
+
+- File: `psi-data/PSI-23/_investigation/PSI-23.json`
+- Location: `section=experimentHardware`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (The ACME chamber insert in the CIR is shared with the other ACME investigations named in the report (CLD Flame, E-FIELD Flames, BRE, Flame Design, CFI-G). See lineage.); flags: SHARED_LINEAGE; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> The Structure and Response of Spherical Diffusion Flames (s-Flame) experiment is one of six independent experiments that make up the Advanced Combustion via Microgravity Experiments (ACME) project for which tests are conducted within the Combustion Integrated Rack (CIR) on the International Space Station (ISS).
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=3`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (Section 1 'Overview'. The CIR named in the same sentence is proposed in R9.); R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> The s-Flame experiment uses the Combustion Integrated Rack (CIR) and the ACME hardware in the Destiny module of the ISS.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=25`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (Section 4.C. 'ACME hardware' is the ACME chamber insert shared by the ACME investigations. See lineage.); flags: SHARED_LINEAGE; R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (test `*`, extracted)
+
+> *Atmosphere is ~1 atm but pressure increases and O2% drops with vitiation.
+
+- File: `psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv`
+- Location: `row=2`
+- As written: `~1 atm` (atm)
+- Note: confidence direct (Notes column, data row 2: the footnote for the Atmosphere column, applying to all test days. Approximate nominal chamber pressure; the same note says pressure increases with vitiation but gives no value for the increase.); atm x 101.325; R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (test `*`, extracted)
+
+> Atmosphere is ~1 atm but pressure increases and O2% drops with vitiation.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=24`
+- As written: `~1 atm` (atm)
+- Note: confidence direct (Footnote 2 under Table 1 'Flames ignited for the s-Flame experiment' (preceded by a superscript '2' in the PDF). The same footnote is under the Appendix D table on page=60. Context, page=17: 'All ACME experiments will be constant volume (i.e., rather than constant pressure) studies, where the chamber’s free volume will be about 90 liters.'); atm x 101.325; R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (test `20006`, extracted)
+
+> These tests were conducted with a mixture of hydrogen (20%), methane (25%), and nitrogen (55%) ejected from the porous spherical burner into a chamber atmosphere of air (21% oxygen, 79% nitrogen at 1 atm).
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=78`
+- As written: `1 atm` (atm)
+- Note: confidence direct (Appendix G (Payload Weekly Science Summary), 'Week 15: January 3 - 9', describing GMT 006, i.e. test day 20006. Agrees with the ~1 atm note (R10, R11).); atm x 101.325; R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (test `20013`, extracted)
+
+> The fuel and nitrogen both flow from the burner sphere into a chamber atmosphere of ~19% oxygen and nitrogen at a pressure of ~1 atm.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=79`
+- As written: `~1 atm` (atm)
+- Note: confidence direct (Appendix G, 'Week 16: January 10 - 16', caption of a figure showing four tests from GMT 013 (test day 20013). The oxygen value in the same sentence is proposed in R14.); atm x 101.325; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.19 1  (test `20013`, insufficient_evidence)
+
+> The fuel and nitrogen both flow from the burner sphere into a chamber atmosphere of ~19% oxygen and nitrogen at a pressure of ~1 atm.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=79`
+- As written: `~19%` (%)
+- Note: confidence ambiguous (Disagrees with the PSI table: CSV row=7 (test day 20013) Atmosphere reads '~21% O2 with N4'. Inside the same report, Table 1 (page=24) gives '~21% O2, with N2' for this day and page=27 says 'Test day 20013 mainly investigates 30% H2 /15% CH4 / 55% N2 mixtures issuing into air.' This page-79 sentence comes from the weekly operations summary and describes four specific tests. The table note (CSV row=2) says 'O2% drops with vitiation'; the report does not say whether that explains ~19%. Both values kept, not resolved. Percent basis: the report states it elsewhere as volume (page=19: 'an oxygen concentration of nominally 21% (on a volume basis)').); flags: DISCREPANCY; percent x 0.01; R14 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.21 1  (test `20164`, insufficient_evidence)
+
+> Although 13 tests were conducted with the 21% O2/He atmosphere, ignition was not achieved.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=69`
+- As written: `21%` (%)
+- Note: confidence ambiguous (PSI table CSV row=15 (test day 20164) Atmosphere reads only '~30% O2 with He'. The report says tests at 21% O2/He were also run that day, all without ignition; page=68: 'The 20164 tests began study of ethylene-based flames, where 20% C2H4/80% He issued into 30% O2/He and 21% O2/He atmospheres.' The table counts flames ignited; neither source says whether its Atmosphere column is meant to cover non-ignited tests. Percent basis: see R14.); flags: DISCREPANCY; percent x 0.01; R15 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.175 1  (test `20190`, insufficient_evidence)
+
+> A last set of tests were conducted with a reduced oxygen concentration atmosphere, i.e., 17.5% O2/82.5% He.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=69`
+- As written: `17.5%` (%)
+- Note: confidence ambiguous (PSI table CSV row=18 (test day 20190) Atmosphere reads '~30% and ~21% O2 with He'; the report adds a last set of tests at 17.5% O2 on that day. Also stated on page=29: 'Tests with a reduced oxygen concentration atmosphere of 17.5% O2 / 82.5% He seems to show both radiative and kinetic extinction.' The diluent (He) agrees with the table. Percent basis: see R14.); flags: DISCREPANCY; percent x 0.01; R16 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `19256`, insufficient_evidence)
+
+> Test day 19256 uses nitrogen-diluted C2H4 issuing into 21% O2 / 79% N2 atmosphere to examine kinetic extinction at low system Damköhler numbers.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=26`
+- As written: `79% N2`
+- Note: confidence ambiguous (PSI table CSV row=2 (test day 19256) Atmosphere reads '~21% O2 with N3' (and Fuel Bottle '50% C2H4 with N3'); 'N3' is not a diluent gas. The report's Table 1 (page=24) gives '~21% O2 with N2' for this day. Oxygen (~21%) agrees. The '2' digits are subscripts in the PDF.); flags: DISCREPANCY; R17 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `19304`, insufficient_evidence)
+
+> Test day 19304 investigates 45% CH4 / 55% N2 mixtures issuing into 21% O2 / 79% N2 atmosphere.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=26`
+- As written: `79% N2`
+- Note: confidence ambiguous (PSI table CSV row=3 (test day 19304) Atmosphere reads '~21% O2 with N4'; 'N4' is not a diluent gas. The report's Table 1 (page=24) gives '~21% O2 with N2' for this day. Oxygen (~21%) agrees.); flags: DISCREPANCY; R18 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `20006`, insufficient_evidence)
+
+> ~21% O2, with N2
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=24`
+- As written: `N2`
+- Note: confidence ambiguous (Table 1, Atmosphere column: this cell is merged over test days 19352, 20006, 20013, 20024 and 20029. The PSI table reads differently for four of them: CSV row=6 (20006) '~21% O2 with N3', row=7 (20013) '~21% O2 with N4', row=8 (20024) '~21% O2 with N5', row=9 (20029) '~21% O2 with N6'; N3 to N6 are not diluent gases. Row=5 (19352) reads N2 and agrees, so 19352 is not listed here. The Appendix C table (page=49) has the same cell text. For 20006 and 20013, page=27 also says the mixtures issued 'into air'.); flags: DISCREPANCY; R19 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `20013`, insufficient_evidence)
+
+> ~21% O2, with N2
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=24`
+- As written: `N2`
+- Note: confidence ambiguous (Table 1, Atmosphere column: this cell is merged over test days 19352, 20006, 20013, 20024 and 20029. The PSI table reads differently for four of them: CSV row=6 (20006) '~21% O2 with N3', row=7 (20013) '~21% O2 with N4', row=8 (20024) '~21% O2 with N5', row=9 (20029) '~21% O2 with N6'; N3 to N6 are not diluent gases. Row=5 (19352) reads N2 and agrees, so 19352 is not listed here. The Appendix C table (page=49) has the same cell text. For 20006 and 20013, page=27 also says the mixtures issued 'into air'.); flags: DISCREPANCY; R19 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `20024`, insufficient_evidence)
+
+> ~21% O2, with N2
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=24`
+- As written: `N2`
+- Note: confidence ambiguous (Table 1, Atmosphere column: this cell is merged over test days 19352, 20006, 20013, 20024 and 20029. The PSI table reads differently for four of them: CSV row=6 (20006) '~21% O2 with N3', row=7 (20013) '~21% O2 with N4', row=8 (20024) '~21% O2 with N5', row=9 (20029) '~21% O2 with N6'; N3 to N6 are not diluent gases. Row=5 (19352) reads N2 and agrees, so 19352 is not listed here. The Appendix C table (page=49) has the same cell text. For 20006 and 20013, page=27 also says the mixtures issued 'into air'.); flags: DISCREPANCY; R19 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `20029`, insufficient_evidence)
+
+> ~21% O2, with N2
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=24`
+- As written: `N2`
+- Note: confidence ambiguous (Table 1, Atmosphere column: this cell is merged over test days 19352, 20006, 20013, 20024 and 20029. The PSI table reads differently for four of them: CSV row=6 (20006) '~21% O2 with N3', row=7 (20013) '~21% O2 with N4', row=8 (20024) '~21% O2 with N5', row=9 (20029) '~21% O2 with N6'; N3 to N6 are not diluent gases. Row=5 (19352) reads N2 and agrees, so 19352 is not listed here. The Appendix C table (page=49) has the same cell text. For 20006 and 20013, page=27 also says the mixtures issued 'into air'.); flags: DISCREPANCY; R19 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = He  (test `20132`, insufficient_evidence)
+
+> The 20132 tests kicked off a round of tests with helium-diluted fuel and oxidizer. The ambient was 21% O2 and 79% He.
+
+- File: `psi-data/PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf`
+- Location: `page=67`
+- As written: `79% He`
+- Note: confidence ambiguous (PSI table CSV row=10 (test day 20132): the Atmosphere column reads '~21% O2 with He' and agrees, but the Test Type column of the same row reads 'First round of tests with nitrogen-diluted fuel and oxygen'. The report puts 20132 under 'Second round of tests, with helium-diluted fuel and oxygen' (Table 1, page=24), and page=18 calls it 'the first test day with helium (11 May 2020, i.e., 20132)'.); flags: DISCREPANCY; R20 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-25 BASS-II
 
@@ -7637,9 +7925,282 @@ For each record below, open the file at the location given and check that the qu
 - As written: `air`
 - Note: confidence ambiguous (air: oxygen balanced mainly by nitrogen. Grammatically 'air' qualifies the SAFFIRE-I flow only; the SAFFIRE-III clause says 'a flow velocity' without naming the gas. Future tense (planning text). The same sentence (with 'Saffire-I' / 'Saffire-III') is on page 2 of the Objectives PDF.); flags: SHARED_LINEAGE; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
+## PSI-101 SAME-R
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> Key parameters affecting the smoke properties of the smoke produced here are the low-gravity condition, the convective flow past the heated wire, the wire temperature, and the aging time.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=8`
+- As written: `low-gravity`
+- Note: confidence direct (The source term is 'low-gravity', mapped to the controlled value microgravity. The sentence is about the smoke produced in the SAMER flight tests (section D of the report, an excerpt of the authors' SAME-2 paper; the same sentence is in Appendix F, page=82). '*' means the flight tests of the Appendix A test matrix (pages 31-49), which are the tests in the PSI tables. The post-flight ground tests are separate records (R3, R4). NOT A FLAME: a wire heated the samples below the ignition point and the smoke came from pyrolysis. Appendix F page=72: 'were heated to temperatures below the ignition point'. Page=8: 'As the samples are heated by the wire, chemical bonds are broken and gaseous products are released via pyrolysis.' Not used as gravity evidence: the PSI label projectType 'Microgravity Investigation' and the platform statements ('on orbit', 'uploaded to ISS').); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Similar to the original SAME investigation, the primary objective of the SAME-R investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity and to relate the droplet size distribution to the smoke generation and smoke transport conditions in the experiment.
+
+- File: `psi-data/PSI-101/_investigation/PSI-101.json`
+- Location: `section=objective`
+- As written: `low gravity`
+- Note: confidence ambiguous (This sentence states an objective, not the condition of the tests, so it only supports R1. 'liquid smoke particulate' and 'droplet' describe the smoke aerosol, not the sample; see R5 and R6 for the sample phase.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> For part 2, only about the half of the wire surface is exposed to air. The other half is in contact with the solid sample.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=27`
+- As written: `solid sample`
+- Note: confidence direct (The sentence comes from the section 'SAME heater temperature modeling' (pages 26-28), which page=26 applies to both investigations ('For SAME and SAMER, during a test, the software controls the temperature via the resistance of heating wire.'). The samples were heated, not burned (see R1 derivation and R6). Caveat for the auditor: page=4 (repeated on page=78) lists '6 materials' that include 'dibutyl-phthalate deposited on a porous wick', a liquid on a wick. But page=2 says Pyrell 'was introduced to replace DBP samples', and the Appendix A test matrix (pages 31-49) lists only Silicone, Lampwick, Teflon, Kapton and Pyrell. No SAME-R test in the matrix uses DBP. Not resolved further here.); flags: SHARED_LINEAGE; R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> Five different materials representative of those found in spacecraft (Teflon, Kapton, cotton, silicone rubber and Pyrell) were heated to temperatures below the ignition point with conditions controlled to provide repeatable sample surface temperatures and air flow.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=72`
+- As written: `Teflon, Kapton, cotton, silicone rubber and Pyrell`
+- Note: confidence derived (Inferred from the material names: all five are solid materials (Teflon, Kapton, cotton/lamp wick, silicone rubber, and Pyrell, which the record approach calls 'an intumescent fire-retardant foam'). The same sentence says the samples were heated below the ignition point. They were pyrolyzed, not burned with a flame. Source: Appendix F abstract (SAME-2 paper = SAME-R).); R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-101/_investigation/PSI-101.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (PSI field label (not a sentence); corroborated by R8.); R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> Six re-assembled Thermal Precipitators, each having 12 TEM grids in it, were uploaded to ISS for SAMER.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=3`
+- As written: `ISS`
+- Note: confidence direct (Also on page=3: 'In addition to those preloaded carousels, thirty loose samples were also uploaded to ISS.'); R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox (MSG)  (test `*`, extracted)
+
+> An unfortunate side effect was that approximately half the smoke was lost from the system because it diffused out of the inlet into the MSG volume.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=9`
+- As written: `MSG`
+- Note: confidence derived (The sentence is about the SAME-R zero-flow tests. Smoke escaping 'into the MSG volume' implies the hardware ran inside the MSG. The abbreviation is expanded as 'Microgravity Science Glovebox (MSG)' on page=2. Appendix F page=75 says it directly for SAME (both flights): 'The system was installed in the Microgravity Science Glovebox (MSG), an ISS facility...'. That page's text layer is fragmented into columns, so it was not used as the quote.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox (MSG)  (test `*`, extracted)
+
+> SAMER is an extension or continuation of Smoke Aerosol Measurement Experiment (SAME), which was conducted in the Microgravity Science Glovebox (MSG) onboard the International Space Station (ISS) from September 9 to October 5, 2007.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=2`
+- As written: `Microgravity Science Glovebox (MSG)`
+- Note: confidence derived (The sentence states the MSG location for the original SAME flight (2007), not for SAME-R. Applying it to SAME-R rests on page=3: 'SAME-R utilized the SAME hardware already on orbit with reloaded sample carousels, 30 extra loose samples, rebuilt thermal precipitators and refilled alcohol cartridge for P-trak use.'); flags: SHARED_LINEAGE; R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> The test conditions included multiple sample temperatures and air flow rates.
+
+- File: `psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf`
+- Location: `page=4`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. The gas past the heated sample is air, including the no-flow cases. Appendix F page=72 says 'The air flow past the sample during the heating period ranged from quiescent to 8 cm/s.' The air composition is not stated. Do NOT use the N2 on page=25 ('the aerosol stream was diluted with the N2 gas provided by the ISS'). That N2 dilutes the smoke sample downstream for the P-Trak and DustTrak instruments; it is not the gas around the sample.); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-102 SAME
 
 - *Table reading:* SAME rows 5-8 read "<material>: same conditions as 1-4": only the material is recorded; their conditions are not copied from rows 1-4. SAME heats samples to produce smoke; its air flow is the flow over the heated sample.
+- *Table reading:* SAME air-flow values are `insufficient_evidence`: the PSI table matches the pre-flight test matrix (Baseline Concept Description, page 13), not the flown log (Final Science Report, Appendix A), and the Final Report says the system was designed for 2 to 8 cm/s while the table lists 10 cm/s (verificador finding).
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> Smoke particle size measurements were obtained under low-gravity conditions by overheating several materials typical of those found in spacecraft.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=43`
+- As written: `low-gravity`
+- Note: confidence direct (Abstract of Appendix C of the Final Report (the 2009 AIAA paper, listed as 'Paper AIAA-2009-956' in the Publication List on page 31), by the SAME team about the SAME flight. Sentence spans two PDF lines, joined with one space. Source term 'low-gravity'; no g-level stated anywhere; mapped to the controlled term microgravity. 'by overheating' = samples heated, not burned (see R7). test_id: flight tests listed in Appendix A (page 33); does not cover the 1-g ground comparison runs (R4-R6). PDF page numbers here are 1-based file indices (page 43 = printed C-1); page-by-page reading failed, so the PDF was read whole.); R1 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `1`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `2`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `3`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `4`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `5`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `6`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `7`, extracted)
+
+> Smoke particulate produced in low-gravity was found to be typically 50% large in count mean diameter than similar conditions in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=66`
+- As written: `low-gravity`
+- Note: confidence direct (Conclusion of Appendix E of the Final Report (the 2008 AIAA paper, 'Paper AIAA-2008-0806' in the Publication List on page 31). Typo '50% large' kept as printed. Sentence spans three PDF lines, joined with single spaces. Source term 'low-gravity'; no g-level stated; mapped to microgravity. The 'normal gravity' half of the sentence refers to the ground comparison tests (R4).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> One of the major goals of this investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity and to relate the droplet size distribution to the smoke generation and smoke transport conditions in the experiment.
+
+- File: `psi-data/PSI-102/_investigation/PSI-102.json`
+- Location: `section=objective`
+- As written: `low gravity`
+- Note: confidence ambiguous (Objective statement, not a statement of the test condition (brief rule 3). Source term 'low gravity'; no g-level. Proposed only because the record text is the first source; R1 and R2 state the condition as fact. section=hypothesis ('In a μg environment, ...') is a hypothesis and section=projectType ('Microgravity Investigation') is a category label; neither was proposed.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `1`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `2`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `3`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `4`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `5`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `6`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `7`, extracted)
+
+> Values of D0.5 were calculated directly from the calibrated signals from the P-Trak and the Ion sensor and are shown in Table 1 for the baseline runs of the 4 solid materials with the percentage increase over the sizes from a comparable test in normal gravity.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=64`
+- As written: `solid`
+- Note: confidence direct (The '4 solid materials' are the rows of Table 1 on the same page: Silicone Rubber, Teflon, Lamp wick, Kapton. test_id = the Appendix A rows (page 33) whose Sample Type is Silicone, Teflon, Lampwick or Kapton (25 tests). NOT A FLAME: the samples were heated below the ignition point, not burned. Final Report page 3: 'In order to simulate the detection of a pre-fire overheated-material event, samples were heated to temperatures below the ignition point.' Page 35: 'were pyrolyzed at temperatures below the ignition point'. The record's section=approach speaks of an 'igniter' and a 'combustion event'; the Final Report does not describe ignition for SAME ('igniter' may only name the heater wire: Engineering Documents filenames, not opened, say 'Ignitor Wire Coil Assembly').); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `8`, extracted)
+
+> The samples themselves are composed of five (5) materials: Teflon, Kapton, Silicone, Cellulose and DiButyl Phthalate (which being a liquid, is contained within a small section of cotton lampwick) in small, cylindrical sections, that are wrapped with coils of wire (baseline: stainless steel) that both provides the heat energy to the sample when energized and measures its temperature (by its varying resistance).
+
+- File: `psi-data/PSI-102/Science Documents/PSI-102_Science Documents_SAME_Baseline Concept Description Doc.pdf`
+- Location: `page=11`
+- As written: `liquid`
+- Note: confidence direct (Liquid dibutyl phthalate (DBP) held in a solid cotton lampwick; DBP was the reference material. test_id = the Appendix A rows (Final Report page 33) whose Sample Type is DBP (22 tests, including reheats). This is a pre-flight design document (June 2005, Rev A, 'PDR design maturity level' per page 5); the Final Report confirms the flight form on page 3: 'A fifth material, dibutyl-phthalate (DBP) retained in a cotton wick was used as a reference.' NOT A FLAME: the wire coil supplies heat; samples were heated below the ignition point (see R7). Sentence spans five PDF lines, joined with single spaces; page 11 = printed page 7.); flags: SHARED_LINEAGE; R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> The SAME tests were performed on board ISS in September and early October of 2007.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=24`
+- As written: `ISS`
+- Note: confidence direct (Page 24 = printed page 14 (Section 4, Flight Tests). Sentence spans two PDF lines, joined with one space. Platform only; not used for gravity_regime.); R9 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox  (test `*`, extracted)
+
+> The system was installed in the Microgravity Science Glovebox, an ISS facility that provides many resources including: containment, power, data, video and uplink commanding.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=20`
+- As written: `Microgravity Science Glovebox`
+- Note: confidence direct (Page 20 = printed page 10. Sentence spans three PDF lines, joined with single spaces. Platform only; not used for gravity_regime. SHARED_LINEAGE: the caller states SAME-R reuses the SAME hardware; not stated in the sources read.); flags: SHARED_LINEAGE; R10 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-102/_investigation/PSI-102.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (PSI flight-program label. Consistent with R9 (tests performed on board ISS).); R11 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> For each test, a new sample was moved into place by rotating one of the six sample chambers in the carousel into the flow duct and the sample heating and the flow were synchronized to provide a steady air stream over the sample during the heating interval.
+
+- File: `psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf`
+- Location: `page=21`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. The sources read do not state the composition of this air. Do not confuse with two other gases in the documents: (1) the 'diluent flow' of the Dynamic Diluter (Baseline doc page 10) and the 'DiluitonGas' in the hardware schematic (Final Report page 20, Figure 4) dilute the smoke sample on its way to the instruments; that gas is not named; (2) GN2 is listed as an MSG fluids resource (Baseline doc page 9) used 'for the experiment process and as systems to power its devices' (page 11); no source read says it flows over the sample. Sentence spans six PDF lines, joined with single spaces; page 21 = printed page 11. SHARED_LINEAGE: same hardware reused by SAME-R per the caller; not stated in the sources read.); flags: SHARED_LINEAGE; R12 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-106 SLICE
 
@@ -7739,6 +8300,105 @@ For each record below, open the file at the location given and check that the qu
 
 - *Table reading:* SPICE rows have no test identifier: `test_id` is built as "GMT <GMT date> <GMT ignition>" from the first two columns, exactly as written. Rows sharing an ignition time are successive fuel-flow settings of one burn.
 - *Table reading:* SPICE rows with a negative "Air Rate (cm/s)" (-0.28, -5.92) are `insufficient_evidence`: a co-flow speed cannot be negative as written, and the table does not explain it.
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> SPICE is the first experiment that studies soot processes of laminar jet diffusion flame under long term microgravity condition with air coflow.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=16`
+- As written: `microgravity`
+- Note: confidence direct (Section 'B. Air velocity distribution in the flow duct' (printed page 10). Not used as gravity evidence: the record-text objective/hypothesis sentences (objective statements only), the PSI label projectType 'Microgravity Investigation', and 'aboard the International Space Station' / 'in ISS MSG' (platform). The 'reduced gravity experiment in parabolic flight on board the KC-135 aircraft' (page 7) was a pre-flight camera-settings check, not SPICE science data, and is not proposed as a record.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> Smoke points of 55 microgravity gas-jet diffusion flames in coflowing air were measured in earth orbit.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=24`
+- As written: `microgravity`
+- Note: confidence direct (Closing Remarks (printed page 18). The sentence names the smoke-point flames; all SPICE flames were flight tests ('The actual SPICE tests were conducted in SMG in twelve sessions from February 14, 2009 to June 23, 2009.', page 19). Side note, not a gravity issue: the smoke-point count differs across documents (55 here; 'Fifty-two' in the abstract, page 2; Table 1 on page 20 sums to 52).); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> The six bottles in one container are filled with six different fuel gases to the maximum safety pressure for that fuel: ethylene (210 psia), methane (210 psia), propane (110 psia), propylene (135 psia), 75% propylene (180 psia), 50% propylene (180 psia).
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=12`
+- As written: `fuel gases`
+- Note: confidence direct (The psia values in this sentence are fuel-bottle fill pressures, NOT the test pressure; do not use them for 'pressure'. Corroborated by 'gas-jet diffusion flames' (R2, page 24).); R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-107/_investigation/PSI-107.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox (MSG)  (test `*`, extracted)
+
+> Microgravity Science Glovebox (MSG)
+
+- File: `psi-data/PSI-107/_investigation/PSI-107.json`
+- Location: `section=experimentHardware`
+- As written: `Microgravity Science Glovebox (MSG)`
+- Note: confidence direct (Facility on the ISS. The SPICE apparatus installed in the MSG is a modified version of the apparatus built for Enclosed Laminar Flames (ELF) (Final Report page 9). Not stated in the three sources read, but documented elsewhere in PSI: BASS burned its samples in the SPICE flow duct (psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx, paragraph=51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'), and BASS-II procedures run in the 'SPICE Experiment Assembly' (psi-data/PSI-25/Engineering Documents/PSI-25_Engineering Documents_BASS-II_Ops.docx, paragraph=60). The project lineage list says SLICE shares the same duct; PSI-106 files do not confirm it. PSI-60 (ground investigation) re-analyses SPICE data sets. SPICE, BASS and BASS-II results come from the same flow duct and must not be counted as independent apparatus.); flags: SHARED_LINEAGE; R6 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> Each flame was ignited in a controlled co-flow air environment, with burner diameters of 0.41 mm, 0.76 mm, and 1.6 mm and co-flow velocities ranging from 5.4 cm/s to 65 cm/s.
+
+- File: `psi-data/PSI-107/_investigation/PSI-107.json`
+- Location: `section=approach`
+- As written: `co-flow`
+- Note: confidence direct (Burner diameters and co-flow velocities are in the PSI table and are not extracted here. The 5.4-65 cm/s range in this sentence is the smoke-point range of Final Report Table 1 (page 20); the PSI table has rows below it: 4.42 cm/s (data rows 248-249) and -0.28 / 0.66 cm/s (data rows 295-300, GMT day 136, 75 % Propylene, 0.4064 mm nozzle). The per-test Air Rate in the table governs those tests.); R7 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> An important feature of SPICE is that it has air co-flow surrounding the flames.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=16`
+- As written: `air co-flow`
+- Note: confidence direct (The apparatus keeps a minimum fan voltage even at fan dial setting 0 (page 16). This does not show that every test had a measurable coflow: the PSI table records Air Rate -0.28 and 0.66 cm/s for data rows 295-300 (GMT day 136), while the ground calibration in Fig. 14 (page 17, read from the plot) shows roughly 9-15 cm/s at dial 0; the sources do not explain the difference. The per-test Air Rate in the table governs those tests.); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.19..0.24 1  (test `*`, insufficient_evidence)
+
+> Typical burn times were 60 s, and after each two such burns the MSG contents were flushed with ISS cabin air. The oxygen mole fraction of this cabin air is maintained within 19 – 24%.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=19`
+- As written: `19 – 24%` (%)
+- Note: confidence ambiguous (Section 'SPICE FLIGHT TESTS' (printed page 13). This is the band within which ISS cabin air is kept, not a per-test O2 measurement. No O2 measurement inside the MSG is reported.); flags: RANGE_NOT_POINT; range stated in the source; percent x 0.01; R9 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.21 1  (test `*`, insufficient_evidence)
+
+> Parameters ua [...] and Re assume conditions of 298 K, 101 kPa and 21±1% O2, and uniform velocity profiles.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=20`
+- As written: `21±1% O2` (%)
+- Note: confidence ambiguous (Footnote a of Table 1. The words left out are ', uf,'. The PDF text layer splits the subscripted u_f across lines. This is the condition ASSUMED when computing air velocity, fuel velocity and Reynolds number, not a stated measurement of the test atmosphere. The source gives a tolerance of ±1, which is not written into 'numbers'. 21±1% falls inside the 19 – 24% cabin-air band of R9, so the two do not conflict and no DISCREPANCY is raised. The same footnote is repeated on presentation page 24.); percent x 0.01; R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101 kPa  (test `*`, insufficient_evidence)
+
+> Parameters ua [...] and Re assume conditions of 298 K, 101 kPa and 21±1% O2, and uniform velocity profiles.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=20`
+- As written: `101 kPa` (kPa)
+- Note: confidence ambiguous (Same footnote as R10. 101 kPa is the pressure ASSUMED for the velocity and Reynolds-number calculations. No sentence in the sources read states the actual MSG or cabin pressure during the tests (see not_found).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> Typical burn times were 60 s, and after each two such burns the MSG contents were flushed with ISS cabin air. The oxygen mole fraction of this cabin air is maintained within 19 – 24%.
+
+- File: `psi-data/PSI-107/Reports/PSI-107_Reports_SPICE_FinalReport.pdf`
+- Location: `page=19`
+- As written: `ISS cabin air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. Stream: AMBIENT (the co-flow air that fills the duct and the MSG). Not to be confused with the N2 in the 75% and 50% propylene fuel mixtures ('For mixtures the fuel mole fraction is shown and the inert is N2', page 20), which is in the FUEL stream.); R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-159 ACME CFI-G
 

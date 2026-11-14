@@ -1,0 +1,26 @@
+{
+  "accession": "PSI-101",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on page 8; states the low-gravity condition of the flight smoke; the document uses 'μ-g' for the same tests; no flame is claimed."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Objective: ambiguous; never stands alone."},
+    {"id": "R3", "verdict": "MODIFY", "reason": "Post-flight ground TEM test (report test 669), not a flight row.", "corrected": {"test_id": "post-flight ground TEM tests (report test number 669, page=15 Fig. 18; not in the Appendix A flight test matrix nor the PSI experimental table)"}},
+    {"id": "R4", "verdict": "MODIFY", "reason": "Post-flight ground SMPS drum tests; ambiguous ceiling.", "corrected": {"test_id": "post-flight ground SMPS drum tests (report test numbers 688, 689, 690, 693, 694, 695; pages 12-15 and 20; not in the Appendix A flight test matrix nor the PSI experimental table)"}},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on page 27, 'solid sample'; DBP mentions are SAME-1 carry-over (Pyrell replaced DBP)."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim on page 72; all five materials are solids; heated below ignition."},
+    {"id": "R7", "verdict": "KEEP", "reason": "flightProgram label; platform only."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim on page 3; platform only."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Smoke diffused into the MSG volume: derived; SAME used its own smoke duct, not the BASS/SPICE duct."},
+    {"id": "R10", "verdict": "KEEP", "reason": "MSG for SAME; SAME-R reused the SAME hardware: derived + SHARED_LINEAGE."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Verbatim on page 4; air -> N2 derived; never infer an O2 fraction from it."}
+  ],
+  "missed": [
+    "Page 72: air flow past the sample 'ranged from quiescent to 8 cm/s' (range; the table gives 0-8.1 cm/s per row).",
+    "Page 75: P-Trak modification tested in a separate space experiment (consistent with the SAME-DAFT link, not named).",
+    "Page 75: direct MSG statement; page 17: testing on the ISS (text layer fragmented)."
+  ],
+  "could_not_check": "Operations Manual, Baseline document, EIRD, analyzed data and metadata not opened; pressure, O2 and temperature confirmed absent only from the allowed sources; schematic labels read coarsely; experimentHardware 'Comparitive Soot Diagnostic Hardware' conflicts with the report.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

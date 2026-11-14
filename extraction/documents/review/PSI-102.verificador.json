@@ -1,0 +1,25 @@
+{
+  "accession": "PSI-102",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "MODIFY", "reason": "Verbatim on page 43; states the condition of the SAME flight measurements; covers all flight samples.", "corrected": {"test_id": "*"}},
+    {"id": "R2", "verdict": "MODIFY", "reason": "Verbatim on page 66; evidence covers the 4 solid materials (PSI Sample # 1-7), not DBP.", "corrected": {"test_id": "1,2,3,4,5,6,7"}},
+    {"id": "R3", "verdict": "MODIFY", "reason": "Objective of the whole investigation: ambiguous, applies to every sample.", "corrected": {"test_id": "*"}},
+    {"id": "R4", "verdict": "KEEP", "reason": "1-g ground runs outside the PSI table; correctly not attachable to flight samples."},
+    {"id": "R5", "verdict": "KEEP", "reason": "1-g ground runs outside the PSI table."},
+    {"id": "R6", "verdict": "REJECT", "reason": "The record's approach text appears to describe the earlier CSD hardware (igniter, Far Field Box, video-transcribed data), not SAME."},
+    {"id": "R7", "verdict": "MODIFY", "reason": "'solid materials' on page 64 = Silicone Rubber, Teflon, Lamp wick, Kapton (PSI Sample # 1-7).", "corrected": {"test_id": "1,2,3,4,5,6,7"}},
+    {"id": "R8", "verdict": "MODIFY", "reason": "DBP is stated as a liquid on a wick; PSI Sample # 8 only.", "corrected": {"test_id": "8"}},
+    {"id": "R9", "verdict": "MODIFY", "reason": "Platform for every flight sample; survived the negative control.", "corrected": {"test_id": "*"}},
+    {"id": "R10", "verdict": "MODIFY", "reason": "MSG platform for every sample; SHARED_LINEAGE with SAME-R (same hardware) and DAFT (P-Trak).", "corrected": {"test_id": "*"}},
+    {"id": "R11", "verdict": "MODIFY", "reason": "flightProgram label for the whole investigation.", "corrected": {"test_id": "*"}},
+    {"id": "R12", "verdict": "MODIFY", "reason": "air -> N2 derived; applies to every sample.", "corrected": {"test_id": "*"}}
+  ],
+  "missed": [
+    "Final Report page 21: 'The system was designed to provide air flow rates ranging from 2 to 8 cm/s.' DISCREPANCY with the PSI table (Sample 4 at 10 cm/s). The PSI table matches the pre-flight EIRD test matrix (Baseline doc page 13), not the flown log (Appendix A, page 33: 2 and 8 cm/s, 30-minute aging). The table adapter therefore marks PSI-102 flow values insufficient_evidence."
+  ],
+  "could_not_check": "EIRD, VPRED, Operations Manual and other PSI-102 documents not opened; CSD origin of the record's approach text inferred; Appendix A flight tests cannot be mapped one-to-one onto PSI Sample # 1-8; 1-g run conditions not stated.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

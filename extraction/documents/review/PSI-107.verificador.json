@@ -1,0 +1,30 @@
+{
+  "accession": "PSI-107",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on page 16; states the experiment ran under long-term microgravity. Its priority claim ('the first experiment') must never be repeated by PYRION."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim on page 24; every PSI row is a 2009 flight session; no ground rows."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Second-hand 1-g results (Dotson thesis); test_id names no PSI test, so not ingested; the report contradicts itself on the comparison."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim on page 12, 'fuel gases'; psia values are bottle fill pressures, not test pressure."},
+    {"id": "R5", "verdict": "KEEP", "reason": "flightProgram; platform only."},
+    {"id": "R6", "verdict": "MODIFY", "reason": "Lineage incomplete: BASS and BASS-II used the SPICE apparatus.",
+     "corrected": {"derivation": "Facility on the ISS. The SPICE apparatus installed in the MSG is a modified version of the apparatus built for Enclosed Laminar Flames (ELF) (Final Report page 9). Not stated in the three sources read, but documented elsewhere in PSI: BASS burned its samples in the SPICE flow duct (psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx, paragraph=51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'), and BASS-II procedures run in the 'SPICE Experiment Assembly' (psi-data/PSI-25/Engineering Documents/PSI-25_Engineering Documents_BASS-II_Ops.docx, paragraph=60). The project lineage list says SLICE shares the same duct; PSI-106 files do not confirm it. PSI-60 (ground investigation) re-analyses SPICE data sets. SPICE, BASS and BASS-II results come from the same flow duct and must not be counted as independent apparatus."}},
+    {"id": "R7", "verdict": "MODIFY", "reason": "The sentence's 5.4-65 cm/s is the smoke-point range; the PSI table has rows below it.",
+     "corrected": {"derivation": "Burner diameters and co-flow velocities are in the PSI table and are not extracted here. The 5.4-65 cm/s range in this sentence is the smoke-point range of Final Report Table 1 (page 20); the PSI table has rows below it: 4.42 cm/s (data rows 248-249) and -0.28 / 0.66 cm/s (data rows 295-300, GMT day 136, 75 % Propylene, 0.4064 mm nozzle). The per-test Air Rate in the table governs those tests."}},
+    {"id": "R8", "verdict": "MODIFY", "reason": "'no SPICE test is quiescent' is contradicted by near-zero table rows.",
+     "corrected": {"derivation": "The apparatus keeps a minimum fan voltage even at fan dial setting 0 (page 16). This does not show that every test had a measurable coflow: the PSI table records Air Rate -0.28 and 0.66 cm/s for data rows 295-300 (GMT day 136), while the ground calibration in Fig. 14 (page 17, read from the plot) shows roughly 9-15 cm/s at dial 0; the sources do not explain the difference. The per-test Air Rate in the table governs those tests."}},
+    {"id": "R9", "verdict": "MODIFY", "reason": "19-24% is the ISS cabin specification band, not a test O2.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R10", "verdict": "KEEP", "reason": "Calculation assumption (21±1% O2): ambiguous, never counted."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Calculation assumption (101 kPa): ambiguous, never counted."},
+    {"id": "R12", "verdict": "KEEP", "reason": "Co-flow is ISS cabin air: N2 derived; fuel-mixture N2 kept apart."}
+  ],
+  "missed": [
+    "flame_type: page 21 (fuel jet into air) implies 'normal'; not proposed by the extractor; not ingested.",
+    "298 K in the Table 1 footnote is a calculation assumption, not a measurement.",
+    "Lineage: BASS and BASS-II used the SPICE duct; PSI-60 re-analyses SPICE data."
+  ],
+  "could_not_check": "Dotson thesis and other PSI-107 files not opened (pressure confirmed absent only in the three listed sources); cause of near-zero Air Rate rows unresolved; SLICE sharing the duct not confirmed from PSI; duct size differs between sources.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

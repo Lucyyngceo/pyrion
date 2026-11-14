@@ -1,0 +1,36 @@
+{
+  "accession": "PSI-23",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=researchImpacts; a reason for the work: ambiguous."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim on page 25; states both rounds were microgravity experimentation: direct; survived the negative control (microgravity level never quantified; PaRIS not used)."},
+    {"id": "R3", "verdict": "MODIFY", "reason": "Design sentence copied from the pre-flight SRD; repeats R2.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R4", "verdict": "MODIFY", "reason": "Plan ('will be used'); the same paragraph lists CO2, never used.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on page 25; describes the tests of Table 1."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim at section=flightProgram; platform only."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim; SHARED_LINEAGE with the other ACME experiments."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim on page 3; platform only."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim on page 25; SHARED_LINEAGE."},
+    {"id": "R10", "verdict": "KEEP", "reason": "CSV Notes row 2 verbatim; transcribes the report's Table 1 footnote (same lineage as R11)."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Footnote 2 verbatim on page 24; not independent of R10."},
+    {"id": "R12", "verdict": "KEEP", "reason": "Verbatim on page 78; GMT 006 = test day 20006."},
+    {"id": "R13", "verdict": "KEEP", "reason": "Verbatim on page 79; test day 20013."},
+    {"id": "R14", "verdict": "KEEP", "reason": "Verbatim on page 79; ambiguous + DISCREPANCY with the table's ~21%; covers four tests only."},
+    {"id": "R15", "verdict": "KEEP", "reason": "Verbatim on page 69; none of the 21% tests ignited (igniter settings): not a burning condition."},
+    {"id": "R16", "verdict": "KEEP", "reason": "Verbatim on page 69; 17.5% O2 omitted from the table; DISCREPANCY matters."},
+    {"id": "R17", "verdict": "KEEP", "reason": "Verbatim on page 26; the table's 'N3' vs the report's N2; ambiguous is conservative."},
+    {"id": "R18", "verdict": "KEEP", "reason": "Verbatim on page 26."},
+    {"id": "R19", "verdict": "KEEP", "reason": "Table 1 cell verbatim; merged-cell coverage read from layout: ambiguous."},
+    {"id": "R20", "verdict": "KEEP", "reason": "Verbatim on page 67; table Test Type vs Atmosphere disagree for 20132: DISCREPANCY."}
+  ],
+  "missed": [
+    "Test day 20190 fuel: the report (pages 24, 29, 73, 87) gives 45% H2 with He; the CSV Fuel Bottle reads '35% H2 with He'.",
+    "Test day 19308 fuel bottle: CSV '45% CH4 with N3' vs report '45% CH4 with N2' (page 24).",
+    "CO2 was planned but never used (page 11).",
+    "Page 30 results sentence: 'Ethylene flames which tend to soot under normal gravity conditions did not soot under microgravity conditions.'"
+  ],
+  "could_not_check": "PDF read as text plus page images; merged-cell coverage of Table 1 read from layout; cited SRD and engineering documents not opened; SAMS data not in PSI; whether the CSV artifacts are autofill is an inference.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

@@ -1,0 +1,28 @@
+{
+  "accession": "PSI-21",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on fact sheet page 3, CLD findings, past tense. Caveats: undated fact sheet outside PSI; no test days named; PSI-21 shares four publications with SLICE (PSI-106), so findings may partly rest on SLICE flights."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim on page 4, CLD findings; same caveats as R1."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim at section=approach; a goal: ambiguous."},
+    {"id": "R4", "verdict": "KEEP", "reason": "projectType label: ambiguous."},
+    {"id": "R5", "verdict": "KEEP", "reason": "1 g comparison flames of unknown origin; must never map to a PSI-21 row."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim at section=subResearchArea; gas confirmed by fact sheet page 1; negative control found nothing contrary."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim at section=flightProgram; platform only."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim; SHARED_LINEAGE with the ACME hardware."},
+    {"id": "R9", "verdict": "MODIFY", "reason": "Plan sentence ('will be made'); no source states the coflow gas actually used.",
+     "corrected": {"confidence": "ambiguous", "derivation": "Planned oxidizer coflow (fact sheet p.3, future tense 'will be made ... in an air coflow'): air = oxygen balanced mainly by nitrogen. Oxidizer stream only. No allowed source states the coflow or chamber gas actually used in the flown tests (the CSV lists only Fuel and N2 MFCs; fact sheet p.18: ACME runs are constant-volume). The fuel-stream diluent N2 (CSV row=1 Notes) is a separate item."}},
+    {"id": "R10", "verdict": "KEEP", "reason": "Objective, but coflow is confirmed by the title, the CSV Test Type and fact sheet page 5: direct holds."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Verbatim on page 3; duplicates R10."}
+  ],
+  "missed": [
+    "Fact sheet page 4: measurements made 'without the complication of buoyancy forces' (derived microgravity, undated).",
+    "CSV Notes row 1: fuel diluted with nitrogen on a volume basis (fuel stream, not the ambient diluent); the lower end of each fuel concentration range is not guaranteed to have burned.",
+    "Fuel Bottle column fill-series artifacts (CH5...CH14, C2H5...C2H11); 'C2H6' in rows 17 and 25 is a real species and a parser would accept it silently.",
+    "Lineage: PSI-21 and PSI-106 (SLICE) list four identical publications; findings attributed to CLD cannot count as independent of SLICE."
+  ],
+  "could_not_check": "Fact sheet undated and outside PSI, mixing pre-flight and post-flight text; which test days the findings cover unknown; publications and metadata zip not opened; no source states coflow gas, O2 or pressure used in flight.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}
