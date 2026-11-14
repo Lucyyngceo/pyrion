@@ -311,7 +311,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               {visible.map((e) => {
                 const color = colors.get(e.key) ?? "var(--s-other)";
                 return (
-                  <g key={`h${e.key}`} className={`layer em-${layerState.get(e.key) ?? "dim"}`}>
+                  <g key={`h${e.key}`} className={`layer reveal-hull em-${layerState.get(e.key) ?? "dim"}`}>
                     {e.investigations.map((inv) => {
                       const faded = highlight !== null && inv.accession !== highlight;
                       return (
@@ -338,11 +338,15 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               })}
 
               {/* points */}
-              {visible.map((e) => {
+              {visible.map((e, li) => {
                 const color = colors.get(e.key) ?? "var(--s-other)";
                 const phase = fuelPhaseOf(e);
                 return (
-                  <g key={`p${e.key}`} className={`layer em-${layerState.get(e.key) ?? "dim"}`}>
+                  <g
+                    key={`p${e.key}`}
+                    className={`layer reveal-pts em-${layerState.get(e.key) ?? "dim"}`}
+                    style={{ "--i": Math.min(li, 10) } as React.CSSProperties}
+                  >
                     {e.points.map((p, i) => {
                       const x = sx(p.o2_mole_fraction);
                       const y = sy(p.pressure);

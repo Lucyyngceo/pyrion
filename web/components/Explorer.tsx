@@ -137,10 +137,10 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             verifiedCount={verifiedCount}
             result={
               status && (
-                <div className={`result result-${status.tone}`} role="status" aria-live="polite">
-                  <div className="result-kicker">Result for {view ? view.short : "custom target"}</div>
-                  <div className="result-head">{status.headline}</div>
-                  <p className="result-detail">{status.detail}</p>
+                <div className={`outcome outcome-${status.tone}`} role="status" aria-live="polite">
+                  <div className="outcome-kicker">Result for {view ? view.short : "custom target"}</div>
+                  <div className="outcome-head" key={status.headline}>{status.headline}</div>
+                  <p className="outcome-detail" key={status.detail}>{status.detail}</p>
                 </div>
               )
             }
