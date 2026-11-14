@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { parseConditionCsv } from "@/lib/engine";
-import { loadDataset } from "@/lib/data";
+import { loadDataset, loadLineage } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Data · PYRION Ω",
@@ -20,7 +20,10 @@ const VAR_LABEL: Record<(typeof VARS)[number], string> = {
 const doiUrl = (d: string) => `https://doi.org/${d}`;
 
 export default async function DataPage() {
-  const ds = await loadDataset();
+  const [ds, lin] = await Promise.all([loadDataset(), loadLineage()]);
+  const v = lin.validation;
+  const gb = (b: number) => (b >= 1e12 ? `${(b / 1e12).toFixed(1)} TB` : b >= 1e9 ? `${(b / 1e9).toFixed(1)} GB` : `${(b / 1e6).toFixed(0)} MB`);
+  const n = (x: number) => x.toLocaleString("en-US");
   const per = new Map<string, { records: number; verified: number; flagged: number; tests: Set<string>; vars: Set<string>; table: number; doc: number }>();
   for (const f of ds.files) {
     const { records } = parseConditionCsv(f.text, f.name, f.accession);
@@ -54,30 +57,70 @@ export default async function DataPage() {
         </p>
       </header>
 
-      <div className="kpis">
-        <div className="card kpi">
-          <b>{withData} / {ds.investigations.length}</b>
-          <span>investigations with extracted values</span>
+      <section className="card lineage" aria-labelledby="lin-h">
+        <div className="card-head">
+          <h2 id="lin-h">Lineage: from PSI to a verdict</h2>
+          <p className="muted small">
+            Every step is a file in the repository. Counts are read from the manifests and from the last committed
+            validation report{v?.generatedAt ? ` (${v.generatedAt.replace("T", " ").replace("Z", " UTC")})` : ""}.
+          </p>
         </div>
-        <div className="card kpi">
-          <b>{totals.records.toLocaleString("en-US")}</b>
-          <span>condition values</span>
-        </div>
-        <div className="card kpi">
-          <b>{totals.tests.toLocaleString("en-US")}</b>
-          <span>distinct tests</span>
-        </div>
-        <div className="card kpi">
-          <b>{Math.round((100 * totals.table) / Math.max(1, totals.records))} %</b>
-          <span>read by code from PSI tables (rest: quoted from documents)</span>
-        </div>
-      </div>
+        <ol className="lin-steps">
+          <li>
+            <span className="lin-k">NASA PSI</span>
+            <b>{n(lin.psiFiles)}</b>
+            <span>files listed in {ds.investigations.length} combustion investigations ({gb(lin.psiBytes)})</span>
+            <code>data/manifest/coverage.csv</code>
+          </li>
+          <li>
+            <span className="lin-k">Selected and checksummed</span>
+            <b>{n(lin.selectedFiles)}</b>
+            <span>files downloaded with SHA-256 ({gb(lin.selectedBytes)}): tables, reports, test matrices</span>
+            <code>data/manifest/checksums_P*.csv</code>
+          </li>
+          <li>
+            <span className="lin-k">Extracted</span>
+            <b>{n(totals.records)}</b>
+            <span>condition values, each with file, location, original text and unit</span>
+            <code>data/conditions/*.csv</code>
+          </li>
+          {v && (
+            <li>
+              <span className="lin-k">Traced to the source</span>
+              <b>{n(v.cellsTraced + v.quotesTraced)}</b>
+              <span>
+                {n(v.cellsTraced)} table cells and {n(v.quotesTraced)} quotes re-read from the PSI file
+                {v.traceRan ? "" : " (trace not run in this report)"}
+              </span>
+              <code>validation/run_all.py</code>
+            </li>
+          )}
+          {v && (
+            <li>
+              <span className="lin-k">Automated gates</span>
+              <b>{v.blocker} blocker</b>
+              <span>
+                {n(v.major)} major, {n(v.minor)} minor findings logged for review
+              </span>
+              <code>validation/reports/latest.md</code>
+            </li>
+          )}
+          <li>
+            <span className="lin-k">Engine</span>
+            <b>4 verdicts</b>
+            <span>deterministic rules: same records and target in, same verdict out</span>
+            <code>engine/src</code>
+          </li>
+        </ol>
+      </section>
 
       <section className="card" aria-labelledby="cov-h">
         <div className="card-head">
           <h2 id="cov-h">Coverage by investigation</h2>
           <p className="muted small">
-            Sorted by extracted values. A dash means that axis is not stated in the extracted records for that investigation,
+            {withData} of {ds.investigations.length} investigations have extracted values so far, {n(totals.tests)} distinct tests,{" "}
+            {Math.round((100 * totals.table) / Math.max(1, totals.records))} % of values read by code from PSI tables. Sorted by
+            extracted values. A dash means that axis is not stated in the extracted records for that investigation,
             in PSI as read so far.
           </p>
         </div>
