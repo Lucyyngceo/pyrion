@@ -115,9 +115,10 @@ describe('TRANSFER_HYPOTHESIS', () => {
     assert.deepEqual(transferHypotheses(moon, ts).hypotheses.map((h) => h.test_id), ['T1', 'T2', 'T10']);
   });
 
-  it('the Mars source is honest about what it says', () => {
-    const src = GRAVITY_TARGETS.mars.source;
-    assert.ok('supports' in src && src.supports.includes('does not label it Mars'));
+  it('Mars is 1/3 g with the source quote, not 0.38', () => {
+    const m = GRAVITY_TARGETS.mars;
+    assert.equal(m.level, 1 / 3);
+    assert.ok('quote' in m.source && m.source.quote.includes('Mars (1/3 g)') && m.source.page === 3);
   });
 });
 

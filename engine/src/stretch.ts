@@ -36,7 +36,6 @@ export type StretchFormulaId =
   | 'OT2000-af-cylinder'
   | 'OF2015-af-rod-tip'
   | 'OT2000-ab-eq1'
-  | 'OT2000-ab-p3'
   | 'OT2000-mixed';
 
 /** Standard gravity as given in the paper's nomenclature: g = 980 cm/s^2. */
@@ -58,7 +57,8 @@ export const SOURCE = {
     quote: 'A generalized expression for stretch rate due to mixed convection includes both buoyant and forced stretch, and is defined as a = af(1 + ab²/af²)^½.',
     supports: 'mixed stretch rate; for af = 0 the paper uses a = ab (p. 3, "In the experiments reported herein, af=0")',
   },
-  buoyantP3: {
+  /** NOT used by any formula. Kept to document the discrepancy: p. 3 prints the density factor outside the root. */
+  discrepancyP3: {
     file: OT,
     page: 3,
     quote: 'For purely buoyant flow, the equivalent stretch rate is ab = [(ρe-ρ*)/ρe] [g/R]½',
@@ -140,7 +140,7 @@ export const DENSITY_FACTOR_PMMA_AIR: Band & { sources: SourceCitation[]; tStarK
   sources: [SOURCE.buoyantEq1, SOURCE.labTemperature],
   assumptions: [
     'The paper gives no single density factor. This band is (T* - Te)/T* from the paper’s own Eqn. 1 with T* = 865 to 990 K and Te = 22 °C.',
-    'Ideal gas at constant pressure (rho proportional to 1/T) turns the density factor into a temperature ratio.',
+    'Ideal gas at constant pressure (rho proportional to 1/T) turns the density factor (rho_e - rho*)/rho_e into the temperature ratio (T* - Te)/T*.',
     'Valid for PMMA flames in air as in the paper; not for other fuels, oxygen levels or pressures.',
   ],
 };
@@ -182,45 +182,38 @@ function forced(
   };
 }
 
-export type BuoyantVariant = 'eq1' | 'p3';
-
 /**
  * Buoyant stretch rate of a body of radius R (cm) at gravity g (in units of Earth gravity,
- * 1 g = 980 cm/s^2). `densityFactor` is required: use DENSITY_FACTOR_PMMA_AIR only for PMMA in air.
- *
- *  - 'eq1' (default): a_b = [ F · g/R ]^½ , the form of Eqn. 1 on p. 11 of the source. It reproduces the
- *    paper's own range (R = 2.5-200 cm gives 2-16 s^-1).
- *  - 'p3': a_b = F · [g/R]^½ , the form as printed on p. 3. It gives about 14 % smaller values here.
- * The two readings of the source differ; every result states which one it used.
+ * 1 g = 980 cm/s^2): a_b = [ F · g/R ]^½ with F the density factor (rho_e - rho*)/rho_e, the form of
+ * Eqn. 1 on p. 11 of NTRS 20000004509 (id OT2000-ab-eq1). The only form the engine uses.
+ * The same paper prints the factor outside the root on p. 3; that form does not reproduce the paper's
+ * own range (see README, "Documented discrepancy"). `densityFactor` is required: use
+ * DENSITY_FACTOR_PMMA_AIR only for PMMA in air.
  */
-export function buoyantStretch(
-  gravityLevelG: Input,
-  radiusCm: Input,
-  densityFactor: Input,
-  variant: BuoyantVariant = 'eq1',
-): StretchResult {
+export function buoyantStretch(gravityLevelG: Input, radiusCm: Input, densityFactor: Input): StretchResult {
   const g = nonNegative(toBand(gravityLevelG, 'g'), 'g');
   const r = positive(toBand(radiusCm, 'R'), 'R');
   const f = toBand(densityFactor, 'density factor');
   if (f.lo <= 0 || f.hi > 1) throw new RangeError('density factor must be in (0, 1]');
-  const gLo = g.lo * G_EARTH_CM_S2;
-  const gHi = g.hi * G_EARTH_CM_S2;
-  const value =
-    variant === 'eq1'
-      ? { lo: Math.sqrt((f.lo * gLo) / r.hi), hi: Math.sqrt((f.hi * gHi) / r.lo) }
-      : { lo: f.lo * Math.sqrt(gLo / r.hi), hi: f.hi * Math.sqrt(gHi / r.lo) };
   return {
-    value,
+    value: {
+      lo: Math.sqrt((f.lo * g.lo * G_EARTH_CM_S2) / r.hi),
+      hi: Math.sqrt((f.hi * g.hi * G_EARTH_CM_S2) / r.lo),
+    },
     unit: 's-1',
-    formulaId: variant === 'eq1' ? 'OT2000-ab-eq1' : 'OT2000-ab-p3',
-    formula: variant === 'eq1' ? 'a_b = [ ((rho_e - rho*)/rho_e) · g/R ]^(1/2)' : 'a_b = ((rho_e - rho*)/rho_e) · [g/R]^(1/2)',
+    formulaId: 'OT2000-ab-eq1',
+    formula: 'a_b = [ ((rho_e - rho*)/rho_e) · g/R ]^(1/2)',
     inputs: {
       g: entry(g, 'g_earth'),
       R: entry(r, 'cm'),
       'density factor (rho_e - rho*)/rho_e': entry(f, '1'),
     },
-    sources: variant === 'eq1' ? [SOURCE.buoyantEq1, SOURCE.rangeCheck, SOURCE.nomenclature] : [SOURCE.buoyantP3, SOURCE.nomenclature],
-    assumptions: [`g = ${G_EARTH_CM_S2} cm/s^2 per g_earth (paper nomenclature).`, 'Stagnation-point flow on a curved body; not valid for flat sheets.'],
+    sources: [SOURCE.buoyantEq1, SOURCE.rangeCheck, SOURCE.nomenclature],
+    assumptions: [
+      `g = ${G_EARTH_CM_S2} cm/s^2 per g_earth (paper nomenclature).`,
+      'Density factor written as a temperature ratio (T* - Te)/T* as in Eqn. 1, which assumes an ideal gas at constant pressure (rho proportional to 1/T).',
+      'Stagnation-point flow on a curved body; not valid for flat sheets.',
+    ],
   };
 }
 

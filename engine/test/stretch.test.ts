@@ -8,6 +8,7 @@ import {
   densityFactorFromTemperatures,
   forcedStretchCylinder,
   forcedStretchRodTip,
+  SOURCE,
   mixedStretch,
 } from '../src/stretch.ts';
 
@@ -75,17 +76,19 @@ describe('buoyant stretch', () => {
     assert.ok(large.value.lo > 1.75 && large.value.hi < 1.9, JSON.stringify(large.value));
   });
 
-  it('the p. 3 reading does not reproduce it (about 14 % lower at R = 2.5 cm), so it is labelled as a variant', () => {
-    const p3 = buoyantStretch(1, 2.5, DENSITY_FACTOR_PMMA_AIR, 'p3');
-    assert.equal(p3.formulaId, 'OT2000-ab-p3');
-    assert.ok(p3.value.hi < 14.5);
-    assert.equal(buoyantStretch(1, 2.5, DENSITY_FACTOR_PMMA_AIR).formulaId, 'OT2000-ab-eq1');
+  it("documented discrepancy: the p. 3 form (factor outside the root) does not reproduce the paper's numbers; the engine has one formula", () => {
+    const f = DENSITY_FACTOR_PMMA_AIR;
+    const p3Small = f.hi * Math.sqrt(980 / 2.5); // p. 3 as printed
+    const eq1Small = buoyantStretch(1, 2.5, f).value.hi; // p. 11 Eqn. 1
+    assert.ok(p3Small < 14.5, `p3 ${p3Small}`); // paper says 2-16 s-1 for R = 2.5-200 cm (p. 6)
+    assert.ok(eq1Small > 16 && eq1Small < 17, `eq1 ${eq1Small}`);
+    assert.equal(buoyantStretch(1, 2.5, f).formulaId, 'OT2000-ab-eq1');
+    assert.equal(SOURCE.discrepancyP3.page, 3);
   });
 
   it('exact algebra for a point factor', () => {
-    // F = 0.5, g = 1 g_earth = 980 cm/s2, R = 490 cm: sqrt(0.5 * 2) = 1 (eq1); 0.5 * sqrt(2) (p3)
+    // F = 0.5, g = 1 g_earth = 980 cm/s2, R = 490 cm: sqrt(0.5 * 2) = 1
     close(buoyantStretch(1, 490, 0.5).value.lo, 1);
-    close(buoyantStretch(1, 490, 0.5, 'p3').value.lo, 0.5 * Math.SQRT2);
   });
 
   it('lower gravity gives lower stretch at the same radius; zero gravity gives zero', () => {

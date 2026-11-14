@@ -11,7 +11,6 @@ import {
   forcedStretchCylinder,
   forcedStretchRodTip,
   type Band,
-  type BuoyantVariant,
   type SourceCitation,
   type StretchResult,
 } from './stretch.ts';
@@ -66,15 +65,14 @@ export const GRAVITY_TARGETS: Record<GravityTargetId, GravityTarget> = {
   },
   mars: {
     id: 'mars',
-    label: 'Mars, 0.38 g',
-    level: 0.38,
+    label: 'Mars, 1/3 g',
+    level: 1 / 3,
     regime: 'partial_gravity',
     source: {
-      file: 'ntrs-20010074003/20010074003.pdf',
-      page: 2,
-      quote: 'partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth',
-      supports:
-        'the paper lists 0.38 g/gEarth as a KC-135 partial-gravity level; it does not label it Mars. The value 0.38 g for Mars is the one given in docs/TRANSFER.md.',
+      file: 'ntrs-20000004509/20000004509.pdf',
+      page: 3,
+      quote: 'the effect of partial gravity, such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability',
+      supports: 'Mars gravity level as printed by the source: 1/3 g',
     },
   },
   earth: {
@@ -147,7 +145,6 @@ export interface Excluded {
 
 export interface TransferReport {
   target: Target;
-  buoyantVariant: BuoyantVariant;
   hypotheses: TransferHypothesis[];
   excluded: Excluded[];
   /** Why no hypothesis exists at all (for example, the target is microgravity). null otherwise. */
@@ -157,7 +154,6 @@ export interface TransferReport {
 export interface TransferOptions {
   /** Density factor for materials other than PMMA. PMMA in air uses the band of the source. */
   densityFactor?: Band;
-  buoyantVariant?: BuoyantVariant;
 }
 
 const PMMA_RE = /pmma|plexiglas|perspex|polymethyl/i;
@@ -178,9 +174,8 @@ function diff(a: number | undefined, b: number | undefined) {
 }
 
 export function transferHypotheses(target: Target, tests: readonly TransferTest[], options: TransferOptions = {}): TransferReport {
-  const variant = options.buoyantVariant ?? 'eq1';
   const g = target.continuous.gravity_level;
-  const out: TransferReport = { target, buoyantVariant: variant, hypotheses: [], excluded: [], notComputable: null };
+  const out: TransferReport = { target, hypotheses: [], excluded: [], notComputable: null };
   if (target.regime.gravity_regime === 'microgravity') {
     out.notComputable = 'The target is microgravity: PSI microgravity tests are directly comparable, there is nothing to transfer.';
     return out;
@@ -203,7 +198,7 @@ export function transferHypotheses(target: Target, tests: readonly TransferTest[
       continue;
     }
     const testStretch = t.geometry === 'cylinder' ? forcedStretchCylinder(t.flowCmS, t.radiusCm) : forcedStretchRodTip(t.flowCmS, t.radiusCm);
-    const targetStretch = buoyantStretch(g, t.radiusCm, { lo: factor.lo, hi: factor.hi }, variant);
+    const targetStretch = buoyantStretch(g, t.radiusCm, { lo: factor.lo, hi: factor.hi });
     const relation = relationOf(testStretch.value, targetStretch.value);
     const regimeAxes = (['fuel_phase', 'diluent', 'flame_type'] as const).map((axis) => ({
       axis,
@@ -244,7 +239,6 @@ export function transferHypotheses(target: Target, tests: readonly TransferTest[
       sources,
       assumptions: [
         ...(isPmma ? DENSITY_FACTOR_PMMA_AIR.assumptions : [`Density factor supplied by the caller: ${factor.lo} to ${factor.hi}.`]),
-        `Buoyant stretch by ${targetStretch.formulaId}.`,
         'The flow readings of the test are used as a band (lowest to highest listed); the source table calls them display readings, not steady velocities.',
         'The target is a body of the same radius at the target gravity with no imposed flow.',
       ],
