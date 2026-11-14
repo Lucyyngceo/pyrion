@@ -36,6 +36,21 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* FLEX "Burning rate; mm" is kept as `insufficient_evidence`: the unit written in the header (mm) is not a unit of burning rate, and the table does not state the right one.
 - *Table reading:* FLEX rows whose ambient pressure reads 0 mmHg are kept as `insufficient_evidence` for pressure (not a possible ambient pressure for a test that burned; the true value is not stated).
 
+## PSI-98 SAFFIRE-I
+
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+
+## PSI-99 SAFFIRE-II
+
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+- *Table reading:* SAFFIRE-II "Percent O2 (Note 1)": Note 1, at the foot of the same table, reads "Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS." The O2 values are therefore derived, not measured directly; each record says so.
+- *Table reading:* SAFFIRE-II thickness "037 mm" (samples 2-4 to 2-6) lacks a decimal point (0.37 mm or 37 mm): `insufficient_evidence`. "0.85 and 0.37 mm" (sample 2-7, "PMMA & Nomex") gives one record per value.
+- *Table reading:* SAFFIRE-II "1-g Burn Length" and "1-g Spread Rate" are normal-gravity comparison tests and are not mapped onto the flight samples; the micro-g columns are not mapped either (their header says length, the cells say mm/s).
+
+## PSI-100 SAFFIRE-III
+
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+
 ## PSI-159 ACME CFI-G
 
 - *Table reading:* CFI-G inverse-flame "XO2" is the O2 mole fraction of the stream issued from the burner (`burner_o2_mole_fraction`), not the ambient O2: in an inverse flame the oxidizer flows from the burner into a fuel-laden ambient (schema definition of `flame_type`).

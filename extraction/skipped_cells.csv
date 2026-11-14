@@ -46,3 +46,8 @@ PSI-10,psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design
 PSI-10,psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv,103,XO2,RAMP,cell marks 'no value'
 PSI-25,psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv,14,Calibrated final O2 % by vol,none,cell marks 'no value'
 PSI-25,psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv,25,Calibrated final O2 % by vol,none,cell marks 'no value'
+PSI-99,psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,1,Burn Time (s),Insignificant,outcome:burn_time: not '<number> <unit>'
+PSI-99,psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,2,Burn Time (s),Insignificant,outcome:burn_time: not '<number> <unit>'
+PSI-99,psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,3,Burn Time (s),Insignificant,outcome:burn_time: not '<number> <unit>'
+PSI-99,psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,4,Burn Time (s),Insignificant,outcome:burn_time: not '<number> <unit>'
+PSI-99,psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv,8,Samle Thickness ,See Fig. 5,sample_thickness: not '<number> <unit>'
