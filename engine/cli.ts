@@ -122,11 +122,26 @@ for (const id of presetIds) {
   const loc = locateTarget(presetTarget(id), envelopes);
   const same = loc.filter((l) => l.sameRegime === true);
   line(`envelopes in the same regime as the target: ${same.length} of ${loc.length} regime combination(s)`);
-  const withPoints = loc.filter((l) => l.pointCount > 0);
-  const outside = withPoints.filter((l) => l.insideHull === false).length;
-  line(
-    `geometry only, all regimes: target (O2, pressure) outside the hull of ${outside} of ${withPoints.length} regime combination(s) that have plotted points`,
-  );
+  // Geometry only: where the target's (O2, pressure) falls against each investigation's measured hull,
+  // whatever its regime. Context for the chart; not a verdict.
+  const per = new Map<string, { inside: boolean; nearest: number }>();
+  const listed = new Set<string>();
+  for (const l of loc) {
+    for (const i of l.investigations) {
+      listed.add(i.accession);
+      if (i.insideHull === null) continue;
+      const e = per.get(i.accession) ?? { inside: false, nearest: Infinity };
+      per.set(i.accession, { inside: e.inside || i.insideHull, nearest: Math.min(e.nearest, i.hullDistance as number) });
+    }
+  }
+  const order = [...per.keys()].sort((a, b) => Number(a.slice(4)) - Number(b.slice(4)));
+  line('geometry only, (O2, pressure) plane, any regime (context, not a verdict):');
+  const ins = order.filter((a) => per.get(a)?.inside);
+  const outs = order.filter((a) => !per.get(a)?.inside);
+  line(`  inside the measured hull of a cluster of: ${ins.length > 0 ? ins.join(', ') : 'none'}`);
+  line(`  outside every measured hull of: ${outs.length > 0 ? outs.map((a) => `${a} (normalized distance ${n(per.get(a)?.nearest as number)})`).join(', ') : 'none'}`);
+  const noPlane = [...listed].filter((a) => !per.has(a)).sort((a, b) => Number(a.slice(4)) - Number(b.slice(4)));
+  if (noPlane.length > 0) line(`  no test with both O2 and pressure: ${noPlane.join(', ')}`);
 }
 
 console.log(out.join('\n'));

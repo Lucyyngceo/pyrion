@@ -225,6 +225,13 @@ describe('envelope export for the chart', () => {
     const micro = loc.find((l) => l.key === 'gravity_regime=microgravity|fuel_phase=solid|diluent=N2|flame_type=normal');
     assert.equal(micro?.sameRegime, false);
     assert.equal(typeof micro?.insideHull, 'boolean');
+    assert.deepEqual(
+      micro?.investigations.map((i) => [i.accession, typeof i.insideHull]),
+      [
+        ['PSI-9001', 'boolean'],
+        ['PSI-9005', 'boolean'],
+      ],
+    );
   });
 
   it('is deterministic', () => {

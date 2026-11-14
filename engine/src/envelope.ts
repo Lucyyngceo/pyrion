@@ -160,6 +160,8 @@ export interface TargetLocation {
   insideHull: boolean | null;
   /** Normalized distance from the target to this hull; 0 inside, null without points. */
   hullDistance: number | null;
+  /** The same, against the hull of each investigation in this envelope. */
+  investigations: { accession: string; pointCount: number; insideHull: boolean | null; hullDistance: number | null }[];
 }
 
 /**
@@ -202,6 +204,16 @@ export function locateTarget(target: Target, envelopes: EnvelopeSet): TargetLoca
           : null,
       insideHull: tv ? hullContains(tv, hv) : null,
       hullDistance: tv ? distanceToHull(tv, hv) : null,
+      investigations: env.investigations.map((inv) => {
+        const ih = inv.hull.map((q) => ({ x: q.o2_mole_fraction / so, y: q.pressure / sp }));
+        const ok = tv !== null && ih.length > 0;
+        return {
+          accession: inv.accession,
+          pointCount: inv.pointCount,
+          insideHull: ok ? hullContains(tv as Vec2, ih) : null,
+          hullDistance: ok ? distanceToHull(tv as Vec2, ih) : null,
+        };
+      }),
     };
   });
 }
