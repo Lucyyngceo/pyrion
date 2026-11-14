@@ -1241,3 +1241,10 @@ input[type="range"] {
 .es-flag { background: repeating-linear-gradient(135deg, var(--muted) 0 3px, transparent 3px 6px); }
 .es-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 6px 0 0; padding: 0; color: var(--ink-2); }
 .es-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 4px; }
+.hero { margin-top: 14px; margin-bottom: 8px; }
+.hero h1 { margin-bottom: 4px; }
+.evidence-status { margin: 6px 0 12px; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; max-width: none; }
+.es-head { margin: 0; white-space: nowrap; }
+.es-bar { grid-column: 2; }
+.es-legend { grid-column: 1 / -1; margin-top: 4px; }
+@media (max-width: 800px) { .evidence-status { grid-template-columns: 1fr; } .es-bar { grid-column: 1; } .es-head { white-space: normal; } }

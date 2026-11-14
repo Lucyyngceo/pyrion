@@ -156,7 +156,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   }, []);
 
   // Fits a laptop screen: never taller than ~60% of the window, so chart and target panel share the first view.
-  const height = Math.round(Math.max(320, Math.min(540, width * 0.6, viewportH * 0.6)));
+  const height = Math.round(Math.max(320, Math.min(540, width * 0.6, viewportH * 0.54)));
   const iw = width - M.left - M.right;
   const ih = height - M.top - M.bottom;
 

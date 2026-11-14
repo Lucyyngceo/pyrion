@@ -40,12 +40,10 @@ export default async function Page() {
               <i className="es-ver" /> {s.verified.toLocaleString("en-US")} verified by a person
             </li>
             <li>
-              <i className="es-ext" /> {(s.records - s.verified - s.flagged).toLocaleString("en-US")} extracted with file and
-              location, not yet verified by a person
+              <i className="es-ext" /> {(s.records - s.verified - s.flagged).toLocaleString("en-US")} extracted with file and location, not yet verified
             </li>
             <li>
-              <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged as insufficient evidence, not counted
-              as evidence
+              <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged insufficient, not counted
             </li>
           </ul>
         </div>
