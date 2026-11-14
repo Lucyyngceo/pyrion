@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Lucyyngceo/pyrion/schema/condition_record.schema.json",
+  "title": "PYRION condition record",
+  "description": "One value of one physical variable for one test, with its exact source. See schema/README.md.",
+  "type": "object",
+  "required": ["accession", "test_id", "variable", "value", "unit", "value_original", "unit_original",
+               "method", "source_file", "source_location", "quote", "status"],
+  "properties": {
+    "accession": {"type": "string", "pattern": "^PSI-[0-9]+$"},
+    "test_id": {"type": "string", "minLength": 1},
+    "variable": {
+      "type": "string",
+      "pattern": "^(gravity_regime|fuel_phase|diluent|o2_mole_fraction|pressure|flow_velocity|sample_thickness|droplet_diameter_initial|ambient_temperature|gravity_level|fuel|material|geometry|flow_configuration|platform|outcome:[a-z0-9_]+)$"
+    },
+    "value": {"type": "string", "minLength": 1},
+    "unit": {"type": "string"},
+    "value_original": {"type": "string", "minLength": 1},
+    "unit_original": {"type": "string"},
+    "method": {"enum": ["table", "document"]},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_location": {"type": "string", "minLength": 1},
+    "quote": {"type": "string", "minLength": 1},
+    "status": {"enum": ["extracted", "verified", "insufficient_evidence"]},
+    "note": {"type": "string"}
+  },
+  "allOf": [
+    {"if": {"properties": {"variable": {"const": "gravity_regime"}}},
+     "then": {"properties": {"value": {"enum": ["microgravity", "partial_gravity", "normal_gravity"]}}}},
+    {"if": {"properties": {"variable": {"const": "fuel_phase"}}},
+     "then": {"properties": {"value": {"enum": ["solid", "liquid", "gas"]}}}},
+    {"if": {"properties": {"variable": {"const": "diluent"}}},
+     "then": {"properties": {"value": {"enum": ["N2", "He", "CO2", "Ar", "mixed"]}}}},
+    {"if": {"properties": {"variable": {"const": "o2_mole_fraction"}}},
+     "then": {"properties": {"unit": {"const": "1"}}}},
+    {"if": {"properties": {"variable": {"const": "pressure"}}},
+     "then": {"properties": {"unit": {"const": "kPa"}}}}
+  ]
+}
