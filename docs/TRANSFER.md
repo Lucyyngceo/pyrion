@@ -24,10 +24,14 @@ NASA's own combustion literature offers a published way to relate the two: the *
 |---|---|---|
 | forced stretch | `a_f = 2·U∞/R` | cylinder of radius R in a flow U∞ |
 | forced stretch, rod tip | `a_f = 3/2 · U/R` | approximately spherical rod tip (source 3) |
-| buoyant stretch | `a_b = [(ρe − ρ*)/ρe] · [g/R]^(1/2)` | body of radius R at gravity g |
+| buoyant stretch | `a_b = [ ((T* − Te)/T*) · g/R ]^(1/2)` (source 1, p. 11, Eqn. 1) | body of radius R at gravity g |
 | mixed stretch | `a = a_f · (1 + a_b²/a_f²)^(1/2)` | both together; for `a_f = 0`, `a = a_b` |
 
-Units: s⁻¹. `(ρe − ρ*)/ρe` is the density factor of the source; its value and the reference state must be taken from the source and recorded with the page. If the source gives no single value, PYRION carries a stated range and every result becomes a band, not a point.
+Units: s⁻¹.
+
+**The source prints the buoyant stretch two ways.** Page 3 writes `a_b = [(ρe − ρ*)/ρe] [g/R]^(1/2)`, with the exponent on `[g/R]` only. Page 11, Eqn. 1 puts the factor inside the root. PYRION uses the page 11 form: it is the one that reproduces the paper's own numbers (R = 2.5 to 200 cm gives 2 to 16 s⁻¹, p. 6; a = 1.8 to 11.9 s⁻¹ for T* = 865 to 990 K, p. 11). The page 3 form gives 1.6 to 13.9 s⁻¹ for the same radii.
+
+The source gives no single factor. It gives T* = 865 to 990 K (p. 11) and a laboratory temperature of 22 °C (p. 6), so `(T* − Te)/T*` is a band, 0.659 to 0.702, and every buoyant stretch PYRION reports is a band, not a point.
 
 ## What PYRION computes
 
