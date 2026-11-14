@@ -5,6 +5,8 @@
 //   node engine/cli.ts --json > verdicts.json   canonical JSON (byte-identical for the same input)
 //   node engine/cli.ts --fixtures               run on the SYNTHETIC test fixtures (not NASA data)
 //   node engine/cli.ts --verified-only          count only records a human has verified
+//   node engine/cli.ts --transfer               transfer hypotheses from data/derived/bass2_flow_steps.csv
+//   node engine/cli.ts --transfer --assume-microgravity PSI-25 [--density-factor-pmma]   (operator's assumptions, printed as such)
 //
 // The output is the engine's output and nothing else: no model, no network, no clock.
 
@@ -23,6 +25,8 @@ import {
   type Verdict,
 } from './src/index.ts';
 import { loadConditionDir } from './src/load.ts';
+import { GRAVITY_TARGETS, transferHypotheses, transferTestsFromFlowSteps, withGravity, type GravityTargetId } from './src/transfer.ts';
+import { DENSITY_FACTOR_PMMA_AIR } from './src/stretch.ts';
 
 const ROOT = join(import.meta.dirname, '..');
 const args = process.argv.slice(2);
@@ -31,6 +35,37 @@ const option = (name: string) => {
   const i = args.indexOf(name);
   return i >= 0 ? args[i + 1] : undefined;
 };
+
+if (flag('--transfer')) {
+  const file = join(ROOT, 'data', 'derived', 'bass2_flow_steps.csv');
+  if (!existsSync(file)) {
+    console.log('No data/derived/bass2_flow_steps.csv: nothing to transfer.');
+    process.exit(0);
+  }
+  const assumed = option('--assume-microgravity');
+  const { tests, skipped } = transferTestsFromFlowSteps(readFileSync(file, 'utf8'), assumed ? { gravityRegime: 'microgravity' } : {});
+  const usable = tests.filter((t) => assumed === undefined || t.accession === assumed);
+  const tn = (x: number) => String(Number(x.toPrecision(4)));
+  console.log('TRANSFER HYPOTHESES — never evidence, never APPLICABLE (docs/TRANSFER.md)');
+  console.log(`tests with a rod radius and parsed flow: ${tests.length}; rows skipped: ${skipped.length}`);
+  if (assumed) console.log(`ASSUMPTION BY THE OPERATOR, not a record: ${assumed} tests are treated as microgravity.`);
+  if (flag('--density-factor-pmma')) console.log('ASSUMPTION BY THE OPERATOR, not a record: the PMMA-in-air density factor is applied to every rod, although the table calls them "clear rod" / "black rod" and does not name the material; the tests burn at O2 0.145-0.222, not air.');
+  else console.log('No gravity regime is stated for these tests by any record, so none is used. Pass --assume-microgravity PSI-25 to see the arithmetic under that assumption.');
+  const base = presetTarget('challenge-lunar-base');
+  for (const id of Object.keys(GRAVITY_TARGETS) as GravityTargetId[]) {
+    const rep = transferHypotheses(withGravity(base, id), usable, flag('--density-factor-pmma') ? { densityFactor: { lo: DENSITY_FACTOR_PMMA_AIR.lo, hi: DENSITY_FACTOR_PMMA_AIR.hi } } : {});
+    const within = rep.hypotheses.filter((h) => h.relation === 'within');
+    console.log(`\n${GRAVITY_TARGETS[id].label}: ${rep.hypotheses.length} test(s) evaluated, ${rep.excluded.length} excluded, ${within.length} within the target stretch band`);
+    for (const h of rep.hypotheses) {
+      const a = h.testStretch.value;
+      const b = h.targetStretch.value;
+      console.log(`  ${h.accession} ${h.test_id} [${h.relation}] test ${tn(a.lo)}-${tn(a.hi)} /s vs target ${tn(b.lo)}-${tn(b.hi)} /s${h.isAnalog ? ' (analog hypothesis)' : h.blockers.length ? ` — ${h.blockers[0]}` : ''}`);
+    }
+    if (rep.hypotheses.length === 0 && rep.excluded[0]) console.log(`  e.g. ${rep.excluded[0].accession} ${rep.excluded[0].test_id}: ${rep.excluded[0].reason}`);
+  }
+  console.log('\nLimits: ' + 'flat sheets have no radius and get no stretch rate; material dependence; scale and time; pressure is a separate axis; this is a hypothesis.');
+  process.exit(0);
+}
 
 const synthetic = flag('--fixtures');
 const dir = synthetic ? join(import.meta.dirname, 'test', 'fixtures', 'synthetic') : (option('--conditions') ?? join(ROOT, 'data', 'conditions'));
