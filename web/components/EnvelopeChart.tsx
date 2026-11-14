@@ -486,6 +486,26 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               <line x1={13} x2={18} y1={0} y2={0} className="target-tick" />
               <line x1={0} x2={0} y1={-18} y2={-13} className="target-tick" />
               <line x1={0} x2={0} y1={13} y2={18} className="target-tick" />
+              {/* outer reticle: 24 degree ticks; turns with the target's O2 so a move reads as a rotation */}
+              <g className="reticle-ring" style={{ transform: `rotate(${(target.o2 * 1440 + target.pressure * 2).toFixed(1)}deg)` }}>
+                <circle r={24} className="reticle-track" />
+                {Array.from({ length: 24 }, (_, i) => {
+                  const a = (i / 24) * Math.PI * 2;
+                  const r0 = i % 6 === 0 ? 20 : 22;
+                  return (
+                    <line
+                      key={i}
+                      x1={Math.round(Math.cos(a) * r0 * 100) / 100}
+                      y1={Math.round(Math.sin(a) * r0 * 100) / 100}
+                      x2={Math.round(Math.cos(a) * 24 * 100) / 100}
+                      y2={Math.round(Math.sin(a) * 24 * 100) / 100}
+                      className={i % 6 === 0 ? "reticle-major" : "reticle-minor"}
+                    />
+                  );
+                })}
+              </g>
+              {/* lock flash: replays when the target settles at a new point */}
+              {!dragging && <circle key={`lock-${target.o2}-${target.pressure}`} r={24} className="target-lock" />}
             </g>
 
             {cursor && !dragging && (
@@ -537,6 +557,17 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 <path key={`c${k}`} className="reticle" d={`M${x + dx * 16},${y} L${x},${y} L${x},${y + dy * 16}`} />
               ))}
             </g>
+            {hover && (() => {
+              const tipLeft = Math.min(M.left + hover.x + 34, width - 236) - M.left;
+              const tipTop = Math.max(4, M.top + hover.y - 34) - M.top;
+              const elbowX = hover.x + 12;
+              return (
+                <g className="tt-link" aria-hidden="true">
+                  <circle cx={hover.x} cy={hover.y} r={8} />
+                  <path d={`M${hover.x + 6},${hover.y - 6} L${elbowX},${tipTop + 12} L${tipLeft},${tipTop + 12}`} />
+                </g>
+              );
+            })()}
             <line x1={0} x2={iw} y1={ih} y2={ih} className="axis" />
             <line x1={0} x2={0} y1={0} y2={ih} className="axis" />
             {xTicks.map((v) => (
@@ -576,7 +607,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
         {hover && (
           <div
             className="tooltip"
-            style={{ left: Math.min(M.left + hover.x + 14, width - 236), top: Math.max(4, M.top + hover.y - 12) }}
+            style={{ left: Math.min(M.left + hover.x + 34, width - 236), top: Math.max(4, M.top + hover.y - 34) }}
             role="status"
           >
             <div className="tt-title">

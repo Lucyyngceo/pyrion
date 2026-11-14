@@ -632,3 +632,60 @@ section.card[aria-labelledby="cov-h"]::after,
 .prose ol, .prose ul { padding-left: 18px; }
 .prose li::marker { color: var(--neon); font-family: var(--font-mono), monospace; }
 .method-svg rect:first-child { display: none; }
+
+/* ===== target reticle ===== */
+.reticle-ring { transition: transform var(--motion-base) var(--ease-expo); }
+.reticle-track { fill: none; stroke: var(--neon-2); stroke-opacity: 0.25; stroke-width: 1; }
+.reticle-major { stroke: var(--neon-2); stroke-width: 1.6; }
+.reticle-minor { stroke: var(--neon-2); stroke-opacity: 0.55; stroke-width: 1; }
+@keyframes lock { 0% { opacity: 0.9; transform: scale(1.6); } 100% { opacity: 0; transform: scale(1); } }
+.target-lock { fill: none; stroke: var(--neon-2); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: lock 380ms var(--ease-expo) both; filter: drop-shadow(0 0 6px var(--neon-2)); pointer-events: none; }
+.dragging .reticle-ring { transition: none; }
+@media (prefers-reduced-motion: reduce) { .reticle-ring { transition: none; } .target-lock { animation: none; opacity: 0; } }
+
+/* ===== instrument sliders: a ruler with a triangular cursor ===== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 26px;
+  background: transparent;
+  cursor: ew-resize;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 14px;
+  background:
+    linear-gradient(var(--neon), var(--neon)) 0 100% / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.85) 0 1px, transparent 1px 10%) 0 100% / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.4) 0 1px, transparent 1px 2%) 0 100% / 100% 4px no-repeat;
+}
+input[type="range"]::-moz-range-track {
+  height: 14px;
+  background:
+    linear-gradient(var(--neon), var(--neon)) 0 100% / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.85) 0 1px, transparent 1px 10%) 0 100% / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.4) 0 1px, transparent 1px 2%) 0 100% / 100% 4px no-repeat;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 12px;
+  margin-top: 2px;
+  background: var(--neon-2);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  filter: drop-shadow(0 0 4px var(--neon-2));
+  border: 0;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: var(--neon-2);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  border: 0;
+  border-radius: 0;
+}
+input[type="range"]:focus-visible { outline: 1px dashed var(--neon); outline-offset: 4px; }
+/* tooltip connector */
+.tt-link circle { fill: none; stroke: var(--neon); stroke-width: 1.2; filter: drop-shadow(0 0 3px var(--neon)); }
+.tt-link path { fill: none; stroke: var(--neon); stroke-width: 1; }
+.tooltip { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+.tooltip .tt-title { font-family: var(--font-mono), monospace; color: var(--neon); letter-spacing: 0.04em; }
