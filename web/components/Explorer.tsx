@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
 import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
@@ -43,6 +43,13 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [openAccession, setOpenAccession] = useState<string | null>(null);
+
+  // ?preset=<id> opens a preset directly (shareable link, e.g. ?preset=challenge-lunar-base).
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("preset");
+    const v = id ? PRESET_VIEWS.find((p) => p.preset.id === id) : undefined;
+    if (v) setState((s) => applyPreset(s, v));
+  }, []);
 
   // The engine parses the CSV text itself: same validation as its command-line tool.
   const records = useMemo<ConditionRecord[]>(
