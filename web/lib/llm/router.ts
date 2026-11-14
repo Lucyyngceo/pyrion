@@ -1,6 +1,8 @@
 // Provider router: one function, complete(). Order: the requested model, the primary list, the fallback list.
-// Retry once on 429 / 5xx / timeout, then move on. Every answer says which model produced it.
+// Limits per call: a total deadline, at most 3 candidates, at most one retry across the whole run (cap re-checked
+// before it, backoff on 429). An empty or unusable answer is a failure, not a success: the next model is tried.
 
+import { cleanModelText } from "./clean.ts";
 import type { Provider } from "./config.ts";
 
 export class NoModelAvailable extends Error {
@@ -26,9 +28,16 @@ export interface CompleteArgs {
   stream?: boolean;
   maxTokens?: number;
   temperature?: number;
+  /** The caller's abort signal (for example req.signal): a client that leaves stops the work. */
   signal?: AbortSignal;
-  /** Let a reasoning model think before answering (OpenRouter). Default false: short structured answers must not be cut off by hidden reasoning. */
+  /** Total time for the whole call, all candidates and retries included. Default 25 s. */
+  deadlineMs?: number;
+  /** At most this many candidates are tried. Default 3. */
+  maxCandidates?: number;
+  /** Let a reasoning model think before answering (OpenRouter). Default false. */
   reasoning?: boolean;
+  /** The answer is usable only if this returns true for the cleaned text (for example: it parses). */
+  validate?: (cleanedText: string) => boolean;
   /** Use exactly `model`, with no fallback (health checks and smoke tests). */
   pin?: boolean;
 }
@@ -42,20 +51,19 @@ export interface Meta {
 
 export interface Completion {
   meta: Meta;
-  /** Parsed chat-completion JSON (stream: false). */
   json?: { choices?: { message?: { content?: string | null; tool_calls?: unknown[] }; finish_reason?: string }[] };
-  /** Raw SSE body (stream: true). */
   stream?: ReadableStream<Uint8Array>;
 }
 
 export interface Deps {
   providers: Provider[];
   fetch?: typeof fetch;
-  /** Called before each request to a provider; return false to skip that provider (budget). */
+  /** Asked before every request, retries included; false skips that provider (budget). */
   allow?: (provider: Provider["id"]) => boolean;
   /** Called when a request is actually sent. */
   onRequest?: (provider: Provider["id"]) => void;
   now?: () => number;
+  sleep?: (ms: number) => Promise<void>;
 }
 
 const timeoutMs = (model: string) => (/mistral-large/i.test(model) ? 60_000 : 30_000);
@@ -69,24 +77,40 @@ export function candidates(providers: Provider[], model: string | undefined, pin
   return [...asked, ...all.filter((c) => c.model !== model)];
 }
 
+/** The usable text of a non-stream completion ("" when there is none). */
+export function textOf(json: Completion["json"]): string {
+  const raw = json?.choices?.[0]?.message?.content;
+  return typeof raw === "string" ? cleanModelText(raw) : "";
+}
+
 export async function complete(args: CompleteArgs, deps: Deps): Promise<Completion> {
   const f = deps.fetch ?? fetch;
   const now = deps.now ?? Date.now;
+  const sleep = deps.sleep ?? ((ms: number) => new Promise<void>((r) => setTimeout(r, ms)));
   const list = candidates(deps.providers, args.model, args.pin);
   if (list.length === 0) throw new NoModelAvailable("no language-model provider is configured");
+  const deadline = AbortSignal.timeout(args.deadlineMs ?? 25_000);
+  const overall = args.signal ? AbortSignal.any([args.signal, deadline]) : deadline;
+  const maxCandidates = args.maxCandidates ?? 3;
+  let retriesLeft = 1;
+  let tried = 0;
   let firstTried: string | undefined;
   const reasons: string[] = [];
 
   for (const { provider, model } of list) {
+    if (tried >= maxCandidates) break;
     if (deps.allow && !deps.allow(provider.id)) {
       reasons.push(`${provider.id}: daily cap reached`);
       continue;
     }
+    tried++;
     firstTried ??= model;
-    for (let attempt = 0; attempt < 2; attempt++) {
+    for (;;) {
       if (args.signal?.aborted) throw new DOMException("aborted", "AbortError");
+      if (deadline.aborted) throw new NoModelAvailable(`deadline of ${(args.deadlineMs ?? 25_000) / 1000} s reached (${reasons.slice(-3).join("; ") || "no answer yet"})`);
       const t0 = now();
       deps.onRequest?.(provider.id);
+      let status = 0;
       try {
         const res = await f(`${provider.base}/chat/completions`, {
           method: "POST",
@@ -100,25 +124,39 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
             stream: !!args.stream,
             ...(provider.id === "openrouter" && !args.reasoning ? { reasoning: { enabled: false } } : {}),
           }),
-          signal: args.signal ? AbortSignal.any([args.signal, AbortSignal.timeout(timeoutMs(model))]) : AbortSignal.timeout(timeoutMs(model)),
+          signal: AbortSignal.any([overall, AbortSignal.timeout(timeoutMs(model))]),
           cache: "no-store",
         });
+        status = res.status;
         if (!res.ok) {
           reasons.push(`${model}: HTTP ${res.status}`);
-          if (retryable(res.status) && attempt === 0) continue;
-          break; // not retryable, or already retried: next model
+        } else {
+          const meta: Meta = { provider: provider.id, model, latency_ms: now() - t0, ...(firstTried !== model ? { fell_back_from: firstTried } : {}) };
+          if (args.stream) {
+            if (!res.body) throw new Error("no stream body");
+            return { meta, stream: res.body };
+          }
+          const json = (await res.json()) as Completion["json"];
+          const text = textOf(json);
+          const hasTools = Array.isArray(json?.choices?.[0]?.message?.tool_calls) && (json?.choices?.[0]?.message?.tool_calls?.length ?? 0) > 0;
+          if ((text === "" && !hasTools) || (text !== "" && args.validate && !args.validate(text))) {
+            reasons.push(`${model}: ${text === "" ? `empty answer (${json?.choices?.[0]?.finish_reason ?? "no finish reason"})` : "unusable answer"}`);
+            break; // not retried: another call to the same model gives the same kind of answer
+          }
+          return { meta, json };
         }
-        const meta: Meta = { provider: provider.id, model, latency_ms: now() - t0, ...(firstTried !== model ? { fell_back_from: firstTried } : {}) };
-        if (args.stream) {
-          if (!res.body) throw new Error("no stream body");
-          return { meta, stream: res.body };
-        }
-        return { meta, json: (await res.json()) as Completion["json"] };
       } catch (e) {
         if (args.signal?.aborted) throw e;
         reasons.push(`${model}: ${e instanceof Error && e.name === "TimeoutError" ? "timeout" : "network error"}`);
-        if (attempt === 0) continue;
+        status = 599;
       }
+      // Here the request failed. One retry across the whole run, only if the cap still allows this provider.
+      if (retryable(status) && retriesLeft > 0 && !deadline.aborted && (!deps.allow || deps.allow(provider.id))) {
+        retriesLeft--;
+        if (status === 429) await sleep(500);
+        continue;
+      }
+      break; // next candidate
     }
   }
   throw new NoModelAvailable(`no model answered (${reasons.slice(-4).join("; ") || "none tried"})`);

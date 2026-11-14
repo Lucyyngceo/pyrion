@@ -36,3 +36,19 @@ export const allModels = (providers: Provider[]) => [...new Set(providers.flatMa
 
 /** Public view of the configuration: no key, no base URL. */
 export const publicConfig = (providers: Provider[]) => providers.map((p) => ({ provider: p.id, models: p.models }));
+
+const DEFAULT_CLIENT_MODELS = ["qwen/qwen3.8-27b", "moonshotai/kimi-k2.6"];
+
+/**
+ * Models a visitor may ask for: PYRION_CLIENT_MODELS (default: the two cheap ones), limited to configured models.
+ * The expensive models stay server-side. If none of the list is configured, the first configured model is the only choice.
+ */
+export function clientModels(providers: Provider[], env: Env = process.env): string[] {
+  const wanted = env.PYRION_CLIENT_MODELS !== undefined && env.PYRION_CLIENT_MODELS.trim() !== "" ? list(env.PYRION_CLIENT_MODELS) : DEFAULT_CLIENT_MODELS;
+  const configured = allModels(providers);
+  const ok = wanted.filter((m) => configured.includes(m));
+  return ok.length ? ok : configured.slice(0, 1);
+}
+
+/** Models whose license has been checked and may be called open weights (PYRION_OPEN_WEIGHTS_MODELS). Default: none. */
+export const openWeightsModels = (env: Env = process.env): string[] => list(env.PYRION_OPEN_WEIGHTS_MODELS);
