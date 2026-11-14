@@ -186,3 +186,9 @@ this file with that one. (`psi` there is 6.894757; the engine's `KPA_PER_PSI` ha
 Plausibility warnings (not errors; the value is still returned): `Quantity.warnings` is non-empty when O2 is
 outside 0.05–0.60 or pressure outside 20–120 kPa (`HABITAT_WINDOWS`), e.g. `0.34 %` O2 → 0.0034 with
 "far below any breathable atmosphere ... did you mean 34 %?".
+
+Vocabulary also accepted: `normal/standard/sea-level air pressure`, `1 atmosphere`, `1 atm` (101.325 kPa, with a note);
+`34% O2`, `34 % oxygen`, `34 vol% of oxygen` (trailing gas name ignored, with a note); `lunar gravity`, `the Moon`,
+`Moon gravity`, `Martian gravity`; `22 degrees C`, `22 degrees Celsius`. Gravity levels from 0 to < 0.01 g
+(`MICROGRAVITY_BELOW_G`) are regime `microgravity` (ISS ≈ 1e-6 to 1e-4 g), 0.01 to < 1 g `partial_gravity`, 1 g
+`normal_gravity`; negative or above 3 g is an error.

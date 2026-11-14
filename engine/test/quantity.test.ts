@@ -300,3 +300,97 @@ describe('habitat plausibility warnings (never errors)', () => {
     close(r.target.continuous.o2_mole_fraction as number, 0.0034);
   });
 });
+
+describe('audit fix 4: microgravity below 0.01 g', () => {
+  it('"0 g" and levels below 0.01 g are microgravity, with the note; the number is kept', () => {
+    for (const t of ['0 g', '0.000001 g', '1e-4 g', '0.009 g']) {
+      const q = ok(t, 'gravity_level');
+      assert.equal(q.gravity_regime, 'microgravity', t);
+      assert.match(q.notes[0], /below 0\.01 g are treated as microgravity; ISS ≈ 1e-6 to 1e-4 g/);
+    }
+    assert.equal(ok('1e-4 g', 'gravity_level').value, 1e-4);
+  });
+  it('0.01 up to < 1 is partial, 1 is normal; negative and > 3 are rejected', () => {
+    assert.equal(ok('0.01 g', 'gravity_level').gravity_regime, 'partial_gravity');
+    assert.equal(ok('0.165 g', 'gravity_level').gravity_regime, 'partial_gravity');
+    assert.equal(ok('0.999 g', 'gravity_level').gravity_regime, 'partial_gravity');
+    assert.equal(ok('1 g', 'gravity_level').gravity_regime, 'normal_gravity');
+    assert.equal((err('-0.1 g', 'gravity_level') as { code: string }).code, 'out_of_range');
+    assert.equal((err('3.5 g', 'gravity_level') as { code: string }).code, 'out_of_range');
+    assert.equal(ok('3 g', 'gravity_level').gravity_regime, undefined);
+  });
+  it('a numeric microgravity level keeps its level in the Target; the name "microgravity" does not assert one', () => {
+    const n = targetFromQuantities({ gravity: '0.0001 g' });
+    assert.ok(n.ok);
+    assert.equal(n.target.regime.gravity_regime, 'microgravity');
+    assert.equal(n.target.continuous.gravity_level, 1e-4);
+    const m = targetFromQuantities({ gravity: 'microgravity' });
+    assert.ok(m.ok && m.target.continuous.gravity_level === undefined);
+  });
+});
+
+describe('audit fix 12: vocabulary', () => {
+  it('normal/standard/sea-level air pressure, one atmosphere, 1 atm → 101.325 kPa with a note', () => {
+    for (const t of ['normal air pressure', 'Standard air pressure', 'sea-level air pressure', 'sea level pressure', 'normal pressure', '1 atmosphere', 'one atmosphere', '1 atm', 'the standard atmosphere']) {
+      const q = ok(t, 'pressure');
+      close(q.value, 101.325, 1e-9);
+      assert.equal(q.unit, 'kPa');
+      assert.ok(q.notes.some((n) => n.includes('101.325 kPa')), t);
+    }
+    close(ok('2 atmospheres', 'pressure').value, 202.65, 1e-9);
+  });
+  it('trailing oxygen words after a percent are stripped', () => {
+    for (const t of ['34% O2', '34 % oxygen', '34 vol% of oxygen', '34% O₂', '34 percent O2', '34 % of oxygen']) {
+      const q = ok(t, 'o2_mole_fraction');
+      close(q.value, 0.34, 1e-12);
+      assert.ok(q.notes.some((n) => n.includes('ignored')), t);
+    }
+    assert.equal(ok('34% O2', 'o2_mole_fraction').original, '34% O2');
+    close(ok('0.34 oxygen', 'o2_mole_fraction').value, 0.34);
+  });
+  it('lunar gravity, the Moon, Moon gravity → Moon preset; Martian gravity → Mars preset', () => {
+    for (const t of ['lunar gravity', 'the Moon', 'Moon gravity', 'the moon gravity', 'Lunar']) {
+      const q = ok(t, 'gravity_level');
+      assert.equal(q.value, 0.165, t);
+      assert.equal(q.source.document?.page, 13);
+    }
+    for (const t of ['Martian gravity', 'Mars', 'Mars gravity']) assert.equal(ok(t, 'gravity_level').value, 1 / 3, t);
+  });
+  it('22 degrees C, 22 degrees Celsius, 22 °C → 295.15 K; 300 kelvin → 300 K', () => {
+    for (const t of ['22 degrees C', '22 degrees Celsius', '22 °C', '22 celsius', '22 deg C']) close(ok(t, 'ambient_temperature').value, 295.15, 1e-9);
+    close(ok('300 kelvin', 'ambient_temperature').value, 300);
+    assert.equal((err('22 degrees', 'ambient_temperature') as { code: string }).code, 'unknown_unit');
+  });
+});
+
+describe('the three AskBox example questions, with the strings a model would copy from them', () => {
+  const file = join(import.meta.dirname, '..', '..', 'web', 'components', 'AskBox.tsx');
+  const questions = existsSync(file) ? [...readFileSync(file, 'utf8').matchAll(/^\s*"([^"]+\?)",?$/gm)].map((m) => m[1]) : [];
+  // [question index, strings copied from it, expected]
+  const copied: Array<{ q: string; input: Parameters<typeof targetFromQuantities>[0]; expect: { o2: number; kpa: number; regime: string } }> = [
+    { q: '30% oxygen', input: { gravity: 'lunar', o2: '30% oxygen', pressure: '10.2 psi' }, expect: { o2: 0.3, kpa: 10.2 * 6.894757, regime: 'partial_gravity' } },
+    { q: '21% oxygen', input: { gravity: 'microgravity', o2: '21% oxygen', pressure: 'normal air pressure' }, expect: { o2: 0.21, kpa: 101.325, regime: 'microgravity' } },
+    { q: '34% oxygen', input: { o2: '34% oxygen', pressure: '8.2 psia' }, expect: { o2: 0.34, kpa: 8.2 * 6.894757, regime: '' } },
+  ];
+  it('finds three examples in AskBox.tsx (skipped when the web folder is absent)', () => {
+    if (!existsSync(file)) return;
+    assert.equal(questions.length, 3);
+  });
+  for (const c of copied) {
+    it(`"${c.q}" question converts without error or warning`, () => {
+      const r = targetFromQuantities(c.input);
+      assert.ok(r.ok, JSON.stringify(r));
+      close(r.target.continuous.o2_mole_fraction as number, c.expect.o2, 1e-12);
+      close(r.target.continuous.pressure as number, c.expect.kpa, 1e-9);
+      if (c.expect.regime) assert.equal(r.target.regime.gravity_regime, c.expect.regime);
+      for (const q of r.conversions) assert.deepEqual(q.warnings, []);
+      if (questions.length === 3) {
+        const text = questions.find((x) => x.includes(c.q));
+        assert.ok(text, `no example contains "${c.q}"`);
+        for (const piece of [c.input.o2, c.input.pressure, c.input.gravity]) {
+          if (piece && ['10.2 psi', '8.2 psia', 'normal air pressure', '30% oxygen', '21% oxygen', '34% oxygen'].includes(piece)) assert.ok(text.includes(piece), `"${piece}" is not in "${text}"`);
+        }
+      }
+    });
+  }
+});

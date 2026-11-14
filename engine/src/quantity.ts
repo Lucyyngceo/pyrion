@@ -217,11 +217,37 @@ function viaTable(
 
 // ---- per variable ----
 
+const NORMAL_PRESSURE = /^(?:the\s+)?(?:(?:normal|standard|sea[- ]level)(?:\s+(?:air|atmospheric))?\s+pressure|standard\s+atmosphere|one\s+atmosphere)$/i;
+const ATM_WORDS = /^(?:atmospheres?|standard atmospheres?)$/i;
+
 function pressure(original: string): QuantityResult {
+  if (NORMAL_PRESSURE.test(original.trim())) {
+    return bounded({
+      ok: true,
+      variable: 'pressure',
+      value: TO_KPA.atm,
+      unit: AXIS_UNITS.pressure,
+      original,
+      unit_original: '',
+      factor_or_formula: `1 atm × ${TO_KPA.atm}`,
+      factor: TO_KPA.atm,
+      source: { table: TABLE },
+      notes: [`"${original.trim()}" is read as one standard atmosphere = 101.325 kPa (the atm factor of validation/run_all.py)`],
+    });
+  }
   const r = readNumber(original, 'pressure');
   if ('ok' in r) return r;
+  if (ATM_WORDS.test(r.unit)) {
+    const out = viaTable('pressure', original, r.n, 'atm', TO_KPA, AXIS_UNITS.pressure, 'atm');
+    if (out.ok) {
+      out.unit_original = r.unit;
+      if (r.n === 1) out.notes.push('1 atmosphere = 1 atm = 101.325 kPa (standard atmosphere; factor from validation/run_all.py)');
+    }
+    return out;
+  }
   if (GAUGE.test(r.unit)) return fail('gauge_pressure', 'pressure', original, `"${r.unit}" is gauge pressure (relative to the surroundings). The engine needs absolute pressure: give psia, kPa, atm, ... instead`);
   const out = viaTable('pressure', original, r.n, r.unit, TO_KPA, AXIS_UNITS.pressure, 'kPa, Pa, atm, bar, mbar, psi, psia, mmHg, torr');
+  if (out.ok && r.n === 1 && /^atm$/i.test(r.unit)) out.notes.push('1 atm = 101.325 kPa (standard atmosphere; factor from validation/run_all.py)');
   if (out.ok && r.unit.toLowerCase() === 'psi') out.notes.push('"psi" taken as absolute (same factor as psia, as in validation/run_all.py); write psia to be explicit');
   return out;
 }
@@ -233,8 +259,17 @@ function o2(original: string): QuantityResult {
 }
 
 function o2Inner(original: string): QuantityResult {
-  const r = readNumber(original, 'o2_mole_fraction');
-  if ('ok' in r) return r;
+  const rn = readNumber(original.replace(/₂/g, '2'), 'o2_mole_fraction');
+  if ('ok' in rn) return { ...rn, original };
+  // "34% O2", "34 % oxygen", "34 vol% of oxygen": the trailing gas name is ignored (the variable is already oxygen).
+  const stripped = rn.unit.replace(/\s*(?:of\s+)?(?:oxygen|o2)\s*$/i, '').trim();
+  const r = { n: rn.n, unit: stripped };
+  const stripNote = stripped !== rn.unit ? [`trailing "${rn.unit.slice(stripped.length).trim()}" ignored: the value is the oxygen mole fraction`] : [];
+  const out0 = o2Units(original, r);
+  return out0.ok && stripNote.length ? { ...out0, notes: [...stripNote, ...out0.notes] } : out0;
+}
+
+function o2Units(original: string, r: { n: number; unit: string }): QuantityResult {
   const key = r.unit.toLowerCase();
   if (r.unit === '') {
     // Bare number: > 1 is percent, <= 1 is a fraction.
@@ -281,7 +316,9 @@ function temperature(original: string): QuantityResult {
   if ('ok' in r) return r;
   const unit = r.unit.replace(/^°\s*/, '°');
   if (unit === '') return fail('missing_unit', 'ambient_temperature', original, `"${original}" has no unit; use K or °C`);
-  const key = unit.toLowerCase();
+  // "22 degrees C", "22 degrees Celsius", "22 celsius", "300 kelvin"
+  const word = unit.toLowerCase().replace(/^(?:°|º|degrees?|deg\.?)\s*/, '');
+  const key = ['c', 'celsius', 'centigrade'].includes(word) ? 'c' : ['k', 'kelvin', 'kelvins'].includes(word) ? 'k' : unit.toLowerCase();
   if (!Object.hasOwn(TO_K_OFFSET, key)) return fail('unknown_unit', 'ambient_temperature', original, `unit "${r.unit}" is not accepted for ambient_temperature; accepted: K, °C`);
   const off = TO_K_OFFSET[key];
   return bounded({
@@ -298,23 +335,31 @@ function temperature(original: string): QuantityResult {
   });
 }
 
+/** Levels below this are treated as microgravity (engine rule; platform residual levels are far below it). */
+export const MICROGRAVITY_BELOW_G = 0.01;
+
 function regimeOfLevel(level: number): Quantity['gravity_regime'] | undefined {
+  if (level >= 0 && level < MICROGRAVITY_BELOW_G) return 'microgravity';
+  if (level >= MICROGRAVITY_BELOW_G && level < 1) return 'partial_gravity';
   if (level === 1) return 'normal_gravity';
-  if (level > 0 && level < 1) return 'partial_gravity';
   return undefined;
 }
 
 const GRAVITY_NAMES: Readonly<Record<string, GravityTargetId | 'microgravity'>> = {
   lunar: 'moon',
   moon: 'moon',
+  'lunar gravity': 'moon',
+  'moon gravity': 'moon',
   mars: 'mars',
   martian: 'mars',
+  'martian gravity': 'mars',
+  'mars gravity': 'mars',
   microgravity: 'microgravity',
 };
 
 function gravity(original: string): QuantityResult {
   const text = original.normalize('NFC').trim();
-  const name = text.toLowerCase();
+  const name = text.toLowerCase().replace(/^the\s+/, '').replace(/\s+/g, ' ');
   if (text === '') return fail('empty', 'gravity_level', original, 'empty text: nothing to convert');
   if (Object.hasOwn(GRAVITY_NAMES, name)) {
     const id = GRAVITY_NAMES[name];
@@ -382,7 +427,11 @@ function gravity(original: string): QuantityResult {
     factor: 1,
     source: { table: TABLE },
     ...(regime ? { gravity_regime: regime } : {}),
-    notes: regime ? [`regime ${regime} inferred from the level (1 g = normal_gravity, between 0 and 1 g = partial_gravity)`] : [],
+    notes: !regime
+      ? []
+      : regime === 'microgravity'
+        ? [`levels below ${MICROGRAVITY_BELOW_G} g are treated as microgravity; ISS ≈ 1e-6 to 1e-4 g`]
+        : [`regime ${regime} inferred from the level (${MICROGRAVITY_BELOW_G} to < 1 g = partial_gravity, 1 g = normal_gravity)`],
   });
   return out.ok && f ? { ...out, display: `${original.trim()} → ${sig(n)} g` } : out;
 }
@@ -463,7 +512,7 @@ export function targetFromQuantities(input: TargetQuantities): TargetFromQuantit
     conversions.push(q);
     if (variable === 'gravity_level') {
       if (q.gravity_regime) target.regime.gravity_regime = q.gravity_regime;
-      if (q.gravity_regime !== 'microgravity') target.continuous.gravity_level = q.value;
+      if (!(q.gravity_regime === 'microgravity' && q.unit_original === '')) target.continuous.gravity_level = q.value;
     } else {
       target.continuous[axis] = q.value;
     }
