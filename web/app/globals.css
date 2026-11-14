@@ -1299,3 +1299,6 @@ input[type="range"] {
 .mark-dot { fill: var(--page); }
 .omega { color: var(--s2); letter-spacing: 0; }
 .sitenav-brand:hover .mark-hull { fill: color-mix(in srgb, var(--s2) 55%, transparent); }
+.mark-bg { fill: #0d0d0d; stroke: var(--border-strong); }
+.mark-ring { stroke: #f9f9f7; }
+.mark-dot { fill: #f9f9f7; }

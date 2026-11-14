@@ -196,7 +196,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
 
   const tx = sx(target.o2);
   const ty = sy(target.pressure);
-  const CALLOUT_W = 230;
+  const CALLOUT_W = 290;
   const calloutSide =
     M.left + tx + 26 + CALLOUT_W <= width ? "right" : M.left + tx - 26 - CALLOUT_W >= 0 ? "left" : "below";
 
