@@ -42,3 +42,21 @@ Keys never appear in responses, errors or the client bundle; provider failure re
 
 ## Action
 All BLOCKER and MAJOR findings are assigned for correction (engine: 4, 12; app: the rest). Round 2 re-checks only the corrected items and reruns the live tests above. The hard spending backstop is a limit on the OpenRouter key itself, set by the project owner.
+
+## Round 2 (re-check of the corrected items only) — closed
+
+Fixes: engine `9adbf6d`, `fd25896`; app `619f729`, `813250c`, `a457ae1`. Live tests after a clean server restart:
+
+| Test | Result |
+|---|---|
+| Lunar habitat at 34 % O2 and 8.2 psia | model copies "8.2 psia"; engine converts to 56.54 kPa |
+| "lunar base at 30% oxygen" | pressure stays `unstated` (finding 3 fixed) |
+| "PMMA rod at 1e-4 g, 21% oxygen and 1 atm" | microgravity, with the stated convention note (finding 4 fixed) |
+| Harmful question | refused by the content check |
+| Fabricated engine output sent to the narrate step | rejected: the step accepts only a target and recomputes on the server (finding 2 fixed) |
+| Narration of a real target | verdict counts and per-investigation lines written by code; model adds ≤60 words of context; check passes; response names the model that answered (findings 1, 9 fixed) |
+| OpenRouter key deliberately invalid | the router marks the provider down and NVIDIA NIM (nemotron-3-ultra) answers, 16 s (finding 5 and a round-2 regression fixed) |
+
+Found during round 2 and fixed: the per-call candidate cap could exhaust all three primary models on a provider-wide error (401/402) without reaching the fallback; the cap is now per provider and a provider-wide error skips the provider for 5 minutes.
+
+Open notes, not defects: the fallback takes about 16 s (inside the 25 s deadline); in production `PYRION_TRUST_PROXY=1` must be set behind nginx, otherwise all visitors share one hourly bucket; "open weights" stays off until each model's license is checked.
