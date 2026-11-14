@@ -689,3 +689,14 @@ input[type="range"]:focus-visible { outline: 1px dashed var(--neon); outline-off
 .tt-link path { fill: none; stroke: var(--neon); stroke-width: 1; }
 .tooltip { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
 .tooltip .tt-title { font-family: var(--font-mono), monospace; color: var(--neon); letter-spacing: 0.04em; }
+/* leader labels */
+.leader circle { fill: var(--page); stroke: var(--neon); stroke-width: 1.5; }
+.leader path { fill: none; stroke: var(--neon); stroke-width: 1; stroke-opacity: 0.85; }
+.leader .layer-label { fill: var(--neon); font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.04em; stroke: var(--page); stroke-width: 4px; paint-order: stroke; }
+/* loupe */
+.loupe { pointer-events: none; }
+.loupe-bg { fill: rgba(4, 5, 10, 0.92); }
+.loupe-ring { fill: none; stroke: var(--neon); stroke-width: 1.5; filter: drop-shadow(0 0 6px var(--neon)); }
+.loupe-tag { font-family: var(--font-mono), monospace; font-size: 10px; fill: var(--neon); }
+.loupe-btn { font: inherit; font-family: var(--font-mono), monospace; font-size: 11.5px; letter-spacing: 0.06em; padding: 4px 10px; background: transparent; color: var(--ink-2); border: 1px solid var(--border-strong); cursor: pointer; }
+.loupe-btn[aria-pressed="true"] { color: #001014; background: var(--neon); box-shadow: var(--glow); }

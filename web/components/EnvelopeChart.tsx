@@ -132,6 +132,7 @@ interface Hover {
 function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail }: Props) {
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
+  const [loupe, setLoupe] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
   const [viewportH, setViewportH] = useState(900);
@@ -290,6 +291,9 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             Cabin range
           </button>
         </div>
+        <button type="button" className="loupe-btn" aria-pressed={loupe} onClick={() => setLoupe((l) => !l)} title="Magnify ×3 around the cursor">
+          Loupe ×3
+        </button>
       </div>
 
       <div className="plot-wrap" ref={wrapRef} style={{ height }}>
@@ -431,19 +435,28 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               })}
             </g>
 
-            {/* direct label on each comparable layer */}
+            {/* technical leader label on each comparable layer: anchor on a hull vertex, elbow, underline */}
             {matched.map((e) => {
-              const verts = e.investigations.flatMap((i) => i.hull);
+              const verts = e.investigations.flatMap((i) => i.hull).filter((q) => q.pressure >= domain.y0 && q.pressure <= domain.y1);
               if (hidden.has(e.key) || verts.length === 0) return null;
-              const top = verts.reduce((a, b) => (b.pressure > a.pressure ? b : a), verts[0]);
-              const lx = Math.min(iw - 90, Math.max(90, sx(top.o2_mole_fraction)));
-              const ly = Math.max(14, sy(top.pressure) - 12);
-              // The target's callout already names the comparison there: skip a label it would cover.
-              if (Math.abs(ly - ty) < 44 && Math.abs(lx - tx) < 270) return null;
+              const anchor = verts.reduce((a, b) => (sy(b.pressure) - sx(b.o2_mole_fraction) < sy(a.pressure) - sx(a.o2_mole_fraction) ? b : a), verts[0]);
+              const ax = sx(anchor.o2_mole_fraction);
+              const ay = sy(anchor.pressure);
+              const name = envelopeName(e);
+              const w = name.length * 6.6 + 8;
+              const goLeft = ax + 22 + w > iw;
+              const ex = goLeft ? ax - 22 : ax + 22;
+              const ey = Math.max(16, ay - 26);
+              const lx2 = goLeft ? ex - w : ex + w;
+              if (Math.abs(ey - ty) < 40 && Math.min(ex, lx2) < tx + 300 && Math.max(ex, lx2) > tx - 30) return null;
               return (
-                <text key={`l${e.key}`} x={lx} y={ly} textAnchor="middle" className="layer-label">
-                  {envelopeName(e)}
-                </text>
+                <g key={`l${e.key}`} className="leader" aria-hidden="true">
+                  <circle cx={ax} cy={ay} r={3} />
+                  <path d={`M${ax},${ay} L${ex},${ey} L${lx2},${ey}`} />
+                  <text x={goLeft ? ex - 4 : ex + 4} y={ey - 5} textAnchor={goLeft ? "end" : "start"} className="layer-label">
+                    {name}
+                  </text>
+                </g>
               );
             })}
 
@@ -557,6 +570,41 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 <path key={`c${k}`} className="reticle" d={`M${x + dx * 16},${y} L${x},${y} L${x},${y + dy * 16}`} />
               ))}
             </g>
+            {loupe && cursor && !dragging && (() => {
+              const R = 64;
+              const Z = 3;
+              const cx = cursor.x;
+              const cy = cursor.y;
+              return (
+                <g className="loupe" aria-hidden="true">
+                  <clipPath id="loupe-clip">
+                    <circle cx={cx} cy={cy} r={R} />
+                  </clipPath>
+                  <g clipPath="url(#loupe-clip)">
+                    <circle cx={cx} cy={cy} r={R} className="loupe-bg" />
+                    {visible.flatMap((e) => {
+                      const color = colors.get(e.key) ?? "var(--s-other)";
+                      const phase = fuelPhaseOf(e);
+                      const st = layerState.get(e.key) ?? "dim";
+                      return e.points.flatMap((p, i) => {
+                        const x = sx(p.o2_mole_fraction);
+                        const y = sy(p.pressure);
+                        if (Math.abs(x - cx) > R / Z + 6 || Math.abs(y - cy) > R / Z + 6) return [];
+                        return [
+                          <g key={`${e.key}${i}`} className={`layer em-${st}`}>
+                            <Marker phase={phase} x={cx + (x - cx) * Z} y={cy + (y - cy) * Z} color={color} r={4.5} hollow={!e.regimeComplete} />
+                          </g>,
+                        ];
+                      });
+                    })}
+                  </g>
+                  <circle cx={cx} cy={cy} r={R} className="loupe-ring" />
+                  <text x={cx + R - 4} y={cy - R + 12} textAnchor="end" className="loupe-tag">
+                    ×{Z}
+                  </text>
+                </g>
+              );
+            })()}
             {hover && (() => {
               const tipLeft = Math.min(M.left + hover.x + 34, width - 236) - M.left;
               const tipTop = Math.max(4, M.top + hover.y - 34) - M.top;
