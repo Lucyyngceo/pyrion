@@ -1,0 +1,8 @@
+/* WHY: a letter inside the instrument. One column, no cards, no motion of its own. */
+.why { max-width: 68ch; margin: 0 auto; padding: 40px 20px 56px; }
+.why h1 { font-family: var(--font-display), system-ui, sans-serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.2; margin: 0 0 28px; color: var(--ink); }
+.why h2 { font-family: var(--font-display), system-ui, sans-serif; font-size: 22px; margin: 44px 0 14px; color: var(--ink); }
+.why p { font-family: var(--font-sans), system-ui, sans-serif; font-size: 17.5px; line-height: 1.8; margin: 0 0 1.2em; color: var(--ink); }
+.why .sig { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--border-strong); font-family: var(--font-mono), ui-monospace, monospace; font-size: 13.5px; line-height: 1.7; color: var(--ink-2); }
+.why .sig p { font: inherit; color: inherit; margin: 0 0 6px; }
+.why .sig p:first-child { color: var(--neon); }

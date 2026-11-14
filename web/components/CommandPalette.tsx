@@ -39,6 +39,7 @@ export default function CommandPalette() {
       { id: "g-home", group: "Page", label: "Envelope", hint: "/", run: go("/") },
       { id: "g-bridge", group: "Page", label: "Bridge: transfer hypothesis (not evidence)", hint: "/bridge", run: go("/bridge") },
       { id: "g-method", group: "Page", label: "Method: how PYRION decides", hint: "/method", run: go("/method") },
+      { id: "g-why", group: "Page", label: "Why this exists: a note from the author", hint: "/why", run: go("/why") },
       { id: "g-data", group: "Page", label: "Data: lineage and coverage", hint: "/data", run: go("/data") },
     ];
   }, [router, path]);

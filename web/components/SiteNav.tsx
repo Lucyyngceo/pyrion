@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/bridge", label: "BRIDGE" },
   { href: "/method", label: "Method" },
   { href: "/data", label: "Data" },
+  { href: "/why", label: "WHY" },
 ];
 
 export default function SiteNav() {
