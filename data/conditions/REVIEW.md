@@ -798,7 +798,7 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-25 BASS-II
 
-- *Table reading:* BASS-II "Air display" is `insufficient_evidence` in every row: the cell is a series of display readings taken during the test (e.g. "5 2 0 11 2 11 2 0"), not a fixed flow condition, and its cm/s unit comes only from the BASS-II ReadMe (paragraph 19: "flow speed measured in the duct in cm/s on the video display"). Same rule as "Fan display", which is not converted at all (ReadMe: "instantaneous fan voltagex10").
+- *Table reading:* BASS-II "Air display" is `insufficient_evidence` in every row: the cell is a series of display readings taken during the test (e.g. "5 2 0 11 2 11 2 0"), not a fixed flow condition, and its cm/s unit comes only from the BASS-II ReadMe (paragraph 20: "flow speed measured in the duct in cm/s on the video display"). Same rule as "Fan display", which is not converted at all (ReadMe: "instantaneous fan voltagex10").
 - *Table reading:* BASS-II `sample_thickness` is parsed from the material description ("100 micron", "1 mm thick", "0.2 mm PMMA film", "4 mm 1 sided"). Rod diameters (e.g. 1/4") and sample widths are not thicknesses and give no record. A description stating two different thicknesses is `insufficient_evidence`.
 
 ### gravity_regime = microgravity  (extracted)

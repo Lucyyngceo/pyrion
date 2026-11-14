@@ -29,13 +29,13 @@ H_O2I = "Calibrated  initial O2 % by vol "
 H_O2F = "Calibrated final O2 % by vol"
 
 AIR_NOTE = ("the unit is not in the table: BASS-II ReadMe (psi-data/PSI-25/Science Documents/"
-            "PSI-25_Science Documents_BASS-II_ReadMe.docx, paragraph 19) says the display is the duct flow speed in cm/s, "
+            "PSI-25_Science Documents_BASS-II_ReadMe.docx, paragraph 20) says the display is the duct flow speed in cm/s, "
             "response time ~1 min")
 
 INTERPRETATIONS = [
     "BASS-II \"Air display\" is `insufficient_evidence` in every row: the cell is a series of display readings taken "
     "during the test (e.g. \"5 2 0 11 2 11 2 0\"), not a fixed flow condition, and its cm/s unit comes only from the "
-    "BASS-II ReadMe (paragraph 19: \"flow speed measured in the duct in cm/s on the video display\"). Same rule as "
+    "BASS-II ReadMe (paragraph 20: \"flow speed measured in the duct in cm/s on the video display\"). Same rule as "
     "\"Fan display\", which is not converted at all (ReadMe: \"instantaneous fan voltagex10\").",
     "BASS-II `sample_thickness` is parsed from the material description (\"100 micron\", \"1 mm thick\", "
     "\"0.2 mm PMMA film\", \"4 mm 1 sided\"). Rod diameters (e.g. 1/4\") and sample widths are not thicknesses "
