@@ -141,7 +141,8 @@ def main():
                 print(f"{n}/{len(jobs)} done, {failures} failed", flush=True)
 
     rows.sort(key=lambda r: (r["path"] == "", r["path"]))
-    out = MANIFEST / f"checksums_{args.priority}.csv"
+    # a partial download (--only) never overwrites the full checksum file
+    out = MANIFEST / (f"checksums_{args.priority}_partial.csv" if only else f"checksums_{args.priority}.csv")
     with open(out, "w", newline="", encoding="utf-8") as fh:
         fh.write(f"# generated_at_utc={datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}\n")
         w = csv.DictWriter(fh, fieldnames=["path", "bytes", "sha256", "source", "status"])

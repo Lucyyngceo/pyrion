@@ -35,3 +35,4 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+data/manifest/checksums_*_partial.csv
