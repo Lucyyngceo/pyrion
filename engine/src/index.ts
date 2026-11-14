@@ -6,3 +6,4 @@ export { evaluate, validateTarget } from './verdict.ts';
 export { buildEnvelopes, locateTarget, type EnvelopeOptions, type EnvelopePoint, type EnvelopeSet, type RegimeEnvelope, type TargetLocation } from './envelope.ts';
 export { PRESETS, SOURCES, KPA_PER_PSI, presetTarget, type Preset, type PresetValue, type SourceRef } from './presets.ts';
 export { canonicalJson } from './json.ts';
+export * from './stretch.ts';
