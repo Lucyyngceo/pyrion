@@ -1,0 +1,365 @@
+{
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "review_level": "segregated internal check by a language model; not expert or NASA review",
+  "transcription": "Verdict classes and corrected fields transcribed by the build session from the verificador's final message; per-row reasons condensed.",
+  "key_assumption": {
+    "verdict": "supported",
+    "evidence": "The workbook's three restrictor bands are read by position (band 1 = no restrictor, band 2 = 1 restrictor, band 3 = 2 restrictors). Supported by: the D1 note and the labelled example block (D4, D14, D23); ReadMe paragraph 18 (restrictor 0 = highest flow, 2 = lowest); monotonically decreasing band maxima in the blocks with all three bands; magnitudes against the report (~55 cm/s with none, ~35 with two); test cells that reproduce band 3 at the same fan setting (O1, O17, O5a, P16); date labels (workbook DATE cells equal their GMT labels). Caveats: 7/28 band 3 peaks at 22 and 7/29 bands 1 and 3 are identical (possible fouling or copy error); band 3 = 2 restrictors is supported, band 2 = 1 restrictor only reasonably (no converted value depends on it). Converted values are never 'direct'."
+  },
+  "verdicts": [
+    {
+      "test_id": "O1",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O2",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O3a",
+      "verdict": "MODIFY",
+      "reason": "Extinction followed an operator overshoot ('probably overshot') to an unknown flow; same rod burned lower in O3b: not a defined quench step.",
+      "corrected": {
+        "limit_type_report": "unclear",
+        "limit_flow_cm_s_lo": "",
+        "limit_flow_cm_s_hi": "",
+        "limit_flow_basis": "Limit type unclear: the extinction followed an overshoot to an unknown flow ('probably overshot', report p.119), and the same rod burned down to an air reading of zero in O3b. No bracket.",
+        "flags": [
+          "OVERSHOOT: authors say 'probably overshot', extinction flow unknown",
+          "SAME_ROD_O3b_BURNED_LOWER",
+          "NO_CALIBRATION_BLOCK_FOR_DATE"
+        ]
+      }
+    },
+    {
+      "test_id": "O3b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O4",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O5a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O5b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O6",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O7",
+      "verdict": "MODIFY",
+      "reason": "Not a real conflict: 'Blowoff fan 97' is the instantaneous fan display during the ramp, below the steady 122 at pot 10.",
+      "corrected": {
+        "limit_flow_cm_s_lo": "",
+        "limit_flow_cm_s_hi": "37",
+        "limit_flow_basis": "block AI3:AK33 (2014-06-26, GMT '2014-177'), two-restrictor band row AI26:AK26 = pot 10 / fan 122 / air 37 -> hi = 37 cm/s at the commanded pot. Report 'Blowoff fan 97' is the instantaneous fan display during the ramp (< 122), so 37 is a loose upper end. lo: not tabulated.",
+        "flags": [
+          "RESTRICTOR_BAND_BY_POSITION",
+          "COMMANDED_SETTING: blowoff during ramp at instantaneous fan 97 < steady 122; 37 cm/s is a loose upper end"
+        ]
+      }
+    },
+    {
+      "test_id": "O8a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O8b",
+      "verdict": "MODIFY",
+      "reason": "Same as O7: 'Blowoff fan 78' is below the steady 88.5 at the commanded pot 6.0.",
+      "corrected": {
+        "limit_flow_cm_s_hi": "23",
+        "limit_flow_basis": "block AI3:AK33 (2014-06-26, GMT '2014-177'), two-restrictor band row AI28:AK28 = pot 6 / fan 88.5 / air 23 -> hi = 23 cm/s at the commanded pot. Report 'Blowoff fan 78' is the instantaneous fan display during the ramp (< 88.5), so 23 is a loose upper end. lo: not tabulated.",
+        "flags": [
+          "RESTRICTOR_BAND_BY_POSITION",
+          "COMMANDED_SETTING: blowoff during ramp at instantaneous fan 78 < steady 88.5"
+        ]
+      }
+    },
+    {
+      "test_id": "O9",
+      "verdict": "MODIFY",
+      "reason": "Same as O7: 'Blowoff fan 68' is below the steady 72 at the commanded pot 4.0.",
+      "corrected": {
+        "limit_flow_cm_s_hi": "15",
+        "limit_flow_basis": "block AI3:AK33 (2014-06-26, GMT '2014-177'), two-restrictor band row AI29:AK29 = pot 4 / fan 72 / air 15 -> hi = 15 cm/s at the commanded pot. Report 'Blowoff fan 68' is the instantaneous fan display during the ramp (< 72), so 15 is a loose upper end. lo: not tabulated.",
+        "flags": [
+          "RESTRICTOR_BAND_BY_POSITION",
+          "COMMANDED_SETTING: blowoff during ramp at instantaneous fan 68 < steady 72"
+        ]
+      }
+    },
+    {
+      "test_id": "O10",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O11",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O12",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O13a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O13b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O14",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O15a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O15b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O16",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O17",
+      "verdict": "MODIFY",
+      "reason": "Value holds; the report says only the leading edge blew off at fan 72 and the flame went out after turn-down.",
+      "corrected": {
+        "flags": [
+          "RESTRICTOR_BAND_BY_POSITION",
+          "TWO_STAGE_BLOWOFF: only the leading edge blew off at fan 72 (11 cm/s); final extinction came after turn-down to fan 43-44 (report p.118)"
+        ]
+      }
+    },
+    {
+      "test_id": "O18",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O19",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O20",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O21",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O22",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P1",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P2",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P3a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P3b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P4",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P5",
+      "verdict": "MODIFY",
+      "reason": "Fan-to-zero end: same action as P2/P4/P6 (none); lo = 0 adds no information.",
+      "corrected": {
+        "limit_type_report": "none",
+        "limit_flow_cm_s_lo": "",
+        "limit_flow_cm_s_hi": "",
+        "limit_flow_basis": "No finite-flow limit observed: flame persisted at every finite pot down to 0.28 and was extinguished by setting the flow to 0 (report p.114-115). Any quench limit lies below pot 0.28, which is not tabulated in the calibration block of that date.",
+        "flags": [
+          "FAN_TO_ZERO_END: flame persisted to the last finite pot; flow set to 0",
+          "SETTING_NOT_TABULATED"
+        ]
+      }
+    },
+    {
+      "test_id": "P6",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P8",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P9",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P10",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P12",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P13a",
+      "verdict": "MODIFY",
+      "reason": "Fan-to-zero end: same action as P2/P4/P6 (none); lo = 0 adds no information.",
+      "corrected": {
+        "limit_type_report": "none",
+        "limit_flow_cm_s_lo": "",
+        "limit_flow_cm_s_hi": "",
+        "limit_flow_basis": "No finite-flow limit observed: flame persisted at every finite pot down to 0.26 and was extinguished by setting the flow to 0 (report p.114-115). Any quench limit lies below pot 0.26, which is not tabulated in the calibration block of that date.",
+        "flags": [
+          "FAN_TO_ZERO_END: flame persisted to the last finite pot; flow set to 0",
+          "SETTING_NOT_TABULATED"
+        ]
+      }
+    },
+    {
+      "test_id": "P13b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P14",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P15",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P16",
+      "verdict": "MODIFY",
+      "reason": "Quench holds; Table A.3 lists P16 'Concurrent': flag so it is not pooled with the opposed-flow points.",
+      "corrected": {
+        "flags": [
+          "SETTING_NOT_TABULATED",
+          "CONCURRENT_CONFIG: Table A.3 p.114 lists P16 'Concurrent' (other P rows 'Opposed', except P19)"
+        ]
+      }
+    },
+    {
+      "test_id": "P17",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P18",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P19",
+      "verdict": "MODIFY",
+      "reason": "'unclear' holds; abrupt step and 'sample mostly gone'; Table A.3 lists P19 'Concurrent'.",
+      "corrected": {
+        "flags": [
+          "SAMPLE_MOSTLY_GONE",
+          "ABRUPT_STEP: pot 10 -> 0.32, not a slow ramp",
+          "CONCURRENT_CONFIG: Table A.3 p.114 lists P19 'Concurrent'"
+        ]
+      }
+    },
+    {
+      "test_id": "P20",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P21a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P21b",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P22a",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P22b",
+      "verdict": "MODIFY",
+      "reason": "Final O2 39.1 % is physically impossible, same class of anomaly as P22a: exclude from any limit minimum.",
+      "corrected": {
+        "flags": [
+          "SETTING_NOT_TABULATED",
+          "ANOMALY_PSI_O2: calibrated final O2 39.1 % after initial 20.0 % (table cell; Table A.3 p.115); exclude from any limit minimum"
+        ]
+      }
+    },
+    {
+      "test_id": "P23",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P24",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P25",
+      "verdict": "KEEP",
+      "reason": "Quote verbatim at the cited page under this test id; label follows the observation (see the verificador's per-row audit)."
+    }
+  ],
+  "rule_fan_to_zero": "If the flame survived every finite setting and the test ended by setting the fan or pot to 0 or 'off', limit_type_report = 'none' with the flag FAN_TO_ZERO_END and the last finite stable setting; lo and hi stay empty. P2, P4, P6, P5 and P13a all follow it. A finite 'turned to 0.32' (P13b) is a normal quench. O3a (overshoot to an unknown flow) is 'unclear'.",
+  "could_not_check": "Workbook audited through the cell dump only (no comments, formulas, hidden or merged cells); Summary Report read through the text dump, column alignment by record order; the 'Sample distance' column header holding Opposed/Concurrent/Stagnation not confirmed visually; whether the 7/28 and 7/29 calibrations are fouled or mis-copied is undecided."
+}
