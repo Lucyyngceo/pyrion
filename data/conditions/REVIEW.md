@@ -9,6 +9,17 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* Flame Design inverse-flame "XO2" is the O2 mole fraction of the burner stream (`burner_o2_mole_fraction`), not the ambient O2.
 - *Table reading:* PSI-10 has no license on its PSI page or record (checked 2026-11-14): every record carries `license not stated` in its note.
 
+## PSI-25 BASS-II
+
+- *Table reading:* BASS-II "Air display" has no unit in the table. The BASS-II ReadMe (`psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`, paragraph 20) states: "Air display:  flow speed measured in the duct in cm/s on the video display.  Response time is very slow (~ 1 min), so reading is only steady for long times at the same flow setting." Cells that list only numbers become a `flow_velocity` range (lowest..highest reading during the test); cells mixing numbers and words are `insufficient_evidence`.
+- *Table reading:* BASS-II "Fan display" is not converted: the same ReadMe defines it as "instantaneous fan voltagex10", not a velocity.
+- *Table reading:* BASS-II `sample_thickness` is parsed from the material description ("100 micron", "1 mm thick", "0.2 mm PMMA film", "4 mm 1 sided"). Rod diameters (e.g. 1/4") and sample widths are not thicknesses and give no record. A description stating two different thicknesses is `insufficient_evidence`.
+
+## PSI-26 BASS
+
+- *Table reading:* BASS as-run matrix (`psi-data/PSI-26/Science Documents/PSI-26_Science Documents_As Run_Test Matrix.xlsx`, sheet "as run matrix"): the column "O2 % by volume" holds values such as 0.221 and 0.1707. They are read as mole fractions (22.1 %, 17.07 %), not as 0.221 %: a flame cannot burn at 0.2 % oxygen and the tests did burn. Both this column and "pressure, atm" sit under the header group "ISS environment"; the table does not say whether they were read in the station cabin or inside the glovebox work volume (values down to 0.159 suggest a diluted work volume, which is not stated).
+- *Table reading:* BASS rows whose material reads "SOOT Cleaning" are not tests and give no record.
+
 ## PSI-39 CFI
 
 - *Table reading:* CFI "Oxygen", "Nitrogen" and "Helium" columns carry no unit. They are read as ambient mole fractions because the three sum to 1 in every row; `diluent` is N2, He or `mixed` from the two inert columns.

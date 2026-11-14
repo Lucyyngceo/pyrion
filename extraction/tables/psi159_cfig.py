@@ -43,7 +43,7 @@ def build(skips):
         out += text_value(t, n, "Fuel", variable="fuel", **kw)
         out += numeric(t, n, " XO2 before test", skips, variable="o2_mole_fraction", unit="1",
                        note="ambient, before the test", **kw)
-        out += numeric(t, n, "XO2  after test", skips, variable="o2_mole_fraction", unit="1",
+        out += numeric(t, n, "XO2  after test", skips, variable="outcome:o2_mole_fraction_after_test", unit="1",
                        note="ambient, after the test", **kw)
         out += numeric(t, n, "approx p (bar)", skips, variable="pressure", unit="kPa", unit_original="bar",
                        factor=BAR_TO_KPA, how="bar x 100", note=P_NOTE, **kw)

@@ -125,6 +125,16 @@ def _summary(by_acc, skipped, inv, order, interp):
             L.append(f"- **{a} {inv[a]['acronym'] or inv[a]['title']}**: not extracted yet.")
     L.append("")
 
+    L += ["## Rules applied to every table", "",
+          "- A test condition is the state **before or at the start** of the test. Readings taken after the test "
+          "(\"XO2 after test\", \"XO2 (final)\", \"pfinal\", \"Calibrated final O2\") are kept as outcomes "
+          "(`outcome:o2_mole_fraction_after_test`, `outcome:pressure_after_test`), never as points on a condition axis: "
+          "a final reading can follow suppression or extinction (BASS-II final O2 goes down to 0.6 %).",
+          "- Cells that say there is no single value (en dash, `RAMP`, `RAMPED`, `LOW O2`, `n/a`, spreadsheet errors) "
+          "give no record and are listed in `extraction/skipped_cells.csv`.",
+          "- Unit conversions use exact factors (mmHg x 101.325/760, atm x 101.325, bar x 100, percent x 0.01, "
+          "micron x 0.001, C + 273.15); a converted value longer than 6 significant digits is rounded to 6, and the "
+          "record's note says so.", ""]
     L += ["## Table readings that rely on a judgement", "",
           "Each of these is applied by code, the same way to every row, and is also listed in "
           "[`REVIEW.md`](REVIEW.md).", ""]

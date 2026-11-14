@@ -31,11 +31,9 @@ def build(skips):
         out += text_value(t, n, "Fuel", variable="fuel", note=LICENSE, **kw)
         out += numeric(t, n, "XO2 (init)", skips, variable="o2_mole_fraction", unit="1",
                        note=join_notes("ambient, initial", LICENSE), **kw)
-        out += numeric(t, n, "XO2 (final)", skips, variable="o2_mole_fraction", unit="1",
+        out += numeric(t, n, "XO2 (final)", skips, variable="outcome:o2_mole_fraction_after_test", unit="1",
                        note=join_notes("ambient, final", LICENSE), **kw)
-        for h, when in (("pinit (atm)", "initial"), ("pfinal (atm)", "final")):
-            out += numeric(t, n, h, skips, variable="pressure", unit="kPa", unit_original="atm",
-                           factor=ATM_TO_KPA, how="atm x 101.325", note=join_notes(when, LICENSE), **kw)
+        out += _pressures(t, n, skips, kw)
     t = Table(SOURCES[1])
     for n, _ in t.numbered():
         tid = t.cell(n, "Test").strip()
@@ -43,9 +41,15 @@ def build(skips):
         out += _flame_type(t, n, tid)
         out += numeric(t, n, "XO2", skips, variable="burner_o2_mole_fraction", unit="1",
                        note=join_notes("inverse flame: O2 of the stream issued from the burner", LICENSE), **kw)
-        for h, when in (("pinit (atm)", "initial"), ("pfinal (atm)", "final")):
-            out += numeric(t, n, h, skips, variable="pressure", unit="kPa", unit_original="atm",
-                           factor=ATM_TO_KPA, how="atm x 101.325", note=join_notes(when, LICENSE), **kw)
+        out += _pressures(t, n, skips, kw)
+    return out
+
+
+def _pressures(t, n, skips, kw):
+    out = numeric(t, n, "pinit (atm)", skips, variable="pressure", unit="kPa", unit_original="atm",
+                  factor=ATM_TO_KPA, how="atm x 101.325", note=join_notes("initial", LICENSE), **kw)
+    out += numeric(t, n, "pfinal (atm)", skips, variable="outcome:pressure_after_test", unit="kPa",
+                   unit_original="atm", factor=ATM_TO_KPA, how="atm x 101.325", note=join_notes("final", LICENSE), **kw)
     return out
 
 
