@@ -108,15 +108,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--priority", default="P1", choices=["P1", "P2", "P3", "P4"])
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--only", default="", help="comma-separated accessions, e.g. PSI-69,PSI-25 (skips external NASA documents)")
     args = ap.parse_args()
+    only = {a.strip() for a in args.only.split(",") if a.strip()}
+    print(f"reading manifests (priority {args.priority}{', only ' + ','.join(sorted(only)) if only else ''})", flush=True)
 
     manifest = json.loads((MANIFEST / "psi_manifest.json").read_text(encoding="utf-8"))
     external = json.loads((MANIFEST / "external_sources.json").read_text(encoding="utf-8"))["sources"]
 
-    jobs = [(task_psi_file, e) for e in manifest["files"] if e["priority"] == args.priority]
+    jobs = [(task_psi_file, e) for e in manifest["files"]
+            if e["priority"] == args.priority and (not only or e["accession"] in only)]
     if args.priority == "P1":
-        jobs += [(task_record, i["accession"]) for i in manifest["investigations"]]
-    jobs += [(task_external, s) for s in external if s["priority"] == args.priority]
+        jobs += [(task_record, i["accession"]) for i in manifest["investigations"] if not only or i["accession"] in only]
+    if not only:
+        jobs += [(task_external, s) for s in external if s["priority"] == args.priority]
+    print(f"{len(jobs)} jobs; writing to {RAW}", flush=True)
 
     rows, failures = [], 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -131,7 +137,7 @@ def main():
                     arg.get("url") if isinstance(arg, dict) else arg)
                 rows.append({"path": "", "bytes": "", "sha256": "", "source": str(label),
                              "status": f"failed: {type(exc).__name__}: {exc}"[:300]})
-            if n % 25 == 0 or n == len(jobs):
+            if n <= 5 or n % 10 == 0 or n == len(jobs):
                 print(f"{n}/{len(jobs)} done, {failures} failed", flush=True)
 
     rows.sort(key=lambda r: (r["path"] == "", r["path"]))
