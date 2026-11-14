@@ -18,6 +18,19 @@ export {
   parseConditionCsv,
   parseCsv,
   validateTarget,
+  // transfer hypothesis (docs/TRANSFER.md) and FM2 instrument balance
+  DENSITY_FACTOR_PMMA_AIR,
+  FM2_SOURCES,
+  GRAVITY_TARGETS,
+  PMMA_STOICH,
+  TRANSFER_LIMITS,
+  buoyantStretch,
+  fm2Balance,
+  fm2Chamber,
+  fm2FinalO2,
+  transferHypotheses,
+  transferTestsFromFlowSteps,
+  withGravity,
 } from "../../engine/src/index.ts";
 
 export type {
@@ -41,4 +54,14 @@ export type {
   Target,
   TargetLocation,
   Verdict,
+  Band,
+  Fm2Balance,
+  Fm2Inputs,
+  GravityTargetId,
+  Sourced,
+  SourceCitation,
+  StretchResult,
+  TransferHypothesis,
+  TransferReport,
+  TransferTest,
 } from "../../engine/src/index.ts";

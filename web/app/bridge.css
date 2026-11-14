@@ -1,0 +1,74 @@
+/* BRIDGE page: a hypothesis, drawn in its own visual language (magenta, dashed, hatched), never as measured evidence. */
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.bridge .card { margin-bottom: 16px; }
+.br-hero { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+.hyp-tag {
+  display: inline-block; font-family: var(--font-mono), ui-monospace, monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.08em;
+  color: var(--neon-2); border: 1px dashed var(--neon-2); padding: 3px 10px; background: rgba(255, 43, 214, 0.08); box-shadow: var(--glow-2);
+}
+.small-tag { font-size: 10.5px; padding: 1px 7px; }
+.br-h3 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 6px; }
+.br-h4 { font-size: 12px; color: var(--ink-2); margin: 10px 0 2px; }
+.br-card q { color: var(--ink); font-style: italic; }
+
+/* dial */
+.dial { padding: 4px 6px 6px; }
+.dial input[type="range"] { width: 100%; accent-color: var(--neon-2); height: 28px; }
+.dial-stops { list-style: none; margin: 2px 0 6px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.dial-stops li:first-child { text-align: left; } .dial-stops li:last-child { text-align: right; } .dial-stops li { text-align: center; }
+.dial-stops button { background: none; border: 0; color: var(--ink-2); font: inherit; cursor: pointer; padding: 2px 4px; display: inline-grid; gap: 0; }
+.dial-stops .on { color: var(--neon-2); }
+.dial-name { font-weight: 600; } .dial-sub { font-size: 12px; font-family: var(--font-mono), ui-monospace, monospace; }
+
+/* map */
+.br-controls { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 8px; }
+fieldset.seg { margin: 0; padding: 0; border: 1px solid var(--border-strong); display: inline-flex; }
+.map-wrap { position: relative; width: 100%; }
+.tband { transition: opacity 0.4s; }
+.tband rect { transition: x 0.5s ease, width 0.5s ease; }
+.tband-lbl { fill: var(--neon-2); font-size: 11px; font-family: var(--font-mono), ui-monospace, monospace; }
+.tm-line { stroke: var(--s1); stroke-width: 2; stroke-linecap: round; opacity: 0.8; }
+.tm-dot { fill: var(--s1); stroke: var(--page); stroke-width: 2; }
+.tm-fm { fill: none; stroke: var(--s1); stroke-width: 1.5; }
+.tm-part .tm-line { stroke: var(--s1); stroke-width: 2; stroke-dasharray: 4 3; opacity: 0.95; }
+.tm-part .tm-dot { fill: var(--page); stroke: var(--neon-2); stroke-width: 1.6; }
+.tm-an .tm-line { stroke: var(--neon-2); stroke-width: 4; opacity: 1; filter: drop-shadow(0 0 4px var(--neon-2)); }
+.tm-an .tm-dot { fill: var(--neon-2); stroke: var(--page); r: 4.5; }
+.tm-sel .tm-line { stroke-width: 5; }
+.tm .hit { fill: transparent; cursor: pointer; }
+.tm .hit:focus-visible { stroke: var(--neon); stroke-width: 2; outline: none; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--ink-2); margin: 6px 0; }
+.lg { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--s1); vertical-align: middle; margin-right: 4px; }
+.lg-an { border-top: 4px solid var(--neon-2); }
+.lg-part { border-top: 2px dashed var(--neon-2); }
+.lg-band { height: 10px; border: 1px dashed var(--neon-2); background: repeating-linear-gradient(45deg, rgba(255, 43, 214, 0.5) 0 1px, transparent 1px 5px); }
+.analogs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13.5px; }
+.br-receipt { margin: 10px 0; padding: 10px 12px; border: 1px dashed var(--neon-2); background: rgba(255, 43, 214, 0.05); }
+.br-rhead { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.br-rhead .linklike { margin-left: auto; }
+.br-receipt ul { margin: 0; padding-left: 18px; overflow-wrap: anywhere; }
+
+/* limits */
+.limits { border-left: 3px solid var(--warn); }
+.limits h2 { font-size: 15px; margin: 0 0 6px; }
+.limits ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13.5px; }
+
+/* FM2 */
+.fm2-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; }
+@media (max-width: 900px) { .fm2-grid { grid-template-columns: minmax(0, 1fr); } }
+.fm2-in { margin: 0 0 10px; padding-left: 18px; display: grid; gap: 4px; font-size: 13.5px; }
+.fm2-ctl { display: grid; gap: 3px; margin-bottom: 12px; font-size: 13.5px; }
+.fm2-ctl input[type="range"] { width: 100%; accent-color: var(--neon-2); }
+.tag-assumed { font-size: 11px; color: var(--neon-2); border: 1px dashed var(--neon-2); padding: 0 6px; margin-left: 4px; }
+.fm2-tab { font-size: 13px; }
+.fm2-tab th[scope="row"] { text-align: left; font-weight: 600; }
+.fm2-below td, .fm2-below th { color: var(--muted); }
+.fm2-check { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 14px; }
+.fm2-check p { margin: 4px 0; }
+
+/* home teaser */
+.bridge-teaser { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 12px 0; padding: 8px 12px; border: 1px dashed var(--neon-2); background: rgba(255, 43, 214, 0.05); font-size: 14px; }
+.bridge-teaser a { color: var(--neon-2); }
+
+@media (prefers-reduced-motion: reduce) { .tband rect, .tband { transition: none; } }

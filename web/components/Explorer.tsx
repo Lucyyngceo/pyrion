@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
@@ -270,6 +271,15 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           {counts && <VerdictRing counts={counts} />}
         </aside>
       </div>
+
+      {target.regime.gravity_regime === "partial_gravity" && (
+        <aside className="bridge-teaser" role="note">
+          <span className="hyp-tag small-tag">HYPOTHESIS</span>
+          <span>
+            Not comparable in PSI. <Link href="/bridge">See the transfer hypothesis →</Link>
+          </span>
+        </aside>
+      )}
 
       {result.evaluation && (
         <Results

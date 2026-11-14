@@ -37,6 +37,7 @@ export default function CommandPalette() {
       { id: "s-res", group: "Section", label: "Verdicts, one row per investigation", run: scroll("results-h") },
       { id: "s-tvp", group: "Section", label: "Text similarity vs physics", run: scroll("tvp-h") },
       { id: "g-home", group: "Page", label: "Envelope", hint: "/", run: go("/") },
+      { id: "g-bridge", group: "Page", label: "Bridge: transfer hypothesis (not evidence)", hint: "/bridge", run: go("/bridge") },
       { id: "g-method", group: "Page", label: "Method: how PYRION decides", hint: "/method", run: go("/method") },
       { id: "g-data", group: "Page", label: "Data: lineage and coverage", hint: "/data", run: go("/data") },
     ];
