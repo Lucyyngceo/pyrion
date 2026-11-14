@@ -109,7 +109,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured test points by O₂ and pressure, one layer per regime: gravity regime · fuel phase · diluent.
+              Measured test points by O₂ and pressure, one layer per regime: gravity regime · fuel phase · diluent. Click or
+              drag on the chart to move the target.
             </p>
           </div>
           {status ? (
@@ -123,6 +124,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               seed={SEED}
               highlight={highlight}
               onPointSelect={setOpenAccession}
+              onTargetPick={(o2, pressure) => setState((s) => ({ ...s, presetId: null, o2, pressure }))}
               openAxes={result.evaluation?.openRegimeAxes ?? []}
             />
           ) : (

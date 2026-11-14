@@ -26,6 +26,8 @@ interface Props {
   /** Accession hovered in the results list: its points are emphasized. */
   highlight: string | null;
   onPointSelect: (accession: string) => void;
+  /** Click or drag on the plot to move the target (O2 mole fraction, kPa). */
+  onTargetPick?: (o2: number, pressure: number) => void;
   /** Regime axes the target leaves open: the engine does not compare them. */
   openAxes: string[];
 }
@@ -122,7 +124,8 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, openAxes }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes }: Props) {
+  const [dragging, setDragging] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
   const [viewportH, setViewportH] = useState(900);
@@ -181,6 +184,15 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   const xTicks = ticks(domain.x0, domain.x1, Math.max(4, Math.floor(iw / 80)));
   const yTicks = ticks(domain.y0, domain.y1, Math.max(4, Math.floor(ih / 56)));
 
+  const pick = (ev: React.PointerEvent<SVGRectElement>) => {
+    const r = (ev.currentTarget as SVGRectElement).getBoundingClientRect();
+    const fx = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+    const fy = Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height));
+    const o2 = domain.x0 + fx * (domain.x1 - domain.x0);
+    const pr = domain.y1 - fy * (domain.y1 - domain.y0);
+    onTargetPick?.(Math.round(o2 * 1000) / 1000, Math.round(pr * 10) / 10);
+  };
+
   const tx = sx(target.o2);
   const ty = sy(target.pressure);
   const CALLOUT_W = 230;
@@ -218,7 +230,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     });
 
   return (
-    <figure className={`chart tone-${status.tone}${measured ? " anim" : ""}`}>
+    <figure className={`chart tone-${status.tone}${measured && !dragging ? " anim" : ""}${dragging ? " dragging" : ""}`}>
       <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
         {envelopes
           .filter((e) => colors.get(e.key) !== "var(--s-other)")
@@ -306,6 +318,25 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               </g>
             )}
 
+            {onTargetPick && (
+              <rect
+                x={0}
+                y={0}
+                width={iw}
+                height={ih}
+                className="pick-surface"
+                onPointerDown={(ev) => {
+                  (ev.currentTarget as SVGRectElement).setPointerCapture(ev.pointerId);
+                  setDragging(true);
+                  pick(ev);
+                }}
+                onPointerMove={(ev) => {
+                  if (dragging) pick(ev);
+                }}
+                onPointerUp={() => setDragging(false)}
+                onPointerCancel={() => setDragging(false)}
+              />
+            )}
             <g clipPath="url(#plot-clip)">
               {/* decision hulls: one per investigation, the exact hull its verdict uses */}
               {visible.map((e) => {

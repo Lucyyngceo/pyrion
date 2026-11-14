@@ -1212,3 +1212,6 @@ input[type="range"] {
 .data-scroll .vtable td:first-child .small { max-width: 360px; }
 .footer-wrap { padding-top: 0; }
 :focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; border-radius: 4px; }
+.pick-surface { fill: transparent; cursor: crosshair; touch-action: none; }
+.dragging .pick-surface { cursor: grabbing; }
+.chart-hint { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
