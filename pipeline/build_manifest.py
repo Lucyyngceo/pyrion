@@ -72,16 +72,25 @@ def classify(key):
     return ("P3", "context (presentation, engineering)")
 
 
+def file_name(key):
+    """PSI's file name: everything after psi-data/<accession>/<folder>/.
+
+    A few PSI file names contain '/', so the last path segment is not enough.
+    """
+    parts = key.split("/")
+    return "/".join(parts[3:]) if len(parts) > 3 else parts[-1]
+
+
 def process(accession):
     rec = psi_client.investigation(accession)
     version = int(rec["version"])
     leaves = psi_client.list_files(accession, version)
-    files, names = [], Counter(f["key"].split("/")[-1] for f in leaves)
+    files, names = [], Counter(file_name(f["key"]) for f in leaves)
     for f in leaves:
         c = classify(f["key"])
         if not c:
             continue
-        name = f["key"].split("/")[-1]
+        name = file_name(f["key"])
         files.append({
             "accession": accession,
             "key": f["key"],

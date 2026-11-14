@@ -46,6 +46,15 @@ The PSI catalog is live. `psi_manifest.json` is a snapshot taken at `generated_a
 - Every PSI file matches the size in the PSI catalog.
 - Total: 377.9 MB.
 
+## P2 and P3 downloads, November 14, 2026
+
+- **P2:** 283 files, all `ok` (1,061.0 MB).
+- **P3:** 203 `ok`, 6 not `ok` (590.2 MB downloaded). Every problem is recorded in `checksums_P3.csv`, none is hidden:
+  - 5 SAFFIRE files (PSI-98, PSI-100) are listed by PSI and the download link is issued, but PSI's storage answers **404 Not Found**.
+  - 1 ACME file (PSI-20, `ACME_engineering_20210328.pdf`) downloads at 6,843,254 bytes while the PSI catalog says 5,794,678. It is kept and flagged as a size mismatch.
+
+All three are context documents (P3). None of them is used as evidence.
+
 ## Cross-check against the PSI website
 
 The PSI investigation pages are built from the same public API this pipeline reads: the investigation record, the file tree and the experimental-table download. On November 14, 2026 each of the 24 pages was opened. Version, license, DOI, number of publications and number of publications with a DOI were compared with the downloaded records (`web_check_2026-11-14.csv`). **0 differences in 120 comparisons.**
