@@ -1215,3 +1215,5 @@ input[type="range"] {
 .pick-surface { fill: transparent; cursor: crosshair; touch-action: none; }
 .dragging .pick-surface { cursor: grabbing; }
 .chart-hint { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
+.gap-line { stroke: var(--ink); stroke-opacity: 0.16; stroke-width: 1.2; }
+.gap { pointer-events: none; }

@@ -204,6 +204,8 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   let offScale = 0;
   for (const e of visible) for (const p of e.points) if (p.pressure < domain.y0 || p.pressure > domain.y1) offScale++;
   const matched = envelopes.filter((e) => layerState.get(e.key) === "match");
+  // Evidence gap: everything outside the hulls of the layers the engine compares with the target.
+  const gapHulls = matched.filter((e) => !hidden.has(e.key)).flatMap((e) => e.investigations.map((i) => i.hull));
 
   const desc = `Scatter of ${totalPoints} measured test points, O₂ mole fraction against pressure, with one convex hull per regime combination: ${envelopes
     .map((e) => `${envelopeLongName(e)} (${e.points.length} points)`)
@@ -289,6 +291,20 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           <title id="env-title">Evidence envelope: O₂ mole fraction vs pressure</title>
           <desc id="env-desc">{desc}</desc>
           <defs>
+            <pattern id="gap-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="7" className="gap-line" />
+            </pattern>
+            <mask id="gap-mask" maskUnits="userSpaceOnUse" x={-10} y={-10} width={iw + 20} height={ih + 20}>
+              <rect x={-10} y={-10} width={iw + 20} height={ih + 20} fill="white" />
+              {gapHulls.map((h, i) => {
+                const pts = h.map((q) => [sx(q.o2_mole_fraction), sy(q.pressure)] as const);
+                if (pts.length >= 3) return <path key={i} d={`M${pts.map(([x, y]) => `${x},${y}`).join("L")}Z`} fill="black" />;
+                if (pts.length === 2)
+                  return <line key={i} x1={pts[0][0]} y1={pts[0][1]} x2={pts[1][0]} y2={pts[1][1]} stroke="black" strokeWidth={16} strokeLinecap="round" />;
+                if (pts.length === 1) return <circle key={i} cx={pts[0][0]} cy={pts[0][1]} r={11} fill="black" />;
+                return null;
+              })}
+            </mask>
             <clipPath id="plot-clip">
               <rect x={-6} y={-6} width={iw + 12} height={ih + 12} />
             </clipPath>
@@ -336,6 +352,9 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 onPointerUp={() => setDragging(false)}
                 onPointerCancel={() => setDragging(false)}
               />
+            )}
+            {gapHulls.length > 0 && (
+              <rect x={0} y={0} width={iw} height={ih} fill="url(#gap-hatch)" mask="url(#gap-mask)" className="gap" aria-hidden="true" />
             )}
             <g clipPath="url(#plot-clip)">
               {/* decision hulls: one per investigation, the exact hull its verdict uses */}
@@ -518,6 +537,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </p>
         )}
         <p className="muted small">
+          {gapHulls.length > 0 && "Hatching marks the O₂–pressure plane outside every measured hull of the target's regime: no PSI test there, in the extracted records. "}
           Each shaded area is the convex hull of one investigation&apos;s measured test points: the exact hull its verdict
           uses. Color is the regime (gravity regime · fuel phase · diluent · flame type). Regimes are barriers: a layer of
           another regime is faded and never used for comparison. A line joins the two ends of a measured range. Hollow
