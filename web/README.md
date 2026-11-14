@@ -84,13 +84,12 @@ model translates and narrates; **the engine decides**.
 4. With several models configured, the same question can be re-run with another one. The SHA-256 of the engine's canonical output is
    shown for each run; the same hash means the same verdict, different words.
 
-Configure on the server only, in `web/.env.local` (git-ignored; names in `.env.example`):
+Configure on the server only, in `web/.env.local` (git-ignored; names in `.env.example`). Two providers, tried in this order:
+the requested model, the OpenRouter list (`OPENROUTER_*`), then the NVIDIA NIM list (`PYRION_LLM_*`). A request is retried once on
+429, 5xx or timeout, then the next model is tried. Every answer reports which model wrote it. A per-visitor limit (20 questions an
+hour) and a daily cap on the primary provider (`PYRION_DAILY_REQUEST_CAP`, default 300) send traffic to the fallback, and past both
+the page stays in structured mode. User questions are screened with a NIM safety model; if that model is down the question goes
+through. `GET /api/llm/health` shows which providers answer and the cap left, with no key in the output.
 
-```bash
-PYRION_LLM_BASE_URL=https://integrate.api.nvidia.com/v1   # any OpenAI-compatible endpoint
-PYRION_LLM_API_KEY=...                                     # never sent to the browser, never logged
-PYRION_LLM_MODELS=model-id-1,model-id-2                    # the first is the default
-```
-
-Without these, `/api/ask` answers 503 and the page shows "Structured mode: add a key to enable questions". All prompts are in
+With no provider configured, `/api/ask` answers 503 and the page shows "Structured mode: add a key to enable questions". All prompts are in
 [`lib/prompts.ts`](lib/prompts.ts) (plain text, versioned). Pure logic is unit-tested: `npm test`.

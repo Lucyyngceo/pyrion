@@ -30,11 +30,12 @@ interface Props {
   onTarget: (p: ParsedTarget) => void;
 }
 
-async function call(step: "parse" | "narrate", model: string, payload: Record<string, unknown>): Promise<string> {
+async function call(step: "parse" | "narrate", model: string, payload: Record<string, unknown>): Promise<{ reply: string | null; failures: string[] }> {
   const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ step, model, ...payload }) });
-  const data = (await res.json().catch(() => ({}))) as { reply?: string; error?: string };
-  if (!res.ok || typeof data.reply !== "string") throw new Error(data.error ?? `the request failed (HTTP ${res.status})`);
-  return data.reply;
+  const data = (await res.json().catch(() => ({}))) as { reply?: string | null; error?: string; check?: { failures?: string[] } };
+  if (!res.ok) throw new Error(data.error ?? `the request failed (HTTP ${res.status})`);
+  if (typeof data.reply !== "string" && !data.check) throw new Error("the request returned no text");
+  return { reply: typeof data.reply === "string" ? data.reply : null, failures: data.check?.failures ?? [] };
 }
 
 function describe(p: ParsedTarget): string {
@@ -77,7 +78,8 @@ export default function AskBox({ records, options, investigations, onTarget }: P
     if (fresh) setRuns([]);
     try {
       // Step A: the model translates the question into a target; code validates it.
-      const parsed = parseTargetReply(await call("parse", m, { question }));
+      const asked = await call("parse", m, { question });
+      const parsed = parseTargetReply(asked.reply ?? "");
       onTarget(parsed);
       // Step B: the deterministic engine decides. No model involved.
       const evaluation = evaluate(records, parsed.target, options);
@@ -88,9 +90,10 @@ export default function AskBox({ records, options, investigations, onTarget }: P
       let failures: string[] = [];
       let narrationError: string | null = null;
       try {
-        const text = await call("narrate", m, { input });
-        const check = checkNarration(text, facts);
-        if (check.ok) narration = text.trim();
+        const out = await call("narrate", m, { input });
+        // The server already checked; the page checks again, so a withheld or altered text never shows.
+        const check = out.reply === null ? { ok: false, failures: out.failures } : checkNarration(out.reply, facts);
+        if (check.ok && out.reply) narration = out.reply.trim();
         else failures = check.failures;
       } catch (e) {
         narrationError = e instanceof Error ? e.message : String(e);

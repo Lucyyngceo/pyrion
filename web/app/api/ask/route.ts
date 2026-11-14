@@ -1,82 +1,68 @@
-// Server only. Talks to any OpenAI-compatible endpoint (first target: NVIDIA NIM).
-// Env (never committed; see web/.env.example): PYRION_LLM_BASE_URL, PYRION_LLM_API_KEY, PYRION_LLM_MODELS.
-// The key stays on the server: it is never sent to the client and never logged.
+// Server only. Question translation and narration through the provider router (OpenRouter first, NVIDIA NIM as fallback).
+// Keys live in the server environment (see web/.env.example): never sent to the client, never logged.
 
+import { NoModelAvailable, RateLimited, allModels, askLlm, checkContent, providers, visitorId } from "@/lib/llm";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
+import { checkNarration } from "@/lib/narration-check";
 
 export const dynamic = "force-dynamic";
 
-function config() {
-  const base = (process.env.PYRION_LLM_BASE_URL ?? "").trim().replace(/\/+$/, "");
-  const key = (process.env.PYRION_LLM_API_KEY ?? "").trim();
-  const models = (process.env.PYRION_LLM_MODELS ?? "")
-    .split(",")
-    .map((m) => m.trim())
-    .filter(Boolean);
-  return { base, key, models, enabled: base !== "" && key !== "" && models.length > 0 };
-}
-
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
+const STRUCTURED = "Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.";
 
 /** Whether questions are enabled and which models can be chosen. No secret is returned. */
 export async function GET() {
-  const c = config();
-  return json({ enabled: c.enabled, models: c.enabled ? c.models : [], promptVersion: PROMPT_VERSION });
+  const models = allModels(providers());
+  return json({ enabled: models.length > 0, models, promptVersion: PROMPT_VERSION });
 }
 
-async function chat(c: ReturnType<typeof config>, model: string, system: string, user: string, maxTokens: number): Promise<string> {
-  const res = await fetch(`${c.base}/chat/completions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${c.key}` },
-    body: JSON.stringify({
-      model,
-      temperature: 0,
-      max_tokens: maxTokens,
-      messages: [
-        { role: "system", content: system },
-        { role: "user", content: user },
-      ],
-    }),
-    signal: AbortSignal.timeout(45_000),
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error(`the model endpoint answered HTTP ${res.status}`);
-  const data = (await res.json()) as { choices?: { message?: { content?: unknown } }[] };
-  const text = data.choices?.[0]?.message?.content;
-  if (typeof text !== "string" || text.trim() === "") throw new Error("the model endpoint returned no text");
-  return text;
+/** Facts a narration may use, derived from the exact input the model was given. */
+function factsOf(input: { top?: { accession?: string; doi?: string }[] }) {
+  const top = Array.isArray(input.top) ? input.top : [];
+  return {
+    ids: top.map((t) => t.accession ?? "").filter(Boolean),
+    dois: top.map((t) => t.doi ?? "").filter(Boolean),
+    source: JSON.stringify(input),
+  };
 }
 
 export async function POST(req: Request) {
-  const c = config();
-  if (!c.enabled) {
-    return json({ error: "Structured mode: add a key to enable questions. Set PYRION_LLM_BASE_URL, PYRION_LLM_API_KEY and PYRION_LLM_MODELS on the server." }, 503);
-  }
+  if (providers().length === 0) return json({ error: `Structured mode: add a key to enable questions. ${STRUCTURED}` }, 503);
   let body: { step?: unknown; model?: unknown; question?: unknown; input?: unknown };
   try {
     body = await req.json();
   } catch {
     return json({ error: "the request body is not JSON" }, 400);
   }
-  const model = typeof body.model === "string" && c.models.includes(body.model) ? body.model : c.models[0];
+  const model = typeof body.model === "string" && allModels(providers()).includes(body.model) ? body.model : undefined;
+  const visitor = visitorId(req);
 
   try {
     if (body.step === "parse") {
       const q = typeof body.question === "string" ? body.question.trim() : "";
       if (q === "" || q.length > 500) return json({ error: "the question must be 1 to 500 characters" }, 400);
-      const reply = await chat(c, model, PARSE_SYSTEM, q, 500);
-      return json({ model, promptVersion: PROMPT_VERSION, reply });
+      const safety = await checkContent(q, providers());
+      if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead." }, 422);
+      const c = await askLlm({ model, maxTokens: 500, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
+      const reply = c.json?.choices?.[0]?.message?.content;
+      if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
+      return json({ ...c.meta, promptVersion: PROMPT_VERSION, safetyChecked: safety.checked, reply });
     }
     if (body.step === "narrate") {
-      const input = JSON.stringify(body.input ?? null);
-      if (input.length > 20_000 || input === "null") return json({ error: "the engine output is missing or too large" }, 400);
-      const reply = await chat(c, model, NARRATE_SYSTEM, input, 400);
-      return json({ model, promptVersion: PROMPT_VERSION, reply });
+      const input = body.input;
+      const text = JSON.stringify(input ?? null);
+      if (text.length > 20_000 || text === "null" || typeof input !== "object") return json({ error: "the engine output is missing or too large" }, 400);
+      const c = await askLlm({ model, maxTokens: 400, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: text }] }, visitor);
+      const reply = c.json?.choices?.[0]?.message?.content;
+      if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
+      // The consistency check runs here, on the server, before the text can reach the page.
+      const check = checkNarration(reply, factsOf(input as Parameters<typeof factsOf>[0]));
+      return json({ ...c.meta, promptVersion: PROMPT_VERSION, reply: check.ok ? reply : null, check });
     }
     return json({ error: "unknown step" }, 400);
   } catch (e) {
-    // Only our own short messages reach the client: never the upstream body, never the key.
-    const msg = e instanceof Error && e.name !== "TimeoutError" ? e.message : "the model endpoint did not answer in time";
-    return json({ error: msg }, 502);
+    if (e instanceof RateLimited) return json({ error: e.message }, 429);
+    if (e instanceof NoModelAvailable) return json({ error: `${STRUCTURED}` }, 503);
+    return json({ error: "the language-model request failed" }, 502);
   }
 }
