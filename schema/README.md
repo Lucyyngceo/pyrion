@@ -64,5 +64,6 @@ New variables are added to this file first, in the same commit as the code that 
 - **Range in one cell** ("1.5 - 5", "22.1 to 22.0") → one record, `value = lo..hi` (two numbers, ascending, in `unit`). Consumers parse `..`.
 - **List of discrete values in one cell** ("0.17; 0.21; 0.25") → one record per value, same `test_id`.
 - **Value derived from several columns** (e.g. `diluent` from the N2, CO2 and He fraction columns) → `source_location = row=<n>;column=<h1>;column=<h2>…`, `quote` = the headers joined by ` | `. `diluent = mixed` when more than one diluent is non-zero.
+- **Unit label that contradicts the numbers** (e.g. a header "O2 % by vol" whose cells read 0.217, i.e. a fraction): keep `unit_original` exactly as the source labels it, store the physically consistent `value`, and write `note = unit-label-mismatch: <why>` (e.g. `unit-label-mismatch: header says % by vol; cells are fractions (0.217 = 21.7 %, ambient air)`). The validator reports these as MINOR for the metrology review instead of failing.
 - **Approximate value** ("~ 21.5") → plain number in `value`, `note = approximate (~) in source`.
 - **`insufficient_evidence` records** may carry non-numeric text in `value`. Consumers must skip them as evidence.

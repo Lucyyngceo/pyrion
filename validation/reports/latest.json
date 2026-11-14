@@ -1,688 +1,1019 @@
 {
- "generated_at_utc": "2026-11-14T16:43:11Z",
+ "generated_at_utc": "2026-11-14T16:44:54Z",
  "trace_ran": false,
  "stats": {
-  "records": 6665,
-  "units_rechecked": 2954,
-  "text_files_scanned": 21
+  "records": 7580,
+  "units_identity_no_unit_in_source": 232,
+  "units_rechecked": 2589,
+  "text_files_scanned": 18
  },
  "counts": {
-  "BLOCKER": 8,
-  "MAJOR": 103,
-  "MINOR": 1
+  "BLOCKER": 121,
+  "MAJOR": 38,
+  "MINOR": 8
  },
  "findings": [
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Decane (pure)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:123",
+   "what": "o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Ethanol (pure)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:125",
+   "what": "o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Heptane (50%) IsoOctane (50%) (mixture)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:127",
+   "what": "o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Heptane (pure)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:129",
+   "what": "o2_mole_fraction: 0.219 % by volume -> expected 0.00219 1, record says 0.219"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test IsoOctane (pure)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:131",
+   "what": "o2_mole_fraction: 0.219 % by volume -> expected 0.00219 1, record says 0.219"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Propanol (80%) Glycerol (20%) (mixture)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:133",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test Propanol (95%) Glycerol (5%) (mixture)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:135",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
    "severity": "BLOCKER",
-   "check": "consistency",
-   "where": "PSI-68 test n-Octane (pure)",
-   "what": "diluent has conflicting values ['He', 'N2']"
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:137",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:103",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-26.csv:139",
+   "what": "o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:107",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:141",
+   "what": "o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:11",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:143",
+   "what": "o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:111",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:145",
+   "what": "o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:115",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:147",
+   "what": "o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:119",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-26.csv:149",
+   "what": "o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:123",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:151",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:127",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:153",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:131",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-26.csv:155",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:135",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:157",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:139",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:159",
+   "what": "o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:143",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:161",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:147",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-26.csv:163",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:15",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:165",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:151",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-26.csv:167",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:155",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-26.csv:169",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:159",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-26.csv:171",
+   "what": "o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:163",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-26.csv:173",
+   "what": "o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:167",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-26.csv:175",
+   "what": "o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:171",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-26.csv:177",
+   "what": "o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:175",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-26.csv:179",
+   "what": "o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:179",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-26.csv:181",
+   "what": "o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:183",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:183",
+   "what": "o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:187",
-   "what": "non-numeric value '303.975' / original '3 atm '"
+   "where": "data/conditions/PSI-26.csv:185",
+   "what": "o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:19",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:187",
+   "what": "o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:191",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:189",
+   "what": "o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:195",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:191",
+   "what": "o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:199",
-   "what": "non-numeric value '303.975' / original '3 atm '"
+   "where": "data/conditions/PSI-26.csv:193",
+   "what": "o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:203",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:195",
+   "what": "o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:207",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:197",
+   "what": "o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:211",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:199",
+   "what": "o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:215",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:201",
+   "what": "o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:219",
-   "what": "non-numeric value '506.625' / original '5 atm '"
+   "where": "data/conditions/PSI-26.csv:203",
+   "what": "o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:223",
-   "what": "non-numeric value '506.625' / original '5 atm '"
+   "where": "data/conditions/PSI-26.csv:205",
+   "what": "o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:227",
-   "what": "non-numeric value '506.625' / original '5 atm '"
+   "where": "data/conditions/PSI-26.csv:207",
+   "what": "o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:23",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:209",
+   "what": "o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:231",
-   "what": "non-numeric value '75.9938' / original '0.75 atm'"
+   "where": "data/conditions/PSI-26.csv:211",
+   "what": "o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:235",
-   "what": "non-numeric value '75.9938' / original '0.75 atm'"
+   "where": "data/conditions/PSI-26.csv:213",
+   "what": "o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:239",
-   "what": "non-numeric value '75.9938' / original '0.75 atm'"
+   "where": "data/conditions/PSI-26.csv:215",
+   "what": "o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:243",
-   "what": "non-numeric value '75.9938' / original '0.75 atm'"
+   "where": "data/conditions/PSI-26.csv:217",
+   "what": "o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:247",
-   "what": "non-numeric value '50.6625' / original '0.5 atm'"
+   "where": "data/conditions/PSI-26.csv:219",
+   "what": "o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:251",
-   "what": "non-numeric value '50.6625' / original '0.5 atm'"
+   "where": "data/conditions/PSI-26.csv:221",
+   "what": "o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:255",
-   "what": "non-numeric value '50.6625' / original '0.5 atm'"
+   "where": "data/conditions/PSI-26.csv:223",
+   "what": "o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:259",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:225",
+   "what": "o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:263",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:227",
+   "what": "o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:267",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:229",
+   "what": "o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:27",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:231",
+   "what": "o2_mole_fraction: 0.22721982701616103 % by volume -> expected 0.0022722 1, record says 0.22721982701616103"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:271",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:233",
+   "what": "o2_mole_fraction: 0.22673656618610746 % by volume -> expected 0.00226737 1, record says 0.22673656618610746"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:275",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:235",
+   "what": "o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:279",
-   "what": "non-numeric value '303.975' / original '3 atm '"
+   "where": "data/conditions/PSI-26.csv:237",
+   "what": "o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:283",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:239",
+   "what": "o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:287",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:241",
+   "what": "o2_mole_fraction: 0.22507182031862108 % by volume -> expected 0.00225072 1, record says 0.22507182031862108"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:291",
-   "what": "non-numeric value '303.975' / original '3 atm'"
+   "where": "data/conditions/PSI-26.csv:243",
+   "what": "o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:295",
-   "what": "non-numeric value '303.975' / original '3 atm '"
+   "where": "data/conditions/PSI-26.csv:245",
+   "what": "o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:299",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:247",
+   "what": "o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:3",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:249",
+   "what": "o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:303",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:251",
+   "what": "o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:307",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:253",
+   "what": "o2_mole_fraction: 0.215162301439728 % by volume -> expected 0.00215162 1, record says 0.215162301439728"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:31",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:255",
+   "what": "o2_mole_fraction: 0.2157922698897596 % by volume -> expected 0.00215792 1, record says 0.2157922698897596"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:311",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:257",
+   "what": "o2_mole_fraction: 0.2157922698897596 % by volume -> expected 0.00215792 1, record says 0.2157922698897596"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:315",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-26.csv:259",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:319",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:261",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:323",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:263",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:327",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-26.csv:265",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
   },
   {
-   "severity": "MAJOR",
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:267",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:269",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:271",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:273",
+   "what": "o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:275",
+   "what": "o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:277",
+   "what": "o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:279",
+   "what": "o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:281",
+   "what": "o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:283",
+   "what": "o2_mole_fraction: 0.1707 % by volume -> expected 0.001707 1, record says 0.1707"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:285",
+   "what": "o2_mole_fraction: 0.1707 % by volume -> expected 0.001707 1, record says 0.1707"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:287",
+   "what": "o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:289",
+   "what": "o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:291",
+   "what": "o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:293",
+   "what": "o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:295",
+   "what": "o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:297",
+   "what": "o2_mole_fraction: 0.21111 % by volume -> expected 0.0021111 1, record says 0.21111"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:299",
+   "what": "o2_mole_fraction: 0.21111 % by volume -> expected 0.0021111 1, record says 0.21111"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:301",
+   "what": "o2_mole_fraction: 0.2113 % by volume -> expected 0.002113 1, record says 0.2113"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:303",
+   "what": "o2_mole_fraction: 0.173 % by volume -> expected 0.00173 1, record says 0.173"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:305",
+   "what": "o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:307",
+   "what": "o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:309",
+   "what": "o2_mole_fraction: 0.159 % by volume -> expected 0.00159 1, record says 0.159"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:311",
+   "what": "o2_mole_fraction: 0.1753 % by volume -> expected 0.001753 1, record says 0.1753"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:313",
+   "what": "o2_mole_fraction: 0.1753 % by volume -> expected 0.001753 1, record says 0.1753"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:315",
+   "what": "o2_mole_fraction: 0.205 % by volume -> expected 0.00205 1, record says 0.205"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:317",
+   "what": "o2_mole_fraction: 0.1667 % by volume -> expected 0.001667 1, record says 0.1667"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:319",
+   "what": "o2_mole_fraction: 0.1667 % by volume -> expected 0.001667 1, record says 0.1667"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:321",
+   "what": "o2_mole_fraction: 0.178 % by volume -> expected 0.00178 1, record says 0.178"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:323",
+   "what": "o2_mole_fraction: 0.21 % by volume -> expected 0.0021 1, record says 0.21"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:325",
+   "what": "o2_mole_fraction: 0.21 % by volume -> expected 0.0021 1, record says 0.21"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:327",
+   "what": "o2_mole_fraction: 0.1734 % by volume -> expected 0.001734 1, record says 0.1734"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:329",
+   "what": "o2_mole_fraction: 0.1734 % by volume -> expected 0.001734 1, record says 0.1734"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:331",
+   "what": "o2_mole_fraction: 0.1605 % by volume -> expected 0.001605 1, record says 0.1605"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:333",
+   "what": "o2_mole_fraction: 0.1605 % by volume -> expected 0.001605 1, record says 0.1605"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:335",
+   "what": "o2_mole_fraction: 0.163 % by volume -> expected 0.00163 1, record says 0.163"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:337",
+   "what": "o2_mole_fraction: 0.163 % by volume -> expected 0.00163 1, record says 0.163"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:339",
+   "what": "o2_mole_fraction: 0.172 % by volume -> expected 0.00172 1, record says 0.172"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:341",
+   "what": "o2_mole_fraction: 0.172 % by volume -> expected 0.00172 1, record says 0.172"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:343",
+   "what": "o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:345",
+   "what": "o2_mole_fraction: 0.1713 % by volume -> expected 0.001713 1, record says 0.1713"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:347",
+   "what": "o2_mole_fraction: 0.1717 % by volume -> expected 0.001717 1, record says 0.1717"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:349",
+   "what": "o2_mole_fraction: 0.1717 % by volume -> expected 0.001717 1, record says 0.1717"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:351",
+   "what": "o2_mole_fraction: 0.1724 % by volume -> expected 0.001724 1, record says 0.1724"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:353",
+   "what": "o2_mole_fraction: 0.1724 % by volume -> expected 0.001724 1, record says 0.1724"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:355",
+   "what": "o2_mole_fraction: 0.174 % by volume -> expected 0.00174 1, record says 0.174"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:357",
+   "what": "o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:359",
+   "what": "o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118"
+  },
+  {
+   "severity": "BLOCKER",
+   "check": "units",
+   "where": "data/conditions/PSI-26.csv:361",
+   "what": "o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118"
+  },
+  {
+   "severity": "BLOCKER",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:331",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-26.csv:363",
+   "what": "o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:335",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:110",
+   "what": "non-numeric value '0..5' / original '5   2   0'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:339",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:130",
+   "what": "non-numeric value '8..10' / original '10  8'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:343",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:135",
+   "what": "non-numeric value '13..20' / original '20  15  13   14'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:35",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:140",
+   "what": "non-numeric value '10..20' / original '10   20  18'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:39",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:145",
+   "what": "non-numeric value '3..5' / original '5   4   3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:43",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-25.csv:150",
+   "what": "non-numeric value '5..20' / original '20  13  10  8  5'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:47",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-25.csv:155",
+   "what": "non-numeric value '0..10' / original '10   5   3   0'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:50",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:160",
+   "what": "non-numeric value '3..10' / original '10   6  5  4.5  4  3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:53",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:170",
+   "what": "non-numeric value '10..14' / original '10   14'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:56",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-25.csv:175",
+   "what": "non-numeric value '8..17' / original '10  17  14  10  8'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:59",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-25.csv:180",
+   "what": "non-numeric value '10..20' / original '10   20   15  12'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:63",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-25.csv:190",
+   "what": "non-numeric value '4..6' / original '6   5   4'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:67",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-25.csv:200",
+   "what": "non-numeric value '7..20' / original '10   8  7  8  10  20  18  16  15'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:7",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:205",
+   "what": "non-numeric value '1..10' / original '10  6  3  2  1  10'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:71",
-   "what": "non-numeric value '126.656' / original '1.25 atm'"
+   "where": "data/conditions/PSI-25.csv:220",
+   "what": "non-numeric value '5..17' / original '10  17  14  10  7  5'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:75",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-25.csv:225",
+   "what": "non-numeric value '8..10' / original '10  8'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:79",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-25.csv:229",
+   "what": "non-numeric value '1..20' / original '20  10  5  2  1'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:83",
-   "what": "non-numeric value '202.65' / original '2 atm'"
+   "where": "data/conditions/PSI-25.csv:237",
+   "what": "non-numeric value '3..5' / original '5  3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:87",
-   "what": "non-numeric value '101.325' / original '1 atm '"
+   "where": "data/conditions/PSI-25.csv:297",
+   "what": "non-numeric value '0..5' / original '5  0'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:91",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:301",
+   "what": "non-numeric value '0..5' / original '5   0'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:95",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:309",
+   "what": "non-numeric value '0..11' / original '3   0   11'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-39.csv:99",
-   "what": "non-numeric value '101.325' / original '1 atm'"
+   "where": "data/conditions/PSI-25.csv:313",
+   "what": "non-numeric value '0..11' / original '5  2  0  11  2  11  2  0'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:106",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:445",
+   "what": "non-numeric value '4..9' / original '9   5   4'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:108",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:453",
+   "what": "non-numeric value '1..9' / original '9  1'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:121",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:457",
+   "what": "non-numeric value '1..10' / original '10   2   1'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:16",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:485",
+   "what": "non-numeric value '1..5' / original '5  1'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:18",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:489",
+   "what": "non-numeric value '3..5' / original '5  3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:3",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:493",
+   "what": "non-numeric value '9..29' / original '9   29'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:31",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:497",
+   "what": "non-numeric value '3..5' / original '5  3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:33",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:501",
+   "what": "non-numeric value '6..53' / original '6   53'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:46",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:505",
+   "what": "non-numeric value '2..5' / original '5  2'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:48",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:51",
+   "what": "non-numeric value '1..5' / original '5  4  3  2  1'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:61",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:513",
+   "what": "non-numeric value '3..11' / original '11   3'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:63",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:521",
+   "what": "non-numeric value '5..10' / original '10   5'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:76",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:533",
+   "what": "non-numeric value '2.5..5' / original '5   2.5'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:78",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:537",
+   "what": "non-numeric value '2.5..5' / original '5   2.5'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:91",
-   "what": "non-numeric value '0.1..5' / original '0.1 - 5'"
+   "where": "data/conditions/PSI-25.csv:541",
+   "what": "non-numeric value '2..5' / original '5   2'"
   },
   {
    "severity": "MAJOR",
    "check": "units",
-   "where": "data/conditions/PSI-68.csv:93",
-   "what": "non-numeric value '1.5..5' / original '1.5 - 5'"
+   "where": "data/conditions/PSI-25.csv:66",
+   "what": "non-numeric value '1..10' / original '10   5  4  3  2  1'"
   },
   {
    "severity": "MINOR",
-   "check": "language",
-   "where": "web/lib/engine-adapter.ts:4",
-   "what": "'safe' in: // engine in ../engine is still being written. When it exports a browser-safe"
+   "check": "consistency",
+   "where": "PSI-68 test Decane (pure)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test Ethanol (pure)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test Heptane (50%) IsoOctane (50%) (mixture)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test Heptane (pure)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test IsoOctane (pure)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test Propanol (80%) Glycerol (20%) (mixture)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test Propanol (95%) Glycerol (5%) (mixture)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
+  },
+  {
+   "severity": "MINOR",
+   "check": "consistency",
+   "where": "PSI-68 test n-Octane (pure)",
+   "what": "diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions"
   }
  ]
 }

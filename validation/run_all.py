@@ -51,9 +51,9 @@ TO_KPA = {"kpa": 1.0, "pa": 0.001, "atm": 101.325, "bar": 100.0, "mbar": 0.1, "p
 CONVERSIONS = {
     "kPa": TO_KPA,
     "1": {"": 1.0, "1": 1.0, "mole fraction": 1.0, "fraction": 1.0, "%": 0.01, "percent": 0.01,
-          "% by vol": 0.01, "percent by volume": 0.01, "vol%": 0.01},
+          "% by vol": 0.01, "% by volume": 0.01, "percent by volume": 0.01, "vol%": 0.01, "vol %": 0.01},
     "cm/s": {"cm/s": 1.0, "mm/s": 0.1, "m/s": 100.0},
-    "mm": {"mm": 1.0, "cm": 10.0, "um": 0.001, "µm": 0.001, "in": 25.4, "m": 1000.0},
+    "mm": {"mm": 1.0, "cm": 10.0, "um": 0.001, "µm": 0.001, "micron": 0.001, "microns": 0.001, "in": 25.4, "m": 1000.0},
     "K": {"k": 1.0, "c": lambda v: v + 273.15, "°c": lambda v: v + 273.15, "degc": lambda v: v + 273.15},
     "g": {"g": 1.0},
 }
@@ -92,17 +92,26 @@ def load_records(folder=None):
     return records
 
 
+NUM = r"[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?"
+
+
 def number(text):
+    """The number in a value as written in the source: '1 atm', '~ 21.5', '757.7' -> float."""
     t = text.strip().replace(",", "")
-    t = re.sub(r"^~\s*", "", t)
-    return float(t)
+    m = re.fullmatch(rf"~?\s*({NUM})(?:\s*[A-Za-z%°µ/(].*)?", t)
+    if not m:
+        raise ValueError(text)
+    return float(m.group(1))
 
 
 def interval(text):
-    if ".." in text:
-        lo, hi = text.split("..", 1)
-        return number(lo), number(hi)
-    v = number(text)
+    """'lo..hi' (normalized) or a source range '0.1 - 5', '22.1 to 22.0' -> (lo, hi) ascending."""
+    t = text.strip().replace(",", "")
+    m = re.fullmatch(rf"~?\s*({NUM})\s*(?:\.\.|-|–|to)\s*~?\s*({NUM})\s*[^\d]*", t)
+    if m:
+        a, b = float(m.group(1)), float(m.group(2))
+        return min(a, b), max(a, b)
+    v = number(t)
     return v, v
 
 
@@ -146,21 +155,33 @@ def check_units(recs, rep):
             continue
         table = CONVERSIONS.get(unit)
         src_unit = (r.get("unit_original") or "").strip().lower()
-        if table is None or src_unit not in table:
-            rep.add("MAJOR", "units", r["_file"], f"cannot recompute {var}: no known conversion '{r.get('unit_original')}' -> '{unit}'")
-            continue
+        if not src_unit and r.get("method") == "table":
+            # unit stated in the column header, e.g. "Air Flow (cm/s)"
+            m = re.search(r"\(([^()]+)\)\s*$", r.get("quote") or "")
+            src_unit = m.group(1).strip().lower() if m else ""
         try:
             lo_o, hi_o = interval(r["value_original"])
             lo, hi = interval(r["value"])
         except ValueError:
             rep.add("MAJOR", "units", r["_file"], f"non-numeric value '{r['value']}' / original '{r['value_original']}'")
             continue
+        note = r.get("note") or ""
+        if table is None or src_unit not in table:
+            if not (r.get("unit_original") or "").strip() and abs(lo - lo_o) <= 1e-12 and abs(hi - hi_o) <= 1e-12:
+                rep.stats["units_identity_no_unit_in_source"] += 1  # number copied unchanged
+                continue
+            rep.add("MAJOR", "units", r["_file"], f"cannot recompute {var}: no known conversion '{r.get('unit_original')}' -> '{unit}'")
+            continue
         conv = table[src_unit]
         f = conv if callable(conv) else (lambda v, k=conv: v * k)
         for got, orig in ((lo, lo_o), (hi, hi_o)):
             want = f(orig)
             if abs(got - want) > max(abs(want) * 0.005, 1e-9):
-                rep.add("BLOCKER", "units", r["_file"], f"{var}: {r['value_original']} {r['unit_original']} -> expected {want:.6g} {unit}, record says {r['value']}")
+                if "unit-label-mismatch:" in note:
+                    # documented: the source's unit label contradicts its numbers; reviewed at M1
+                    rep.add("MINOR", "units", r["_file"], f"documented unit-label mismatch ({var}): {note[:100]}")
+                else:
+                    rep.add("BLOCKER", "units", r["_file"], f"{var}: {r['value_original']} {r['unit_original']} -> expected {want:.6g} {unit}, record says {r['value']}")
                 break
         rep.stats["units_rechecked"] += 1
 
@@ -182,13 +203,22 @@ def check_bounds(recs, rep):
 
 
 def check_consistency(recs, rep):
-    seen = defaultdict(set)
+    """A regime axis with two values for one test is a conflict only if the values come
+    from different places. One cell listing several values (schema convention) is a
+    summary row covering several conditions: reported as MINOR so consumers know."""
+    seen = defaultdict(lambda: defaultdict(set))
     for r in recs:
         if r.get("variable") in REGIME_VALUES and r.get("status") != "insufficient_evidence":
-            seen[(r["accession"], r["test_id"], r["variable"])].add(r["value"])
-    for (acc, test, var), vals in seen.items():
-        if len(vals) > 1:
-            rep.add("BLOCKER", "consistency", f"{acc} test {test}", f"{var} has conflicting values {sorted(vals)}")
+            key = (r["accession"], r["test_id"], r["variable"])
+            seen[key][(r["source_file"], r["source_location"])].add(r["value"])
+    for (acc, test, var), by_src in seen.items():
+        vals = set().union(*by_src.values())
+        if len(vals) < 2:
+            continue
+        if len(by_src) == 1:
+            rep.add("MINOR", "consistency", f"{acc} test {test}", f"{var} lists {sorted(vals)} in one source cell: summary row covering several conditions")
+        else:
+            rep.add("BLOCKER", "consistency", f"{acc} test {test}", f"{var} has conflicting values {sorted(vals)} from different sources")
 
 
 def check_citation(recs, rep):
