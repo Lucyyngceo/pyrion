@@ -72,6 +72,8 @@ The challenge page (Resources tab) lists 10 resources. All are in `manifest/exte
 
 Web pages are saved as `page.html` with their SHA-256, as they were served on November 14, 2026.
 
+**Links of the resources, two levels deep** (`pipeline/crawl_resources.py`, ids `crawl-…`, each with `found_on`). Level 1 follows the links in the main content of each resource page; level 2 follows documents and NTRS records only. Only NASA, govinfo.gov and doi.org hosts are followed; links to other agencies' and third-party sites are not. 18 items were found: the NASA Glenn pages for FM2, SoFIE and FLARE, the Fluids and Combustion Facility, the NASA Science combustion focus area, two news releases, the ISS researcher pages, the EPUB edition of the Researcher's Guide, a crew biography from the Mir page, and from level 2 the ISS Annual Highlights of Results 2025 with its publication list and an ISS science infographic. 17 were downloaded; the MDCA page linked from the Glenn page returns 404.
+
 ## Cross-check against the PSI website
 
 The PSI investigation pages are built from the same public API this pipeline reads: the investigation record, the file tree and the experimental-table download. On November 14, 2026 each of the 24 pages was opened. Version, license, DOI, number of publications and number of publications with a DOI were compared with the downloaded records (`web_check_2026-11-14.csv`). **0 differences in 120 comparisons.**

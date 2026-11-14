@@ -366,6 +366,163 @@
    "role": "linked from the official challenge resource 'Apollo 13' (sma.nasa.gov)",
    "title": "Biography: John Swigert",
    "url": "https://www.nasa.gov/wp-content/uploads/2020/04/swigert_john.pdf"
+  },
+  {
+   "id": "crawl-combustion-science-flammability-of-materials-on-the-moon-fm2-ecc5990d",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-of-materials-on-the-moon-fm2/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-of-materials-on-the-moon-fm2/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-combustion-science-solid-fuel-ignition-and-extinction-sofie-73ee2172",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/solid-fuel-ignition-and-extinction-sofie/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/solid-fuel-ignition-and-extinction-sofie/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-on-science-flammability-limits-at-reduced-g-experiment-flare-349e092c",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-limits-at-reduced-g-experiment-flare/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-limits-at-reduced-g-experiment-flare/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-oration-physical-sciences-program-fluids-combustion-facility-e5cca718",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/fluids-combustion-facility/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/fluids-combustion-facility/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-bustion-science-multi-user-droplet-combustion-apparatus-mdca-31c670fd",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/multi-user-droplet-combustion-apparatus-mdca/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/multi-user-droplet-combustion-apparatus-mdca/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-science-biological-physical-focus-areas-combustion-science-a8cdd961",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://science.nasa.gov/biological-physical/focus-areas/combustion-science/",
+   "url": "https://science.nasa.gov/biological-physical/focus-areas/combustion-science/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-ram-science-facilities-on-the-iss-fluids-combustion-facility-7ef8640c",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/science-facilities-on-the-iss/fluids-combustion-facility/",
+   "url": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/science-facilities-on-the-iss/fluids-combustion-facility/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-se-nasa-glenn-combustion-experiment-arrives-at-space-station-2edda286",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/news-release/nasa-glenn-combustion-experiment-arrives-at-space-station/",
+   "url": "https://www.nasa.gov/news-release/nasa-glenn-combustion-experiment-arrives-at-space-station/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-n-holds-public-meeting-on-combustion-research-lab-demolition-d7a84f0d",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/news-release/nasa-glenn-holds-public-meeting-on-combustion-research-lab-demolition/",
+   "url": "https://www.nasa.gov/news-release/nasa-glenn-holds-public-meeting-on-combustion-research-lab-demolition/",
+   "found_on": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-016-05-np-2015-10-034-jsc-combustion-in-reduced-gravity-epub-a0c2b8d3",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity.epub",
+   "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity.epub",
+   "found_on": "https://www.nasa.gov/missions/station/a-researchers-guide-to-combustion-science/"
+  },
+  {
+   "id": "crawl-ies-information-for-researchers-iss-researchers-guide-series-84d4d42e",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/opportunities-information-for-researchers/iss-researchers-guide-series/",
+   "url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/opportunities-information-for-researchers/iss-researchers-guide-series/",
+   "found_on": "https://www.nasa.gov/missions/station/a-researchers-guide-to-combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-rch-and-technology-opportunities-information-for-researchers-9f8c4b97",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/opportunities-information-for-researchers/",
+   "url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/opportunities-information-for-researchers/",
+   "found_on": "https://www.nasa.gov/missions/station/a-researchers-guide-to-combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-ation-research-and-technology-space-station-research-results-e8ceacdd",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/space-station-research-results/",
+   "url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/space-station-research-results/",
+   "found_on": "https://www.nasa.gov/missions/station/a-researchers-guide-to-combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-earch-and-technology-latest-news-from-space-station-research-0e5a93ca",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/",
+   "url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/",
+   "found_on": "https://www.nasa.gov/missions/station/a-researchers-guide-to-combustion-science/",
+   "filename": "page.html"
+  },
+  {
+   "id": "crawl-www-wp-content-uploads-2016-01-linenger-jerry-0-pdf-02d4eb2a",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 1)",
+   "title": "https://www.nasa.gov/wp-content/uploads/2016/01/linenger_jerry_0.pdf",
+   "url": "https://www.nasa.gov/wp-content/uploads/2016/01/linenger_jerry_0.pdf",
+   "found_on": "https://www.nasa.gov/history/25-years-ago-fire-aboard-space-station-mir/"
+  },
+  {
+   "id": "crawl-www-wp-content-uploads-2026-05-ahr-2025-20260518-pdf-71cae3e4",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 2)",
+   "title": "https://www.nasa.gov/wp-content/uploads/2026/05/ahr-2025-20260518.pdf",
+   "url": "https://www.nasa.gov/wp-content/uploads/2026/05/ahr-2025-20260518.pdf",
+   "found_on": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/space-station-research-results/"
+  },
+  {
+   "id": "crawl-www-wp-content-uploads-2026-05-ahr-2025-publist-20260518-pdf-2e21549a",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 2)",
+   "title": "https://www.nasa.gov/wp-content/uploads/2026/05/ahr-2025-publist-20260518.pdf",
+   "url": "https://www.nasa.gov/wp-content/uploads/2026/05/ahr-2025-publist-20260518.pdf",
+   "found_on": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/space-station-research-results/"
+  },
+  {
+   "id": "crawl-oads-2026-01-iss-25th-science-infographic-20260121-print-pdf-b14c7ec6",
+   "priority": "P2",
+   "role": "linked from an official challenge resource (level 2)",
+   "title": "https://www.nasa.gov/wp-content/uploads/2026/01/iss-25th-science-infographic-20260121-print.pdf",
+   "url": "https://www.nasa.gov/wp-content/uploads/2026/01/iss-25th-science-infographic-20260121-print.pdf",
+   "found_on": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
   }
  ]
 }
