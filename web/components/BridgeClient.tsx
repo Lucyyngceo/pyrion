@@ -25,6 +25,8 @@ const STOPS = [
 const M = { top: 34, right: 18, bottom: 48, left: 58 };
 const key = (h: { accession: string; test_id: string }) => `${h.accession}|${h.test_id}`;
 
+const LIMIT_COLS = ["limit_type", "last_stable_flow_cm_s", "extinction_flow_cm_s", "interpretation_status"];
+
 type Rod = "rod_tip" | "cylinder";
 
 interface Props {
@@ -39,9 +41,8 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
   const [stop, setStop] = useState(1);
   const [rod, setRod] = useState<Rod>("rod_tip");
   const [selected, setSelected] = useState<string | null>(null);
-  // The table labels rods "clear rod" / "black rod" and never names the material: PMMA is an explicit assumption.
-  const [assumePmma, setAssumePmma] = useState(true);
-  const opts = useMemo(() => (assumePmma ? { densityFactor: { lo: DENSITY_FACTOR_PMMA_AIR.lo, hi: DENSITY_FACTOR_PMMA_AIR.hi } } : {}), [assumePmma]);
+  // The PSI table labels rods "clear rod" / "black rod"; NASA states they are cast PMMA (NTRS 20150008961, p. 1).
+  const opts = useMemo(() => ({ densityFactor: { lo: DENSITY_FACTOR_PMMA_AIR.lo, hi: DENSITY_FACTOR_PMMA_AIR.hi } }), []);
 
   const parsed = useMemo(
     () => (csv ? transferTestsFromFlowSteps(csv, { gravityRegime: gravitySource ? "microgravity" : undefined, rodFormula: rod }) : { tests: [], skipped: [] }),
@@ -56,7 +57,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
     if (rows.length === 0) return m;
     const h = rows[0].cells.map((x) => x.trim());
     const col = (n: string) => h.indexOf(n);
-    const cols = h.filter((c) => c === "flow_min_with_flame" || c === "ended_in_extinction" || /limit/i.test(c));
+    const cols = h.filter((c) => c === "flow_min_with_flame" || c === "ended_in_extinction" || LIMIT_COLS.includes(c) || /limit/i.test(c));
     for (const r of rows.slice(1)) {
       const o: Record<string, string> = {};
       for (const c of cols) {
@@ -68,6 +69,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
     return m;
   }, [csv]);
 
+  const hasLimits = [...extras.values()].some((e) => e.interpretation_status === "verified" && (e.limit_type === "quench" || e.limit_type === "blowoff"));
   const g = STOPS[stop];
   const target: Target = useMemo(
     () => (stop === 0 ? { regime: { gravity_regime: "microgravity" }, continuous: { gravity_level: 0 } } : withGravity({ regime: {}, continuous: {} }, g.id as "moon" | "mars" | "earth")),
@@ -172,16 +174,12 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
               Cylinder, 2 U/R
             </button>
           </fieldset>
-          <label className="toggle small">
-            <input type="checkbox" checked={assumePmma} onChange={(e) => setAssumePmma(e.target.checked)} />
-            <span>
-              Assume the rods are PMMA <span className="tag-assumed">assumption</span>
-            </span>
-          </label>
         </div>
         <p className="muted small">
-          The table labels these rods &quot;clear rod&quot; and &quot;black rod&quot; and does not name the material, so PMMA is PYRION&apos;s assumption; it sets the density
-          factor (the PMMA-in-air band of Olson &amp; T&apos;ien, T* 865–990 K). It also does not say how each rod sat in the flow: the formula is a choice, shown with every result.
+          The PSI table itself labels these rods only &quot;clear rod&quot; and &quot;black rod&quot;. NASA states what they are: <q>Microgravity experiments burning cast PMMA
+          cylindrical rods in axial flow have been conducted aboard the International Space Station</q> <q>as part of the BASS-II experiment</q> (
+          <a href="https://ntrs.nasa.gov/citations/20150008961" target="_blank" rel="noreferrer">NTRS 20150008961</a>, Olson &amp; Ferkul, p. 1). So the PMMA-in-air
+          density factor applies (T* 865–990 K, Olson &amp; T&apos;ien), and axial flow is why the rod-tip formula is the default. The table does not say how each individual rod sat in the flow, so the formula stays a choice, shown with every result.
         </p>
 
         {!csv && <p className="banner">data/derived/bass2_flow_steps.csv was not found, so no stretch map can be drawn.</p>}
@@ -212,6 +210,11 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           <span>
             <i className="lg lg-band" /> hypothesised buoyant stretch band
           </span>
+          {hasLimits && (
+            <span>
+              <i className="lg-tri" /> limit read from the test notes (interpreted, verified): ▽ quench, △ blowoff
+            </span>
+          )}
         </div>
 
         {report.notComputable && <p className="status">{report.notComputable}</p>}
@@ -391,12 +394,23 @@ function StretchMap({
             const b = sx(x.testStretch.value.hi);
             const cls = hh?.isAnalog ? "tm tm-an" : hh?.relation === "overlap" ? "tm tm-part" : "tm";
             const fm = extras.get(k)?.flow_min_with_flame;
+            const ex = extras.get(k);
+            const limU = ex && ex.interpretation_status === "verified" && (ex.limit_type === "quench" || ex.limit_type === "blowoff") ? Number(ex.extinction_flow_cm_s) : NaN;
+            const limX = limU > 0 ? sx((rodK * limU) / x.targetStretch.inputs.R.value.lo) : null;
             const fmV = fm !== undefined && Number(fm) > 0 ? sx((rodK * Number(fm)) / x.targetStretch.inputs.R.value.lo) : null;
             return (
               <g key={k} className={`${cls}${selected === k ? " tm-sel" : ""}`}>
                 <line x1={a} x2={b} y1={y} y2={y} className="tm-line" />
                 <circle cx={a} cy={y} r={3.5} className="tm-dot" />
                 <circle cx={b} cy={y} r={3.5} className="tm-dot" />
+                {limX !== null && (
+                  <path
+                    d={ex?.limit_type === "quench" ? `M${limX - 6} ${y - 7}h12l-6 12z` : `M${limX - 6} ${y + 7}h12l-6 -12z`}
+                    className={`tm-lim tm-lim-${ex?.limit_type}`}
+                  >
+                    <title>{`${ex?.limit_type} limit read from the test notes: ${ex?.extinction_flow_cm_s} cm/s (interpreted, verified)`}</title>
+                  </path>
+                )}
                 {fmV !== null && <path d={`M${fmV} ${y - 6}l4 6l-4 6l-4 -6z`} className="tm-fm" />}
                 <rect x={a - 6} y={y - 9} width={Math.max(12, b - a + 12)} height={18} className="hit" tabIndex={0} role="button" aria-label={`${x.accession} ${x.test_id}, ${band(x.testStretch.value)} per second, O2 ${fmt((x.atmosphere.o2_mole_fraction.test ?? 0) * 100, 1)} percent`} onClick={() => onSelect(selected === k ? null : k)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect(selected === k ? null : k))} />
               </g>

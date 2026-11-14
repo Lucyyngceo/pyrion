@@ -82,8 +82,10 @@ export default function Fm2Panel() {
               <strong>Starting O₂ 37 / 33 / 29 / 25 %</strong> (the four tests, same source, pp. 5–10)
             </li>
             <li>
-              <strong>Fuel: PMMA, {fmt(PMMA_STOICH.value, 4)} g O₂ per g</strong>{" "}
-              <span className="muted">derived by PYRION from C₅H₈O₂, not stated by NASA</span>
+              <strong>Fuel for the PMMA rows: {fmt(PMMA_STOICH.value, 4)} g O₂ per g</strong>{" "}
+              <span className="muted">derived by PYRION from C₅H₈O₂, not stated by NASA.</span>{" "}
+              <strong>FM2&apos;s planned sample is a fabric (Synergy Pro &quot;Navy&quot;; ntrs-20260001966, p. 10)</strong> whose composition PSI does not hold, so the PMMA
+              columns illustrate the oxygen balance; the <em>O₂ consumable</em> column is the material-independent result.
             </li>
           </ul>
 
@@ -114,8 +116,8 @@ export default function Fm2Panel() {
               <tr>
                 <th scope="col">Start O₂</th>
                 <th scope="col" className="num">O₂ consumable</th>
-                <th scope="col" className="num">PMMA burned</th>
                 <th scope="col" className="num">Final O₂</th>
+                <th scope="col" className="num">PMMA burned (illustration)</th>
               </tr>
             </thead>
             <tbody>
@@ -125,6 +127,7 @@ export default function Fm2Panel() {
                   <td className="num">
                     {at.startAboveLimit ? `${fmt(at.o2ConsumableMol * 1000, 1)} mmol (${fmt(at.o2ConsumableG, 2)} g)` : "none"}
                   </td>
+                  <td className="num">{fmt(at.finalO2Fraction * 100, 1)} %</td>
                   <td className="num">
                     {at.startAboveLimit ? (
                       <>
@@ -134,7 +137,6 @@ export default function Fm2Panel() {
                       "—"
                     )}
                   </td>
-                  <td className="num">{fmt(at.finalO2Fraction * 100, 1)} %</td>
                 </tr>
               ))}
             </tbody>
