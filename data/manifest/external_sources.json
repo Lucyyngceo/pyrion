@@ -530,6 +530,27 @@
    "role": "Saffire flight results: gravity condition during the burn (found by independent review, grok-regimen)",
    "title": "Saffire results (NTRS 20180005168)",
    "url": "https://ntrs.nasa.gov/api/citations/20180005168/downloads/20180005168.pdf"
+  },
+  {
+   "id": "ntrs-20000004509",
+   "priority": "P1",
+   "role": "stretch-rate framework: forced, buoyant and mixed stretch",
+   "title": "Olson & T'ien, Buoyant Low Stretch Diffusion Flames Beneath Cylindrical PMMA Samples (NTRS 20000004509)",
+   "url": "https://ntrs.nasa.gov/api/citations/20000004509/downloads/20000004509.pdf"
+  },
+  {
+   "id": "ntrs-20000057046",
+   "priority": "P1",
+   "role": "stretch-rate framework: forced, buoyant and mixed stretch",
+   "title": "Olson & T'ien, near-limit low stretch flames (NTRS 20000057046)",
+   "url": "https://ntrs.nasa.gov/api/citations/20000057046/downloads/20000057046.pdf"
+  },
+  {
+   "id": "ntrs-20040053568",
+   "priority": "P1",
+   "role": "stretch-rate framework: forced, buoyant and mixed stretch",
+   "title": "Low stretch solid-fuel flame research (NTRS 20040053568)",
+   "url": "https://ntrs.nasa.gov/api/citations/20040053568/downloads/20040053568.pdf"
   }
  ]
 }

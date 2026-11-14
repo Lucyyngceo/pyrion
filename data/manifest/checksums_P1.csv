@@ -1,4 +1,4 @@
-# generated_at_utc=2026-11-14T18:01:51Z
+# generated_at_utc=2026-11-14T21:43:09Z
 path,bytes,sha256,source,status
 nasa/challenge-apollo-1/page.html,76307,085adb082366300b7e159c8191fee587bb9a50ff290376bc57e9b69dff42a0ca,https://sma.nasa.gov/sma-disciplines/accllp/apollo-1,ok
 nasa/challenge-apollo-13/page.html,70836,76161511d301e71e625f4152dccc2e911555d0aabe3cd5c47f23b003c5f64702,https://sma.nasa.gov/sma-disciplines/accllp/apollo-13,ok
@@ -21,6 +21,9 @@ nasa/jsc-29353d/JSC 29353D Flammability Configuration Analysis for Spacecraft Ap
 nasa/nasa-img-candle/candle-flame-in-microgravity.png,119999,8ba83d9349de0022bbd4a0fea86c50d381e76fad9ab6ae44fc974a342d9b91a5,https://www.nasa.gov/wp-content/uploads/2025/07/candle-flame-in-microgravity.png,ok
 nasa/nasa-img-sibal/edge-view-of-sibal.png,181013,20e7113ff8fd15eb7755dff367c30c64a70d45d37519d39ab601aa50664677c2,https://www.nasa.gov/wp-content/uploads/2025/07/edge-view-of-sibal.png,ok
 nasa/nasa-std-6001b/nasa-std-6001b.pdf,1514218,3565820b2267be5252ed48653d23491cf81dc151155ea176fe5480dc162ee03a,https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf,ok
+nasa/ntrs-20000004509/20000004509.pdf,1168569,dfc9fc3cf8071a8eb28a86305b49d226ba46b1332ed73d1e2396b176f08f0ba7,https://ntrs.nasa.gov/api/citations/20000004509/downloads/20000004509.pdf,ok
+nasa/ntrs-20000057046/20000057046.pdf,726184,2aa92e95822df2c790047339eac131be69eda73fea229efd7e91bbba1e19ccd6,https://ntrs.nasa.gov/api/citations/20000057046/downloads/20000057046.pdf,ok
+nasa/ntrs-20040053568/20040053568.pdf,671930,3b6998020cbc77f5f5b85a6b85b14ab471aadd1ac3d44595e32adfb6495b8fb7,https://ntrs.nasa.gov/api/citations/20040053568/downloads/20040053568.pdf,ok
 nasa/ntrs-20150008961/20150008961.pdf,449964,8cee8a023d9f0aab214996ebaeefb842080b0c935ba9e01db0096a47379519f7,https://ntrs.nasa.gov/api/citations/20150008961/downloads/20150008961.pdf,ok
 nasa/ntrs-20170004702/20170004702.pdf,226474,0a8c1da4af61697ca09fa3f7c58807e88981870ed63f024bad2577f577623c93,https://ntrs.nasa.gov/api/citations/20170004702/downloads/20170004702.pdf,ok
 nasa/ntrs-20180005168/20180005168.pdf,9049169,9ae2e365c850cbd0e136ea4e17cc5ecf68e5ac89d248b3c0a7b7b4bde9e2f402,https://ntrs.nasa.gov/api/citations/20180005168/downloads/20180005168.pdf,ok
