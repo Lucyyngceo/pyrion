@@ -8,7 +8,7 @@ from common import convert, is_number, join_notes, record, value_range
 
 LIST_SPLIT = re.compile(r"\s*(?:;|,|\bor\b)\s*")
 RANGE_RE = re.compile(r"^\s*~?\s*([+-]?(?:\d+\.?\d*|\.\d+))\s*(?:-|to|–)\s*([+-]?(?:\d+\.?\d*|\.\d+))\s*$")
-NO_VALUE = {"–", "—", "-", "n/a", "N/A", "none", "None", "RAMPED"}
+NO_VALUE = {"–", "—", "-", "n/a", "N/A", "none", "None", "RAMP", "RAMPED", "LOW O2", "#DIV/0!", "#VALUE!"}
 APPROX_RE = re.compile(r"^\s*~\s*([+-]?(?:\d+\.?\d*|\.\d+))\s*$")
 
 

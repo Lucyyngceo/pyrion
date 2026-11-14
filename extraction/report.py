@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 from collections import Counter, defaultdict
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from common import OUT_DIR, REPO
@@ -42,6 +43,10 @@ LIMITS = {
 def _names():
     with INVESTIGATIONS.open(encoding="utf-8", newline="") as fh:
         return {r["accession"]: r for r in csv.DictReader(fh)}
+
+
+def _d(x: Decimal) -> str:
+    return format(x.normalize() if x == x.to_integral() else x, "f") if abs(x) < 10 ** 6 else str(x)
 
 
 def _usable(r):
@@ -82,6 +87,33 @@ def _summary(by_acc, skipped, inv, order, interp):
         name = inv[a]["acronym"] or "(ground)"
         cells = [f"{a} {name}"] + [str(c.get(v, "")) for v in CORE] + [str(outc or ""), str(ins or "")]
         L.append("| " + " | ".join(cells) + " |")
+    L.append("")
+
+    L += ["## Measured ranges (usable records)", "",
+          "Lowest and highest value per investigation and continuous axis, over `extracted` + `verified` "
+          "records (ranges `lo..hi` contribute both ends). This is a summary, not an envelope: "
+          "the engine builds envelopes from the individual records.", ""]
+    axes = ["o2_mole_fraction", "burner_o2_mole_fraction", "pressure", "flow_velocity", "sample_thickness",
+            "droplet_diameter_initial", "ambient_temperature"]
+    units = {"o2_mole_fraction": "", "burner_o2_mole_fraction": "", "pressure": " kPa", "flow_velocity": " cm/s",
+             "sample_thickness": " mm", "droplet_diameter_initial": " mm", "ambient_temperature": " K"}
+    L += ["| Investigation | " + " | ".join(SHORT[a] + units[a] for a in axes) + " |", "|" + "---|" * (len(axes) + 1)]
+    for a in order:
+        rng = {}
+        for r in by_acc.get(a, []):
+            if not _usable(r) or r["variable"] not in axes:
+                continue
+            try:
+                parts = [Decimal(x) for x in r["value"].split("..")]
+            except InvalidOperation:
+                continue
+            lo, hi = min(parts), max(parts)
+            old_lo, old_hi = rng.get(r["variable"], (lo, hi))
+            rng[r["variable"]] = (min(old_lo, lo), max(old_hi, hi))
+        if rng:
+            cells = [f"{_d(rng[x][0])}-{_d(rng[x][1])}" if x in rng and rng[x][0] != rng[x][1]
+                     else (_d(rng[x][0]) if x in rng else "") for x in axes]
+            L.append(f"| {a} {inv[a]['acronym'] or '(ground)'} | " + " | ".join(cells) + " |")
     L.append("")
 
     L += ["## Investigations with no usable conditions, or only partial ones", ""]

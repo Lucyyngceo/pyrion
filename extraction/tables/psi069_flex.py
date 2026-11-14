@@ -38,6 +38,8 @@ INTERPRETATIONS = [
     "or `mixed` when N2 is combined with CO2 or He.",
     "FLEX \"Burning rate; mm\" is kept as `insufficient_evidence`: the unit written in the header (mm) "
     "is not a unit of burning rate, and the table does not state the right one.",
+    "FLEX rows whose ambient pressure reads 0 mmHg are kept as `insufficient_evidence` for pressure "
+    "(not a possible ambient pressure for a test that burned; the true value is not stated).",
 ]
 
 
@@ -57,8 +59,12 @@ def build(skips):
         comp_note = SUBSCRIPT_NOTE if closes else join_notes(SUBSCRIPT_NOTE, "fractions of this row do not sum to 1")
 
         out += text_value(t, n, H_FUEL, variable="fuel", **kw)
+        p_zero = t.cell(n, H_P).strip() in ("0", "0.0")
         out += numeric(t, n, H_P, skips, variable="pressure", unit="kPa", unit_original="mmHg",
-                       factor=MMHG_TO_KPA, how="mmHg x 101.325/760", **kw)
+                       factor=MMHG_TO_KPA, how="mmHg x 101.325/760",
+                       status="insufficient_evidence" if p_zero else "extracted",
+                       note="0 mmHg is not a possible ambient pressure for a test that burned" if p_zero else "",
+                       **kw)
         out += numeric(t, n, H_O2, skips, variable="o2_mole_fraction", unit="1", unit_original="mole fraction",
                        note=join_notes("initial ambient composition", comp_note), **kw)
         if closes:
