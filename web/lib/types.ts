@@ -34,8 +34,7 @@ export interface Dataset {
   /** Keyed by source_file (path relative to data/raw/), only files cited by the records. */
   sourceFiles: Record<string, SourceFile>;
   /**
-   * Optional precomputed embedding search (data/derived/text_similarity.json), read defensively. Assumed shape:
-   * { model, license, rankings: { [presetId]: [{ accession, score }] } }. Absent when the file is missing or malformed.
+   * Optional precomputed embedding search (data/derived/text_similarity.json), read defensively. Shape: { model: {name, license}, rankings: { [presetId]: [{ accession, cosine }] } }; class B, never evidence. Absent when the file is missing or malformed.
    */
   embedding?: { model: string; license: string; rankings: Record<string, { accession: string; score: number }[]> };
   stats: { records: number; verified: number; flagged: number; rejected: number; accessions: number };

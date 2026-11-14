@@ -112,16 +112,16 @@ async function loadEmbedding(): Promise<Dataset["embedding"]> {
   const t = await readText(path.join(DATA_DIR, "derived", "text_similarity.json"));
   if (!t) return undefined;
   try {
-    const j = JSON.parse(t) as { model?: unknown; license?: unknown; rankings?: unknown };
-    if (typeof j.model !== "string" || typeof j.rankings !== "object" || j.rankings === null) return undefined;
+    const j = JSON.parse(t) as { model?: { name?: unknown; license?: unknown }; rankings?: unknown };
+    if (typeof j.model?.name !== "string" || typeof j.rankings !== "object" || j.rankings === null) return undefined;
     const rankings: Record<string, { accession: string; score: number }[]> = {};
     for (const [k, v] of Object.entries(j.rankings as Record<string, unknown>)) {
       if (!Array.isArray(v)) continue;
       rankings[k] = v
-        .filter((x): x is { accession: string; score: number } => !!x && typeof (x as { accession?: unknown }).accession === "string" && typeof (x as { score?: unknown }).score === "number")
-        .map((x) => ({ accession: x.accession, score: x.score }));
+        .filter((x): x is { accession: string; cosine: number } => !!x && typeof (x as { accession?: unknown }).accession === "string" && typeof (x as { cosine?: unknown }).cosine === "number")
+        .map((x) => ({ accession: x.accession, score: x.cosine }));
     }
-    return { model: j.model, license: typeof j.license === "string" ? j.license : "", rankings };
+    return { model: j.model.name, license: typeof j.model.license === "string" ? j.model.license : "", rankings };
   } catch {
     return undefined;
   }
