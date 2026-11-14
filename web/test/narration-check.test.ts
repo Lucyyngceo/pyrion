@@ -113,3 +113,12 @@ test("assumptions: long ones, banned phrases and numbers the question lacks are 
   const out = parseTargetReply(reply({ o2: "30%", assumptions: ["x".repeat(151), "this is a world's first result", "assumed 21 percent air", "balance gas not named"] }), Q);
   assert.deepEqual(out.assumptions, ["balance gas not named"]);
 });
+
+test("a regime axis the model filled in without the question stating it is listed as an assumption", () => {
+  const withRod = parseTargetReply(reply({ o2: "30%", fuel_phase: "solid" }), "A PMMA rod at 30% oxygen");
+  assert.match(withRod.assumptions.join(" "), /fuel phase "solid" was inferred/);
+  const stated = parseTargetReply(reply({ o2: "30%", fuel_phase: "solid" }), "A solid fuel at 30% oxygen");
+  assert.ok(!stated.assumptions.join(" ").includes("inferred"));
+  const lunar = parseTargetReply(reply({ gravity: "lunar", gravity_regime: "partial_gravity" }), "a lunar base");
+  assert.ok(!lunar.assumptions.join(" ").includes("gravity regime"));
+});

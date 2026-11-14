@@ -64,6 +64,20 @@ export interface Deps {
   onRequest?: (provider: Provider["id"]) => void;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
+  /** Providers known to be down (bad key, no credit), with the time until which they are skipped. Shared across calls. */
+  down?: Map<string, number>;
+}
+
+/** How long a provider that failed as a whole (401, 402, 403, key or credit errors) is left alone. */
+export const PROVIDER_DOWN_MS = 5 * 60_000;
+const sharedDown = new Map<string, number>();
+/** At most this many models are tried per provider, so the fallback provider is always reached. */
+const PER_PROVIDER = 2;
+
+/** A failure of the provider as a whole, not of one model or one request. */
+export function providerLevelFailure(status: number, body: string): boolean {
+  if (status === 401 || status === 402 || status === 403) return true;
+  return status >= 400 && status < 500 && status !== 404 && status !== 429 && /credit|api key|apikey|quota|billing|insufficient|unauthori[sz]ed/i.test(body);
 }
 
 const timeoutMs = (model: string) => (/mistral-large/i.test(model) ? 60_000 : 30_000);
@@ -91,7 +105,9 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
   if (list.length === 0) throw new NoModelAvailable("no language-model provider is configured");
   const deadline = AbortSignal.timeout(args.deadlineMs ?? 25_000);
   const overall = args.signal ? AbortSignal.any([args.signal, deadline]) : deadline;
-  const maxCandidates = args.maxCandidates ?? 3;
+  const maxCandidates = args.maxCandidates ?? 6;
+  const down = deps.down ?? sharedDown;
+  const triedBy = new Map<string, number>();
   let retriesLeft = 1;
   let tried = 0;
   let firstTried: string | undefined;
@@ -99,11 +115,17 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
 
   for (const { provider, model } of list) {
     if (tried >= maxCandidates) break;
+    if ((down.get(provider.id) ?? 0) > now()) {
+      reasons.push(`${provider.id}: marked down`);
+      continue;
+    }
+    if ((triedBy.get(provider.id) ?? 0) >= PER_PROVIDER) continue;
     if (deps.allow && !deps.allow(provider.id)) {
       reasons.push(`${provider.id}: daily cap reached`);
       continue;
     }
     tried++;
+    triedBy.set(provider.id, (triedBy.get(provider.id) ?? 0) + 1);
     firstTried ??= model;
     for (;;) {
       if (args.signal?.aborted) throw new DOMException("aborted", "AbortError");
@@ -130,6 +152,12 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
         status = res.status;
         if (!res.ok) {
           reasons.push(`${model}: HTTP ${res.status}`);
+          const text = res.status >= 400 && res.status < 500 ? await res.text().catch(() => "") : "";
+          if (providerLevelFailure(res.status, text)) {
+            down.set(provider.id, now() + PROVIDER_DOWN_MS); // skip the rest of this provider's models, now and for 5 minutes
+            reasons.push(`${provider.id}: marked down for 5 minutes`);
+            break;
+          }
         } else {
           const meta: Meta = { provider: provider.id, model, latency_ms: now() - t0, ...(firstTried !== model ? { fell_back_from: firstTried } : {}) };
           if (args.stream) {

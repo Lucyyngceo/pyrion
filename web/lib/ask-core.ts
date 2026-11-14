@@ -30,6 +30,23 @@ function extractJson(text: string): unknown {
 }
 
 const NUMS = /\d+(?:\.\d+)?/g;
+
+/** Words in a question that state a regime value outright. A value the model supplies without one of them was inferred. */
+const STATES: Record<string, RegExp> = {
+  solid: /\bsolids?\b/i,
+  liquid: /\bliquids?\b|\bdroplets?\b/i,
+  gas: /\bgas(?:es|eous)?\b/i,
+  N2: /\bn2\b|\bnitrogen\b/i,
+  He: /\bhelium\b/i,
+  CO2: /\bco2\b|\bcarbon dioxide\b/i,
+  Ar: /\bargon\b/i,
+  mixed: /\bmixed\b/i,
+  normal: /\bnormal flame\b/i,
+  inverse: /\binverse\b/i,
+  microgravity: /\bmicro-?gravity\b|\bweightless/i,
+  partial_gravity: /\bpartial\b/i,
+  normal_gravity: /\bnormal gravity\b|\b1 ?g\b|\bearth gravity\b/i,
+};
 const norm = (s: string) => s.normalize("NFKC").toLowerCase();
 
 /**
@@ -90,10 +107,18 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
   }
   const r = targetFromQuantities(input as TargetQuantities);
   if (!r.ok) throw new Error(r.errors.map((e) => `${e.field}: ${e.message}`).join("; "));
+  // A regime axis the model filled in without the question stating it is shown as an assumption.
+  const inferred: string[] = [];
+  for (const k of REGIME_KEYS) {
+    const v = input[k];
+    if (v === undefined) continue;
+    if (k === "gravity_regime" && input.gravity !== undefined) continue; // derived by the engine from the stated gravity
+    if (!(STATES[v]?.test(question) ?? false)) inferred.push(`${k.replaceAll("_", " ")} "${v}" was inferred by the model: the question does not state it.`);
+  }
   const assumptions = Array.isArray(o.assumptions) ? o.assumptions.filter((a): a is string => typeof a === "string" && keepAssumption(a, question)).slice(0, 5) : [];
   return {
     target: r.target,
-    assumptions,
+    assumptions: [...inferred, ...assumptions].slice(0, 6),
     unstated,
     conversions: r.conversions.map((c) => c.display),
     warnings: [...dropped, ...r.conversions.flatMap((c) => [...c.notes, ...c.warnings])],

@@ -141,10 +141,50 @@ test("an answer that does not validate is a failure; <think> blocks and fences a
   assert.equal(r.meta.model, "b/two");
 });
 
-test("at most three candidates are tried", async () => {
-  const { f, calls } = fake({ "a/one": [400], "b/two": [400], "n/one": [400], "n/two": [200] });
-  await assert.rejects(complete({ messages }, { providers, fetch: f }), NoModelAvailable);
-  assert.equal(calls.length, 3);
+test("at most two models are tried per provider, so the fallback is always reached", async () => {
+  const { f, calls } = fake({ "a/one": [400], "b/two": [400], "n/one": [400], "n/two": [400] });
+  await assert.rejects(complete({ messages }, { providers, fetch: f, down: new Map() }), NoModelAvailable);
+  assert.deepEqual(calls, ["or.test:a/one", "or.test:b/two", "nim.test:n/one", "nim.test:n/two"]);
+});
+
+const status = (n: number, body = "{}") => new Response(body, { status: n });
+function seqFetch(table: Record<string, Response[]>) {
+  const calls: string[] = [];
+  const f = (async (url: string, init: RequestInit) => {
+    const model = JSON.parse(String(init.body)).model as string;
+    calls.push(`${new URL(url).host}:${model}`);
+    return table[model]?.shift() ?? ok(model);
+  }) as unknown as typeof fetch;
+  return { f, calls };
+}
+
+test("primary 401: the whole provider is skipped and the fallback answers", async () => {
+  const down = new Map<string, number>();
+  const { f, calls } = seqFetch({ "a/one": [status(401)], "b/two": [status(401)] });
+  const r = await complete({ messages }, { providers, fetch: f, down });
+  assert.equal(r.meta.provider, "nim");
+  assert.deepEqual(calls, ["or.test:a/one", "nim.test:n/one"]); // b/two never tried
+  // and for the next 5 minutes, without trying it at all
+  const again = await complete({ messages }, { providers, fetch: seqFetch({}).f, down });
+  assert.equal(again.meta.provider, "nim");
+});
+
+test("primary 402 (no credit), or a 4xx that says so: the fallback answers", async () => {
+  const { f } = seqFetch({ "a/one": [status(402)] });
+  assert.equal((await complete({ messages }, { providers, fetch: f, down: new Map() })).meta.provider, "nim");
+  const { f: f2 } = seqFetch({ "a/one": [status(400, '{"error":"Insufficient credits"}')] });
+  assert.equal((await complete({ messages }, { providers, fetch: f2, down: new Map() })).meta.provider, "nim");
+});
+
+test("primary 429 twice: the fallback answers", async () => {
+  const { f } = seqFetch({ "a/one": [status(429), status(429)], "b/two": [status(429)] });
+  const r = await complete({ messages }, { providers, fetch: f, down: new Map(), sleep: async () => {} });
+  assert.equal(r.meta.provider, "nim");
+});
+
+test("everything down: NoModelAvailable (structured mode)", async () => {
+  const f = (async () => status(401)) as unknown as typeof fetch;
+  await assert.rejects(complete({ messages }, { providers, fetch: f, down: new Map() }), NoModelAvailable);
 });
 
 test("one retry across the whole run, with a backoff on 429", async () => {
