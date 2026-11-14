@@ -25,12 +25,30 @@ export default async function Page() {
           NASA measurements.
         </div>
       ) : (
-        <p className="data-line muted small">
-          {s.records.toLocaleString("en-US")} condition values extracted from {s.accessions} of 24 PSI investigations:{" "}
-          {s.verified.toLocaleString("en-US")} verified by a person, {(s.records - s.verified - s.flagged).toLocaleString("en-US")}{" "}
-          extracted and not yet verified, {s.flagged.toLocaleString("en-US")} flagged as insufficient evidence
-          {s.rejected > 0 ? `, ${s.rejected} rows rejected by the engine's validator` : ""}.
-        </p>
+        <div className="evidence-status" aria-label="Status of the extracted values">
+          <div className="es-head">
+            <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of 24 PSI investigations
+            {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}
+          </div>
+          <div className="es-bar" role="img" aria-label={`${s.verified} verified, ${s.records - s.verified - s.flagged} extracted not yet verified, ${s.flagged} flagged as insufficient evidence`}>
+            <i className="es-ver" style={{ flexGrow: s.verified }} />
+            <i className="es-ext" style={{ flexGrow: s.records - s.verified - s.flagged }} />
+            <i className="es-flag" style={{ flexGrow: s.flagged }} />
+          </div>
+          <ul className="es-legend small">
+            <li>
+              <i className="es-ver" /> {s.verified.toLocaleString("en-US")} verified by a person
+            </li>
+            <li>
+              <i className="es-ext" /> {(s.records - s.verified - s.flagged).toLocaleString("en-US")} extracted with file and
+              location, not yet verified by a person
+            </li>
+            <li>
+              <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged as insufficient evidence, not counted
+              as evidence
+            </li>
+          </ul>
+        </div>
       )}
 
       <Explorer dataset={dataset} />

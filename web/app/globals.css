@@ -1230,3 +1230,14 @@ input[type="range"] {
 .lin-steps span:not(.lin-k) { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
 .lin-steps code { font-size: 11.5px; color: var(--muted); margin-top: auto; }
 .lin-steps code { overflow-wrap: anywhere; }
+/* evidence status */
+.evidence-status { margin: 10px 0 16px; max-width: 920px; }
+.es-head { font-size: 13.5px; color: var(--ink-2); margin-bottom: 6px; }
+.es-head b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.es-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--surface-2); gap: 2px; }
+.es-bar i { display: block; min-width: 0; }
+.es-ver { background: var(--s3); }
+.es-ext { background: var(--s1); opacity: 0.55; }
+.es-flag { background: repeating-linear-gradient(135deg, var(--muted) 0 3px, transparent 3px 6px); }
+.es-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 6px 0 0; padding: 0; color: var(--ink-2); }
+.es-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 4px; }
