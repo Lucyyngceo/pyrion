@@ -1,0 +1,23 @@
+# Records, on GitHub's servers, when each push arrived and what it contained.
+# The timestamp comes from the GitHub runner, not from the developer's machine.
+name: provenance
+on: push
+permissions:
+  contents: read
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Stamp tree
+        run: |
+          {
+            echo "### Provenance stamp"
+            echo "| field | value |"
+            echo "|---|---|"
+            echo "| server time (UTC) | $(date -u +%Y-%m-%dT%H:%M:%SZ) |"
+            echo "| commit | \`$GITHUB_SHA\` |"
+            echo "| tree | \`$(git rev-parse 'HEAD^{tree}')\` |"
+            echo "| files | $(git ls-files | wc -l) |"
+            echo "| lines | $(git ls-files -z | xargs -0 cat 2>/dev/null | wc -l) |"
+          } >> "$GITHUB_STEP_SUMMARY"
