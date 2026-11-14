@@ -22,6 +22,10 @@ How the data are selected, downloaded and checked: [`data/README.md`](data/READM
 
 Development started on November 14, 2026, after the hackathon opened at 09:00 CST (UTC−6). Pre-event work was conceptual only: challenge study and scope decisions. Server-side push timestamps and CI run logs are available in the repository history.
 
+## How it was built
+
+One person (team NDMLM) working from two computers. Data, extraction, engine and validation were built on one; the interface redesign was built on the other in branch `laptop/ui` and merged through pull request #1. Every push carries a server-side provenance stamp (GitHub Actions, workflow `provenance`).
+
 ## Use of SI tools
 
 This project uses Super Intelligence (SI) tools during development (Claude Code). A full disclosure will be added before submission: which tools, for what, and which parts of the code and text they produced.
