@@ -1,22 +1,45 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { ConditionRecord, Dataset, Investigation, InvestigationResult, Reason, Verdict } from "@/lib/types";
+import { memo, useEffect, useRef, useState } from "react";
+import type { Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
+import { envelopeName } from "@/lib/layers";
+import type { Dataset, Investigation } from "@/lib/types";
+import { axisLabel, readable, valueLabel } from "@/lib/units";
 
 const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string }> = {
   APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app" },
   EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext" },
-  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not stated in the extracted records", cls: "v-ins" },
+  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins" },
   REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar" },
 };
+const ORDER: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
 
-const KIND_ICON: Record<Reason["kind"], string> = {
-  match: "=",
-  barrier: "≠",
-  inside: "✓",
-  outside: "↗",
-  missing: "?",
+const REASON_ICON: Partial<Record<Reason["code"], string>> = {
+  regime_barrier: "≠",
+  regime_match: "=",
+  inside_range: "✓",
+  inside_hull: "✓",
+  outside_range: "↗",
+  outside_hull: "↗",
+  nearest_point: "•",
 };
+const iconOf = (r: Reason) => REASON_ICON[r.code] ?? "?";
+
+export const citationKey = (c: Citation) =>
+  `${c.accession}|${c.test_id}|${c.variable}|${c.value}|${c.source_file}|${c.source_location}`;
+
+const doiUrl = (doi: string) => `https://doi.org/${doi}`;
+
+/** "gravity_regime=?|fuel_phase=liquid" → "gravity regime not stated, fuel phase liquid". */
+const clusterName = (key: string) =>
+  key
+    .split("|")
+    .map((part) => {
+      const [axis, value = ""] = part.split("=");
+      return value === "?" ? `${axisLabel(axis).toLowerCase()} not stated` : `${axisLabel(axis).toLowerCase()} ${valueLabel(value)}`;
+    })
+    .join(", ");
+const num = (a: string) => Number.parseInt(a.replace(/\D+/g, ""), 10) || 0;
 
 export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   const v = VERDICT[verdict];
@@ -30,121 +53,126 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   );
 }
 
-const doiUrl = (doi: string) => `https://doi.org/${doi}`;
+interface Ctx {
+  dataset: Dataset;
+  lookup: Map<string, ConditionRecord>;
+}
 
-function Receipt({
-  inv,
-  records,
-  files,
-  synthetic,
-  anchor,
-}: {
-  inv: Investigation | undefined;
-  records: ConditionRecord[];
-  files: Dataset["files"];
-  synthetic: boolean;
-  anchor: (i: number) => string;
-}) {
-  if (records.length === 0) {
-    return <p className="muted small">No condition records to show for this investigation.</p>;
-  }
+const RECEIPT_CAP = 30;
+
+function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; citations: Citation[]; ctx: Ctx; anchor: (i: number) => string }) {
+  const [all, setAll] = useState(false);
+  const synthetic = ctx.dataset.mode === "synthetic";
+  if (citations.length === 0) return <p className="muted small">The engine cites no record for this verdict.</p>;
+  const shown = all ? citations : citations.slice(0, RECEIPT_CAP);
   return (
-    <ol className="receipt">
-      {records.map((r, i) => {
-        const f = files[r.source_file];
-        return (
-          <li key={i} id={anchor(i)}>
-            <div className="rc-main">
-              <span className="rc-n">[{i + 1}]</span>
-              <code>{r.variable}</code> = <strong>{r.value}</strong>
-              {r.unit && r.unit !== "1" ? ` ${r.unit}` : ""}
-              {(r.value_original !== r.value || r.unit_original !== r.unit) && (
-                <span className="muted">
-                  {" "}
-                  (as written: {r.value_original}
-                  {r.unit_original ? ` ${r.unit_original}` : ""})
-                </span>
-              )}
-              <span className={`rc-status rc-${r.status}`}>
-                {r.status === "verified" ? "verified by a person" : r.status === "extracted" ? "extracted, not yet verified" : "insufficient evidence"}
-              </span>
-            </div>
-            <div className="rc-src">
-              {synthetic ? (
-                <span className="synthetic-tag">synthetic fixture, no source</span>
-              ) : (
-                <>
-                  {inv?.doi ? (
-                    <a href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
-                      {inv.accession} v{inv.version} · doi:{inv.doi}
-                    </a>
-                  ) : (
-                    <span>{r.accession}</span>
-                  )}
-                  {" · "}
-                  <code className="path">{r.source_file}</code>
-                  {" · "}
-                  <span>{r.source_location.replaceAll(";", ", ")}</span>
-                  {r.test_id !== "*" && <span> · test {r.test_id}</span>}
-                  {" · "}
-                  <span>{r.method === "table" ? "read from a PSI table" : "read from a document"}</span>
-                </>
-              )}
-            </div>
-            {r.quote && (
-              <blockquote className="rc-quote">
-                {r.method === "table" ? "Column header: " : ""}
-                <q>{r.quote}</q>
-              </blockquote>
-            )}
-            {(r.note || f) && (
-              <div className="rc-meta muted">
-                {r.note && <span>Note: {r.note}</span>}
-                {f && (
-                  <span title={f.sha256}>
-                    {r.note ? " · " : ""}sha256 {f.sha256.slice(0, 12)}… ({f.source})
+    <>
+      <ol className="receipt">
+        {shown.map((c, i) => {
+          const rec = ctx.lookup.get(citationKey(c));
+          const f = ctx.dataset.sourceFiles[c.source_file];
+          const asWritten = rec && (rec.value_original !== c.value || rec.unit_original !== c.unit);
+          return (
+            <li key={i} id={anchor(i)}>
+              <div className="rc-main">
+                <span className="rc-n">[{i + 1}]</span>
+                <code>{c.variable}</code> = <strong>{c.value}</strong>
+                {c.unit && c.unit !== "1" ? ` ${c.unit}` : ""}
+                {asWritten && (
+                  <span className="muted">
+                    {" "}
+                    (as written: {rec.value_original}
+                    {rec.unit_original ? ` ${rec.unit_original}` : ""})
                   </span>
                 )}
+                {c.test_id !== "*" && <span className="muted"> · test {c.test_id}</span>}
+                <span className={`rc-status rc-${c.status}`}>
+                  {c.status === "verified" ? "verified by a person" : c.status === "extracted" ? "extracted, not yet verified" : "insufficient evidence"}
+                </span>
               </div>
-            )}
-          </li>
-        );
-      })}
-    </ol>
+              <div className="rc-src">
+                {synthetic ? (
+                  <span className="synthetic-tag">synthetic fixture, no NASA source</span>
+                ) : (
+                  <>
+                    {inv?.doi ? (
+                      <a href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
+                        {inv.accession} v{inv.version} · doi:{inv.doi}
+                      </a>
+                    ) : (
+                      <span>{c.accession}</span>
+                    )}
+                    {" · "}
+                    <code className="path">{c.source_file}</code>
+                    {" · "}
+                    <span>{c.source_location.replaceAll(";", ", ")}</span>
+                    {" · "}
+                    <span>{c.method === "table" ? "read by code from a PSI table" : "read from a document"}</span>
+                  </>
+                )}
+              </div>
+              {c.quote && (
+                <blockquote className="rc-quote">
+                  {c.method === "table" ? "Column header: " : ""}
+                  <q>{c.quote}</q>
+                </blockquote>
+              )}
+              {(rec?.note || f) && (
+                <div className="rc-meta muted">
+                  {rec?.note && <span>Note: {rec.note}</span>}
+                  {f && (
+                    <span title={f.sha256}>
+                      {rec?.note ? " · " : ""}file sha256 {f.sha256.slice(0, 12)}… ({f.source})
+                    </span>
+                  )}
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+      {citations.length > RECEIPT_CAP && (
+        <button type="button" className="linklike small more" onClick={() => setAll((a) => !a)}>
+          {all ? "Show fewer" : `Show all ${citations.length} source values`}
+        </button>
+      )}
+    </>
   );
 }
 
 function ResultRow({
-  result,
+  iv,
+  cluster,
   inv,
-  dataset,
+  ctx,
   open,
   onOpenChange,
   onHover,
 }: {
-  result: InvestigationResult;
+  iv: InvestigationVerdict;
+  cluster: ClusterVerdict | undefined;
   inv: Investigation | undefined;
-  dataset: Dataset;
+  ctx: Ctx;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onHover: (accession: string | null) => void;
 }) {
   const rowRef = useRef<HTMLElement>(null);
-  const synthetic = dataset.mode === "synthetic";
+  const synthetic = ctx.dataset.mode === "synthetic";
 
-  // Receipt = every record cited by a reason, numbered once.
-  const index = new Map<ConditionRecord, number>();
-  const ordered: ConditionRecord[] = [];
-  for (const reason of result.reasons) {
-    for (const r of reason.records) {
-      if (!index.has(r)) {
-        index.set(r, ordered.length);
-        ordered.push(r);
+  const reasons = cluster ? [...cluster.reasons.filter((r) => !r.informational), ...cluster.reasons.filter((r) => r.informational)] : [];
+  const index = new Map<string, number>();
+  const ordered: Citation[] = [];
+  for (const r of reasons) {
+    for (const c of r.citations) {
+      const k = citationKey(c);
+      if (!index.has(k)) {
+        index.set(k, ordered.length);
+        ordered.push(c);
       }
     }
   }
-  const anchor = (i: number) => `rc-${result.accession}-${i + 1}`;
-
+  const anchor = (i: number) => `rc-${iv.accession}-${i + 1}`;
   const jump = (i: number) => {
     onOpenChange(true);
     requestAnimationFrame(() => document.getElementById(anchor(i))?.scrollIntoView({ block: "nearest", behavior: "smooth" }));
@@ -154,21 +182,24 @@ function ResultRow({
     if (open) rowRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }, [open]);
 
+  const others = iv.clusters.filter((c) => c.clusterKey !== iv.decidingCluster);
+
   return (
     <article
       ref={rowRef}
-      className={`result ${VERDICT[result.verdict].cls}`}
-      id={`res-${result.accession}`}
-      onPointerEnter={() => onHover(result.accession)}
+      className={`result ${VERDICT[iv.verdict].cls}`}
+      id={`res-${iv.accession}`}
+      onPointerEnter={() => onHover(iv.accession)}
       onPointerLeave={() => onHover(null)}
     >
       <header className="result-head">
-        <VerdictBadge verdict={result.verdict} />
+        <VerdictBadge verdict={iv.verdict} />
         <div className="result-id">
-          <span className="acc">{result.accession}</span>
+          <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
-          <span className="verdict-plain">{VERDICT[result.verdict].plain}</span>
+          <span className="verdict-plain">{VERDICT[iv.verdict].plain}</span>
         </div>
+        {cluster?.rank != null && <span className="rank">rank {cluster.rank}</span>}
       </header>
       {inv && <p className="result-title">{inv.title}</p>}
       <div className="result-cite">
@@ -187,26 +218,45 @@ function ResultRow({
         )}
       </div>
 
+      {cluster && (
+        <p className="cluster-line small">
+          <span className="muted">Evidence used:</span> {envelopeName(cluster)} · {cluster.tests.length} test
+          {cluster.tests.length === 1 ? "" : "s"}
+          {cluster.evidenceStatus === "includes_unverified" && <span className="muted"> · includes values not yet verified by a person</span>}
+          {cluster.evidenceStatus === "verified" && <span className="muted"> · every value verified by a person</span>}
+          <br />
+          <span className="muted">Distance:</span>{" "}
+          {cluster.distance !== null ? (
+            <>
+              {cluster.distance.toPrecision(3)} <span className="muted">({cluster.distanceNote})</span>
+            </>
+          ) : (
+            <span>{cluster.distanceNote}</span>
+          )}
+        </p>
+      )}
+
       <ul className="reasons">
-        {result.reasons.map((reason, i) => {
-          const refs = reason.records.map((r) => index.get(r)!);
+        {reasons.map((reason, i) => {
+          const refs = [...new Set(reason.citations.map((c) => index.get(citationKey(c))!))];
           return (
-            <li key={i} className={`reason k-${reason.kind}`}>
+            <li key={i} className={`reason r-${reason.code}${reason.informational ? " r-info" : ""}`}>
               <span className="reason-icon" aria-hidden="true">
-                {KIND_ICON[reason.kind]}
+                {iconOf(reason)}
               </span>
               <span>
-                {reason.text}
+                {reason.informational && <span className="ctx-tag">context</span>}
+                {readable(reason.message)}
                 {refs.length > 0 && (
                   <span className="refs">
-                    {refs.slice(0, 4).map((n) => (
-                      <button key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source ${n + 1}`}>
+                    {refs.slice(0, 3).map((n) => (
+                      <button key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source value ${n + 1}`}>
                         [{n + 1}]
                       </button>
                     ))}
-                    {refs.length > 4 && (
-                      <button type="button" className="ref" onClick={() => jump(refs[4])}>
-                        +{refs.length - 4} more
+                    {refs.length > 3 && (
+                      <button type="button" className="ref" onClick={() => jump(refs[3])}>
+                        +{refs.length - 3}
                       </button>
                     )}
                   </span>
@@ -217,39 +267,64 @@ function ResultRow({
         })}
       </ul>
 
+      {others.length > 0 && (
+        <p className="others small muted">
+          Other regime clusters in this investigation:{" "}
+          {others.map((o, i) => (
+            <span key={o.clusterKey}>
+              {i > 0 && "; "}
+              {clusterName(o.clusterKey)} <span className="mono">{o.verdict}</span>
+            </span>
+          ))}
+          . The investigation takes the verdict of its best cluster.
+        </p>
+      )}
+
       <details className="receipt-box" open={open} onToggle={(e) => onOpenChange((e.target as HTMLDetailsElement).open)}>
         <summary>
           Receipt: {ordered.length} source value{ordered.length === 1 ? "" : "s"}
         </summary>
-        <Receipt inv={inv} records={ordered} files={dataset.files} synthetic={synthetic} anchor={anchor} />
+        {open && <ReceiptList inv={inv} citations={ordered} ctx={ctx} anchor={anchor} />}
       </details>
     </article>
   );
 }
 
 interface Props {
-  results: InvestigationResult[];
+  evaluation: Evaluation;
   dataset: Dataset;
+  lookup: Map<string, ConditionRecord>;
   openAccession: string | null;
   onOpenAccession: (a: string | null) => void;
   onHover: (a: string | null) => void;
-  engineLabel: string;
 }
 
-export default function Results({ results, dataset, openAccession, onOpenAccession, onHover, engineLabel }: Props) {
-  const invs = new Map(dataset.investigations.map((i) => [i.accession, i]));
-  const comparable = results.filter((r) => r.verdict !== "REGIME_BARRIER");
-  const barrier = results.filter((r) => r.verdict === "REGIME_BARRIER");
+function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, onHover }: Props) {
   const [showBarrier, setShowBarrier] = useState(true);
+  const ctx: Ctx = { dataset, lookup };
+  const invs = new Map(dataset.investigations.map((i) => [i.accession, i]));
+  const clusters = new Map([...evaluation.ranked, ...evaluation.unranked].map((c) => [`${c.accession}|${c.clusterKey}`, c]));
+  const clusterOf = (iv: InvestigationVerdict) => clusters.get(`${iv.accession}|${iv.decidingCluster}`);
 
-  const row = (r: InvestigationResult) => (
+  const rows = evaluation.investigations.toSorted((a, b) => {
+    const ca = clusterOf(a);
+    const cb = clusterOf(b);
+    return ORDER[a.verdict] - ORDER[b.verdict] || (ca?.rank ?? 1e9) - (cb?.rank ?? 1e9) || num(a.accession) - num(b.accession);
+  });
+  const comparable = rows.filter((r) => r.verdict !== "REGIME_BARRIER");
+  const barrier = rows.filter((r) => r.verdict === "REGIME_BARRIER");
+  const evaluated = new Set(rows.map((r) => r.accession));
+  const notYet = dataset.investigations.filter((i) => !evaluated.has(i.accession));
+
+  const row = (iv: InvestigationVerdict) => (
     <ResultRow
-      key={r.accession}
-      result={r}
-      inv={invs.get(r.accession)}
-      dataset={dataset}
-      open={openAccession === r.accession}
-      onOpenChange={(o) => onOpenAccession(o ? r.accession : openAccession === r.accession ? null : openAccession)}
+      key={iv.accession}
+      iv={iv}
+      cluster={clusterOf(iv)}
+      inv={invs.get(iv.accession)}
+      ctx={ctx}
+      open={openAccession === iv.accession}
+      onOpenChange={(o) => onOpenAccession(o ? iv.accession : openAccession === iv.accession ? null : openAccession)}
       onHover={onHover}
     />
   );
@@ -259,18 +334,19 @@ export default function Results({ results, dataset, openAccession, onOpenAccessi
       <div className="results-top">
         <h2 id="results-h">Applicability, one row per investigation</h2>
         <p className="muted small">
-          Deterministic rules decide every verdict; no language model is involved. {engineLabel}.
+          Every verdict is computed by the PYRION engine ({evaluation.engine.name} {evaluation.engine.version}): deterministic
+          rules, no language model. Same records and target in, same verdict out.
         </p>
       </div>
 
       <div className="group">
         <h3 className="group-title">
-          Comparable regime or undetermined <span className="count">{comparable.length}</span>
+          Same regime, or regime not fully stated <span className="count">{comparable.length}</span>
         </h3>
         {comparable.length === 0 ? (
           <p className="empty">
-            No investigation shares the target&apos;s regime. Nothing in the extracted PSI records can be compared to this
-            condition; the list below says why for each one.
+            No investigation in the extracted PSI records shares the target&apos;s regime. Nothing can be compared to this
+            condition; the rows below say why for each one.
           </p>
         ) : (
           comparable.map(row)
@@ -286,12 +362,36 @@ export default function Results({ results, dataset, openAccession, onOpenAccessi
             </button>
           </h3>
           <p className="muted small">
-            A regime barrier is not a low score. Gravity regime, fuel phase and diluent change the physics, so no distance
-            is computed across them.
+            A regime barrier is not a low score. Gravity regime, fuel phase and diluent change the physics, so no distance is
+            defined across them.
           </p>
           {showBarrier && barrier.map(row)}
+        </div>
+      )}
+
+      {notYet.length > 0 && (
+        <div className="group group-pending">
+          <h3 className="group-title">
+            No condition records extracted yet <span className="count">{notYet.length}</span>
+          </h3>
+          <p className="muted small">The engine has nothing to evaluate for these PSI investigations yet. No verdict is shown.</p>
+          <ul className="pending">
+            {notYet.map((i) => (
+              <li key={i.accession}>
+                <span className="acc">{i.accession}</span> {i.acronym && <strong>{i.acronym}</strong>}{" "}
+                <span className="muted">{i.title}</span>{" "}
+                {i.doi && (
+                  <a href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
+                    doi:{i.doi}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </section>
   );
 }
+
+export default memo(Results);

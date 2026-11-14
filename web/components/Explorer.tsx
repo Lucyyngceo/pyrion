@@ -1,28 +1,83 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import EnvelopeChart from "./EnvelopeChart";
-import Results from "./Results";
-import TargetPanel from "./TargetPanel";
-import { buildEnvelope, engineInfo, evaluate } from "@/lib/engine-adapter";
-import { sortLayers } from "@/lib/layers";
-import { DEFAULT_PRESET, PRESETS } from "@/lib/presets";
+import { useDeferredValue, useMemo, useState } from "react";
+import EnvelopeChart, { type DomainSeed } from "./EnvelopeChart";
+import Results, { citationKey } from "./Results";
+import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
+import {
+  buildEnvelopes,
+  evaluate,
+  locateTarget,
+  parseConditionCsv,
+  type ConditionRecord,
+  type Evaluation,
+  type Target,
+} from "@/lib/engine";
+import { colorMap, sortEnvelopes } from "@/lib/layers";
+import { PRESET_VIEWS } from "@/lib/presets";
 import { envelopeStatus } from "@/lib/summary";
-import type { Dataset, Target } from "@/lib/types";
+import type { Dataset } from "@/lib/types";
+
+const INITIAL: TargetState = applyPreset(
+  { presetId: null, regime: { fuel_phase: "solid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
+  PRESET_VIEWS[0],
+);
+
+const SEED: DomainSeed = {
+  o2: PRESET_VIEWS.flatMap((v) => (v.preset.continuous.o2_mole_fraction ? [v.preset.continuous.o2_mole_fraction.value] : [])),
+  pressure: PRESET_VIEWS.flatMap((v) => (v.preset.continuous.pressure ? [v.preset.continuous.pressure.value] : [])),
+};
+
+function toTarget(s: TargetState): Target {
+  const regime: Target["regime"] = {};
+  for (const [k, v] of Object.entries(s.regime)) if (v) regime[k as keyof Target["regime"]] = v;
+  const continuous: Target["continuous"] = { o2_mole_fraction: s.o2, pressure: s.pressure };
+  if (s.regime.gravity_regime === "partial_gravity" && s.gravityLevel !== undefined && Number.isFinite(s.gravityLevel)) {
+    continuous.gravity_level = s.gravityLevel;
+  }
+  return { regime, continuous };
+}
 
 export default function Explorer({ dataset }: { dataset: Dataset }) {
-  const [target, setTarget] = useState<Target>(DEFAULT_PRESET.target);
-  const [presetId, setPresetId] = useState<string>(DEFAULT_PRESET.id);
+  const [state, setState] = useState<TargetState>(INITIAL);
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [openAccession, setOpenAccession] = useState<string | null>(null);
 
-  const layers = useMemo(() => sortLayers(buildEnvelope(dataset.records)), [dataset.records]);
-  const results = useMemo(
-    () => evaluate(target, dataset.records, dataset.investigations),
-    [target, dataset.records, dataset.investigations],
+  // The engine parses the CSV text itself: same validation as its command-line tool.
+  const records = useMemo<ConditionRecord[]>(
+    () => dataset.files.flatMap((f) => parseConditionCsv(f.text, f.name, f.accession).records),
+    [dataset.files],
   );
-  const status = envelopeStatus(results, target);
-  const preset = PRESETS.find((p) => p.id === presetId);
+  const lookup = useMemo(() => {
+    const m = new Map<string, ConditionRecord>();
+    for (const r of records) {
+      const k = citationKey(r);
+      if (!m.has(k)) m.set(k, r);
+    }
+    return m;
+  }, [records]);
+
+  const options = useMemo(() => ({ minimumStatus: verifiedOnly ? ("verified" as const) : ("extracted" as const) }), [verifiedOnly]);
+  const envelopeSet = useMemo(() => buildEnvelopes(records, options), [records, options]);
+  const envelopes = useMemo(() => sortEnvelopes(envelopeSet.regimes), [envelopeSet]);
+  const colors = useMemo(() => colorMap(envelopes), [envelopes]);
+
+  const deferred = useDeferredValue(state);
+  const target = useMemo(() => toTarget(deferred), [deferred]);
+  const result = useMemo((): { evaluation: Evaluation | null; error: string | null } => {
+    try {
+      return { evaluation: evaluate(records, target, options), error: null };
+    } catch (e) {
+      return { evaluation: null, error: e instanceof Error ? e.message : String(e) };
+    }
+  }, [records, target, options]);
+  const locations = useMemo(() => new Map(locateTarget(target, envelopeSet).map((l) => [l.key, l])), [target, envelopeSet]);
+
+  const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
+  const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
+  const counts = result.evaluation?.counts.investigations;
+  const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
   return (
     <>
@@ -31,67 +86,73 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured test points by O₂ and pressure. One layer per regime: gravity regime · fuel phase · diluent.
+              Measured test points by O₂ and pressure, one layer per regime: gravity regime · fuel phase · diluent.
             </p>
           </div>
-          <EnvelopeChart
-            layers={layers}
-            target={target}
-            targetLabel={preset ? preset.label : "Custom target"}
-            status={status}
-            highlight={highlight}
-            onPointSelect={(a) => setOpenAccession(a)}
-          />
+          {status ? (
+            <EnvelopeChart
+              envelopes={envelopes}
+              colors={colors}
+              locations={locations}
+              target={{ o2: deferred.o2, pressure: deferred.pressure }}
+              targetLabel={view ? view.short : "Custom target"}
+              status={status}
+              seed={SEED}
+              highlight={highlight}
+              onPointSelect={setOpenAccession}
+            />
+          ) : (
+            <p className="banner">The engine rejected this target: {result.error}</p>
+          )}
         </section>
         <aside className="card panel-card">
           <TargetPanel
-            target={target}
-            presetId={presetId}
-            onPreset={(p) => {
-              setPresetId(p.id);
-              setTarget(p.target);
-            }}
-            onChange={(t) => {
-              setPresetId("custom");
-              setTarget(t);
-            }}
+            state={state}
+            onChange={setState}
+            verifiedOnly={verifiedOnly}
+            onVerifiedOnly={setVerifiedOnly}
+            verifiedCount={verifiedCount}
           />
-          <dl className="tally" aria-label="Verdict counts">
-            <div className="t-app">
-              <dt>Applicable</dt>
-              <dd>{status.counts.APPLICABLE}</dd>
-            </div>
-            <div className="t-ext">
-              <dt>Extrapolation</dt>
-              <dd>{status.counts.EXTRAPOLATION}</dd>
-            </div>
-            <div className="t-ins">
-              <dt>Insufficient evidence</dt>
-              <dd>{status.counts.INSUFFICIENT_EVIDENCE}</dd>
-            </div>
-            <div className="t-bar">
-              <dt>Not comparable</dt>
-              <dd>{status.counts.REGIME_BARRIER}</dd>
-            </div>
-          </dl>
+          {counts && (
+            <dl className="tally" aria-label="Verdict counts, by investigation">
+              <div className="t-app">
+                <dt>Applicable</dt>
+                <dd>{counts.APPLICABLE}</dd>
+              </div>
+              <div className="t-ext">
+                <dt>Extrapolation</dt>
+                <dd>{counts.EXTRAPOLATION}</dd>
+              </div>
+              <div className="t-ins">
+                <dt>Insufficient evidence</dt>
+                <dd>{counts.INSUFFICIENT_EVIDENCE}</dd>
+              </div>
+              <div className="t-bar">
+                <dt>Not comparable</dt>
+                <dd>{counts.REGIME_BARRIER}</dd>
+              </div>
+            </dl>
+          )}
         </aside>
       </div>
 
-      <Results
-        results={results}
-        dataset={dataset}
-        openAccession={openAccession}
-        onOpenAccession={setOpenAccession}
-        onHover={setHighlight}
-        engineLabel={engineInfo.label}
-      />
+      {result.evaluation && (
+        <Results
+          evaluation={result.evaluation}
+          dataset={dataset}
+          lookup={lookup}
+          openAccession={openAccession}
+          onOpenAccession={setOpenAccession}
+          onHover={setHighlight}
+        />
+      )}
 
       <section className="card planned" aria-labelledby="planned-h">
         <h2 id="planned-h">
           Ranked by text similarity vs. ranked by physics <span className="tag">planned, not built yet</span>
         </h2>
         <p className="muted">
-          A side-by-side of the same question ranked two ways: by text similarity of the documents, and by the physical
+          The same question ranked two ways, side by side: by text similarity of the documents, and by the physical
           applicability verdicts above.
         </p>
       </section>

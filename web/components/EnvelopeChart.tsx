@@ -1,26 +1,37 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { PRESETS } from "@/lib/presets";
-import { layerColor, regimeLongName, regimeName, sameRegime } from "@/lib/layers";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
+import type { EnvelopePoint, RegimeEnvelope, TargetLocation } from "@/lib/engine";
+import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
 import { ATM_KPA, fmt, kPa, pctO2, psia } from "@/lib/units";
-import type { EnvelopeLayer, EnvelopePoint, Target } from "@/lib/types";
+
+export interface DomainSeed {
+  o2: number[];
+  pressure: number[];
+}
 
 interface Props {
-  layers: EnvelopeLayer[];
-  target: Target;
+  envelopes: RegimeEnvelope[];
+  colors: Map<string, string>;
+  locations: Map<string, TargetLocation>;
+  target: { o2: number; pressure: number };
   targetLabel: string;
   status: EnvelopeStatus;
+  /** Values the axes always include (presets), so switching presets never rescales the chart. */
+  seed: DomainSeed;
   /** Accession hovered in the results list: its points are emphasized. */
   highlight: string | null;
   onPointSelect: (accession: string) => void;
 }
 
-const M = { top: 20, right: 20, bottom: 54, left: 66 };
+const M = { top: 22, right: 22, bottom: 54, left: 66 };
+
+/** Cabin view: the pressure band of every preset, with margin. */
+const CABIN = { y0: 40, y1: 120 };
 
 function niceStep(span: number, count: number) {
-  const raw = span / count;
+  const raw = span / Math.max(1, count);
   const p = 10 ** Math.floor(Math.log10(raw));
   const m = raw / p;
   return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p;
@@ -32,8 +43,10 @@ function ticks(min: number, max: number, count: number) {
   return out;
 }
 
-function Marker({ phase, x, y, color, r = 4.5 }: { phase: string; x: number; y: number; color: string; r?: number }) {
-  const common = { fill: color, stroke: "var(--surface)", strokeWidth: 2, paintOrder: "stroke" as const };
+function Marker({ phase, x, y, color, r = 4.5, hollow = false }: { phase: string; x: number; y: number; color: string; r?: number; hollow?: boolean }) {
+  const common = hollow
+    ? { fill: "var(--surface)", stroke: color, strokeWidth: 1.5 }
+    : { fill: color, stroke: "var(--surface)", strokeWidth: 2, paintOrder: "stroke" as const };
   if (phase === "solid") {
     const s = r * 1.8;
     return <rect x={x - s / 2} y={y - s / 2} width={s} height={s} rx={1.5} {...common} />;
@@ -42,81 +55,99 @@ function Marker({ phase, x, y, color, r = 4.5 }: { phase: string; x: number; y: 
     const h = r * 1.15;
     return <path d={`M${x} ${y - h * 1.25}L${x + h * 1.15} ${y + h * 0.8}L${x - h * 1.15} ${y + h * 0.8}Z`} strokeLinejoin="round" {...common} />;
   }
-  return <circle cx={x} cy={y} r={r} {...common} />;
+  if (phase === "liquid") return <circle cx={x} cy={y} r={r} {...common} />;
+  const d = r * 1.3;
+  return <path d={`M${x} ${y - d}L${x + d} ${y}L${x} ${y + d}L${x - d} ${y}Z`} strokeLinejoin="round" {...common} />;
 }
 
-/** Small inline glyph for the legend, matching the plot marker. */
-function Glyph({ phase, color }: { phase: string; color: string }) {
+function Glyph({ phase, color, hollow }: { phase: string; color: string; hollow: boolean }) {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-      <Marker phase={phase} x={7} y={7.5} color={color} r={4} />
+      <Marker phase={phase} x={7} y={7.5} color={color} r={4} hollow={hollow} />
     </svg>
   );
 }
 
 interface Hover {
-  layer: EnvelopeLayer;
+  env: RegimeEnvelope;
   point: EnvelopePoint;
   x: number;
   y: number;
 }
 
-export default function EnvelopeChart({ layers, target, targetLabel, status, highlight, onPointSelect }: Props) {
+function emphasis(loc: TargetLocation | undefined): "match" | "open" | "dim" {
+  if (!loc) return "dim";
+  if (loc.sameRegime === true) return "match";
+  if (loc.sameRegime === null) return "open";
+  return "dim";
+}
+
+function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, status, seed, highlight, onPointSelect }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(760);
+  const [width, setWidth] = useState(780);
   const [hidden, setHidden] = useState<Set<string>>(() => new Set());
   const [hover, setHover] = useState<Hover | null>(null);
+  const [view, setView] = useState<"all" | "cabin">("all");
+  // No marker animation until the real width is known, so nothing slides in on page load.
+  const [measured, setMeasured] = useState(false);
 
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setWidth(Math.max(320, Math.round(entry.contentRect.width))));
+    let raf = 0;
+    const ro = new ResizeObserver(([entry]) => {
+      setWidth(Math.max(320, Math.round(entry.contentRect.width)));
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => requestAnimationFrame(() => setMeasured(true)));
+    });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
   }, []);
 
-  const height = Math.round(Math.min(520, Math.max(340, width * 0.6)));
+  const height = Math.round(Math.min(540, Math.max(340, width * 0.6)));
   const iw = width - M.left - M.right;
   const ih = height - M.top - M.bottom;
 
-  // Domain: measured points and every preset, so presets never rescale the chart;
-  // a custom target outside it extends the domain.
   const domain = useMemo(() => {
-    const xs: number[] = [];
-    const ys: number[] = [];
-    for (const l of layers) for (const p of l.points) {
-      xs.push(p.o2);
+    const xs = [...seed.o2, target.o2];
+    const ys = [...seed.pressure, target.pressure];
+    for (const e of envelopes) for (const p of e.points) {
+      xs.push(p.o2_mole_fraction);
       ys.push(p.pressure);
     }
-    for (const p of PRESETS) {
-      xs.push(p.target.o2_mole_fraction);
-      ys.push(p.target.pressure);
+    const x0 = Math.max(0, Math.floor((Math.min(...xs) - 0.02) / 0.05) * 0.05);
+    const x1 = Math.min(1, Math.ceil((Math.max(...xs) + 0.02) / 0.05) * 0.05);
+    const yLo = Math.min(...ys) * 0.88;
+    const yHi = Math.max(...ys) * 1.06;
+    if (view === "cabin") {
+      return { x0, x1, y0: Math.min(CABIN.y0, Math.floor(target.pressure / 10) * 10), y1: Math.max(CABIN.y1, Math.ceil(target.pressure / 10) * 10) };
     }
-    xs.push(target.o2_mole_fraction);
-    ys.push(target.pressure);
-    const x0 = Math.max(0, Math.floor((Math.min(...xs) - 0.03) / 0.05) * 0.05);
-    const x1 = Math.min(1, Math.ceil((Math.max(...xs) + 0.03) / 0.05) * 0.05);
-    const yMaxRaw = Math.max(...ys) * 1.08;
-    const ys1 = niceStep(yMaxRaw, 6);
-    const y1 = Math.ceil(yMaxRaw / ys1) * ys1;
-    return { x0, x1, y0: 0, y1 };
-  }, [layers, target.o2_mole_fraction, target.pressure]);
+    const step = niceStep(yHi - yLo, 6);
+    return { x0, x1, y0: Math.max(0, Math.floor(yLo / step) * step), y1: Math.ceil(yHi / step) * step };
+  }, [envelopes, seed, target.o2, target.pressure, view]);
 
   const sx = (v: number) => ((v - domain.x0) / (domain.x1 - domain.x0)) * iw;
   const sy = (v: number) => ih - ((v - domain.y0) / (domain.y1 - domain.y0)) * ih;
 
-  const xTicks = ticks(domain.x0, domain.x1, Math.max(4, Math.floor(iw / 90)));
-  const yTicks = ticks(domain.y0, domain.y1, Math.max(4, Math.floor(ih / 60)));
+  const xTicks = ticks(domain.x0, domain.x1, Math.max(4, Math.floor(iw / 80)));
+  const yTicks = ticks(domain.y0, domain.y1, Math.max(4, Math.floor(ih / 56)));
 
-  const matchKey = layers.find((l) => sameRegime(l.regime, target))?.key ?? null;
-  const tx = sx(target.o2_mole_fraction);
+  const tx = sx(target.o2);
   const ty = sy(target.pressure);
-  const calloutLeft = tx > iw * 0.58;
+  const calloutLeft = tx > iw * 0.56;
 
-  const totalPoints = layers.reduce((n, l) => n + l.points.length, 0);
-  const desc = `Scatter of ${totalPoints} measured test points, O₂ mole fraction against pressure, with one convex hull per regime combination (${layers
-    .map((l) => regimeLongName(l.regime))
-    .join("; ")}). Target ${targetLabel}: ${pctO2(target.o2_mole_fraction)}, ${kPa(target.pressure)}, ${regimeLongName(target)}. ${status.headline}. ${status.detail}`;
+  const visible = envelopes.filter((e) => !hidden.has(e.key));
+  const totalPoints = envelopes.reduce((n, e) => n + e.points.length, 0);
+  let offScale = 0;
+  for (const e of visible) for (const p of e.points) if (p.pressure < domain.y0 || p.pressure > domain.y1) offScale++;
+  const matched = envelopes.filter((e) => locations.get(e.key)?.sameRegime === true);
+
+  const desc = `Scatter of ${totalPoints} measured test points, O₂ mole fraction against pressure, with one convex hull per regime combination: ${envelopes
+    .map((e) => `${envelopeLongName(e)} (${e.points.length} points)`)
+    .join("; ")}. Target ${targetLabel}: ${pctO2(target.o2)}, ${kPa(target.pressure)}. ${status.headline}. ${status.detail}`;
 
   const toggle = (key: string) =>
     setHidden((prev) => {
@@ -127,22 +158,23 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
     });
 
   return (
-    <figure className="chart">
+    <figure className={`chart${measured ? " anim" : ""}`}>
       <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
-        {layers.map((l, i) => {
-          const on = !hidden.has(l.key);
+        {envelopes.map((e) => {
+          const on = !hidden.has(e.key);
+          const em = emphasis(locations.get(e.key));
           return (
             <button
-              key={l.key}
+              key={e.key}
               type="button"
-              className={`chip${l.key === matchKey ? " chip-match" : ""}`}
+              className={`chip chip-${em}`}
               aria-pressed={on}
-              onClick={() => toggle(l.key)}
-              title={`${regimeLongName(l.regime)}: ${l.points.length} test points from ${l.accessions.length} investigation(s)`}
+              onClick={() => toggle(e.key)}
+              title={`${envelopeLongName(e)}: ${e.points.length} plotted points from ${e.investigations.map((i) => i.accession).join(", ")}${e.regimeComplete ? "" : ". Regime not fully stated in the extracted records."}`}
             >
-              <Glyph phase={l.regime.fuel_phase} color={layerColor(i)} />
-              <span>{regimeName(l.regime)}</span>
-              <span className="chip-n">{l.points.length}</span>
+              <Glyph phase={fuelPhaseOf(e)} color={colors.get(e.key) ?? "var(--s-other)"} hollow={!e.regimeComplete} />
+              <span>{envelopeName(e)}</span>
+              <span className="chip-n">{e.points.length}</span>
             </button>
           );
         })}
@@ -153,21 +185,26 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
           </svg>
           <span>Target</span>
         </span>
+        <div className="seg" role="group" aria-label="Pressure range shown">
+          <button type="button" aria-pressed={view === "all"} onClick={() => setView("all")}>
+            All pressures
+          </button>
+          <button type="button" aria-pressed={view === "cabin"} onClick={() => setView("cabin")}>
+            Cabin range
+          </button>
+        </div>
       </div>
 
       <div className="plot-wrap" ref={wrapRef} style={{ height }}>
-        <svg
-          width={width}
-          height={height}
-          viewBox={`0 0 ${width} ${height}`}
-          role="img"
-          aria-labelledby="env-title env-desc"
-          className="plot"
-        >
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="env-title env-desc" className="plot">
           <title id="env-title">Evidence envelope: O₂ mole fraction vs pressure</title>
           <desc id="env-desc">{desc}</desc>
+          <defs>
+            <clipPath id="plot-clip">
+              <rect x={-6} y={-6} width={iw + 12} height={ih + 12} />
+            </clipPath>
+          </defs>
           <g transform={`translate(${M.left},${M.top})`}>
-            {/* grid */}
             {yTicks.map((v) => (
               <line key={`gy${v}`} x1={0} x2={iw} y1={sy(v)} y2={sy(v)} className="grid" />
             ))}
@@ -175,8 +212,7 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
               <line key={`gx${v}`} x1={sx(v)} x2={sx(v)} y1={0} y2={ih} className="grid" />
             ))}
 
-            {/* reference: sea-level air */}
-            {domain.y1 > ATM_KPA && (
+            {domain.y0 < ATM_KPA && domain.y1 > ATM_KPA && (
               <g className="ref">
                 <line x1={0} x2={iw} y1={sy(ATM_KPA)} y2={sy(ATM_KPA)} />
                 <text x={iw - 4} y={sy(ATM_KPA) - 6} textAnchor="end">
@@ -193,84 +229,80 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
               </g>
             )}
 
-            {/* hulls */}
-            {layers.map((l, i) => {
-              if (hidden.has(l.key)) return null;
-              const color = layerColor(i);
-              const dim = matchKey !== l.key;
-              const cls = `layer${dim ? " dim" : ""}`;
-              const pts = l.hull.map(([o, p]) => [sx(o), sy(p)] as const);
-              if (pts.length >= 3) {
-                const d = `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
-                return (
-                  <g key={`h${l.key}`} className={cls}>
-                    <path d={d} fill={color} fillOpacity={0.12} stroke={color} strokeWidth={2} strokeLinejoin="round" />
-                  </g>
-                );
-              }
-              if (pts.length === 2) {
-                const [[x1, y1], [x2, y2]] = pts;
-                return (
-                  <g key={`h${l.key}`} className={cls}>
-                    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeOpacity={0.14} strokeWidth={18} strokeLinecap="round" />
-                    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeLinecap="round" />
-                  </g>
-                );
-              }
-              if (pts.length === 1) {
-                return (
-                  <g key={`h${l.key}`} className={cls}>
-                    <circle cx={pts[0][0]} cy={pts[0][1]} r={12} fill={color} fillOpacity={0.14} />
-                  </g>
-                );
-              }
-              return null;
-            })}
+            <g clipPath="url(#plot-clip)">
+              {/* hulls */}
+              {visible.map((e) => {
+                const color = colors.get(e.key) ?? "var(--s-other)";
+                const cls = `layer em-${emphasis(locations.get(e.key))}`;
+                const pts = e.hull.map((q) => [sx(q.o2_mole_fraction), sy(q.pressure)] as const);
+                if (pts.length >= 3) {
+                  const d = `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
+                  return (
+                    <g key={`h${e.key}`} className={cls}>
+                      <path d={d} fill={color} fillOpacity={e.regimeComplete ? 0.13 : 0.07} stroke={color} strokeWidth={e.regimeComplete ? 2 : 1.5} strokeLinejoin="round" />
+                    </g>
+                  );
+                }
+                if (pts.length === 2) {
+                  const [[x1, y1], [x2, y2]] = pts;
+                  return (
+                    <g key={`h${e.key}`} className={cls}>
+                      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeOpacity={0.15} strokeWidth={18} strokeLinecap="round" />
+                      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeLinecap="round" />
+                    </g>
+                  );
+                }
+                if (pts.length === 1) {
+                  return (
+                    <g key={`h${e.key}`} className={cls}>
+                      <circle cx={pts[0][0]} cy={pts[0][1]} r={12} fill={color} fillOpacity={0.15} />
+                    </g>
+                  );
+                }
+                return null;
+              })}
 
-            {/* points */}
-            {layers.map((l, i) => {
-              if (hidden.has(l.key)) return null;
-              const color = layerColor(i);
-              const dim = matchKey !== l.key;
+              {/* points */}
+              {visible.map((e) => {
+                const color = colors.get(e.key) ?? "var(--s-other)";
+                const phase = fuelPhaseOf(e);
+                return (
+                  <g key={`p${e.key}`} className={`layer em-${emphasis(locations.get(e.key))}`}>
+                    {e.points.map((p, i) => {
+                      const x = sx(p.o2_mole_fraction);
+                      const y = sy(p.pressure);
+                      const hl = highlight !== null && p.accession === highlight;
+                      const faded = highlight !== null && !hl;
+                      return (
+                        <g key={i} className={faded ? "faded" : undefined}>
+                          <Marker phase={phase} x={x} y={y} color={color} r={hl ? 6 : 4.5} hollow={!e.regimeComplete} />
+                          <circle
+                            cx={x}
+                            cy={y}
+                            r={9}
+                            className="hit"
+                            onPointerEnter={() => setHover({ env: e, point: p, x, y })}
+                            onPointerLeave={() => setHover((h) => (h?.point === p ? null : h))}
+                            onClick={() => onPointSelect(p.accession)}
+                          />
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
+              })}
+            </g>
+
+            {/* direct label on each comparable layer */}
+            {matched.map((e) => {
+              if (hidden.has(e.key) || e.hull.length === 0) return null;
+              const top = e.hull.reduce((a, b) => (b.pressure > a.pressure ? b : a), e.hull[0]);
               return (
-                <g key={`p${l.key}`} className={`layer${dim ? " dim" : ""}`}>
-                  {l.points.map((p) => {
-                    const x = sx(p.o2);
-                    const y = sy(p.pressure);
-                    const hl = highlight !== null && p.accession === highlight;
-                    const faded = highlight !== null && !hl;
-                    return (
-                      <g key={`${p.accession}|${p.test_id}`} className={faded ? "faded" : hl ? "hl" : undefined}>
-                        <Marker phase={l.regime.fuel_phase} x={x} y={y} color={color} r={hl ? 6 : 4.5} />
-                        <circle
-                          cx={x}
-                          cy={y}
-                          r={11}
-                          className="hit"
-                          onPointerEnter={() => setHover({ layer: l, point: p, x, y })}
-                          onPointerLeave={() => setHover((h) => (h?.point === p ? null : h))}
-                          onClick={() => onPointSelect(p.accession)}
-                        />
-                      </g>
-                    );
-                  })}
-                </g>
+                <text key={`l${e.key}`} x={sx(top.o2_mole_fraction)} y={sy(top.pressure) - 12} textAnchor="middle" className="layer-label">
+                  {envelopeName(e)}
+                </text>
               );
             })}
-
-            {/* direct label on the comparable layer */}
-            {matchKey &&
-              !hidden.has(matchKey) &&
-              (() => {
-                const l = layers.find((x) => x.key === matchKey)!;
-                const top = l.hull.reduce((a, b) => (b[1] > a[1] ? b : a), l.hull[0]);
-                if (!top) return null;
-                return (
-                  <text x={sx(top[0])} y={sy(top[1]) - 12} textAnchor="middle" className="layer-label">
-                    {regimeName(l.regime)}
-                  </text>
-                );
-              })()}
 
             {/* target */}
             <g className="target-guides" aria-hidden="true">
@@ -278,16 +310,15 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
               <line x1={0} x2={iw} y1={0} y2={0} style={{ transform: `translateY(${ty}px)` }} />
             </g>
             <g className="target" style={{ transform: `translate(${tx}px, ${ty}px)` }} aria-hidden="true">
-              <circle r={16} className="target-halo" />
+              <circle r={17} className="target-halo" />
               <circle r={10} className="target-ring" />
               <circle r={3} className="target-dot" />
-              <line x1={-17} x2={-12} y1={0} y2={0} className="target-tick" />
-              <line x1={12} x2={17} y1={0} y2={0} className="target-tick" />
-              <line x1={0} x2={0} y1={-17} y2={-12} className="target-tick" />
-              <line x1={0} x2={0} y1={12} y2={17} className="target-tick" />
+              <line x1={-18} x2={-13} y1={0} y2={0} className="target-tick" />
+              <line x1={13} x2={18} y1={0} y2={0} className="target-tick" />
+              <line x1={0} x2={0} y1={-18} y2={-13} className="target-tick" />
+              <line x1={0} x2={0} y1={13} y2={18} className="target-tick" />
             </g>
 
-            {/* axes */}
             <line x1={0} x2={iw} y1={ih} y2={ih} className="axis" />
             <line x1={0} x2={0} y1={0} y2={ih} className="axis" />
             {xTicks.map((v) => (
@@ -309,7 +340,6 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
           </g>
         </svg>
 
-        {/* callout that travels with the target */}
         <div
           className={`callout callout-${status.tone}${calloutLeft ? " callout-left" : ""}`}
           style={{ transform: `translate(${M.left + tx}px, ${M.top + ty}px)` }}
@@ -329,20 +359,20 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
         {hover && (
           <div
             className="tooltip"
-            style={{
-              left: Math.min(M.left + hover.x + 14, width - 230),
-              top: Math.max(4, M.top + hover.y - 12),
-            }}
+            style={{ left: Math.min(M.left + hover.x + 14, width - 236), top: Math.max(4, M.top + hover.y - 12) }}
             role="status"
           >
             <div className="tt-title">
               {hover.point.accession} · test {hover.point.test_id}
             </div>
-            <div>O₂ {pctO2(hover.point.o2)}</div>
+            <div>O₂ {pctO2(hover.point.o2_mole_fraction, 2)}</div>
             <div>
               {kPa(hover.point.pressure)} <span className="muted">({psia(hover.point.pressure)})</span>
             </div>
-            <div className="muted">{regimeLongName(hover.layer.regime)}</div>
+            <div className="muted">{envelopeLongName(hover.env)}</div>
+            <div className="muted">
+              {hover.point.citations.every((c) => c.status === "verified") ? "verified by a person" : "extracted, not yet verified"}
+            </div>
             <div className="tt-hint">Click: open its receipt</div>
           </div>
         )}
@@ -352,14 +382,21 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
         <p className={`status status-${status.tone}`}>
           <strong>{status.headline}.</strong> {status.detail}
         </p>
+        {offScale > 0 && (
+          <p className="muted small">
+            {offScale} plotted point{offScale === 1 ? " is" : "s are"} outside the pressure range shown ({fmt(domain.y0, 0)}–{fmt(domain.y1, 0)} kPa).
+            Hulls are still computed from every point.
+          </p>
+        )}
         <p className="muted small">
-          Each shaded area is the convex hull of measured test points for one regime: gravity regime · fuel phase · diluent.
-          Regimes are barriers: a hull from another regime is shown faded and is never used for comparison.
+          Each shaded area is the convex hull of measured test points of one regime (gravity regime · fuel phase · diluent).
+          Regimes are barriers: a layer of another regime is faded and never used for comparison. Hollow gray markers are
+          tests whose regime is not fully stated in the extracted records.
         </p>
       </figcaption>
 
       <details className="table-view">
-        <summary>Data table ({totalPoints} measured points)</summary>
+        <summary>Data table ({totalPoints} plotted points)</summary>
         <div className="table-scroll">
           <table>
             <thead>
@@ -367,22 +404,26 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
                 <th scope="col">Regime</th>
                 <th scope="col">Investigation</th>
                 <th scope="col">Test</th>
-                <th scope="col" className="num">O₂ (%)</th>
-                <th scope="col" className="num">Pressure (kPa)</th>
+                <th scope="col" className="num">
+                  O₂ (%)
+                </th>
+                <th scope="col" className="num">
+                  Pressure (kPa)
+                </th>
               </tr>
             </thead>
             <tbody>
-              {layers.flatMap((l) =>
-                l.points.map((p) => (
-                  <tr key={`${l.key}|${p.accession}|${p.test_id}`}>
-                    <td>{regimeName(l.regime)}</td>
+              {envelopes.flatMap((e) =>
+                e.points.map((p, i) => (
+                  <tr key={`${e.key}|${i}`}>
+                    <td>{envelopeName(e)}</td>
                     <td>
                       <button type="button" className="linklike" onClick={() => onPointSelect(p.accession)}>
                         {p.accession}
                       </button>
                     </td>
                     <td>{p.test_id}</td>
-                    <td className="num">{fmt(p.o2 * 100, 2)}</td>
+                    <td className="num">{fmt(p.o2_mole_fraction * 100, 2)}</td>
                     <td className="num">{fmt(p.pressure, 2)}</td>
                   </tr>
                 )),
@@ -394,3 +435,5 @@ export default function EnvelopeChart({ layers, target, targetLabel, status, hig
     </figure>
   );
 }
+
+export default memo(EnvelopeChart);

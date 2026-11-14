@@ -1,5 +1,7 @@
-import { regimeLongName } from "./layers";
-import type { InvestigationResult, Target, Verdict } from "./types";
+// What the chart says about the target, derived only from the engine's output.
+
+import type { Evaluation, Target, TargetLocation, Verdict } from "./engine";
+import { targetRegimeName } from "./layers";
 
 export type Tone = "inside" | "outside" | "unknown";
 
@@ -12,16 +14,9 @@ export interface EnvelopeStatus {
 
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
-/** What the chart says about the target. Derived only from the verdicts. */
-export function envelopeStatus(results: InvestigationResult[], target: Target): EnvelopeStatus {
-  const counts: Record<Verdict, number> = {
-    APPLICABLE: 0,
-    EXTRAPOLATION: 0,
-    INSUFFICIENT_EVIDENCE: 0,
-    REGIME_BARRIER: 0,
-  };
-  for (const r of results) counts[r.verdict]++;
-  const regime = regimeLongName(target);
+export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation[], target: Target): EnvelopeStatus {
+  const counts = evaluation.counts.investigations;
+  const regime = targetRegimeName(target.regime);
 
   if (counts.APPLICABLE > 0) {
     return {
@@ -31,26 +26,36 @@ export function envelopeStatus(results: InvestigationResult[], target: Target): 
       counts,
     };
   }
+
+  // Points whose regime is not fully stated, or that the target leaves open, and whose hull
+  // holds the target: the engine cannot say inside or outside, and neither can the chart.
+  const undecided = locations.filter((l) => l.sameRegime === null && l.insideHull === true);
+  if (undecided.length > 0) {
+    return {
+      tone: "unknown",
+      headline: "Undetermined",
+      detail: `The target falls among measured points whose regime is not fully stated in the extracted records, or that the target leaves open (${regime}). PYRION does not guess a regime: insufficient evidence.`,
+      counts,
+    };
+  }
+
   if (counts.EXTRAPOLATION > 0) {
     return {
       tone: "outside",
       headline: "Outside the measured envelope",
-      detail: `${regime} was measured, but not at this O₂ and pressure. ${plural(counts.EXTRAPOLATION, "investigation")} would need extrapolation.`,
+      detail: `${regime} was measured, but not at this O₂ and pressure: ${plural(counts.EXTRAPOLATION, "investigation")} would need extrapolation.`,
       counts,
     };
   }
-  if (counts.INSUFFICIENT_EVIDENCE > 0) {
-    return {
-      tone: "unknown",
-      headline: "Insufficient evidence",
-      detail: `${plural(counts.INSUFFICIENT_EVIDENCE, "investigation")} cannot be placed against ${regime} with the values extracted so far. PYRION does not guess.`,
-      counts,
-    };
-  }
+
+  const parts = [
+    counts.REGIME_BARRIER ? `${plural(counts.REGIME_BARRIER, "investigation")} measured a different regime (not comparable)` : "",
+    counts.INSUFFICIENT_EVIDENCE ? `${plural(counts.INSUFFICIENT_EVIDENCE, "investigation")} lack the values to compare` : "",
+  ].filter(Boolean);
   return {
     tone: "outside",
     headline: "Outside the measured envelope",
-    detail: `No extracted PSI test in ${regime}. Every investigation measured a different regime: not comparable.`,
+    detail: `No extracted PSI test in ${regime} covers this O₂ and pressure.${parts.length ? ` ${parts.join("; ")}.` : ""}`,
     counts,
   };
 }

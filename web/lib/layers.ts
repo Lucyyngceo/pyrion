@@ -1,36 +1,67 @@
-// Presentation helpers for envelope layers: stable order, colors, shapes, names.
+// Presentation helpers for the engine's regime envelopes: stable order, colors, shapes, names.
 
-import { DILUENT_LABEL, GRAVITY_SHORT } from "./units";
-import type { EnvelopeLayer, Regime } from "./types";
+import { REGIME_AXES, REGIME_VALUES, type RegimeEnvelope, type RegimeState } from "./engine";
+import { GRAVITY_SHORT, valueLabel } from "./units";
 
-const G_ORDER = ["microgravity", "partial_gravity", "normal_gravity"];
-const F_ORDER = ["solid", "liquid", "gas"];
-const D_ORDER = ["N2", "He", "CO2", "Ar", "mixed"];
-
-const idx = (order: string[], v: string) => {
-  const i = order.indexOf(v);
-  return i === -1 ? order.length : i;
-};
-
-/** Stable order, so a layer keeps its color whatever the target or filters do. */
-export function sortLayers(layers: EnvelopeLayer[]): EnvelopeLayer[] {
-  return layers.toSorted(
-    (a, b) =>
-      idx(G_ORDER, a.regime.gravity_regime) - idx(G_ORDER, b.regime.gravity_regime) ||
-      idx(F_ORDER, a.regime.fuel_phase) - idx(F_ORDER, b.regime.fuel_phase) ||
-      idx(D_ORDER, a.regime.diluent) - idx(D_ORDER, b.regime.diluent) ||
-      a.key.localeCompare(b.key),
-  );
+function rank(s: RegimeState): number {
+  if (s.state !== "known") return 99;
+  const order = REGIME_VALUES[s.axis as keyof typeof REGIME_VALUES] ?? [];
+  const i = order.indexOf(s.values[0]);
+  return i === -1 ? 98 : i;
 }
 
-/** CSS custom property of the layer's categorical slot (fixed order, never cycled). */
-export const layerColor = (i: number) => (i < 8 ? `var(--s${i + 1})` : "var(--s-other)");
+/** Complete regimes first, in a fixed order, so a layer keeps its color whatever the target does. */
+export function sortEnvelopes(envs: readonly RegimeEnvelope[]): RegimeEnvelope[] {
+  return envs.toSorted((a, b) => {
+    if (a.regimeComplete !== b.regimeComplete) return a.regimeComplete ? -1 : 1;
+    for (const axis of REGIME_AXES) {
+      const sa = a.regime.find((s) => s.axis === axis);
+      const sb = b.regime.find((s) => s.axis === axis);
+      const d = (sa ? rank(sa) : 99) - (sb ? rank(sb) : 99);
+      if (d !== 0) return d;
+    }
+    return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+  });
+}
 
-export const regimeName = (r: Regime) =>
-  `${GRAVITY_SHORT[r.gravity_regime] ?? r.gravity_regime} · ${r.fuel_phase} · ${DILUENT_LABEL[r.diluent] ?? r.diluent}`;
+/** Categorical slot per complete layer, fixed order, never cycled; incomplete layers are gray. */
+export function colorMap(envs: readonly RegimeEnvelope[]): Map<string, string> {
+  const m = new Map<string, string>();
+  let i = 0;
+  for (const e of envs) {
+    if (!e.regimeComplete || i >= 8) m.set(e.key, "var(--s-other)");
+    else m.set(e.key, `var(--s${++i})`);
+  }
+  return m;
+}
 
-export const regimeLongName = (r: Regime) =>
-  `${r.gravity_regime.replace("_", " ")}, ${r.fuel_phase} fuel, ${DILUENT_LABEL[r.diluent] ?? r.diluent} diluent`;
+const stateText = (s: RegimeState | undefined, short = false) => {
+  if (!s || s.state === "missing") return "?";
+  if (s.state === "conflicting") return s.values.map((v) => valueLabel(v)).join("/");
+  const v = s.values[0];
+  return short && s.axis === "gravity_regime" ? GRAVITY_SHORT[v] ?? valueLabel(v) : valueLabel(v);
+};
 
-export const sameRegime = (a: Regime, b: Regime) =>
-  a.gravity_regime === b.gravity_regime && a.fuel_phase === b.fuel_phase && a.diluent === b.diluent;
+/** "μg · solid · N₂" (one entry per regime axis the engine knows). */
+export const envelopeName = (e: { regime: readonly RegimeState[] }) =>
+  REGIME_AXES.map((a) => stateText(e.regime.find((s) => s.axis === a), true)).join(" · ");
+
+export const envelopeLongName = (e: { regime: readonly RegimeState[] }) =>
+  REGIME_AXES.map((a) => {
+    const s = e.regime.find((x) => x.axis === a);
+    return `${a.replaceAll("_", " ")} ${stateText(s)}`;
+  }).join(", ");
+
+export function fuelPhaseOf(e: RegimeEnvelope): string {
+  const s = e.regime.find((x) => x.axis === "fuel_phase");
+  return s && s.state === "known" ? s.values[0] : "unknown";
+}
+
+/** Plain description of a target regime; unstated axes are named as such. */
+export function targetRegimeName(regime: Partial<Record<string, string>>): string {
+  const suffix: Record<string, string> = { fuel_phase: " fuel", diluent: " diluent", flame_type: " flame" };
+  return REGIME_AXES.map((a) => {
+    const v = regime[a];
+    return v ? `${valueLabel(v)}${suffix[a] ?? ""}` : `${a.replaceAll("_", " ")} not stated`;
+  }).join(", ");
+}

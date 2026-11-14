@@ -1,74 +1,105 @@
-import { psiToKpa } from "./units";
-import type { Target } from "./types";
+// Target presets. The Moon Base and NESC presets come from the engine (engine/src/presets.ts),
+// with their sources, quotes and page numbers. The ISS preset is defined here in the same shape.
 
-export interface Preset {
-  id: string;
-  label: string;
-  /** Short line under the label. */
-  summary: string;
-  target: Target;
-  source: { cite: string; url: string; quote?: string };
-  /** What PYRION chose that the source does not state. */
-  assumption?: string;
-}
+import { KPA_PER_PSI, PRESETS as ENGINE_PRESETS, type Preset, type SourceRef } from "./engine";
+import { GRAVITY_SHORT, fmt, kpaToPsi } from "./units";
 
-const CHALLENGE_URL = "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/";
 const NESC_URL = "https://ntrs.nasa.gov/api/citations/20260003925/downloads/20260003925.pdf";
 
-export const PRESETS: Preset[] = [
-  {
-    id: "iss",
-    label: "ISS-like cabin air",
-    summary: "21 % O₂ · 101.3 kPa (14.7 psi) · microgravity",
-    target: { gravity_regime: "microgravity", fuel_phase: "solid", diluent: "N2", o2_mole_fraction: 0.21, pressure: 101.325 },
-    source: {
-      cite: "Sea-level air. Pressure as stated in the challenge text (NASA Space Apps 2026, Flame in Freefall).",
-      url: CHALLENGE_URL,
-      quote: "the Earth's pressure at sea level is 14.7 psi",
-    },
-    assumption: "Solid fuel (material flammability) and N₂ diluent are PYRION's choice; change them below.",
-  },
-  {
-    id: "lunar",
-    label: "Lunar base",
-    summary: "30 % O₂ · 70.3 kPa (10.2 psi) · 0.16 g",
-    target: {
-      gravity_regime: "partial_gravity",
-      gravity_level: 0.16,
-      fuel_phase: "solid",
-      diluent: "N2",
-      o2_mole_fraction: 0.3,
-      pressure: psiToKpa(10.2),
-    },
-    source: {
-      cite: "NASA Space Apps 2026 challenge, Flame in Freefall.",
-      url: CHALLENGE_URL,
-      quote: "The intermediate oxygen concentration used on the Moon will likely be 30% or greater, with a corresponding pressure of 10.2 psi or less.",
-    },
-    assumption: "Uses the boundary values (30 % O₂, 10.2 psi). Lunar surface gravity ≈ 0.16 g. Solid fuel and N₂ diluent are PYRION's choice.",
-  },
-  {
-    id: "nesc-265",
-    label: "Exploration atmosphere A",
-    summary: "26.5 % O₂ · 70.3 kPa (10.2 psia)",
-    target: { gravity_regime: "microgravity", fuel_phase: "solid", diluent: "N2", o2_mole_fraction: 0.265, pressure: psiToKpa(10.2) },
-    source: {
-      cite: "NESC, Impacts of Reduced Pressure Atmospheres on ECLSS, NASA/TM-20260003925.",
-      url: NESC_URL,
-    },
-    assumption: "Gravity set to microgravity (a spacecraft cabin in transit) by PYRION; the source defines only the atmosphere.",
-  },
-  {
-    id: "nesc-34",
-    label: "Exploration atmosphere B",
-    summary: "34 % O₂ · 56.5 kPa (8.2 psia)",
-    target: { gravity_regime: "microgravity", fuel_phase: "solid", diluent: "N2", o2_mole_fraction: 0.34, pressure: psiToKpa(8.2) },
-    source: {
-      cite: "NESC, Impacts of Reduced Pressure Atmospheres on ECLSS, NASA/TM-20260003925.",
-      url: NESC_URL,
-    },
-    assumption: "Gravity set to microgravity (a spacecraft cabin in transit) by PYRION; the source defines only the atmosphere.",
-  },
-];
+const nescIss = (quote: string): SourceRef => ({
+  id: "ntrs-20260003925",
+  title: "NESC, Impacts of Reduced Pressure Atmospheres on ECLSS (NESC-RP-20-01610)",
+  publisher: "NASA Engineering and Safety Center",
+  identifier: "NASA/TM-20260003925 (NTRS 20260003925)",
+  url: NESC_URL,
+  locator: "page 18, section 6.2 Spacecraft Cabin Atmospheres for Exploration",
+  quote,
+});
 
-export const DEFAULT_PRESET = PRESETS[0];
+const ISS_ATMOSPHERE = nescIss(
+  "The ISS was designed and is operated to approximate an Earth-equivalent atmosphere of 14.7 psia with 21% O2.",
+);
+const ISS_MICROGRAVITY = nescIss(
+  "aboard the ISS, where research into the physiological effects of living in microgravity is a primary mission objective",
+);
+
+export const ISS_PRESET: Preset = {
+  id: "iss-cabin-air",
+  label: "ISS cabin air",
+  description: "The nominal ISS cabin atmosphere, 14.7 psia with 21% O2, in microgravity.",
+  regime: {
+    gravity_regime: {
+      value: "microgravity",
+      unit: "",
+      value_original: "microgravity",
+      unit_original: "",
+      note: "As written in the source.",
+      source: ISS_MICROGRAVITY,
+    },
+  },
+  continuous: {
+    o2_mole_fraction: {
+      value: 0.21,
+      unit: "1",
+      value_original: "21",
+      unit_original: "%",
+      note: "21% by volume / 100, read as mole fraction (ideal gas).",
+      source: ISS_ATMOSPHERE,
+    },
+    pressure: {
+      value: 14.7 * KPA_PER_PSI,
+      unit: "kPa",
+      value_original: "14.7",
+      unit_original: "psia",
+      note: `14.7 psia × ${KPA_PER_PSI} kPa/psi.`,
+      source: ISS_ATMOSPHERE,
+    },
+  },
+  limits: [
+    "The ISS controls its cabin between 13.9 and 15.2 psia, with at most 24.1 vol% O2 (same source); this preset is the nominal point.",
+    "Fuel phase and diluent are not stated by the source.",
+  ],
+};
+
+const SHORT_LABEL: Record<string, string> = {
+  "iss-cabin-air": "ISS cabin air",
+  "challenge-lunar-base": "Lunar base",
+  "nesc-10.2psia-26.5o2-lunar": "Exploration atmosphere A",
+  "nesc-8.2psia-34o2-lunar": "Exploration atmosphere B",
+};
+
+export interface PresetView {
+  preset: Preset;
+  short: string;
+  summary: string;
+}
+
+function summaryOf(p: Preset): string {
+  const o2 = p.continuous.o2_mole_fraction;
+  const pr = p.continuous.pressure;
+  const g = p.regime.gravity_regime?.value;
+  const gl = p.continuous.gravity_level?.value;
+  const parts = [
+    o2 ? `${fmt(o2.value * 100, 1)} % O₂` : "",
+    pr ? `${fmt(pr.value, 1)} kPa (${pr.value_original ? `${pr.value_original} ${pr.unit_original}` : `${fmt(kpaToPsi(pr.value), 1)} psi`})` : "",
+    gl !== undefined ? `${fmt(gl, 2)} g` : g ? GRAVITY_SHORT[g] ?? g : "",
+  ];
+  return parts.filter(Boolean).join(" · ");
+}
+
+export const PRESET_VIEWS: PresetView[] = [ISS_PRESET, ...ENGINE_PRESETS].map((preset) => ({
+  preset,
+  short: SHORT_LABEL[preset.id] ?? preset.label,
+  summary: summaryOf(preset),
+}));
+
+/** Every distinct source a preset cites, in order of first use. */
+export function sourcesOf(p: Preset): SourceRef[] {
+  const seen = new Map<string, SourceRef>();
+  for (const v of [...Object.values(p.regime), ...Object.values(p.continuous)]) {
+    if (!v) continue;
+    const key = `${v.source.id}|${v.source.quote}`;
+    if (!seen.has(key)) seen.set(key, v.source);
+  }
+  return [...seen.values()];
+}

@@ -4,9 +4,7 @@ import { loadDataset } from "@/lib/data";
 export default async function Page() {
   const dataset = await loadDataset();
   const synthetic = dataset.mode === "synthetic";
-  const nInv = synthetic ? 24 : dataset.investigations.length;
-  const verified = dataset.records.filter((r) => r.status === "verified").length;
-  const withValues = new Set(dataset.records.map((r) => r.accession)).size;
+  const s = dataset.stats;
 
   return (
     <main className="page">
@@ -18,28 +16,26 @@ export default async function Page() {
           <span className="brand-name">PYRION</span>
           <span className="brand-sub">NASA Space Apps 2026 · Flame in Freefall</span>
         </div>
-        <h1>
-          Which NASA combustion experiments apply to a target condition, and where the measured evidence ends.
-        </h1>
+        <h1>Which NASA combustion experiments apply to a target condition, and where the measured evidence ends.</h1>
         <p className="lede">
-          Source: NASA Physical Sciences Informatics (PSI), the {nInv} investigations in its Combustion Science research
-          area, each cited by DOI. Gravity regime, fuel phase and diluent are barriers; O₂ and pressure are compared only
-          inside the measured range.
+          Source: NASA Physical Sciences Informatics (PSI), the 24 investigations in its Combustion Science research area,
+          each cited by DOI. Gravity regime, fuel phase and diluent are barriers; O₂ and pressure are compared only inside
+          the measured envelope.
         </p>
       </header>
 
       {synthetic ? (
         <div className="banner" role="note">
-          <strong>Synthetic demo data.</strong> No condition records have been extracted from PSI into{" "}
-          <code>data/conditions/</code> yet, so the chart and verdicts below use invented fixtures named DEMO-A to DEMO-G.
-          They are not NASA measurements.
+          <strong>Synthetic demo data.</strong> No condition records are in <code>data/conditions/</code>, so the page shows
+          the engine&apos;s synthetic test fixtures (PSI-9001 to PSI-9007, numbers that do not exist in PSI). They are not
+          NASA measurements.
         </div>
       ) : (
         <p className="data-line muted small">
-          {dataset.records.length} condition values from {withValues} of {nInv} investigations ({verified} verified by a
-          person, {dataset.records.length - verified} extracted, not yet verified). Read from{" "}
-          {dataset.conditionFiles.length} file{dataset.conditionFiles.length === 1 ? "" : "s"} in{" "}
-          <code>data/conditions/</code>.
+          {s.records.toLocaleString("en-US")} condition values extracted from {s.accessions} of 24 PSI investigations:{" "}
+          {s.verified.toLocaleString("en-US")} verified by a person, {(s.records - s.verified - s.flagged).toLocaleString("en-US")}{" "}
+          extracted and not yet verified, {s.flagged.toLocaleString("en-US")} flagged as insufficient evidence
+          {s.rejected > 0 ? `, ${s.rejected} rows rejected by the engine's validator` : ""}.
         </p>
       )}
 

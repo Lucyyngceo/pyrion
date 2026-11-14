@@ -1,23 +1,56 @@
 "use client";
 
 import { useId } from "react";
-import { PRESETS, type Preset } from "@/lib/presets";
-import { DILUENTS, FUEL_PHASES, GRAVITY_REGIMES, type Target } from "@/lib/types";
-import { DILUENT_LABEL, GRAVITY_LABEL, fmt, kpaToPsi } from "@/lib/units";
+import { REGIME_AXES, REGIME_VALUES, type RegimeAxis } from "@/lib/engine";
+import { PRESET_VIEWS, sourcesOf, type PresetView } from "@/lib/presets";
+import { axisLabel, fmt, kpaToPsi, valueLabel } from "@/lib/units";
 
-interface Props {
-  target: Target;
-  presetId: string;
-  onPreset: (p: Preset) => void;
-  onChange: (t: Target) => void;
+export interface TargetState {
+  presetId: string | null;
+  regime: Partial<Record<RegimeAxis, string>>;
+  o2: number;
+  pressure: number;
+  gravityLevel?: number;
 }
 
-export default function TargetPanel({ target, presetId, onPreset, onChange }: Props) {
-  const id = useId();
-  const preset = PRESETS.find((p) => p.id === presetId);
-  const set = <K extends keyof Target>(k: K, v: Target[K]) => onChange({ ...target, [k]: v });
+interface Props {
+  state: TargetState;
+  onChange: (s: TargetState) => void;
+  verifiedOnly: boolean;
+  onVerifiedOnly: (v: boolean) => void;
+  verifiedCount: number;
+}
 
-  const o2pct = Math.round(target.o2_mole_fraction * 1000) / 10;
+export function applyPreset(state: TargetState, view: PresetView): TargetState {
+  const p = view.preset;
+  const regime: TargetState["regime"] = { ...state.regime };
+  for (const [axis, v] of Object.entries(p.regime)) if (v) regime[axis as RegimeAxis] = v.value;
+  return {
+    presetId: p.id,
+    regime,
+    o2: p.continuous.o2_mole_fraction?.value ?? state.o2,
+    pressure: p.continuous.pressure?.value ?? state.pressure,
+    gravityLevel: p.continuous.gravity_level?.value,
+  };
+}
+
+export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount }: Props) {
+  const id = useId();
+  const view = PRESET_VIEWS.find((v) => v.preset.id === state.presetId);
+  const preset = view?.preset;
+
+  const setRegime = (axis: RegimeAxis, value: string) => {
+    const fromPreset = preset?.regime[axis] !== undefined;
+    onChange({
+      ...state,
+      presetId: fromPreset ? null : state.presetId,
+      regime: { ...state.regime, [axis]: value === "" ? undefined : value },
+    });
+  };
+  const setNum = (k: "o2" | "pressure" | "gravityLevel", v: number | undefined) => onChange({ ...state, presetId: null, [k]: v });
+
+  const o2pct = Math.round(state.o2 * 1000) / 10;
+  const p = Math.round(state.pressure * 10) / 10;
 
   return (
     <section className="panel" aria-labelledby={`${id}-h`}>
@@ -26,17 +59,17 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
       </h2>
 
       <div className="presets" role="radiogroup" aria-label="Presets">
-        {PRESETS.map((p) => (
+        {PRESET_VIEWS.map((v) => (
           <button
-            key={p.id}
+            key={v.preset.id}
             type="button"
             role="radio"
-            aria-checked={p.id === presetId}
+            aria-checked={v.preset.id === state.presetId}
             className="preset"
-            onClick={() => onPreset(p)}
+            onClick={() => onChange(applyPreset(state, v))}
           >
-            <span className="preset-label">{p.label}</span>
-            <span className="preset-summary">{p.summary}</span>
+            <span className="preset-label">{v.short}</span>
+            <span className="preset-summary">{v.summary}</span>
           </button>
         ))}
       </div>
@@ -44,33 +77,50 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
       <div className="source-note">
         {preset ? (
           <>
-            {preset.source.quote && <q>{preset.source.quote}</q>}{" "}
-            <a href={preset.source.url} target="_blank" rel="noreferrer">
-              {preset.source.cite}
-            </a>
-            {preset.assumption && <span className="assumption"> {preset.assumption}</span>}
+            <p className="preset-desc">{preset.description}</p>
+            {sourcesOf(preset).map((s) => (
+              <p key={`${s.id}|${s.quote}`} className="cite">
+                <q>{s.quote}</q>{" "}
+                <a href={s.url} target="_blank" rel="noreferrer">
+                  {s.identifier}
+                </a>
+                <span className="muted">, {s.locator}</span>
+              </p>
+            ))}
+            {preset.limits.length > 0 && (
+              <ul className="limits">
+                {preset.limits.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+            )}
           </>
         ) : (
-          <span>Custom values entered below.</span>
+          <p className="preset-desc">Custom target: values entered below.</p>
         )}
       </div>
 
       <div className="fields">
-        <label className="field">
-          <span>Gravity regime</span>
-          <select
-            value={target.gravity_regime}
-            onChange={(e) => set("gravity_regime", e.target.value as Target["gravity_regime"])}
-          >
-            {GRAVITY_REGIMES.map((g) => (
-              <option key={g} value={g}>
-                {GRAVITY_LABEL[g]}
-              </option>
-            ))}
-          </select>
-        </label>
+        {REGIME_AXES.map((axis) => {
+          const fromPreset = preset?.regime[axis] !== undefined;
+          return (
+            <label key={axis} className="field">
+              <span>
+                {axisLabel(axis)} <span className={`origin ${fromPreset ? "origin-preset" : ""}`}>{fromPreset ? "preset" : "your choice"}</span>
+              </span>
+              <select value={state.regime[axis] ?? ""} onChange={(e) => setRegime(axis, e.target.value)}>
+                <option value="">not stated</option>
+                {REGIME_VALUES[axis].map((v) => (
+                  <option key={v} value={v}>
+                    {valueLabel(v)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          );
+        })}
 
-        {target.gravity_regime === "partial_gravity" && (
+        {state.regime.gravity_regime === "partial_gravity" && (
           <label className="field">
             <span>Gravity level (g)</span>
             <input
@@ -78,46 +128,23 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
               min={0.01}
               max={0.99}
               step={0.01}
-              value={target.gravity_level ?? ""}
-              onChange={(e) => set("gravity_level", e.target.value === "" ? undefined : Number(e.target.value))}
+              value={state.gravityLevel ?? ""}
+              onChange={(e) => setNum("gravityLevel", e.target.value === "" ? undefined : Number(e.target.value))}
             />
           </label>
         )}
-
-        <label className="field">
-          <span>Fuel phase</span>
-          <select value={target.fuel_phase} onChange={(e) => set("fuel_phase", e.target.value as Target["fuel_phase"])}>
-            {FUEL_PHASES.map((f) => (
-              <option key={f} value={f}>
-                {f}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="field">
-          <span>Diluent</span>
-          <select value={target.diluent} onChange={(e) => set("diluent", e.target.value as Target["diluent"])}>
-            {DILUENTS.map((d) => (
-              <option key={d} value={d}>
-                {DILUENT_LABEL[d]}
-              </option>
-            ))}
-          </select>
-        </label>
 
         <div className="field field-wide">
           <label htmlFor={`${id}-o2`}>O₂ mole fraction (%)</label>
           <div className="range-row">
             <input
-              id={`${id}-o2r`}
               type="range"
               min={10}
               max={100}
               step={0.5}
               value={o2pct}
               aria-label="O₂ mole fraction slider (%)"
-              onChange={(e) => set("o2_mole_fraction", Number(e.target.value) / 100)}
+              onChange={(e) => setNum("o2", Number(e.target.value) / 100)}
             />
             <input
               id={`${id}-o2`}
@@ -128,7 +155,7 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
               value={o2pct}
               onChange={(e) => {
                 const v = Number(e.target.value);
-                if (Number.isFinite(v) && v >= 0 && v <= 100) set("o2_mole_fraction", v / 100);
+                if (e.target.value !== "" && Number.isFinite(v) && v >= 0 && v <= 100) setNum("o2", v / 100);
               }}
             />
           </div>
@@ -142,9 +169,9 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
               min={10}
               max={350}
               step={0.5}
-              value={Math.round(target.pressure * 10) / 10}
+              value={p}
               aria-label="Pressure slider (kPa)"
-              onChange={(e) => set("pressure", Number(e.target.value))}
+              onChange={(e) => setNum("pressure", Number(e.target.value))}
             />
             <input
               id={`${id}-p`}
@@ -152,16 +179,23 @@ export default function TargetPanel({ target, presetId, onPreset, onChange }: Pr
               min={1}
               max={1000}
               step={0.1}
-              value={Math.round(target.pressure * 10) / 10}
+              value={p}
               onChange={(e) => {
                 const v = Number(e.target.value);
-                if (Number.isFinite(v) && v > 0) set("pressure", v);
+                if (e.target.value !== "" && Number.isFinite(v) && v > 0) setNum("pressure", v);
               }}
             />
           </div>
-          <span className="hint">= {fmt(kpaToPsi(target.pressure), 2)} psia</span>
+          <span className="hint">= {fmt(kpaToPsi(state.pressure), 2)} psia</span>
         </div>
       </div>
+
+      <label className="toggle">
+        <input type="checkbox" checked={verifiedOnly} onChange={(e) => onVerifiedOnly(e.target.checked)} />
+        <span>
+          Count only values verified by a person <span className="muted">({verifiedCount} so far)</span>
+        </span>
+      </label>
     </section>
   );
 }
