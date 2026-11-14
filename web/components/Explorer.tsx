@@ -15,6 +15,7 @@ import {
 } from "@/lib/engine";
 import { colorMap, sortEnvelopes, targetRegimeName } from "@/lib/layers";
 import TextVsPhysics from "./TextVsPhysics";
+import StatusSymbol from "./StatusSymbol";
 import { PRESET_VIEWS } from "@/lib/presets";
 import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
@@ -226,22 +227,30 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           {counts && (
             <dl className="tally" aria-label="Verdict counts, by investigation">
               <div className="t-app">
-                <dt>Applicable</dt>
+                <dt>
+                  <StatusSymbol level="normal" size={10} /> Applicable
+                </dt>
                 <dd>{counts.APPLICABLE}</dd>
                 <i className="tally-bar" style={{ width: `${(100 * counts.APPLICABLE) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-ext">
-                <dt>Extrapolation</dt>
+                <dt>
+                  <StatusSymbol level="caution" size={10} /> Extrapolation
+                </dt>
                 <dd>{counts.EXTRAPOLATION}</dd>
                 <i className="tally-bar" style={{ width: `${(100 * counts.EXTRAPOLATION) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-ins">
-                <dt>Insufficient evidence</dt>
+                <dt>
+                  <StatusSymbol level="standby" size={10} /> Insufficient evidence
+                </dt>
                 <dd>{counts.INSUFFICIENT_EVIDENCE}</dd>
                 <i className="tally-bar" style={{ width: `${(100 * counts.INSUFFICIENT_EVIDENCE) / Math.max(1, total)}%` }} />
               </div>
               <div className="t-bar">
-                <dt>Not comparable</dt>
+                <dt>
+                  <StatusSymbol level="off" size={10} /> Not comparable
+                </dt>
                 <dd>{counts.REGIME_BARRIER}</dd>
                 <i className="tally-bar" style={{ width: `${(100 * counts.REGIME_BARRIER) / Math.max(1, total)}%` }} />
               </div>

@@ -1340,3 +1340,34 @@ input[type="range"] {
 .vtable td, .vtable th { border-top: 0; border-bottom: 1px solid var(--border); padding: 12px 10px; }
 .ro-k, .lin-k, .outcome-kicker { text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; }
 .lin-steps b .countup { font-size: inherit; color: inherit; line-height: inherit; }
+/* status system (after Astro UXDS): shape + color, never color alone */
+:root {
+  --st-normal: #2f9e00; --st-caution: #c9a800; --st-standby: #0b8fc4; --st-off: #8a919c;
+  --st-caution-edge: #8a7300;
+  --good: var(--st-normal); --good-ink: #237400; --warn: var(--st-caution); --warn-ink: #6e5c00; --neutral: var(--st-off);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --st-normal: #56f000; --st-caution: #fce83a; --st-standby: #2dccff; --st-off: #a4abb6; --st-caution-edge: #fce83a; --good-ink: #56f000; --warn-ink: #fce83a; }
+}
+:root[data-theme="dark"] { --st-normal: #56f000; --st-caution: #fce83a; --st-standby: #2dccff; --st-off: #a4abb6; --st-caution-edge: #fce83a; --good-ink: #56f000; --warn-ink: #fce83a; }
+.st { flex: none; vertical-align: -1px; }
+.st-normal { fill: var(--st-normal); }
+.st-caution { fill: var(--st-caution); stroke: var(--st-caution-edge); stroke-width: 1; }
+.st-standby { fill: var(--st-standby); }
+.st-off { fill: var(--st-off); }
+.badge .st { margin-left: 2px; }
+.badge-icon { display: none; }
+.callout-head .st { margin-right: 2px; }
+.tally dt .st { margin-right: 3px; }
+.t-ins .tally-bar { background: var(--st-standby); }
+.t-bar .tally-bar { background: var(--st-off); }
+.rail-normal { fill: var(--st-normal); }
+.rail-caution { fill: var(--st-caution); }
+.rail-standby { fill: var(--st-standby); opacity: 0.55; }
+.result.v-ins { border-left-color: var(--st-standby); }
+.result.v-bar { border-left-color: var(--st-off); }
+.outcome-inside { border-color: color-mix(in srgb, var(--st-normal) 55%, transparent); }
+.outcome-inside .outcome-head { color: var(--good-ink); }
+.outcome-outside { border-color: color-mix(in srgb, var(--st-caution) 70%, transparent); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--st-caution) 10%, var(--surface)) 0 8px, var(--surface) 8px 16px); }
+.outcome-unknown { border-color: color-mix(in srgb, var(--st-standby) 55%, transparent); }
+.es-ver { background: var(--st-normal); }

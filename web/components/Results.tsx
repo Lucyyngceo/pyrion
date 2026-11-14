@@ -1,5 +1,6 @@
 "use client";
 
+import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
 import type { Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
@@ -45,9 +46,7 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   const v = VERDICT[verdict];
   return (
     <span className={`badge ${v.cls}`}>
-      <span className="badge-icon" aria-hidden="true">
-        {v.icon}
-      </span>
+      <StatusSymbol level={VERDICT_STATUS[verdict]} />
       <span className="badge-code">{verdict}</span>
     </span>
   );

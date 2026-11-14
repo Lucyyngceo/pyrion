@@ -4,6 +4,7 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import type { EnvelopePoint, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
+import StatusSymbol, { TONE_STATUS } from "./StatusSymbol";
 import { ATM_KPA, axisLabel, fmt, kPa, pctO2, psia } from "@/lib/units";
 
 export type LayerState = "match" | "open" | "dim";
@@ -453,7 +454,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                   const y0 = sy(Math.min(domain.y1, r.pressure + step / 2));
                   const y1 = sy(Math.max(domain.y0, r.pressure - step / 2));
                   if (y1 <= y0) return null;
-                  return <rect key={i} x={iw + 6} y={y0} width={7} height={y1 - y0 + 0.5} className={`rail-${r.tone}`} />;
+                  return <rect key={i} x={iw + 6} y={y0} width={7} height={y1 - y0 + 0.5} className={`rail-${TONE_STATUS[r.tone] ?? "standby"}`} />;
                 })}
                 <line x1={iw + 3} x2={iw + 16} y1={ty} y2={ty} className="rail-tick" />
                 <text transform={`translate(${iw + 23},${ih / 2}) rotate(90)`} textAnchor="middle" className="rail-label">
@@ -534,9 +535,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           <div className="callout-inner">
             <div className="callout-label">{targetLabel}</div>
             <div className="callout-head">
-              <span className="callout-icon" aria-hidden="true">
-                {status.tone === "inside" ? "✓" : status.tone === "outside" ? "↗" : "?"}
-              </span>
+              <StatusSymbol level={TONE_STATUS[status.tone]} size={14} />
               {status.headline}
             </div>
             <div className="callout-sub">{status.sub}</div>

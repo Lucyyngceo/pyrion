@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StatusSymbol from "@/components/StatusSymbol";
 
 export const metadata: Metadata = {
   title: "Method · PYRION Ω",
@@ -89,19 +90,19 @@ export default function MethodPage() {
           </thead>
           <tbody>
             <tr>
-              <td><span className="badge v-app">APPLICABLE</span></td>
+              <td><span className="badge v-app"><StatusSymbol level="normal" /> APPLICABLE</span></td>
               <td>Same regime, and the target is inside the measured envelope.</td>
             </tr>
             <tr>
-              <td><span className="badge v-ext">EXTRAPOLATION</span></td>
+              <td><span className="badge v-ext"><StatusSymbol level="caution" /> EXTRAPOLATION</span></td>
               <td>Same regime, but the target is outside the measured envelope.</td>
             </tr>
             <tr>
-              <td><span className="badge v-ins">INSUFFICIENT_EVIDENCE</span></td>
+              <td><span className="badge v-ins"><StatusSymbol level="standby" /> INSUFFICIENT_EVIDENCE</span></td>
               <td>The extracted records do not state enough (a regime axis, or O₂ / pressure) to compare. PYRION does not guess.</td>
             </tr>
             <tr>
-              <td><span className="badge v-bar">REGIME_BARRIER</span></td>
+              <td><span className="badge v-bar"><StatusSymbol level="off" /> REGIME_BARRIER</span></td>
               <td>Different physical regime: not comparable. Not a low score.</td>
             </tr>
           </tbody>

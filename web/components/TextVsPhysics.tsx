@@ -3,6 +3,7 @@
 import { memo, useMemo } from "react";
 import type { Evaluation, Verdict } from "@/lib/engine";
 import type { Investigation } from "@/lib/types";
+import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 
 // Side by side: the same question ranked by text similarity of PSI titles (TF-IDF, cosine)
 // and by the engine's physical verdicts. Deterministic, no language model.
@@ -90,7 +91,9 @@ function TextVsPhysics({
         <span className="tvp-name">
           <span className="acc">{id}</span> {inv.get(id)?.acronym}
         </span>
-        <span className={`tvp-v ${v ? CLS[v] : ""}`}>{v ? SHORT[v] : ""}</span>
+        <span className={`tvp-v ${v ? CLS[v] : ""}`}>
+          {v && <StatusSymbol level={VERDICT_STATUS[v]} size={10} />} {v ? SHORT[v] : ""}
+        </span>
         {right}
       </li>
     );
