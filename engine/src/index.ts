@@ -7,3 +7,4 @@ export { buildEnvelopes, locateTarget, type EnvelopeOptions, type EnvelopePoint,
 export { PRESETS, SOURCES, KPA_PER_PSI, presetTarget, type Preset, type PresetValue, type SourceRef } from './presets.ts';
 export { canonicalJson } from './json.ts';
 export * from './stretch.ts';
+export * from './transfer.ts';
