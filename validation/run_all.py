@@ -267,6 +267,29 @@ def normalize(s):
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
+def _letters(s):
+    import unicodedata
+    s = unicodedata.normalize("NFKC", s)          # ligatures (ﬁ → fi), full-width forms
+    s = re.sub(r"(\w)-\s*\n\s*(\w)", r"\1\2", s)   # words hyphenated across a PDF line break
+    return re.sub(r"[^a-z0-9]+", "", s.lower())   # spacing and punctuation differ in extracted PDF text
+
+
+def quote_found(quote, text):
+    """Verbatim up to spacing/punctuation. An elision marker ([...] or …) splits the quote:
+    every fragment must appear, in order."""
+    hay = _letters(text)
+    pos = 0
+    for frag in re.split(r"\[\s*(?:\.\.\.|…)\s*\]|…|\.\.\.", quote):
+        f = _letters(frag)
+        if not f:
+            continue
+        i = hay.find(f, pos)
+        if i < 0:
+            return False
+        pos = i + len(f)
+    return True
+
+
 _table_cache = {}
 
 
@@ -293,7 +316,7 @@ def check_trace(recs, rep):
             continue
         try:
             if r["method"] == "document":
-                if normalize(r["quote"]) not in normalize(document_text(r["source_file"])):
+                if not quote_found(r["quote"], document_text(r["source_file"])):
                     rep.add("BLOCKER", "trace", r["_file"], f"quote not found verbatim in {r['source_file']}: \"{r['quote'][:80]}\"")
                 rep.stats["quotes_traced"] += 1
             elif r["method"] == "table" and p.suffix.lower() == ".csv":

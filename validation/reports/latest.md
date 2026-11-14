@@ -1,132 +1,40 @@
-# Validation report — 2026-11-14T16:47:05Z
+# Validation report — 2026-11-14T17:15:15Z
 
-Records: 7648 · trace check: skipped (no data/raw) · text_files_scanned: 19 · units_identity_no_unit_in_source: 232 · units_rechecked: 2619
+Records: 10003 · trace check: ran · cells_traced: 8352 · quotes_traced: 933 · text_files_scanned: 19 · units_identity_no_unit_in_source: 232 · units_rechecked: 3239
 
-**BLOCKER 121 · MAJOR 38 · MINOR 8**
+**BLOCKER 0 · MAJOR 67 · MINOR 129**
 
 | severity | check | where | what |
 |---|---|---|---|
-| BLOCKER | units | `data/conditions/PSI-26.csv:123` | o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:125` | o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:127` | o2_mole_fraction: 0.221 % by volume -> expected 0.00221 1, record says 0.221 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:129` | o2_mole_fraction: 0.219 % by volume -> expected 0.00219 1, record says 0.219 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:131` | o2_mole_fraction: 0.219 % by volume -> expected 0.00219 1, record says 0.219 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:133` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:135` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:137` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:139` | o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:141` | o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:143` | o2_mole_fraction: 0.21887043189368768 % by volume -> expected 0.0021887 1, record says 0.21887043189368768 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:145` | o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:147` | o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:149` | o2_mole_fraction: 0.21629213483146065 % by volume -> expected 0.00216292 1, record says 0.21629213483146065 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:151` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:153` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:155` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:157` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:159` | o2_mole_fraction: 0.217 % by volume -> expected 0.00217 1, record says 0.217 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:161` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:163` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:165` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:167` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:169` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:171` | o2_mole_fraction: 0.21172171088251218 % by volume -> expected 0.00211722 1, record says 0.21172171088251218 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:173` | o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:175` | o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:177` | o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:179` | o2_mole_fraction: 0.21184054238011985 % by volume -> expected 0.00211841 1, record says 0.21184054238011985 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:181` | o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:183` | o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:185` | o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:187` | o2_mole_fraction: 0.20889599147689442 % by volume -> expected 0.00208896 1, record says 0.20889599147689442 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:189` | o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:191` | o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:193` | o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:195` | o2_mole_fraction: 0.21748625040439987 % by volume -> expected 0.00217486 1, record says 0.21748625040439987 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:197` | o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:199` | o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:201` | o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:203` | o2_mole_fraction: 0.21983426531024727 % by volume -> expected 0.00219834 1, record says 0.21983426531024727 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:205` | o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:207` | o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:209` | o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:211` | o2_mole_fraction: 0.21894414078122915 % by volume -> expected 0.00218944 1, record says 0.21894414078122915 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:213` | o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:215` | o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:217` | o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:219` | o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:221` | o2_mole_fraction: 0.2221985343104597 % by volume -> expected 0.00222199 1, record says 0.2221985343104597 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:223` | o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:225` | o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:227` | o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:229` | o2_mole_fraction: 0.22383806099347453 % by volume -> expected 0.00223838 1, record says 0.22383806099347453 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:231` | o2_mole_fraction: 0.22721982701616103 % by volume -> expected 0.0022722 1, record says 0.22721982701616103 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:233` | o2_mole_fraction: 0.22673656618610746 % by volume -> expected 0.00226737 1, record says 0.22673656618610746 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:235` | o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:237` | o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:239` | o2_mole_fraction: 0.225254635675111 % by volume -> expected 0.00225255 1, record says 0.225254635675111 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:241` | o2_mole_fraction: 0.22507182031862108 % by volume -> expected 0.00225072 1, record says 0.22507182031862108 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:243` | o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:245` | o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:247` | o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:249` | o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:251` | o2_mole_fraction: 0.22583548563825623 % by volume -> expected 0.00225835 1, record says 0.22583548563825623 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:253` | o2_mole_fraction: 0.215162301439728 % by volume -> expected 0.00215162 1, record says 0.215162301439728 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:255` | o2_mole_fraction: 0.2157922698897596 % by volume -> expected 0.00215792 1, record says 0.2157922698897596 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:257` | o2_mole_fraction: 0.2157922698897596 % by volume -> expected 0.00215792 1, record says 0.2157922698897596 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:259` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:261` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:263` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:265` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:267` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:269` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:271` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:273` | o2_mole_fraction: 0.2124492557510149 % by volume -> expected 0.00212449 1, record says 0.2124492557510149 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:275` | o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:277` | o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:279` | o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:281` | o2_mole_fraction: 0.2193393035902708 % by volume -> expected 0.00219339 1, record says 0.2193393035902708 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:283` | o2_mole_fraction: 0.1707 % by volume -> expected 0.001707 1, record says 0.1707 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:285` | o2_mole_fraction: 0.1707 % by volume -> expected 0.001707 1, record says 0.1707 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:287` | o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:289` | o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:291` | o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:293` | o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:295` | o2_mole_fraction: 0.211 % by volume -> expected 0.00211 1, record says 0.211 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:297` | o2_mole_fraction: 0.21111 % by volume -> expected 0.0021111 1, record says 0.21111 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:299` | o2_mole_fraction: 0.21111 % by volume -> expected 0.0021111 1, record says 0.21111 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:301` | o2_mole_fraction: 0.2113 % by volume -> expected 0.002113 1, record says 0.2113 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:303` | o2_mole_fraction: 0.173 % by volume -> expected 0.00173 1, record says 0.173 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:305` | o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:307` | o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:309` | o2_mole_fraction: 0.159 % by volume -> expected 0.00159 1, record says 0.159 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:311` | o2_mole_fraction: 0.1753 % by volume -> expected 0.001753 1, record says 0.1753 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:313` | o2_mole_fraction: 0.1753 % by volume -> expected 0.001753 1, record says 0.1753 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:315` | o2_mole_fraction: 0.205 % by volume -> expected 0.00205 1, record says 0.205 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:317` | o2_mole_fraction: 0.1667 % by volume -> expected 0.001667 1, record says 0.1667 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:319` | o2_mole_fraction: 0.1667 % by volume -> expected 0.001667 1, record says 0.1667 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:321` | o2_mole_fraction: 0.178 % by volume -> expected 0.00178 1, record says 0.178 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:323` | o2_mole_fraction: 0.21 % by volume -> expected 0.0021 1, record says 0.21 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:325` | o2_mole_fraction: 0.21 % by volume -> expected 0.0021 1, record says 0.21 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:327` | o2_mole_fraction: 0.1734 % by volume -> expected 0.001734 1, record says 0.1734 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:329` | o2_mole_fraction: 0.1734 % by volume -> expected 0.001734 1, record says 0.1734 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:331` | o2_mole_fraction: 0.1605 % by volume -> expected 0.001605 1, record says 0.1605 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:333` | o2_mole_fraction: 0.1605 % by volume -> expected 0.001605 1, record says 0.1605 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:335` | o2_mole_fraction: 0.163 % by volume -> expected 0.00163 1, record says 0.163 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:337` | o2_mole_fraction: 0.163 % by volume -> expected 0.00163 1, record says 0.163 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:339` | o2_mole_fraction: 0.172 % by volume -> expected 0.00172 1, record says 0.172 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:341` | o2_mole_fraction: 0.172 % by volume -> expected 0.00172 1, record says 0.172 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:343` | o2_mole_fraction: 0.171 % by volume -> expected 0.00171 1, record says 0.171 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:345` | o2_mole_fraction: 0.1713 % by volume -> expected 0.001713 1, record says 0.1713 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:347` | o2_mole_fraction: 0.1717 % by volume -> expected 0.001717 1, record says 0.1717 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:349` | o2_mole_fraction: 0.1717 % by volume -> expected 0.001717 1, record says 0.1717 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:351` | o2_mole_fraction: 0.1724 % by volume -> expected 0.001724 1, record says 0.1724 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:353` | o2_mole_fraction: 0.1724 % by volume -> expected 0.001724 1, record says 0.1724 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:355` | o2_mole_fraction: 0.174 % by volume -> expected 0.00174 1, record says 0.174 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:357` | o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:359` | o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:361` | o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118 |
-| BLOCKER | units | `data/conditions/PSI-26.csv:363` | o2_mole_fraction: 0.2118 % by volume -> expected 0.002118 1, record says 0.2118 |
+| MAJOR | units | `data/conditions/PSI-20.csv:100` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:101` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:102` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:103` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:104` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:105` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:106` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:107` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:148` | non-numeric value '101.353' / original 'p = 14.7 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:81` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:82` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:83` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:84` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:85` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:86` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:87` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:88` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:89` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:90` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:91` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:92` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:93` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:94` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:95` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:96` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:97` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:98` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-20.csv:99` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
+| MAJOR | units | `data/conditions/PSI-22.csv:31` | cannot recompute o2_mole_fraction: no known conversion 'on a volume basis' -> '1' |
 | MAJOR | units | `data/conditions/PSI-25.csv:110` | non-numeric value '0..5' / original '5   2   0' |
 | MAJOR | units | `data/conditions/PSI-25.csv:130` | non-numeric value '8..10' / original '10  8' |
 | MAJOR | units | `data/conditions/PSI-25.csv:135` | non-numeric value '13..20' / original '20  15  13   14' |
@@ -173,3 +81,124 @@ Records: 7648 · trace check: skipped (no data/raw) · text_files_scanned: 19 ·
 | MINOR | consistency | `PSI-68 test Propanol (80%) Glycerol (20%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Propanol (95%) Glycerol (5%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test n-Octane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
+| MINOR | units | `data/conditions/PSI-26.csv:123` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:125` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:127` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:129` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.219 = 21.9 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:131` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.219 = 21.9 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:133` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:135` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:137` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:139` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21887043189368768 = 21.88704318 |
+| MINOR | units | `data/conditions/PSI-26.csv:141` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21887043189368768 = 21.88704318 |
+| MINOR | units | `data/conditions/PSI-26.csv:143` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21887043189368768 = 21.88704318 |
+| MINOR | units | `data/conditions/PSI-26.csv:145` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21629213483146065 = 21.62921348 |
+| MINOR | units | `data/conditions/PSI-26.csv:147` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21629213483146065 = 21.62921348 |
+| MINOR | units | `data/conditions/PSI-26.csv:149` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21629213483146065 = 21.62921348 |
+| MINOR | units | `data/conditions/PSI-26.csv:151` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:153` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:155` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:157` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:159` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.217 = 21.7 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:161` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:163` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:165` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:167` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:169` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:171` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21172171088251218 = 21.17217108 |
+| MINOR | units | `data/conditions/PSI-26.csv:173` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21184054238011985 = 21.18405423 |
+| MINOR | units | `data/conditions/PSI-26.csv:175` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21184054238011985 = 21.18405423 |
+| MINOR | units | `data/conditions/PSI-26.csv:177` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21184054238011985 = 21.18405423 |
+| MINOR | units | `data/conditions/PSI-26.csv:179` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21184054238011985 = 21.18405423 |
+| MINOR | units | `data/conditions/PSI-26.csv:181` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.20889599147689442 = 20.88959914 |
+| MINOR | units | `data/conditions/PSI-26.csv:183` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.20889599147689442 = 20.88959914 |
+| MINOR | units | `data/conditions/PSI-26.csv:185` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.20889599147689442 = 20.88959914 |
+| MINOR | units | `data/conditions/PSI-26.csv:187` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.20889599147689442 = 20.88959914 |
+| MINOR | units | `data/conditions/PSI-26.csv:189` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21748625040439987 = 21.74862504 |
+| MINOR | units | `data/conditions/PSI-26.csv:191` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21748625040439987 = 21.74862504 |
+| MINOR | units | `data/conditions/PSI-26.csv:193` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21748625040439987 = 21.74862504 |
+| MINOR | units | `data/conditions/PSI-26.csv:195` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21748625040439987 = 21.74862504 |
+| MINOR | units | `data/conditions/PSI-26.csv:197` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21983426531024727 = 21.98342653 |
+| MINOR | units | `data/conditions/PSI-26.csv:199` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21983426531024727 = 21.98342653 |
+| MINOR | units | `data/conditions/PSI-26.csv:201` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21983426531024727 = 21.98342653 |
+| MINOR | units | `data/conditions/PSI-26.csv:203` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21983426531024727 = 21.98342653 |
+| MINOR | units | `data/conditions/PSI-26.csv:205` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21894414078122915 = 21.89441407 |
+| MINOR | units | `data/conditions/PSI-26.csv:207` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21894414078122915 = 21.89441407 |
+| MINOR | units | `data/conditions/PSI-26.csv:209` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21894414078122915 = 21.89441407 |
+| MINOR | units | `data/conditions/PSI-26.csv:211` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21894414078122915 = 21.89441407 |
+| MINOR | units | `data/conditions/PSI-26.csv:213` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2221985343104597 = 22.219853431 |
+| MINOR | units | `data/conditions/PSI-26.csv:215` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2221985343104597 = 22.219853431 |
+| MINOR | units | `data/conditions/PSI-26.csv:217` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2221985343104597 = 22.219853431 |
+| MINOR | units | `data/conditions/PSI-26.csv:219` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2221985343104597 = 22.219853431 |
+| MINOR | units | `data/conditions/PSI-26.csv:221` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2221985343104597 = 22.219853431 |
+| MINOR | units | `data/conditions/PSI-26.csv:223` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22383806099347453 = 22.38380609 |
+| MINOR | units | `data/conditions/PSI-26.csv:225` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22383806099347453 = 22.38380609 |
+| MINOR | units | `data/conditions/PSI-26.csv:227` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22383806099347453 = 22.38380609 |
+| MINOR | units | `data/conditions/PSI-26.csv:229` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22383806099347453 = 22.38380609 |
+| MINOR | units | `data/conditions/PSI-26.csv:231` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22721982701616103 = 22.72198270 |
+| MINOR | units | `data/conditions/PSI-26.csv:233` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22673656618610746 = 22.67365661 |
+| MINOR | units | `data/conditions/PSI-26.csv:235` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.225254635675111 = 22.5254635675 |
+| MINOR | units | `data/conditions/PSI-26.csv:237` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.225254635675111 = 22.5254635675 |
+| MINOR | units | `data/conditions/PSI-26.csv:239` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.225254635675111 = 22.5254635675 |
+| MINOR | units | `data/conditions/PSI-26.csv:241` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22507182031862108 = 22.50718203 |
+| MINOR | units | `data/conditions/PSI-26.csv:243` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22583548563825623 = 22.58354856 |
+| MINOR | units | `data/conditions/PSI-26.csv:245` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22583548563825623 = 22.58354856 |
+| MINOR | units | `data/conditions/PSI-26.csv:247` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22583548563825623 = 22.58354856 |
+| MINOR | units | `data/conditions/PSI-26.csv:249` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22583548563825623 = 22.58354856 |
+| MINOR | units | `data/conditions/PSI-26.csv:251` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.22583548563825623 = 22.58354856 |
+| MINOR | units | `data/conditions/PSI-26.csv:253` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.215162301439728 = 21.5162301439 |
+| MINOR | units | `data/conditions/PSI-26.csv:255` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2157922698897596 = 21.579226988 |
+| MINOR | units | `data/conditions/PSI-26.csv:257` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2157922698897596 = 21.579226988 |
+| MINOR | units | `data/conditions/PSI-26.csv:259` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:261` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:263` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:265` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:267` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:269` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:271` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:273` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2124492557510149 = 21.244925575 |
+| MINOR | units | `data/conditions/PSI-26.csv:275` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2193393035902708 = 21.933930359 |
+| MINOR | units | `data/conditions/PSI-26.csv:277` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2193393035902708 = 21.933930359 |
+| MINOR | units | `data/conditions/PSI-26.csv:279` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2193393035902708 = 21.933930359 |
+| MINOR | units | `data/conditions/PSI-26.csv:281` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2193393035902708 = 21.933930359 |
+| MINOR | units | `data/conditions/PSI-26.csv:283` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1707 = 17.07 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:285` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1707 = 17.07 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:287` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.211 = 21.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:289` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.211 = 21.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:291` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.211 = 21.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:293` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.211 = 21.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:295` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.211 = 21.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:297` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21111 = 21.111 %, ambient air); |
+| MINOR | units | `data/conditions/PSI-26.csv:299` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21111 = 21.111 %, ambient air); |
+| MINOR | units | `data/conditions/PSI-26.csv:301` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2113 = 21.13 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:303` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.173 = 17.3 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:305` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.171 = 17.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:307` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.171 = 17.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:309` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.159 = 15.9 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:311` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1753 = 17.53 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:313` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1753 = 17.53 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:315` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.205 = 20.5 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:317` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1667 = 16.67 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:319` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1667 = 16.67 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:321` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.178 = 17.8 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:323` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21 = 21 %, ambient air); listed |
+| MINOR | units | `data/conditions/PSI-26.csv:325` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.21 = 21 %, ambient air); listed |
+| MINOR | units | `data/conditions/PSI-26.csv:327` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1734 = 17.34 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:329` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1734 = 17.34 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:331` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1605 = 16.05 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:333` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1605 = 16.05 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:335` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.163 = 16.3 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:337` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.163 = 16.3 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:339` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.172 = 17.2 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:341` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.172 = 17.2 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:343` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.171 = 17.1 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:345` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1713 = 17.13 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:347` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1717 = 17.17 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:349` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1717 = 17.17 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:351` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1724 = 17.24 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:353` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.1724 = 17.24 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:355` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.174 = 17.4 %, ambient air); lis |
+| MINOR | units | `data/conditions/PSI-26.csv:357` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2118 = 21.18 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:359` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2118 = 21.18 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:361` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2118 = 21.18 %, ambient air); l |
+| MINOR | units | `data/conditions/PSI-26.csv:363` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.2118 = 21.18 %, ambient air); l |
