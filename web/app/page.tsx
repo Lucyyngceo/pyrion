@@ -35,22 +35,6 @@ export default async function Page() {
 
       <Explorer dataset={dataset} />
 
-      <footer className="footer muted small">
-        <p>
-          PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,
-          released under CC0-1.0 except PSI-10, whose license is not stated on PSI. Code: Apache-2.0. Built with the help of
-          SI tools (Claude Code); see the repository README.
-        </p>
-        <p>
-          <a href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
-            psi.nasa.gov
-          </a>{" "}
-          ·{" "}
-          <a href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">
-            github.com/Lucyyngceo/pyrion
-          </a>
-        </p>
-      </footer>
     </main>
   );
 }

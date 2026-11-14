@@ -1210,3 +1210,5 @@ input[type="range"] {
 .data-scroll { overflow-x: auto; }
 .data-scroll .vtable td:first-child { min-width: 280px; }
 .data-scroll .vtable td:first-child .small { max-width: 360px; }
+.footer-wrap { padding-top: 0; }
+:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; border-radius: 4px; }
