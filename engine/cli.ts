@@ -141,7 +141,7 @@ for (const id of presetIds) {
   line(`  inside the measured hull of a cluster of: ${ins.length > 0 ? ins.join(', ') : 'none'}`);
   line(`  outside every measured hull of: ${outs.length > 0 ? outs.map((a) => `${a} (normalized distance ${n(per.get(a)?.nearest as number)})`).join(', ') : 'none'}`);
   const noPlane = [...listed].filter((a) => !per.has(a)).sort((a, b) => Number(a.slice(4)) - Number(b.slice(4)));
-  if (noPlane.length > 0) line(`  no test with both O2 and pressure: ${noPlane.join(', ')}`);
+  if (noPlane.length > 0) line(`  no plotted (O2, pressure) point (missing, or values not paired): ${noPlane.join(', ')}`);
 }
 
 console.log(out.join('\n'));
