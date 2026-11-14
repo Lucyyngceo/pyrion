@@ -203,7 +203,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   const ty = sy(target.pressure);
   const CALLOUT_W = 290;
   const calloutSide =
-    M.left + tx + 26 + CALLOUT_W <= width ? "right" : M.left + tx - 26 - CALLOUT_W >= 0 ? "left" : "below";
+    M.left + tx + 26 + CALLOUT_W <= width - 40 ? "right" : M.left + tx - 26 - CALLOUT_W >= 0 ? "left" : "below";
 
   const visible = envelopes.filter((e) => !hidden.has(e.key));
   const totalPoints = envelopes.reduce((n, e) => n + e.points.length, 0);
