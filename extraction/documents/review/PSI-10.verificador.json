@@ -1,0 +1,37 @@
+{
+  "accession": "PSI-10",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on p.44 (also p.33); links the ISS tests to non-buoyant microgravity flames; '*' supported by p.42. No per-test g-level (p.50, p.18)."},
+    {"id": "R2", "verdict": "MODIFY", "reason": "Reproduced abstract (Irace et al. PCI 2023) covering an unlisted subset of tests; free-text test_id joins nothing.",
+     "corrected": {"test_id": "*", "confidence": "derived", "derivation": "The abstract (Irace et al. PCI 2023, doi 10.1016/j.proci.2022.07.049, p.94) covers an unlisted subset of the ISS normal and inverse tests. Extending it to all PSI-10 tests rests on R1 (p.44 / p.42 scope)."}},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim on p.42; 'gaseous' in the quote; ethylene and propane days are both gas."},
+    {"id": "R4", "verdict": "KEEP", "reason": "section=subResearchArea reads exactly 'Flames of Gaseous Fuels'."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on p.67; both test days exist in the PSI inverse table."},
+    {"id": "R6", "verdict": "KEEP", "reason": "section=flightProgram reads exactly 'International Space Station (ISS)'."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim on p.3; every test day in both tables appears in the ISS log (Table 1, p.24)."},
+    {"id": "R8", "verdict": "MODIFY", "reason": "Value and flag correct; lineage derivation incomplete (shared burner s/n 1003, CFI camera, CIR/MDCA heritage).",
+     "corrected": {"derivation": "The ACME chamber insert in the CIR is shared by the six ACME experiments (CLD Flame, E-FIELD Flames, BRE, s-Flame, CFI-G, Flame Design). Round 2 used the CFI-G radiometer array (p.15). Spherical burner s/n 1003 'continued to be used for spherical flame testing throughout the remainder of ACME operations' (p.19). The CFI intensified camera was used throughout ACME testing (p.14), and CFI is an MDCA experiment that preceded ACME in the CIR (p.28). The PSI record also lists 'Combustion Integrated Rack (CIR)' under section=experimentHardware. E-FIELD Flames is an electric-field experiment, not a gravity data point."}},
+    {"id": "R9", "verdict": "REJECT", "reason": "'drop towers' is planned/preliminary ground work (SRD p.11: 'preliminary studies related to the flight-based experiments'); no PSI-10 row comes from it."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Verbatim on p.45; ambient stream of round-1 normal flames; Table 1 footnote 3 agrees; survived the negative control."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Verbatim on p.3; ambient stream of 21301."},
+    {"id": "R12", "verdict": "MODIFY", "reason": "'with or without nitrogen': burner-stream N2 applies to only part of 21301.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R13", "verdict": "MODIFY", "reason": "'both pure fuel and fuel mixed with nitrogen': burner-stream N2 holds only for a subset of round-1 tests.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R14", "verdict": "MODIFY", "reason": "Value correct; table row '22042M1' (evidently a typo for 22024M1) is not covered by '22024*'.", "corrected": {"test_id": "21328*;21340*;21349*;21361*;22018*;22024*;22027*;22035*;22042M1"}},
+    {"id": "R15", "verdict": "MODIFY", "reason": "Value correct; same uncovered row as R14.", "corrected": {"test_id": "21328*;21340*;21349*;21361*;22018*;22024*;22027*;22035*;22042M1"}},
+    {"id": "R16", "verdict": "MODIFY", "reason": "Value correct; same uncovered row as R14.", "corrected": {"test_id": "21328*;21340*;21349*;21361*;22018*;22024*;22027*;22035*;22042M1"}},
+    {"id": "R17", "verdict": "MODIFY", "reason": "The sentence directly names ethylene for GMT 018; the ethane/ethylene discrepancy is resolved by p.3, Table 1 and the PSI table.", "corrected": {"confidence": "direct"}},
+    {"id": "R18", "verdict": "REJECT", "reason": "'100% Ethane (C2H4)' names no test, contradicts its own formula and every other source: a source typo, not data."}
+  ],
+  "missed": [
+    "p.3: 'Except for the single propane (C3H8) test day previously mentioned, all ISS tests were conducted with the fuel ethylene (C2H4), the inert nitrogen, and the spherical flame configuration.' - no fuel record exists for the round-1 normal days in documents (the PSI table gives the fuel per test).",
+    "p.42: the report corrects its own earlier fuel error for 28 Oct. 2021 (100% C3H8, not ethylene).",
+    "p.50 and p.18: no per-test acceleration level; SAMS data not archived in PSI.",
+    "Lineage: shared spherical burner s/n 1003 (p.19) and CFI camera (p.14).",
+    "SRD p.11 confirms the drop-tower work was preliminary (supports the R9 rejection)."
+  ],
+  "could_not_check": "PDFs read through text extraction; figures not seen; the Irace et al. paper not read; which manifold bottle was swapped on GMT 024 undetermined; Taskbook reports, ISRD, SORD, Engineering report and metadata zip not opened; '22042M1' as a typo rests on row order and continuity; no per-test acceleration level can be verified.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

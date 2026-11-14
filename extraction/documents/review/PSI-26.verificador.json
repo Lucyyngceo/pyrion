@@ -1,0 +1,32 @@
+{
+  "accession": "PSI-26",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on DLD page 1; describes what the investigation does in microgravity. Its '*' scope does not cover the unnumbered 1-g comparison flames of R3/R4."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim at paragraph=17; states the gravity condition of the fabric tests; paragraph 186 agrees."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim at paragraph=175. Unnumbered ground comparison flame with no stated location or conditions: must not carry the flight conditions."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim at paragraph=183. Same caution as R3."},
+    {"id": "R5", "verdict": "KEEP", "reason": "section=title names solids. Caveat: wax candles were also burned, and no source states their phase."},
+    {"id": "R6", "verdict": "MODIFY", "reason": "Verbatim on SRD page 7, but the SRD is a pre-flight requirement, so it cannot be direct.", "corrected": {"confidence": "ambiguous"}},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim at section=approach; used only for platform."},
+    {"id": "R8", "verdict": "KEEP", "reason": "experimentHardware reads exactly 'Microgravity Science Glovebox'."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim on SRD page 4; air -> N2 derivation correct; the as-run paper confirms air."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Verbatim at section=approach; both configurations used, not assigned to tests: ambiguous."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Same quote as R10, same reasoning."},
+    {"id": "R12", "verdict": "REJECT", "reason": "'Air co-flow' is the SPICE name for the duct stream in a planning document; every as-run source gives BASS as concurrent or opposed. 'coflow' would wrongly match BASS with SPICE jet flames."},
+    {"id": "R13", "verdict": "MODIFY", "reason": "Upper bound only, ambiguous; needs the SPICE-duct lineage; as-run Table I reaches 44 cm/s.",
+     "corrected": {"derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15). As-run speeds in Table I of the 2013 paper reach 44 cm/s (paragraphs 126 and 131), above this stated maximum. Lineage: the fan and the 76 mm x 76 mm duct are the SPICE apparatus (2013 paper, paragraph 51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'); flag SHARED_LINEAGE."}},
+    {"id": "R14", "verdict": "MODIFY", "reason": "Hardware range exceeded by Table I (44 cm/s); ambiguous; needs the SPICE-duct lineage.",
+     "corrected": {"derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. The paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15). Lineage: the same paragraph states 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'; flag SHARED_LINEAGE."}},
+    {"id": "R15", "verdict": "KEEP", "reason": "Verbatim on SRD page 4; planning range, ambiguous, SHARED_LINEAGE: all correct."},
+    {"id": "R16", "verdict": "KEEP", "reason": "Verbatim on SRD page 8; a requirement (lower bound only), ambiguous, UNIT_AMBIGUOUS correct."}
+  ],
+  "missed": [
+    "As-run per-test flow speeds and directions exist in Table I of the 2013 paper (paragraphs 90-141; e.g. '10, 20, 44' cm/s opposed, '9, 44' concurrent). They use the paper's test numbers 1-11, which do not map to PSI test ids: not ingested.",
+    "Figure 11 caption (paragraph 166): flow decreased in steps from 10 cm/s to below 1 cm/s for paper test 9: not ingested (paper numbering)."
+  ],
+  "could_not_check": "PDFs read through their text layer; original PSI-26.json and the .docx not opened (dumps only); figures not audited; the mapping of paper tests 1-11 to PSI ids, the location of the 1-g flames, the phase of the wax candle tests and the O2 % basis are not stated in the sources; BASS-II and SLICE are not named in any source read.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

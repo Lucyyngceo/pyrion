@@ -1,0 +1,27 @@
+{
+  "accession": "PSI-98",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "MODIFY", "reason": "Objective sentence (series-wide wording, ambiguous at most). The quote ended with a dangling ' [...]'; replaced by the full sentence.",
+     "corrected": {"quote": "The objectives of this investigation were to: (1) determine how rapidly a large scale fire grows in low-gravity and (2) investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.",
+                   "derivation": "Objective statement, not a statement of the test condition. The JSON field has line breaks after 'to:' and after 'normal', each joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. The same objective wording is in the Objectives PDF abstract (page 1), which covers Saffire-I, -II and -III; page 3 assigns objective (2) to Saffire-II."}},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim at paragraph=1; an objective covering SAFFIRE-I and -III; ambiguous and SHARED_LINEAGE correct."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim on Operations PDF page 1; purpose clause for Saffire-I and -III; ambiguous is the ceiling."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim at section=researchImpacts; impact summary, not a test condition; ambiguous. Recommends SHARED_LINEAGE."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim at section=approach, names Saffire-I; fabric -> solid is a correct derivation."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim, past tense, names Saffire-1 on the Cygnus vehicle; survived the negative control."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim hardware label; same record as R6, not independent."},
+    {"id": "R8", "verdict": "REJECT", "reason": "flightProgram 'International Space Station (ISS)' is a program label; the burn ran on Cygnus after it left the ISS (section=approach; Operations PDF page 1). Recording ISS would put Saffire with in-station experiments."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim at section=approach; air -> N2 is a correct one-line derivation. No allowed document states Saffire-I O2."}
+  ],
+  "missed": [
+    "flow_velocity 20 cm/s stated at section=approach ('Saffire-I was conducted at an air flow velocity of 20 cm/s.'): already given per sample by the PSI table.",
+    "Publication title in the record mentions microgravity and a large solid fabric, without naming Saffire-I: ambiguous at most; not ingested.",
+    "Lineage: section=related_glds links PSI-99, PSI-100 and PSI-26 (BASS); a related-investigation link, not shared hardware.",
+    "Trap noted: PSI folder label 'Reduced Gravity/SAFFIRE_I ...' is flight data, never partial gravity."
+  ],
+  "could_not_check": "PDFs read through their text layer (page rendering unavailable); Readme Table 2 has no rows in the dump; files outside the allowed list (image nomenclature PDF, MergeResult xlsx, archives) not opened; Cygnus cabin gas composition never stated, so air -> N2 is a convention.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

@@ -53,15 +53,15 @@ def _usable(r):
     return r["status"] in ("extracted", "verified")
 
 
-def write(by_acc, skipped, sources):
+def write(by_acc, skipped, sources, doc_stats=None):
     inv = _names()
     order = sorted(inv, key=lambda a: int(a.split("-")[1]))
     interp = {m.ACCESSION: getattr(m, "INTERPRETATIONS", []) for m in adapters()}
-    _summary(by_acc, skipped, inv, order, interp)
+    _summary(by_acc, skipped, inv, order, interp, doc_stats or {})
     _review(by_acc, inv, order, interp)
 
 
-def _summary(by_acc, skipped, inv, order, interp):
+def _summary(by_acc, skipped, inv, order, interp, doc_stats):
     L = []
     total = sum(len(v) for v in by_acc.values())
     usable = sum(1 for v in by_acc.values() for r in v if _usable(r))
@@ -125,6 +125,25 @@ def _summary(by_acc, skipped, inv, order, interp):
             L.append(f"- **{a} {inv[a]['acronym'] or inv[a]['title']}**: not extracted yet.")
     L.append("")
 
+    L += ["## Document extraction: extractor, then verificador", "",
+          "For each investigation, an extractor agent proposed records with verbatim quotes "
+          "(`extraction/documents/review/<ACC>.extractor.json`); a verificador agent, in a separate run that did not see "
+          "the extractor's reasoning, tried to break each one (`<ACC>.verificador.json`). Only KEEP and MODIFY records are "
+          "ingested; `ambiguous` confidence becomes `insufficient_evidence`. `diluent` is the inert gas of the ambient, so "
+          "statements about the gas inside a burner stream are not ingested as `diluent`. Records whose test_id names no test of the PSI "
+          "table (planned test-matrix numbers, a paper's own numbering, ground tests outside PSI) are not ingested. This is a "
+          "segregated internal check by language models, not expert or NASA review.", "",
+          "| Investigation | proposed | KEEP | MODIFY | REJECT | not in PSI tables | burner-stream diluent | ingested | awaiting verification |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for a in order:
+        st = doc_stats.get(a)
+        if not st:
+            continue
+        L.append(f"| {a} {inv[a]['acronym'] or '(ground)'} | {st.get('proposed', 0)} | {st.get('keep', 0)} | "
+                 f"{st.get('modify', 0)} | {st.get('reject', 0)} | {st.get('outside_psi_tables', 0)} | "
+                 f"{st.get('burner_stream_diluent', 0)} | "
+                 f"{st.get('ingested', 0)} | {st.get('awaiting_verification', 0)} |")
+    L.append("")
     L += ["## Rules applied to every table", "",
           "- A test condition is the state **before or at the start** of the test. Readings taken after the test "
           "(\"XO2 after test\", \"XO2 (final)\", \"pfinal\", \"Calibrated final O2\") are kept as outcomes "

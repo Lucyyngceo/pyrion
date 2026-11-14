@@ -3,9 +3,9 @@
     python -I extraction/build_conditions.py
 
 1. Every adapter in extraction/tables/ reads one PSI experimental table (method=table).
-2. Every extraction/documents/<accession>.csv holds document records (method=document),
-   each with its verbatim quote, produced by the extractor agent and audited by the
-   verificador agent (see extraction/README.md).
+2. extraction/documents.py turns each reviewed extraction in extraction/documents/review/
+   (<ACC>.extractor.json audited by <ACC>.verificador.json) into document records
+   (method=document), each with its verbatim quote (see extraction/README.md).
 3. Records are written per investigation, then data/conditions/SUMMARY.md and REVIEW.md
    are regenerated and extraction/validate.py runs on the result.
 
@@ -23,24 +23,12 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))  # this directory only; -I keeps the rest of the environment out
 
 from common import FIELDS, OUT_DIR, Skips  # noqa: E402
+import documents  # noqa: E402
 import report  # noqa: E402
 import validate  # noqa: E402
 from tables import adapters  # noqa: E402
 
-DOC_DIR = HERE / "documents"
 SKIPS_FILE = HERE / "skipped_cells.csv"
-
-
-def load_document_records():
-    out = defaultdict(list)
-    for f in sorted(DOC_DIR.glob("PSI-*.csv")):
-        with f.open(encoding="utf-8", newline="") as fh:
-            rows = list(csv.DictReader(fh))
-        for r in rows:
-            if r.get("method") != "document":
-                raise SystemExit(f"{f}: only method=document records belong in extraction/documents/")
-            out[r["accession"]].append({k: r.get(k, "") for k in FIELDS})
-    return out
 
 
 def main():
@@ -51,7 +39,8 @@ def main():
         recs = mod.build(skips)
         by_acc[mod.ACCESSION].extend(recs)
         sources[mod.ACCESSION] = mod.SOURCES
-    docs = load_document_records()
+    table_ids = {acc: sorted({r["test_id"] for r in recs if r["test_id"] != "*"}) for acc, recs in by_acc.items()}
+    docs, doc_stats = documents.load(table_ids)
     for acc, recs in docs.items():
         by_acc[acc].extend(recs)
 
@@ -79,7 +68,7 @@ def main():
         w.writerows(skips.items)
     print(f"{len(skips.items)} cells not turned into records -> {SKIPS_FILE.relative_to(HERE.parent)}")
 
-    report.write(by_acc, skips.items, sources)
+    report.write(by_acc, skips.items, sources, doc_stats)
     return validate.main([])
 
 

@@ -1,0 +1,13 @@
+accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note
+PSI-102,1,material,Teflon,,Teflon,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=1;column=Sample Material  ,Sample Material  ,extracted,
+PSI-102,1,flow_velocity,5,cm/s,5,cm/s,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=1;column=Air Flow (cm/s),Air Flow (cm/s),extracted,air flow over the heated sample (smoke generation)
+PSI-102,2,material,Teflon,,Teflon,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=2;column=Sample Material  ,Sample Material  ,extracted,
+PSI-102,2,flow_velocity,5,cm/s,5,cm/s,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=2;column=Air Flow (cm/s),Air Flow (cm/s),extracted,air flow over the heated sample (smoke generation)
+PSI-102,3,material,Teflon,,Teflon,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=3;column=Sample Material  ,Sample Material  ,extracted,
+PSI-102,3,flow_velocity,5,cm/s,5,cm/s,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=3;column=Air Flow (cm/s),Air Flow (cm/s),extracted,air flow over the heated sample (smoke generation)
+PSI-102,4,material,Teflon,,Teflon,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=4;column=Sample Material  ,Sample Material  ,extracted,
+PSI-102,4,flow_velocity,10,cm/s,10,cm/s,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=4;column=Air Flow (cm/s),Air Flow (cm/s),extracted,air flow over the heated sample (smoke generation)
+PSI-102,5,material,Kapton,,Kapton,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=5;column=Sample Material  ,Sample Material  ,extracted,cell continues: same conditions as 1-4
+PSI-102,6,material,Silicone Rubber,,Silicone Rubber,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=6;column=Sample Material  ,Sample Material  ,extracted,cell continues: same conditions as 1-4
+PSI-102,7,material,Lampwick,,Lampwick,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=7;column=Sample Material  ,Sample Material  ,extracted,cell continues: same conditions as 1-4
+PSI-102,8,material,Dibutyl Phthalate,,Dibutyl Phthalate,,table,psi-data/PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv,row=8;column=Sample Material  ,Sample Material  ,extracted,cell continues: same conditions as 1-4

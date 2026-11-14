@@ -1,0 +1,173 @@
+{
+  "accession": "PSI-98",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "sources_read": [
+    "psi-data/PSI-98/_investigation/PSI-98.json",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+    "psi-data/PSI-98/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf",
+    "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
+  ],
+  "records": [
+    {
+      "id": "R1",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "low-gravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=objective",
+      "quote": "The objectives of this investigation were to: (1) determine how rapidly a large scale fire grows in low-gravity [...]",
+      "confidence": "ambiguous",
+      "derivation": "Objective statement, not a statement of the test condition (brief rule 3). The JSON field has a line break after 'to:'; joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. The same objective wording appears in the Objectives PDF abstract (page 1), which covers Saffire-I, -II and -III.",
+      "flags": ["SHARED_LINEAGE"]
+    },
+    {
+      "id": "R2",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "low-gravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+      "source_location": "paragraph=1",
+      "quote": "The specific objective of SAFFIRE-I and SAFFIRE-III tests is to determine how rapidly a large-scale fire grows in low-gravity and whether it reaches a steady-state spread rate.",
+      "confidence": "ambiguous",
+      "derivation": "Objective statement for the SAFFIRE-I and SAFFIRE-III tests, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity.",
+      "flags": ["SHARED_LINEAGE"]
+    },
+    {
+      "id": "R3",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "low-gravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf",
+      "source_location": "page=1",
+      "quote": "In Saffire-I and –III, the sample material is a single large sample (approx. 0.4 m wide by 0.94 m tall) to demonstrate the development and spread of a large-scale low-gravity fire.",
+      "confidence": "ambiguous",
+      "derivation": "States the purpose of the sample ('to demonstrate ... a large-scale low-gravity fire'), not the measured condition of the burn. Sentence spans two PDF lines ('0.4 m' / 'wide'), joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. Covers Saffire-I and Saffire-III together.",
+      "flags": ["SHARED_LINEAGE"]
+    },
+    {
+      "id": "R4",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=researchImpacts",
+      "quote": "Results determine microgravity flammability limits for several spacecraft materials, help to validate NASA’s material selection criteria, and how microgravity and limited oxygen affect flame size.",
+      "confidence": "ambiguous",
+      "derivation": "Research-impact summary, not a statement of the test condition. It speaks of 'several spacecraft materials', while section=approach names one material (Sibal) for Saffire-I, so the sentence may describe the Saffire series rather than these tests. No g-level stated.",
+      "flags": []
+    },
+    {
+      "id": "R5",
+      "test_id": "*",
+      "variable": "fuel_phase",
+      "value": "solid",
+      "value_original": "composite fabric",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=approach",
+      "quote": "The sample material for Saffire-I is a composite fabric called Sibal consisting of cotton on a fiberglass substrate (75% cotton, 25% fiberglass by weight).",
+      "confidence": "derived",
+      "derivation": "Phase inferred from the material form: a cotton-on-fiberglass fabric is a solid; the sentence does not use the word 'solid'.",
+      "flags": []
+    },
+    {
+      "id": "R6",
+      "test_id": "*",
+      "variable": "platform",
+      "value": "Cygnus resupply vehicle",
+      "value_original": "Cygnus resupply vehicle",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=approach",
+      "quote": "The Saffire-1 experiments was performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS.",
+      "confidence": "direct",
+      "derivation": "",
+      "flags": []
+    },
+    {
+      "id": "R7",
+      "test_id": "*",
+      "variable": "platform",
+      "value": "Cygnus",
+      "value_original": "Cygnus",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=experimentHardware",
+      "quote": "Saffire 1 enclosure in Cygnus",
+      "confidence": "direct",
+      "derivation": "",
+      "flags": []
+    },
+    {
+      "id": "R8",
+      "test_id": "*",
+      "variable": "platform",
+      "value": "International Space Station (ISS)",
+      "value_original": "International Space Station (ISS)",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=flightProgram",
+      "quote": "International Space Station (ISS)",
+      "confidence": "ambiguous",
+      "derivation": "section=flightProgram is the PSI flight-program field, not the vehicle where the sample burned. section=approach (R6) says the burn was performed on the Cygnus resupply vehicle after it deberthed from the ISS. Proposed only so the auditor can decide whether this program label may be used as platform. DISCREPANCY not raised: the approach sentence names both (Cygnus as vehicle, ISS as the station it left) without contradiction.",
+      "flags": []
+    },
+    {
+      "id": "R9",
+      "test_id": "*",
+      "variable": "diluent",
+      "value": "N2",
+      "value_original": "Air",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-98/_investigation/PSI-98.json",
+      "source_location": "section=approach",
+      "quote": "The Saffire-1 flight unit had a sample card installed in the middle of a large flow duct. Air is drawn through the flow duct by fans located at the top of the duct with flow straighteners at the bottom of the experiment module.",
+      "confidence": "derived",
+      "derivation": "air: oxygen balanced mainly by nitrogen. The documents read do not state the composition of this air beyond O2.",
+      "flags": []
+    }
+  ],
+  "not_found": [
+    {
+      "variable": "pressure",
+      "looked_in": "Record text, all sections (section=approach only says 'solid state sensors were used to measure pressure', no value); Readme docx paragraphs 1-58 (no pressure); Objectives PDF pages 1-6 (Table 2 on page 3 lists a pressure sensor 'in avionics bay', no value; 'lower P' in Table 5 on page 5 refers to future exploration-atmosphere tests, not Saffire-I); Operations PDF page 1 (no pressure)."
+    },
+    {
+      "variable": "gravity_regime (sentence stating the gravity condition of the burns as a fact)",
+      "looked_in": "Record text, Readme docx, Objectives PDF pages 1-6, Operations PDF page 1. Only objective, purpose or impact sentences found (R1-R4). section=projectType 'Microgravity Investigation' is a category label and was not used. The Objectives PDF is a pre-flight paper (future tense, written before Saffire-I operated, page 4)."
+    },
+    {
+      "variable": "gravity_regime = normal_gravity (1-g comparison tests run by this investigation)",
+      "looked_in": "Record text, Readme docx, Objectives PDF pages 1-6, Operations PDF page 1. None found. The 'normal gravity material flammability screening test' in section=objective is NASA's screening test used as a reference (Objectives PDF page 3 names NASA-STD-6001 Test 1 and assigns that comparison to Saffire-II), not a test of PSI-98."
+    }
+  ],
+  "lineage": "Saffire-I shares hardware design and documents with Saffire-II and Saffire-III. Objectives PDF page 2: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' The Readme docx covers SAFFIRE-I and SAFFIRE-III together (paragraph 7: 'Table 1. Saffire-I/III Experiment Data in PSI'; paragraph 5 also points to 'the SAFFIRE-II Investigations record' for the data records, unexplained in the documents read). The Objectives PDF was reported by the caller as byte-identical across the SAFFIRE I-III records (not checked by me); flight-specific sentences used here name Saffire-I explicitly or Saffire-I together with Saffire-III."
+}

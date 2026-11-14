@@ -1,0 +1,30 @@
+{
+  "accession": "PSI-69",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=objective; an objective: ambiguous. 'reduced gravity conditions' there refers to models, not partial gravity."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim at DoD paragraph 1; scope sentence: ambiguous."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim on PDF page 12 of the FLEX-2 ERD; facility purpose: ambiguous + SHARED_LINEAGE; never upgrade."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim; names 'liquid fuels'; direct; every source and test matrix agrees (negative control)."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim at section=flightProgram. The program also had drop-tower ground tests, which are not PSI flight data."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim at section=experimentHardware; SHARED_LINEAGE with FLEX-2."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim (typo 'Appartatus' kept); MDCA shared with FLEX-2."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Planned Test Plan matrix (Table 6); test numbers are planned, not the flown FLEX ids: never join them to the PSI table."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Planned matrix (Table 7, slow flow); whether flown is not shown."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Planned matrix (Table 8, CO2)."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Planned matrix (Table 9, He)."},
+    {"id": "R12", "verdict": "KEEP", "reason": "Planned matrix (Table 10, SF6); SF6 appears nowhere in the as-run table."},
+    {"id": "R13", "verdict": "KEEP", "reason": "Planned matrix (Table 11)."},
+    {"id": "R14", "verdict": "KEEP", "reason": "Planned matrix (Table 12)."},
+    {"id": "R15", "verdict": "KEEP", "reason": "Verbatim at section=approach; does not establish which slow-flow tests flew: ambiguous with an unjoinable test_id."}
+  ],
+  "missed": [
+    "section=researchImpacts: '... low-temperature combustion processes observed in microgravity ...' - impact statement, ambiguous at most.",
+    "ERD page 32: MDCA/FLEX requirements previously verified for FLEX are inherited by FLEX-2 (shared hardware and verification).",
+    "Calibration *_Chamber_Readings.txt files carry chamber temperatures (about 23-26 C) for flown ids; what the sensors measure is not stated; not audited."
+  ],
+  "could_not_check": "Single pages could not be rendered; whether the planned slow-flow and SF6 matrices flew is not shown; the metadata zip was not opened.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

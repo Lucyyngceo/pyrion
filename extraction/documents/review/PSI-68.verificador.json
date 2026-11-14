@@ -1,0 +1,32 @@
+{
+  "accession": "PSI-68",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=approach (step 4); places the test droplet in the microgravity environment. '*' also covers calibration matrices that are not combustion tests."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim at section=hypothesis; ambiguous is the ceiling."},
+    {"id": "R3", "verdict": "MODIFY", "reason": "Pre-flight 'shall' requirement; the planned fuels differ from the PSI table's fuels: cannot be direct.",
+     "corrected": {"confidence": "ambiguous", "derivation": "Pre-flight requirement ('shall') in SRD 5.1.1 Test Fuels (printed page 33), dated March 15, 2010; 'all liquids' are the planned test fuels by context. Planned, not as-run: the PSI experimental table lists fuels the SRD does not."}},
+    {"id": "R4", "verdict": "MODIFY", "reason": "Objective sentence in the pre-flight SRD introduction.",
+     "corrected": {"confidence": "ambiguous", "derivation": "Objective statement in the pre-flight SRD introduction (printed page 1), not a description of the tests run; '[...]' skips 'fundamental', hyphenated across a line break."}},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim at DoD paragraph=1; droplets -> liquid is a correct derivation."},
+    {"id": "R6", "verdict": "KEEP", "reason": "section=flightProgram reads exactly 'International Space Station (ISS)'; platform only."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim at DoD paragraph=1; states FLEX-2 flies on the ISS."},
+    {"id": "R8", "verdict": "MODIFY", "reason": "Value correct; the lineage must also name CFI and the ACME investigations.",
+     "corrected": {"derivation": "The field lists two items; this record takes the first. Shared rack and rack diagnostics (CIR HiBMS cameras, CIR LLL-UV camera, LCTF; SRD pages 34-36): FLEX (SRD page 7; PSI-69 experimentHardware), CFI (PSI-39 experimentHardware) and the ACME investigations PSI-10, PSI-20, PSI-21, PSI-22, PSI-23, PSI-159 (experimentHardware lists the CIR). Not independent evidence at the hardware level."}},
+    {"id": "R9", "verdict": "MODIFY", "reason": "Value correct; the MDCA is also used by CFI; spellings differ across records.",
+     "corrected": {"derivation": "Second item of the field; 'Appartatus' as written (sic). Shared apparatus: FLEX (SRD page 7; PSI-69 experimentHardware 'Multi-user Droplet Combustion Appartatus (MDCA)') and CFI (PSI-39 experimentHardware 'Multi-User Droplet Combustion Apparatus (MDCA)'). Spellings differ across records (Multi-user/Multi-User/Multiple, Appartatus/Apparatus)."}},
+    {"id": "R10", "verdict": "MODIFY", "reason": "'Quiescent' is only a Test Matrix name; the PSI table gives 0.1 - 5 cm/s for every fuel, never 0: DISCREPANCY.",
+     "corrected": {"confidence": "ambiguous", "derivation": "'Quiescent' is a Test Matrix name under which PSI groups Experiment Data records; zero imposed flow is inferred from the label only. DISCREPANCY: psi-data/PSI-68/Experimental table/PSI-68_Experimental table_Flex2.csv gives 'Flow Velocity (cm/s)' = '0.1 - 5' for every fuel (rows 1-8), never 0. SRD Table 3 (page 33, pre-flight) has a 'Pure Fuel (quiescent)' category."}},
+    {"id": "R11", "verdict": "KEEP", "reason": "Verbatim on page 31; pre-flight plan, ambiguous; its test_id is a description and must not be joined to PSI matrices."},
+    {"id": "R12", "verdict": "REJECT", "reason": "'convective flow' is outside the controlled vocabulary, and the sentence is a pre-flight plan; no translation test matrix is listed."}
+  ],
+  "missed": [
+    "SRD page 42: 'Ambient quiescence: Gases shall be well-mixed and quiescent prior to ignition.' - a pre-flight requirement, ambiguous at most.",
+    "SRD page 42: 'Diluent type: Diluents shall consist of either N2 or He.' - pre-flight; the PSI table already gives N2/He per fuel.",
+    "The PSI record's approach paragraph is the SRD rewritten in the past tense, so it does not independently confirm the SRD."
+  ],
+  "could_not_check": "SRD read through its text layer; Experiment Data records not opened, so whether the 'Quiescent' tests had zero flow or any translated-droplet tests flew is unknown; FLEX-2 ERD and drawings not opened; whether the table's per-fuel '0.1 - 5' is as-run or a copy of the SRD envelope cannot be decided.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

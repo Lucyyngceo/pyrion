@@ -1,0 +1,27 @@
+{
+  "accession": "PSI-100",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "MODIFY", "reason": "Objective identical to PSI-98's: template text, not independent evidence.",
+     "corrected": {"derivation": "Objective statement, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. SHARED_LINEAGE: this text is identical to section=objective of PSI-98 (SAFFIRE-I) and to the general SAFFIRE objective in the Readme paragraph 1 and the Objectives PDF page 1; it is not independent of PSI-98, R2 or R5."}},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim at Readme paragraph 1; objective covering SAFFIRE-I and -III: ambiguous."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim on Operations PDF page 1; design/purpose sentence: ambiguous; its 'single large sample' does not fit the two flown samples."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim at section=researchImpacts; impact statement copied from SAFFIRE-I: ambiguous + SHARED_LINEAGE."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on Objectives PDF page 1; pre-flight plan for all three units: ambiguous."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim at section=approach; SIBAL is a composite fabric: derived solid."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim at Readme paragraph 3; fabric -> solid derived."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim, past tense, SAFFIRE-III specific; survived the negative control."},
+    {"id": "R9", "verdict": "KEEP", "reason": "experimentHardware 'Saffire III enclosure in Cygnus' verbatim; agrees with R8."},
+    {"id": "R10", "verdict": "MODIFY", "reason": "A pre-launch protocol sentence, not a report of what was done.",
+     "corrected": {"confidence": "ambiguous", "derivation": "Requirement/protocol sentence (pre-launch loading step) in an operational-requirements document, not a post-flight statement; the vehicle (Cygnus) is stated as fact in section=approach (R8)."}},
+    {"id": "R11", "verdict": "REJECT", "reason": "flightProgram 'International Space Station (ISS)' is a program label; the burn ran on Cygnus after it left the ISS."},
+    {"id": "R12", "verdict": "MODIFY", "reason": "Describes the shared flow-duct design in a pre-flight paper, not the SAFFIRE-III atmosphere.",
+     "corrected": {"confidence": "ambiguous", "derivation": "air: oxygen balanced mainly by nitrogen. Pre-flight paper; the sentence describes the flow-duct design common to the three Saffire units, not the SAFFIRE-III test atmosphere."}},
+    {"id": "R13", "verdict": "KEEP", "reason": "Verbatim at Readme paragraph 3; 'air' grammatically modifies only SAFFIRE-I: ambiguous."}
+  ],
+  "missed": [],
+  "could_not_check": "PDFs read through their text layer; figures not inspected; number of SAFFIRE-III samples unsettled (operations document says single sample, table lists S1 and S2); linked publications not opened.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

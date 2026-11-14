@@ -1,0 +1,25 @@
+{
+  "accession": "PSI-106",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=objective; an objective: ambiguous is the ceiling."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim on fact sheet page 1; proposal-stage purpose: ambiguous."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim at section=approach; methane and ethylene are gases: derived is correct."},
+    {"id": "R4", "verdict": "MODIFY", "reason": "'gas bottles' names the container in a planning statement, not the phase.",
+     "corrected": {"confidence": "derived", "derivation": "The sentence names the SLICE fuel supply as 'gas bottles' (a container term, in a planning statement); gaseous fuel at the jet nozzle follows from a gas-bottle supply to a gas-jet burner and agrees with R3 (methane, ethylene)."}},
+    {"id": "R5", "verdict": "KEEP", "reason": "section=flightProgram reads exactly 'International Space Station (ISS)'; platform only."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Both sentences verbatim on page 2; derived is the ceiling (capability of the SPICE hardware); SHARED_LINEAGE required."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim at section=approach; air -> N2 derived; fuel-stream dilution correctly kept apart. No O2 number may be derived from it."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim on page 1; proposal-stage objective backed by R7."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim, past tense, names coflow: direct; survived the negative control."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Verbatim on page 1; proposal-stage, not independent of R9."}
+  ],
+  "missed": [
+    "Lineage: section=related_glds links PSI-107 (SPICE); a publication (doi 10.1080/00102202.2022.2041621) is listed in both PSI-106 and PSI-107; the PSI-106 table's last row is a SPICE test session on the same hardware.",
+    "Linked publication titles mention normal-gravity comparisons; titles only, never a 1-g data point."
+  ],
+  "could_not_check": "Metadata zip and linked publications not opened (they may state pressure, O2 and coflow velocities); fact-sheet figures not inspected; 'MSG' not expanded in either source; BASS/BASS-II duct lineage not in the assigned sources.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

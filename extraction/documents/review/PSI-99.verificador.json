@@ -1,0 +1,25 @@
+{
+  "accession": "PSI-99",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim at section=objective; objective, so ambiguous. Same series-wide text as R4 (not independent)."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim in Readme paragraph 1 (typo 'that affect' kept); SAFFIRE-II objective; ambiguous; same lineage as R4."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim at section=researchImpacts; impact statement; ambiguous must not be raised."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim on PDF page 1; future-tense pre-flight plan for Saffire I-III; ambiguous + SHARED_LINEAGE. R1-R4 all trace to one paper: not several confirmations."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim at section=approach; no source names the phase; derived from material names is correct."},
+    {"id": "R6", "verdict": "KEEP", "reason": "Verbatim, past tense, SAFFIRE-II specific; survived the negative control."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Whole experimentHardware field verbatim; a label that names the value."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim on PDF page 1; future-tense plan; ambiguous + SHARED_LINEAGE; redundant with R6."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Verbatim; 'air' occurs; air -> N2 derivation per the rule. Caution: the same sentence says '20 or 30 cm/s' while the as-run table gives 20 cm/s for all nine samples."}
+  ],
+  "missed": [
+    "The PSI table has 1-g Burn Length / 1-g Spread Rate columns: normal-gravity comparisons with no test ids or stated location; the table adapter does not map them onto the flight samples.",
+    "projectType 'Microgravity Investigation' is a label, not a statement of test conditions.",
+    "21% O2 in the Objectives PDF is a pre-flight expectation; the as-run O2 is the table's 'Percent O2 (Note 1)', derived from CO2 production.",
+    "Pre-flight Table 1 (PDF page 3) differs from the as-run table on flow (30 vs 20 cm/s for S6, S9) and thickness (S1 0.25 vs 0.27 mm; S5/S6 0.33 mm vs '037 mm')."
+  ],
+  "could_not_check": "PDF read through its text layer; Readme Tables 1 and 3 appear only as captions; byte identity of the shared PDF not hash-checked; MergeResult xlsx, metadata zip and post-flight papers not opened; origin of the CSV 1-g columns and the '?' in its headers unresolved.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

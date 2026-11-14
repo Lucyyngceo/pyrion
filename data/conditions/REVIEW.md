@@ -9,25 +9,7287 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* Flame Design inverse-flame "XO2" is the O2 mole fraction of the burner stream (`burner_o2_mole_fraction`), not the ambient O2.
 - *Table reading:* PSI-10 has no license on its PSI page or record (checked 2026-11-14): every record carries `license not stated` in its note.
 
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> The challenges of normal-gravity studies are avoided by performing the tests on the International Space Station (ISS), where the non-buoyant microgravity flames allow the effects of convection direction and flame structure to be independently varied.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=44`
+- As written: `microgravity`
+- Note: confidence direct (Scope: Appendix C (30-day report for Increment 66), which 'comprehensively addresses both rounds of Flame Design testing' (p.42). The same sentence is also on p.33 (Appendix B, round 1).); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> In this work, experiments aboard the International Space Station and a transient numerical model are used to investigate the existence of steady-state microgravity spherical diffusion flames. Gaseous spherical diffusion flames stabilized on a porous spherical burner are employed in normal (i.e., fuel flowing into an ambient oxidizer) and inverse (i.e., oxidizer flowing into an ambient fuel) flame configurations.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=25`
+- As written: `microgravity`
+- Note: confidence derived (The abstract (Irace et al. PCI 2023, doi 10.1016/j.proci.2022.07.049, p.94) covers an unlisted subset of the ISS normal and inverse tests. Extending it to all PSI-10 tests rests on R1 (p.44 / p.42 scope).); flags: SECONDARY_SOURCE; R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> Flame Design is one of six independent experiments that are part of the ACME project, which used a single modular set of hardware to carry out studies of flames burning gaseous fuels in the ISS’ Combustion Integrated Rack (CIR).
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=42`
+- As written: `gaseous`
+- Note: confidence direct (Scope: introduction of Appendix C, which covers both rounds (ethylene days and the propane day 21301).); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> Flames of Gaseous Fuels
+
+- File: `psi-data/PSI-10/_investigation/PSI-10.json`
+- Location: `section=subResearchArea`
+- As written: `Gaseous`
+- Note: confidence direct (PSI record label for the whole investigation.); R4 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340A1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340A2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340B1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340B2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C3`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C4`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C5`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C6`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340C7`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340M1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21340M2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349A1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349B1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349D2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349D3`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M3`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M4`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M5`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M6`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349M7`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349N1`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349N2`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349N3`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### fuel_phase = gas  (test `21349N4`, extracted)
+
+> On GMT 340 and 349, we ignited 28 inverse flames for ACME Flame Design. For these tests, we filled a combustion chamber with a mixture of nitrogen and gaseous fuel (ethylene) and then flowed a mixture of nitrogen and oxygen from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=67`
+- As written: `gaseous fuel`
+- Note: confidence direct (Inverse flames: the gaseous fuel is in the chamber atmosphere, not in the burner stream. GMT 340 and 349 = test days 21340 and 21349 (Table 1, p.24).); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-10/_investigation/PSI-10.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> The Flame Design experiment is one of six independent experiments that make up the Advanced Combustion via Microgravity Experiments (ACME) project for which the tests were conducted within the Combustion Integrated Rack (CIR) on the International Space Station (ISS).
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> The Flame Design experiment is one of six independent experiments that make up the Advanced Combustion via Microgravity Experiments (ACME) project for which the tests were conducted within the Combustion Integrated Rack (CIR) on the International Space Station (ISS).
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (The ACME chamber insert in the CIR is shared by the six ACME experiments (CLD Flame, E-FIELD Flames, BRE, s-Flame, CFI-G, Flame Design). Round 2 used the CFI-G radiometer array (p.15). Spherical burner s/n 1003 'continued to be used for spherical flame testing throughout the remainder of ACME operations' (p.19). The CFI intensified camera was used throughout ACME testing (p.14), and CFI is an MDCA experiment that preceded ACME in the CIR (p.28). The PSI record also lists 'Combustion Integrated Rack (CIR)' under section=experimentHardware. E-FIELD Flames is an electric-field experiment, not a gravity data point.); flags: SHARED_LINEAGE; R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115B2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115D2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115G1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115L1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115M4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19115Q1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123A2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123A4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123D1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123F2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123F3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19123L7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137D1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137F2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137F3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137G1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137H1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137K2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19137L8`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142G1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142G2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142G3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142G4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142G5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142J2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19142J3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150A4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150A5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150B2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150B3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150D2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150G2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150G3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150H1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19150S1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156B2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156B4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156C2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156C3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156J7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19156K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171B3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171D1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171D2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171D3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171D4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171D5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171J2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171J3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171J4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19171S1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175A2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175A4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B8`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175B9`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175N2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19175N3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182C2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G8`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182G9`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182N2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182N3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19182N4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189A2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189A4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189D1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189D2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189D3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189H1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189J1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189J2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189J3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189K2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189K3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19189P1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196A2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196B1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196B2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196B3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196B4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196C1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196C2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196D1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196D2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196F1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19196N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200A8`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200H1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200H2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200H3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19200K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206A1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206A5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G5`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G7`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G8`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206G9`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206H1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206H2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206H3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206H4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206K1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206K2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206L2`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206L3`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206L4`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206L6`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `19206N1`, extracted)
+
+> The first-round tests featured normal flames, where gaseous fuel was ejected from a porous spherical burner into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=45`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of normal flames, round 1 (ethylene); oxygen is balanced by nitrogen. Test days from Table 1 (p.24); day 19161 had no flames. Also p.11: 'ACME tests were not conducted with carbon dioxide as a diluent.'); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A1`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A2`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A3`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A4`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A5`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A6`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A7`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A8`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301A9`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301C1`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301C2`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301D1`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301D2`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301H1`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301H2`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301H3`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301J1`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301J2`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301J3`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21301J4`, extracted)
+
+> As a notable exception, the first day of testing in the second round was carried out in the normal flame configuration, with propane (with or without nitrogen) flowing into an oxygen/nitrogen atmosphere.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `oxygen/nitrogen atmosphere`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of the normal-flame propane day; oxygen is balanced by nitrogen. First day of round 2 = 21301 (Table 1, p.24).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328N1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328N2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328N3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328N4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328N5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21328P1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340C7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21340M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349M7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349N1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349N2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349N3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21349N4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361F6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361G3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361G4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361G5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `21361M3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018G3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018H2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018J2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22018J4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024B3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024H1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024H2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024K1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024K2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024K3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024L1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024L2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024L3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22024M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027B8`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22027D6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22035J7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### diluent = N2  (test `22042M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `mixture of nitrogen and ethylene`
+- Note: confidence direct (Stream: ambient (chamber atmosphere) of inverse flames. Here nitrogen balances the fuel (ethylene), not oxygen: the inverse-flame ambient holds the fuel. Inverse test days from Table 1 (p.24). Skipped words: '(C2H4)'.); R14 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328N1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328N2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328N3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328N4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328N5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21328P1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340C7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21340M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349M7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349N1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349N2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349N3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21349N4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361F6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361G3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361G4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361G5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `21361M3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018H2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024A2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024B3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024H1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024H2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024K1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024K2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024K3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024L1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024L2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024L3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22024M2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027B8`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027C2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22027D6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035A1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035B1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035C1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035D1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035D3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035F1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035G1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035G2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J2`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J3`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J4`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J5`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J6`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22035J7`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22042M1`, extracted)
+
+> The inverse flame tests were conducted with the chamber filled with a mixture of nitrogen and ethylene [...] while an oxygen/nitrogen mixture flowed from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=3`
+- As written: `ethylene`
+- Note: confidence direct (Fuel of the inverse flames, which is in the chamber atmosphere. For test day 22018, one appendix sentence names the fuel bottle 'Ethane (C2H4)': see R17 and R18. Skipped words: '(C2H4)'.); R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018A1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018B1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018C1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018D1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018F1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G2`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018G3`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018H2`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J1`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J2`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+### fuel = ethylene  (test `22018J4`, extracted)
+
+> On GMT 018, we ignited 12 inverse flames for Flame Design. We performed these tests with two different ethylene concentrations in a range of oxidizer concentrations and flow rates from the burner.
+
+- File: `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+- Location: `page=69`
+- As written: `ethylene`
+- Note: confidence direct (Disagrees with R18 for the fuel bottle installed on 2022 Jan. 5 (GMT 005) and used next on 22018. Not resolved here.); flags: DISCREPANCY; R17 extracted by the extractor agent; MODIFY by the verificador agent (separate run); license not stated
+
+## PSI-20 ACME BRE
+
+- *Table reading:* BRE has no test identifier: `test_id` is "<Year>-<Month>-<Date>" as written. Its O2 cells list the approximate O2 of the tests that ignited that day (Notes, row 1); each listed value is one record.
+- *Table reading:* BRE O2 cells "3400%" and "2100%" (2019 March 7 and April 1) read as thousands of percent, a spreadsheet percent-format artifact: `insufficient_evidence`.
+
+## PSI-21 ACME CLD Flame
+
+- *Table reading:* CLD "Fuel Bottle" shows a spreadsheet fill series ("40% CH4", "40% CH5", "40% CH6" ... "100% C2H11"). Only CH4 and C2H4, the fuels named by the "Test Type" column, are taken as stated; every other formula (including C2H6 inside an ethylene series) is `insufficient_evidence`.
+
+## PSI-22 ACME E-FIELD Flames
+
+- *Table reading:* E-FIELD Flames applies an electric field to coflow and gas-jet flames. The field is an analog of a body force, not a gravity level: no gravity record comes from it.
+
+## PSI-23 ACME s-Flame
+
+- *Table reading:* s-Flame "Atmosphere*" cells ("~21% O2 with N2") give approximate initial O2 (the table's note: "O2% drops with vitiation") and the diluent after "with". The column shows a spreadsheet fill series ("with N3", "with N4", "with N5", "with N6"): those diluents, and fuels written "with N3", are `insufficient_evidence`.
+
 ## PSI-25 BASS-II
 
 - *Table reading:* BASS-II "Air display" has no unit in the table. The BASS-II ReadMe (`psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`, paragraph 20) states: "Air display:  flow speed measured in the duct in cm/s on the video display.  Response time is very slow (~ 1 min), so reading is only steady for long times at the same flow setting." Cells that list only numbers become a `flow_velocity` range (lowest..highest reading during the test); cells mixing numbers and words are `insufficient_evidence`.
 - *Table reading:* BASS-II "Fan display" is not converted: the same ReadMe defines it as "instantaneous fan voltagex10", not a velocity.
 - *Table reading:* BASS-II `sample_thickness` is parsed from the material description ("100 micron", "1 mm thick", "0.2 mm PMMA film", "4 mm 1 sided"). Rod diameters (e.g. 1/4") and sample widths are not thicknesses and give no record. A description stating two different thicknesses is `insufficient_evidence`.
 
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> To summarize, BASS-II's approach, microgravity combustion tests were performed aboard the International Space Station.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=approach`
+- As written: `microgravity`
+- Note: confidence direct; R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B10`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B11`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B12`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B13`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B14`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B15`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B16`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B17`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B18`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B19`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B20`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B21`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B22`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B3`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B4`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B5`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B6`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B7`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B8`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B9`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F3`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M10`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M11`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M12`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M13`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M14`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M15`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M16`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M17`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M18`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M19`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M20`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M3`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M4`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M5`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M6`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M7`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M8`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M9`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O10`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O11`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O12`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O13a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O13b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O14`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O15a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O15b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O16`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O17`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O18`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O19`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O20`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O21`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O22`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O3a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O3b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O4`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O5a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O5b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O6`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O7`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O8a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O8b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O9`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P10`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P12`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P13a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P13b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P14`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P15`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P16`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P17`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P18`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P19`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P20`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P21a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P21b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P22a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P22b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P23`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P24`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P25`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P3a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P3b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P4`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P5`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P6`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P8`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P9`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T1`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T10`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T11`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T12`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T13`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T14`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T15`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T16`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T17`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T18`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T19`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T2`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T20`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T21`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T22`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T23`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T24`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T25`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T26`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T27`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T28a`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T28b`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T29`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T3`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T4`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T5`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T6`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T7`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T9`, extracted)
+
+> Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=objective`
+- As written: `solid fuels`
+- Note: confidence direct (Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).); R2 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B10`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B11`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B12`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B13`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B14`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B15`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B16`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B17`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B18`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B19`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B20`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B21`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B22`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B3`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B4`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B5`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B6`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B7`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B8`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `B9`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `F3`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M10`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M11`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M12`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M13`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M14`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M15`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M16`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M17`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M18`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M19`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M20`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M3`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M4`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M5`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M6`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M7`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M8`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `M9`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O10`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O11`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O12`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O13a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O13b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O14`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O15a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O15b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O16`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O17`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O18`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O19`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O20`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O21`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O22`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O3a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O3b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O4`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O5a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O5b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O6`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O7`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O8a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O8b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `O9`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P10`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P12`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P13a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P13b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P14`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P15`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P16`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P17`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P18`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P19`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P20`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P21a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P21b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P22a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P22b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P23`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P24`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P25`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P3a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P3b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P4`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P5`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P6`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P8`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `P9`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T1`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T10`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T11`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T12`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T13`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T14`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T15`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T16`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T17`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T18`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T19`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T2`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T20`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T21`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T22`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T23`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T24`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T25`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T26`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T27`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T28a`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T28b`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T29`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T3`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T4`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T5`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T6`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T7`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `T9`, extracted)
+
+> Solid fuel ignition uses a Kanthal hot wire.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf`
+- Location: `page=1`
+- As written: `Solid fuel`
+- Note: confidence direct (Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox (MSG)  (test `*`, extracted)
+
+> Microgravity Science Glovebox (MSG)
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=experimentHardware`
+- As written: `Microgravity Science Glovebox (MSG)`
+- Note: confidence direct (The record approach adds: 'The wind tunnel was installed in the Microgravity Science Glovebox which supplied power, imaging, and a level of containment.'); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> Main variables are airflow speed and oxygen concentration (oxygen varied below 21% by adding nitrogen).
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=approach`
+- As written: `nitrogen`
+- Note: confidence direct (Nitrogen is the gas added to the ambient to lower O2. Same in the record objective: 'Ambient oxygen concentration (via working volume nitrogen vitiation)', and SRD page=1: 'GN2 is used to vitiate the MSG working volume to desired O2levels.' (text layer as extracted). Tests left in unvitiated ambient air also have N2 as balance (air: oxygen balanced mainly by nitrogen).); R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P1`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P2`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P4`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P5`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P6`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P8`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P9`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P10`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P12`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P14`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P15`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P17`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P18`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P20`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P23`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P24`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `P25`, extracted)
+
+> Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.
+
+- File: `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`
+- Location: `paragraph=9`
+- As written: `opposed`
+- Note: confidence direct (PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending).); R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 40 cm/s  (test `*`, insufficient_evidence)
+
+> Fuel samples were mounted inside a small wind tunnel which could impose airflow speeds up to 40 cm/s.
+
+- File: `psi-data/PSI-25/_investigation/PSI-25.json`
+- Location: `section=approach`
+- As written: `up to 40 cm/s` (cm/s)
+- Note: confidence ambiguous (Capability claim from the PSI record ('could impose'), not tested speeds; contradicted by Summary Report page=12 (max ~55 cm/s without restrictors, ~35 cm/s with two), page=72 (Olson 0-55 cm/s) and page=104 Table 7.1 (T17 '6 to 53', T21 '11 to 47'); never use 40 cm/s as an envelope bound.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; R10 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
 ## PSI-26 BASS
 
 - *Table reading:* BASS as-run matrix (`psi-data/PSI-26/Science Documents/PSI-26_Science Documents_As Run_Test Matrix.xlsx`, sheet "as run matrix"): the column "O2 % by volume" holds values such as 0.221 and 0.1707. They are read as mole fractions (22.1 %, 17.07 %), not as 0.221 %: a flame cannot burn at 0.2 % oxygen and the tests did burn. Both this column and "pressure, atm" sit under the header group "ISS environment"; the table does not say whether they were read in the station cabin or inside the glovebox work volume (values down to 0.159 suggest a diluted work volume, which is not stated).
 - *Table reading:* BASS rows whose material reads "SOOT Cleaning" are not tests and give no record.
 
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> BASS (Burning and Suppression of Solids) examines the burning and extinction characteristics of a wide variety of fuel samples in microgravity.
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf`
+- Location: `page=1`
+- As written: `microgravity`
+- Note: confidence direct (Investigation-level description in the PSI Data Layout Document; the sentence spans two PDF lines (joined with one space).); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> Burning and Suppression of Solids
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=title`
+- As written: `Solids`
+- Note: confidence direct (Investigation title (a name, not a sentence). See R6 for the requirement sentence.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, insufficient_evidence)
+
+> Configuration: Solid fuel materials on individual and exchangeable sample cards
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf`
+- Location: `page=7`
+- As written: `Solid fuel materials`
+- Note: confidence ambiguous ('BASS Requirement' column of the requirements table, row 'Configuration' (planning document, February 2010). Note for the auditor: SRD page 4, Figure 1 labels the sample 'Solid fuel or wax-impregnated “wick”', and the test matrix (page 10) includes wax candles and wax-saturated fabric; the sources do not state a phase for the wax samples separately.); R6 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> The experiment was conducted aboard the International Space Station (ISS) inside the Microgravity Glove Box (MSG).
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=approach`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (Vehicle. Section=flightProgram also reads 'International Space Station (ISS)'.); R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Microgravity Science Glovebox  (test `*`, extracted)
+
+> Microgravity Science Glovebox
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=experimentHardware`
+- As written: `Microgravity Science Glovebox`
+- Note: confidence direct (Facility (field value, not a sentence). Section=approach writes it 'Microgravity Glove Box (MSG)'; the 2013 paper, paragraph 53, writes 'Microgravity Science Glovebox (MSG)'.); R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> The air co-flow is produced by using a fan to blow air through the duct.
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf`
+- Location: `page=4`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. The 2013 paper (paragraph 51) also speaks of 'air flow speeds'. Separate note, NOT the ambient diluent: the extinguishing agent is nitrogen, SRD page 4: '3.) Nitrogen gas jet for flame extinguishment'; record section=researchImpacts: 'Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques.'); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = concurrent  (test `*`, insufficient_evidence)
+
+> This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=approach`
+- As written: `concurrent-flow`
+- Note: confidence ambiguous (Investigation-level statement that both configurations were used; it does not say which test used which, so this value does not hold for every test. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering). Nothing is stated for the spheres or candles.); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = opposed  (test `*`, insufficient_evidence)
+
+> This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=approach`
+- As written: `opposed-flow`
+- Note: confidence ambiguous (Same sentence as R10: both configurations were used; it does not say which test used which. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering).); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 40 cm/s  (test `*`, insufficient_evidence)
+
+> Airflow was controlled using a variable speed fan, with airflow speeds reaching as high as 40 cm/s.
+
+- File: `psi-data/PSI-26/_investigation/PSI-26.json`
+- Location: `section=approach`
+- As written: `as high as 40 cm/s` (cm/s)
+- Note: confidence ambiguous (Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15). As-run speeds in Table I of the 2013 paper reach 44 cm/s (paragraphs 126 and 131), above this stated maximum. Lineage: the fan and the 76 mm x 76 mm duct are the SPICE apparatus (2013 paper, paragraph 51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'); flag SHARED_LINEAGE.); flags: DISCREPANCY, RANGE_NOT_POINT; R13 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 5..50 cm/s  (test `*`, insufficient_evidence)
+
+> An anemometer is used to measure the actual flow speed. The airflow speed can be adjusted from 5 to 50 cm/s.
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf`
+- Location: `page=4`
+- As written: `5 to 50 cm/s` (cm/s)
+- Note: confidence ambiguous (Planning document (Science Requirements, February 2010) describing the existing SPICE fan and duct. SRD page 7 repeats 'Oxidizer Velocity: 5 to 50 cm/s' and 'Co-flow Velocity: 5 to 50 cm/s', with the BASS column '---Same---' as SPICE. Disagrees with the 0 to 40 cm/s of R13 and R14.); flags: DISCREPANCY, RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R15 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.21 1  (test `*`, insufficient_evidence)
+
+> On each day of testing, the oxygen concentration of the ISS cabin atmosphere should be measured. Testing is restricted to oxygen concentrations at or above 21% O2.
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf`
+- Location: `page=8`
+- As written: `at or above 21% O2` (%)
+- Note: confidence ambiguous (Lower bound only, and a requirement in the February 2010 planning SRD ('Ambient Oxygen Concentration Requirements', BASS column), not a measured value. The same restriction is repeated on page 8 for the MSG working volume. The as-run O2 is not stated in the record text or the 2013 paper. The percent basis (volume/mole or mass) is not stated. The '2' in 'O2' is a subscript in the PDF.); flags: UNIT_AMBIGUOUS; percent x 0.01; R16 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-39 CFI
 
 - *Table reading:* CFI "Oxygen", "Nitrogen" and "Helium" columns carry no unit. They are read as ambient mole fractions because the three sum to 1 in every row; `diluent` is N2, He or `mixed` from the two inert columns.
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Rationale for microgravity remains the same for all the droplet combustion experiments conducted onboard the ISS.
+
+- File: `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Location: `page=6`
+- As written: `microgravity`
+- Note: confidence ambiguous (Rationale statement (Final Report section 3b); it implies, but does not state, that the CFI tests were burned in microgravity. 'onboard the ISS' is a platform, not a gravity statement.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Flame combustion of liquid hydrocarbon fuels such as n-dodecane, n-dodecane/iso-dodecane mixtures, and faresane in microgravity can provide insights into low-temperature chemical kinetics, revealing critical parameters like droplet extinction diameters and flame dynamics that are not observable on Earth.
+
+- File: `psi-data/PSI-39/_investigation/PSI-39.json`
+- Location: `section=hypothesis`
+- As written: `microgravity`
+- Note: confidence ambiguous (Hypothesis field: names microgravity as the intended condition, not as a reported condition of the tests.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The overall goal of the proposed experiments is to improve our understanding of low temperature chemistry by studying the cool flame burning and, most importantly, cool flame extinction of droplet burning with spherical symmetry in a long-duration microgravity environment.
+
+- File: `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+- Location: `page=30`
+- As written: `microgravity`
+- Note: confidence ambiguous (Pre-flight objective (SRD dated November 7, 2014, 'proposed experiments'); not a statement about the tests as run.); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, extracted)
+
+> Flame combustion of liquid hydrocarbon fuels such as n-dodecane, n-dodecane/iso-dodecane mixtures, and faresane in microgravity can provide insights into low-temperature chemical kinetics, revealing critical parameters like droplet extinction diameters and flame dynamics that are not observable on Earth.
+
+- File: `psi-data/PSI-39/_investigation/PSI-39.json`
+- Location: `section=hypothesis`
+- As written: `liquid`
+- Note: confidence direct; R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, extracted)
+
+> Subsequently, a droplet of desired size is dispensed between the hypodermic needles and freely deployed, and ignited.
+
+- File: `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Location: `page=6`
+- As written: `droplet`
+- Note: confidence derived (A fuel droplet dispensed between hypodermic needles is a liquid; the sentence (post-flight procedure) does not name the phase.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-39/_investigation/PSI-39.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> CFI experiments were conducted onboard the ISS from January 2017 through September 2017.
+
+- File: `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Location: `page=4`
+- As written: `ISS`
+- Note: confidence direct; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> The Combustion Integrated Rack (CIR) contains the Multi-User Droplet Combustion Apparatus (MDCA) which facilitates the controlled combustion of fuel droplets.
+
+- File: `psi-data/PSI-39/_investigation/PSI-39.json`
+- Location: `section=approach`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct; flags: SHARED_LINEAGE; R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Multi-User Droplet Combustion Apparatus (MDCA)  (test `*`, extracted)
+
+> The Combustion Integrated Rack (CIR) contains the Multi-User Droplet Combustion Apparatus (MDCA) which facilitates the controlled combustion of fuel droplets.
+
+- File: `psi-data/PSI-39/_investigation/PSI-39.json`
+- Location: `section=approach`
+- As written: `Multi-User Droplet Combustion Apparatus (MDCA)`
+- Note: confidence direct; flags: SHARED_LINEAGE; R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = quiescent  (test `*`, insufficient_evidence)
+
+> The proposed CFI experiments involve igniting and observing the burning behavior of relatively large droplets. The experiments seek to observe [...] cool flame extinction of primarily free-floated fuel droplets in q quiescent ambient envrionment.
+
+- File: `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+- Location: `page=45`
+- As written: `quiescent`
+- Note: confidence ambiguous (Pre-flight plan (SRD dated November 7, 2014, section 6.1, 'proposed CFI experiments'); the Final Report (2020) does not restate the flow configuration. 'q quiescent' and 'envrionment' are typos in the source, kept verbatim.); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = quiescent  (test `*`, insufficient_evidence)
+
+> Ambient Quiescience: gases shall be well-mixed and quiescent prior to ignition.
+
+- File: `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+- Location: `page=38`
+- As written: `quiescent`
+- Note: confidence ambiguous (Pre-flight requirement ('shall'), stated for the gas prior to ignition; the Final Report does not restate it.); R11 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = quiescent  (test `*`, insufficient_evidence)
+
+> The MDCA is capable of deploying both free and fiber-supported droplets in a quiescent microgravity environment.
+
+- File: `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+- Location: `page=12`
+- As written: `quiescent`
+- Note: confidence ambiguous (Sentence is in the SRD's FLEX hardware section (2.3.1) and describes MDCA capability; it applies to CFI only through the shared hardware (Final Report page 6: 'The experimental hardware is same as that of the FLEX experiments').); flags: SHARED_LINEAGE; R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### ambient_temperature = 291.15..300.15 K  (test `*`, insufficient_evidence)
+
+> Ambient temperature: initial chamber gas temperature shall be 18 − 27 C.
+
+- File: `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+- Location: `page=38`
+- As written: `18 − 27 C` (C)
+- Note: confidence ambiguous (Pre-flight requirement band ('shall be', SRD dated November 7, 2014) for the initial chamber gas temperature; no as-run chamber temperature is reported in the Final Report or the record text. Unit written as 'C' without a degree sign. Same band appears in Table 1, page 35 ('initial gas temperature at 18 - 27 C').); flags: RANGE_NOT_POINT; range stated in the source; C + 273.15; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-68 FLEX-2
 
 - *Table reading:* FLEX-2 table rows are fuels, not tests: each cell gives the range or list of conditions covered for that fuel. `test_id` is the fuel as written; a combination of the listed values is not claimed to have been tested.
 - *Table reading:* FLEX-2 "Ambient Gas Mixture" reads "O2/N2 or O2/He": one `diluent` record per alternative (N2, He).
+
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> 4. Allow the droplet to stabilize in the microgravity environment.
+
+- File: `psi-data/PSI-68/_investigation/PSI-68.json`
+- Location: `section=approach`
+- As written: `microgravity`
+- Note: confidence direct (Step 4 of the list introduced by 'The overall investigation approach can be summarized as:' in the same field; it places the deployed test droplet in the microgravity environment. No g-level stated. Not used: section=projectType 'Microgravity Investigation' (category label) and the SRD 5.1.7 acceleration requirement (pages 39 and 44, a pre-flight requirement, not a reported condition).); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> By conducting these experiments in a microgravity environment, the effects of buoyancy are minimized, and the droplet can be characterized only as a function of thermocapillary or solutalcapillary stresses allowing for a clear observation of the fundamental combustion processes,  The present FLEX-2 experiments using bi-component mixtures.
+
+- File: `psi-data/PSI-68/_investigation/PSI-68.json`
+- Location: `section=hypothesis`
+- As written: `microgravity`
+- Note: confidence ambiguous (The sentence sits in the PSI 'hypothesis' field and gives the rationale for microgravity, so it is proposed as ambiguous (brief rule 3). The double space after 'processes,' and the run-on ending are as written in the record.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, insufficient_evidence)
+
+> Fuel purity: Purity levels shall be the highest purity level that is commercially available (research grade at 99.5% by volume at present) and all liquids shall be degassed and contain no H2O.
+
+- File: `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf`
+- Location: `page=39`
+- As written: `liquids`
+- Note: confidence ambiguous (Pre-flight requirement ('shall') in SRD 5.1.1 Test Fuels (printed page 33), dated March 15, 2010; 'all liquids' are the planned test fuels by context. Planned, not as-run: the PSI experimental table lists fuels the SRD does not.); R3 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, insufficient_evidence)
+
+> While FLEX is focussed on spacecraft fire safety and fire suppression, FLEX-2 returns to the broader objective of improving the [...] understanding of liquid-fuel combustion.
+
+- File: `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf`
+- Location: `page=7`
+- As written: `liquid-fuel`
+- Note: confidence ambiguous (Objective statement in the pre-flight SRD introduction (printed page 1), not a description of the tests run; '[...]' skips 'fundamental', hyphenated across a line break.); R4 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, extracted)
+
+> FLEX-2 (The Flame Extinguishment - 2) experiment is the second experiment to fly on the ISS which uses small droplets of fuel to study the special spherical characteristics of burning fuel droplets in space.
+
+- File: `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 DoD.docx`
+- Location: `paragraph=1`
+- As written: `droplets of fuel`
+- Note: confidence derived (The sentence says 'droplets of fuel' but does not name the phase; liquid inferred from the droplet form.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-68/_investigation/PSI-68.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (PSI flight-program field (the whole field). Consistent with R7 (DoD) and with SRD page 29: 'The flight experiment utilizes the Multiple Droplet Combustion Apparatus (MDCA) installed in the Combustion Integrated Rack (CIR) in the International Space Station (ISS) to investigate several fundamental aspects of droplet combustion.'); R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> FLEX-2 (The Flame Extinguishment - 2) experiment is the second experiment to fly on the ISS which uses small droplets of fuel to study the special spherical characteristics of burning fuel droplets in space.
+
+- File: `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 DoD.docx`
+- Location: `paragraph=1`
+- As written: `ISS`
+- Note: confidence direct (Source writes only the acronym 'ISS'; value uses the full name written in section=flightProgram (R6). 'in space' in this sentence was not used for gravity_regime.); R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR), Multi-user Droplet Combustion Appartatus (MDCA)
+
+- File: `psi-data/PSI-68/_investigation/PSI-68.json`
+- Location: `section=experimentHardware`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (The field lists two items; this record takes the first. Shared rack and rack diagnostics (CIR HiBMS cameras, CIR LLL-UV camera, LCTF; SRD pages 34-36): FLEX (SRD page 7; PSI-69 experimentHardware), CFI (PSI-39 experimentHardware) and the ACME investigations PSI-10, PSI-20, PSI-21, PSI-22, PSI-23, PSI-159 (experimentHardware lists the CIR). Not independent evidence at the hardware level.); flags: SHARED_LINEAGE; R8 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = Multi-user Droplet Combustion Appartatus (MDCA)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR), Multi-user Droplet Combustion Appartatus (MDCA)
+
+- File: `psi-data/PSI-68/_investigation/PSI-68.json`
+- Location: `section=experimentHardware`
+- As written: `Multi-user Droplet Combustion Appartatus (MDCA)`
+- Note: confidence direct (Second item of the field; 'Appartatus' as written (sic). Shared apparatus: FLEX (SRD page 7; PSI-69 experimentHardware 'Multi-user Droplet Combustion Appartatus (MDCA)') and CFI (PSI-39 experimentHardware 'Multi-User Droplet Combustion Apparatus (MDCA)'). Spellings differ across records (Multi-user/Multi-User/Multiple, Appartatus/Apparatus).); flags: SHARED_LINEAGE; R9 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
 ## PSI-69 FLEX
 
@@ -36,9 +7298,144 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* FLEX "Burning rate; mm" is kept as `insufficient_evidence`: the unit written in the header (mm) is not a unit of burning rate, and the table does not state the right one.
 - *Table reading:* FLEX rows whose ambient pressure reads 0 mmHg are kept as `insufficient_evidence` for pressure (not a possible ambient pressure for a test that burned; the true value is not stated).
 
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The FLEX (Flame Extinguishment Experiment) investigation aims to map the flammability limits of liquid fuels in microgravity environments, measure the effectiveness of various gaseous fire suppressants such as CO2, He, and SF6, and develop reliable predictive models for combustion limits under reduced gravity conditions.
+
+- File: `psi-data/PSI-69/_investigation/PSI-69.json`
+- Location: `section=objective`
+- As written: `microgravity`
+- Note: confidence ambiguous (Objective statement ('aims to'), not a statement that the tests were run in microgravity (brief rule 3). No g-level stated. 'reduced gravity conditions' in the same sentence refers to the predictive models; not read as partial gravity.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> FLEX (Flame Extinguishment Experiment) investigates the effectiveness of fire suppressants in microgravity and quantify the effect of different possible crew exploration atmospheres on fire suppression.
+
+- File: `psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX DoD.docx`
+- Location: `paragraph=1`
+- As written: `microgravity`
+- Note: confidence ambiguous (Scope sentence of the Description of Data: says what FLEX investigates, not that the tests were run in microgravity. No g-level stated. Grammar ('quantify') as in the source.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The Multi-user Droplet Combustion Apparatus is a mini-facility designed to support Principal Investigators (PI) interested in studying various aspects of droplet combustion in a microgravity environment.
+
+- File: `psi-data/PSI-69/Engineering Documents/PSI-69_Engineering Documents_FLEX Engineering Requirements Document.pdf`
+- Location: `page=12`
+- As written: `microgravity`
+- Note: confidence ambiguous (Facility-purpose sentence about the MDCA, not about FLEX tests. Sentence spans three PDF lines, joined with one space. Two sentences later the same paragraph (section 3.1, printed page 4) says FLEX and FLEX-2 'have been selected for use in the MDCA', and the PSI record section=experimentHardware lists the MDCA for FLEX. The document itself is the FLEX-2 ERD (FLX-REQ-0001, February 04, 2010), filed in PSI-69 under the name 'FLEX Engineering Requirements Document'.); flags: SHARED_LINEAGE; R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = liquid  (test `*`, extracted)
+
+> The FLEX (Flame Extinguishment Experiment) investigation aims to map the flammability limits of liquid fuels in microgravity environments, measure the effectiveness of various gaseous fire suppressants such as CO2, He, and SF6, and develop reliable predictive models for combustion limits under reduced gravity conditions.
+
+- File: `psi-data/PSI-69/_investigation/PSI-69.json`
+- Location: `section=objective`
+- As written: `liquid fuels`
+- Note: confidence direct (The sentence names the phase ('liquid fuels'). Same sentence as R1. Section=hypothesis also says 'liquid fuel droplets'.); R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-69/_investigation/PSI-69.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (PSI flight-program field. Nothing in the documents read places the FLEX burns on another vehicle; ERD page 12 says the MDCA goes into the Combustion Integrated Rack (CIR) 'onboard the International Space Station (ISS)'.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF), Multi-user Droplet Combustion Appartatus (MDCA)
+
+- File: `psi-data/PSI-69/_investigation/PSI-69.json`
+- Location: `section=experimentHardware`
+- As written: `Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF)`
+- Note: confidence direct (First item of the PSI hardware field. Shared with FLEX-2: the FLEX-2 ERD (page 12) places the MDCA, used by FLEX and FLEX-2, in the CIR of the FCF.); flags: SHARED_LINEAGE; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Multi-user Droplet Combustion Appartatus (MDCA)  (test `*`, extracted)
+
+> Combustion Integrated Rack (CIR)-Fluids and Combustion Facility (FCF), Multi-user Droplet Combustion Appartatus (MDCA)
+
+- File: `psi-data/PSI-69/_investigation/PSI-69.json`
+- Location: `section=experimentHardware`
+- As written: `Multi-user Droplet Combustion Appartatus (MDCA)`
+- Note: confidence direct (Second item of the PSI hardware field. 'Appartatus' is the source spelling (the ERD spells it 'Apparatus'); kept as written. Shared with FLEX-2: ERD page 12 says FLEX and FLEX-2 'have been selected for use in the MDCA'.); flags: SHARED_LINEAGE; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-98 SAFFIRE-I
 
 - *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The objectives of this investigation were to: (1) determine how rapidly a large scale fire grows in low-gravity and (2) investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=objective`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Objective statement, not a statement of the test condition. The JSON field has line breaks after 'to:' and after 'normal', each joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. The same objective wording is in the Objectives PDF abstract (page 1), which covers Saffire-I, -II and -III; page 3 assigns objective (2) to Saffire-II.); flags: SHARED_LINEAGE; R1 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The specific objective of SAFFIRE-I and SAFFIRE-III tests is to determine how rapidly a large-scale fire grows in low-gravity and whether it reaches a steady-state spread rate.
+
+- File: `psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx`
+- Location: `paragraph=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Objective statement for the SAFFIRE-I and SAFFIRE-III tests, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity.); flags: SHARED_LINEAGE; R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> In Saffire-I and –III, the sample material is a single large sample (approx. 0.4 m wide by 0.94 m tall) to demonstrate the development and spread of a large-scale low-gravity fire.
+
+- File: `psi-data/PSI-98/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf`
+- Location: `page=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (States the purpose of the sample ('to demonstrate ... a large-scale low-gravity fire'), not the measured condition of the burn. Sentence spans two PDF lines ('0.4 m' / 'wide'), joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. Covers Saffire-I and Saffire-III together.); flags: SHARED_LINEAGE; R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Results determine microgravity flammability limits for several spacecraft materials, help to validate NASA’s material selection criteria, and how microgravity and limited oxygen affect flame size.
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=researchImpacts`
+- As written: `microgravity`
+- Note: confidence ambiguous (Research-impact summary, not a statement of the test condition. It speaks of 'several spacecraft materials', while section=approach names one material (Sibal) for Saffire-I, so the sentence may describe the Saffire series rather than these tests. No g-level stated.); R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> The sample material for Saffire-I is a composite fabric called Sibal consisting of cotton on a fiberglass substrate (75% cotton, 25% fiberglass by weight).
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=approach`
+- As written: `composite fabric`
+- Note: confidence derived (Phase inferred from the material form: a cotton-on-fiberglass fabric is a solid; the sentence does not use the word 'solid'.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus resupply vehicle  (test `*`, extracted)
+
+> The Saffire-1 experiments was performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS.
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=approach`
+- As written: `Cygnus resupply vehicle`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus  (test `*`, extracted)
+
+> Saffire 1 enclosure in Cygnus
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=experimentHardware`
+- As written: `Cygnus`
+- Note: confidence direct; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> The Saffire-1 flight unit had a sample card installed in the middle of a large flow duct. Air is drawn through the flow duct by fans located at the top of the duct with flow straighteners at the bottom of the experiment module.
+
+- File: `psi-data/PSI-98/_investigation/PSI-98.json`
+- Location: `section=approach`
+- As written: `Air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. The documents read do not state the composition of this air beyond O2.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-99 SAFFIRE-II
 
@@ -47,12 +7444,365 @@ For each record below, open the file at the location given and check that the qu
 - *Table reading:* SAFFIRE-II thickness "037 mm" (samples 2-4 to 2-6) lacks a decimal point (0.37 mm or 37 mm): `insufficient_evidence`. "0.85 and 0.37 mm" (sample 2-7, "PMMA & Nomex") gives one record per value.
 - *Table reading:* SAFFIRE-II "1-g Burn Length" and "1-g Spread Rate" are normal-gravity comparison tests and are not mapped onto the flight samples; the micro-g columns are not mapped either (their header says length, the cells say mm/s).
 
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The objectives of SAFFIRE-II are to determine how rapidly a large scale fire grows in low-gravity and to investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=objective`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Objective statement, not a statement of the conditions of the completed tests; 'low-gravity' mapped to the controlled value microgravity. The 'normal gravity' screening test named here is NASA's ground test, not a test of this investigation.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The specific objective of SAFFIRE-II tests is to quantify that affect in long-duration low-gravity using samples of the same size as those used in the NASA-STD-6001 Test 1 normal-gravity tests.
+
+- File: `psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II Readme.docx`
+- Location: `paragraph=1`
+- As written: `long-duration low-gravity`
+- Note: confidence ambiguous (Objective statement specific to SAFFIRE-II; 'long-duration low-gravity' mapped to microgravity. The 'NASA-STD-6001 Test 1 normal-gravity tests' are the ground reference, not tests reported in PSI-99.); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Results determine microgravity flammability limits for several spacecraft materials, help to validate NASA’s material selection criteria, and how microgravity and limited oxygen affect flame size.
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=researchImpacts`
+- As written: `microgravity`
+- Note: confidence ambiguous (Research-impact statement about the results; it does not say explicitly that the tests were conducted in microgravity.); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> This paper describes the three Spacecraft Fire Experiments (Saffire-I, -II, and -III) that were developed at NASA-GRC and that will conduct a series of material flammability tests in low-gravity and at length scales that are realistic for a spacecraft fire.
+
+- File: `psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf`
+- Location: `page=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Pre-flight paper (future tense, launches 'all planned for 2016'); the sentence covers Saffire-I, -II and -III together; 'low-gravity' mapped to microgravity.); flags: SHARED_LINEAGE; R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> As a follow on to the Saffire-I investigation, the Saffire-II investigation added more samples including SIBAL, silicone, structure PMMA, flat PMMA, and PMMA with Nomex.
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=approach`
+- As written: `SIBAL, silicone, structure PMMA, flat PMMA, and PMMA with Nomex`
+- Note: confidence derived (Inferred from the material names (SIBAL cloth, silicone, PMMA, Nomex are solid materials); the sentence does not name the phase.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Orbital Science’s Cygnus resupply vehicle  (test `*`, extracted)
+
+> The Saffire-II experiment was performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS.
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=approach`
+- As written: `Orbital Science’s Cygnus resupply vehicle`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus Pressurized Cargo Module  (test `*`, extracted)
+
+> Cygnus Pressurized Cargo Module, SAFFIRE
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=experimentHardware`
+- As written: `Cygnus Pressurized Cargo Module`
+- Note: confidence direct; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Orbital ATK’s Cygnus vehicle  (test `*`, insufficient_evidence)
+
+> The experiments will be conducted in Orbital ATK’s Cygnus vehicle after it has unberthed from the International Space Station.
+
+- File: `psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf`
+- Location: `page=1`
+- As written: `Orbital ATK’s Cygnus vehicle`
+- Note: confidence ambiguous (Pre-flight, future tense; the sentence covers Saffire-I, -II and -III together. It names the operator as Orbital ATK where the PSI record (R6) says Orbital Science’s; both name the Cygnus vehicle.); flags: SHARED_LINEAGE; R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> Depending on the sample material, the Saffire-II was conducted at an air flow velocity of either 20 or 30 cm/s, the flow being either concurrent or opposed.
+
+- File: `psi-data/PSI-99/_investigation/PSI-99.json`
+- Location: `section=approach`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. None of the three sources names the balance gas of the Cygnus atmosphere.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-100 SAFFIRE-III
 
 - *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The objectives of this investigation were to: (1) determine how rapidly a large scale fire grows in low-gravity and (2) investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.
+
+- File: `psi-data/PSI-100/_investigation/PSI-100.json`
+- Location: `section=objective`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Objective statement, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. SHARED_LINEAGE: this text is identical to section=objective of PSI-98 (SAFFIRE-I) and to the general SAFFIRE objective in the Readme paragraph 1 and the Objectives PDF page 1; it is not independent of PSI-98, R2 or R5.); R1 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> The specific objective of SAFFIRE-I and SAFFIRE-III tests is to determine how rapidly a large-scale fire grows in low-gravity and whether it reaches a steady-state spread rate.
+
+- File: `psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx`
+- Location: `paragraph=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Objective statement covering SAFFIRE-I and SAFFIRE-III together, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. The same sentence, in future tense, is on page 2 of the Objectives PDF ('The objective of the Saffire-I and III tests will be to ...'); not proposed separately because its text layer reads 'lowgravity' across a hyphenated line break.); flags: SHARED_LINEAGE; R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> In Saffire-I and –III, the sample material is a single large sample (approx. 0.4 m wide by 0.94 m tall) and demonstrates the development and spread of a large-scale low-gravity fire.
+
+- File: `psi-data/PSI-100/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf`
+- Location: `page=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Operational-requirements document specific to SAFFIRE-III, but the sentence covers Saffire-I and -III together and describes what the sample is meant to demonstrate, not a measured test condition. Sentence spans two PDF lines ('0.4 m' / 'wide'), joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity.); flags: SHARED_LINEAGE; R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Results determine microgravity flammability limits for several spacecraft materials, help to validate NASA’s material selection criteria, and how microgravity and limited oxygen affect flame size.
+
+- File: `psi-data/PSI-100/_investigation/PSI-100.json`
+- Location: `section=researchImpacts`
+- As written: `microgravity`
+- Note: confidence ambiguous (Research-impact summary, not a statement of the test condition; no g-level stated. In the PSI-100 record this section opens with 'The Saffire-I experiment provides a new way to study a realistic fire on an exploration vehicle', so the text was written for Saffire-I, and it speaks of 'several spacecraft materials' while section=approach names one material (SIBAL) for Saffire III.); flags: SHARED_LINEAGE; R4 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> This paper describes the three Spacecraft Fire Experiments (Saffire-I, -II, and -III) that were developed at NASA-GRC and that will conduct a series of material flammability tests in low-gravity and at length scales that are realistic for a spacecraft fire.
+
+- File: `psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf`
+- Location: `page=1`
+- As written: `low-gravity`
+- Note: confidence ambiguous (Pre-flight paper (future tense 'will conduct'; page 4 Table 4 gives Saffire-III operations as planned for 3-Mar-2017 'as of 4/30/2016'). The sentence covers Saffire-I, -II and -III together. Sentence spans five PDF lines, joined with one space. Source term 'low-gravity' mapped to microgravity.); flags: SHARED_LINEAGE; R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> As a follow on to the Saffire 1 investigation, the Saffire III investigation also used SIBAL as the sample material.
+
+- File: `psi-data/PSI-100/_investigation/PSI-100.json`
+- Location: `section=approach`
+- As written: `SIBAL`
+- Note: confidence derived (Phase inferred from the material name: SIBAL is described in the Readme docx paragraph 3 (R7) as 'a composite fabric consisting of cotton on a fiberglass substrate'; a fabric is a solid. The sentence does not use the word 'solid'.); flags: SHARED_LINEAGE; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = solid  (test `*`, extracted)
+
+> The sample material for SAFFIRE-I and SAFFIRE-III is a composite fabric consisting of cotton on a fiberglass substrate (75% cotton, 25% fiberglass by weight).
+
+- File: `psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx`
+- Location: `paragraph=3`
+- As written: `composite fabric`
+- Note: confidence derived (Phase inferred from the material form: a cotton-on-fiberglass fabric is a solid; the sentence does not use the word 'solid'. The sentence covers SAFFIRE-I and SAFFIRE-III together. The same sentence (with 'Saffire-I and III') is on page 2 of the Objectives PDF.); flags: SHARED_LINEAGE; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus resupply vehicle  (test `*`, extracted)
+
+> The Saffire-III experiments were performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS.
+
+- File: `psi-data/PSI-100/_investigation/PSI-100.json`
+- Location: `section=approach`
+- As written: `Orbital Science’s Cygnus resupply vehicle`
+- Note: confidence direct; R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus  (test `*`, extracted)
+
+> Saffire III enclosure in Cygnus
+
+- File: `psi-data/PSI-100/_investigation/PSI-100.json`
+- Location: `section=experimentHardware`
+- As written: `Cygnus`
+- Note: confidence direct; R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Cygnus PCM  (test `*`, insufficient_evidence)
+
+> Saffire-III flight system is loaded into the Cygnus PCM and be strapped into place.
+
+- File: `psi-data/PSI-100/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf`
+- Location: `page=1`
+- As written: `Cygnus PCM`
+- Note: confidence ambiguous (Requirement/protocol sentence (pre-launch loading step) in an operational-requirements document, not a post-flight statement; the vehicle (Cygnus) is stated as fact in section=approach (R8).); R10 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, insufficient_evidence)
+
+> Air is drawn through the flow duct by fans located at the top of the duct with flow straighteners at the bottom of the experiment module.
+
+- File: `psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf`
+- Location: `page=2`
+- As written: `Air`
+- Note: confidence ambiguous (air: oxygen balanced mainly by nitrogen. Pre-flight paper; the sentence describes the flow-duct design common to the three Saffire units, not the SAFFIRE-III test atmosphere.); flags: SHARED_LINEAGE; R12 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, insufficient_evidence)
+
+> SAFFIRE-I will be conducted at an air flow velocity of 20 cm/s while SAFFIRE-III will be run at a flow velocity of 30 cm/s.
+
+- File: `psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx`
+- Location: `paragraph=3`
+- As written: `air`
+- Note: confidence ambiguous (air: oxygen balanced mainly by nitrogen. Grammatically 'air' qualifies the SAFFIRE-I flow only; the SAFFIRE-III clause says 'a flow velocity' without naming the gas. Future tense (planning text). The same sentence (with 'Saffire-I' / 'Saffire-III') is on page 2 of the Objectives PDF.); flags: SHARED_LINEAGE; R13 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+## PSI-102 SAME
+
+- *Table reading:* SAME rows 5-8 read "<material>: same conditions as 1-4": only the material is recorded; their conditions are not copied from rows 1-4. SAME heats samples to produce smoke; its air flow is the flow over the heated sample.
+
+## PSI-106 SLICE
+
+- *Table reading:* SLICE `test_id` is the date at the start of the "Test Date" cell. The 2012-MAR-23 row is described in the same cell as "SPICE testing", so its fuel is `insufficient_evidence` for SLICE.
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> Objective: The objective of this investigation is to better understand the structure and stability of laminar diffusion flames in microgravity.
+
+- File: `psi-data/PSI-106/_investigation/PSI-106.json`
+- Location: `section=objective`
+- As written: `microgravity`
+- Note: confidence ambiguous (Objective statement, not a sentence stating the gravity condition of the tests. Same section, item 4: 'Quantify the effects of microgravity on flame length and radiative heat loss compared to normal gravity conditions.'; section=hypothesis: 'The hypothesis is that the structure and stability of laminar diffusion flames in microgravity are significantly influenced by [...]'. Not used as gravity evidence: section=flightProgram 'International Space Station (ISS)' (platform) and section=projectType 'Microgravity Investigation' (a label). No sentence in either source states that the SLICE tests were conducted in microgravity.); R1 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### gravity_regime = microgravity  (test `*`, insufficient_evidence)
+
+> As part of this aim, an important purpose of the SLICE investigation is to conduct preliminary microgravity studies that will maximize the scientific return of the subsequent CLD Flame experiment and mitigate associated risks.
+
+- File: `nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf`
+- Location: `page=1`
+- As written: `microgravity`
+- Note: confidence ambiguous (Purpose statement in a NASA Glenn fact sheet outside PSI. The fact sheet describes SLICE in the future tense (e.g. page 2: 'SLICE will include testing where the fuel flow is fixed [...]'), i.e. as planned, not as run. Sentence spans three PDF lines (joined with one space). Not used: page 2 'exploratory testing that has already been conducted on orbit' (platform wording, and it refers to the SPICE hardware, not to SLICE tests); page 1 'Microgravity testing allows for greater temporal and spatial scales and a broader range of flame characteristics than can be achieved in normal gravity.' (general statement, not about these tests).); R2 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> This setup used several fuels such as methane, ethylene, and nitrogen-diluted mixtures.
+
+- File: `psi-data/PSI-106/_investigation/PSI-106.json`
+- Location: `section=approach`
+- As written: `methane, ethylene`
+- Note: confidence derived (Inferred from the fuel names (methane and ethylene are gases); the sentence does not name the phase. Fuel identities are not extracted here (they are in the PSI table).); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> In terms of the experimental hardware, the only additional requirements for SLICE are more fuel (i.e., gas bottles), recording media, and minor hardware elements such as new nozzle(s).
+
+- File: `nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf`
+- Location: `page=2`
+- As written: `gas bottles`
+- Note: confidence derived (The sentence names the SLICE fuel supply as 'gas bottles' (a container term, in a planning statement); gaseous fuel at the jet nozzle follows from a gas-bottle supply to a gas-jet burner and agrees with R3 (methane, ethylene).); R4 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-106/_investigation/PSI-106.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct (Vehicle (field value, not a sentence). The record text does not name a facility inside the ISS.); R5 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = ISS MSG  (test `*`, extracted)
+
+> The SPICE hardware is within the ISS MSG in the image to the right. While the SPICE investigation has been specifically focused on a study of soot production and oxidation within flames, the hardware can be used without modification to conduct the SLICE experiment.
+
+- File: `nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf`
+- Location: `page=2`
+- As written: `ISS MSG`
+- Note: confidence derived (The first sentence places the SPICE hardware in the ISS MSG; SLICE uses that hardware (second sentence, and page 1: 'The SLICE experiment uses SPICE hardware which was based directly on the earlier ELF hardware.'). So the facility is stated for SPICE and carried to SLICE through the shared hardware (SPICE). The acronym MSG is not expanded in either source, so the value is kept as written. Fact sheet outside PSI, future tense (see R2). Sentences span four PDF lines (joined with one space).); flags: SHARED_LINEAGE; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> Flames were then manually ignited and observed under controlled coflow air conditions.
+
+- File: `psi-data/PSI-106/_investigation/PSI-106.json`
+- Location: `section=approach`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. STREAM: coflow (the oxidizer stream around the fuel jet). Separate note, NOT the ambient diluent: the 'nitrogen-diluted mixtures' (same section) and 'fuel dilution with nitrogen' (section=objective, item 3) are in the FUEL stream; fuel mixtures are in the PSI table and are not extracted here.); R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### diluent = N2  (test `*`, extracted)
+
+> For diffusion flames of methane, ethylene, and selected nitrogen dilutions of each fuel burning in a coflow of air:
+
+- File: `nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf`
+- Location: `page=1`
+- As written: `air`
+- Note: confidence derived (air: oxygen balanced mainly by nitrogen. STREAM: coflow. The 'nitrogen dilutions of each fuel' in the same sentence are in the FUEL stream, not the ambient. Lead-in line of the 'Objectives' list (ends with a colon in the source); spans two PDF lines (joined with one space). Fact sheet outside PSI, future tense (see R2).); R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> Flames were then manually ignited and observed under controlled coflow air conditions.
+
+- File: `psi-data/PSI-106/_investigation/PSI-106.json`
+- Location: `section=approach`
+- As written: `coflow`
+- Note: confidence direct (Section=hypothesis also names 'coflow velocity' as a variable.); R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_configuration = coflow  (test `*`, extracted)
+
+> For diffusion flames of methane, ethylene, and selected nitrogen dilutions of each fuel burning in a coflow of air:
+
+- File: `nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf`
+- Location: `page=1`
+- As written: `coflow`
+- Note: confidence direct (Lead-in line of the 'Objectives' list (ends with a colon in the source); spans two PDF lines (joined with one space). Fact sheet outside PSI, future tense (see R2). Page 2 adds that the SPICE hardware 'was built to allow studies of coflow laminar diffusion flames'.); R10 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+## PSI-107 SPICE
+
+- *Table reading:* SPICE rows have no test identifier: `test_id` is built as "GMT <GMT date> <GMT ignition>" from the first two columns, exactly as written. Rows sharing an ignition time are successive fuel-flow settings of one burn.
+- *Table reading:* SPICE rows with a negative "Air Rate (cm/s)" (-0.28, -5.92) are `insufficient_evidence`: a co-flow speed cannot be negative as written, and the table does not explain it.
 
 ## PSI-159 ACME CFI-G
 
 - *Table reading:* CFI-G inverse-flame "XO2" is the O2 mole fraction of the stream issued from the burner (`burner_o2_mole_fraction`), not the ambient O2: in an inverse flame the oxidizer flows from the burner into a fuel-laden ambient (schema definition of `flame_type`).
 
-No document records yet.
+### gravity_regime = microgravity  (test `*`, extracted)
+
+> CDFs are investigated here using a spherical porous burner with gaseous fuels in the microgravity environment of the International Space Station. Normal and inverse flames burning ethane, propane, and n-butane were explored with various fuel and oxygen concentrations, pressures, and flow rates.
+
+- File: `psi-data/PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf`
+- Location: `page=23`
+- As written: `microgravity`
+- Note: confidence direct (SECONDARY_SOURCE: the sentences come from the abstract of Kim et al., 'Spherical Gas-Fueled Cool Diffusion Flames', Proc. Combust. Inst. (2022), doi:10.1016/j.proci.2022.07.015, reproduced in section 4.C (p.23) of the Final Report. They cover both normal and inverse flames. Supporting report text on p.30: 'Testing is not conducted when thrusters fire or spacecraft dock or undock from ISS to ensure an acceptable acceleration environment.' Caveat on p.43: residual acceleration was 'not been evaluated with available measurements from the Space Acceleration Measurement System (SAMS)', and p.15 says SAMS data are not archived in PSI. Not used as gravity evidence: the project name and the PSI projectType label.); R1 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> Flames of Gaseous Fuels
+
+- File: `psi-data/PSI-159/_investigation/PSI-159.json`
+- Location: `section=subResearchArea`
+- As written: `Gaseous Fuels`
+- Note: confidence direct (PSI sub-research-area label of the investigation (a label, not a sentence about specific tests); corroborated by R4.); R3 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### fuel_phase = gas  (test `*`, extracted)
+
+> The tests were instead conducted burning various gaseous fuels, including ethane (C2H6), propane (C3H8), and n-butane (n-C4H10).
+
+- File: `psi-data/PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf`
+- Location: `page=38`
+- As written: `gaseous fuels`
+- Note: confidence direct (Fuels are gases (ethane, propane, n-butane) fed through a porous spherical burner (normal flames) or filled into the chamber (inverse flames); there are no material samples in this investigation.); R4 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> International Space Station (ISS)
+
+- File: `psi-data/PSI-159/_investigation/PSI-159.json`
+- Location: `section=flightProgram`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R6 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> ACME, Combustion Integrated Rack (CIR)
+
+- File: `psi-data/PSI-159/_investigation/PSI-159.json`
+- Location: `section=experimentHardware`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (Facility inside the ISS. The CIR and the ACME chamber insert are shared with the other ACME experiments (see lineage).); flags: SHARED_LINEAGE; R7 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = International Space Station (ISS)  (test `*`, extracted)
+
+> The Cool Flames Investigation with Gases (CFI-G) experiment is one of six independent experiments that make up the Advanced Combustion via Microgravity Experiments (ACME) project for which the tests were conducted within the Combustion Integrated Rack (CIR) on the International Space Station (ISS).
+
+- File: `psi-data/PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf`
+- Location: `page=3`
+- As written: `International Space Station (ISS)`
+- Note: confidence direct; R8 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### platform = Combustion Integrated Rack (CIR)  (test `*`, extracted)
+
+> The Cool Flames Investigation with Gases (CFI-G) experiment is one of six independent experiments that make up the Advanced Combustion via Microgravity Experiments (ACME) project for which the tests were conducted within the Combustion Integrated Rack (CIR) on the International Space Station (ISS).
+
+- File: `psi-data/PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf`
+- Location: `page=3`
+- As written: `Combustion Integrated Rack (CIR)`
+- Note: confidence direct (Shared with the other five ACME experiments (see lineage).); flags: SHARED_LINEAGE; R9 extracted by the extractor agent; KEEP by the verificador agent (separate run)

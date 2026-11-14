@@ -1,0 +1,190 @@
+{
+  "accession": "PSI-106",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "sources_read": [
+    "psi-data/PSI-106/_investigation/PSI-106.json",
+    "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf"
+  ],
+  "records": [
+    {
+      "id": "R1",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-106/_investigation/PSI-106.json",
+      "source_location": "section=objective",
+      "quote": "Objective: The objective of this investigation is to better understand the structure and stability of laminar diffusion flames in microgravity.",
+      "confidence": "ambiguous",
+      "derivation": "Objective statement, not a sentence stating the gravity condition of the tests. Same section, item 4: 'Quantify the effects of microgravity on flame length and radiative heat loss compared to normal gravity conditions.'; section=hypothesis: 'The hypothesis is that the structure and stability of laminar diffusion flames in microgravity are significantly influenced by [...]'. Not used as gravity evidence: section=flightProgram 'International Space Station (ISS)' (platform) and section=projectType 'Microgravity Investigation' (a label). No sentence in either source states that the SLICE tests were conducted in microgravity.",
+      "flags": []
+    },
+    {
+      "id": "R2",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf",
+      "source_location": "page=1",
+      "quote": "As part of this aim, an important purpose of the SLICE investigation is to conduct preliminary microgravity studies that will maximize the scientific return of the subsequent CLD Flame experiment and mitigate associated risks.",
+      "confidence": "ambiguous",
+      "derivation": "Purpose statement in a NASA Glenn fact sheet outside PSI. The fact sheet describes SLICE in the future tense (e.g. page 2: 'SLICE will include testing where the fuel flow is fixed [...]'), i.e. as planned, not as run. Sentence spans three PDF lines (joined with one space). Not used: page 2 'exploratory testing that has already been conducted on orbit' (platform wording, and it refers to the SPICE hardware, not to SLICE tests); page 1 'Microgravity testing allows for greater temporal and spatial scales and a broader range of flame characteristics than can be achieved in normal gravity.' (general statement, not about these tests).",
+      "flags": []
+    },
+    {
+      "id": "R3",
+      "test_id": "*",
+      "variable": "fuel_phase",
+      "value": "gas",
+      "value_original": "methane, ethylene",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-106/_investigation/PSI-106.json",
+      "source_location": "section=approach",
+      "quote": "This setup used several fuels such as methane, ethylene, and nitrogen-diluted mixtures.",
+      "confidence": "derived",
+      "derivation": "Inferred from the fuel names (methane and ethylene are gases); the sentence does not name the phase. Fuel identities are not extracted here (they are in the PSI table).",
+      "flags": []
+    },
+    {
+      "id": "R4",
+      "test_id": "*",
+      "variable": "fuel_phase",
+      "value": "gas",
+      "value_original": "gas bottles",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf",
+      "source_location": "page=2",
+      "quote": "In terms of the experimental hardware, the only additional requirements for SLICE are more fuel (i.e., gas bottles), recording media, and minor hardware elements such as new nozzle(s).",
+      "confidence": "direct",
+      "derivation": "The sentence equates the SLICE fuel with 'gas bottles' ('more fuel (i.e., gas bottles)'), which names the gas phase of the fuel supply. Planning statement (fact sheet outside PSI, future tense, see R2). If the auditor reads 'gas bottles' as a container term only, R3 (derived) still supports 'gas'. Sentence spans three PDF lines (joined with one space).",
+      "flags": []
+    },
+    {
+      "id": "R5",
+      "test_id": "*",
+      "variable": "platform",
+      "value": "International Space Station (ISS)",
+      "value_original": "International Space Station (ISS)",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-106/_investigation/PSI-106.json",
+      "source_location": "section=flightProgram",
+      "quote": "International Space Station (ISS)",
+      "confidence": "direct",
+      "derivation": "Vehicle (field value, not a sentence). The record text does not name a facility inside the ISS.",
+      "flags": []
+    },
+    {
+      "id": "R6",
+      "test_id": "*",
+      "variable": "platform",
+      "value": "ISS MSG",
+      "value_original": "ISS MSG",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf",
+      "source_location": "page=2",
+      "quote": "The SPICE hardware is within the ISS MSG in the image to the right. While the SPICE investigation has been specifically focused on a study of soot production and oxidation within flames, the hardware can be used without modification to conduct the SLICE experiment.",
+      "confidence": "derived",
+      "derivation": "The first sentence places the SPICE hardware in the ISS MSG; SLICE uses that hardware (second sentence, and page 1: 'The SLICE experiment uses SPICE hardware which was based directly on the earlier ELF hardware.'). So the facility is stated for SPICE and carried to SLICE through the shared hardware (SPICE). The acronym MSG is not expanded in either source, so the value is kept as written. Fact sheet outside PSI, future tense (see R2). Sentences span four PDF lines (joined with one space).",
+      "flags": ["SHARED_LINEAGE"]
+    },
+    {
+      "id": "R7",
+      "test_id": "*",
+      "variable": "diluent",
+      "value": "N2",
+      "value_original": "air",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-106/_investigation/PSI-106.json",
+      "source_location": "section=approach",
+      "quote": "Flames were then manually ignited and observed under controlled coflow air conditions.",
+      "confidence": "derived",
+      "derivation": "air: oxygen balanced mainly by nitrogen. STREAM: coflow (the oxidizer stream around the fuel jet). Separate note, NOT the ambient diluent: the 'nitrogen-diluted mixtures' (same section) and 'fuel dilution with nitrogen' (section=objective, item 3) are in the FUEL stream; fuel mixtures are in the PSI table and are not extracted here.",
+      "flags": []
+    },
+    {
+      "id": "R8",
+      "test_id": "*",
+      "variable": "diluent",
+      "value": "N2",
+      "value_original": "air",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf",
+      "source_location": "page=1",
+      "quote": "For diffusion flames of methane, ethylene, and selected nitrogen dilutions of each fuel burning in a coflow of air:",
+      "confidence": "derived",
+      "derivation": "air: oxygen balanced mainly by nitrogen. STREAM: coflow. The 'nitrogen dilutions of each fuel' in the same sentence are in the FUEL stream, not the ambient. Lead-in line of the 'Objectives' list (ends with a colon in the source); spans two PDF lines (joined with one space). Fact sheet outside PSI, future tense (see R2).",
+      "flags": []
+    },
+    {
+      "id": "R9",
+      "test_id": "*",
+      "variable": "flow_configuration",
+      "value": "coflow",
+      "value_original": "coflow",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-106/_investigation/PSI-106.json",
+      "source_location": "section=approach",
+      "quote": "Flames were then manually ignited and observed under controlled coflow air conditions.",
+      "confidence": "direct",
+      "derivation": "Section=hypothesis also names 'coflow velocity' as a variable.",
+      "flags": []
+    },
+    {
+      "id": "R10",
+      "test_id": "*",
+      "variable": "flow_configuration",
+      "value": "coflow",
+      "value_original": "coflow",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/glenn-factsheet-slice/structure-liftoff-in-combustion-experiment-slice.pdf",
+      "source_location": "page=1",
+      "quote": "For diffusion flames of methane, ethylene, and selected nitrogen dilutions of each fuel burning in a coflow of air:",
+      "confidence": "direct",
+      "derivation": "Lead-in line of the 'Objectives' list (ends with a colon in the source); spans two PDF lines (joined with one space). Fact sheet outside PSI, future tense (see R2). Page 2 adds that the SPICE hardware 'was built to allow studies of coflow laminar diffusion flames'.",
+      "flags": []
+    }
+  ],
+  "not_found": [
+    {
+      "variable": "pressure",
+      "looked_in": "record text (all sections: title, objective, approach, hypothesis, researchImpacts, flightProgram, projectType); fact sheet pages 1-2. Pressure is not mentioned anywhere, not even as a term."
+    },
+    {
+      "variable": "o2_mole_fraction",
+      "looked_in": "record text (all sections); fact sheet pages 1-2. The oxidizer is named only as 'air' (section=approach 'coflow air conditions'; page 1 'a coflow of air'). No oxygen fraction or percentage is stated, and none was inferred from the composition of air."
+    },
+    {
+      "variable": "flow_velocity",
+      "looked_in": "record text (all sections); fact sheet pages 1-2. Only qualitative mentions, no number or unit: section=hypothesis 'coflow velocity' (as an influencing variable); section=approach 'Calibration tests for airflow velocity [...] were conducted'; section=objective item 2 'Determine the liftoff velocity limits for different fuels and burner diameters.'; page 2 'SLICE will include testing where the fuel flow is fixed, and the air velocity is incrementally increased until the diffusion flame detaches and lifts off from the nozzle.' and 'It is also possible that screen(s) would be flown to alter the velocity profile of the coflow.'"
+    },
+    {
+      "variable": "gravity_regime (normal_gravity comparison tests)",
+      "looked_in": "record text (all sections); fact sheet pages 1-2. No 1-g tests are reported. Section=objective item 4 only states the aim to compare with 'normal gravity conditions'; page 2 says 'the capture of the lifting processes in normal gravity is extremely difficult'."
+    }
+  ],
+  "lineage": "Stated in the fact sheet only: SLICE uses the SPICE hardware, itself based on the ELF hardware flown in a Shuttle glovebox on STS-87 (page 1: 'The SLICE experiment uses SPICE hardware which was based directly on the earlier ELF hardware.'); page 2: 'the hardware can be used without modification to conduct the SLICE experiment', with that hardware 'within the ISS MSG'. SLICE is also described as 'a precursor to the CLD Flame experiment' (ACME, in the CIR), a scientific link, not shared hardware. BASS and BASS-II are not mentioned in either source read, and the PSI record text names no other investigation."
+}

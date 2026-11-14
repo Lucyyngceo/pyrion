@@ -1,0 +1,30 @@
+{
+  "accession": "PSI-39",
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "transcription": "Verdicts copied verbatim from the verificador's final message; reasons condensed by the build session.",
+  "verdicts": [
+    {"id": "R1", "verdict": "KEEP", "reason": "Verbatim on Final Report page 6; a rationale, not the gravity condition of the burns: ambiguous is the ceiling."},
+    {"id": "R2", "verdict": "KEEP", "reason": "Verbatim in section=hypothesis (typo 'faresane' kept); hypothesis: ambiguous."},
+    {"id": "R3", "verdict": "KEEP", "reason": "Verbatim on SRD page 30; pre-flight objective; the SRD plan differs from the as-run record (xenon, surrogate fuels never flown). Never upgrade."},
+    {"id": "R4", "verdict": "KEEP", "reason": "Verbatim in section=hypothesis; names 'liquid hydrocarbon fuels' that match the as-run fuels; direct holds; negative control found no contradiction."},
+    {"id": "R5", "verdict": "KEEP", "reason": "Verbatim on Final Report page 6 (post-flight procedures); droplet -> liquid derivation correct."},
+    {"id": "R6", "verdict": "KEEP", "reason": "section=flightProgram reads exactly 'International Space Station (ISS)'."},
+    {"id": "R7", "verdict": "KEEP", "reason": "Verbatim on Final Report page 4; as-run platform statement; survived the negative control."},
+    {"id": "R8", "verdict": "KEEP", "reason": "Verbatim in section=approach; SHARED_LINEAGE with FLEX supported by Final Report page 6."},
+    {"id": "R9", "verdict": "KEEP", "reason": "Same sentence as R8; MDCA shared with FLEX and FLEX-2."},
+    {"id": "R10", "verdict": "KEEP", "reason": "Verbatim on SRD page 45; pre-flight plan: ambiguous, never as-run."},
+    {"id": "R11", "verdict": "KEEP", "reason": "Verbatim on SRD page 38; a 'shall' requirement on the gas before ignition: ambiguous."},
+    {"id": "R12", "verdict": "KEEP", "reason": "Verbatim on SRD page 12 inside the FLEX section; MDCA capability, not a CFI test condition: ambiguous + SHARED_LINEAGE, weakest of R10-R12."},
+    {"id": "R13", "verdict": "KEEP", "reason": "Verbatim on SRD page 38; '18 - 27 C' is a requirement range; must not populate an as-run temperature envelope."},
+    {"id": "R14", "verdict": "REJECT", "reason": "Text layer reads '250 C' where the page shows 25 followed by a superscript degree sign; 250 would propagate as 523 K. Also a plan and an approximation duplicating R13. Drop."}
+  ],
+  "missed": [
+    "Final Report page 13: presentation title 'Hot and Cool-Flame Combustion of N-dodecane Droplets at Moderately High Pressures in Microgravity' - bibliographic, ambiguous at most.",
+    "projectType 'Microgravity Investigation' - a label, not a statement.",
+    "SRD page 38 micro-gravity requirement and SRD page 14 SAMS g-levels measured during FLEX (not CFI): must not become CFI records.",
+    "Final Report page 5 Figure 1 shows FLEX data; the report has two figures numbered 1."
+  ],
+  "could_not_check": "Single pages could not be rendered; other PSI-39 documents (operational requirements, SCR, presentations) not opened; whether CFI 'Flex Number' ids collide with FLEX/FLEX-2 ids unverified; record objective says 0.25 atm while the as-run list starts at 0.5 atm.",
+  "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

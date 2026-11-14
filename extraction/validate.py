@@ -127,6 +127,12 @@ class Sources:
         wb.close()
         return {"rows_raw": rows}
 
+    def squeezed(self, relpath: str, text: str) -> str:
+        key = ("squeezed", relpath)
+        if key not in self.cache:
+            self.cache[key] = re.sub(r"\s+", "", norm_loose(text))
+        return self.cache[key]
+
     def text(self, relpath: str):
         key = ("text", relpath)
         if key not in self.cache:
@@ -340,6 +346,9 @@ def check_document_source(rec, ctx, err):
     for part in [p for p in q.split(" [...] ")]:
         if norm(part) in norm(text) or norm_loose(part) in norm_loose(text):
             continue
+        if re.sub(r"\s+", "", norm_loose(part)) in ctx["sources"].squeezed(rec["source_file"], text):
+            ctx["stats"]["quote_found_ignoring_spaces"] += 1
+            continue
         err(f"quote not found in {rec['source_file']}: {part[:90]!r}")
         return
     ctx["stats"]["quote_found"] += 1
@@ -394,7 +403,8 @@ def main(argv=None):
         print(f"{f.name}: {n} records, {len(errs)} errors")
     if check_source:
         print(f"source check: {stats['table_exact']} table cells exact, {stats['table_substring']} "
-              f"table values found inside their cell, {stats['quote_found']} document quotes found")
+              f"table values found inside their cell, {stats['quote_found']} document quotes found "
+              f"({stats['quote_found_ignoring_spaces']} only when PDF spacing is ignored)")
         for what, n in sources.unchecked.items():
             print(f"  not checked: {n} records from {what}")
     else:
