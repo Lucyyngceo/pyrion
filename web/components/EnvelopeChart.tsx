@@ -126,6 +126,7 @@ interface Hover {
 
 function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes }: Props) {
   const [dragging, setDragging] = useState(false);
+  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
   const [viewportH, setViewportH] = useState(900);
@@ -347,8 +348,11 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                   pick(ev);
                 }}
                 onPointerMove={(ev) => {
+                  const r = (ev.currentTarget as SVGRectElement).getBoundingClientRect();
+                  setCursor({ x: ((ev.clientX - r.left) / r.width) * iw, y: ((ev.clientY - r.top) / r.height) * ih });
                   if (dragging) pick(ev);
                 }}
+                onPointerLeave={() => setCursor(null)}
                 onPointerUp={() => setDragging(false)}
                 onPointerCancel={() => setDragging(false)}
               />
@@ -453,6 +457,24 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               <line x1={0} x2={0} y1={13} y2={18} className="target-tick" />
             </g>
 
+            {cursor && !dragging && (
+              <g className="cursor" aria-hidden="true">
+                <line x1={cursor.x} x2={cursor.x} y1={0} y2={ih} />
+                <line x1={0} x2={iw} y1={cursor.y} y2={cursor.y} />
+                <g transform={`translate(${cursor.x},${ih})`}>
+                  <rect x={-34} y={2} width={68} height={18} rx={4} className="cursor-tag" />
+                  <text y={15} textAnchor="middle" className="cursor-text">
+                    {fmt((domain.x0 + (cursor.x / iw) * (domain.x1 - domain.x0)) * 100, 1)} % O₂
+                  </text>
+                </g>
+                <g transform={`translate(0,${cursor.y})`}>
+                  <rect x={-64} y={-9} width={62} height={18} rx={4} className="cursor-tag" />
+                  <text x={-33} y={4} textAnchor="middle" className="cursor-text">
+                    {fmt(domain.y1 - (cursor.y / ih) * (domain.y1 - domain.y0), 1)} kPa
+                  </text>
+                </g>
+              </g>
+            )}
             <line x1={0} x2={iw} y1={ih} y2={ih} className="axis" />
             <line x1={0} x2={0} y1={0} y2={ih} className="axis" />
             {xTicks.map((v) => (

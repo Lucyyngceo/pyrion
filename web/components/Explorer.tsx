@@ -109,8 +109,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured test points by O₂ and pressure, one layer per regime: gravity regime · fuel phase · diluent. Click or
-              drag on the chart to move the target.
+              Measured PSI test points, one layer per regime (gravity · fuel phase · diluent). Click or drag to move the
+              target.
             </p>
           </div>
           {status ? (
