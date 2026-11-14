@@ -18,9 +18,8 @@ export default async function Page() {
         </div>
         <h1>Which NASA combustion experiments apply to a target condition, and where the measured evidence ends.</h1>
         <p className="lede">
-          Source: NASA Physical Sciences Informatics (PSI), the 24 investigations in its Combustion Science research area,
-          each cited by DOI. Gravity regime, fuel phase and diluent are barriers; O₂ and pressure are compared only inside
-          the measured envelope.
+          Source: NASA Physical Sciences Informatics (PSI), its 24 Combustion Science investigations, each cited by DOI.
+          Physical regimes are barriers; O₂ and pressure are compared only inside the measured envelope.
         </p>
       </header>
 

@@ -1,10 +1,12 @@
 "use client";
 
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import type { EnvelopePoint, RegimeEnvelope, TargetLocation } from "@/lib/engine";
+import type { EnvelopePoint, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
 import { ATM_KPA, fmt, kPa, pctO2, psia } from "@/lib/units";
+
+export type LayerState = "match" | "open" | "dim";
 
 export interface DomainSeed {
   o2: number[];
@@ -14,7 +16,8 @@ export interface DomainSeed {
 interface Props {
   envelopes: RegimeEnvelope[];
   colors: Map<string, string>;
-  locations: Map<string, TargetLocation>;
+  /** Per layer, from the engine's cluster verdicts: comparable, undecided or across a barrier. */
+  layerState: Map<string, LayerState>;
   target: { o2: number; pressure: number };
   targetLabel: string;
   status: EnvelopeStatus;
@@ -75,16 +78,11 @@ interface Hover {
   y: number;
 }
 
-function emphasis(loc: TargetLocation | undefined): "match" | "open" | "dim" {
-  if (!loc) return "dim";
-  if (loc.sameRegime === true) return "match";
-  if (loc.sameRegime === null) return "open";
-  return "dim";
-}
 
-function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, status, seed, highlight, onPointSelect }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
+  const [viewportH, setViewportH] = useState(900);
   const [hidden, setHidden] = useState<Set<string>>(() => new Set());
   const [hover, setHover] = useState<Hover | null>(null);
   const [view, setView] = useState<"all" | "cabin">("all");
@@ -95,6 +93,9 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
     const el = wrapRef.current;
     if (!el) return;
     let raf = 0;
+    const onWin = () => setViewportH(window.innerHeight);
+    onWin();
+    window.addEventListener("resize", onWin, { passive: true });
     const ro = new ResizeObserver(([entry]) => {
       setWidth(Math.max(320, Math.round(entry.contentRect.width)));
       cancelAnimationFrame(raf);
@@ -104,10 +105,12 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      window.removeEventListener("resize", onWin);
     };
   }, []);
 
-  const height = Math.round(Math.min(540, Math.max(340, width * 0.6)));
+  // Fits a laptop screen: never taller than ~60% of the window, so chart and target panel share the first view.
+  const height = Math.round(Math.max(320, Math.min(540, width * 0.6, viewportH * 0.6)));
   const iw = width - M.left - M.right;
   const ih = height - M.top - M.bottom;
 
@@ -137,13 +140,15 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
 
   const tx = sx(target.o2);
   const ty = sy(target.pressure);
-  const calloutLeft = tx > iw * 0.56;
+  const CALLOUT_W = 230;
+  const calloutSide =
+    M.left + tx + 26 + CALLOUT_W <= width ? "right" : M.left + tx - 26 - CALLOUT_W >= 0 ? "left" : "below";
 
   const visible = envelopes.filter((e) => !hidden.has(e.key));
   const totalPoints = envelopes.reduce((n, e) => n + e.points.length, 0);
   let offScale = 0;
   for (const e of visible) for (const p of e.points) if (p.pressure < domain.y0 || p.pressure > domain.y1) offScale++;
-  const matched = envelopes.filter((e) => locations.get(e.key)?.sameRegime === true);
+  const matched = envelopes.filter((e) => layerState.get(e.key) === "match");
 
   const desc = `Scatter of ${totalPoints} measured test points, O₂ mole fraction against pressure, with one convex hull per regime combination: ${envelopes
     .map((e) => `${envelopeLongName(e)} (${e.points.length} points)`)
@@ -162,7 +167,7 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
       <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
         {envelopes.map((e) => {
           const on = !hidden.has(e.key);
-          const em = emphasis(locations.get(e.key));
+          const em = layerState.get(e.key) ?? "dim";
           return (
             <button
               key={e.key}
@@ -233,7 +238,7 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
               {/* hulls */}
               {visible.map((e) => {
                 const color = colors.get(e.key) ?? "var(--s-other)";
-                const cls = `layer em-${emphasis(locations.get(e.key))}`;
+                const cls = `layer em-${layerState.get(e.key) ?? "dim"}`;
                 const pts = e.hull.map((q) => [sx(q.o2_mole_fraction), sy(q.pressure)] as const);
                 if (pts.length >= 3) {
                   const d = `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
@@ -267,7 +272,7 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
                 const color = colors.get(e.key) ?? "var(--s-other)";
                 const phase = fuelPhaseOf(e);
                 return (
-                  <g key={`p${e.key}`} className={`layer em-${emphasis(locations.get(e.key))}`}>
+                  <g key={`p${e.key}`} className={`layer em-${layerState.get(e.key) ?? "dim"}`}>
                     {e.points.map((p, i) => {
                       const x = sx(p.o2_mole_fraction);
                       const y = sy(p.pressure);
@@ -297,8 +302,10 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
             {matched.map((e) => {
               if (hidden.has(e.key) || e.hull.length === 0) return null;
               const top = e.hull.reduce((a, b) => (b.pressure > a.pressure ? b : a), e.hull[0]);
+              const lx = Math.min(iw - 90, Math.max(90, sx(top.o2_mole_fraction)));
+              const ly = Math.max(14, sy(top.pressure) - 12);
               return (
-                <text key={`l${e.key}`} x={sx(top.o2_mole_fraction)} y={sy(top.pressure) - 12} textAnchor="middle" className="layer-label">
+                <text key={`l${e.key}`} x={lx} y={ly} textAnchor="middle" className="layer-label">
                   {envelopeName(e)}
                 </text>
               );
@@ -341,7 +348,7 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
         </svg>
 
         <div
-          className={`callout callout-${status.tone}${calloutLeft ? " callout-left" : ""}`}
+          className={`callout callout-${status.tone} callout-${calloutSide}`}
           style={{ transform: `translate(${M.left + tx}px, ${M.top + ty}px)` }}
           aria-live="polite"
         >
@@ -353,6 +360,7 @@ function EnvelopeChart({ envelopes, colors, locations, target, targetLabel, stat
               </span>
               {status.headline}
             </div>
+            <div className="callout-sub">{status.sub}</div>
           </div>
         </div>
 

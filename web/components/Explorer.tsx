@@ -1,7 +1,7 @@
 "use client";
 
 import { useDeferredValue, useMemo, useState } from "react";
-import EnvelopeChart, { type DomainSeed } from "./EnvelopeChart";
+import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
 import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
 import {
@@ -74,8 +74,23 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   }, [records, target, options]);
   const locations = useMemo(() => new Map(locateTarget(target, envelopeSet).map((l) => [l.key, l])), [target, envelopeSet]);
 
+  // Layer emphasis comes from the engine's verdicts on the clusters of that regime combination.
+  const layerState = useMemo(() => {
+    const m = new Map<string, LayerState>();
+    const ev = result.evaluation;
+    if (!ev) return m;
+    const rank: Record<LayerState, number> = { match: 0, open: 1, dim: 2 };
+    for (const c of [...ev.ranked, ...ev.unranked]) {
+      const st: LayerState =
+        c.verdict === "APPLICABLE" || c.verdict === "EXTRAPOLATION" ? "match" : c.verdict === "INSUFFICIENT_EVIDENCE" ? "open" : "dim";
+      const prev = m.get(c.clusterKey);
+      if (!prev || rank[st] < rank[prev]) m.set(c.clusterKey, st);
+    }
+    return m;
+  }, [result.evaluation]);
+
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
-  const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
+  const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], layerState, target) : null;
   const counts = result.evaluation?.counts.investigations;
   const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
@@ -93,7 +108,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             <EnvelopeChart
               envelopes={envelopes}
               colors={colors}
-              locations={locations}
+              layerState={layerState}
               target={{ o2: deferred.o2, pressure: deferred.pressure }}
               targetLabel={view ? view.short : "Custom target"}
               status={status}

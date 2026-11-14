@@ -57,11 +57,9 @@ export function fuelPhaseOf(e: RegimeEnvelope): string {
   return s && s.state === "known" ? s.values[0] : "unknown";
 }
 
-/** Plain description of a target regime; unstated axes are named as such. */
+/** Plain description of the regime axes the target states, e.g. "microgravity, solid fuel, N₂ diluent". */
 export function targetRegimeName(regime: Partial<Record<string, string>>): string {
   const suffix: Record<string, string> = { fuel_phase: " fuel", diluent: " diluent", flame_type: " flame" };
-  return REGIME_AXES.map((a) => {
-    const v = regime[a];
-    return v ? `${valueLabel(v)}${suffix[a] ?? ""}` : `${a.replaceAll("_", " ")} not stated`;
-  }).join(", ");
+  const stated = REGIME_AXES.filter((a) => regime[a]).map((a) => `${valueLabel(regime[a] as string)}${suffix[a] ?? ""}`);
+  return stated.length ? stated.join(", ") : "no regime stated";
 }
