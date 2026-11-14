@@ -162,3 +162,23 @@ Type check (optional, uses the TypeScript already installed for the web app): `n
 - **Measurement uncertainty is not modelled.** Values are used as written in the source. A target near a bound is "inside" or "outside" by the stated value only.
 - **Targets are points.** A band such as "30 % O2 or more" is checked at one point of it.
 - **The verdict is only as good as the records.** A value that is wrong in the records gives a wrong verdict. That is why every reason cites the records it rests on, and why `evidenceStatus` says whether a person has checked them.
+
+## Units: `parseQuantity` and `targetFromQuantities`
+
+Models never convert units; the engine does. `parseQuantity(text, variable)` turns text such as `"8.2 psia"`
+into a value in the schema unit, with the factor and its source, or returns a typed error (`ok: false`, `code`,
+`message`). Nothing is guessed: a missing unit, a range, a decimal comma, a gauge pressure (`psig`, `barg`:
+gauge is not absolute) or a value outside the plausible range is an error.
+
+The factors are the table of `validation/run_all.py` (`TO_KPA`, `CONVERSIONS`, `BOUNDS`); a test compares
+this file with that one. (`psi` there is 6.894757; the engine's `KPA_PER_PSI` has more digits, they agree to 1e-7.)
+
+- pressure: kPa, Pa, atm, bar, mbar, psi, psia, mmHg, torr → kPa (`psi` is read as absolute and says so)
+- oxygen: `34 %`, `34%`, `34 vol%`, `0.34`, `34` → fraction. Bare number > 1 is percent, ≤ 1 is a fraction; the rule
+  applied is returned in `rule`. A written unit wins (`0.34 %` is 0.0034, with a note).
+- flow: cm/s, mm/s, m/s → cm/s. thickness: mm, cm, µm, in → mm. temperature: K, °C → K.
+- gravity: `0.165 g`, `1/6 g`, `lunar` (0.165 g, NTRS 20260001966 p. 13), `mars` (1/3 g, NTRS 20000004509 p. 3),
+  `microgravity` (sets the regime, asserts no level).
+
+`targetFromQuantities({ gravity, o2, pressure, ...})` returns a validated `Target` and the list of conversions
+(`display`: `"8.2 psia → 56.54 kPa (×6.894757)"`), or every error with its field name.

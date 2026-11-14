@@ -9,3 +9,4 @@ export { canonicalJson } from './json.ts';
 export * from './stretch.ts';
 export * from './transfer.ts';
 export * from './fm2.ts';
+export * from './quantity.ts';
