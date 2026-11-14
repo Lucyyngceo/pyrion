@@ -1,0 +1,734 @@
+{
+  "result_class": "B (evaluated model). Never evidence, never a verdict: it ranks text, not physical applicability.",
+  "what_it_is": "What a standard open-source embedding search would retrieve for the same question as the web app's TF-IDF panel.",
+  "model": {
+    "name": "BAAI/bge-small-en-v1.5",
+    "license": "MIT",
+    "dimension": 384,
+    "onnx_file": "model_optimized.onnx",
+    "onnx_sha256": "51f1bd0addd6e859e42c2c8021a5e5461385bb676a649f4b269aa445449f2431",
+    "onnx_source": "Hugging Face repo Qdrant/bge-small-en-v1.5-onnx-Q (int8-quantized ONNX build of the model, as fastembed ships it)",
+    "runtime": "fastembed (ONNX); documents and queries embedded with the same call, no query instruction prefix",
+    "max_sequence_tokens": 512,
+    "note": "Texts longer than the model's limit are truncated by the tokenizer."
+  },
+  "documents": {
+    "count": 24,
+    "text": "acronym + title + objective + approach from the PSI record JSON + titles of the publications PSI lists (data/manifest/publications.csv)",
+    "characters": {
+      "PSI-10": 4461,
+      "PSI-20": 4504,
+      "PSI-21": 4011,
+      "PSI-22": 4627,
+      "PSI-23": 6057,
+      "PSI-25": 3445,
+      "PSI-26": 3019,
+      "PSI-39": 2055,
+      "PSI-47": 1771,
+      "PSI-60": 1845,
+      "PSI-62": 3144,
+      "PSI-68": 8027,
+      "PSI-69": 8568,
+      "PSI-98": 1997,
+      "PSI-99": 2241,
+      "PSI-100": 1630,
+      "PSI-101": 2209,
+      "PSI-102": 3007,
+      "PSI-106": 2146,
+      "PSI-107": 2345,
+      "PSI-115": 1548,
+      "PSI-117": 3363,
+      "PSI-142": 3101,
+      "PSI-159": 1019
+    }
+  },
+  "queries": {
+    "iss-cabin-air": "The nominal ISS cabin atmosphere, 14.7 psia with 21% O2, in microgravity. microgravity, liquid fuel, N₂ diluent",
+    "challenge-lunar-base": "The challenge states the Moon Base atmosphere as a band: 30% O2 or more at 10.2 psi or less. This preset is the corner of that band (30% O2, 10.2 psi) at lunar gravity. partial gravity, liquid fuel, N₂ diluent",
+    "nesc-10.2psia-26.5o2-lunar": "One of the two Exploration Atmospheres assessed by the NASA Engineering and Safety Center, paired with lunar gravity because the report considers them for surface habitats. partial gravity, liquid fuel, N₂ diluent",
+    "nesc-8.2psia-34o2-lunar": "The second NESC Exploration Atmosphere, paired with lunar gravity for the same reason. The report also considers O2 up to 40% at 8.2 psia when assessing flammability. partial gravity, liquid fuel, N₂ diluent"
+  },
+  "query_source": "web/components/Explorer.tsx:299: `${preset.description} ${targetRegimeName(regime)}` with the app's starting regime (liquid fuel, N2 diluent) and the preset's gravity regime.",
+  "rankings": {
+    "iss-cabin-air": [
+      {
+        "rank": 1,
+        "accession": "PSI-25",
+        "acronym": "BASS-II",
+        "title": "Burning and Suppression of Solids - II",
+        "cosine": 0.77403
+      },
+      {
+        "rank": 2,
+        "accession": "PSI-26",
+        "acronym": "BASS",
+        "title": "Burning and Suppression of Solids",
+        "cosine": 0.765407
+      },
+      {
+        "rank": 3,
+        "accession": "PSI-107",
+        "acronym": "SPICE",
+        "title": "Smoke Point In Co-flow Experiment",
+        "cosine": 0.758629
+      },
+      {
+        "rank": 4,
+        "accession": "PSI-106",
+        "acronym": "SLICE",
+        "title": "Structure and Liftoff In Combustion Experiment",
+        "cosine": 0.756162
+      },
+      {
+        "rank": 5,
+        "accession": "PSI-20",
+        "acronym": "ACME BRE",
+        "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+        "cosine": 0.755123
+      },
+      {
+        "rank": 6,
+        "accession": "PSI-159",
+        "acronym": "ACME CFI-G",
+        "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+        "cosine": 0.753782
+      },
+      {
+        "rank": 7,
+        "accession": "PSI-10",
+        "acronym": "ACME/Flame Design",
+        "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+        "cosine": 0.738065
+      },
+      {
+        "rank": 8,
+        "accession": "PSI-21",
+        "acronym": "ACME CLD Flame",
+        "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+        "cosine": 0.732858
+      },
+      {
+        "rank": 9,
+        "accession": "PSI-62",
+        "acronym": "",
+        "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+        "cosine": 0.728029
+      },
+      {
+        "rank": 10,
+        "accession": "PSI-102",
+        "acronym": "SAME",
+        "title": "Smoke and Aerosol Measurement Experiment",
+        "cosine": 0.726101
+      },
+      {
+        "rank": 11,
+        "accession": "PSI-115",
+        "acronym": "",
+        "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+        "cosine": 0.7197
+      },
+      {
+        "rank": 12,
+        "accession": "PSI-117",
+        "acronym": "",
+        "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis",
+        "cosine": 0.707749
+      },
+      {
+        "rank": 13,
+        "accession": "PSI-23",
+        "acronym": "ACME s-Flame",
+        "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+        "cosine": 0.697504
+      },
+      {
+        "rank": 14,
+        "accession": "PSI-69",
+        "acronym": "FLEX",
+        "title": "Flame Extinguishment Experiment",
+        "cosine": 0.695472
+      },
+      {
+        "rank": 15,
+        "accession": "PSI-47",
+        "acronym": "DAFT / DAFT-2",
+        "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+        "cosine": 0.691785
+      },
+      {
+        "rank": 16,
+        "accession": "PSI-22",
+        "acronym": "ACME E-FIELD Flames",
+        "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+        "cosine": 0.689507
+      },
+      {
+        "rank": 17,
+        "accession": "PSI-39",
+        "acronym": "CFI",
+        "title": "Cool Flames Investigation",
+        "cosine": 0.687895
+      },
+      {
+        "rank": 18,
+        "accession": "PSI-98",
+        "acronym": "SAFFIRE-I",
+        "title": "Spacecraft Fire Safety Experiment-I",
+        "cosine": 0.687702
+      },
+      {
+        "rank": 19,
+        "accession": "PSI-60",
+        "acronym": "",
+        "title": "Computational and Experimental Analysis of SPICE Data Sets",
+        "cosine": 0.68493
+      },
+      {
+        "rank": 20,
+        "accession": "PSI-68",
+        "acronym": "FLEX-2",
+        "title": "Flame Extinguishment Experiment - 2",
+        "cosine": 0.681322
+      },
+      {
+        "rank": 21,
+        "accession": "PSI-142",
+        "acronym": "",
+        "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+        "cosine": 0.678182
+      },
+      {
+        "rank": 22,
+        "accession": "PSI-99",
+        "acronym": "SAFFIRE-II",
+        "title": "Spacecraft Fire Experiment-II",
+        "cosine": 0.676748
+      },
+      {
+        "rank": 23,
+        "accession": "PSI-100",
+        "acronym": "SAFFIRE-III",
+        "title": "Spacecraft Fire Experiment-III",
+        "cosine": 0.668855
+      },
+      {
+        "rank": 24,
+        "accession": "PSI-101",
+        "acronym": "SAME-R",
+        "title": "Smoke Aerosol Measurement Experiment-Reflight",
+        "cosine": 0.643238
+      }
+    ],
+    "challenge-lunar-base": [
+      {
+        "rank": 1,
+        "accession": "PSI-107",
+        "acronym": "SPICE",
+        "title": "Smoke Point In Co-flow Experiment",
+        "cosine": 0.681704
+      },
+      {
+        "rank": 2,
+        "accession": "PSI-26",
+        "acronym": "BASS",
+        "title": "Burning and Suppression of Solids",
+        "cosine": 0.677544
+      },
+      {
+        "rank": 3,
+        "accession": "PSI-25",
+        "acronym": "BASS-II",
+        "title": "Burning and Suppression of Solids - II",
+        "cosine": 0.673281
+      },
+      {
+        "rank": 4,
+        "accession": "PSI-20",
+        "acronym": "ACME BRE",
+        "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+        "cosine": 0.658733
+      },
+      {
+        "rank": 5,
+        "accession": "PSI-106",
+        "acronym": "SLICE",
+        "title": "Structure and Liftoff In Combustion Experiment",
+        "cosine": 0.654162
+      },
+      {
+        "rank": 6,
+        "accession": "PSI-23",
+        "acronym": "ACME s-Flame",
+        "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+        "cosine": 0.649687
+      },
+      {
+        "rank": 7,
+        "accession": "PSI-102",
+        "acronym": "SAME",
+        "title": "Smoke and Aerosol Measurement Experiment",
+        "cosine": 0.648961
+      },
+      {
+        "rank": 8,
+        "accession": "PSI-69",
+        "acronym": "FLEX",
+        "title": "Flame Extinguishment Experiment",
+        "cosine": 0.643748
+      },
+      {
+        "rank": 9,
+        "accession": "PSI-60",
+        "acronym": "",
+        "title": "Computational and Experimental Analysis of SPICE Data Sets",
+        "cosine": 0.642578
+      },
+      {
+        "rank": 10,
+        "accession": "PSI-159",
+        "acronym": "ACME CFI-G",
+        "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+        "cosine": 0.640837
+      },
+      {
+        "rank": 11,
+        "accession": "PSI-21",
+        "acronym": "ACME CLD Flame",
+        "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+        "cosine": 0.640335
+      },
+      {
+        "rank": 12,
+        "accession": "PSI-115",
+        "acronym": "",
+        "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+        "cosine": 0.638423
+      },
+      {
+        "rank": 13,
+        "accession": "PSI-10",
+        "acronym": "ACME/Flame Design",
+        "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+        "cosine": 0.635387
+      },
+      {
+        "rank": 14,
+        "accession": "PSI-100",
+        "acronym": "SAFFIRE-III",
+        "title": "Spacecraft Fire Experiment-III",
+        "cosine": 0.633575
+      },
+      {
+        "rank": 15,
+        "accession": "PSI-99",
+        "acronym": "SAFFIRE-II",
+        "title": "Spacecraft Fire Experiment-II",
+        "cosine": 0.631417
+      },
+      {
+        "rank": 16,
+        "accession": "PSI-98",
+        "acronym": "SAFFIRE-I",
+        "title": "Spacecraft Fire Safety Experiment-I",
+        "cosine": 0.625232
+      },
+      {
+        "rank": 17,
+        "accession": "PSI-68",
+        "acronym": "FLEX-2",
+        "title": "Flame Extinguishment Experiment - 2",
+        "cosine": 0.621627
+      },
+      {
+        "rank": 18,
+        "accession": "PSI-117",
+        "acronym": "",
+        "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis",
+        "cosine": 0.614553
+      },
+      {
+        "rank": 19,
+        "accession": "PSI-62",
+        "acronym": "",
+        "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+        "cosine": 0.614333
+      },
+      {
+        "rank": 20,
+        "accession": "PSI-22",
+        "acronym": "ACME E-FIELD Flames",
+        "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+        "cosine": 0.61133
+      },
+      {
+        "rank": 21,
+        "accession": "PSI-142",
+        "acronym": "",
+        "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+        "cosine": 0.603427
+      },
+      {
+        "rank": 22,
+        "accession": "PSI-39",
+        "acronym": "CFI",
+        "title": "Cool Flames Investigation",
+        "cosine": 0.596496
+      },
+      {
+        "rank": 23,
+        "accession": "PSI-47",
+        "acronym": "DAFT / DAFT-2",
+        "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+        "cosine": 0.588978
+      },
+      {
+        "rank": 24,
+        "accession": "PSI-101",
+        "acronym": "SAME-R",
+        "title": "Smoke Aerosol Measurement Experiment-Reflight",
+        "cosine": 0.574891
+      }
+    ],
+    "nesc-10.2psia-26.5o2-lunar": [
+      {
+        "rank": 1,
+        "accession": "PSI-107",
+        "acronym": "SPICE",
+        "title": "Smoke Point In Co-flow Experiment",
+        "cosine": 0.673102
+      },
+      {
+        "rank": 2,
+        "accession": "PSI-25",
+        "acronym": "BASS-II",
+        "title": "Burning and Suppression of Solids - II",
+        "cosine": 0.667221
+      },
+      {
+        "rank": 3,
+        "accession": "PSI-26",
+        "acronym": "BASS",
+        "title": "Burning and Suppression of Solids",
+        "cosine": 0.666499
+      },
+      {
+        "rank": 4,
+        "accession": "PSI-102",
+        "acronym": "SAME",
+        "title": "Smoke and Aerosol Measurement Experiment",
+        "cosine": 0.664852
+      },
+      {
+        "rank": 5,
+        "accession": "PSI-106",
+        "acronym": "SLICE",
+        "title": "Structure and Liftoff In Combustion Experiment",
+        "cosine": 0.66203
+      },
+      {
+        "rank": 6,
+        "accession": "PSI-21",
+        "acronym": "ACME CLD Flame",
+        "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+        "cosine": 0.659461
+      },
+      {
+        "rank": 7,
+        "accession": "PSI-115",
+        "acronym": "",
+        "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+        "cosine": 0.658229
+      },
+      {
+        "rank": 8,
+        "accession": "PSI-62",
+        "acronym": "",
+        "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+        "cosine": 0.65668
+      },
+      {
+        "rank": 9,
+        "accession": "PSI-20",
+        "acronym": "ACME BRE",
+        "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+        "cosine": 0.654794
+      },
+      {
+        "rank": 10,
+        "accession": "PSI-159",
+        "acronym": "ACME CFI-G",
+        "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+        "cosine": 0.651074
+      },
+      {
+        "rank": 11,
+        "accession": "PSI-69",
+        "acronym": "FLEX",
+        "title": "Flame Extinguishment Experiment",
+        "cosine": 0.644723
+      },
+      {
+        "rank": 12,
+        "accession": "PSI-99",
+        "acronym": "SAFFIRE-II",
+        "title": "Spacecraft Fire Experiment-II",
+        "cosine": 0.641305
+      },
+      {
+        "rank": 13,
+        "accession": "PSI-100",
+        "acronym": "SAFFIRE-III",
+        "title": "Spacecraft Fire Experiment-III",
+        "cosine": 0.637135
+      },
+      {
+        "rank": 14,
+        "accession": "PSI-98",
+        "acronym": "SAFFIRE-I",
+        "title": "Spacecraft Fire Safety Experiment-I",
+        "cosine": 0.633853
+      },
+      {
+        "rank": 15,
+        "accession": "PSI-22",
+        "acronym": "ACME E-FIELD Flames",
+        "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+        "cosine": 0.630694
+      },
+      {
+        "rank": 16,
+        "accession": "PSI-39",
+        "acronym": "CFI",
+        "title": "Cool Flames Investigation",
+        "cosine": 0.630381
+      },
+      {
+        "rank": 17,
+        "accession": "PSI-10",
+        "acronym": "ACME/Flame Design",
+        "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+        "cosine": 0.629269
+      },
+      {
+        "rank": 18,
+        "accession": "PSI-60",
+        "acronym": "",
+        "title": "Computational and Experimental Analysis of SPICE Data Sets",
+        "cosine": 0.627201
+      },
+      {
+        "rank": 19,
+        "accession": "PSI-23",
+        "acronym": "ACME s-Flame",
+        "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+        "cosine": 0.627068
+      },
+      {
+        "rank": 20,
+        "accession": "PSI-68",
+        "acronym": "FLEX-2",
+        "title": "Flame Extinguishment Experiment - 2",
+        "cosine": 0.622906
+      },
+      {
+        "rank": 21,
+        "accession": "PSI-47",
+        "acronym": "DAFT / DAFT-2",
+        "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+        "cosine": 0.619779
+      },
+      {
+        "rank": 22,
+        "accession": "PSI-101",
+        "acronym": "SAME-R",
+        "title": "Smoke Aerosol Measurement Experiment-Reflight",
+        "cosine": 0.61763
+      },
+      {
+        "rank": 23,
+        "accession": "PSI-117",
+        "acronym": "",
+        "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis",
+        "cosine": 0.61429
+      },
+      {
+        "rank": 24,
+        "accession": "PSI-142",
+        "acronym": "",
+        "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+        "cosine": 0.581711
+      }
+    ],
+    "nesc-8.2psia-34o2-lunar": [
+      {
+        "rank": 1,
+        "accession": "PSI-25",
+        "acronym": "BASS-II",
+        "title": "Burning and Suppression of Solids - II",
+        "cosine": 0.735233
+      },
+      {
+        "rank": 2,
+        "accession": "PSI-20",
+        "acronym": "ACME BRE",
+        "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+        "cosine": 0.725037
+      },
+      {
+        "rank": 3,
+        "accession": "PSI-69",
+        "acronym": "FLEX",
+        "title": "Flame Extinguishment Experiment",
+        "cosine": 0.72493
+      },
+      {
+        "rank": 4,
+        "accession": "PSI-99",
+        "acronym": "SAFFIRE-II",
+        "title": "Spacecraft Fire Experiment-II",
+        "cosine": 0.720321
+      },
+      {
+        "rank": 5,
+        "accession": "PSI-100",
+        "acronym": "SAFFIRE-III",
+        "title": "Spacecraft Fire Experiment-III",
+        "cosine": 0.71351
+      },
+      {
+        "rank": 6,
+        "accession": "PSI-26",
+        "acronym": "BASS",
+        "title": "Burning and Suppression of Solids",
+        "cosine": 0.712656
+      },
+      {
+        "rank": 7,
+        "accession": "PSI-21",
+        "acronym": "ACME CLD Flame",
+        "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+        "cosine": 0.707963
+      },
+      {
+        "rank": 8,
+        "accession": "PSI-159",
+        "acronym": "ACME CFI-G",
+        "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+        "cosine": 0.705389
+      },
+      {
+        "rank": 9,
+        "accession": "PSI-10",
+        "acronym": "ACME/Flame Design",
+        "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+        "cosine": 0.705337
+      },
+      {
+        "rank": 10,
+        "accession": "PSI-115",
+        "acronym": "",
+        "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+        "cosine": 0.704735
+      },
+      {
+        "rank": 11,
+        "accession": "PSI-62",
+        "acronym": "",
+        "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+        "cosine": 0.703247
+      },
+      {
+        "rank": 12,
+        "accession": "PSI-68",
+        "acronym": "FLEX-2",
+        "title": "Flame Extinguishment Experiment - 2",
+        "cosine": 0.703117
+      },
+      {
+        "rank": 13,
+        "accession": "PSI-102",
+        "acronym": "SAME",
+        "title": "Smoke and Aerosol Measurement Experiment",
+        "cosine": 0.701566
+      },
+      {
+        "rank": 14,
+        "accession": "PSI-106",
+        "acronym": "SLICE",
+        "title": "Structure and Liftoff In Combustion Experiment",
+        "cosine": 0.699261
+      },
+      {
+        "rank": 15,
+        "accession": "PSI-107",
+        "acronym": "SPICE",
+        "title": "Smoke Point In Co-flow Experiment",
+        "cosine": 0.699036
+      },
+      {
+        "rank": 16,
+        "accession": "PSI-117",
+        "acronym": "",
+        "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis",
+        "cosine": 0.698432
+      },
+      {
+        "rank": 17,
+        "accession": "PSI-98",
+        "acronym": "SAFFIRE-I",
+        "title": "Spacecraft Fire Safety Experiment-I",
+        "cosine": 0.697118
+      },
+      {
+        "rank": 18,
+        "accession": "PSI-142",
+        "acronym": "",
+        "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+        "cosine": 0.688872
+      },
+      {
+        "rank": 19,
+        "accession": "PSI-23",
+        "acronym": "ACME s-Flame",
+        "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+        "cosine": 0.685052
+      },
+      {
+        "rank": 20,
+        "accession": "PSI-39",
+        "acronym": "CFI",
+        "title": "Cool Flames Investigation",
+        "cosine": 0.682266
+      },
+      {
+        "rank": 21,
+        "accession": "PSI-47",
+        "acronym": "DAFT / DAFT-2",
+        "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+        "cosine": 0.678299
+      },
+      {
+        "rank": 22,
+        "accession": "PSI-60",
+        "acronym": "",
+        "title": "Computational and Experimental Analysis of SPICE Data Sets",
+        "cosine": 0.678155
+      },
+      {
+        "rank": 23,
+        "accession": "PSI-22",
+        "acronym": "ACME E-FIELD Flames",
+        "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+        "cosine": 0.674137
+      },
+      {
+        "rank": 24,
+        "accession": "PSI-101",
+        "acronym": "SAME-R",
+        "title": "Smoke Aerosol Measurement Experiment-Reflight",
+        "cosine": 0.665588
+      }
+    ]
+  }
+}
