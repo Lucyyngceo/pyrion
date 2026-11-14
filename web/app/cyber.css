@@ -539,3 +539,96 @@ kbd { font-family: var(--font-mono), ui-monospace, monospace; font-size: 10.5px;
 .vring-legend dd { margin: 0; font-family: var(--font-mono), monospace; color: var(--ink); text-shadow: var(--glow); }
 .vring-legend .zero { opacity: 0.45; }
 @media (prefers-reduced-motion: reduce) { .vring-seg { transition: none; } }
+
+/* ===== FUI pass 2: verdict list as telemetry rows ===== */
+.results .result {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  clip-path: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 14px 0 14px 22px;
+  position: relative;
+}
+.results .result::before {
+  /* the verdict rail on the left of each row */
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 3px;
+  height: auto;
+  border: 0;
+  background: var(--st-off);
+  filter: none;
+}
+.results .result.v-app::before { background: var(--st-normal); box-shadow: 0 0 8px var(--st-normal); }
+.results .result.v-ext::before { background: var(--st-caution); box-shadow: 0 0 8px var(--st-caution); }
+.results .result.v-ins::before { background: var(--st-standby); box-shadow: 0 0 8px var(--st-standby); }
+.results .result.v-bar::before { background: repeating-linear-gradient(180deg, var(--st-off) 0 4px, transparent 4px 8px); }
+.results .result::after { display: none; }
+.results .result:hover {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.06), transparent 60%);
+  box-shadow: none;
+}
+.results .result-head .acc { font-size: 15px; }
+.results .acronym { font-family: var(--font-display), monospace; letter-spacing: 0.04em; font-size: 16px; color: var(--ink); }
+.results .verdict-plain { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.results .rank { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--neon); border: 0; border-bottom: 1px solid var(--neon); border-radius: 0; background: transparent; }
+.results .badge { border: 0; border-bottom: 1px solid currentColor; background: transparent; padding-left: 0; }
+.results .group { border: 0; }
+.results .group-title { border-bottom: 1px solid var(--border-strong); padding-bottom: 8px; margin-bottom: 0; }
+.results .count { border-radius: 0; background: transparent; border: 1px solid var(--border-strong); color: var(--neon); font-family: var(--font-mono), monospace; }
+.receipt-box summary, .context-box summary { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.receipt-box summary { color: var(--neon); }
+.receipt { border-left: 1px solid var(--border-strong); margin-left: 4px; padding-left: 14px; }
+.reason-icon { font-family: var(--font-mono), monospace; color: var(--neon); }
+.ctx-tag, .ref { border-radius: 0; }
+.ref { font-family: var(--font-mono), monospace; color: var(--neon-2); background: transparent; border: 0; }
+.ref:hover { text-shadow: var(--glow-2); }
+
+/* text vs physics: two telemetry columns, no card */
+.tvp.card { background: transparent; border: 0; clip-path: none; padding-left: 0; padding-right: 0; }
+.tvp.card::before, .tvp.card::after { display: none; }
+.tvp-cols > div { border-top: 1px solid var(--neon); padding-top: 4px; }
+.tvp-row { border-top-color: var(--border); }
+.tvp-row:hover { background: linear-gradient(90deg, rgba(0, 240, 255, 0.07), transparent); }
+.tvp-rank { font-family: var(--font-mono), monospace; color: var(--neon); }
+.tvp-v { border-radius: 0; border: 0; padding-left: 0; }
+
+/* ===== FUI pass 2: Method and Data pages ===== */
+.lineage.card,
+section.card[aria-labelledby="cov-h"],
+.figure-card.card {
+  background: transparent;
+  border: 0;
+  clip-path: none;
+  padding-left: 0;
+  padding-right: 0;
+  border-top: 1px solid var(--border-strong);
+}
+.lineage.card::before,
+section.card[aria-labelledby="cov-h"]::before,
+.figure-card.card::before {
+  /* a short lit segment on the top rule */
+  width: 64px;
+  height: 2px;
+  top: -1px;
+  border: 0;
+  background: var(--neon);
+  box-shadow: var(--glow);
+}
+.lineage.card::after,
+section.card[aria-labelledby="cov-h"]::after,
+.figure-card.card::after { display: none; }
+.lin-steps li { border-left-color: var(--border); }
+.lin-steps li::after { background: var(--page); border-color: var(--neon); }
+.vtable tbody tr:hover { background: linear-gradient(90deg, rgba(0, 240, 255, 0.06), transparent 70%); }
+.method-svg rect:first-child { stroke: var(--border); }
+.prose h2 { border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.prose h2::before { content: "// "; color: var(--neon-2); }
+.prose ol, .prose ul { padding-left: 18px; }
+.prose li::marker { color: var(--neon); font-family: var(--font-mono), monospace; }
+.method-svg rect:first-child { display: none; }
