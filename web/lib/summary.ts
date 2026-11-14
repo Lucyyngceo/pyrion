@@ -16,12 +16,7 @@ export interface EnvelopeStatus {
 
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
-export function envelopeStatus(
-  evaluation: Evaluation,
-  locations: TargetLocation[],
-  layerState: Map<string, "match" | "open" | "dim">,
-  target: Target,
-): EnvelopeStatus {
+export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation[], target: Target): EnvelopeStatus {
   const counts = evaluation.counts.investigations;
   const regime = targetRegimeName(target.regime);
 
@@ -35,9 +30,12 @@ export function envelopeStatus(
     };
   }
 
-  // A layer the engine could not decide (INSUFFICIENT_EVIDENCE, e.g. its regime is not fully
-  // stated) whose hull holds the target: inside or outside cannot be told, so the chart does not say.
-  const undecided = locations.filter((l) => layerState.get(l.key) === "open" && l.insideHull === true);
+  // An investigation the engine could not decide (INSUFFICIENT_EVIDENCE, e.g. its regime is not
+  // fully stated) whose own hull holds the target: inside or outside cannot be told, so the chart does not say.
+  const verdictOf = new Map([...evaluation.ranked, ...evaluation.unranked].map((c) => [`${c.accession}|${c.clusterKey}`, c.verdict]));
+  const undecided = locations.flatMap((l) =>
+    l.investigations.filter((i) => i.insideHull === true && verdictOf.get(`${i.accession}|${l.key}`) === "INSUFFICIENT_EVIDENCE"),
+  );
   if (undecided.length > 0) {
     return {
       tone: "unknown",

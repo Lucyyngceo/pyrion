@@ -4,7 +4,7 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import type { EnvelopePoint, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
-import { ATM_KPA, fmt, kPa, pctO2, psia } from "@/lib/units";
+import { ATM_KPA, axisLabel, fmt, kPa, pctO2, psia } from "@/lib/units";
 
 export type LayerState = "match" | "open" | "dim";
 
@@ -26,6 +26,8 @@ interface Props {
   /** Accession hovered in the results list: its points are emphasized. */
   highlight: string | null;
   onPointSelect: (accession: string) => void;
+  /** Regime axes the target leaves open: the engine does not compare them. */
+  openAxes: string[];
 }
 
 const M = { top: 22, right: 22, bottom: 54, left: 66 };
@@ -71,6 +73,47 @@ function Glyph({ phase, color, hollow }: { phase: string; color: string; hollow:
   );
 }
 
+type Scale = (v: number) => number;
+
+/** One convex hull (CCW, raw units) as SVG: polygon, capsule for 2 vertices, halo for 1. */
+function hullShape(hull: readonly { o2_mole_fraction: number; pressure: number }[], color: string, complete: boolean, sx: Scale, sy: Scale, key: string) {
+  const pts = hull.map((q) => [sx(q.o2_mole_fraction), sy(q.pressure)] as const);
+  if (pts.length >= 3) {
+    const d = `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
+    return <path key={key} d={d} fill={color} fillOpacity={complete ? 0.12 : 0.06} stroke={color} strokeWidth={complete ? 1.75 : 1.25} strokeLinejoin="round" />;
+  }
+  if (pts.length === 2) {
+    const [[x1, y1], [x2, y2]] = pts;
+    return (
+      <g key={key}>
+        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeOpacity={0.14} strokeWidth={16} strokeLinecap="round" />
+        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={1.75} strokeLinecap="round" />
+      </g>
+    );
+  }
+  if (pts.length === 1) return <circle key={key} cx={pts[0][0]} cy={pts[0][1]} r={11} fill={color} fillOpacity={0.14} />;
+  return null;
+}
+
+/** Tests whose O2 or pressure is a range "lo..hi": the engine plots both ends; the chart joins them. */
+function rangeSegments(points: readonly EnvelopePoint[]) {
+  const byTest = new Map<string, EnvelopePoint[]>();
+  for (const p of points) {
+    if (!p.citations.some((c) => c.value.includes(".."))) continue;
+    const k = `${p.accession}|${p.test_id}`;
+    const list = byTest.get(k);
+    if (list) list.push(p);
+    else byTest.set(k, [p]);
+  }
+  const out: [EnvelopePoint, EnvelopePoint][] = [];
+  for (const list of byTest.values()) {
+    if (list.length < 2) continue;
+    const sorted = list.toSorted((a, b) => a.o2_mole_fraction - b.o2_mole_fraction || a.pressure - b.pressure);
+    out.push([sorted[0], sorted[sorted.length - 1]]);
+  }
+  return out;
+}
+
 interface Hover {
   env: RegimeEnvelope;
   point: EnvelopePoint;
@@ -79,7 +122,7 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, openAxes }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
   const [viewportH, setViewportH] = useState(900);
@@ -235,36 +278,34 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             )}
 
             <g clipPath="url(#plot-clip)">
-              {/* hulls */}
+              {/* decision hulls: one per investigation, the exact hull its verdict uses */}
               {visible.map((e) => {
                 const color = colors.get(e.key) ?? "var(--s-other)";
-                const cls = `layer em-${layerState.get(e.key) ?? "dim"}`;
-                const pts = e.hull.map((q) => [sx(q.o2_mole_fraction), sy(q.pressure)] as const);
-                if (pts.length >= 3) {
-                  const d = `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
-                  return (
-                    <g key={`h${e.key}`} className={cls}>
-                      <path d={d} fill={color} fillOpacity={e.regimeComplete ? 0.13 : 0.07} stroke={color} strokeWidth={e.regimeComplete ? 2 : 1.5} strokeLinejoin="round" />
-                    </g>
-                  );
-                }
-                if (pts.length === 2) {
-                  const [[x1, y1], [x2, y2]] = pts;
-                  return (
-                    <g key={`h${e.key}`} className={cls}>
-                      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeOpacity={0.15} strokeWidth={18} strokeLinecap="round" />
-                      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeLinecap="round" />
-                    </g>
-                  );
-                }
-                if (pts.length === 1) {
-                  return (
-                    <g key={`h${e.key}`} className={cls}>
-                      <circle cx={pts[0][0]} cy={pts[0][1]} r={12} fill={color} fillOpacity={0.15} />
-                    </g>
-                  );
-                }
-                return null;
+                return (
+                  <g key={`h${e.key}`} className={`layer em-${layerState.get(e.key) ?? "dim"}`}>
+                    {e.investigations.map((inv) => {
+                      const faded = highlight !== null && inv.accession !== highlight;
+                      return (
+                        <g key={inv.accession} className={faded ? "faded" : undefined}>
+                          {hullShape(inv.hull, color, e.regimeComplete, sx, sy, inv.accession)}
+                        </g>
+                      );
+                    })}
+                    {rangeSegments(e.points).map(([a, b], i) => (
+                      <line
+                        key={`r${i}`}
+                        x1={sx(a.o2_mole_fraction)}
+                        y1={sy(a.pressure)}
+                        x2={sx(b.o2_mole_fraction)}
+                        y2={sy(b.pressure)}
+                        stroke={color}
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        className="range-seg"
+                      />
+                    ))}
+                  </g>
+                );
               })}
 
               {/* points */}
@@ -300,10 +341,13 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
 
             {/* direct label on each comparable layer */}
             {matched.map((e) => {
-              if (hidden.has(e.key) || e.hull.length === 0) return null;
-              const top = e.hull.reduce((a, b) => (b.pressure > a.pressure ? b : a), e.hull[0]);
+              const verts = e.investigations.flatMap((i) => i.hull);
+              if (hidden.has(e.key) || verts.length === 0) return null;
+              const top = verts.reduce((a, b) => (b.pressure > a.pressure ? b : a), verts[0]);
               const lx = Math.min(iw - 90, Math.max(90, sx(top.o2_mole_fraction)));
               const ly = Math.max(14, sy(top.pressure) - 12);
+              // The target's callout already names the comparison there: skip a label it would cover.
+              if (Math.abs(ly - ty) < 44 && Math.abs(lx - tx) < 270) return null;
               return (
                 <text key={`l${e.key}`} x={lx} y={ly} textAnchor="middle" className="layer-label">
                   {envelopeName(e)}
@@ -374,6 +418,13 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               {hover.point.accession} · test {hover.point.test_id}
             </div>
             <div>O₂ {pctO2(hover.point.o2_mole_fraction, 2)}</div>
+            {hover.point.citations
+              .filter((c) => c.value.includes(".."))
+              .map((c) => (
+                <div key={`${c.variable}${c.value}`} className="muted">
+                  one end of the range {c.variable === "pressure" ? `${c.value} kPa` : c.value}
+                </div>
+              ))}
             <div>
               {kPa(hover.point.pressure)} <span className="muted">({psia(hover.point.pressure)})</span>
             </div>
@@ -390,6 +441,12 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
         <p className={`status status-${status.tone}`}>
           <strong>{status.headline}.</strong> {status.detail}
         </p>
+        {openAxes.length > 0 && (
+          <p className="small open-axes">
+            Not compared, left open by the target: {openAxes.map((a) => axisLabel(a).toLowerCase()).join(", ")}. Set{" "}
+            {openAxes.length === 1 ? "it" : "them"} in the target panel to compare.
+          </p>
+        )}
         {offScale > 0 && (
           <p className="muted small">
             {offScale} plotted point{offScale === 1 ? " is" : "s are"} outside the pressure range shown ({fmt(domain.y0, 0)}–{fmt(domain.y1, 0)} kPa).
@@ -397,9 +454,10 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </p>
         )}
         <p className="muted small">
-          Each shaded area is the convex hull of measured test points of one regime (gravity regime · fuel phase · diluent).
-          Regimes are barriers: a layer of another regime is faded and never used for comparison. Hollow gray markers are
-          tests whose regime is not fully stated in the extracted records.
+          Each shaded area is the convex hull of one investigation&apos;s measured test points: the exact hull its verdict
+          uses. Color is the regime (gravity regime · fuel phase · diluent · flame type). Regimes are barriers: a layer of
+          another regime is faded and never used for comparison. A line joins the two ends of a measured range. Hollow
+          gray markers are tests whose regime is not fully stated in the extracted records.
         </p>
       </figcaption>
 

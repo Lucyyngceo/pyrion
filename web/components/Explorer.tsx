@@ -90,7 +90,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   }, [result.evaluation]);
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
-  const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], layerState, target) : null;
+  const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
   const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
@@ -115,6 +115,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               seed={SEED}
               highlight={highlight}
               onPointSelect={setOpenAccession}
+              openAxes={result.evaluation?.openRegimeAxes ?? []}
             />
           ) : (
             <p className="banner">The engine rejected this target: {result.error}</p>
