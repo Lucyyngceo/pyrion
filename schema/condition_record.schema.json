@@ -11,7 +11,7 @@
     "test_id": {"type": "string", "minLength": 1},
     "variable": {
       "type": "string",
-      "pattern": "^(gravity_regime|fuel_phase|diluent|o2_mole_fraction|pressure|flow_velocity|sample_thickness|droplet_diameter_initial|ambient_temperature|gravity_level|fuel|material|geometry|flow_configuration|platform|outcome:[a-z0-9_]+)$"
+      "pattern": "^(gravity_regime|fuel_phase|diluent|flame_type|o2_mole_fraction|burner_o2_mole_fraction|pressure|flow_velocity|sample_thickness|droplet_diameter_initial|ambient_temperature|gravity_level|fuel|material|geometry|flow_configuration|platform|outcome:[a-z0-9_]+)$"
     },
     "value": {"type": "string", "minLength": 1},
     "unit": {"type": "string"},
@@ -31,7 +31,9 @@
      "then": {"properties": {"value": {"enum": ["solid", "liquid", "gas"]}}}},
     {"if": {"properties": {"variable": {"const": "diluent"}}},
      "then": {"properties": {"value": {"enum": ["N2", "He", "CO2", "Ar", "mixed"]}}}},
-    {"if": {"properties": {"variable": {"const": "o2_mole_fraction"}}},
+    {"if": {"properties": {"variable": {"const": "flame_type"}}},
+     "then": {"properties": {"value": {"enum": ["normal", "inverse"]}}}},
+    {"if": {"properties": {"variable": {"enum": ["o2_mole_fraction", "burner_o2_mole_fraction"]}}},
      "then": {"properties": {"unit": {"const": "1"}}}},
     {"if": {"properties": {"variable": {"const": "pressure"}}},
      "then": {"properties": {"unit": {"const": "kPa"}}}}

@@ -31,12 +31,14 @@ Schema: [`condition_record.schema.json`](condition_record.schema.json). Records 
 | `gravity_regime` | `microgravity`, `partial_gravity`, `normal_gravity` |
 | `fuel_phase` | `solid`, `liquid`, `gas` |
 | `diluent` | `N2`, `He`, `CO2`, `Ar`, `mixed` |
+| `flame_type` | `normal` (fuel issued into an oxidizing ambient), `inverse` (oxidizer issued into a fuel-laden ambient) |
 
 **Continuous axes — interpolated only inside the measured range:**
 
 | `variable` | `unit` |
 |---|---|
-| `o2_mole_fraction` | `1` (0 to 1) |
+| `o2_mole_fraction` | `1` (0 to 1) — **ambient** oxygen only |
+| `burner_o2_mole_fraction` | `1` — oxygen of the stream issued from the burner (inverse flames). Never mixed with the ambient axis |
 | `pressure` | `kPa` |
 | `flow_velocity` | `cm/s` |
 | `sample_thickness` | `mm` |
@@ -56,3 +58,11 @@ New variables are added to this file first, in the same commit as the code that 
 2. **Never guess.** If a value is not stated, there is no record. If it is ambiguous, the record gets `status = insufficient_evidence`.
 3. **Unit conversions are explicit.** `value_original` and `unit_original` keep the source; `note` says how it was converted.
 4. **Gravity comes from the source, not from the platform.** "Flown on the ISS" is not a gravity value unless a document states the regime.
+
+## Value conventions
+
+- **Range in one cell** ("1.5 - 5", "22.1 to 22.0") → one record, `value = lo..hi` (two numbers, ascending, in `unit`). Consumers parse `..`.
+- **List of discrete values in one cell** ("0.17; 0.21; 0.25") → one record per value, same `test_id`.
+- **Value derived from several columns** (e.g. `diluent` from the N2, CO2 and He fraction columns) → `source_location = row=<n>;column=<h1>;column=<h2>…`, `quote` = the headers joined by ` | `. `diluent = mixed` when more than one diluent is non-zero.
+- **Approximate value** ("~ 21.5") → plain number in `value`, `note = approximate (~) in source`.
+- **`insufficient_evidence` records** may carry non-numeric text in `value`. Consumers must skip them as evidence.
