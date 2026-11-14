@@ -20,6 +20,8 @@ interface Props {
   layerState: Map<string, LayerState>;
   target: { o2: number; pressure: number };
   targetLabel: string;
+  /** Verdict tone of the target swept over pressure (O2 and regime fixed). */
+  rail?: { pressure: number; tone: string }[];
   /** A second, pinned target drawn as a ghost marker for comparison. */
   pinned?: { o2: number; pressure: number; label: string; tone: string } | null;
   status: EnvelopeStatus;
@@ -34,7 +36,7 @@ interface Props {
   openAxes: string[];
 }
 
-const M = { top: 22, right: 22, bottom: 54, left: 66 };
+const M = { top: 22, right: 34, bottom: 54, left: 66 };
 
 /** Cabin view: the pressure band of every preset, with margin. */
 const CABIN = { y0: 40, y1: 120 };
@@ -126,7 +128,7 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail }: Props) {
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -444,6 +446,22 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               );
             })}
 
+            {rail && rail.length > 1 && (
+              <g className="rail" aria-label="Verdict along pressure at this O2">
+                {rail.map((r, i) => {
+                  const step = rail[1].pressure - rail[0].pressure;
+                  const y0 = sy(Math.min(domain.y1, r.pressure + step / 2));
+                  const y1 = sy(Math.max(domain.y0, r.pressure - step / 2));
+                  if (y1 <= y0) return null;
+                  return <rect key={i} x={iw + 6} y={y0} width={7} height={y1 - y0 + 0.5} className={`rail-${r.tone}`} />;
+                })}
+                <line x1={iw + 3} x2={iw + 16} y1={ty} y2={ty} className="rail-tick" />
+                <text transform={`translate(${iw + 23},${ih / 2}) rotate(90)`} textAnchor="middle" className="rail-label">
+                  verdict vs. pressure at this O₂
+                </text>
+                <title>Verdict along pressure at this O₂ and regime: green inside, amber outside, gray undetermined</title>
+              </g>
+            )}
             {pinned && (
               <g className={`pinned tone-${pinned.tone}`} transform={`translate(${sx(pinned.o2)},${sy(pinned.pressure)})`} aria-hidden="true">
                 <line x1={0} y1={0} x2={tx - sx(pinned.o2)} y2={ty - sy(pinned.pressure)} className="pin-link" />

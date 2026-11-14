@@ -99,6 +99,25 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
 
+  // Verdict rail: the same target swept over pressure (O2 and regime fixed), so the viewer sees where the verdict changes.
+  const rail = useMemo(() => {
+    const out: { pressure: number; tone: string }[] = [];
+    const STEPS = 36;
+    const lo = 30;
+    const hi = 130;
+    for (let i = 0; i <= STEPS; i++) {
+      const p = lo + ((hi - lo) * i) / STEPS;
+      const t = toTarget({ ...deferred, pressure: p });
+      try {
+        const ev = evaluate(records, t, options);
+        out.push({ pressure: p, tone: envelopeStatus(ev, locateTarget(t, envelopeSet), t).tone });
+      } catch {
+        out.push({ pressure: p, tone: "unknown" });
+      }
+    }
+    return out;
+  }, [deferred, records, options, envelopeSet]);
+
   // A pinned target stays on the chart for comparison; its verdict is recomputed with the same engine and options.
   const [pinned, setPinned] = useState<{ state: TargetState; label: string } | null>(null);
   const pinnedStatus = useMemo(() => {
@@ -135,6 +154,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               layerState={layerState}
               target={{ o2: deferred.o2, pressure: deferred.pressure }}
               targetLabel={view ? view.short : "Custom target"}
+              rail={rail}
               pinned={pinned && pinnedStatus ? { o2: pinned.state.o2, pressure: pinned.state.pressure, label: pinned.label, tone: pinnedStatus.tone } : null}
               status={status}
               seed={SEED}

@@ -1312,3 +1312,10 @@ input[type="range"] {
 .pinned .pin-dot { fill: var(--ink); opacity: 0.75; }
 .pinned .pin-link { stroke: var(--ink); stroke-opacity: 0.25; stroke-dasharray: 1 4; stroke-linecap: round; stroke-width: 1.5; }
 .pin-label { font-size: 11px; fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+/* verdict rail */
+.rail rect { transition: fill var(--motion-base); }
+.rail-inside { fill: var(--good); }
+.rail-outside { fill: var(--warn); opacity: 0.75; }
+.rail-unknown { fill: var(--neutral); opacity: 0.45; }
+.rail-tick { stroke: var(--ink); stroke-width: 2; }
+.rail-label { font-size: 10px; fill: var(--muted); letter-spacing: 0.04em; }
