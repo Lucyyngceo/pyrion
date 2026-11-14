@@ -1,0 +1,388 @@
+{
+  "verified_by": "verificador agent (Claude Opus 5.5)",
+  "date": "2026-11-14",
+  "review_level": "segregated internal check by a language model; not expert or NASA review",
+  "transcription": "Verdict classes and corrections transcribed by the build session from the verificador's final message; per-row reasons condensed.",
+  "verdicts": [
+    {
+      "test_id": "O1",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O2",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O3a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O3b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O4",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O5a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O5b",
+      "verdict": "MODIFY",
+      "reason": "A single reading does not state that no limit happened: same no-marker case as O3a and O16; 'none' would be an inference from silence.",
+      "corrected": {
+        "limit_type": "unclear",
+        "last_stable_flow_cm_s": "",
+        "extinction_flow_cm_s": "",
+        "confidence": "unclear"
+      }
+    },
+    {
+      "test_id": "O6",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O7",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O8a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O8b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O9",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O10",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O11",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O12",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O13a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O13b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O14",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O15a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O15b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O16",
+      "verdict": "MODIFY",
+      "reason": "Single reading with no marker: 'none' cannot be told apart from 'unclear' using the cell alone (same as O5b).",
+      "corrected": {
+        "limit_type": "unclear",
+        "last_stable_flow_cm_s": "",
+        "extinction_flow_cm_s": "",
+        "confidence": "unclear"
+      }
+    },
+    {
+      "test_id": "O17",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O18",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O19",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O20",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O21",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "O22",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P1",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P2",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P3a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P3b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P4",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P5",
+      "verdict": "MODIFY",
+      "reason": "'down to ext' / '0 ext' is literal: quench allowed, but it must carry the fan-to-zero, bracket-only flag.",
+      "corrected": {
+        "interpretation_basis": "Air display = '5 down to ext'; Fan display = 'Fan pot 1.5 (5cm/s)   0.9   0.4   0.36   0.32   0.308   0.3   0.29   0.28   0 ext' | FLAG fan-to-zero, bracket only: the flame was stable at every finite setting and went out only when the fan was set to 0 (Summary Report p.114-115); it brackets the limit between the last finite flow and zero forced flow, not an incremental limit point"
+      }
+    },
+    {
+      "test_id": "P6",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P8",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P9",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P10",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P12",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P13a",
+      "verdict": "MODIFY",
+      "reason": "'down to ext' / '0 ext' is literal: quench allowed, but it must carry the fan-to-zero, bracket-only flag.",
+      "corrected": {
+        "interpretation_basis": "Air display = '5 down to ext'; Fan display = 'Fan pot 1.1 (5cm/s)   0.4   0.36   0.32   0.3   0.28   0.26   0 ext' | FLAG fan-to-zero, bracket only: the flame was stable at every finite setting and went out only when the fan was set to 0 (Summary Report p.114-115); it brackets the limit between the last finite flow and zero forced flow, not an incremental limit point"
+      }
+    },
+    {
+      "test_id": "P13b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P14",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P15",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P16",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P17",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P18",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P19",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P20",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P21a",
+      "verdict": "MODIFY",
+      "reason": "Cells identical to P21b but the Summary Report shows opposite outcomes: 'none' cannot follow from the cells.",
+      "corrected": {
+        "limit_type": "unclear",
+        "last_stable_flow_cm_s": "",
+        "extinction_flow_cm_s": "",
+        "confidence": "unclear"
+      }
+    },
+    {
+      "test_id": "P21b",
+      "verdict": "MODIFY",
+      "reason": "Cells identical to P21a: must also be 'unclear' under the cell-only rule.",
+      "corrected": {
+        "limit_type": "unclear",
+        "last_stable_flow_cm_s": "",
+        "extinction_flow_cm_s": "",
+        "confidence": "unclear"
+      }
+    },
+    {
+      "test_id": "P22a",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P22b",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P23",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P24",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    },
+    {
+      "test_id": "P25",
+      "verdict": "KEEP",
+      "reason": "Row matches the table; label follows the cell text (see the verificador's per-row audit)."
+    }
+  ],
+  "numeric_fields_check": "All 54 rows have empty last_stable_flow_cm_s and extinction_flow_cm_s; no pot or fan value was entered as cm/s; no Air display value is tied by its cell to a limit instant.",
+  "nasa_quote_check": [
+    {
+      "id": "N1",
+      "verdict": "MODIFY",
+      "corrected": {
+        "statement": "Number of concurrent rod tests performed (not analysed): 24. Figure 4 plots a subset of points. The same sentence repeats on p.2 and p.9."
+      }
+    },
+    {
+      "id": "N10",
+      "verdict": "MODIFY",
+      "corrected": {
+        "statement": "Authors' hedged inference ('so it seems that'): once blown downstream, the flame appeared unable to propagate upstream and re-establish the stagnation region at the O2 levels tested, 16.1% O2 and lower. The paper reports one success, where the blowoff may have been incomplete."
+      }
+    },
+    {
+      "id": "N2",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N3",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N4",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N5",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N6",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N7",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N8",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N9",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N11",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N12",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N13",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N14",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N15",
+      "verdict": "KEEP"
+    },
+    {
+      "id": "N16",
+      "verdict": "KEEP"
+    }
+  ],
+  "answers": {
+    "P5_P13a": "Quench extinctions in the literal sense ('down to ext' / '0 ext'), but not incremental quench-limit points: the Summary Report shows the flame stable at every finite setting down to pot 0.28 / 0.26 and out only when the fan was set to 0. Count them as quench events with a 'fan-to-zero, bracket only' flag; keep them out of any limit fit unless the flag is shown. P4 and P6 ('off') are the same physical action and are labelled unclear because their cells do not say what went off.",
+    "summary_report_column": "No row used it. Of the 29 unclear rows (before the four MODIFY rows), the observation column gives a clear outcome for 21: quench 13 (O13a, O15a, O15b, P3a, P12, P14, P16, P17, P18, P19, P20, P23, P24), blowoff 4 (O5a, O10, O17, O18), no limit 4 (O1, P2, P4, P6); 7 stay unclear (O2, O3b, O13b, O20, O21, P3b, P15); O3a is an extinction the authors call 'probably overshot'. With the four MODIFY rows (O5b, O16, P21a, P21b) now unclear, the column would also give an outcome for all four.",
+    "24_tests": "Supported as a count match, not row-by-row identity: 24 pre-2016 Olson rows (O1-O19 with a/b, table rows 47-70), 22 clear and 2 black (O11, O14), matching NTRS p.1 and p.2; sample numbers reproduce p.3's 17 clear (11 x 1/4, 4 x 3/8, 2 x 1/2). The 24 includes O12 (no ignition) and O5b/O16 (no sustained flame), so it is not 24 flammability points. Table A.3 marks P16 and P19 'Concurrent'. O20-O22 (2016) reburn samples 204, 219m, 220m; P25 reburns 217m.",
+    "O4": "Supported with one caveat: O4 (row 51, 3/8 in clear rod, calibrated initial/final O2 14.8 / 13.6) is the lowest final O2 among ignited rows (O12 has 13.5 but did not ignite). Summary Report p.77 names the lowest O2 quenching test (14.8 -> 13.6, r = 0.476 cm). NTRS p.7 does not name the test, so it is a match by value and rod size, not a stated identity. The value is the calibrated final O2; the uncalibrated Table A.5 value is 12.7."
+  },
+  "could_not_check": "NTRS Figure 4 could not be rendered, so rows cannot be mapped to plotted points; Summary Report read only through the text dump; fan calibration spreadsheets not opened; whether 'out' in O6 marks .305 or .275 unsettled; P17 233 > 122, P22a/P22b final O2 (0.6 and 39.1) and decimal Air display values are unresolved anomalies."
+}
