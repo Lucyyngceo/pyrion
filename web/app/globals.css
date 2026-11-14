@@ -1156,3 +1156,19 @@ input[type="range"] {
 .result.v-bar .cluster-line { display: none; }
 .result.v-ins { border-left-color: var(--neutral); }
 .group-barrier .result { padding-top: 8px; padding-bottom: 8px; }
+/* text vs physics */
+.tvp { margin-top: 16px; }
+.tvp-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .tvp-cols { grid-template-columns: 1fr; } }
+.tvp-h { font-size: 13px; font-weight: 650; margin: 6px 0 6px; color: var(--ink-2); }
+.tvp-list { list-style: none; margin: 0; padding: 0; }
+.tvp-row { display: grid; grid-template-columns: 22px 1fr auto 40px; gap: 8px; align-items: baseline; padding: 6px 4px; border-top: 1px solid var(--border); font-size: 13px; }
+.tvp-row:hover { background: var(--surface-2); }
+.tvp-rank { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tvp-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tvp-score { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tvp-v { font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--ink-2); }
+.tvp-v.v-app { border-color: var(--good); color: var(--good-ink); }
+.tvp-v.v-ext { border-color: var(--warn); color: var(--warn-ink); }
+.tvp-v.v-bar { border-style: dashed; color: var(--muted); }
+.tvp-note { margin: 10px 0 0; color: var(--ink-2); }

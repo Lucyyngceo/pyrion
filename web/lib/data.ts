@@ -55,7 +55,15 @@ async function readConditionFiles(dir: string): Promise<ConditionFile[]> {
 async function loadInvestigations(): Promise<Investigation[]> {
   const text = await readText(path.join(DATA_DIR, "manifest", "investigations.csv"));
   if (!text) return [];
+  const pubs = new Map<string, string[]>();
+  for (const r of rowsOf((await readText(path.join(DATA_DIR, "manifest", "publications.csv"))) ?? "")) {
+    if (!r.title) continue;
+    const list = pubs.get(r.accession) ?? [];
+    list.push(r.title);
+    pubs.set(r.accession, list);
+  }
   return rowsOf(text).map((r) => ({
+    publications: pubs.get(r.accession) ?? [],
     accession: r.accession,
     acronym: r.acronym,
     title: r.title,

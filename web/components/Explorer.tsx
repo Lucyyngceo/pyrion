@@ -13,7 +13,8 @@ import {
   type Evaluation,
   type Target,
 } from "@/lib/engine";
-import { colorMap, sortEnvelopes } from "@/lib/layers";
+import { colorMap, sortEnvelopes, targetRegimeName } from "@/lib/layers";
+import TextVsPhysics from "./TextVsPhysics";
 import { PRESET_VIEWS } from "@/lib/presets";
 import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
@@ -179,15 +180,14 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
         />
       )}
 
-      <section className="card planned" aria-labelledby="planned-h">
-        <h2 id="planned-h">
-          Ranked by text similarity vs. ranked by physics <span className="tag">planned, not built yet</span>
-        </h2>
-        <p className="muted">
-          The same question ranked two ways, side by side: by text similarity of the documents, and by the physical
-          applicability verdicts above.
-        </p>
-      </section>
+      {result.evaluation && (
+        <TextVsPhysics
+          evaluation={result.evaluation}
+          investigations={dataset.investigations}
+          query={`${view ? view.preset.description : "Custom target."} ${targetRegimeName(target.regime)}`}
+          onHover={setHighlight}
+        />
+      )}
     </>
   );
 }

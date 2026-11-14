@@ -8,6 +8,8 @@ export interface Investigation {
   license: string;
   version: string;
   project_type: string;
+  /** Titles of the publications PSI lists for this investigation (data/manifest/publications.csv). */
+  publications?: string[];
 }
 
 /** One data/conditions/<accession>.csv file, passed to the browser as text and parsed there by the engine. */
