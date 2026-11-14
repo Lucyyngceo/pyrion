@@ -17,7 +17,7 @@ export default function WhyPage() {
       </p>
       <p>
         I am writing this a few minutes after watching Starship&apos;s fifteenth flight, when a ship came home and was caught by
-        its tower for the first time. A machine built to carry people to space, and one day to other planets, came back
+        its tower for the first time in human history. A machine built to carry people to space, and one day to other planets, came back
         intact. I am writing with tears in my eyes.
       </p>
       <p>
