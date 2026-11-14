@@ -1,3 +1,4 @@
+import BootLog from "@/components/BootLog";
 import Explorer from "@/components/Explorer";
 import { loadDataset } from "@/lib/data";
 
@@ -9,6 +10,14 @@ export default async function Page() {
   return (
     <main className="page">
       <header className="hero">
+        <BootLog
+          steps={[
+            `PSI manifest: ${dataset.investigations.length} investigations`,
+            `${s.records.toLocaleString("en-US")} condition values parsed`,
+            `${s.accessions} investigations with data`,
+            "deterministic engine ready",
+          ]}
+        />
         <h1>
           PYRION Ω <span className="h1-dash">—</span> The Evidence Envelope
         </h1>

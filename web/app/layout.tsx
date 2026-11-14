@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import "./cyber.css";
+import CommandPalette from "@/components/CommandPalette";
 import SiteNav from "@/components/SiteNav";
+import StatusBar from "@/components/StatusBar";
 
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
@@ -25,8 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <SiteNav />
+        <CommandPalette />
         {children}
         <div className="page footer-wrap">
+          <StatusBar />
           <footer className="footer muted small">
             <p>
               PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
 import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
@@ -45,6 +45,45 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [openAccession, setOpenAccession] = useState<string | null>(null);
+
+  const benchRef = useRef<HTMLDivElement>(null);
+  const overBench = useRef(false);
+  // Keyboard: arrows move the target (left/right O2 0.5 %, up/down 1 kPa; Shift = x5). Ignored while typing in a field.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el && (el.tagName === "INPUT" || el.tagName === "SELECT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (!overBench.current && !benchRef.current?.contains(document.activeElement)) return;
+      const k = e.shiftKey ? 5 : 1;
+      let dO2 = 0;
+      let dP = 0;
+      if (e.key === "ArrowLeft") dO2 = -0.005 * k;
+      else if (e.key === "ArrowRight") dO2 = 0.005 * k;
+      else if (e.key === "ArrowUp") dP = 1 * k;
+      else if (e.key === "ArrowDown") dP = -1 * k;
+      else return;
+      e.preventDefault();
+      setState((st) => ({
+        ...st,
+        presetId: null,
+        o2: Math.min(1, Math.max(0, Math.round((st.o2 + dO2) * 1000) / 1000)),
+        pressure: Math.max(1, Math.round((st.pressure + dP) * 10) / 10),
+      }));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // The command palette selects presets through an event (no page reload).
+  useEffect(() => {
+    const on = (e: Event) => {
+      const v = PRESET_VIEWS.find((p) => p.preset.id === (e as CustomEvent<string>).detail);
+      if (v) setState((s) => applyPreset(s, v));
+    };
+    window.addEventListener("pyrion:preset", on);
+    return () => window.removeEventListener("pyrion:preset", on);
+  }, []);
 
   // ?preset=<id> opens a preset directly (shareable link, e.g. ?preset=challenge-lunar-base).
   useEffect(() => {
@@ -155,13 +194,18 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   return (
     <>
-      <div className="workbench">
+      <div
+        className="workbench"
+        ref={benchRef}
+        onPointerEnter={() => (overBench.current = true)}
+        onPointerLeave={() => (overBench.current = false)}
+      >
         <section className="card chart-card" aria-labelledby="envelope-h">
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured PSI test points, one layer per regime (gravity · fuel phase · diluent). Click or drag to move the
-              target.
+              Measured PSI test points, one layer per regime (gravity · fuel phase · diluent). Click, drag or use the arrow keys
+              to move the target.
             </p>
           </div>
           {status ? (
