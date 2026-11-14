@@ -9,12 +9,6 @@ export default async function Page() {
   return (
     <main className="page">
       <header className="hero">
-        <div className="brand">
-          <span className="logo" aria-hidden="true">
-            Ω
-          </span>
-          <span className="brand-sub">NASA Space Apps 2026 · Flame in Freefall</span>
-        </div>
         <h1>
           PYRION Ω <span className="h1-dash">—</span> The Evidence Envelope
         </h1>
