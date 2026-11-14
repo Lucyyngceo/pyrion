@@ -24,7 +24,9 @@
       "quote": "The objectives of this investigation were to: (1) determine how rapidly a large scale fire grows in low-gravity [...]",
       "confidence": "ambiguous",
       "derivation": "Objective statement, not a statement of the test condition (brief rule 3). The JSON field has a line break after 'to:'; joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. The same objective wording appears in the Objectives PDF abstract (page 1), which covers Saffire-I, -II and -III.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R2",
@@ -40,7 +42,9 @@
       "quote": "The specific objective of SAFFIRE-I and SAFFIRE-III tests is to determine how rapidly a large-scale fire grows in low-gravity and whether it reaches a steady-state spread rate.",
       "confidence": "ambiguous",
       "derivation": "Objective statement for the SAFFIRE-I and SAFFIRE-III tests, not a statement of the test condition. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R3",
@@ -56,7 +60,9 @@
       "quote": "In Saffire-I and –III, the sample material is a single large sample (approx. 0.4 m wide by 0.94 m tall) to demonstrate the development and spread of a large-scale low-gravity fire.",
       "confidence": "ambiguous",
       "derivation": "States the purpose of the sample ('to demonstrate ... a large-scale low-gravity fire'), not the measured condition of the burn. Sentence spans two PDF lines ('0.4 m' / 'wide'), joined with one space. Source term 'low-gravity'; no g-level stated; mapped to the controlled term microgravity. Covers Saffire-I and Saffire-III together.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R4",
@@ -153,6 +159,24 @@
       "confidence": "derived",
       "derivation": "air: oxygen balanced mainly by nitrogen. The documents read do not state the composition of this air beyond O2.",
       "flags": []
+    },
+    {
+      "id": "R101",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "low-gravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/ntrs-20180005168/20180005168.pdf",
+      "source_location": "page=18",
+      "quote": "Flame spread over a large thin charring surface in low-gravity showed that steady flame spread was possible (unlike normal gravity)",
+      "confidence": "derived",
+      "derivation": "derived: source says 'low-gravity' (orbital free flight in Cygnus). Results slide titled 'Saffire-I-III Results' of Urban et al., ASGSR 2017 (NTRS 20180005168): it covers the three flights together, so it is not independent per flight.",
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     }
   ],
   "not_found": [
@@ -169,5 +193,6 @@
       "looked_in": "Record text, Readme docx, Objectives PDF pages 1-6, Operations PDF page 1. None found. The 'normal gravity material flammability screening test' in section=objective is NASA's screening test used as a reference (Objectives PDF page 3 names NASA-STD-6001 Test 1 and assigns that comparison to Saffire-II), not a test of PSI-98."
     }
   ],
-  "lineage": "Saffire-I shares hardware design and documents with Saffire-II and Saffire-III. Objectives PDF page 2: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' The Readme docx covers SAFFIRE-I and SAFFIRE-III together (paragraph 7: 'Table 1. Saffire-I/III Experiment Data in PSI'; paragraph 5 also points to 'the SAFFIRE-II Investigations record' for the data records, unexplained in the documents read). The Objectives PDF was reported by the caller as byte-identical across the SAFFIRE I-III records (not checked by me); flight-specific sentences used here name Saffire-I explicitly or Saffire-I together with Saffire-III."
+  "lineage": "Saffire-I shares hardware design and documents with Saffire-II and Saffire-III. Objectives PDF page 2: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' The Readme docx covers SAFFIRE-I and SAFFIRE-III together (paragraph 7: 'Table 1. Saffire-I/III Experiment Data in PSI'; paragraph 5 also points to 'the SAFFIRE-II Investigations record' for the data records, unexplained in the documents read). The Objectives PDF was reported by the caller as byte-identical across the SAFFIRE I-III records (not checked by me); flight-specific sentences used here name Saffire-I explicitly or Saffire-I together with Saffire-III.",
+  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run."
 }

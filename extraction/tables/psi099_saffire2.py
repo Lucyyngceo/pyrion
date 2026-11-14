@@ -19,9 +19,13 @@ SOURCES = ["psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE
 NOTE1 = ("Note 1 of the table: Derived from measured CO2 production and referenced to initial O2 "
          "concentration reported by ISS.")
 H_THICK = "Samle Thickness "
+NTRS_FLOW = ("DISCREPANCY: NTRS 20180005168 (Urban et al., ASGSR 2017) Table 1, page 30, sample II-6 lists 25 cm/s; "
+             "the PSI table says 20 cm/s. PSI value kept (source of record)")
 
 INTERPRETATIONS = [
     SIBAL_INTERPRETATION,
+    "SAFFIRE-II sample 2-6: the PSI table gives 20 cm/s, NTRS 20180005168 Table 1 (page 30, sample II-6) gives 25 cm/s. "
+    "The PSI value is kept (PSI is the source of record) and the record's note names the discrepancy.",
     "SAFFIRE-II \"Percent O2 (Note 1)\": Note 1, at the foot of the same table, reads \"Derived from measured CO2 "
     "production and referenced to initial O2 concentration reported by ISS.\" The O2 values are therefore derived, "
     "not measured directly; each record says so.",
@@ -64,7 +68,7 @@ def build(skips):
         out += text_value(t, n, "Material", variable="material", acc=ACCESSION, test_id=tid)
         out += thickness(t, n, skips, tid)
         out += value_with_unit(t, n, "Air Flow (cm/s)", skips, acc=ACCESSION, tid=tid, variable="flow_velocity",
-                               unit="cm/s", factors=CMS)
+                               unit="cm/s", factors=CMS, note=NTRS_FLOW if tid == "2-6" else "")
         out += percent_o2(t, n, "Percent O2 (Note 1)", skips, acc=ACCESSION, tid=tid, note=NOTE1)
         out += value_with_unit(t, n, "Burn Time (s)", skips, acc=ACCESSION, tid=tid, variable="outcome:burn_time",
                                unit="s", factors=SEC)

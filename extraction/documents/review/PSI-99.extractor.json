@@ -70,7 +70,9 @@
       "quote": "This paper describes the three Spacecraft Fire Experiments (Saffire-I, -II, and -III) that were developed at NASA-GRC and that will conduct a series of material flammability tests in low-gravity and at length scales that are realistic for a spacecraft fire.",
       "confidence": "ambiguous",
       "derivation": "Pre-flight paper (future tense, launches 'all planned for 2016'); the sentence covers Saffire-I, -II and -III together; 'low-gravity' mapped to microgravity.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R5",
@@ -134,7 +136,9 @@
       "quote": "The experiments will be conducted in Orbital ATK’s Cygnus vehicle after it has unberthed from the International Space Station.",
       "confidence": "ambiguous",
       "derivation": "Pre-flight, future tense; the sentence covers Saffire-I, -II and -III together. It names the operator as Orbital ATK where the PSI record (R6) says Orbital Science’s; both name the Cygnus vehicle.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R9",
@@ -151,6 +155,24 @@
       "confidence": "derived",
       "derivation": "air: oxygen balanced mainly by nitrogen. None of the three sources names the balance gas of the Cygnus atmosphere.",
       "flags": []
+    },
+    {
+      "id": "R101",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "low-gravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/ntrs-20180005168/20180005168.pdf",
+      "source_location": "page=18",
+      "quote": "Flame spread over a large thin charring surface in low-gravity showed that steady flame spread was possible (unlike normal gravity)",
+      "confidence": "derived",
+      "derivation": "derived: source says 'low-gravity' (orbital free flight in Cygnus). Results slide titled 'Saffire-I-III Results' of Urban et al., ASGSR 2017 (NTRS 20180005168): it covers the three flights together, so it is not independent per flight.",
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     }
   ],
   "not_found": [
@@ -163,5 +185,6 @@
       "looked_in": "Partial: record text, Readme paragraphs 1-83 and PDF pages 1-6 contain no sentence stating as fact that the SAFFIRE-II burns took place in microgravity/low gravity; only objectives (R1, R2), an impact statement (R3) and a pre-flight plan (R4), all ambiguous. No normal-gravity (1-g) tests are reported in PSI-99: the 'NASA-STD-6001 Test 1 normal-gravity tests' (Readme paragraph 1) and the 'normal gravity Maximum Oxygen Concentration (MOC) flammability limits' (PDF page 2) are existing ground screening data cited for comparison, with no test ids, so no normal_gravity record was proposed."
     }
   ],
-  "lineage": "The Objectives PDF (NTRS 20170001636 per its page-1 header) is also filed as PSI-98 and PSI-100 'SAFFIRE Objectives, Development and Status.pdf' and covers Saffire-I, -II and -III jointly: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' (page=2); its Table 2 is titled 'Saffire-I, II, and III Diagnostics' (page=3), and the record approach calls Saffire-II 'a follow on to the Saffire-I investigation'. SIBAL fabric (Saffire-II samples S5 and S6, PDF page=3 Table 1) comes from an earlier flight experiment: 'It is called SIBAL cloth because it was developed for the Solid Inflammability Boundary at Low-Speeds (SIBAL) spaceflight experiment [...]' (page=2, in the paragraph on Saffire-I and III material). The Readme paragraph=1 objective sentences repeat the PDF abstract and page-3 wording. The ISS appears only as the station Cygnus left before the test; it is not the test platform."
+  "lineage": "The Objectives PDF (NTRS 20170001636 per its page-1 header) is also filed as PSI-98 and PSI-100 'SAFFIRE Objectives, Development and Status.pdf' and covers Saffire-I, -II and -III jointly: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' (page=2); its Table 2 is titled 'Saffire-I, II, and III Diagnostics' (page=3), and the record approach calls Saffire-II 'a follow on to the Saffire-I investigation'. SIBAL fabric (Saffire-II samples S5 and S6, PDF page=3 Table 1) comes from an earlier flight experiment: 'It is called SIBAL cloth because it was developed for the Solid Inflammability Boundary at Low-Speeds (SIBAL) spaceflight experiment [...]' (page=2, in the paragraph on Saffire-I and III material). The Readme paragraph=1 objective sentences repeat the PDF abstract and page-3 wording. The ISS appears only as the station Cygnus left before the test; it is not the test platform.",
+  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run."
 }

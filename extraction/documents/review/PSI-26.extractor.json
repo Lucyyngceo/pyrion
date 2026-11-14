@@ -199,7 +199,9 @@
       "quote": "The air co-flow is produced by using a fan to blow air through the duct.",
       "confidence": "ambiguous",
       "derivation": "Planning document (February 2010). 'co-flow' is the name of the duct air stream carried over from SPICE (SRD page 7, SPICE column: 'Configuration: Round gas jet diffusion flame in a co-flowing oxidizer stream'); it may name the duct stream rather than the flame/flow configuration. The PSI record describes the configurations as concurrent or opposed (R10, R11). Not assigned to specific tests.",
-      "flags": ["SHARED_LINEAGE"]
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R13",
@@ -208,14 +210,19 @@
       "value": "",
       "value_original": "as high as 40 cm/s",
       "unit_original": "cm/s",
-      "numbers": ["40"],
+      "numbers": [
+        "40"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
       "source_location": "section=approach",
       "quote": "Airflow was controlled using a variable speed fan, with airflow speeds reaching as high as 40 cm/s.",
       "confidence": "ambiguous",
       "derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
-      "flags": ["DISCREPANCY", "RANGE_NOT_POINT"]
+      "flags": [
+        "DISCREPANCY",
+        "RANGE_NOT_POINT"
+      ]
     },
     {
       "id": "R14",
@@ -224,14 +231,20 @@
       "value": "",
       "value_original": "0 to 40 cm/s",
       "unit_original": "cm/s",
-      "numbers": ["0", "40"],
+      "numbers": [
+        "0",
+        "40"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
       "source_location": "paragraph=51",
       "quote": "A variable-speed fan is used to generate air flow speeds from 0 to 40 cm/s.",
       "confidence": "ambiguous",
       "derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. Note for the auditor: the paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
-      "flags": ["DISCREPANCY", "RANGE_NOT_POINT"]
+      "flags": [
+        "DISCREPANCY",
+        "RANGE_NOT_POINT"
+      ]
     },
     {
       "id": "R15",
@@ -240,14 +253,21 @@
       "value": "",
       "value_original": "5 to 50 cm/s",
       "unit_original": "cm/s",
-      "numbers": ["5", "50"],
+      "numbers": [
+        "5",
+        "50"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
       "source_location": "page=4",
       "quote": "An anemometer is used to measure the actual flow speed. The airflow speed can be adjusted from 5 to 50 cm/s.",
       "confidence": "ambiguous",
       "derivation": "Planning document (Science Requirements, February 2010) describing the existing SPICE fan and duct. SRD page 7 repeats 'Oxidizer Velocity: 5 to 50 cm/s' and 'Co-flow Velocity: 5 to 50 cm/s', with the BASS column '---Same---' as SPICE. Disagrees with the 0 to 40 cm/s of R13 and R14.",
-      "flags": ["DISCREPANCY", "RANGE_NOT_POINT", "SHARED_LINEAGE"]
+      "flags": [
+        "DISCREPANCY",
+        "RANGE_NOT_POINT",
+        "SHARED_LINEAGE"
+      ]
     },
     {
       "id": "R16",
@@ -256,14 +276,50 @@
       "value": "",
       "value_original": "at or above 21% O2",
       "unit_original": "%",
-      "numbers": ["21"],
+      "numbers": [
+        "21"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
       "source_location": "page=8",
       "quote": "On each day of testing, the oxygen concentration of the ISS cabin atmosphere should be measured. Testing is restricted to oxygen concentrations at or above 21% O2.",
       "confidence": "ambiguous",
       "derivation": "Lower bound only, and a requirement in the February 2010 planning SRD ('Ambient Oxygen Concentration Requirements', BASS column), not a measured value. The same restriction is repeated on page 8 for the MSG working volume. The as-run O2 is not stated in the record text or the 2013 paper. The percent basis (volume/mole or mass) is not stated. The '2' in 'O2' is a subscript in the PDF.",
-      "flags": ["UNIT_AMBIGUOUS"]
+      "flags": [
+        "UNIT_AMBIGUOUS"
+      ]
+    },
+    {
+      "id": "R101",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+      "source_location": "page=2",
+      "quote": "A snapshot of 2-cm diameter acrylic sphere burning in microgravity at 17 percent oxygen and 10 cm/s flow from the Burning and Suppression of Solids (BASS) experiment conducted on the International Space Station.",
+      "confidence": "direct",
+      "derivation": "Figure caption in the 2015 ISS Researcher's Guide describing an actual BASS test (acrylic sphere, 17 % O2, 10 cm/s) 'conducted on the International Space Station'.",
+      "flags": []
+    },
+    {
+      "id": "R102",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+      "source_location": "page=31",
+      "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
+      "confidence": "derived",
+      "derivation": "Results sentence about the BASS experiment in the 2015 ISS Researcher's Guide; it states the microgravity comparison without naming individual tests.",
+      "flags": []
     }
   ],
   "not_found": [
@@ -276,5 +332,6 @@
       "looked_in": "record text (all sections), 2013 paper (all paragraphs), DLD page 1. Only the SRD lower-bound requirement exists (R16)."
     }
   ],
-  "lineage": "SPICE hardware is stated: SRD page 1 'An ISS Glovebox Experiment Utilizing Existing SPICE Hardware with Minor Modifications'; SRD page 4 'The plan is to use the existing NASA glovebox SPICE hardware with four changes:'; 2013 paper paragraph 51 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].' The cotton-fiberglass fuel is the SIBAL fabric (SRD page 5, footnote 1: 'Solid Inflammability Boundary at Low Speed (Principal Investigator: James T’ien) was a previously funded flight project [...]'). BASS-II and SLICE are not mentioned in any source read."
+  "lineage": "SPICE hardware is stated: SRD page 1 'An ISS Glovebox Experiment Utilizing Existing SPICE Hardware with Minor Modifications'; SRD page 4 'The plan is to use the existing NASA glovebox SPICE hardware with four changes:'; 2013 paper paragraph 51 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].' The cotton-fiberglass fuel is the SIBAL fabric (SRD page 5, footnote 1: 'Solid Inflammability Boundary at Low Speed (Principal Investigator: James T’ien) was a previously funded flight project [...]'). BASS-II and SLICE are not mentioned in any source read.",
+  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run."
 }

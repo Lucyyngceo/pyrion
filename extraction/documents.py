@@ -203,6 +203,13 @@ def load(table_ids_by_acc: dict[str, list[str]]):
                 "license not stated" if acc == "PSI-10" else "",
             )
             values = value if isinstance(value, list) else [value]
+            if isinstance(value, list) and (ids == ["*"] or len(ids) > 1):
+                # a list of campaign-level values is not a condition of any one test
+                status = "insufficient_evidence"
+                note = join_notes(note, "campaign-level list of values: the source does not assign them per test")
+            if r["variable"] in ("o2_mole_fraction", "burner_o2_mole_fraction") and                     r.get("unit_original", "").lower() in ("by volume", "on a volume basis"):
+                note = join_notes(f"source gives a ratio with the label '{r['unit_original']}', not a % sign", note)
+                r["unit_original"] = ""
             for tid, one in [(t, v) for t in ids for v in values]:
                 key = (tid, r["variable"], one, r["source_file"], r["source_location"])
                 if key in seen_keys:

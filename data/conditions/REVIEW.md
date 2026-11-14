@@ -244,7 +244,7 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: 9 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-1`, `2019-April-4`
 - Note: confidence direct (Stream: ambient (chamber atmosphere), round 1 (test days from Table 1, p.24). The ambient also held combustion products of earlier tests; the next sentence (pp.81-82) excepts tests run right after the chamber was vented and refilled. Skipped words: '(C2H4) - sometimes diluted with nitrogen. The tests were carried out ... 34% oxygen.'); R13 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
-### pressure = 101.353 kPa  (extracted)
+### pressure = 101.353 kPa  (insufficient_evidence)
 
 > All first-round tests were conducted with the 25-mm diameter BRE burner while burning ethylene [...] The tests were carried out at a range of chamber pressures and oxygen concentrations, generally representative of possible crew environments in future spacecraft or habitats. More specifically, testing was especially focused on atmospheric conditions at (1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia, 34% oxygen.
 
@@ -252,19 +252,9 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=81`
 - As written: `(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia` (psia)
 - Applies to: 9 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-1`, `2019-April-4`
-- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
 
-### pressure = 70.3265 kPa  (extracted)
-
-> All first-round tests were conducted with the 25-mm diameter BRE burner while burning ethylene [...] The tests were carried out at a range of chamber pressures and oxygen concentrations, generally representative of possible crew environments in future spacecraft or habitats. More specifically, testing was especially focused on atmospheric conditions at (1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia, 34% oxygen.
-
-- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
-- Location: `page=81`
-- As written: `(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia` (psia)
-- Applies to: 9 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-1`, `2019-April-4`
-- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
-
-### pressure = 56.537 kPa  (extracted)
+### pressure = 70.3265 kPa  (insufficient_evidence)
 
 > All first-round tests were conducted with the 25-mm diameter BRE burner while burning ethylene [...] The tests were carried out at a range of chamber pressures and oxygen concentrations, generally representative of possible crew environments in future spacecraft or habitats. More specifically, testing was especially focused on atmospheric conditions at (1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia, 34% oxygen.
 
@@ -272,7 +262,17 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=81`
 - As written: `(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia` (psia)
 - Applies to: 9 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-1`, `2019-April-4`
-- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
+
+### pressure = 56.537 kPa  (insufficient_evidence)
+
+> All first-round tests were conducted with the 25-mm diameter BRE burner while burning ethylene [...] The tests were carried out at a range of chamber pressures and oxygen concentrations, generally representative of possible crew environments in future spacecraft or habitats. More specifically, testing was especially focused on atmospheric conditions at (1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia, 34% oxygen.
+
+- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf`
+- Location: `page=81`
+- As written: `(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia` (psia)
+- Applies to: 9 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-1`, `2019-April-4`
+- Note: confidence direct (Nominal atmospheres of round 1 (Appendix D, written after round 1 ended). 'especially focused' is not exhaustive: Table 1 (p.24) also lists 40% O2 on 19039, 19056 and 19063, which this sentence does not cover (see R16). Same sentence in Appendix C p.62.); flags: RANGE_NOT_POINT; one of the values listed in the source sentence; psia x 6.894757; rounded to 6 significant digits; R15 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
 
 ### pressure = 100 kPa  (insufficient_evidence)
 
@@ -282,7 +282,7 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=100`
 - As written: `p (bar) N/A 1 0.4 1 N/A 1 0.34 1 1 0.34 0.56 1 0.265 0.7` (bar)
 - Applies to: 8 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-4`
-- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
 
 ### pressure = 56 kPa  (insufficient_evidence)
 
@@ -292,7 +292,7 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=100`
 - As written: `p (bar) N/A 1 0.4 1 N/A 1 0.34 1 1 0.34 0.56 1 0.265 0.7` (bar)
 - Applies to: 8 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-4`
-- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
 
 ### pressure = 70 kPa  (insufficient_evidence)
 
@@ -302,7 +302,7 @@ For each record below, open the file at the location given and check that the qu
 - Location: `page=100`
 - As written: `p (bar) N/A 1 0.4 1 N/A 1 0.34 1 1 0.34 0.56 1 0.265 0.7` (bar)
 - Applies to: 8 tests: `2019-Feb-8`, `2019-Feb-20`, `2019-Feb-25`, `2019-March-4`, `2019-March-7`, `2019-March-11`, `2019-March-28`, `2019-April-4`
-- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+- Note: confidence ambiguous (Read from the legend text inside Figure 14 (Appendix D). Each legend row is SE, FT (plot symbols, missing from the text layer), Xf, XO2, p (bar); the LAST number of each row is p. Distinct p values: 1, 0.56, 0.7 bar. Pairs (XO2 - p): 0.4 - 1, 0.34 - 1, 0.34 - 0.56, 0.265 - 0.7, 0.21 - 1. Covers only the round-1 tests plotted. Consistent with p.20: 'more of the testing was conducted at roughly atmospheric pressure with elevated oxygen concentrations'.); flags: FROM_FIGURE, RANGE_NOT_POINT; one of the values listed in the source sentence; bar x 100; R16 extracted by the extractor agent; MODIFY by the verificador agent (separate run); campaign-level list of values: the source does not assign them per test
 
 ### pressure = 101.353 kPa  (insufficient_evidence)
 
@@ -588,9 +588,9 @@ For each record below, open the file at the location given and check that the qu
 
 - File: `psi-data/PSI-22/Reports/PSI-22_Reports_E-FIELD Flames Final Report.pdf`
 - Location: `page=11`
-- As written: `21/79 oxygen/nitrogen mixture (on a volume basis)` (on a volume basis)
+- As written: `21/79 oxygen/nitrogen mixture (on a volume basis)`
 - Applies to: all tests (`*`)
-- Note: confidence derived (Same sentence and same chamber-fill link as R8 (page 20: 'the oxygen/nitrogen bottles used to fill the chamber'; page 21: coflow ‘air’ 'which also fills the chamber'). Nominal fill composition, not a measured value: page 11 also says 'Burner flows are generally constrained to limit the pressure rise and vitiation of the atmosphere', and page 20 says that midway through a test day the atmosphere is filtered to remove part of 'the combustion products'. For second-round tests the 21/79 environment is stated explicitly only for the Table 4 test points (R14).); flags: UNIT_AMBIGUOUS; percent x 0.01 (parts of a ratio summing to 100); R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+- Note: source gives a ratio with the label 'on a volume basis', not a % sign; confidence derived (Same sentence and same chamber-fill link as R8 (page 20: 'the oxygen/nitrogen bottles used to fill the chamber'; page 21: coflow ‘air’ 'which also fills the chamber'). Nominal fill composition, not a measured value: page 11 also says 'Burner flows are generally constrained to limit the pressure rise and vitiation of the atmosphere', and page 20 says that midway through a test day the atmosphere is filtered to remove part of 'the combustion products'. For second-round tests the 21/79 environment is stated explicitly only for the Table 4 test points (R14).); flags: UNIT_AMBIGUOUS; percent x 0.01 (parts of a ratio summing to 100); R12 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ### o2_mole_fraction = 0.21 1  (insufficient_evidence)
 
@@ -798,8 +798,7 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-25 BASS-II
 
-- *Table reading:* BASS-II "Air display" has no unit in the table. The BASS-II ReadMe (`psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx`, paragraph 20) states: "Air display:  flow speed measured in the duct in cm/s on the video display.  Response time is very slow (~ 1 min), so reading is only steady for long times at the same flow setting." Cells that list only numbers become a `flow_velocity` range (lowest..highest reading during the test); cells mixing numbers and words are `insufficient_evidence`.
-- *Table reading:* BASS-II "Fan display" is not converted: the same ReadMe defines it as "instantaneous fan voltagex10", not a velocity.
+- *Table reading:* BASS-II "Air display" is `insufficient_evidence` in every row: the cell is a series of display readings taken during the test (e.g. "5 2 0 11 2 11 2 0"), not a fixed flow condition, and its cm/s unit comes only from the BASS-II ReadMe (paragraph 19: "flow speed measured in the duct in cm/s on the video display"). Same rule as "Fan display", which is not converted at all (ReadMe: "instantaneous fan voltagex10").
 - *Table reading:* BASS-II `sample_thickness` is parsed from the material description ("100 micron", "1 mm thick", "0.2 mm PMMA film", "4 mm 1 sided"). Rod diameters (e.g. 1/4") and sample widths are not thicknesses and give no record. A description stating two different thicknesses is `insufficient_evidence`.
 
 ### gravity_regime = microgravity  (extracted)
@@ -1325,7 +1324,7 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-98 SAFFIRE-I
 
-- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them. NTRS 20180005168 (Urban et al. 2017) Table 1, page 30, writes 0.37 mm for the SIBAL fabric of Saffire-I, II and III; that supports mm, but PSI's own sources disagree, so the status stays `insufficient_evidence`.
 
 ### gravity_regime = microgravity  (insufficient_evidence)
 
@@ -1409,7 +1408,8 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-99 SAFFIRE-II
 
-- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them. NTRS 20180005168 (Urban et al. 2017) Table 1, page 30, writes 0.37 mm for the SIBAL fabric of Saffire-I, II and III; that supports mm, but PSI's own sources disagree, so the status stays `insufficient_evidence`.
+- *Table reading:* SAFFIRE-II sample 2-6: the PSI table gives 20 cm/s, NTRS 20180005168 Table 1 (page 30, sample II-6) gives 25 cm/s. The PSI value is kept (PSI is the source of record) and the record's note names the discrepancy.
 - *Table reading:* SAFFIRE-II "Percent O2 (Note 1)": Note 1, at the foot of the same table, reads "Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS." The O2 values are therefore derived, not measured directly; each record says so.
 - *Table reading:* SAFFIRE-II thickness "037 mm" (samples 2-4 to 2-6) lacks a decimal point (0.37 mm or 37 mm): `insufficient_evidence`. "0.85 and 0.37 mm" (sample 2-7, "PMMA & Nomex") gives one record per value.
 - *Table reading:* SAFFIRE-II "1-g Burn Length" and "1-g Spread Rate" are normal-gravity comparison tests and are not mapped onto the flight samples; the micro-g columns are not mapped either (their header says length, the cells say mm/s).
@@ -1506,7 +1506,8 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-100 SAFFIRE-III
 
-- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them and no source resolves it.
+- *Table reading:* SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "Sample Thickness (cm)" column, SAFFIRE-III ".33 cm", SAFFIRE-II "037 mm" (decimal point missing), and the SAFFIRE paper shared by the three investigations (`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, sample table) lists "SIBAL fabric 0.33 mm". A factor of 10 separates them. NTRS 20180005168 (Urban et al. 2017) Table 1, page 30, writes 0.37 mm for the SIBAL fabric of Saffire-I, II and III; that supports mm, but PSI's own sources disagree, so the status stays `insufficient_evidence`.
+- *Table reading:* SAFFIRE-III flow: the PSI table gives 30 cm/s for S1 and S2, NTRS 20180005168 Table 1 (page 30, samples III-1 and III-2) gives 25 cm/s. The PSI value is kept (PSI is the source of record) and the records' notes name the discrepancy.
 
 ### gravity_regime = microgravity  (insufficient_evidence)
 

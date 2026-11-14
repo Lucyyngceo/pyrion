@@ -15,13 +15,16 @@ from tables.helpers import numeric, text_value
 
 SIBAL_NOTE = ("SIBAL thickness is given in cm here, but the shared SAFFIRE paper "
               "(Objectives, Development and Status) lists 'SIBAL fabric 0.33 mm' and SAFFIRE-II writes '037 mm'; "
-              "the sources do not say which unit is right")
+              "the sources do not say which unit is right (NTRS 20180005168 Table 1, page 30, writes 0.37 mm for the SIBAL "
+              "fabric of all three flights, but PSI is the source of record)")
 SIBAL_INTERPRETATION = (
     "SAFFIRE SIBAL fabric thickness is `insufficient_evidence` in all three flights: SAFFIRE-I gives 0.37 in a "
     "\"Sample Thickness (cm)\" column, SAFFIRE-III \".33 cm\", SAFFIRE-II \"037 mm\" (decimal point missing), and "
     "the SAFFIRE paper shared by the three investigations "
     "(`psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf`, "
-    "sample table) lists \"SIBAL fabric 0.33 mm\". A factor of 10 separates them and no source resolves it.")
+    "sample table) lists \"SIBAL fabric 0.33 mm\". A factor of 10 separates them. NTRS 20180005168 (Urban et al. 2017) Table 1, page 30, writes 0.37 mm for the SIBAL "
+    "fabric of Saffire-I, II and III; that supports mm, but PSI's own sources disagree, so the status stays "
+    "`insufficient_evidence`.")
 FLOW_CFG = {"concurrent": "concurrent", "opposed": "opposed"}
 VALUE_UNIT = re.compile(r"^\s*(~\s*)?(\d*\.?\d+)\s*(mm|cm|cm/s|s|W)\s*$")
 

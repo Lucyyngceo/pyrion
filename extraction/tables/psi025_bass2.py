@@ -28,17 +28,15 @@ H_AIR = "Air display"
 H_O2I = "Calibrated  initial O2 % by vol "
 H_O2F = "Calibrated final O2 % by vol"
 
-AIR_NOTE = ("Air display = duct flow speed in cm/s (BASS-II ReadMe); readings during the test, "
-            "slow response (~1 min)")
+AIR_NOTE = ("the unit is not in the table: BASS-II ReadMe (psi-data/PSI-25/Science Documents/"
+            "PSI-25_Science Documents_BASS-II_ReadMe.docx, paragraph 19) says the display is the duct flow speed in cm/s, "
+            "response time ~1 min")
 
 INTERPRETATIONS = [
-    "BASS-II \"Air display\" has no unit in the table. The BASS-II ReadMe "
-    f"(`{README}`, paragraph 20) states: \"Air display:  flow speed measured in the duct in cm/s on the video "
-    "display.  Response time is very slow (~ 1 min), so reading is only steady for long times at the same flow "
-    "setting.\" Cells that list only numbers become a `flow_velocity` range (lowest..highest reading during "
-    "the test); cells mixing numbers and words are `insufficient_evidence`.",
-    "BASS-II \"Fan display\" is not converted: the same ReadMe defines it as \"instantaneous fan voltagex10\", "
-    "not a velocity.",
+    "BASS-II \"Air display\" is `insufficient_evidence` in every row: the cell is a series of display readings taken "
+    "during the test (e.g. \"5 2 0 11 2 11 2 0\"), not a fixed flow condition, and its cm/s unit comes only from the "
+    "BASS-II ReadMe (paragraph 19: \"flow speed measured in the duct in cm/s on the video display\"). Same rule as "
+    "\"Fan display\", which is not converted at all (ReadMe: \"instantaneous fan voltagex10\").",
     "BASS-II `sample_thickness` is parsed from the material description (\"100 micron\", \"1 mm thick\", "
     "\"0.2 mm PMMA film\", \"4 mm 1 sided\"). Rod diameters (e.g. 1/4\") and sample widths are not thicknesses "
     "and give no record. A description stating two different thicknesses is `insufficient_evidence`.",
@@ -75,20 +73,15 @@ def thickness(t, n, tid):
 
 
 def air(t, n, tid, skips):
+    """Every non-empty "Air display" cell becomes insufficient_evidence: it is a series of display readings taken
+    during the test (e.g. "5 2 0 11 2 11 2 0"), not a fixed flow condition. The cm/s unit comes from the ReadMe."""
     cell = t.cell(n, H_AIR)
     s = cell.strip()
     if not s:
         return []
-    if PURE_NUMBERS.match(s):
-        nums = [Decimal(x) for x in s.split()]
-        lo, hi = fmt(min(nums)), fmt(max(nums))
-        value = lo if lo == hi else f"{lo}..{hi}"
-        extra = "single reading" if lo == hi else "range of the readings listed in the cell"
-        return [record(t, n, H_AIR, accession=ACCESSION, test_id=tid, variable="flow_velocity", value=value,
-                       unit="cm/s", value_original=cell, unit_original="", note=join_notes(extra, AIR_NOTE))]
     return [record(t, n, H_AIR, accession=ACCESSION, test_id=tid, variable="flow_velocity", value=s,
                    unit="cm/s", value_original=cell, unit_original="", status="insufficient_evidence",
-                   note=join_notes("cell mixes readings with words; not parsed", AIR_NOTE))]
+                   note=join_notes("display reading series during the test, not a test condition", AIR_NOTE))]
 
 
 def build(skips):
