@@ -1,7 +1,7 @@
 // Pure helpers of "Ask PYRION": reading the model's target, and building what the narrator may see.
 // Relative .ts imports on purpose, so the unit tests can run them under `node --test`.
 
-import { REGIME_VALUES, validateTarget, type Evaluation, type Target } from "../../engine/src/index.ts";
+import { targetFromQuantities, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
 import type { Facts } from "./narration-check.ts";
 
 const KPA_PER_PSI = 6.894757293168361;
@@ -11,8 +11,13 @@ export interface ParsedTarget {
   assumptions: string[];
   /** Axes the question did not state. */
   unstated: string[];
+  /** Unit conversions done by the engine, for display: "8.2 psia → 56.54 kPa (×6.894757)". */
+  conversions: string[];
+  /** Engine notes and plausibility warnings about the values. */
+  warnings: string[];
 }
 
+const QUANTITY_KEYS = ["gravity", "o2", "pressure", "flow_velocity", "sample_thickness", "ambient_temperature"] as const;
 const REGIME_KEYS = ["gravity_regime", "fuel_phase", "diluent", "flame_type"] as const;
 
 function extractJson(text: string): unknown {
@@ -23,7 +28,10 @@ function extractJson(text: string): unknown {
   return JSON.parse(t.slice(start, end + 1));
 }
 
-/** Read and validate the model's reply. Throws a readable Error when it is not a valid target. */
+/**
+ * Read the model's reply (quantities as written) and let the engine convert and validate them.
+ * The model never outputs a converted number. Throws a readable Error when the reply cannot become a target.
+ */
 export function parseTargetReply(reply: string): ParsedTarget {
   let raw: unknown;
   try {
@@ -31,41 +39,29 @@ export function parseTargetReply(reply: string): ParsedTarget {
   } catch (e) {
     throw new Error(e instanceof Error && e.message.startsWith("the model") ? e.message : "the model's reply is not valid JSON");
   }
-  const o = raw as { regime?: Record<string, unknown>; continuous?: Record<string, unknown>; assumptions?: unknown };
-  if (o === null || typeof o !== "object" || typeof o.regime !== "object" || typeof o.continuous !== "object" || o.regime === null || o.continuous === null) {
-    throw new Error("the reply lacks the regime and continuous objects");
-  }
-  const cont = o.continuous;
-  const regime: Target["regime"] = {};
+  if (raw === null || typeof raw !== "object" || Array.isArray(raw)) throw new Error("the reply is not a JSON object");
+  const o = raw as Record<string, unknown>;
+  const input: Record<string, string> = {};
   const unstated: string[] = [];
-  for (const k of REGIME_KEYS) {
-    const v = o.regime[k];
-    if (v === null || v === undefined) {
-      unstated.push(k);
+  for (const k of [...QUANTITY_KEYS, ...REGIME_KEYS]) {
+    const v = o[k];
+    if (v === null || v === undefined || v === "") {
+      unstated.push(k === "o2" ? "o2_mole_fraction" : k);
       continue;
     }
-    if (typeof v !== "string" || !(REGIME_VALUES[k] ?? []).includes(v)) throw new Error(`${k}: "${String(v)}" is not an allowed value`);
-    regime[k] = v;
+    if (typeof v !== "string") throw new Error(`${k} must be text as written in the question, or null`);
+    input[k] = v;
   }
-  const num = (k: string): number | null => {
-    const v = cont[k];
-    if (v === null || v === undefined) return null;
-    if (typeof v !== "number" || !Number.isFinite(v)) throw new Error(`${k} must be a number or null`);
-    return v;
-  };
-  const continuous: Target["continuous"] = {};
-  const o2 = num("o2_mole_fraction");
-  const p = num("pressure_kpa");
-  const g = num("gravity_level_g");
-  if (o2 !== null) continuous.o2_mole_fraction = o2;
-  else unstated.push("o2_mole_fraction");
-  if (p !== null) continuous.pressure = p;
-  else unstated.push("pressure");
-  if (g !== null) continuous.gravity_level = g;
+  const r = targetFromQuantities(input as TargetQuantities);
+  if (!r.ok) throw new Error(r.errors.map((e) => `${e.field}: ${e.message}`).join("; "));
   const assumptions = Array.isArray(o.assumptions) ? o.assumptions.filter((a): a is string => typeof a === "string").slice(0, 8) : [];
-  const target: Target = { regime, continuous };
-  validateTarget(target); // throws TypeError on a malformed target
-  return { target, assumptions, unstated };
+  return {
+    target: r.target,
+    assumptions,
+    unstated,
+    conversions: r.conversions.map((c) => c.display),
+    warnings: r.conversions.flatMap((c) => [...c.notes, ...c.warnings]),
+  };
 }
 
 const sig = (n: number, d = 3) => Number(n.toPrecision(d));

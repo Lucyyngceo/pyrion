@@ -27,6 +27,8 @@ export interface CompleteArgs {
   maxTokens?: number;
   temperature?: number;
   signal?: AbortSignal;
+  /** Let a reasoning model think before answering (OpenRouter). Default false: short structured answers must not be cut off by hidden reasoning. */
+  reasoning?: boolean;
   /** Use exactly `model`, with no fallback (health checks and smoke tests). */
   pin?: boolean;
 }
@@ -96,6 +98,7 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
             temperature: args.temperature ?? 0,
             max_tokens: args.maxTokens ?? 800,
             stream: !!args.stream,
+            ...(provider.id === "openrouter" && !args.reasoning ? { reasoning: { enabled: false } } : {}),
           }),
           signal: args.signal ? AbortSignal.any([args.signal, AbortSignal.timeout(timeoutMs(model))]) : AbortSignal.timeout(timeoutMs(model)),
           cache: "no-store",

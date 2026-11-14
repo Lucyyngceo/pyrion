@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { buildNarrationInput, parseTargetReply, sha256Hex, type ParsedTarget } from "@/lib/ask-core";
+import { buildNarrationInput, sha256Hex, type ParsedTarget } from "@/lib/ask-core";
 import { canonicalJson, evaluate, type ConditionRecord, type EngineOptions } from "@/lib/engine";
 import { checkNarration } from "@/lib/narration-check";
 import { fmt, kpaToPsi, valueLabel } from "@/lib/units";
@@ -30,10 +30,11 @@ interface Props {
   onTarget: (p: ParsedTarget) => void;
 }
 
-async function call(step: "parse" | "narrate", model: string, payload: Record<string, unknown>): Promise<{ reply: string | null; failures: string[] }> {
+async function call(step: "parse" | "narrate", model: string, payload: Record<string, unknown>): Promise<{ reply: string | null; failures: string[]; parsed?: ParsedTarget }> {
   const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ step, model, ...payload }) });
-  const data = (await res.json().catch(() => ({}))) as { reply?: string | null; error?: string; check?: { failures?: string[] } };
+  const data = (await res.json().catch(() => ({}))) as { reply?: string | null; error?: string; check?: { failures?: string[] }; parsed?: ParsedTarget };
   if (!res.ok) throw new Error(data.error ?? `the request failed (HTTP ${res.status})`);
+  if (data.parsed) return { reply: null, failures: [], parsed: data.parsed };
   if (typeof data.reply !== "string" && !data.check) throw new Error("the request returned no text");
   return { reply: typeof data.reply === "string" ? data.reply : null, failures: data.check?.failures ?? [] };
 }
@@ -79,7 +80,9 @@ export default function AskBox({ records, options, investigations, onTarget }: P
     try {
       // Step A: the model translates the question into a target; code validates it.
       const asked = await call("parse", m, { question });
-      const parsed = parseTargetReply(asked.reply ?? "");
+      // The server already converted the quantities with the engine; the model never outputs a converted number.
+      const parsed = asked.parsed;
+      if (!parsed) throw new Error("the question could not be turned into a target");
       onTarget(parsed);
       // Step B: the deterministic engine decides. No model involved.
       const evaluation = evaluate(records, parsed.target, options);
@@ -169,6 +172,20 @@ export default function AskBox({ records, options, investigations, onTarget }: P
             {r.parsed.unstated.length > 0 && <span className="muted">Not stated, left as it was on the chart or not compared: {r.parsed.unstated.map((u) => u.replaceAll("_", " ")).join(", ")}. </span>}
             <a href="#target-panel">Edit the target</a>
           </p>
+          {r.parsed.conversions.length > 0 && (
+            <ul className="small muted ask-assume">
+              {r.parsed.conversions.map((c) => (
+                <li key={c}>Converted by the engine: {c}</li>
+              ))}
+            </ul>
+          )}
+          {r.parsed.warnings.length > 0 && (
+            <ul className="small ask-assume">
+              {r.parsed.warnings.map((w) => (
+                <li key={w}>Note: {w}</li>
+              ))}
+            </ul>
+          )}
           {r.parsed.assumptions.length > 0 && (
             <ul className="small muted ask-assume">
               {r.parsed.assumptions.map((a) => (

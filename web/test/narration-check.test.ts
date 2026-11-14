@@ -43,13 +43,16 @@ test("more than 120 words fails", () => {
   assert.match(checkNarration(Array(130).fill("word").join(" "), facts).failures.join(" "), /too long/);
 });
 
-test("the target reply is validated: nulls stay unstated, bad values are rejected", () => {
-  const ok = parseTargetReply('```json\n{"regime":{"gravity_regime":"partial_gravity","fuel_phase":null,"diluent":null,"flame_type":null},"continuous":{"o2_mole_fraction":0.3,"pressure_kpa":70.3,"gravity_level_g":0.165},"assumptions":["lunar gravity read as 0.165 g"]}\n```');
+test("the target reply is converted by the engine; the model's text is read as written", () => {
+  const ok = parseTargetReply('```json\n{"gravity":"lunar","o2":"30 %","pressure":"10.2 psia","flow_velocity":null,"sample_thickness":null,"ambient_temperature":null,"gravity_regime":null,"fuel_phase":null,"diluent":null,"flame_type":null,"assumptions":["lunar read as the Moon"]}\n```');
   assert.equal(ok.target.regime.gravity_regime, "partial_gravity");
   assert.equal(ok.target.regime.fuel_phase, undefined);
-  assert.equal(ok.target.continuous.pressure, 70.3);
-  assert.deepEqual(ok.unstated.sort(), ["diluent", "flame_type", "fuel_phase"]);
-  assert.throws(() => parseTargetReply('{"regime":{"gravity_regime":"zero"},"continuous":{}}'), /not an allowed value/);
-  assert.throws(() => parseTargetReply('{"regime":{},"continuous":{"o2_mole_fraction":30}}'));
+  assert.ok(Math.abs((ok.target.continuous.pressure ?? 0) - 70.3) < 0.1);
+  assert.ok(Math.abs((ok.target.continuous.o2_mole_fraction ?? 0) - 0.3) < 1e-9);
+  assert.match(ok.conversions.join(" | "), /psia/);
+  assert.ok(ok.unstated.includes("fuel_phase"));
+  assert.throws(() => parseTargetReply('{"pressure":"10 psig"}'), /pressure/);
+  assert.throws(() => parseTargetReply('{"pressure":56.5}'), /text as written/);
+  assert.throws(() => parseTargetReply('{"gravity_regime":"zero"}'));
   assert.throws(() => parseTargetReply("sorry, I cannot"), /JSON/);
 });

@@ -4,6 +4,7 @@
 import { NoModelAvailable, RateLimited, allModels, askLlm, checkContent, providers, visitorId } from "@/lib/llm";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { checkNarration } from "@/lib/narration-check";
+import { parseTargetReply } from "@/lib/ask-core";
 
 export const dynamic = "force-dynamic";
 
@@ -41,12 +42,21 @@ export async function POST(req: Request) {
     if (body.step === "parse") {
       const q = typeof body.question === "string" ? body.question.trim() : "";
       if (q === "" || q.length > 500) return json({ error: "the question must be 1 to 500 characters" }, 400);
+      // The content check runs on every user input (this step is the only one that receives user text).
       const safety = await checkContent(q, providers());
-      if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead." }, 422);
-      const c = await askLlm({ model, maxTokens: 500, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
+      const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
+      if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState }, 422);
+      const c = await askLlm({ model, maxTokens: 700, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
-      return json({ ...c.meta, promptVersion: PROMPT_VERSION, safetyChecked: safety.checked, reply });
+      // The model copies quantities as written; the engine converts them and validates the target.
+      let parsed;
+      try {
+        parsed = parseTargetReply(reply);
+      } catch (e) {
+        return json({ error: `The question could not be turned into a valid target: ${e instanceof Error ? e.message : "invalid reply"}`, safety: safetyState }, 422);
+      }
+      return json({ ...c.meta, promptVersion: PROMPT_VERSION, safety: safetyState, parsed });
     }
     if (body.step === "narrate") {
       const input = body.input;
@@ -57,7 +67,8 @@ export async function POST(req: Request) {
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
       // The consistency check runs here, on the server, before the text can reach the page.
       const check = checkNarration(reply, factsOf(input as Parameters<typeof factsOf>[0]));
-      return json({ ...c.meta, promptVersion: PROMPT_VERSION, reply: check.ok ? reply : null, check });
+      // Narration input is the engine's output, never user text, so the content check does not apply here.
+      return json({ ...c.meta, promptVersion: PROMPT_VERSION, safety: "not_applicable", reply: check.ok ? reply : null, check });
     }
     return json({ error: "unknown step" }, 400);
   } catch (e) {
