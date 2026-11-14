@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
-import { KPA_PER_PSI, QUANTITY_FACTORS, parseQuantity, targetFromQuantities, type Quantity, type QuantityVariable } from '../src/index.ts';
+import { KPA_PER_PSI, MICROGRAVITY_BELOW_G, MICROGRAVITY_CONVENTION_NOTE, QUANTITY_FACTORS, parseQuantity, targetFromQuantities, type Quantity, type QuantityVariable } from '../src/index.ts';
 
 const ok = (text: string, variable: QuantityVariable): Quantity => {
   const r = parseQuantity(text, variable);
@@ -306,7 +306,9 @@ describe('audit fix 4: microgravity below 0.01 g', () => {
     for (const t of ['0 g', '0.000001 g', '1e-4 g', '0.009 g']) {
       const q = ok(t, 'gravity_level');
       assert.equal(q.gravity_regime, 'microgravity', t);
-      assert.match(q.notes[0], /below 0\.01 g are treated as microgravity; ISS ≈ 1e-6 to 1e-4 g/);
+      assert.equal(q.notes[0], MICROGRAVITY_CONVENTION_NOTE);
+      assert.match(q.notes[0], /PYRION convention, not a NASA value: gravity levels below 0\.01 g/);
+      assert.ok(!q.notes[0].includes('ISS'));
     }
     assert.equal(ok('1e-4 g', 'gravity_level').value, 1e-4);
   });
@@ -393,4 +395,11 @@ describe('the three AskBox example questions, with the strings a model would cop
       }
     });
   }
+});
+
+describe('microgravity cut is a named constant', () => {
+  it('is 0.01 g and appears in the note', () => {
+    assert.equal(MICROGRAVITY_BELOW_G, 0.01);
+    assert.ok(MICROGRAVITY_CONVENTION_NOTE.includes('NTRS 20260001966, p. 17'));
+  });
 });

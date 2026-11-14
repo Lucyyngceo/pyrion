@@ -338,6 +338,10 @@ function temperature(original: string): QuantityResult {
 /** Levels below this are treated as microgravity (engine rule; platform residual levels are far below it). */
 export const MICROGRAVITY_BELOW_G = 0.01;
 
+/** Shown with every numeric result that falls under the cut. */
+export const MICROGRAVITY_CONVENTION_NOTE =
+  `PYRION convention, not a NASA value: gravity levels below ${MICROGRAVITY_BELOW_G} g are treated as microgravity. NASA's own flammability chart places 1e-4 g and 1e-2 g on one continuous axis (NTRS 20260001966, p. 17), so this cut is a modelling choice and is shown with every result.`;
+
 function regimeOfLevel(level: number): Quantity['gravity_regime'] | undefined {
   if (level >= 0 && level < MICROGRAVITY_BELOW_G) return 'microgravity';
   if (level >= MICROGRAVITY_BELOW_G && level < 1) return 'partial_gravity';
@@ -430,7 +434,7 @@ function gravity(original: string): QuantityResult {
     notes: !regime
       ? []
       : regime === 'microgravity'
-        ? [`levels below ${MICROGRAVITY_BELOW_G} g are treated as microgravity; ISS ≈ 1e-6 to 1e-4 g`]
+        ? [MICROGRAVITY_CONVENTION_NOTE]
         : [`regime ${regime} inferred from the level (${MICROGRAVITY_BELOW_G} to < 1 g = partial_gravity, 1 g = normal_gravity)`],
   });
   return out.ok && f ? { ...out, display: `${original.trim()} → ${sig(n)} g` } : out;
