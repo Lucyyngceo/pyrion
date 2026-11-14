@@ -11,7 +11,7 @@ environment"; the table does not say where they were measured.
 """
 from decimal import Decimal
 
-from common import ATM_TO_KPA, Sheet, Table, record
+from common import ATM_TO_KPA, Sheet, Table, fmt, record
 from tables.helpers import numeric, text_value
 
 ACCESSION = "PSI-26"
@@ -61,7 +61,8 @@ def build(skips):
             if ok:
                 out.append(record(x, n, X_O2, accession=ACCESSION, test_id=tid, variable="o2_mole_fraction",
                                   value=o2, unit="1", unit_original="% by volume",
-                                  note=f"cell holds a fraction although the header says %; {ENV_NOTE}"))
+                                  note=("unit-label-mismatch: header says % by volume; cells are fractions "
+                                        f"({o2} = {fmt(Decimal(o2) * 100)} %, ambient air); {ENV_NOTE}")))
             else:
                 skips.add(ACCESSION, x.relpath, n, X_O2, o2, "O2: not a fraction below 1")
         out += numeric(x, n, X_P, skips, variable="pressure", unit="kPa", unit_original="atm",
