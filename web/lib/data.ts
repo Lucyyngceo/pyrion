@@ -55,7 +55,15 @@ async function readConditionFiles(dir: string): Promise<ConditionFile[]> {
 async function loadInvestigations(): Promise<Investigation[]> {
   const text = await readText(path.join(DATA_DIR, "manifest", "investigations.csv"));
   if (!text) return [];
+  const pubs = new Map<string, string[]>();
+  for (const r of rowsOf((await readText(path.join(DATA_DIR, "manifest", "publications.csv"))) ?? "")) {
+    if (!r.title) continue;
+    const list = pubs.get(r.accession) ?? [];
+    list.push(r.title);
+    pubs.set(r.accession, list);
+  }
   return rowsOf(text).map((r) => ({
+    publications: pubs.get(r.accession) ?? [],
     accession: r.accession,
     acronym: r.acronym,
     title: r.title,
@@ -122,4 +130,62 @@ export async function loadDataset(): Promise<Dataset> {
     sourceFiles: {},
     stats: stats(fixtures).stats,
   };
+}
+
+export interface Lineage {
+  psiFiles: number;
+  psiBytes: number;
+  selectedFiles: number;
+  selectedBytes: number;
+  validation: {
+    generatedAt: string;
+    records: number;
+    cellsTraced: number;
+    quotesTraced: number;
+    traceRan: boolean;
+    blocker: number;
+    major: number;
+    minor: number;
+  } | null;
+}
+
+/** Counts for the data lineage on /data: PSI inventory, downloaded files, and the last committed validation report. */
+export async function loadLineage(): Promise<Lineage> {
+  let psiFiles = 0;
+  let psiBytes = 0;
+  for (const r of rowsOf((await readText(path.join(DATA_DIR, "manifest", "coverage.csv"))) ?? "")) {
+    psiFiles += Number(r.files_in_psi) || 0;
+    psiBytes += Number(r.bytes_in_psi) || 0;
+  }
+  const seen = new Set<string>();
+  let selectedFiles = 0;
+  let selectedBytes = 0;
+  for (const p of ["P1", "P2", "P3", "P4"]) {
+    for (const r of rowsOf((await readText(path.join(DATA_DIR, "manifest", `checksums_${p}.csv`))) ?? "")) {
+      if (r.status !== "ok" || seen.has(r.path)) continue;
+      seen.add(r.path);
+      selectedFiles++;
+      selectedBytes += Number(r.bytes) || 0;
+    }
+  }
+  let validation: Lineage["validation"] = null;
+  const report = await readText(path.join(DATA_DIR, "..", "validation", "reports", "latest.json"));
+  if (report) {
+    try {
+      const d = JSON.parse(report);
+      validation = {
+        generatedAt: String(d.generated_at_utc ?? ""),
+        records: Number(d.stats?.records ?? 0),
+        cellsTraced: Number(d.stats?.cells_traced ?? 0),
+        quotesTraced: Number(d.stats?.quotes_traced ?? 0),
+        traceRan: Boolean(d.trace_ran),
+        blocker: Number(d.counts?.BLOCKER ?? 0),
+        major: Number(d.counts?.MAJOR ?? 0),
+        minor: Number(d.counts?.MINOR ?? 0),
+      };
+    } catch {
+      validation = null;
+    }
+  }
+  return { psiFiles, psiBytes, selectedFiles, selectedBytes, validation };
 }

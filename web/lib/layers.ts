@@ -24,12 +24,18 @@ export function sortEnvelopes(envs: readonly RegimeEnvelope[]): RegimeEnvelope[]
   });
 }
 
-/** Categorical slot per complete layer, fixed order, never cycled; incomplete layers are gray. */
+const known = (e: RegimeEnvelope, axis: string) => e.regime.some((s) => s.axis === axis && s.state === "known");
+
+/** A layer gets a color when its regime is complete, or when at least gravity regime and fuel phase are stated. */
+export const isColored = (e: RegimeEnvelope) =>
+  e.points.length > 0 && (e.regimeComplete || (known(e, "gravity_regime") && known(e, "fuel_phase")));
+
+/** Categorical slot per colored layer, fixed order, never cycled; the rest are gray. */
 export function colorMap(envs: readonly RegimeEnvelope[]): Map<string, string> {
   const m = new Map<string, string>();
   let i = 0;
   for (const e of envs) {
-    if (!e.regimeComplete || i >= 8) m.set(e.key, "var(--s-other)");
+    if (!isColored(e) || i >= 8) m.set(e.key, "var(--s-other)");
     else m.set(e.key, `var(--s${++i})`);
   }
   return m;

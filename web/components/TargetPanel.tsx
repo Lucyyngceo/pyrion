@@ -19,6 +19,23 @@ interface Props {
   verifiedOnly: boolean;
   onVerifiedOnly: (v: boolean) => void;
   verifiedCount: number;
+  /** The result for this target, shown right under the presets so it is visible with the chart. */
+  result?: React.ReactNode;
+}
+
+/** Where the preset sits on the O2 x pressure plane (16-40 % O2, 40-110 kPa), as a tiny map. */
+function PresetGlyph({ o2, pressure }: { o2?: number; pressure?: number }) {
+  if (o2 === undefined || pressure === undefined) return null;
+  const x = 4 + ((Math.min(0.4, Math.max(0.16, o2)) - 0.16) / 0.24) * 36;
+  const y = 28 - ((Math.min(110, Math.max(40, pressure)) - 40) / 70) * 24;
+  return (
+    <svg className="preset-glyph" width="44" height="32" viewBox="0 0 44 32" aria-hidden="true">
+      <rect x="0.5" y="0.5" width="43" height="31" rx="5" />
+      <line x1={x} x2={x} y1="3" y2="29" />
+      <line x1="3" x2="41" y1={y} y2={y} />
+      <circle cx={x} cy={y} r="3.2" />
+    </svg>
+  );
 }
 
 export function applyPreset(state: TargetState, view: PresetView): TargetState {
@@ -34,7 +51,7 @@ export function applyPreset(state: TargetState, view: PresetView): TargetState {
   };
 }
 
-export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount }: Props) {
+export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount, result }: Props) {
   const id = useId();
   const view = PRESET_VIEWS.find((v) => v.preset.id === state.presetId);
   const preset = view?.preset;
@@ -68,36 +85,72 @@ export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedO
             className="preset"
             onClick={() => onChange(applyPreset(state, v))}
           >
+            <PresetGlyph o2={v.preset.continuous.o2_mole_fraction?.value} pressure={v.preset.continuous.pressure?.value} />
             <span className="preset-label">{v.short}</span>
             <span className="preset-summary">{v.summary}</span>
           </button>
         ))}
       </div>
 
+      {result}
+
       <div className="source-note">
         {preset ? (
           <>
             <p className="preset-desc">{preset.description}</p>
-            {sourcesOf(preset).map((s) => (
-              <p key={`${s.id}|${s.quote}`} className="cite">
-                <q>{s.quote}</q>{" "}
-                <a href={s.url} target="_blank" rel="noreferrer">
-                  {s.identifier}
-                </a>
-                <span className="muted">, {s.locator}</span>
-              </p>
-            ))}
-            {preset.limits.length > 0 && (
-              <ul className="limits">
-                {preset.limits.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
-            )}
+            <details className="preset-sources">
+              <summary>
+                Sources and limits ({sourcesOf(preset).map((s) => s.identifier.split(" (")[0]).filter((v, i, a) => a.indexOf(v) === i).join(", ")})
+              </summary>
+              {sourcesOf(preset).map((s) => (
+                <p key={`${s.id}|${s.quote}`} className="cite">
+                  <q>{s.quote}</q>{" "}
+                  <a href={s.url} target="_blank" rel="noreferrer">
+                    {s.identifier}
+                  </a>
+                  <span className="muted">, {s.locator}</span>
+                </p>
+              ))}
+              {preset.limits.length > 0 && (
+                <ul className="limits">
+                  {preset.limits.map((l) => (
+                    <li key={l}>{l}</li>
+                  ))}
+                </ul>
+              )}
+            </details>
           </>
         ) : (
           <p className="preset-desc">Custom target: values entered below.</p>
         )}
+      </div>
+
+      <div className="readout" aria-label="Target values">
+        <div>
+          <span className="ro-k">O₂</span>
+          <span className="ro-v">
+            {fmt(state.o2 * 100, 1)}
+            <small>%</small>
+          </span>
+        </div>
+        <div>
+          <span className="ro-k">Pressure</span>
+          <span className="ro-v">
+            {fmt(state.pressure, 1)}
+            <small>kPa</small>
+          </span>
+          <span className="ro-sub">{fmt(kpaToPsi(state.pressure), 2)} psia</span>
+        </div>
+        <div>
+          <span className="ro-k">Gravity</span>
+          <span className="ro-v ro-text">
+            {state.regime.gravity_regime === "partial_gravity" && state.gravityLevel !== undefined
+              ? `${fmt(state.gravityLevel, 2)} g`
+              : state.regime.gravity_regime
+                ? valueLabel(state.regime.gravity_regime)
+                : "open"}
+          </span>
+        </div>
       </div>
 
       <div className="fields">

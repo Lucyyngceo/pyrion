@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
 import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
@@ -13,13 +13,15 @@ import {
   type Evaluation,
   type Target,
 } from "@/lib/engine";
-import { colorMap, sortEnvelopes } from "@/lib/layers";
+import { colorMap, sortEnvelopes, targetRegimeName } from "@/lib/layers";
+import TextVsPhysics from "./TextVsPhysics";
+import VerdictRing from "./VerdictRing";
 import { PRESET_VIEWS } from "@/lib/presets";
 import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
 
 const INITIAL: TargetState = applyPreset(
-  { presetId: null, regime: { fuel_phase: "solid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
+  { presetId: null, regime: { fuel_phase: "liquid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
   PRESET_VIEWS[0],
 );
 
@@ -43,6 +45,52 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [openAccession, setOpenAccession] = useState<string | null>(null);
+
+  const benchRef = useRef<HTMLDivElement>(null);
+  const overBench = useRef(false);
+  // Keyboard: arrows move the target (left/right O2 0.5 %, up/down 1 kPa; Shift = x5). Ignored while typing in a field.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el && (el.tagName === "INPUT" || el.tagName === "SELECT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (!overBench.current && !benchRef.current?.contains(document.activeElement)) return;
+      const k = e.shiftKey ? 5 : 1;
+      let dO2 = 0;
+      let dP = 0;
+      if (e.key === "ArrowLeft") dO2 = -0.005 * k;
+      else if (e.key === "ArrowRight") dO2 = 0.005 * k;
+      else if (e.key === "ArrowUp") dP = 1 * k;
+      else if (e.key === "ArrowDown") dP = -1 * k;
+      else return;
+      e.preventDefault();
+      setState((st) => ({
+        ...st,
+        presetId: null,
+        o2: Math.min(1, Math.max(0, Math.round((st.o2 + dO2) * 1000) / 1000)),
+        pressure: Math.max(1, Math.round((st.pressure + dP) * 10) / 10),
+      }));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // The command palette selects presets through an event (no page reload).
+  useEffect(() => {
+    const on = (e: Event) => {
+      const v = PRESET_VIEWS.find((p) => p.preset.id === (e as CustomEvent<string>).detail);
+      if (v) setState((s) => applyPreset(s, v));
+    };
+    window.addEventListener("pyrion:preset", on);
+    return () => window.removeEventListener("pyrion:preset", on);
+  }, []);
+
+  // ?preset=<id> opens a preset directly (shareable link, e.g. ?preset=challenge-lunar-base).
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("preset");
+    const v = id ? PRESET_VIEWS.find((p) => p.preset.id === id) : undefined;
+    if (v) setState((s) => applyPreset(s, v));
+  }, []);
 
   // The engine parses the CSV text itself: same validation as its command-line tool.
   const records = useMemo<ConditionRecord[]>(
@@ -90,18 +138,73 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   }, [result.evaluation]);
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
+
+  // Verdict rail: the same target swept over pressure (O2 and regime fixed), so the viewer sees where the verdict changes.
+  // Computed in small chunks after the main verdict has rendered, so it never delays the result.
+  const [rail, setRail] = useState<{ pressure: number; tone: string }[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    const STEPS = 36;
+    const lo = 30;
+    const hi = 130;
+    const out: { pressure: number; tone: string }[] = [];
+    let i = 0;
+    let timer = 0;
+    const work = () => {
+      if (cancelled) return;
+      const until = performance.now() + 12;
+      while (i <= STEPS && performance.now() < until) {
+        const p = lo + ((hi - lo) * i) / STEPS;
+        const t = toTarget({ ...deferred, pressure: p });
+        try {
+          const ev = evaluate(records, t, options);
+          out.push({ pressure: p, tone: envelopeStatus(ev, locateTarget(t, envelopeSet), t).tone });
+        } catch {
+          out.push({ pressure: p, tone: "unknown" });
+        }
+        i++;
+      }
+      if (i <= STEPS) timer = window.setTimeout(work, 0);
+      else setRail(out);
+    };
+    timer = window.setTimeout(work, 120);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [deferred, records, options, envelopeSet]);
+
+  // A pinned target stays on the chart for comparison; its verdict is recomputed with the same engine and options.
+  const [pinned, setPinned] = useState<{ state: TargetState; label: string } | null>(null);
+  const pinnedStatus = useMemo(() => {
+    if (!pinned) return null;
+    const t = toTarget(pinned.state);
+    try {
+      const ev = evaluate(records, t, options);
+      const locs = locateTarget(t, envelopeSet);
+      return envelopeStatus(ev, locs, t);
+    } catch {
+      return null;
+    }
+  }, [pinned, records, options, envelopeSet]);
   const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
   const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
   return (
     <>
-      <div className="workbench">
+      <div
+        className="workbench"
+        ref={benchRef}
+        onPointerEnter={() => (overBench.current = true)}
+        onPointerLeave={() => (overBench.current = false)}
+      >
         <section className="card chart-card" aria-labelledby="envelope-h">
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured test points by O₂ and pressure, one layer per regime: gravity regime · fuel phase · diluent.
+              Measured PSI test points, one layer per regime (gravity · fuel phase · diluent). Click, drag or use the arrow keys
+              to move the target.
             </p>
           </div>
           {status ? (
@@ -111,10 +214,13 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               layerState={layerState}
               target={{ o2: deferred.o2, pressure: deferred.pressure }}
               targetLabel={view ? view.short : "Custom target"}
+              rail={rail}
+              pinned={pinned && pinnedStatus ? { o2: pinned.state.o2, pressure: pinned.state.pressure, label: pinned.label, tone: pinnedStatus.tone } : null}
               status={status}
               seed={SEED}
               highlight={highlight}
               onPointSelect={setOpenAccession}
+              onTargetPick={(o2, pressure) => setState((s) => ({ ...s, presetId: null, o2, pressure }))}
               openAxes={result.evaluation?.openRegimeAxes ?? []}
             />
           ) : (
@@ -128,27 +234,40 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
             verifiedOnly={verifiedOnly}
             onVerifiedOnly={setVerifiedOnly}
             verifiedCount={verifiedCount}
+            result={
+              status && (
+                <div className={`outcome outcome-${status.tone}`} role="status" aria-live="polite">
+                  <div className="outcome-kicker">Result for {view ? view.short : "custom target"}</div>
+                  <div className="outcome-head" key={status.headline}>{status.headline}</div>
+                  <p className="outcome-detail" key={status.detail}>{status.detail}</p>
+                  <div className="compare">
+                    {pinned && pinnedStatus ? (
+                      <>
+                        <span className={`compare-chip tone-${pinnedStatus.tone}`}>
+                          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                            <circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
+                          </svg>
+                          {pinned.label}: {pinnedStatus.headline.toLowerCase()}
+                        </span>
+                        <button type="button" className="linklike small" onClick={() => setPinned(null)}>
+                          Clear
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        className="pin-btn"
+                        onClick={() => setPinned({ state, label: view ? view.short : "Custom target" })}
+                      >
+                        Pin to compare
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )
+            }
           />
-          {counts && (
-            <dl className="tally" aria-label="Verdict counts, by investigation">
-              <div className="t-app">
-                <dt>Applicable</dt>
-                <dd>{counts.APPLICABLE}</dd>
-              </div>
-              <div className="t-ext">
-                <dt>Extrapolation</dt>
-                <dd>{counts.EXTRAPOLATION}</dd>
-              </div>
-              <div className="t-ins">
-                <dt>Insufficient evidence</dt>
-                <dd>{counts.INSUFFICIENT_EVIDENCE}</dd>
-              </div>
-              <div className="t-bar">
-                <dt>Not comparable</dt>
-                <dd>{counts.REGIME_BARRIER}</dd>
-              </div>
-            </dl>
-          )}
+          {counts && <VerdictRing counts={counts} />}
         </aside>
       </div>
 
@@ -163,15 +282,14 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
         />
       )}
 
-      <section className="card planned" aria-labelledby="planned-h">
-        <h2 id="planned-h">
-          Ranked by text similarity vs. ranked by physics <span className="tag">planned, not built yet</span>
-        </h2>
-        <p className="muted">
-          The same question ranked two ways, side by side: by text similarity of the documents, and by the physical
-          applicability verdicts above.
-        </p>
-      </section>
+      {result.evaluation && (
+        <TextVsPhysics
+          evaluation={result.evaluation}
+          investigations={dataset.investigations}
+          query={`${view ? view.preset.description : "Custom target."} ${targetRegimeName(target.regime)}`}
+          onHover={setHighlight}
+        />
+      )}
     </>
   );
 }

@@ -1,3 +1,4 @@
+import BootLog from "@/components/BootLog";
 import Explorer from "@/components/Explorer";
 import { loadDataset } from "@/lib/data";
 
@@ -9,17 +10,20 @@ export default async function Page() {
   return (
     <main className="page">
       <header className="hero">
-        <div className="brand">
-          <span className="logo" aria-hidden="true">
-            Ω
-          </span>
-          <span className="brand-name">PYRION</span>
-          <span className="brand-sub">NASA Space Apps 2026 · Flame in Freefall</span>
-        </div>
-        <h1>Which NASA combustion experiments apply to a target condition, and where the measured evidence ends.</h1>
+        <BootLog
+          steps={[
+            `PSI manifest: ${dataset.investigations.length} investigations`,
+            `${s.records.toLocaleString("en-US")} condition values parsed`,
+            `${s.accessions} investigations with data`,
+            "deterministic engine ready",
+          ]}
+        />
+        <h1>
+          PYRION Ω <span className="h1-dash">—</span> The Evidence Envelope
+        </h1>
         <p className="lede">
-          Source: NASA Physical Sciences Informatics (PSI), its 24 Combustion Science investigations, each cited by DOI.
-          Physical regimes are barriers; O₂ and pressure are compared only inside the measured envelope.
+          Which NASA combustion tests apply to a target cabin condition, and where the measured evidence ends. Data: NASA
+          Physical Sciences Informatics (PSI), 24 combustion investigations, each cited by DOI.
         </p>
       </header>
 
@@ -30,32 +34,32 @@ export default async function Page() {
           NASA measurements.
         </div>
       ) : (
-        <p className="data-line muted small">
-          {s.records.toLocaleString("en-US")} condition values extracted from {s.accessions} of 24 PSI investigations:{" "}
-          {s.verified.toLocaleString("en-US")} verified by a person, {(s.records - s.verified - s.flagged).toLocaleString("en-US")}{" "}
-          extracted and not yet verified, {s.flagged.toLocaleString("en-US")} flagged as insufficient evidence
-          {s.rejected > 0 ? `, ${s.rejected} rows rejected by the engine's validator` : ""}.
-        </p>
+        <div className="evidence-status" aria-label="Status of the extracted values">
+          <div className="es-head">
+            <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of 24 PSI investigations
+            {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}
+          </div>
+          <div className="es-bar" role="img" aria-label={`${s.verified} verified, ${s.records - s.verified - s.flagged} extracted not yet verified, ${s.flagged} flagged as insufficient evidence`}>
+            <i className="es-ver" style={{ flexGrow: s.verified }} />
+            <i className="es-ext" style={{ flexGrow: s.records - s.verified - s.flagged }} />
+            <i className="es-flag" style={{ flexGrow: s.flagged }} />
+          </div>
+          <ul className="es-legend small">
+            <li>
+              <i className="es-ver" /> {s.verified.toLocaleString("en-US")} verified by a person
+            </li>
+            <li>
+              <i className="es-ext" /> {(s.records - s.verified - s.flagged).toLocaleString("en-US")} extracted with file and location, not yet verified
+            </li>
+            <li>
+              <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged insufficient, not counted
+            </li>
+          </ul>
+        </div>
       )}
 
       <Explorer dataset={dataset} />
 
-      <footer className="footer muted small">
-        <p>
-          PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,
-          released under CC0-1.0 except PSI-10, whose license is not stated on PSI. Code: Apache-2.0. Built with the help of
-          SI tools (Claude Code); see the repository README.
-        </p>
-        <p>
-          <a href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
-            psi.nasa.gov
-          </a>{" "}
-          ·{" "}
-          <a href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">
-            github.com/Lucyyngceo/pyrion
-          </a>
-        </p>
-      </footer>
     </main>
   );
 }

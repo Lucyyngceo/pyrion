@@ -1,5 +1,6 @@
 "use client";
 
+import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
 import type { Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
@@ -45,9 +46,7 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   const v = VERDICT[verdict];
   return (
     <span className={`badge ${v.cls}`}>
-      <span className="badge-icon" aria-hidden="true">
-        {v.icon}
-      </span>
+      <StatusSymbol level={VERDICT_STATUS[verdict]} />
       <span className="badge-code">{verdict}</span>
     </span>
   );
@@ -183,6 +182,36 @@ function ResultRow({
   }, [open]);
 
   const others = iv.clusters.filter((c) => c.clusterKey !== iv.decidingCluster);
+  const main = reasons.filter((r) => !r.informational);
+  const context = reasons.filter((r) => r.informational);
+  const reasonItem = (reason: (typeof reasons)[number], i: number) => {
+    const refs = [...new Set(reason.citations.map((c) => index.get(citationKey(c))!))];
+    return (
+      <li key={i} className={`reason r-${reason.code}${reason.informational ? " r-info" : ""}`}>
+        <span className="reason-icon" aria-hidden="true">
+          {iconOf(reason)}
+        </span>
+        <span>
+          
+          {readable(reason.message)}
+          {refs.length > 0 && (
+            <span className="refs">
+              {refs.slice(0, 3).map((n) => (
+                <button key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source value ${n + 1}`}>
+                  [{n + 1}]
+                </button>
+              ))}
+              {refs.length > 3 && (
+                <button type="button" className="ref" onClick={() => jump(refs[3])}>
+                  +{refs.length - 3}
+                </button>
+              )}
+            </span>
+          )}
+        </span>
+      </li>
+    );
+  };
 
   return (
     <article
@@ -236,36 +265,15 @@ function ResultRow({
         </p>
       )}
 
-      <ul className="reasons">
-        {reasons.map((reason, i) => {
-          const refs = [...new Set(reason.citations.map((c) => index.get(citationKey(c))!))];
-          return (
-            <li key={i} className={`reason r-${reason.code}${reason.informational ? " r-info" : ""}`}>
-              <span className="reason-icon" aria-hidden="true">
-                {iconOf(reason)}
-              </span>
-              <span>
-                {reason.informational && <span className="ctx-tag">context</span>}
-                {readable(reason.message)}
-                {refs.length > 0 && (
-                  <span className="refs">
-                    {refs.slice(0, 3).map((n) => (
-                      <button key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source value ${n + 1}`}>
-                        [{n + 1}]
-                      </button>
-                    ))}
-                    {refs.length > 3 && (
-                      <button type="button" className="ref" onClick={() => jump(refs[3])}>
-                        +{refs.length - 3}
-                      </button>
-                    )}
-                  </span>
-                )}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <ul className="reasons">{main.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
+      {context.length > 0 && (
+        <details className="context-box">
+          <summary>
+            Context: {context.length} axis check{context.length === 1 ? "" : "s"} that did not decide the verdict
+          </summary>
+          <ul className="reasons">{context.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
+        </details>
+      )}
 
       {others.length > 0 && (
         <p className="others small muted">
