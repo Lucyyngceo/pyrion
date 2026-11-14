@@ -14,8 +14,9 @@ The applicability verdict is computed by a deterministic engine. A language mode
 
 ## Data
 
-Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>, combustion investigations.
-Each investigation used is cited with its DOI and its license. That list is in progress.
+Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>: the 24 investigations in the Combustion Science research area.
+Each investigation is cited with its DOI and its license in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
+How the data are selected, downloaded and checked: [`data/README.md`](data/README.md).
 
 ## Provenance
 
