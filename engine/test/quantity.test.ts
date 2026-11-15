@@ -524,3 +524,27 @@ describe('deep audit 10 (MINOR): NTRS 20260001966 is cited by PDF page and slide
     assert.ok(MICROGRAVITY_CONVENTION_NOTE.includes('PDF p. 17 (slide 16)'));
   });
 });
+
+describe('out-of-range messages are written in units a person reads', () => {
+  const bad: Array<[string, QuantityVariable]> = [
+    ['200 %', 'o2_mole_fraction'], ['340', 'o2_mole_fraction'], ['150 %', 'o2_mole_fraction'], ['-5 atm', 'pressure'], ['3000 kPa', 'pressure'],
+    ['0.01 kPa', 'pressure'], ['5000 cm/s', 'flow_velocity'], ['300 mm', 'sample_thickness'], ['9000 K', 'ambient_temperature'],
+    ['-300 °C', 'ambient_temperature'], ['4 g', 'gravity_level'], ['-0.1 g', 'gravity_level'], ['34 fraction', 'o2_mole_fraction'],
+  ];
+  it('no message has a bare number followed by " 1" as a unit, "undefined" or "NaN"; each ends with a full stop', () => {
+    for (const [t, v] of bad) {
+      const e = err(t, v);
+      assert.ok(!e.ok);
+      assert.ok(!/\d \b1\b(?! *%)/.test(e.message.replace(/\b1 (?:atm|g|kPa)/g, '')), `${t}: ${e.message}`);
+      assert.ok(!/\d 1\b/.test(e.message), `${t}: ${e.message}`);
+      assert.ok(!/undefined|NaN/.test(e.message), e.message);
+      assert.ok(e.message.endsWith('.'), `${t}: ${e.message}`);
+    }
+  });
+  it('the Gemma-style trap reads as two clear sentences', () => {
+    const r = targetFromQuantities({ o2: '200 %', pressure: '-5 atm' });
+    assert.ok(!r.ok);
+    assert.equal(r.errors[0].message, 'oxygen 200 % is outside the plausible range 0 % to 100 %; this usually means the wrong unit.');
+    assert.equal(r.errors[1].message, 'pressure -5 atm (-506.6 kPa) is outside the plausible range 0.1 kPa to 2000 kPa; this usually means the wrong unit.');
+  });
+});

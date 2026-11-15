@@ -6,6 +6,7 @@
 
 import { GRAVITY_TARGETS, type GravityTargetId } from './transfer.ts';
 import { AXIS_UNITS, type ContinuousAxis, type RegimeAxis, type Target } from './types.ts';
+import { axisLabel } from './labels.ts';
 import { validateTarget } from './verdict.ts';
 
 export type QuantityVariable = 'pressure' | 'o2_mole_fraction' | 'flow_velocity' | 'sample_thickness' | 'gravity_level' | 'ambient_temperature';
@@ -136,6 +137,13 @@ export const QUANTITY_FACTORS = { TO_KPA, TO_FRACTION, TO_CM_S, TO_MM, TO_K_OFFS
 // ---- helpers ----
 const fail = (code: QuantityErrorCode, variable: string, original: string, message: string): QuantityError => ({ ok: false, code, variable, original, message });
 
+/** A value of a variable with its unit word, never the bare schema unit "1": "200 %", "-506.6 kPa", "0.165 g". */
+function showValue(variable: QuantityVariable, v: number): string {
+  if (variable === 'o2_mole_fraction') return `${sig(v * 100)} %`;
+  const unit = AXIS_UNITS[variable as ContinuousAxis];
+  return unit === undefined || unit === '1' ? sig(v) : `${sig(v)} ${unit}`;
+}
+
 /** 4 significant digits for display; the value itself is never rounded. */
 const sig = (x: number) => String(Number(x.toPrecision(4)));
 
@@ -198,7 +206,11 @@ function warningsFor(q: Omit<Quantity, 'display' | 'warnings'>): string[] {
 function bounded(q: Omit<Quantity, 'display' | 'warnings'>): Quantity | QuantityError {
   const [lo, hi] = BOUNDS[q.variable];
   if (!(q.value >= lo && q.value <= hi)) {
-    return fail('out_of_range', q.variable, q.original, `${q.value} ${q.unit} is outside the plausible range ${lo}–${hi} ${q.unit}; this usually means the wrong unit`);
+    const f = (v: number) => showValue(q.variable, v);
+    const typed = q.original.trim();
+    const conv = f(q.value);
+    const shown = typed.replace(/\s+/g, '') === conv.replace(/\s+/g, '') ? typed : `${typed} (${conv})`;
+    return fail('out_of_range', q.variable, q.original, `${axisLabel(q.variable)} ${shown} is outside the plausible range ${f(lo)} to ${f(hi)}; this usually means the wrong unit.`);
   }
   const unit = q.unit === '1' ? '' : ` ${q.unit}`;
   const how = q.factor !== undefined ? `×${q.factor}` : q.factor_or_formula;
@@ -306,7 +318,7 @@ function o2Units(original: string, r: { n: number; unit: string }): QuantityResu
   if (r.unit === '') {
     // Bare number: > 1 is percent, <= 1 is a fraction.
     const asPercent = r.n > 1;
-    if (r.n > 100 || r.n < 0) return fail('percent_out_of_range', 'o2_mole_fraction', original, `${r.n} is neither a fraction (0–1) nor a percent (0–100)`);
+    if (r.n > 100 || r.n < 0) return fail('percent_out_of_range', 'o2_mole_fraction', original, `oxygen ${original.trim()} is neither a fraction (0 to 1) nor a percent (0 to 100 %).`);
     const factor = asPercent ? 0.01 : 1;
     const rule = asPercent ? `bare number ${r.n} > 1, read as percent` : `bare number ${r.n} <= 1, read as a mole fraction`;
     const out = bounded({
@@ -329,7 +341,7 @@ function o2Units(original: string, r: { n: number; unit: string }): QuantityResu
   if (out.ok) {
     out.unit_original = r.unit;
     out.rule = `unit "${r.unit}" stated, so the number is read as written (${key === '1' || key.includes('fraction') ? 'fraction' : 'percent'})`;
-    if (out.value > 1 || out.value < 0) return fail('percent_out_of_range', 'o2_mole_fraction', original, `${original.trim()} gives ${out.value}, outside 0–1`);
+    if (out.value > 1 || out.value < 0) return fail('percent_out_of_range', 'o2_mole_fraction', original, `oxygen ${original.trim()} gives ${sig(out.value * 100)} % of the gas, outside 0 to 100 %.`);
     if (out.factor === 0.01 && r.n <= 1 && r.n > 0) out.notes.push(`"${r.n} ${r.unit}" is read as ${r.n} percent (${out.value} as a fraction) because the unit is written`);
   }
   return out;
