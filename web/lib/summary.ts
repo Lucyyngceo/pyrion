@@ -14,7 +14,7 @@ export interface EnvelopeStatus {
   counts: Record<Verdict, number>;
 }
 
-const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+import { countVerb, plural } from "./grammar";
 
 export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation[], target: Target): EnvelopeStatus {
   const counts = evaluation.counts.investigations;
@@ -51,14 +51,14 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
       tone: "outside",
       headline: "Outside the measured envelope",
       sub: "Same regime, other O₂ and pressure",
-      detail: `${regime} was measured, but not at this O₂ and pressure: ${plural(counts.EXTRAPOLATION, "investigation")} ${counts.EXTRAPOLATION === 1 ? "needs" : "need"} extrapolation.`,
+      detail: `${regime} was measured, but not at this O₂ and pressure: ${countVerb(counts.EXTRAPOLATION, "investigation", "needs", "need")} extrapolation.`,
       counts,
     };
   }
 
   const parts = [
     counts.REGIME_BARRIER ? `${plural(counts.REGIME_BARRIER, "investigation")} measured a different regime (not comparable)` : "",
-    counts.INSUFFICIENT_EVIDENCE ? `${plural(counts.INSUFFICIENT_EVIDENCE, "investigation")} ${counts.INSUFFICIENT_EVIDENCE === 1 ? "lacks" : "lack"} the values to compare` : "",
+    counts.INSUFFICIENT_EVIDENCE ? `${countVerb(counts.INSUFFICIENT_EVIDENCE, "investigation", "lacks", "lack")} the values to compare` : "",
   ].filter(Boolean);
   return {
     tone: "outside",

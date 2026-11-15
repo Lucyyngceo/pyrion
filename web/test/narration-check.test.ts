@@ -205,3 +205,12 @@ test("a preset defines the whole target: axes its source does not state become n
   const b = applyPreset({ ...a, regime: { fuel_phase: "gas", flame_type: "normal" } }, lunar);
   assert.deepEqual(Object.keys(b.regime), ["gravity_regime"]);
 });
+
+test("a count before a verb agrees in number: 1 investigation lacks, 2 investigations lack", async () => {
+  const { countVerb, plural } = await import("../lib/grammar.ts");
+  assert.equal(countVerb(1, "investigation", "lacks", "lack"), "1 investigation lacks");
+  assert.equal(countVerb(2, "investigation", "lacks", "lack"), "2 investigations lack");
+  assert.equal(countVerb(1, "investigation", "needs", "need"), "1 investigation needs");
+  assert.equal(countVerb(0, "investigation", "needs", "need"), "0 investigations need");
+  assert.equal(plural(1, "test"), "1 test");
+});
