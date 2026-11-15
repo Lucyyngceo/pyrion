@@ -1,5 +1,6 @@
 import ExplorerLoader from "@/components/ExplorerLoader";
 import HelpMenu from "@/components/HelpMenu";
+import McpPanel from "@/components/McpPanel";
 import WarpIntro from "@/components/WarpIntro";
 import { loadDataset, loadLineage } from "@/lib/data";
 import { loadFacts } from "@/lib/facts";
@@ -32,6 +33,8 @@ export default async function Page() {
           <HelpMenu />
         </div>
       </header>
+
+      <McpPanel />
 
       {synthetic && (
         <div className="banner" role="note">

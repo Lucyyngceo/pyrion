@@ -484,3 +484,16 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 .pl-fm2 { fill: var(--neon-2); fill-opacity: 0.8; }
 .pl-mine { fill: var(--warn, #ff8a3d); stroke: var(--ink); cursor: grab; }
 .pl-detail { min-height: 3em; margin-top: 6px; }
+
+/* MCP panel at the top of the dashboard */
+.mcp-panel { margin: 0 0 14px; border: 1px solid var(--line, rgba(62,230,255,0.35)); border-radius: 10px; background: rgba(62,230,255,0.05); }
+.mcp-panel > summary { cursor: pointer; padding: 10px 14px; font-size: 15px; list-style: none; display: flex; gap: 10px; align-items: center; min-height: 44px; }
+.mcp-panel > summary::-webkit-details-marker { display: none; }
+.mcp-badge { font-family: var(--font-mono, monospace); font-size: 12px; letter-spacing: 1px; padding: 2px 8px; border-radius: 6px; background: var(--accent, #3ee6ff); color: #04121a; font-weight: 700; }
+.mcp-body { padding: 0 14px 12px; }
+.mcp-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 6px 0; }
+.mcp-row code { overflow-x: auto; max-width: 100%; padding: 4px 8px; border-radius: 6px; background: rgba(0,0,0,0.35); font-size: 13px; }
+.mcp-label { min-width: 96px; font-size: 13px; opacity: 0.8; }
+.mcp-copy { font-size: 13px; padding: 4px 10px; min-height: 32px; border-radius: 6px; border: 1px solid var(--accent, #3ee6ff); background: transparent; color: inherit; cursor: pointer; }
+.mcp-tools { columns: 2; column-gap: 24px; margin: 8px 0 0; padding-left: 18px; }
+@media (max-width: 700px) { .mcp-tools { columns: 1; } .mcp-label { min-width: 0; width: 100%; } }
