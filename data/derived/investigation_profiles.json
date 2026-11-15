@@ -2,6 +2,14 @@
   {
     "accession": "PSI-10",
     "acronym": "ACME/Flame Design",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/w4zy-bt45",
     "fields": {
       "approach": {
@@ -104,17 +112,7 @@
       },
       {
         "badge": "table",
-        "column": "Day",
-        "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv"
-      },
-      {
-        "badge": "table",
         "column": "Fuel",
-        "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test",
         "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv"
       },
       {
@@ -175,16 +173,6 @@
       {
         "badge": "table",
         "column": "Flame Type",
-        "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Day",
-        "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test",
         "file": "data/raw/psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv"
       },
       {
@@ -1385,6 +1373,14 @@
   {
     "accession": "PSI-20",
     "acronym": "ACME BRE",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/vb93-3y72",
     "fields": {
       "approach": {
@@ -1492,11 +1488,6 @@
       },
       {
         "badge": "table",
-        "column": "Date",
-        "file": "data/raw/psi-data/PSI-20/Experimental table/PSI-20_Experimental table_ACME BRE.csv"
-      },
-      {
-        "badge": "table",
         "column": "Burner Size (mm)",
         "file": "data/raw/psi-data/PSI-20/Experimental table/PSI-20_Experimental table_ACME BRE.csv"
       },
@@ -1513,11 +1504,6 @@
       {
         "badge": "table",
         "column": "Flames Ignited",
-        "file": "data/raw/psi-data/PSI-20/Experimental table/PSI-20_Experimental table_ACME BRE.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Notes",
         "file": "data/raw/psi-data/PSI-20/Experimental table/PSI-20_Experimental table_ACME BRE.csv"
       }
     ],
@@ -1753,6 +1739,14 @@
   {
     "accession": "PSI-21",
     "acronym": "ACME CLD Flame",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/23e1-9950",
     "fields": {
       "approach": {
@@ -1881,11 +1875,6 @@
       {
         "badge": "table",
         "column": "Flames ignited",
-        "file": "data/raw/psi-data/PSI-21/Experimental table/PSI-21_Experimental table_CLD Flame.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Notes",
         "file": "data/raw/psi-data/PSI-21/Experimental table/PSI-21_Experimental table_CLD Flame.csv"
       }
     ],
@@ -2088,6 +2077,14 @@
   {
     "accession": "PSI-22",
     "acronym": "ACME E-FIELD Flames",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/se5a-8c73",
     "fields": {
       "approach": {
@@ -2205,11 +2202,6 @@
       },
       {
         "badge": "table",
-        "column": "Date",
-        "file": "data/raw/psi-data/PSI-22/Experimental table/PSI-22_Experimental table_ACME E-FIELD Flames.csv"
-      },
-      {
-        "badge": "table",
         "column": "Mesh Polarity",
         "file": "data/raw/psi-data/PSI-22/Experimental table/PSI-22_Experimental table_ACME E-FIELD Flames.csv"
       },
@@ -2226,11 +2218,6 @@
       {
         "badge": "table",
         "column": "Flames Ignited",
-        "file": "data/raw/psi-data/PSI-22/Experimental table/PSI-22_Experimental table_ACME E-FIELD Flames.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Notes",
         "file": "data/raw/psi-data/PSI-22/Experimental table/PSI-22_Experimental table_ACME E-FIELD Flames.csv"
       }
     ],
@@ -2495,6 +2482,14 @@
   {
     "accession": "PSI-23",
     "acronym": "ACME s-Flame",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/k57n-p030",
     "fields": {
       "approach": {
@@ -2612,11 +2607,6 @@
       },
       {
         "badge": "table",
-        "column": "Date",
-        "file": "data/raw/psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv"
-      },
-      {
-        "badge": "table",
         "column": "Atmosphere*",
         "file": "data/raw/psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv"
       },
@@ -2628,11 +2618,6 @@
       {
         "badge": "table",
         "column": "Flames Ignited*",
-        "file": "data/raw/psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Notes",
         "file": "data/raw/psi-data/PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv"
       }
     ],
@@ -3122,6 +3107,12 @@
   {
     "accession": "PSI-25",
     "acronym": "BASS-II",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/4qc4-de67",
     "fields": {
       "approach": {
@@ -3217,26 +3208,6 @@
       }
     ],
     "measurements": [
-      {
-        "badge": "table",
-        "column": "PI",
-        "file": "data/raw/psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test #",
-        "file": "data/raw/psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Date",
-        "file": "data/raw/psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
-      },
-      {
-        "badge": "table",
-        "column": "GMT",
-        "file": "data/raw/psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
-      },
       {
         "badge": "table",
         "column": "Sample #",
@@ -3730,6 +3701,12 @@
   {
     "accession": "PSI-26",
     "acronym": "BASS",
+    "context_variables": {
+      "fuel_phase": [
+        "solid"
+      ],
+      "gravity_regime": []
+    },
     "doi": "10.60555/58h4-dy80",
     "fields": {
       "approach": {
@@ -3827,22 +3804,7 @@
     "measurements": [
       {
         "badge": "table",
-        "column": "Date",
-        "file": "data/raw/psi-data/PSI-26/Experimental table/PSI-26_Experimental table_BASS.csv"
-      },
-      {
-        "badge": "table",
-        "column": "GMT",
-        "file": "data/raw/psi-data/PSI-26/Experimental table/PSI-26_Experimental table_BASS.csv"
-      },
-      {
-        "badge": "table",
         "column": "As Run Test #",
-        "file": "data/raw/psi-data/PSI-26/Experimental table/PSI-26_Experimental table_BASS.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test #",
         "file": "data/raw/psi-data/PSI-26/Experimental table/PSI-26_Experimental table_BASS.csv"
       },
       {
@@ -4120,6 +4082,12 @@
   {
     "accession": "PSI-39",
     "acronym": "CFI",
+    "context_variables": {
+      "fuel_phase": [
+        "liquid"
+      ],
+      "gravity_regime": []
+    },
     "doi": "10.60555/m6pj-a914",
     "fields": {
       "approach": {
@@ -4414,6 +4382,10 @@
   {
     "accession": "PSI-47",
     "acronym": "DAFT / DAFT-2",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/ztgj-d202",
     "fields": {
       "approach": {
@@ -4571,6 +4543,10 @@
   {
     "accession": "PSI-60",
     "acronym": "",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/mzjm-yv57",
     "fields": {
       "approach": {
@@ -4693,6 +4669,10 @@
   {
     "accession": "PSI-62",
     "acronym": "",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/e9xp-ex83",
     "fields": {
       "approach": {
@@ -4842,6 +4822,14 @@
   {
     "accession": "PSI-68",
     "acronym": "FLEX-2",
+    "context_variables": {
+      "fuel_phase": [
+        "liquid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/byp8-h018",
     "fields": {
       "approach": {
@@ -5537,6 +5525,14 @@
   {
     "accession": "PSI-69",
     "acronym": "FLEX",
+    "context_variables": {
+      "fuel_phase": [
+        "liquid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/mbq8-0451",
     "fields": {
       "approach": {
@@ -6964,6 +6960,14 @@
   {
     "accession": "PSI-98",
     "acronym": "SAFFIRE-I",
+    "context_variables": {
+      "fuel_phase": [
+        "solid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/0t15-1z43",
     "fields": {
       "approach": {
@@ -7061,11 +7065,6 @@
     "measurements": [
       {
         "badge": "table",
-        "column": "Sample Number ",
-        "file": "data/raw/psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
-      },
-      {
-        "badge": "table",
         "column": "Material",
         "file": "data/raw/psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
       },
@@ -7112,16 +7111,6 @@
       {
         "badge": "table",
         "column": "Flow Direction ",
-        "file": "data/raw/psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 1",
-        "file": "data/raw/psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 2",
         "file": "data/raw/psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv"
       }
     ],
@@ -7271,6 +7260,14 @@
   {
     "accession": "PSI-99",
     "acronym": "SAFFIRE-II",
+    "context_variables": {
+      "fuel_phase": [
+        "solid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/2chp-m469",
     "fields": {
       "approach": {
@@ -7368,11 +7365,6 @@
     "measurements": [
       {
         "badge": "table",
-        "column": "Sample Number",
-        "file": "data/raw/psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv"
-      },
-      {
-        "badge": "table",
         "column": "Material",
         "file": "data/raw/psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv"
       },
@@ -7439,16 +7431,6 @@
       {
         "badge": "table",
         "column": "1-g Spread Rate",
-        "file": "data/raw/psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 1",
-        "file": "data/raw/psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 2",
         "file": "data/raw/psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv"
       }
     ],
@@ -7634,6 +7616,14 @@
   {
     "accession": "PSI-100",
     "acronym": "SAFFIRE-III",
+    "context_variables": {
+      "fuel_phase": [
+        "solid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/040q-4h36",
     "fields": {
       "approach": {
@@ -7731,11 +7721,6 @@
     "measurements": [
       {
         "badge": "table",
-        "column": "Sample Number ",
-        "file": "data/raw/psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv"
-      },
-      {
-        "badge": "table",
         "column": "Material",
         "file": "data/raw/psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv"
       },
@@ -7762,16 +7747,6 @@
       {
         "badge": "table",
         "column": "Direction",
-        "file": "data/raw/psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 1",
-        "file": "data/raw/psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Camera 2",
         "file": "data/raw/psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv"
       }
     ],
@@ -7864,6 +7839,14 @@
   {
     "accession": "PSI-101",
     "acronym": "SAME-R",
+    "context_variables": {
+      "fuel_phase": [
+        "solid"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/2np7-jv14",
     "fields": {
       "approach": {
@@ -7972,11 +7955,6 @@
       {
         "badge": "table",
         "column": "Description",
-        "file": "data/raw/psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Date",
         "file": "data/raw/psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv"
       },
       {
@@ -8119,6 +8097,12 @@
   {
     "accession": "PSI-102",
     "acronym": "SAME",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/gd4k-8h62",
     "fields": {
       "approach": {
@@ -8450,6 +8434,12 @@
   {
     "accession": "PSI-106",
     "acronym": "SLICE",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": []
+    },
     "doi": "10.60555/pm12-rg61",
     "fields": {
       "approach": {
@@ -8641,6 +8631,14 @@
   {
     "accession": "PSI-107",
     "acronym": "SPICE",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/9kbh-e962",
     "fields": {
       "approach": {
@@ -8975,6 +8973,10 @@
   {
     "accession": "PSI-115",
     "acronym": "",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/q0v5-1v28",
     "fields": {
       "approach": {
@@ -9087,6 +9089,10 @@
   {
     "accession": "PSI-117",
     "acronym": "",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/gz0q-b577",
     "fields": {
       "approach": {
@@ -9290,6 +9296,10 @@
   {
     "accession": "PSI-142",
     "acronym": "",
+    "context_variables": {
+      "fuel_phase": [],
+      "gravity_regime": []
+    },
     "doi": "10.60555/80qf-vj95",
     "fields": {
       "approach": {
@@ -9532,6 +9542,14 @@
   {
     "accession": "PSI-159",
     "acronym": "ACME CFI-G",
+    "context_variables": {
+      "fuel_phase": [
+        "gas"
+      ],
+      "gravity_regime": [
+        "microgravity"
+      ]
+    },
     "doi": "10.60555/cyt1-kh64",
     "fields": {
       "approach": {
@@ -9634,17 +9652,7 @@
       },
       {
         "badge": "table",
-        "column": "Day",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv"
-      },
-      {
-        "badge": "table",
         "column": "Fuel",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test",
         "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv"
       },
       {
@@ -9714,27 +9722,12 @@
       },
       {
         "badge": "table",
-        "column": "Comments",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv"
-      },
-      {
-        "badge": "table",
         "column": "Flame Type",
         "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
       },
       {
         "badge": "table",
-        "column": "Day",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
-      },
-      {
-        "badge": "table",
         "column": "Fuel",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Test",
         "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
       },
       {
@@ -9810,11 +9803,6 @@
       {
         "badge": "table",
         "column": "Color",
-        "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
-      },
-      {
-        "badge": "table",
-        "column": "Comments",
         "file": "data/raw/psi-data/PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
       }
     ],

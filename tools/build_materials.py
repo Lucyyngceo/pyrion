@@ -2,6 +2,12 @@ import csv,json
 from pathlib import Path
 from collections import defaultdict
 ROOT=Path(__file__).resolve().parents[1]
+# Explicit substring conventions: material names remain available unchanged.
+FAMILY_RULES=[('PMMA',('pmma',)),('SIBAL',('sibal','cotton-fiberglass')),('Nomex',('nomex',)),('silicone',('silicone',)),('Kapton',('kapton',)),('Teflon',('teflon',)),('Pyrell',('pyrell',)),('Ultem',('ultem',)),('wax',('wax','paraffin','parrafin')),('DBP',('dibutyl phthalate',)),('lampwick',('lampwick',))]
+GEOMETRY_RULES=[('rod',('rod',)),('sheet',('sheet','film','slab')),('fabric',('fabric',)),('droplet',('droplet',)),('candle',('candle',)),('sphere',('sphere','spherical'))]
+def tags(name,rules,default):
+    lower=name.casefold(); found=[label for label,terms in rules if any(term in lower for term in terms)]
+    return found or [default]
 def main():
     tests=defaultdict(list)
     for p in sorted((ROOT/'data/conditions').glob('PSI-*.csv')):
@@ -13,7 +19,7 @@ def main():
         if not tid: continue
         for r in rows:
             if r['variable']=='material' and r['value']:
-                matches=[x for x in rows if tid!='*' and x['variable'] in ('o2_mole_fraction','pressure','gravity_regime')]
+                matches=[x for x in rows if tid!='*' and x['variable'] in ('o2_mole_fraction','pressure','gravity_regime','flow_velocity')]
                 materials[r['value']].append({'accession':acc,'test_id':tid,'material_source':r,'conditions':matches})
             if tid!='*' and r['variable'] in ('o2_mole_fraction','burner_o2_mole_fraction'):
                 try: n=float(r['value'])
@@ -52,7 +58,7 @@ def main():
                             except ValueError: pass
                 if candidates:
                     low=min(candidates,key=lambda x:x[0]); high=max(candidates,key=lambda x:x[0]); ranges.append({'variable':variable,'unit':unit,'min':low[0],'max':high[0],'min_source':low[1],'max_source':high[1]})
-        return {'name':name,'tests':entries,'ranges':ranges}
+        return {'name':name,'families':tags(name,FAMILY_RULES,'other'),'geometry':tags(name,GEOMETRY_RULES,'not specified'),'tests':entries,'ranges':ranges}
     out={'materials':[material_record(k,v) for k,v in sorted(materials.items())], 'ambient_ceilings':{k:maximum(v) for k,v in sorted(ceilings.items())},'burner_ceiling':maximum(burner),'excluded_ambient':excluded,'note':'Phase from the test; otherwise the single distinct extracted investigation-wide phase; ambiguous or missing phase excluded.'}
     target=ROOT/'data/derived/materials.json';target.write_text(json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8');print(f'{len(materials)} material values')
 if __name__=='__main__':main()

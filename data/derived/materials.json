@@ -3331,6 +3331,12 @@
   ],
   "materials": [
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "0.5\" black rod",
       "ranges": [
         {
@@ -3518,6 +3524,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "1 cm   0.2 mm PMMA film",
       "ranges": [
         {
@@ -3597,6 +3609,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm SIBAL",
       "ranges": [
         {
@@ -3928,6 +3946,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm SIBAL   top side ign",
       "ranges": [
         {
@@ -4007,6 +4031,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "1 cm sphere",
       "ranges": [
         {
@@ -4392,6 +4422,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "1 cm sphere   wake",
       "ranges": [
         {
@@ -4522,6 +4558,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "1 cm wake sphere",
       "ranges": [
         {
@@ -4703,6 +4745,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm wide 200 micron thick PMMA",
       "ranges": [
         {
@@ -4926,6 +4974,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm wide PMMA 1 mm thick",
       "ranges": [
         {
@@ -5005,6 +5059,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm wide PMMA 2 mm thick",
       "ranges": [
         {
@@ -5084,6 +5144,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm wide PMMA 3 mm thick",
       "ranges": [
         {
@@ -5163,6 +5229,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 cm wide PMMA 5 mm thick",
       "ranges": [
         {
@@ -5242,6 +5314,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 mm thick PMMA   1 sided   2 cm",
       "ranges": [
         {
@@ -5321,6 +5399,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "1 mm thick PMMA   2 cm wide",
       "ranges": [
         {
@@ -5436,6 +5520,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/2\" clear PMMA rod",
       "ranges": [
         {
@@ -5623,6 +5713,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/2\" clear rod",
       "ranges": [
         {
@@ -5702,6 +5798,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4 blac rod",
       "ranges": [
         {
@@ -5781,6 +5883,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4 black rod",
       "ranges": [
         {
@@ -5896,6 +6004,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4 clear rod",
       "ranges": [
         {
@@ -5975,6 +6089,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4\"  black rod",
       "ranges": [
         {
@@ -6054,6 +6174,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4\" black rod",
       "ranges": [
         {
@@ -6493,6 +6619,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "1/4\" clear rod",
       "ranges": [
         {
@@ -7076,6 +7208,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "100 micron PMMA film   2 cm wide",
       "ranges": [
         {
@@ -7155,6 +7293,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "100 micron film   2 cm wide",
       "ranges": [
         {
@@ -7234,6 +7378,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "2 cm   0.1 mm PMMA film",
       "ranges": [
         {
@@ -7349,6 +7499,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "2 cm   0.2 mm PMMA film",
       "ranges": [
         {
@@ -7464,6 +7620,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "2 cm   0.4 mm thick film",
       "ranges": [
         {
@@ -7543,6 +7705,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "2 cm   4 mm 1 sided PMMA slab",
       "ranges": [
         {
@@ -7622,6 +7790,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "2 cm 0.1 mm PMMA film",
       "ranges": [
         {
@@ -7701,6 +7875,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm 100 micron thick PMMA",
       "ranges": [
         {
@@ -7852,6 +8032,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm SIBAL",
       "ranges": [
         {
@@ -8507,6 +8693,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm Sibal   moved igniter",
       "ranges": [
         {
@@ -8586,6 +8778,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "2 cm pmma sphere",
       "ranges": [
         {
@@ -8818,6 +9016,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "2 cm sphere",
       "ranges": [
         {
@@ -9875,6 +10079,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "2 cm sphere   wake ign",
       "ranges": [
         {
@@ -10107,6 +10317,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm wide   5 mm thick 1 sided PMMA",
       "ranges": [
         {
@@ -10186,6 +10402,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm wide PMMA 2 mm thick",
       "ranges": [
         {
@@ -10265,6 +10487,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 cm wide PMMA 3 mm thick",
       "ranges": [
         {
@@ -10344,6 +10572,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2 mm thick PMMA   2 cm wide",
       "ranges": [
         {
@@ -10423,6 +10657,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "200 micron  2 cm wide",
       "ranges": [
         {
@@ -10502,6 +10742,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "200 micron PMMA film   2 cm wide",
       "ranges": [
         {
@@ -10581,6 +10827,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "2mm thick PMMA   1 sided   2 cm wide",
       "ranges": [
         {
@@ -10660,6 +10912,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "3 mm thick PMMA   2 sided   2 cm thick",
       "ranges": [
         {
@@ -10739,6 +10997,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "3 mm thick PMMA 1 sided    2 cm wide",
       "ranges": [
         {
@@ -10818,6 +11082,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "3/8\" black rod",
       "ranges": [
         {
@@ -11113,6 +11383,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "3/8\" clear rod",
       "ranges": [
         {
@@ -11336,6 +11612,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "rod"
+      ],
       "name": "3/8\"clear rod",
       "ranges": [
         {
@@ -11451,6 +11733,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "300 micron PMMA film   2 cm wide",
       "ranges": [
         {
@@ -11530,6 +11818,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "300 micron film   2 cm wide",
       "ranges": [
         {
@@ -11609,6 +11903,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "4 cm spherical section",
       "ranges": [
         {
@@ -11724,6 +12024,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "4 mm thick   1 cm wide PMMA slab",
       "ranges": [
         {
@@ -11803,6 +12109,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "4 mm thick   2 cm 2ide PMMA slab",
       "ranges": [
         {
@@ -11882,6 +12194,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "4 mm thick PMMA   2 cm wide",
       "ranges": [
         {
@@ -11961,6 +12279,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "400 micron film   2 cm wide",
       "ranges": [
         {
@@ -12040,6 +12364,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "5 mm thick PMMA   2 cm wide",
       "ranges": [
         {
@@ -12155,6 +12485,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Cotton-Fiberglass (SIBAL)",
       "ranges": [
         {
@@ -12201,6 +12537,21 @@
             {
               "accession": "PSI-99",
               "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=5;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-5",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-99",
+              "method": "table",
               "note": "approximate (~) in source; percent x 0.01; Note 1 of the table: Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
               "quote": "Percent O2 (Note 1)",
               "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
@@ -12234,6 +12585,12 @@
       ]
     },
     {
+      "families": [
+        "DBP"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Dibutyl Phthalate",
       "ranges": [],
       "tests": [
@@ -12260,6 +12617,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "Japan Wax Candle   wake",
       "ranges": [
         {
@@ -12747,6 +13110,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "Japan Wax candle",
       "ranges": [
         {
@@ -12826,12 +13195,34 @@
       ]
     },
     {
+      "families": [
+        "Kapton"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Kapton",
       "ranges": [],
       "tests": [
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=23;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "101",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12851,7 +13242,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=24;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "101a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12871,7 +13278,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=25;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "102",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12891,7 +13314,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=26;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "102a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12911,7 +13350,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=27;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "108",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12931,7 +13386,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=28;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "108a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12951,7 +13422,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=29;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "114",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "2",
+              "value_original": "2",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12971,7 +13458,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=1;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "51",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -12991,7 +13494,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=2;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "51a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13011,7 +13530,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=3;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "61",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13031,7 +13566,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=4;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "61a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13051,7 +13602,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=5;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "62",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13071,7 +13638,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=6;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "62a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13091,7 +13674,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=7;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "70",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13111,7 +13710,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=8;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "73",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13131,7 +13746,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=9;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "73a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13151,7 +13782,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=10;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "75",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13171,7 +13818,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=11;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "75a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13191,7 +13854,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=12;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "77",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13211,7 +13890,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=13;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "77a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13231,7 +13926,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=14;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "85",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13251,7 +13962,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=15;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "85a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13271,7 +13998,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=16;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "90",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13291,7 +14034,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=17;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "90a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13311,7 +14070,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=18;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "92",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13331,7 +14106,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=19;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "93",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13351,7 +14142,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=20;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "93a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13371,7 +14178,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=21;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "94",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13391,7 +14214,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=22;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "94a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13448,12 +14287,34 @@
       ]
     },
     {
+      "families": [
+        "lampwick"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Lampwick",
       "ranges": [],
       "tests": [
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=69;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "106",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13473,7 +14334,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=70;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "106a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13493,7 +14370,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=71;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "110",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "2",
+              "value_original": "2",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13513,7 +14406,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=52;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "49",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8",
+              "value_original": "8",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13533,7 +14442,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=53;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "54",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13553,7 +14478,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=54;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "55",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13573,7 +14514,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=55;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "55a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13593,7 +14550,38 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=56;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "57",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=74;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "57",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13613,7 +14601,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=57;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "68",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13633,7 +14637,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=58;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "78",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13653,7 +14673,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=59;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "78a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13673,7 +14709,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=60;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "80",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13693,7 +14745,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=61;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "80a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13713,7 +14781,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=62;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "82",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13733,7 +14817,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=63;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "82a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13753,7 +14853,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=64;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "88",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13773,7 +14889,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=65;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "96",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13793,7 +14925,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=66;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "96a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13813,7 +14961,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=67;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "98",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13833,7 +14997,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=68;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "98a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -13890,6 +15070,12 @@
       ]
     },
     {
+      "families": [
+        "Nomex"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Nomex III Natural",
       "ranges": [
         {
@@ -14020,6 +15206,12 @@
       ]
     },
     {
+      "families": [
+        "Nomex"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Nomex blend 2 cm",
       "ranges": [
         {
@@ -14363,6 +15555,12 @@
       ]
     },
     {
+      "families": [
+        "Nomex"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Nomex natural (nomex III)",
       "ranges": [
         {
@@ -14514,12 +15712,33 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "PMMA",
       "ranges": [],
       "tests": [
         {
           "accession": "PSI-99",
           "conditions": [
+            {
+              "accession": "PSI-99",
+              "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=8;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-8",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
             {
               "accession": "PSI-99",
               "method": "table",
@@ -14556,6 +15775,13 @@
       ]
     },
     {
+      "families": [
+        "PMMA",
+        "Nomex"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "PMMA & Nomex",
       "ranges": [
         {
@@ -14602,6 +15828,21 @@
             {
               "accession": "PSI-99",
               "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=7;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-7",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-99",
+              "method": "table",
               "note": "approximate (~) in source; percent x 0.01; Note 1 of the table: Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
               "quote": "Percent O2 (Note 1)",
               "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
@@ -14635,6 +15876,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "PMMA 1 cm",
       "ranges": [
         {
@@ -14918,6 +16165,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "PMMA 2 cm",
       "ranges": [
         {
@@ -15405,6 +16658,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "PMMA slab",
       "ranges": [
         {
@@ -15688,6 +16947,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "PMMA sphere 1 cm",
       "ranges": [
         {
@@ -15971,6 +17236,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "PMMA sphere 2 cm",
       "ranges": [
         {
@@ -16560,12 +17831,34 @@
       ]
     },
     {
+      "families": [
+        "Pyrell"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Pyrell",
       "ranges": [],
       "tests": [
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=107;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "107",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16585,7 +17878,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=108;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "107a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16605,7 +17914,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=109;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "113",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "2",
+              "value_original": "2",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16625,7 +17950,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=90;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "52",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16645,7 +17986,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=91;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "63",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16665,7 +18022,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=92;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "63a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16685,7 +18058,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=93;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "64",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16705,7 +18094,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=94;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "64a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16725,7 +18130,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=95;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "71",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16745,7 +18166,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=96;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "74",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16765,7 +18202,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=97;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "74a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16785,7 +18238,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=98;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "76",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16805,7 +18274,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=99;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "76a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16825,7 +18310,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=100;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "84",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16845,7 +18346,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=101;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "84a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16865,7 +18382,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=102;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "87",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16885,7 +18418,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=103;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "95",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16905,7 +18454,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=104;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "95a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16925,7 +18490,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=105;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "97",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16945,7 +18526,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=106;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "97a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -16966,6 +18563,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "SIBAL 1 cm",
       "ranges": [
         {
@@ -17177,6 +18780,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "SIBAL 2 cm",
       "ranges": [
         {
@@ -17850,6 +19459,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "SIBAL 2 cm   opposed flow",
       "ranges": [
         {
@@ -17995,6 +19610,12 @@
       ]
     },
     {
+      "families": [
+        "SIBAL"
+      ],
+      "geometry": [
+        "fabric"
+      ],
       "name": "SIBAL Fabric",
       "ranges": [
         {
@@ -18037,7 +19658,23 @@
       "tests": [
         {
           "accession": "PSI-100",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-100",
+              "method": "table",
+              "note": "DISCREPANCY: NTRS 20180005168 (Urban et al., ASGSR 2017) Table 1, page 30, samples III-1 and III-2 list 25 cm/s; the PSI table says 30 cm/s. PSI value kept (source of record)",
+              "quote": "Air Flow ",
+              "source_file": "psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv",
+              "source_location": "row=1;column=Air Flow ",
+              "status": "extracted",
+              "test_id": "S1",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "30",
+              "value_original": "30 cm/s",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-100",
             "method": "table",
@@ -18057,7 +19694,23 @@
         },
         {
           "accession": "PSI-100",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-100",
+              "method": "table",
+              "note": "DISCREPANCY: NTRS 20180005168 (Urban et al., ASGSR 2017) Table 1, page 30, samples III-1 and III-2 list 25 cm/s; the PSI table says 30 cm/s. PSI value kept (source of record)",
+              "quote": "Air Flow ",
+              "source_file": "psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv",
+              "source_location": "row=2;column=Air Flow ",
+              "status": "extracted",
+              "test_id": "S2",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "30",
+              "value_original": "30 cm/s",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-100",
             "method": "table",
@@ -18078,6 +19731,21 @@
         {
           "accession": "PSI-98",
           "conditions": [
+            {
+              "accession": "PSI-98",
+              "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv",
+              "source_location": "row=1;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "S1",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20",
+              "variable": "flow_velocity"
+            },
             {
               "accession": "PSI-98",
               "method": "table",
@@ -18117,6 +19785,21 @@
             {
               "accession": "PSI-98",
               "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv",
+              "source_location": "row=2;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "S2",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-98",
+              "method": "table",
               "note": "approximate (~) in source; percent x 0.01",
               "quote": "Percent O2",
               "source_file": "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv",
@@ -18150,6 +19833,12 @@
       ]
     },
     {
+      "families": [
+        "silicone"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Silicone",
       "ranges": [
         {
@@ -18192,7 +19881,23 @@
       "tests": [
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=47;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "103",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18212,7 +19917,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=48;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "103a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "1",
+              "value_original": "1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18232,7 +19953,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=49;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "104",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18252,7 +19989,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=50;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "104a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18272,7 +20025,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=51;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "109",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "2",
+              "value_original": "2",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18292,7 +20061,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=30;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "48",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8",
+              "value_original": "8",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18312,7 +20097,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=31;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "53",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18332,7 +20133,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=32;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "59",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18352,7 +20169,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=33;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "59a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18372,7 +20205,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=34;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "60",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18392,7 +20241,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=35;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "60a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18412,7 +20277,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=36;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "65",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18432,7 +20313,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=37;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "65a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18452,7 +20349,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=38;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "66",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18472,7 +20385,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=39;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "66a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18492,7 +20421,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=40;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "67",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18512,7 +20457,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=41;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "72",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18532,7 +20493,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=42;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "86",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18552,7 +20529,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=43;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "86a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18572,7 +20565,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=44;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "91",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18592,7 +20601,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=45;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "99",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18612,7 +20637,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=46;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "99a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18633,6 +20674,21 @@
         {
           "accession": "PSI-99",
           "conditions": [
+            {
+              "accession": "PSI-99",
+              "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=1;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-1",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
             {
               "accession": "PSI-99",
               "method": "table",
@@ -18672,6 +20728,21 @@
             {
               "accession": "PSI-99",
               "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=2;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-2",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-99",
+              "method": "table",
               "note": "approximate (~) in source; percent x 0.01; Note 1 of the table: Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
               "quote": "Percent O2 (Note 1)",
               "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
@@ -18705,6 +20776,21 @@
         {
           "accession": "PSI-99",
           "conditions": [
+            {
+              "accession": "PSI-99",
+              "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=3;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-3",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
             {
               "accession": "PSI-99",
               "method": "table",
@@ -18744,6 +20830,21 @@
             {
               "accession": "PSI-99",
               "method": "table",
+              "note": "",
+              "quote": "Air Flow (cm/s)",
+              "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+              "source_location": "row=4;column=Air Flow (cm/s)",
+              "status": "extracted",
+              "test_id": "2-4",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "20",
+              "value_original": "20 cm/s",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-99",
+              "method": "table",
               "note": "approximate (~) in source; percent x 0.01; Note 1 of the table: Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.",
               "quote": "Percent O2 (Note 1)",
               "source_file": "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
@@ -18777,6 +20878,12 @@
       ]
     },
     {
+      "families": [
+        "silicone"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Silicone Rubber",
       "ranges": [],
       "tests": [
@@ -18819,12 +20926,34 @@
       ]
     },
     {
+      "families": [
+        "Teflon"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "Teflon",
       "ranges": [],
       "tests": [
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=85;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "100",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18844,7 +20973,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=86;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "100a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18864,7 +21009,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=87;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "105",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18884,7 +21045,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=88;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "105a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "0",
+              "value_original": "0",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18904,7 +21081,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=89;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "111",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "2",
+              "value_original": "2",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18924,7 +21117,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=72;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "50",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18944,7 +21153,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=73;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "56",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18964,7 +21189,38 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=56;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "57",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            },
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=74;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "57",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -18984,7 +21240,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=75;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "58",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19004,7 +21276,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=76;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "58a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19024,7 +21312,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=77;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "69",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19044,7 +21348,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=78;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "79",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19064,7 +21384,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=79;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "79a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19084,7 +21420,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=80;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "81",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19104,7 +21456,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=81;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "81a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19124,7 +21492,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=82;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "83",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19144,7 +21528,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=83;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "83a",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19164,7 +21564,23 @@
         },
         {
           "accession": "PSI-101",
-          "conditions": [],
+          "conditions": [
+            {
+              "accession": "PSI-101",
+              "method": "table",
+              "note": "inlet flow over the heated sample (smoke generation)",
+              "quote": "Inlet velocity (cm/s)",
+              "source_file": "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+              "source_location": "row=84;column=Inlet velocity (cm/s)",
+              "status": "extracted",
+              "test_id": "89",
+              "unit": "cm/s",
+              "unit_original": "cm/s",
+              "value": "8.1",
+              "value_original": "8.1",
+              "variable": "flow_velocity"
+            }
+          ],
           "material_source": {
             "accession": "PSI-101",
             "method": "table",
@@ -19329,6 +21745,12 @@
       ]
     },
     {
+      "families": [
+        "other"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "candle",
       "ranges": [
         {
@@ -19561,6 +21983,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "candle    paraffin   wake",
       "ranges": [
         {
@@ -19742,6 +22170,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "candle   Japan wax",
       "ranges": [
         {
@@ -19953,6 +22387,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "flat wax slab",
       "ranges": [
         {
@@ -20185,6 +22625,12 @@
       ]
     },
     {
+      "families": [
+        "Nomex"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "nomex natural III",
       "ranges": [
         {
@@ -20315,6 +22761,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "paraffin wax candle",
       "ranges": [
         {
@@ -20445,6 +22897,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "paraffin wax slab",
       "ranges": [
         {
@@ -20626,6 +23084,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "candle"
+      ],
       "name": "parrafin wax candle",
       "ranges": [
         {
@@ -20756,6 +23220,12 @@
       ]
     },
     {
+      "families": [
+        "wax"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "parrafin wax slab",
       "ranges": [
         {
@@ -20886,6 +23356,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "pmma 1 cm",
       "ranges": [
         {
@@ -21208,6 +23684,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "not specified"
+      ],
       "name": "pmma 2 cm",
       "ranges": [
         {
@@ -21602,6 +24084,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "pmma slab",
       "ranges": [
         {
@@ -21783,6 +24271,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "pmma slab   oppsed",
       "ranges": [
         {
@@ -21913,6 +24407,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "pmma slab opposed",
       "ranges": [
         {
@@ -22043,6 +24543,12 @@
       ]
     },
     {
+      "families": [
+        "PMMA"
+      ],
+      "geometry": [
+        "sphere"
+      ],
       "name": "pmma sphere",
       "ranges": [
         {
@@ -22275,6 +24781,12 @@
       ]
     },
     {
+      "families": [
+        "Ultem"
+      ],
+      "geometry": [
+        "sheet"
+      ],
       "name": "ultem sheet",
       "ranges": [
         {

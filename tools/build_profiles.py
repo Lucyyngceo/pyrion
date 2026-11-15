@@ -23,7 +23,7 @@ def main():
         real_ids = {r['test_id'] for r in valid if r.get('method') == 'table' and r.get('test_id') and r['test_id'] != '*'}
         def parent(tid):
             match = re.fullmatch(r'(.+?\d)[a-z]', tid)
-            return match.group(1) if match and match.group(1) in real_ids else tid
+            return match.group(1) if acc == 'PSI-101' and match else tid
         variables = defaultdict(list)
         for row in valid:
             if row.get('variable') and row.get('value') and row.get('test_id') in real_ids: variables[(row['variable'],row.get('unit',''))].append(row)
@@ -44,7 +44,9 @@ def main():
             if not p.is_file(): raise FileNotFoundError(f'Missing experimental table: {p}')
             if p.exists():
                 with p.open(encoding='utf-8-sig',errors='replace',newline='') as f:
-                    for column in next(csv.reader(f),[]): measurements.append({'column':column,'file':str(p.relative_to(ROOT)).replace('\\','/'),'badge':'table'})
-        profiles.append({'accession':acc,'acronym':inv['acronym'],'doi':inv['doi'],'psi_links':psi_links,'fields':fields,'hardware':[x for x in manifests['hardware'] if x['accession']==acc], 'publications':[x for x in manifests['publications'] if x['accession']==acc], 'measurements':measurements,'variables':summary,'test_count':len({parent(t) for t in real_ids}),'value_count':len(valid)})
+                    for column in next(csv.reader(f),[]):
+                        if re.search(r'(?i)^(pi|date|gmt|test( id| number| #)?|notes?|comments?|camera( \d+)?|day|sample number)\s*$', column.strip()): continue
+                        measurements.append({'column':column,'file':str(p.relative_to(ROOT)).replace('\\','/'),'badge':'table'})
+        profiles.append({'accession':acc,'acronym':inv['acronym'],'doi':inv['doi'],'psi_links':psi_links,'context_variables':{v:sorted(set(x['value'] for x in valid if x['test_id']=='*' and x['variable']==v and x['value'])) for v in ['gravity_regime','fuel_phase']},'fields':fields,'hardware':[x for x in manifests['hardware'] if x['accession']==acc], 'publications':[x for x in manifests['publications'] if x['accession']==acc], 'measurements':measurements,'variables':summary,'test_count':len({parent(t) for t in real_ids}),'value_count':len(valid)})
     out=ROOT/'data/derived/investigation_profiles.json'; out.parent.mkdir(parents=True,exist_ok=True); out.write_text(json.dumps(profiles,indent=2,sort_keys=True,ensure_ascii=False)+'\n',encoding='utf-8'); print(f'{len(profiles)} profiles, {sum(p["value_count"] for p in profiles)} condition rows')
 if __name__=='__main__': main()

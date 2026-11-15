@@ -1,0 +1,3 @@
+import {KPA_PER_PSI} from "@/lib/engine";
+export function displayValue(variable:string,value:string|number,unit:string):string {const n=Number(value);if(String(value).trim()===""||!Number.isFinite(n))return `${value}${unit?` ${unit}`:""}`;if(variable==="o2_mole_fraction"||variable==="burner_o2_mole_fraction")return `${(n*100).toFixed(1)}%`;if(variable==="pressure"&&unit.toLowerCase()==="kpa")return `${Number(n.toPrecision(3))} kPa (${Number((n/KPA_PER_PSI).toPrecision(3))} psia)`;return `${value}${unit?` ${unit}`:""}`}
+export function displayRange(variable:string,min:number,max:number,unit:string):string {return min===max?displayValue(variable,min,unit):`${displayValue(variable,min,unit)} – ${displayValue(variable,max,unit)}`}
