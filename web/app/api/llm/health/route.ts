@@ -1,10 +1,14 @@
-// Which providers answer, which model would be used, how much of the daily cap is left. No key, no base URL in the output.
+// Which providers answer and which model would be used. In production only that is public; the details (daily cap,
+// per-provider status, visitor isolation) are for development. No key and no base URL in any output.
 
 import { budget, providers, visitorIsolation } from "@/lib/llm";
+import { providerIsDown } from "@/lib/llm/router";
 
 export const dynamic = "force-dynamic";
 
-const cache: { at: number; body?: unknown } = { at: 0 };
+// One probe at a time, and its answer kept for a minute: a burst of requests costs one round of /models calls.
+const cache: { at: number; promise?: Promise<unknown> } = { at: 0 };
+const TTL_MS = 60_000;
 
 async function reachable(base: string, key: string): Promise<boolean> {
   try {
@@ -16,22 +20,29 @@ async function reachable(base: string, key: string): Promise<boolean> {
   }
 }
 
-export async function GET() {
-  if (cache.body && Date.now() - cache.at < 60_000) return Response.json(cache.body, { headers: { "Cache-Control": "no-store" } });
+async function probe() {
   const ps = providers();
   const b = budget();
-  const status = await Promise.all(ps.map(async (p) => ({ provider: p.id, configured: true, answering: await reachable(p.base, p.key), models: p.models })));
+  const status = await Promise.all(ps.map(async (p) => ({ provider: p.id, configured: true, answering: !providerIsDown(p.id) && (await reachable(p.base, p.key)), models: p.models })));
   const cap = b.remaining();
   const primary = status.find((s) => s.provider === "openrouter");
   const usable = status.filter((s) => s.answering && (s.provider !== "openrouter" || cap.remaining_today > 0));
-  const body = {
+  return {
     mode: usable.length ? "model" : "structured",
-    visitor_isolation: visitorIsolation(),
     would_use: usable.length ? { provider: usable[0].provider, model: usable[0].models[0] } : null,
-    providers: status,
-    daily_cap: { ...cap, applies_to: primary ? "openrouter" : null },
+    detail: { visitor_isolation: visitorIsolation(), providers: status, daily_cap: { ...cap, applies_to: primary ? "openrouter" : null } },
   };
-  cache.at = Date.now();
-  cache.body = body;
+}
+
+export async function GET() {
+  if (!cache.promise || Date.now() - cache.at > TTL_MS) {
+    cache.at = Date.now();
+    cache.promise = probe().catch((e) => {
+      cache.promise = undefined; // do not cache a failure
+      throw e;
+    });
+  }
+  const r = (await cache.promise) as Awaited<ReturnType<typeof probe>>;
+  const body = process.env.NODE_ENV === "production" ? { mode: r.mode, would_use: r.would_use } : { mode: r.mode, would_use: r.would_use, ...r.detail };
   return Response.json(body, { headers: { "Cache-Control": "no-store" } });
 }

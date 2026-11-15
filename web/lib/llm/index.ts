@@ -1,9 +1,9 @@
 // The server-side entry point: providers from the environment, one shared budget, one call that applies all of it.
 
-import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash, timingSafeEqual } from "node:crypto";
+import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { createBudget, RateLimited, type Budget, type BudgetState } from "./budget.ts";
+import { createBudget, RateLimited, type Budget, type BudgetState, type BudgetStore } from "./budget.ts";
 import { clientModels, loadProviders, type Provider } from "./config.ts";
 import { complete, NoModelAvailable, type CompleteArgs, type Completion } from "./router.ts";
 
@@ -22,26 +22,41 @@ export function numEnv(name: string, fallback: number): number {
   return Number.isFinite(n) && n >= 0 ? n : fallback;
 }
 
-// The daily counter survives a restart: a small file under web/.data/ (git-ignored).
-const STATE_FILE = path.join(/*turbopackIgnore: true*/ process.cwd(), ".data", "budget.json");
-const fileStore = {
-  load(): BudgetState | null {
-    try {
-      const j = JSON.parse(readFileSync(STATE_FILE, "utf8")) as Partial<BudgetState>;
-      return typeof j.day === "number" && typeof j.used === "number" ? { day: j.day, used: j.used, safety: typeof j.safety === "number" ? j.safety : 0 } : null;
-    } catch {
-      return null;
-    }
-  },
-  save(s: BudgetState) {
-    try {
-      mkdirSync(path.dirname(STATE_FILE), { recursive: true });
-      writeFileSync(STATE_FILE, JSON.stringify(s));
-    } catch {
-      /* a read-only disk must not stop the product */
-    }
-  },
-};
+// The daily counter survives a restart: a small file under web/.data/ (git-ignored). Written to a temp file and
+// renamed, so a crash cannot leave half a file. A file that exists but does not parse closes the paid provider for the
+// rest of the day (a damaged counter must never read as "nothing used").
+export function createFileStore(file: string, log: (m: string) => void = console.error): BudgetStore {
+  return {
+    load(): BudgetState | null {
+      let raw: string;
+      try {
+        raw = readFileSync(file, "utf8");
+      } catch {
+        return null; // no file yet: a fresh counter
+      }
+      try {
+        const j = JSON.parse(raw) as Partial<BudgetState>;
+        if (typeof j.day === "number" && typeof j.used === "number") return { day: j.day, used: j.used, safety: typeof j.safety === "number" ? j.safety : 0 };
+        throw new Error("unexpected shape");
+      } catch {
+        log("[pyrion] the budget counter file is damaged: the primary provider is closed until the next UTC day.");
+        return { day: Math.floor(Date.now() / 86_400_000), used: Number.MAX_SAFE_INTEGER, safety: 0 };
+      }
+    },
+    save(s: BudgetState) {
+      try {
+        mkdirSync(path.dirname(file), { recursive: true });
+        const tmp = `${file}.${process.pid}.tmp`;
+        writeFileSync(tmp, JSON.stringify(s));
+        renameSync(tmp, file);
+      } catch {
+        /* a read-only disk must not stop the product */
+      }
+    },
+  };
+}
+
+const fileStore = createFileStore(path.join(/*turbopackIgnore: true*/ process.cwd(), ".data", "budget.json"));
 
 export function budget(): Budget {
   g.__pyrionBudget ??= createBudget({
@@ -53,24 +68,32 @@ export function budget(): Budget {
   return g.__pyrionBudget;
 }
 
+const safeEqual = (a: string, b: string) => {
+  const x = Buffer.from(a);
+  const y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+};
+
 /**
- * Anonymous visitor id. Only a proxy we run (nginx sets x-real-ip) is trusted, and only when PYRION_TRUST_PROXY=1.
- * Without it every caller shares one bucket: a client-chosen header never creates a fresh allowance.
+ * Anonymous visitor id. X-Real-IP is believed only when PYRION_TRUST_PROXY=1 AND the request carries the proxy's secret
+ * (header X-Pyrion-Proxy equal to PYRION_PROXY_SECRET, which only our nginx adds). Otherwise every caller shares one
+ * bucket: a forged header never creates a fresh allowance, even if Node is reachable directly.
  */
 export function visitorId(req: Request): string {
-  if (process.env.PYRION_TRUST_PROXY === "1") {
+  const secret = process.env.PYRION_PROXY_SECRET ?? "";
+  if (process.env.PYRION_TRUST_PROXY === "1" && secret !== "" && safeEqual(req.headers.get("x-pyrion-proxy") ?? "", secret)) {
     const ip = req.headers.get("x-real-ip")?.trim();
     if (ip) return createHash("sha256").update(ip).digest("hex").slice(0, 16);
   }
   return "shared";
 }
 
-/** True when visitors are told apart (a proxy we run sets x-real-ip). False: everyone shares one bucket. */
-export const visitorIsolation = () => process.env.PYRION_TRUST_PROXY === "1";
+/** True only when visitors can be told apart: the proxy is trusted and its secret is configured. */
+export const visitorIsolation = () => process.env.PYRION_TRUST_PROXY === "1" && (process.env.PYRION_PROXY_SECRET ?? "") !== "";
 
 if (process.env.NODE_ENV === "production" && !visitorIsolation() && !g.__pyrionProxyWarned) {
   g.__pyrionProxyWarned = true;
-  console.error("[pyrion] PYRION_TRUST_PROXY is not 1 in production: all visitors share one rate-limit bucket. Run behind nginx that overwrites X-Real-IP and set PYRION_TRUST_PROXY=1 (docs/DEPLOY.md).");
+  console.error("[pyrion] visitor isolation is off in production (PYRION_TRUST_PROXY=1 and PYRION_PROXY_SECRET are both needed): all visitors share one rate-limit bucket. See docs/DEPLOY.md.");
 }
 
 export function providers(): Provider[] {

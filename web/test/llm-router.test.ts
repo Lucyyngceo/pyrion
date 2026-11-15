@@ -236,21 +236,32 @@ test("budget: zero means zero, the daily counter persists, a visitor's primary q
   assert.ok(small.size() <= 3);
 });
 
-test("environment numbers: 0 is 0; the visitor id trusts only our proxy; clients get only the cheap models", () => {
+test("environment numbers: 0 is 0; clients get only the cheap models", () => {
   process.env.PYRION_DAILY_REQUEST_CAP = "0";
   assert.equal(numEnv("PYRION_DAILY_REQUEST_CAP", 300), 0);
   delete process.env.PYRION_DAILY_REQUEST_CAP;
   assert.equal(numEnv("PYRION_DAILY_REQUEST_CAP", 300), 300);
-  const req = (h: Record<string, string>) => new Request("http://x", { headers: h });
-  delete process.env.PYRION_TRUST_PROXY;
-  assert.equal(visitorId(req({ "x-forwarded-for": "1.2.3.4", "x-real-ip": "5.6.7.8" })), "shared");
-  process.env.PYRION_TRUST_PROXY = "1";
-  const a = visitorId(req({ "x-real-ip": "5.6.7.8", "x-forwarded-for": "9.9.9.9" }));
-  assert.notEqual(a, "shared");
-  assert.equal(a, visitorId(req({ "x-real-ip": "5.6.7.8", "x-forwarded-for": "8.8.8.8" })));
-  delete process.env.PYRION_TRUST_PROXY;
   const ps = loadProviders({ ...env, OPENROUTER_MODELS: "qwen/qwen3.8-27b,moonshotai/kimi-k2.6,qwen/qwen3.8-max-0902" });
   assert.deepEqual(clientModels(ps, {}), ["qwen/qwen3.8-27b", "moonshotai/kimi-k2.6"]);
+});
+
+test("m6: X-Real-IP is believed only with PYRION_TRUST_PROXY=1 and the proxy's secret", () => {
+  const req = (h: Record<string, string>) => new Request("http://x", { headers: h });
+  delete process.env.PYRION_TRUST_PROXY;
+  delete process.env.PYRION_PROXY_SECRET;
+  assert.equal(visitorId(req({ "x-forwarded-for": "1.2.3.4", "x-real-ip": "5.6.7.8" })), "shared");
+  process.env.PYRION_TRUST_PROXY = "1";
+  assert.equal(visitorId(req({ "x-real-ip": "5.6.7.8" })), "shared"); // trusted proxy but no secret configured
+  assert.equal(visitorIsolation(), false);
+  process.env.PYRION_PROXY_SECRET = "s3cret";
+  assert.equal(visitorIsolation(), true);
+  assert.equal(visitorId(req({ "x-real-ip": "5.6.7.8" })), "shared"); // forged: no secret header
+  assert.equal(visitorId(req({ "x-real-ip": "5.6.7.8", "x-pyrion-proxy": "wrong" })), "shared");
+  const a = visitorId(req({ "x-real-ip": "5.6.7.8", "x-pyrion-proxy": "s3cret", "x-forwarded-for": "9.9.9.9" }));
+  assert.notEqual(a, "shared");
+  assert.equal(a, visitorId(req({ "x-real-ip": "5.6.7.8", "x-pyrion-proxy": "s3cret", "x-forwarded-for": "8.8.8.8" })));
+  delete process.env.PYRION_TRUST_PROXY;
+  delete process.env.PYRION_PROXY_SECRET;
 });
 
 test("thinking: false sends enable_thinking false to NIM for that model only, and only when reasoning is not asked for", async () => {
@@ -278,14 +289,6 @@ test("open weights: a verified table entry carries license and source; any other
   assert.equal(openWeightsLabel("some/other-model"), null);
 });
 
-test("visitor isolation reports whether our proxy is trusted", () => {
-  delete process.env.PYRION_TRUST_PROXY;
-  assert.equal(visitorIsolation(), false);
-  process.env.PYRION_TRUST_PROXY = "1";
-  assert.equal(visitorIsolation(), true);
-  delete process.env.PYRION_TRUST_PROXY;
-});
-
 test("N4: the content check stops with the caller's signal and never exceeds its own total time", async () => {
   const hang = ((_u: string, init: RequestInit) => new Promise((_r, rej) => (init.signal as AbortSignal).addEventListener("abort", () => rej(new DOMException("a", "AbortError"))))) as unknown as typeof fetch;
   const ac = new AbortController();
@@ -294,4 +297,62 @@ test("N4: the content check stops with the caller's signal and never exceeds its
   setTimeout(() => ac.abort(), 30);
   assert.deepEqual(await p, { flagged: false, checked: false });
   assert.ok(Date.now() - t0 < 1000);
+});
+
+test("m1: a 403 is that model only; 401, 402 and credit or balance bodies are provider-wide", async () => {
+  const { providerLevelFailure } = await import("../lib/llm/router.ts");
+  assert.equal(providerLevelFailure(403, "{}"), false);
+  assert.equal(providerLevelFailure(403, "insufficient credit"), false);
+  assert.equal(providerLevelFailure(400, "Insufficient permissions for this model"), false);
+  assert.equal(providerLevelFailure(401, ""), true);
+  assert.equal(providerLevelFailure(402, ""), true);
+  assert.equal(providerLevelFailure(400, '{"error":"Out of credits"}'), true);
+  assert.equal(providerLevelFailure(400, "Account balance too low"), true);
+  const down = new Map<string, number>();
+  const { f, calls } = seqFetch({ "a/one": [status(403)] });
+  const r = await complete({ messages }, { providers, fetch: f, down });
+  assert.equal(r.meta.model, "b/two"); // the next model of the same provider still answers
+  assert.equal(down.size, 0);
+  assert.deepEqual(calls, ["or.test:a/one", "or.test:b/two"]);
+});
+
+test("m3: concurrent 429 retries cannot slip past the cap: it is asked again right before each request", async () => {
+  let budget = 5;
+  const allow = () => budget > 0;
+  const onRequest = () => void budget--;
+  const f = (async () => status(429)) as unknown as typeof fetch;
+  const runs = Array.from({ length: 4 }, () => complete({ messages }, { providers: loadProviders({ OPENROUTER_BASE_URL: "https://or.test/v1", OPENROUTER_API_KEY: "k", OPENROUTER_MODELS: "a/one,b/two" }), fetch: f, allow, onRequest, down: new Map(), sleep: async () => {} }).catch(() => null));
+  await Promise.all(runs);
+  assert.ok(budget >= 0, `the cap went negative: ${budget}`);
+});
+
+test("m8: max_tokens can differ per provider", async () => {
+  const bodies: Record<string, number>[] = [];
+  const f = (async (u: string, init: RequestInit) => {
+    bodies.push({ [new URL(u).host]: JSON.parse(String(init.body)).max_tokens });
+    return u.includes("or.test") ? status(500) : ok("x");
+  }) as unknown as typeof fetch;
+  await complete({ messages, maxTokens: 400, maxTokensByProvider: { nim: 2000 } }, { providers, fetch: f, down: new Map(), sleep: async () => {} });
+  assert.equal(bodies[0]["or.test"], 400);
+  assert.equal(bodies.at(-1)!["nim.test"], 2000);
+});
+
+test("m4: a damaged budget file closes the primary provider; writes go through a temp file", async () => {
+  const { createFileStore } = await import("../lib/llm/index.ts");
+  const { mkdtempSync, writeFileSync, readdirSync, readFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const path = await import("node:path");
+  const dir = mkdtempSync(path.join(tmpdir(), "pyrion-budget-"));
+  const file = path.join(dir, "budget.json");
+  const logs: string[] = [];
+  const store = createFileStore(file, (m) => logs.push(m));
+  assert.equal(store.load(), null); // no file: a fresh counter
+  const today = Math.floor(Date.now() / 86_400_000);
+  store.save({ day: today, used: 7, safety: 1 });
+  assert.equal(JSON.parse(readFileSync(file, "utf8")).used, 7);
+  assert.deepEqual(readdirSync(dir), ["budget.json"]); // no temp file left behind
+  writeFileSync(file, '{"day":'); // truncated by a crash
+  const b = createBudget({ perVisitorPerHour: 5, perVisitorPrimaryPerHour: 5, dailyCap: 300, store });
+  assert.equal(b.primaryAllowed(), false); // fails closed, not "0 used"
+  assert.match(logs.join(" "), /damaged/);
 });

@@ -27,6 +27,8 @@ export interface CompleteArgs {
   model?: string;
   stream?: boolean;
   maxTokens?: number;
+  /** Per-provider override of maxTokens (a reasoning model on one provider needs more room than a paid model on another). */
+  maxTokensByProvider?: Partial<Record<Provider["id"], number>>;
   temperature?: number;
   /** The caller's abort signal (for example req.signal): a client that leaves stops the work. */
   signal?: AbortSignal;
@@ -74,10 +76,18 @@ const sharedDown = new Map<string, number>();
 /** At most this many models are tried per provider, so the fallback provider is always reached. */
 const PER_PROVIDER = 2;
 
-/** A failure of the provider as a whole, not of one model or one request. */
+/**
+ * A failure of the provider as a whole, not of one model or one request: a bad key (401), no payment (402), or a 4xx
+ * body that names credit, balance or billing. A 403 is that model only (access to one model, not the account).
+ */
 export function providerLevelFailure(status: number, body: string): boolean {
-  if (status === 401 || status === 402 || status === 403) return true;
-  return status >= 400 && status < 500 && status !== 404 && status !== 429 && /credit|api key|apikey|quota|billing|insufficient|unauthori[sz]ed/i.test(body);
+  if (status === 401 || status === 402) return true;
+  return status >= 400 && status < 500 && status !== 403 && status !== 404 && status !== 429 && /credit|balance|billing/i.test(body);
+}
+
+/** Is this provider marked down right now (for health reporting)? */
+export function providerIsDown(id: string, now: number = Date.now(), down: Map<string, number> = sharedDown): boolean {
+  return (down.get(id) ?? 0) > now;
 }
 
 const timeoutMs = (model: string) => (/mistral-large/i.test(model) ? 60_000 : 30_000);
@@ -130,6 +140,12 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
     for (;;) {
       if (args.signal?.aborted) throw new DOMException("aborted", "AbortError");
       if (deadline.aborted) throw new NoModelAvailable(`deadline of ${(args.deadlineMs ?? 25_000) / 1000} s reached (${reasons.slice(-3).join("; ") || "no answer yet"})`);
+      // The cap is asked again right before the request is counted and sent (no await in between): concurrent
+      // retries cannot all slip past a cap that was open when they started waiting.
+      if (deps.allow && !deps.allow(provider.id)) {
+        reasons.push(`${provider.id}: daily cap reached`);
+        break;
+      }
       const t0 = now();
       deps.onRequest?.(provider.id);
       let status = 0;
@@ -142,7 +158,7 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
             messages: args.messages,
             ...(args.tools && args.tools.length ? { tools: args.tools } : {}),
             temperature: args.temperature ?? 0,
-            max_tokens: args.maxTokens ?? 800,
+            max_tokens: args.maxTokensByProvider?.[provider.id] ?? args.maxTokens ?? 800,
             stream: !!args.stream,
             ...(provider.id === "openrouter" && !args.reasoning ? { reasoning: { enabled: false } } : {}),
             // NIM: a model configured with thinking: false answers in a second or two instead of thinking first.

@@ -2,7 +2,7 @@
 // Relative .ts imports on purpose, so the unit tests can run them under `node --test`.
 
 import { targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
-import { BANNED_PATTERNS, factsFromText, modelText, type Fact, type Facts, type Verdict } from "./narration-check.ts";
+import { BANNED_PATTERNS, modelText } from "./narration-check.ts";
 import { cleanModelText } from "./llm/clean.ts";
 
 const KPA_PER_PSI = 6.894757293168361;
@@ -76,7 +76,7 @@ export function supportedByQuestion(value: string, question: string, used: Set<n
     const inQuestion = tokensOf(q);
     const taken: number[] = [];
     for (const n of nums) {
-      const at = inQuestion.findIndex((t, i) => !used.has(i) && !taken.includes(i) && t.value === n.value && (n.unit === "" || t.unit === n.unit));
+      const at = inQuestion.findIndex((t, i) => !used.has(i) && !taken.includes(i) && t.value === n.value && t.unit === n.unit);
       if (at < 0) return false;
       taken.push(at);
     }
@@ -87,6 +87,20 @@ export function supportedByQuestion(value: string, question: string, used: Set<n
     .split(/[^a-z]+/)
     .filter((w) => w.length >= 3)
     .every((w) => q.includes(w));
+}
+
+/**
+ * A pressure the question gives as an oxygen partial pressure ("partial pressure of 21 kPa", "ppO2 21 kPa",
+ * "21 kPa O2") is not the total pressure: it must not become the target's pressure.
+ */
+export function isOxygenPartialPressure(value: string, question: string): boolean {
+  const q = norm(question);
+  for (const m of norm(value).matchAll(NUMS)) {
+    const n = m[0].replace(/\./g, "\\.");
+    if (new RegExp(`(?:partial pressure|ppo2|po2|p\\(o2\\))[^0-9]{0,40}${n}\\b`).test(q)) return true;
+    if (new RegExp(`\\b${n}\\s*(?:kpa|psia|psi|atm|bar|mbar|torr|mmhg|pa)?\\s*(?:of\\s+)?(?:o2|oxygen)\\b`).test(q)) return true;
+  }
+  return false;
 }
 
 /** A model-written assumption is kept only if short, free of banned phrases, and with no number the question lacks. */
@@ -121,6 +135,9 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
       continue;
     }
     if (typeof v !== "string") throw new Error(`${k} must be text as written in the question, or null`);
+    if (k === "pressure" && isOxygenPartialPressure(v, question)) {
+      throw new Error("oxygen partial pressure is not total pressure: give the total pressure and the O2 percentage");
+    }
     if ((QUANTITY_KEYS as readonly string[]).includes(k) && !supportedByQuestion(v, question, used)) {
       unstated.push(k === "o2" ? "o2_mole_fraction" : k);
       dropped.push(`The model returned a value for ${k.replaceAll("_", " ")} that is not in the question (${modelText(v)}). It was ignored.`);
@@ -165,7 +182,7 @@ export function buildNarrationInput(
   investigations: { accession: string; acronym: string; title?: string; doi: string }[],
   target: Target,
   maxTop = 5,
-): { input: NarrationInput; facts: Facts } {
+): { input: NarrationInput } {
   const inv = new Map(investigations.map((i) => [i.accession, i]));
   const clusters = new Map([...evaluation.ranked, ...evaluation.unranked].map((c) => [`${c.accession}|${c.clusterKey}`, c]));
   const rows = evaluation.investigations.toSorted(
@@ -203,27 +220,7 @@ export function buildNarrationInput(
     top,
     note: "Verdicts are computed by a deterministic engine. A transfer hypothesis for partial gravity is a separate, labelled page and is not part of this output.",
   };
-  // Facts the narration is checked against, each number with its unit class.
-  const numbers: Fact[] = [];
-  const counts = Object.values(input.counts);
-  for (const c of counts) numbers.push({ value: c, cls: "count" });
-  numbers.push({ value: counts.reduce((a, b) => a + b, 0), cls: "count" });
-  for (const [k, v] of Object.entries(tgt)) {
-    if (typeof v !== "number") continue;
-    numbers.push({ value: v, cls: k === "o2_percent" ? "%" : k === "pressure_kpa" ? "kPa" : k === "pressure_psia" ? "psia" : k === "gravity_level_g" ? "g" : "" });
-  }
-  for (const t2 of top) {
-    if (t2.distance !== null) numbers.push({ value: t2.distance, cls: "" });
-    for (const r of t2.reasons) numbers.push(...factsFromText(r));
-  }
-  const source = JSON.stringify(input);
-  const facts: Facts = {
-    top: top.map((x) => ({ accession: x.accession, acronym: x.acronym, doi: x.doi, verdict: x.verdict as Verdict })),
-    all: investigations.map((i) => ({ accession: i.accession, acronym: i.acronym, title: i.title ?? "" })),
-    numbers,
-    source,
-  };
-  return { input, facts };
+  return { input };
 }
 
 const VERDICT_LABEL: Record<string, string> = { APPLICABLE: "applicable", EXTRAPOLATION: "extrapolation", INSUFFICIENT_EVIDENCE: "insufficient evidence", REGIME_BARRIER: "not comparable (regime barrier)" };

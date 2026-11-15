@@ -10,7 +10,8 @@ import { openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { buildNarrationInput, parseTargetReply, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
-import { checkNarration, modelText } from "@/lib/narration-check";
+import { checkContext, type ContextTarget } from "@/lib/context-check";
+import { modelText } from "@/lib/narration-check";
 import { evaluateOnServer } from "@/lib/server-eval";
 
 export const dynamic = "force-dynamic";
@@ -18,6 +19,26 @@ export const dynamic = "force-dynamic";
 const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
 const STRUCTURED = "Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.";
 const DEADLINE_MS = 25_000;
+const MAX_BODY = 8 * 1024;
+
+/** The request body as text, or null if it exceeds `max` bytes. Stops reading at the limit. */
+async function readLimited(req: Request, max: number): Promise<string | null> {
+  if (!req.body) return "";
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > max) {
+      await reader.cancel().catch(() => {});
+      return null;
+    }
+    chunks.push(value);
+  }
+  return new TextDecoder().decode(Buffer.concat(chunks));
+}
 
 /** Whether questions are enabled and which models a visitor can choose. No secret is returned. */
 export async function GET() {
@@ -34,6 +55,15 @@ const metaOf = (m: { model: string; provider: string; latency_ms: number; fell_b
   open_weights: openWeightsLabel(m.model),
 });
 
+/** The target as the context check sees it: regime words and numbers with their units. */
+function contextTarget(input: { target: Record<string, unknown>; open_axes: string[] }): ContextTarget {
+  const t = input.target;
+  const num = (k: string) => (typeof t[k] === "number" ? (t[k] as number) : undefined);
+  const regime: Record<string, string> = {};
+  for (const k of ["gravity_regime", "fuel_phase", "diluent", "flame_type"]) if (typeof t[k] === "string") regime[k] = t[k] as string;
+  return { regime, o2_percent: num("o2_percent"), pressure_kpa: num("pressure_kpa"), pressure_psia: num("pressure_psia"), gravity_level_g: num("gravity_level_g"), open_axes: input.open_axes };
+}
+
 const parsesAsObject = (t: string) => {
   try {
     const x = JSON.parse(t.slice(t.indexOf("{"), t.lastIndexOf("}") + 1));
@@ -45,9 +75,14 @@ const parsesAsObject = (t: string) => {
 
 export async function POST(req: Request) {
   if (providers().length === 0) return json({ error: `Structured mode: add a key to enable questions. ${STRUCTURED}` }, 503);
+  // The body is read through a hard limit: a huge or endless upload is refused before it is buffered.
+  const declared = Number(req.headers.get("content-length") ?? "0");
+  if (declared > MAX_BODY) return json({ error: "the request is too large" }, 413);
   let body: { step?: unknown; model?: unknown; question?: unknown; target?: unknown };
   try {
-    body = await req.json();
+    const raw = await readLimited(req, MAX_BODY);
+    if (raw === null) return json({ error: "the request is too large" }, 413);
+    body = JSON.parse(raw);
   } catch {
     return json({ error: "the request body is not JSON" }, 400);
   }
@@ -70,7 +105,7 @@ export async function POST(req: Request) {
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
       if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState }, 422);
       // Reasoning models on the fallback provider need room to think before the JSON.
-      const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 2000, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
+      const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 2000 }, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
       let parsed;
@@ -89,28 +124,30 @@ export async function POST(req: Request) {
       // Same limit as the parse step, counted before the engine runs or any model is called.
       budget().visitor(visitor);
       const { evaluation, investigations, sha256 } = await evaluateOnServer(shaped.target);
-      const { input, facts } = buildNarrationInput(evaluation, investigations, shaped.target);
+      const { input } = buildNarrationInput(evaluation, investigations, shaped.target);
       // Counts and verdicts are written by code. The model adds context only.
       const verdictLines = renderVerdicts(input);
       let context: string | null = null;
-      let check: { ok: boolean; failures: string[] } = { ok: true, failures: [] };
+      let dropped = 0;
       let meta = null;
       try {
-        const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 1200, validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify(input) }] }, visitor);
+        const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 1200 }, validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify({ target: input.target, open_axes: input.open_axes }) }] }, visitor);
         meta = metaOf(c.meta);
         const text = c.json?.choices?.[0]?.message?.content;
         if (typeof text === "string") {
-          check = checkNarration(cleanModelText(text), facts);
-          context = check.ok ? cleanModelText(text) : null;
+          // Allowlist: only sentences that restate the target in its own numbers and words survive; the rest is dropped.
+          const r = checkContext(cleanModelText(text), contextTarget(input));
+          context = r.kept;
+          dropped = r.dropped;
         }
       } catch (e) {
         if (e instanceof RateLimited || e instanceof NoModelAvailable) {
           // The verdicts are still there: the model's part is optional.
-          return json({ meta: null, promptVersion: PROMPT_VERSION, engine_sha256: sha256, verdicts: verdictLines, context: null, check: { ok: true, failures: [] }, narration_unavailable: true });
+          return json({ meta: null, promptVersion: PROMPT_VERSION, engine_sha256: sha256, verdicts: verdictLines, context: null, dropped: 0, narration_unavailable: true });
         }
         throw e;
       }
-      return json({ meta, promptVersion: PROMPT_VERSION, engine_sha256: sha256, verdicts: verdictLines, context, check });
+      return json({ meta, promptVersion: PROMPT_VERSION, engine_sha256: sha256, verdicts: verdictLines, context, dropped });
     }
     return json({ error: "unknown step" }, 400);
   } catch (e) {

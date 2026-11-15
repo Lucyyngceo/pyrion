@@ -26,7 +26,7 @@ interface Run {
   hash: string | null;
   verdicts: string[];
   context: string | null;
-  failures: string[];
+  dropped: number;
   narrateMeta: Meta | null;
   narrationUnavailable: boolean;
   narrateError: string | null;
@@ -106,7 +106,7 @@ export default function AskBox({ onTarget }: Props) {
       const a = await post<{ parsed: ParsedTarget; meta: Meta; safety: string }>({ step: "parse", model: m, question });
       onTarget(a.parsed);
       // Steps B and C run on the server: it evaluates the target itself, writes the verdicts, and checks the model's context.
-      let n: { meta: Meta | null; engine_sha256?: string; verdicts: string[]; context: string | null; check: { failures: string[] }; narration_unavailable?: boolean } | null = null;
+      let n: { meta: Meta | null; engine_sha256?: string; verdicts: string[]; context: string | null; dropped?: number; narration_unavailable?: boolean } | null = null;
       let narrateError: string | null = null;
       try {
         n = await post({ step: "narrate", model: m, target: a.parsed.target });
@@ -122,7 +122,7 @@ export default function AskBox({ onTarget }: Props) {
           hash: n?.engine_sha256 ?? null,
           verdicts: n?.verdicts ?? [],
           context: n?.context ?? null,
-          failures: n?.check.failures ?? [],
+          dropped: n?.dropped ?? 0,
           narrateMeta: n?.meta ?? null,
           narrationUnavailable: !!n?.narration_unavailable,
           narrateError,
@@ -150,8 +150,9 @@ export default function AskBox({ onTarget }: Props) {
       <div className="card-head">
         <h2 id="ask-h">Ask PYRION</h2>
         <p className="muted small">
-          The language model translates your question and adds context. <strong>The engine decides</strong>: the verdicts are written by
-          code. The model&apos;s context is shown only if a code check binds every number, unit, id and verdict to the engine output.
+          The language model translates your question. <strong>The engine decides</strong>: the verdicts are written by code. The model may
+          add a short description of your target; a code check keeps only sentences that use the target&apos;s own numbers and words, and drops
+          anything else.
         </p>
       </div>
 
@@ -233,16 +234,10 @@ export default function AskBox({ onTarget }: Props) {
             <p className="small muted">Context unavailable: {r.narrateError}.</p>
           ) : r.narrationUnavailable ? (
             <p className="small muted">The model's context is unavailable right now. The verdicts above are unaffected.</p>
-          ) : r.failures.length > 0 ? (
-            <div className="small ask-withheld">
-              <strong>Context withheld: failed the consistency check.</strong> <span className="muted">Quoted model text below is not used.</span>
-              <ul>
-                {r.failures.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-            </div>
+          ) : r.dropped > 0 ? (
+            <p className="small muted">The model&apos;s description of the target was dropped by the code check ({r.dropped} sentence{r.dropped === 1 ? "" : "s"}). The verdicts above are unaffected.</p>
           ) : null}
+          {r.context && r.dropped > 0 && <p className="small muted">{r.dropped} further sentence{r.dropped === 1 ? "" : "s"} dropped by the code check.</p>}
           <p className="small muted ask-meta">
             Question read by <Who m={r.parseMeta} />. Context written by <Who m={r.narrateMeta} />, checked by code. Content check: {r.safety}.
             <br />

@@ -68,9 +68,11 @@ export default function MethodPage() {
           a worse match, it is not comparable, and no distance is defined across it.
         </p>
         <p>
-          <strong>Continuous axes</strong> (ambient O₂ mole fraction, pressure) are compared only inside what was measured.
-          The engine builds the convex hull of each investigation&apos;s test points; a target inside it is covered by
-          measurements, a target outside it would need extrapolation.
+          <strong>Continuous axes</strong> are compared only inside what was measured: ambient O₂ mole fraction and pressure, and,
+          where the extracted records carry them, burner O₂, flow velocity, sample thickness, initial droplet diameter and
+          ambient temperature. Only O₂ and pressure have a joint check: the engine builds the convex hull of each
+          investigation&apos;s (O₂, pressure) test points, and a target inside it is covered by measurements while a target outside it
+          would need extrapolation. The other axes are checked one at a time against their measured range.
         </p>
       </div>
 
@@ -130,8 +132,13 @@ export default function MethodPage() {
 
         <h2>What an LLM does here</h2>
         <p>
-          AI tools helped build this project; the repository README says where. No language model decides a verdict: the
-          engine is plain TypeScript rules over the extracted records.
+          No language model decides a verdict: the engine is plain TypeScript rules over the extracted records, and the verdict
+          lines on the page are written by code. When a model is configured, it does two small things in the question box: it
+          copies the quantities your question states (with their units) into a target, which code checks against your question and
+          the engine converts; and it may add a short description of that target. That description is kept only sentence by
+          sentence, and only where a code check finds nothing but the target&apos;s own numbers, units and words; anything else is dropped.
+          Without a key the page works the same, in structured mode. AI tools were also used to build the project; the repository
+          README has a section on the use of SI tools, and its full disclosure is still to be written.
         </p>
 
         <p>

@@ -72,7 +72,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
   const hasLimits = [...extras.values()].some((e) => e.interpretation_status === "verified" && (e.limit_type === "quench" || e.limit_type === "blowoff"));
   const g = STOPS[stop];
   const target: Target = useMemo(
-    () => (stop === 0 ? { regime: { gravity_regime: "microgravity" }, continuous: { gravity_level: 0 } } : withGravity({ regime: {}, continuous: {} }, g.id as "moon" | "mars" | "earth")),
+    () => (stop === 0 ? { regime: { gravity_regime: "microgravity" }, continuous: {} } : withGravity({ regime: {}, continuous: {} }, g.id as "moon" | "mars" | "earth")),
     [stop, g.id],
   );
   const stopTarget = stop > 0 ? GRAVITY_TARGETS[g.id as "moon" | "mars" | "earth"] : null;

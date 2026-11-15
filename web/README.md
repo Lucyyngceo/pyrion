@@ -80,10 +80,10 @@ model translates and narrates; **the engine decides**.
    "PYRION understood: …" with the conversions and the model's assumptions (short, free of banned phrases, no number the question lacks).
 2. The deterministic engine computes the verdicts. For the narration the client sends only the target; the server evaluates it on its
    own copy of the data and writes the verdict counts and one verdict line per investigation with code.
-3. The model adds context only (at most 60 words). `lib/narration-check.ts` requires every integer to match a fact exactly, each number
-   to carry the unit of that fact, every verdict word beside an id to be that id's verdict, every DOI to be the one paired with the id
-   in its sentence, and rejects investigations or names that are not in the output, spelled-out numbers and banned phrases. If the
-   check fails the context is withheld and the failures are listed.
+3. The model may add a short description of the target (at most 60 words). `lib/context-check.ts` is an allowlist: each sentence is
+   kept only if every word is in a closed lexicon (axis words, the target's own regime words), every number is a target value with the
+   unit of the quantity named beside it, and any axis called open is open in the target. Anything else is dropped sentence by sentence;
+   if nothing survives, nothing is shown. The model's text is never quoted back, and counts and verdicts are written by code.
 4. With several models configured, the same question can be re-run with another one. The SHA-256 of the engine's canonical output
    (computed by the server) is shown for each run; the same hash means the same verdict, different words.
 
@@ -91,7 +91,7 @@ Configure on the server only, in `web/.env.local` (git-ignored; names in `.env.e
 the requested model, the OpenRouter list (`OPENROUTER_*`), then the NVIDIA NIM list (`PYRION_LLM_*`). A request is retried once on
 429, 5xx or timeout, then the next model is tried. Every answer reports which model wrote it. Limits: 20 questions an hour per visitor, a per-visitor quota on the primary provider, and a daily cap on it
 (`PYRION_DAILY_REQUEST_CAP`, default 300, `0` means 0, persisted in `web/.data/`) send traffic to the fallback; past both the page stays in
-structured mode. Visitors are told apart only by `x-real-ip` from our own proxy (`PYRION_TRUST_PROXY=1`); visitors may choose only
+structured mode. Visitors are told apart only by `x-real-ip` from our own proxy, believed only with `PYRION_TRUST_PROXY=1` and the secret header (`PYRION_PROXY_SECRET`); visitors may choose only
 `PYRION_CLIENT_MODELS` (default: qwen3.8-27b and kimi-k2.6). Each step has a 25 s deadline. User questions are screened with a NIM safety model; if that model is down the question goes
 through. `GET /api/llm/health` shows which providers answer and the cap left, with no key in the output.
 
