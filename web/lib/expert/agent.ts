@@ -574,7 +574,7 @@ export async function runAgent(
       const parts = Object.entries(ev.counts.investigations).filter(([, v]) => v > 0).map(([k, v]) => `${verdictLabel(k as never)}: ${v}`);
       const total = Object.values(ev.counts.investigations).reduce((a, b) => a + b, 0);
       const lead = lang === "es" ? `El motor evalúa ${total} investigaciones en esta condición` : `The engine evaluates ${total} investigations at this condition`;
-      const block: KeptBlock = { layer: "engine", text: `${lead} (${cond.conversions.length ? `${cond.conversions.join("; ")}; ` : ""}verdict counts): ${parts.join("; ")}.`, label: ENGINE_LABEL, citations: [], provenance: [`computed by code (${ENGINE_NAME} ${ENGINE_VERSION}): evaluate() over the extracted records for this condition`], flagged: false };
+      const block: KeptBlock = { layer: "engine", text: plainify(`${lead} (verdict counts): ${parts.join("; ")}.`), label: ENGINE_LABEL, citations: [], provenance: [`computed by code (${ENGINE_NAME} ${ENGINE_VERSION}): evaluate() over the extracted records for this condition`], flagged: false };
       checked = { ...checked, kept: [block, ...checked.kept] };
     }
   }

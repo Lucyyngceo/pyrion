@@ -11,6 +11,7 @@ import { allModels, displayName } from "@/lib/llm/config";
 import { reviewSecondOpinion } from "@/lib/expert/skeptic";
 import { makeAskModel } from "@/lib/tars/ask-model";
 import { runWorkflow, workflowOf } from "@/lib/tars/workflows";
+import { codeAnswer } from "@/lib/tars/fallback";
 import type { BriefTurn } from "@/lib/expert/brief";
 
 export const dynamic = "force-dynamic";
@@ -18,6 +19,10 @@ export const dynamic = "force-dynamic";
 const STRUCTURED = "TARS needs a language model for open questions, and none is available right now. Ask about a condition with numbers (oxygen %, pressure with unit, gravity) or about the site, and TARS answers without one.";
 const DEADLINE_MS = Number(process.env.PYRION_AGENT_DEADLINE_MS) > 0 ? Number(process.env.PYRION_AGENT_DEADLINE_MS) : 90_000;
 const MAX_BODY = 16 * 1024;
+/** One model call gives up after this; the code fallback then answers within the request deadline. */
+const CALL_MS = Number(process.env.PYRION_MODEL_CALL_MS) > 0 ? Number(process.env.PYRION_MODEL_CALL_MS) : 25_000;
+/** The whole agent (all its rounds) gives up after this. */
+const AGENT_MS = Number(process.env.PYRION_AGENT_TOTAL_MS) > 0 ? Number(process.env.PYRION_AGENT_TOTAL_MS) : 60_000;
 
 const line = (o: unknown) => `${JSON.stringify(o)}\n`;
 
@@ -34,7 +39,6 @@ export async function POST(req: Request) {
   }
   const message = typeof body.message === "string" ? body.message.trim() : "";
   if (message === "" || message.length > 600) return Response.json({ error: "the message must be 1 to 600 characters" }, { status: 400 });
-  if (providers().length === 0) return Response.json({ error: STRUCTURED }, { status: 503 });
 
   const history: HistoryTurn[] = Array.isArray(body.history)
     ? body.history.flatMap((h) => {
@@ -51,13 +55,23 @@ export async function POST(req: Request) {
   const deadline = AbortSignal.any([req.signal, AbortSignal.timeout(DEADLINE_MS)]);
   const remaining = () => Math.max(1000, DEADLINE_MS - (Date.now() - started));
 
+  // When the content check or every model is unavailable, TARS still answers by code (engine, help topics, NASA passages): no model words are involved.
+  let screened = true;
   try {
     // The visitor's limit and the content check come first, exactly as for the Ask box.
     budget().visitor(visitor);
-    budget().recordSafety();
-    const safety = await checkContent(message, providers(), undefined, undefined, deadline);
-    if (safety.unresolved) return Response.json({ error: "The content check could not finish right now. Please try again in a moment, or pick a NASA condition — every verdict works without questions." }, { status: 503 });
-    if (safety.flagged) return Response.json({ error: "TARS cannot help with that question. Ask about combustion, fire safety in space, NASA documents or this site." }, { status: 422 });
+    if (providers().length === 0) screened = false;
+    else {
+      budget().recordSafety();
+      try {
+        const safety = await checkContent(message, providers(), undefined, undefined, AbortSignal.any([deadline, AbortSignal.timeout(15_000)]));
+        if (safety.unresolved) screened = false;
+        else if (safety.flagged) return Response.json({ error: "TARS cannot help with that question. Ask about combustion, fire safety in space, NASA documents or this site." }, { status: 422 });
+      } catch (e) {
+        if (e instanceof RateLimited) throw e;
+        screened = false;
+      }
+    }
   } catch (e) {
     if (e instanceof RateLimited) return Response.json({ error: e.message }, { status: 429 });
     return Response.json({ error: "the request failed" }, { status: 502 });
@@ -70,7 +84,7 @@ export async function POST(req: Request) {
       try {
         const [{ records, investigations }, topics, library] = await Promise.all([serverData(), helpTopics(), loadLibrary()]);
         let used: { model: string; name: string; provider: string; fellBackFrom: string | null } | null = null;
-        const result = await runAgent(
+        const agentRun = screened && providers().length > 0 ? runAgent(
           {
             records,
             investigations,
@@ -78,13 +92,27 @@ export async function POST(req: Request) {
             library,
             onStatus: (text) => send({ type: "status", text }),
             chat: async (messages, tools) => {
-              const c = await askLlm({ messages, tools, effort: "medium", maxTokens: 4000, maxTokensByProvider: { openrouter: 4000, nim: 4000 }, deadlineMs: remaining(), signal: req.signal }, visitor);
+              const c = await askLlm({ messages, tools, effort: "medium", maxTokens: 4000, maxTokensByProvider: { openrouter: 4000, nim: 4000 }, deadlineMs: Math.min(CALL_MS, remaining()), signal: req.signal }, visitor);
               used = { model: c.meta.model, name: displayName(c.meta.model), provider: c.meta.provider, fellBackFrom: c.meta.fell_back_from ? displayName(c.meta.fell_back_from) : null };
               return (c.json?.choices?.[0]?.message ?? { content: null }) as AssistantMsg;
             },
           },
           { message, history, lastTarget, ui },
-        );
+        ) : Promise.reject(new NoModelAvailable("none"));
+        let agentOut: Awaited<ReturnType<typeof runAgent>> | null = null;
+        try {
+          agentOut = await Promise.race([agentRun, new Promise<never>((_, rej) => setTimeout(() => rej(new Error("agent budget spent")), AGENT_MS))]);
+        } catch (e) {
+          if (e instanceof RateLimited) throw e;
+          agentOut = null;
+        }
+        if (!agentOut) {
+          // No model answered (timeout, no credit, a rate limit, none configured): answer by code, say so, never a dead end.
+          const code = await codeAnswer({ message, lastTarget, records, investigations, topics, library });
+          send({ type: "result", fallback: true, notice: code.notice, helpTopics: code.helpTopics, fingerprint: code.fingerprint ?? null, blocks: code.blocks, dropped: 0, droppedReasons: [], flagged: 0, actions: code.target ? [{ type: "show", target: code.target }] : [], target: code.target, engineCounts: code.engineCounts, lang: code.lang, steps: [], model: null });
+          return;
+        }
+        const result = agentOut;
         if (result.report.dropped.length || result.report.flaggedNumbers.length) console.warn("[pyrion] expert answer check:", JSON.stringify(result.report));
         // A typed workflow request ("Check this: …", "Make an evidence brief…", "Compare … with …", "second opinion") gives the same
         // result fields as the panel buttons, in this same final event.

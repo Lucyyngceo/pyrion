@@ -231,3 +231,23 @@ test("a Spanish what-if runs the hypothetical experiment by code, like its Engli
   const es = await runAgent({ ...s.env, chat: s.chat }, { message: "Si quemáramos PMMA al 30 % y 10,2 psia en gravedad lunar, ¿qué pasaría?" });
   assert.ok(es.steps.some((x) => x.tool === "what_if_experiment"), "what_if_experiment ran");
 });
+
+import { codeAnswer, FALLBACK_NOTICE, NASA_RETRIEVED_LABEL } from "../lib/tars/fallback.ts";
+
+test("never mute: a condition question is answered by code with the engine's blocks and no raw codes", async () => {
+  const r = await codeAnswer({ message: "34 % O2 at 8.2 psia on the Moon", lastTarget: null, records, investigations: [], topics, library: library as never });
+  assert.ok(r.blocks.length >= 2 && r.blocks.every((b) => b.layer === "engine"));
+  assert.ok(r.engineCounts && r.fingerprint);
+  assert.doesNotMatch(r.blocks.map((b) => b.text).join(" "), /\b[A-Z]{3,}_[A-Z]+\b|\bAPPLICABLE\b/);
+  assert.equal(r.notice, FALLBACK_NOTICE);
+});
+
+test("never mute: a NASA physics question gets verified quotations labelled as retrieved; a site question gets help topics", async () => {
+  const q = await codeAnswer({ message: "Why does FM2 burn fabric at four oxygen levels?", lastTarget: null, records, investigations: [], topics, library: library as never });
+  const nasa = q.blocks.filter((b) => b.layer === "nasa");
+  assert.ok(nasa.length >= 1);
+  assert.equal(nasa[0].label, NASA_RETRIEVED_LABEL);
+  assert.ok(PAGE.includes(nasa[0].citations[0].quote), "the quotation is on the page");
+  const h = await codeAnswer({ message: "How do I add a source?", lastTarget: null, records, investigations: [], topics, library: library as never });
+  assert.ok(h.helpTopics.length > 0 || h.blocks.length > 0);
+});

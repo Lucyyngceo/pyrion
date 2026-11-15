@@ -74,7 +74,7 @@ const LAYER = {
 } as const;
 
 export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> }) {
-  const { mode, showOnEnvelope } = useTars();
+  const { mode, showOnEnvelope, go } = useTars();
   const adv = resolveMode(mode, msg.route) === "advanced";
   const r: ExpertResult = msg.result;
   const L10n = labelsFor(r.lang as Lang | undefined);
@@ -85,13 +85,14 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           Hypothetical: not a measurement. The simulated test exists only in this answer and is never saved to the data.
         </p>
       )}
-      {r.blocks.length === 0 && <p className="muted">TARS had nothing it could stand behind for that question. Try asking it another way.</p>}
+      {r.notice && <p data-help="tars-fallback-notice" className="tars-label" role="note">{r.notice}</p>}
+      {r.blocks.length === 0 && !(r.helpTopics && r.helpTopics.length > 0) && <p className="muted">TARS had nothing it could stand behind for that question. Try asking it another way.</p>}
       {r.blocks.map((b, i) => {
         const L = LAYER[b.layer];
         return (
           <section key={i} data-help={L.help} className={`tars-layer ${L.cls}`}>
             <h4>
-              <span aria-hidden="true">{L.icon}</span> {L10n[b.layer]} <span className="tars-sub">{b.layer === "expert" ? L10n.expertSub : b.layer === "nasa" ? L10n.nasaSub : L10n.engineSub}</span>
+              <span aria-hidden="true">{L.icon}</span> {L10n[b.layer]} <span className="tars-sub">{b.layer === "nasa" && r.fallback ? b.label : b.layer === "expert" ? L10n.expertSub : b.layer === "nasa" ? L10n.nasaSub : L10n.engineSub}</span>
             </h4>
             <Md text={b.text} />
             {b.citations.map((c, ci) => (
@@ -108,6 +109,15 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           </section>
         );
       })}
+      {r.helpTopics?.map((h) => (
+        <section key={h.id} data-help="tars-fallback-help" className="tars-help">
+          <h4>{h.title}</h4>
+          <Md text={h.body} />
+          <button data-help="tars-take-me-there" type="button" className="tars-btn" onClick={() => go(h.link)}>
+            Take me there
+          </button>
+        </section>
+      ))}
       {(r.dropped > 0 || r.flagged > 0) && (
         <p className="small muted">
           Checked by code: {r.dropped > 0 ? `${r.dropped} statement${r.dropped === 1 ? "" : "s"} withheld (could not be verified)` : ""}

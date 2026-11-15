@@ -26,6 +26,10 @@ export interface SkepticView {
 }
 
 export interface ExpertResult {
+  /** True when no model answered and the answer comes from code alone (engine, help topics, NASA passages). */
+  fallback?: boolean;
+  notice?: string;
+  helpTopics?: { id: string; title: string; body: string; link: string }[];
   /** Results of a typed workflow request ("Check this: …", "Make an evidence brief…", "Compare … with …"). */
   claimCheck?: import("@/lib/expert/claim").ClaimCheck;
   brief?: import("@/lib/expert/brief").Brief;
