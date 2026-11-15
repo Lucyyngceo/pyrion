@@ -17,8 +17,8 @@ const VENT = String.raw`(?:forced[\s-]+)?(?:ventilation|air[\s-]?flow|forced[\s-
 const VENT_ES = String.raw`(?:la\s+)?(?:ventilaci[oó]n|flujo\s+de\s+aire|corriente\s+de\s+aire|ventiladores?)(?:\s+forzad[oa])?`;
 const OXY = String.raw`(?:oxygen|o2|o₂|oxidi[sz]er|ox[ií]geno)`;
 const PATH_NOUN = String.raw`(?:way|means|mechanism|source|supply|path|pathway|route|transport|process)`;
-const CERTAIN = String.raw`(?:always|necessarily|inevitably|automatically|certainly|guarantees?|ensures?|will(?:\s+always)?|is\s+(?:enough|sufficient)\s+to)`; // lang-ok: these words are detected in model output, not claimed
-const KILL = String.raw`(?:extinguish(?:es|ed)?|put(?:s|ting)?\s+(?:it\s+|the\s+(?:fire|flame)\s+)?out|kills?|smothers?|snuffs?|starves?|stops?)`;
+const CERTAIN = String.raw`(?:always|necessarily|inevitably|automatically|certainly|guarantees?|ensures?|will\s+(?:always|necessarily|inevitably|certainly)|is\s+(?:enough|sufficient)\s+to)`; // lang-ok: these words are detected in model output, not claimed
+const KILL = String.raw`(?:extinguish(?:es|ed)?|put(?:s|ting)?\s+(?:it\s+|the\s+(?:fire|flame)\s+)?out|kills?|smothers?|snuffs?|stops?\s+(?:the\s+)?(?:fire|flame|burning|combustion))`;
 const STOP_VENT = String.raw`(?:turn(?:s|ed|ing)?\s+off|switch(?:es|ed|ing)?\s+off|shut(?:s|ting)?\s+(?:off|down)|stop(?:s|ped|ping)?|cut(?:s|ting)?|remov(?:e|es|ed|ing)|(?:shutdown|loss|removal|absence)\s+of)\s+(?:the\s+)?${VENT}`;
 
 const A: RegExp[] = [
@@ -53,6 +53,8 @@ const B: RegExp[] = [
 
 // A sentence that negates, hedges or refutes the claim is a correct statement, not the misconception.
 const NEGATED = /\b(?:not|never|n['’]t)\b[^.;!?]{0,20}\b(?:necessarily|always|the\s+only|only|sole|guarantee[sd]?|enough|sufficient)\b|\bno\s+(?:es\s+)?(?:necesariamente|siempre|la\s+[uú]nica|el\s+[uú]nico|basta)\b|\bnunca\b/i; // lang-ok: these words are detected in model output, not claimed
+// A hedged statement about switching ventilation off ("may", "often", "helps") is not the categorical misconception.
+const HEDGED = /\b(?:may|might|can|could|often|usually|sometimes|tends?\s+to|likely|helps?|reduces?|slows?|puede|podr[ií]a|suele|ayuda|reduce)\b/i;
 const REFUTED = /\b(?:misconception|myth|common\s+mistake|wrong(?:ly)?|incorrect(?:ly)?|is\s+false|not\s+true|mito|err[oó]ne[oa]|equivocad[oa]|falso)\b/i;
 
 /** Sentences of a text (split on . ! ? ; and line breaks, keeping decimals like 8.2 together). */
@@ -65,7 +67,7 @@ export function transportMisconception(text: string): { kind: Misconception; sen
   for (const s of sentences(text)) {
     if (NEGATED.test(s) || REFUTED.test(s)) continue;
     if (A.some((re) => re.test(s))) return { kind: "ventilation_only_oxygen_path", sentence: s };
-    if (B.some((re) => re.test(s))) return { kind: "ventilation_off_always_extinguishes", sentence: s };
+    if (!HEDGED.test(s) && B.some((re) => re.test(s))) return { kind: "ventilation_off_always_extinguishes", sentence: s };
   }
   return null;
 }
