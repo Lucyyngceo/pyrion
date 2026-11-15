@@ -85,3 +85,13 @@ Node: `web/README.md` asks for 20.9 or newer; the public instance runs Node 24.
 ## Availability
 
 The link must stay up until the Space Apps winners are announced (January 26, 2027). The process runs under a supervisor that restarts it on failure, and an external check alerts if `GET /api/llm/health` stops answering.
+
+## Security headers
+
+The app sends its own security headers on every response (`web/next.config.ts`, `headers()`): Content-Security-Policy with
+`frame-ancestors 'none'`, Strict-Transport-Security, `X-Content-Type-Options: nosniff`, Referrer-Policy, X-Frame-Options and
+Permissions-Policy. nginx should not duplicate them. In the `http {}` block of nginx, also set:
+
+```nginx
+server_tokens off;   # do not reveal the nginx version in headers and error pages
+```
