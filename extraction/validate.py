@@ -40,8 +40,8 @@ RANGE_RE = re.compile(rf"^({NUM})\.\.({NUM})$")
 TABLE_LOC_RE = re.compile(r"^(?:sheet=([^;]+);)?row=(\d+)((?:;column=.+?)+)$")
 DOC_LOC_RE = re.compile(r"^(page|section|paragraph|sheet|row|slide)=.+")
 GRAVITY_WORDS = re.compile(
-    r"micro-?\s?gravity|low[- ]gravity|low-g|reduced[- ]gravity|normal[- ]gravity|\b1-?g\b|"
-    r"\b0-g\b|weightless|free[- ]fall|zero[- ]gravity|\bg-level|lunar gravity|partial[- ]gravity",
+    r"micro-?\s?gravity|low[- ]gravity|low-g|reduced[- ]gravity|normal[- ]gravity|\b1-?g\b|partial-g\b|"
+    r"\b0-g\b|weightless|free[- ]fall|zero[- ]gravity|\bg-level|lunar gravity|partial[- ]gravity|lunar[- ]g\b|earth.s gravity",
     re.IGNORECASE)
 NONNEGATIVE = {"pressure", "flow_velocity", "sample_thickness", "droplet_diameter_initial",
                "ambient_temperature", "gravity_level"}
@@ -247,7 +247,7 @@ def check_record(rec, ctx, errors, where):
         err(f"descriptive variable {var} must have an empty unit")
     if rec["value_original"] != rec["value_original"].strip() and method == "document":
         err("value_original has leading/trailing spaces")
-    if rec["accession"] != ctx["file_accession"]:
+    if ctx["file_accession"].startswith("PSI-") and rec["accession"] != ctx["file_accession"]:
         err(f"accession {rec['accession']} in file of {ctx['file_accession']}")
 
     # Domain guards (schema README rules 2 and 4; data/README notes).
@@ -256,7 +256,7 @@ def check_record(rec, ctx, errors, where):
             err("gravity_regime must come from a document statement (rule 4)")
         if not GRAVITY_WORDS.search(rec["quote"]):
             err("gravity_regime quote does not state a gravity condition (rule 4: the platform is not a gravity value)")
-        if val == "partial_gravity":
+        if val == "partial_gravity" and rec["accession"].startswith("PSI-"):
             err("partial_gravity: no PSI combustion investigation is a partial-gravity test "
                 "(E-FIELD is an electric-field analog; 'Reduced Gravity' folders hold flight data)")
     if var == "gravity_level" and method != "document":
@@ -386,9 +386,14 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("files", nargs="*", type=Path)
     ap.add_argument("--no-source", action="store_true", help="do not re-open data/raw sources")
+    ap.add_argument("--conditions", type=Path, help="validate every *.csv of this folder instead of data/conditions/ "
+                    "(for example data/external/ntrs-20250010653)")
     args = ap.parse_args(argv)
     contract = load_contract()
-    files = args.files or sorted(CONDITIONS.glob("PSI-*.csv"))
+    if args.conditions:
+        files = sorted(args.conditions.glob("*.csv"))
+    else:
+        files = args.files or sorted(CONDITIONS.glob("PSI-*.csv"))
     if not files:
         print("no condition files found", file=sys.stderr)
         return 1

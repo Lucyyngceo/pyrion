@@ -1,0 +1,321 @@
+{
+ "accession": "NTRS-20250010653",
+ "verified_by": "verificador agent (Claude Opus 5.5)",
+ "date": "2026-11-14",
+ "transcription": "Verdicts copied from the verificador's final message (afbfd9ccfe18baad0); reasons condensed by the build session. Build-session changes after an independent audit are listed in build_session_corrections and are already applied in the extractor file (draft kept as external-ntrs-20250010653.extractor.draft1.json).",
+ "verdicts": [
+  {
+   "id": "R1",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R2",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R3",
+   "verdict": "REJECT",
+   "reason": "The only verbatim quote carries the promotional word 'first-ever'; gravity of this test is already stated by R2/R4 (page 16) and R1/R5, so the record is dropped (independent audit: never repeat it)."
+  },
+  {
+   "id": "R4",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R5",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R6",
+   "verdict": "REJECT",
+   "reason": "The only verbatim quote carries the promotional word 'first-ever'; gravity of this test is already stated by R2/R4 (page 16) and R1/R5, so the record is dropped (independent audit: never repeat it)."
+  },
+  {
+   "id": "R7",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R8",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R9",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R10",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R11",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R12",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R13",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R14",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R15",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R16",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R17",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R18",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R19",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R20",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R21",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R22",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R23",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R24",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R25",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R26",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R27",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R28",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R29",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R30",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R31",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R32",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R33",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R34",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R35",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R36",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R37",
+   "verdict": "REJECT",
+   "reason": "Quote does not say 'tip' or spread kind; the same value is carried by R38 (page 36, which states it)."
+  },
+  {
+   "id": "R38",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R39",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R40",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R41",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R42",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R43",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  },
+  {
+   "id": "R44",
+   "verdict": "MODIFY",
+   "reason": "Extinction timing vs gravity decrease not stated; confidence lowered.",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R45",
+   "verdict": "KEEP",
+   "reason": "Quote verbatim at the stated page; checked by the verificador."
+  }
+ ],
+ "build_session_corrections": [
+  {
+   "id": "R27",
+   "variable": "outcome:o2_during_burn",
+   "note": "Backup slide titled 'LUCI: SIBAL fabric'. Both ends approximate ('~'). Chamber O2 that falls during the burn, not a constant ambient value. Page 12 describes one chamber measurement for both samples ('Two samples are burned simultaneously'; 'The oxygen concentration in the chamber is measured.'), yet page 22 (PMMA) reports 20% to 14.3%: the two slides presumably cover different time windows, which the deck does not state. | Chamber O2 measured during the burn (an outcome of the closed chamber), NOT an ambient test condition; recorded as outcome only, never as o2_mole_fraction (independent audit, 2026-11-14)."
+  },
+  {
+   "id": "R28",
+   "variable": "outcome:o2_during_burn",
+   "note": "Slide titled 'LUCI: PMMA'. O2 falls during the burn; not a constant. Next bullet: 'O2% rises back to 15.8% likely due to the decrease in gravity (and thus buoyant flow) which occurred at 125s.' (see not_found outcome:o2_mole_fraction_after_test). | Chamber O2 measured during the burn (an outcome of the closed chamber), NOT an ambient test condition; recorded as outcome only, never as o2_mole_fraction (independent audit, 2026-11-14)."
+  },
+  {
+   "id": "R29",
+   "variable": "outcome:o2_during_burn",
+   "note": "Slide titled '1-G Results: SIBAL'. Approximate ('roughly', 'varies slightly'). | Chamber O2 measured during the burn (an outcome of the closed chamber), NOT an ambient test condition; recorded as outcome only, never as o2_mole_fraction (independent audit, 2026-11-14)."
+  },
+  {
+   "id": "R30",
+   "variable": "outcome:o2_during_burn",
+   "note": "Attribution to the 1-g test is by slide position only: the text layer of page 31 reads 'Results: PMMA' without '1-G' (pages 28-30 read '1-G Results: PMMA'); the page image could not be rendered to confirm. 21% is not the starting value (O2 'rises quickly in the beginning' first). | Chamber O2 measured during the burn (an outcome of the closed chamber), NOT an ambient test condition; recorded as outcome only, never as o2_mole_fraction (independent audit, 2026-11-14)."
+  },
+  {
+   "id": "R30",
+   "confidence": "ambiguous"
+  },
+  {
+   "id": "R31",
+   "variable": "outcome:flame_spread_rate_base"
+  },
+  {
+   "id": "R33",
+   "variable": "outcome:flame_spread_rate_base"
+  },
+  {
+   "id": "R35",
+   "variable": "outcome:flame_spread_rate_base"
+  },
+  {
+   "id": "R39",
+   "variable": "outcome:flame_spread_rate_base"
+  },
+  {
+   "id": "R32",
+   "variable": "outcome:flame_spread_rate_tip"
+  },
+  {
+   "id": "R34",
+   "variable": "outcome:flame_spread_rate_tip"
+  },
+  {
+   "id": "R36",
+   "variable": "outcome:flame_spread_rate_tip"
+  },
+  {
+   "id": "R38",
+   "variable": "outcome:flame_spread_rate_tip"
+  },
+  {
+   "id": "R41",
+   "variable": "outcome:flame_spread_rate_tip"
+  },
+  {
+   "id": "R40",
+   "variable": "outcome:flame_tip_growth_rate"
+  },
+  {
+   "id": "R44",
+   "confidence": "ambiguous"
+  },
+  {
+   "id": "R17",
+   "value": "Fabric 5 cm wide x 30 cm long"
+  },
+  {
+   "id": "R9",
+   "value": "Blue Origin New Shepard sounding rocket, rotating vehicle (simulated partial gravity by centrifugal acceleration)"
+  },
+  {
+   "id": "R10",
+   "value": "Blue Origin New Shepard sounding rocket, rotating vehicle (simulated partial gravity by centrifugal acceleration)"
+  }
+ ],
+ "missed": "See verificador's final message; not ingested: rotation 11 RPM / radius 1.22 m (no schema variable), burn-time lower bounds, spread directions, sample orientation, Coriolis, ignition, chamber size, flight date.",
+ "could_not_check": "No slide image was seen by the verificador; the build session checked slides 31, 33, 36 visually. Plots not read. Page 12 gravity-history conflict (pages 22/43 vs 44) unresolved.",
+ "review_level": "segregated internal check by a language model; not expert or NASA review"
+}

@@ -83,7 +83,9 @@ class Report:
 
 def load_records(folder=None):
     records = []
-    for f in sorted((folder or CONDITIONS).glob("PSI-*.csv")):
+    # default: data/conditions/PSI-*.csv; an explicit folder (self-test, external sources) is read whole
+    files = sorted(folder.glob("*.csv")) if folder else sorted(CONDITIONS.glob("PSI-*.csv"))
+    for f in files:
         with open(f, encoding="utf-8", newline="") as fh:
             for i, r in enumerate(csv.DictReader(fh), start=2):
                 rel = f.relative_to(ROOT).as_posix() if f.is_relative_to(ROOT) else f.name
