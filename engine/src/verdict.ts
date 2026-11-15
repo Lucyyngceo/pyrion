@@ -10,6 +10,7 @@ import {
   type Cluster,
   type TestEvidence,
 } from './evidence.ts';
+import { axisLabel, valueLabel } from './labels.ts';
 import { convexHull, distanceToHull, hullContains, hullNearBox, type Vec2 } from './geometry.ts';
 import {
   AXIS_UNITS,
@@ -21,6 +22,7 @@ import {
   REGIME_AXES,
   REGIME_VALUES,
   type AxisCheck,
+  type Blocker,
   type AxisScale,
   type Citation,
   type ClusterVerdict,
@@ -85,6 +87,54 @@ export function canonicalTarget(target: Target): Target {
   for (const a of CONTINUOUS_AXES) if (target.continuous[a] !== undefined) continuous[a] = target.continuous[a];
   const out: Target = { regime, continuous };
   if (target.informational) out.informational = { ...target.informational };
+  return out;
+}
+
+/** The fixed-code reasons behind a non-comparable investigation, from the reasons of its deciding cluster. */
+function blockersOf(accession: string, best: ClusterVerdict, all: ClusterVerdict[], target: Target): Blocker[] {
+  const out: Blocker[] = [];
+  const testedIn = (axis: string): string[] => [...new Set(all.flatMap((c) => c.regime.filter((s) => s.axis === axis && s.state === 'known').map((s) => s.values[0])))].sort();
+  for (const r of best.reasons) {
+    if (r.informational) continue;
+    const axis = r.axis;
+    const label = axis ? axisLabel(axis) : '';
+    if (r.code === 'regime_barrier' && axis) {
+      const tested = testedIn(axis);
+      const want = (target.regime as Record<string, string | undefined>)[axis];
+      out.push({
+        code: 'REGIME_NOT_TESTED',
+        axis,
+        testedValues: tested,
+        sentence: `${accession} was tested only in ${tested.map(valueLabel).join(' and ')}, not in ${want ? valueLabel(want) : 'the regime you set'} (${label}).`,
+        ...(tested.length > 0
+          ? { action: { kind: 'switch_regime' as const, axis, to: tested[0], sentence: `Switch ${label} to ${valueLabel(tested[0])}: another regime, not a small step.` } }
+          : {}),
+      });
+    } else if ((r.code === 'regime_missing' || r.code === 'axis_missing') && axis) {
+      const unusable = r.citations.length > 0;
+      out.push({
+        code: unusable ? 'NO_USABLE_VALUE' : 'AXIS_NOT_RECORDED',
+        axis,
+        sentence: unusable
+          ? `${accession} has records for ${label}, but none can be used as evidence (flagged as insufficient, or not verified).`
+          : `${accession} did not record ${label}.`,
+        action: { kind: 'leave_open', axis, sentence: `Leave ${label} open.` },
+      });
+    } else if (r.code === 'regime_conflicting' && axis) {
+      const vals = best.regime.find((s) => s.axis === axis)?.values ?? [];
+      out.push({
+        code: 'RECORDS_DISAGREE',
+        axis,
+        testedValues: vals,
+        sentence: `The records of ${accession} disagree on ${label} (${vals.map(valueLabel).join(' / ')}).`,
+        action: { kind: 'leave_open', axis, sentence: `Leave ${label} open.` },
+      });
+    } else if (r.code === 'axis_missing') {
+      out.push({ code: 'AXES_NOT_RECORDED_TOGETHER', axis: null, sentence: `No single test of ${accession} records all the axes you set together.` });
+    } else if (r.code === 'unpaired_values') {
+      out.push({ code: 'VALUES_NOT_PAIRED', axis: null, sentence: `${accession} lists several oxygen and pressure values without saying which go together.` });
+    }
+  }
   return out;
 }
 
@@ -337,9 +387,9 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
   let distance: number | null = null;
   let distanceNote: string;
   if (verdict === 'REGIME_BARRIER') {
-    distanceNote = 'undefined: the target is across a regime barrier from this evidence';
+    distanceNote = 'not defined: the target is across a regime barrier from this evidence';
   } else if (verdict === 'INSUFFICIENT_EVIDENCE') {
-    distanceNote = 'undefined: insufficient evidence to place the target';
+    distanceNote = 'not defined: insufficient evidence to place the target';
   } else if (axes.length === 0) {
     distance = 0;
     distanceNote = 'the target states no continuous axis';
@@ -359,7 +409,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
       }
     }
     if (best === null) {
-      distanceNote = 'undefined: no test pairs its values on these axes unambiguously';
+      distanceNote = 'not defined: no test pairs its values on these axes unambiguously';
     } else {
       distance = best.d;
       distanceNote = `normalized Euclidean distance to the nearest measured point (test ${best.test.test_id})`;
@@ -457,6 +507,7 @@ export function evaluate(records: readonly ConditionRecord[], target: Target, op
     investigations.push({
       accession,
       verdict: best.verdict,
+      ...(best.verdict === 'INSUFFICIENT_EVIDENCE' || best.verdict === 'REGIME_BARRIER' ? { blockers: blockersOf(accession, best, mine, tgt) } : {}),
       decidingCluster: best.clusterKey,
       clusters: mine.map((v) => ({ clusterKey: v.clusterKey, verdict: v.verdict })),
     });

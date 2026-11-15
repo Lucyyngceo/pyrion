@@ -218,7 +218,7 @@ export interface ClusterVerdict {
   rank: number | null;
   /**
    * Normalized distance from the target to the nearest measured point.
-   * null means undefined: across a regime barrier, or when the evidence is insufficient.
+   * null means not defined: across a regime barrier, or when the evidence is insufficient.
    */
   distance: number | null;
   distanceNote: string;
@@ -231,9 +231,31 @@ export interface ClusterVerdict {
   reasons: Reason[];
 }
 
+export type BlockerCode =
+  | 'AXIS_NOT_RECORDED'
+  | 'NO_USABLE_VALUE'
+  | 'REGIME_NOT_TESTED'
+  | 'RECORDS_DISAGREE'
+  | 'AXES_NOT_RECORDED_TOGETHER'
+  | 'VALUES_NOT_PAIRED';
+
+/** Why an investigation is INSUFFICIENT_EVIDENCE or REGIME_BARRIER, in a fixed code plus a plain sentence. */
+export interface Blocker {
+  code: BlockerCode;
+  /** The axis concerned, or null when it concerns several. */
+  axis: string | null;
+  /** REGIME_NOT_TESTED: the values of that axis the investigation was tested in. RECORDS_DISAGREE: the values recorded. */
+  testedValues?: string[];
+  sentence: string;
+  /** What NAVIGATOR (routesToEvidence) would do about it, when something can be done. */
+  action?: { kind: 'leave_open' | 'switch_regime'; axis: string; to?: string; sentence: string };
+}
+
 export interface InvestigationVerdict {
   accession: string;
   verdict: Verdict;
+  /** Present for INSUFFICIENT_EVIDENCE and REGIME_BARRIER: the reasons of the deciding cluster. */
+  blockers?: Blocker[];
   /** Cluster that gives the investigation verdict (see README, "One verdict per investigation"). */
   decidingCluster: string;
   clusters: { clusterKey: string; verdict: Verdict }[];
