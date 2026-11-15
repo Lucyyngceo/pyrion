@@ -180,63 +180,28 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
       switched = true;
     }
   }
+  if (changes.some((c) => c.kind === 'switch_regime' && c.axis === 'gravity_regime') && T.regime.gravity_regime !== 'partial_gravity' && T.informational) {
+    // No stale "0.16 g" after a switch to microgravity or normal gravity.
+    delete T.informational.gravity_level;
+  }
   if (switched && T.informational) {
     delete T.informational.gravity_not_covered;
     if (Object.keys(T.informational).length === 0) delete T.informational;
   }
 
-  // ---- continuous axes the investigation does not record at all ----
+  // ---- continuous axes: never left open. What you set is what is compared. ----
+  // An investigation that did not record a stated axis, or never recorded the stated axes together,
+  // cannot be compared at those values: it is unreachable, not a route that drops the axis.
   const statedAll = CONTINUOUS_AXES.filter((a) => T.continuous[a] !== undefined);
   for (const a of statedAll) {
     if (!cluster.tests.some((t) => t.continuous[a].values.length > 0)) {
-      changes.push({
-        kind: 'leave_open',
-        axis: a,
-        from: T.continuous[a],
-        sentence: `Leave ${axisLabel(a)} open: ${acc} did not record it.`,
-        citations: [],
-      });
-      delete T.continuous[a];
+      return { route: null, why: `${acc} did not record ${axisLabel(a)}, so it cannot be compared at your ${axisLabel(a)}.` };
     }
   }
-  let stated = CONTINUOUS_AXES.filter((a) => T.continuous[a] !== undefined);
-  if (statedAll.length > 0 && stated.length === 0) {
-    return { route: null, why: `${acc} records none of the axes you set (${statedAll.map(axisLabel).join(', ')}).` };
-  }
-
-  // ---- no test records all remaining axes together: open the fewest axes that make some test complete ----
+  const stated = statedAll;
   const completeFor = (axes: readonly ContinuousAxis[]) => cluster.tests.filter((t) => axes.every((a) => t.continuous[a].values.length > 0));
   if (stated.length > 0 && completeFor(stated).length === 0) {
-    let found: ContinuousAxis[] | null = null;
-    outer: for (let k = 1; k < stated.length; k += 1) {
-      const combos: ContinuousAxis[][] = [];
-      const rec = (start: number, cur: ContinuousAxis[]) => {
-        if (cur.length === k) {
-          combos.push([...cur]);
-          return;
-        }
-        for (let i = start; i < stated.length; i += 1) rec(i + 1, [...cur, stated[i]]);
-      };
-      rec(0, []);
-      for (const drop of combos) {
-        if (completeFor(stated.filter((a) => !drop.includes(a))).length > 0) {
-          found = drop;
-          break outer;
-        }
-      }
-    }
-    if (!found) return { route: null, why: `No single test of ${acc} records the axes you set together.` };
-    for (const a of found) {
-      changes.push({
-        kind: 'leave_open',
-        axis: a,
-        from: T.continuous[a],
-        sentence: `Leave ${axisLabel(a)} open: no test of ${acc} records it together with the other axes you set.`,
-        citations: [],
-      });
-      delete T.continuous[a];
-    }
-    stated = CONTINUOUS_AXES.filter((a) => T.continuous[a] !== undefined);
+    return { route: null, why: `No single test of ${acc} records ${stated.map(axisLabel).join(' and ')} together, so it cannot be compared at the values you set.` };
   }
 
   // ---- moves: to the nearest tested point ----

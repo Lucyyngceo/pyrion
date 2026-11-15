@@ -124,7 +124,8 @@ function blockersOf(accession: string, best: ClusterVerdict, all: ClusterVerdict
         sentence: unusable
           ? `${accession} has records for ${label}, but none can be used as evidence (flagged as insufficient in the extraction).`
           : `${accession} did not record ${label}.`,
-        ...(axis === 'gravity_regime' ? {} : { action: { kind: 'leave_open' as const, axis, sentence: `Leave ${label} open.` } }),
+        // Only regime axes other than gravity can be left open; a stated continuous axis never can.
+        ...(!(REGIME_AXES as readonly string[]).includes(axis) || axis === 'gravity_regime' ? {} : { action: { kind: 'leave_open' as const, axis, sentence: `Leave ${label} open.` } }),
       });
     } else if (r.code === 'regime_conflicting' && axis) {
       const vals = best.regime.find((s) => s.axis === axis)?.values ?? [];

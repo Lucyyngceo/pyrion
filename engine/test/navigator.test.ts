@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
 import {
+  CONTINUOUS_AXES,
   PRESETS,
   REGIME_VALUES,
   canonicalJson,
@@ -186,6 +187,16 @@ function checkInvariant(label: string, recs: readonly ConditionRecord[], t: Targ
     assert.equal(verdictOf(recs, route.target, route.accession), 'APPLICABLE', `${label}: route of ${route.accession} (${route.kind}): ${route.sentence}`);
     assert.ok(route.changeCount >= 1 && route.changes.length === route.changeCount);
     assert.ok(!/undefined|NaN/.test(route.sentence), `${label}: sentence text`);
+    // A stated continuous axis is never removed; every route target keeps all of them.
+    assert.ok(!route.changes.some((c) => c.kind === 'leave_open' && (CONTINUOUS_AXES as readonly string[]).includes(c.axis)), `${label}: ${route.accession} leaves a continuous axis open`);
+    for (const a of Object.keys(t.continuous)) {
+      if (a === 'gravity_level') continue;
+      assert.ok(route.target.continuous[a as keyof Target['continuous']] !== undefined, `${label}: ${route.accession} dropped ${a}`);
+    }
+    // After a gravity switch to microgravity or normal gravity there is no stale gravity level.
+    if (route.changes.some((c) => c.kind === 'switch_regime' && c.axis === 'gravity_regime') && route.target.regime.gravity_regime !== 'partial_gravity') {
+      assert.equal(route.target.informational?.gravity_level, undefined, `${label}: stale gravity level after the switch`);
+    }
     // Gravity regime is never left open; no change is a no-op within the measurement tolerance.
     assert.ok(!route.changes.some((c) => c.kind === 'leave_open' && c.axis === 'gravity_regime'), `${label}: ${route.accession} leaves gravity open`);
     for (const c of route.changes) {
@@ -263,5 +274,49 @@ describe('routes: gravity is never left open; no-op moves are dropped', () => {
     const noGravity = r.unreachable.filter((u) => /do not state its gravity regime/.test(u.reason)).map((u) => u.accession);
     console.log(`investigations with no usable gravity_regime record: ${noGravity.join(', ') || 'none'}`);
     assert.ok(!r.routes.some((x) => noGravity.includes(x.accession)));
+  });
+});
+
+describe('routes never drop an axis the target states', () => {
+  const H = 'accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note';
+  const r3 = (acc: string, test: string, variable: string, value: string, unit = '') =>
+    `${acc},${test},${variable},${value},${unit},${value},${unit},table,SYNTHETIC/${acc}.csv,row=0,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC - not NASA data`;
+  const recs = parseConditionCsv(
+    [
+      H,
+      // PSI-9601: oxygen recorded, pressure NOT recorded.
+      r3('PSI-9601', '*', 'gravity_regime', 'microgravity'), r3('PSI-9601', 'T1', 'o2_mole_fraction', '0.21', '1'),
+      // PSI-9602: oxygen in one test, pressure in another (never together).
+      r3('PSI-9602', '*', 'gravity_regime', 'microgravity'), r3('PSI-9602', 'T1', 'o2_mole_fraction', '0.21', '1'), r3('PSI-9602', 'T2', 'pressure', '101.325', 'kPa'),
+      // PSI-9603: partial gravity, complete.
+      r3('PSI-9603', '*', 'gravity_regime', 'partial_gravity'), r3('PSI-9603', 'T1', 'o2_mole_fraction', '0.21', '1'), r3('PSI-9603', 'T1', 'pressure', '101.325', 'kPa'),
+    ].join('\n'),
+    's.csv',
+  ).records;
+
+  it('an investigation that did not record a stated axis is unreachable, with a plain reason, never a leave-open route', () => {
+    const r = routesToEvidence(recs, target({ gravity_regime: 'microgravity' }, 0.21, 101.325));
+    assert.ok(!r.routes.some((x) => x.accession === 'PSI-9601'));
+    assert.equal(r.unreachable.find((u) => u.accession === 'PSI-9601')?.reason, 'PSI-9601 did not record pressure, so it cannot be compared at your pressure.');
+  });
+  it('axes recorded only in different tests are unreachable, not "leave one open"', () => {
+    const r = routesToEvidence(recs, target({ gravity_regime: 'microgravity' }, 0.21, 101.325));
+    assert.ok(!r.routes.some((x) => x.accession === 'PSI-9602'));
+    assert.match(r.unreachable.find((u) => u.accession === 'PSI-9602')?.reason ?? '', /No single test of PSI-9602 records oxygen and pressure together, so it cannot be compared at the values you set\./);
+  });
+  it('after a gravity switch to microgravity the stale lunar gravity level is gone; a switch to partial gravity keeps it', () => {
+    const lunar: Target = { regime: { gravity_regime: 'partial_gravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 }, informational: { gravity_level: 0.165 } };
+    const r = routesToEvidence(recs, lunar);
+    assert.equal(r.routes.length, 0, 'PSI-9601/9602 unreachable, PSI-9603 already applicable');
+    const earthish: Target = { regime: { gravity_regime: 'normal_gravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 }, informational: { gravity_level: 1 } };
+    const r2 = routesToEvidence(recs, earthish);
+    const sw = r2.routes.find((x) => x.accession === 'PSI-9603') as Route;
+    assert.equal(sw.target.regime.gravity_regime, 'partial_gravity');
+    assert.equal(sw.target.informational?.gravity_level, 1, 'switching to partial gravity does not clear the level (the level is still the user\'s)');
+    const toMicro = routesToEvidence(synthetic(), { regime: { gravity_regime: 'partial_gravity', fuel_phase: 'solid', diluent: 'N2' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 }, informational: { gravity_level: 0.165 } });
+    const m = toMicro.routes.find((x) => x.changes.some((c) => c.kind === 'switch_regime' && c.axis === 'gravity_regime'));
+    assert.ok(m, 'a switch to microgravity exists');
+    assert.equal(m.target.regime.gravity_regime, 'microgravity');
+    assert.equal(m.target.informational?.gravity_level, undefined);
   });
 });

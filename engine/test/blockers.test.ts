@@ -77,7 +77,8 @@ describe('blockers: fixed codes, plain sentence, action', () => {
     const b = blockersOf(evaluate(recs, t), 'PSI-9405');
     assert.equal(b[0].code, 'AXIS_NOT_RECORDED');
     assert.equal(b[0].axis, 'flow_velocity');
-    assert.equal(b[0].action?.sentence, 'Leave flow velocity open.');
+    assert.equal(b[0].action, undefined, 'a stated continuous axis is never offered as "leave open"');
+    assert.equal(b[0].sentence, 'PSI-9405 did not record flow velocity.');
   });
   it('axes recorded in different tests only: AXES_NOT_RECORDED_TOGETHER', () => {
     const b = blockersOf(evaluate(recs, solid), 'PSI-9406');
