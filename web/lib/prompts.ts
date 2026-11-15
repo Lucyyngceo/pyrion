@@ -1,7 +1,7 @@
 // Every prompt PYRION sends to a language model, in one plain file. Versioned: change the version when a prompt changes.
 // The model translates and narrates. It never decides: verdicts come from the deterministic engine.
 
-export const PROMPT_VERSION = "2026-11-14.6";
+export const PROMPT_VERSION = "2026-11-14.7";
 
 /** Step A: question -> quantities as written. The reply must be JSON only. The engine converts units, never the model. */
 export const PARSE_SYSTEM = `You copy the conditions stated in a question into a JSON object for a rule-based engine.
@@ -22,6 +22,7 @@ Reply with JSON only, no prose, no code fences. Use exactly this shape; every va
 }
 
 Rules:
+- The question may be in any language (for example Spanish). Copy every quantity and every gravity word exactly as written ("8,2 psia", "34 %", "Luna", "microgravedad"). Never translate, never convert, never change a decimal comma.
 - Write each quantity WITH its unit exactly as the question wrote it: "8.2 psia", "34 %", "101.3 kPa", "0.165 g", "lunar", "Moon", "22 C". Never convert a unit and never compute a number: the engine converts.
 - Use null for anything the question does not state. Do not guess a value to fill a gap.
 - An oxygen partial pressure ("partial pressure of 21 kPa", "ppO2", "21 kPa O2") is NOT the total pressure: return null for pressure unless the question also gives the total pressure.

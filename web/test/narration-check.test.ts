@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { modelText } from "../lib/narration-check.ts";
-import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, isOxygenPartialPressure, parseTargetReply, questionHasOxygenPartialPressure, shapeTarget, supportedByQuestion } from "../lib/ask-core.ts";
+import { statesGravity, PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, isOxygenPartialPressure, parseTargetReply, questionHasOxygenPartialPressure, shapeTarget, supportedByQuestion } from "../lib/ask-core.ts";
 import { evaluate, targetFromQuantities } from "../../engine/src/index.ts";
 
 const Q = "Would solid fuel burn differently in a lunar base at 30% oxygen and 10.2 psi?";
@@ -26,7 +26,7 @@ test("copy as written: a pressure the question never gave is dropped; a converte
   assert.equal(lunar.target.continuous.pressure, undefined);
   assert.ok(lunar.unstated.includes("pressure"));
   assert.match(lunar.warnings.join(" "), /not in the question/);
-  const converted = parseTargetReply(reply({ pressure: "56.5 kPa" }), "A cabin at 8.2 psia");
+  const converted = parseTargetReply(reply({ pressure: "56.5 kPa", o2: "21 %" }), "A cabin at 8.2 psia and 21 % oxygen");
   assert.equal(converted.target.continuous.pressure, undefined);
   assert.match(converted.warnings.join(" "), /56\.5 kPa/);
   assert.equal(supportedByQuestion("8.2 psia", "A cabin at 8.2 psia"), true);
@@ -77,7 +77,7 @@ test("an oxygen partial pressure in the question is refused before any model is 
 });
 
 test("N3: the model's unit must be the one the question wrote, and a number feeds only one quantity", () => {
-  const kpa = parseTargetReply(reply({ pressure: "8.2 psia" }), "A cabin at 8.2 kPa");
+  const kpa = parseTargetReply(reply({ pressure: "8.2 psia", o2: "21 %" }), "A cabin at 8.2 kPa and 21 % oxygen");
   assert.equal(kpa.target.continuous.pressure, undefined);
   assert.match(kpa.warnings.join(" "), /not in the question/);
   const o2 = parseTargetReply(reply({ o2: "21 %", pressure: "21 psia" }), "Air with 21% O2");
@@ -89,7 +89,7 @@ test("N3: the model's unit must be the one the question wrote, and a number feed
 });
 
 test("N6: model text in the dropped-value warning is short and labelled", () => {
-  const w = parseTargetReply(reply({ pressure: "9".repeat(300) + " kPa" }), "A cabin").warnings.join(" ");
+  const w = parseTargetReply(reply({ pressure: "9".repeat(300) + " kPa", o2: "21 %" }), "A cabin with 21 % oxygen").warnings.join(" ");
   assert.match(w, /model text \(not used\)/);
   assert.ok(w.length < 300);
 });
@@ -110,7 +110,8 @@ test("B: an oxygen partial pressure is never the total pressure", () => {
 });
 
 test("m7: the unit must match exactly, including no unit", () => {
-  const o = parseTargetReply(reply({ o2: "2" }), "A 2 mm PMMA rod in 21 % oxygen");
+  assert.throws(() => parseTargetReply(reply({ o2: "2" }), "A 2 mm PMMA rod in 21 % oxygen"), /No combustion condition/); // "2" is dropped, nothing else stated
+  const o = parseTargetReply(reply({ o2: "2", pressure: "1 atm" }), "A 2 mm PMMA rod in 21 % oxygen at 1 atm");
   assert.equal(o.target.continuous.o2_mole_fraction, undefined);
   assert.match(o.warnings.join(" "), /not in the question/);
 });
@@ -134,4 +135,36 @@ test("gravity level is informational in the target: parse, shape and narration i
   if (!high.ok) throw new Error("target");
   assert.ok(high.target.informational?.gravity_not_covered);
   assert.equal(shapeTarget(high.target).ok, true);
+});
+
+test("A2: words that state a gravity count as stating it (Earth, 1 g, free fall, Spanish)", () => {
+  for (const q of ["Flames on Earth at 34% oxygen and 1 atm", "A fire at 1 g", "ground-based test at normal gravity", "in free fall", "Luna", "en microgravedad", "caída libre", "gravedad cero", "en la Tierra", "weightless", "in orbit", "on Mars"]) {
+    assert.equal(statesGravity(q), true, q);
+  }
+  for (const q of ["A candle at 21% oxygen", "34% oxygen and 8.2 psia", "10 g of PMMA"]) assert.equal(statesGravity(q), false, q);
+  // a gravity regime the model returns is stated when the question says it with these words: it enters the target
+  const earth = parseTargetReply(reply({ o2: "34%", pressure: "1 atm", gravity_regime: "normal_gravity" }), "Flames on Earth at 34% oxygen and 1 atm");
+  assert.equal(earth.target.regime.gravity_regime, "normal_gravity");
+  assert.deepEqual(earth.suggestions, []);
+  const luna = parseTargetReply(reply({ o2: "34%", gravity_regime: "partial_gravity" }), "¿Qué arde más a 34% de oxígeno en la Luna?");
+  assert.equal(luna.target.regime.gravity_regime, "partial_gravity");
+  const orbit = parseTargetReply(reply({ o2: "21%", gravity_regime: "microgravity" }), "A flame in free fall at 21% oxygen");
+  assert.equal(orbit.target.regime.gravity_regime, "microgravity");
+});
+
+test("A3: a question that states nothing about a condition gives no target", () => {
+  assert.throws(() => parseTargetReply(reply({}), "What is the capital of France?"), (e: Error) => e instanceof PlainError && /No combustion condition found in the question/.test(e.message));
+  // only a suggestion is not enough either
+  assert.throws(() => parseTargetReply(reply({ fuel_phase: "solid" }), "A candle"), /No combustion condition/);
+  assert.equal(parseTargetReply(reply({ o2: "21%" }), "air at 21% oxygen").target.continuous.o2_mole_fraction, 0.21);
+});
+
+test("A4: the parse prompt asks to copy quantities as written in any language and never to translate", async () => {
+  const { PARSE_SYSTEM } = await import("../lib/prompts.ts");
+  assert.match(PARSE_SYSTEM, /any language/);
+  assert.match(PARSE_SYSTEM, /8,2 psia/);
+  assert.match(PARSE_SYSTEM, /Never translate/);
+  // a decimal comma is copied as written and still counts as in the question
+  const es = parseTargetReply(reply({ pressure: "8,2 psia", o2: "34 %" }), "¿Qué arde a 34 % de oxígeno y 8,2 psia en la Luna?");
+  assert.ok(es.warnings.every((w) => !/not in the question/.test(w)));
 });

@@ -52,23 +52,36 @@ function extractJson(text: string): unknown {
 
 const NUMS = /\d+(?:\.\d+)?/g;
 
-/** Words in a question that state a regime value outright. A value the model supplies without one of them was inferred. */
-const STATES: Record<string, RegExp> = {
-  solid: /\bsolids?\b/i,
-  liquid: /\bliquids?\b|\bdroplets?\b/i,
-  gas: /\bgas(?:es|eous)?\b/i,
-  N2: /\bn2\b|\bnitrogen\b/i,
-  He: /\bhelium\b/i,
-  CO2: /\bco2\b|\bcarbon dioxide\b/i,
-  Ar: /\bargon\b/i,
-  mixed: /\bmixed\b/i,
-  normal: /\bnormal flame\b/i,
-  inverse: /\binverse\b/i,
-  microgravity: /\bmicro-?gravity\b|\bweightless/i,
-  partial_gravity: /\bpartial\b/i,
-  normal_gravity: /\bnormal gravity\b|\b1 ?g\b|\bearth gravity\b/i,
+/**
+ * Words in a question that state a regime value outright; a value the model supplies without one of them was inferred.
+ * Gravity words are kept in one list: they are what states a gravity regime (Earth, Moon, Mars, free fall, in orbit, and
+ * the Spanish words). "Candle" or "PMMA" do not state a fuel phase.
+ */
+const GRAVITY_WORDS: Record<"microgravity" | "partial_gravity" | "normal_gravity", RegExp> = {
+  microgravity: /micro-?gravity|microgravedad|weightless|free[- ]?fall|ingravidez|caida libre|gravedad cero|zero[- ]?g(?:ravity)?\b|\b0 ?g\b|in orbit|en orbita|\borbital\b|space station|estacion espacial/,
+  partial_gravity: /partial gravity|gravedad parcial|\blunar\b|\bmoon\b|\bmars\b|martian|\bluna\b|\bmarte\b/,
+  normal_gravity: /normal gravity|gravedad normal|\bearth\b|\bterrestrial\b|ground[- ]based|\b1 ?g\b|sea[- ]level|\btierra\b|\bground\b/,
 };
-const norm = (s: string) => s.normalize("NFKC").toLowerCase();
+const STATES: Record<string, RegExp> = {
+  solid: /\bsolids?\b|\bsolido\b/,
+  liquid: /\bliquids?\b|\bdroplets?\b|\bliquido\b/,
+  gas: /\bgas(?:es|eous)?\b|\bgaseoso\b/,
+  N2: /\bn2\b|\bnitrogen\b|\bnitrogeno\b/,
+  He: /\bhelium\b|\bhelio\b/,
+  CO2: /\bco2\b|\bcarbon dioxide\b|\bdioxido de carbono\b/,
+  Ar: /\bargon\b/,
+  mixed: /\bmixed\b/,
+  normal: /\bnormal flame\b/,
+  inverse: /\binverse\b/,
+  microgravity: GRAVITY_WORDS.microgravity,
+  partial_gravity: GRAVITY_WORDS.partial_gravity,
+  normal_gravity: GRAVITY_WORDS.normal_gravity,
+};
+
+/** Lowercase, accents removed: "gravedad cero" and "caída libre" match their unaccented patterns. */
+const plainText = (s: string) => s.normalize("NFD").replace(/\p{M}/gu, "").normalize("NFKC").toLowerCase();
+
+const norm = (s: string) => plainText(s);
 
 const UNIT_ALIAS: Record<string, string> = { psia: "psi", percent: "%", celsius: "c", degc: "c", "°c": "c", kilopascals: "kpa", kilopascal: "kpa", atmosphere: "atm", atmospheres: "atm" };
 const TOKEN = /(\d+(?:\.\d+)?)\s*(%|°\s?c|[a-z]+(?:\/[a-z]+)?)?/g;
@@ -82,6 +95,9 @@ function tokensOf(text: string): { value: number; unit: string }[] {
     return { value: Number(m[1]), unit };
   });
 }
+
+/** Does the question state a gravity at all (a regime word, or a level)? */
+export const statesGravity = (question: string) => Object.values(GRAVITY_WORDS).some((re) => re.test(plainText(question)));
 
 /**
  * "Copy as written": a quantity the model returned is accepted only if its numbers (or, for names such as "lunar",
@@ -173,7 +189,7 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
         continue;
       }
       if (!(REGIME_VALUES[k as keyof typeof REGIME_VALUES] ?? []).includes(v)) throw new Error(`${k} is not an allowed value`);
-      if (!(STATES[v]?.test(question) ?? false)) {
+      if (!(STATES[v]?.test(plainText(question)) ?? false)) {
         suggestions.push({ axis: k, value: v, reason: "proposed by the model; the question does not state it" });
         unstated.push(k);
         continue;
@@ -183,6 +199,11 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
   }
   const r = targetFromQuantities(input as TargetQuantities);
   if (!r.ok) throw new Error(r.errors.map((e) => `${e.field}: ${e.message}`).join("; "));
+  // A question that states no oxygen, pressure, gravity or regime is not about a combustion condition: no target, no verdicts.
+  const t = r.target;
+  if (Object.keys(t.continuous).length === 0 && Object.keys(t.regime).length === 0 && t.informational === undefined) {
+    throw new PlainError("No combustion condition found in the question. Give at least an oxygen level, a pressure or a gravity.");
+  }
   const assumptions = Array.isArray(o.assumptions) ? o.assumptions.filter((a): a is string => typeof a === "string" && keepAssumption(a, question)).slice(0, 5) : [];
   return {
     target: r.target,

@@ -105,7 +105,7 @@ export async function POST(req: Request) {
       budget().recordSafety();
       const safety = await checkContent(q, providers(), undefined, undefined, deadline);
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
-      if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState }, 422);
+      if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState, safety_detail: safety.detail }, 422);
       // Reasoning models on the fallback provider need room to think before the JSON.
       const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 2000 }, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
@@ -117,7 +117,7 @@ export async function POST(req: Request) {
         if (e instanceof PlainError) return json({ error: e.message, safety: safetyState, meta: metaOf(c.meta) }, 422);
         return json({ error: `The question could not be turned into a valid target. ${modelText(e instanceof Error ? e.message : "invalid reply")}`, safety: safetyState, ...metaOf(c.meta) }, 422);
       }
-      return json({ meta: metaOf(c.meta), promptVersion: PROMPT_VERSION, safety: safetyState, parsed });
+      return json({ meta: metaOf(c.meta), promptVersion: PROMPT_VERSION, safety: safetyState, safety_detail: safety.detail, parsed });
     }
 
     if (body.step === "narrate") {

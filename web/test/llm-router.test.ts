@@ -112,14 +112,40 @@ test("the public configuration carries no key and no URL", () => {
   assert.ok(!text.includes("SECRET") && !text.includes("test/v1"));
 });
 
-test("content safety: flagged, clear, and a failing safety model does not block", async () => {
+test("A1: content safety policy, every branch (first guard, then the second only if the first flags)", async () => {
   assert.equal(readVerdict("User Safety: unsafe"), true);
   assert.equal(readVerdict('{"User Safety": "safe"}'), false);
-  const reply = (c: string) => (async () => new Response(JSON.stringify({ choices: [{ message: { content: c } }] }), { status: 200 })) as unknown as typeof fetch;
-  assert.deepEqual(await checkContent("x", providers, reply("unsafe")), { flagged: true, checked: true });
-  assert.deepEqual(await checkContent("x", providers, reply("safe")), { flagged: false, checked: true });
-  const down = (async () => new Response("{}", { status: 500 })) as unknown as typeof fetch;
-  assert.deepEqual(await checkContent("x", providers, down, () => {}), { flagged: false, checked: false });
+  // a stub that answers per guard: "safe", "unsafe" or "down"
+  const guards = (first: "safe" | "unsafe" | "down", second: "safe" | "unsafe" | "down") => {
+    const calls: string[] = [];
+    const f = (async (_u: string, init: RequestInit) => {
+      const model = JSON.parse(String(init.body)).model as string;
+      calls.push(model);
+      const v = model.startsWith("nvidia/") ? first : second;
+      if (v === "down") return new Response("{}", { status: 500 });
+      return new Response(JSON.stringify({ choices: [{ message: { content: v } }] }), { status: 200 });
+    }) as unknown as typeof fetch;
+    return { f, calls };
+  };
+  const run = async (a: "safe" | "unsafe" | "down", b: "safe" | "unsafe" | "down") => {
+    const g = guards(a, b);
+    return { r: await checkContent("x", providers, g.f, () => {}), calls: g.calls.length };
+  };
+  // first says safe: passes, the second is not even asked
+  assert.deepEqual(await run("safe", "unsafe"), { r: { flagged: false, checked: true, detail: "first_safe" }, calls: 1 });
+  // first flags, second clears: a false positive of the first guard
+  assert.deepEqual((await run("unsafe", "safe")).r, { flagged: false, checked: true, detail: "second_cleared" });
+  // both flag: refused
+  assert.deepEqual((await run("unsafe", "unsafe")).r, { flagged: true, checked: true, detail: "both_flagged" });
+  // first flags, second cannot answer: refused (fail closed once something flagged)
+  assert.deepEqual((await run("unsafe", "down")).r, { flagged: true, checked: true, detail: "second_unavailable_after_flag" });
+  // first cannot answer: the second decides alone
+  assert.deepEqual((await run("down", "safe")).r, { flagged: false, checked: true, detail: "first_unavailable_second_safe" });
+  assert.deepEqual((await run("down", "unsafe")).r, { flagged: true, checked: true, detail: "first_unavailable_second_flagged" });
+  // neither can answer: it goes through, visibly unchecked
+  assert.deepEqual((await run("down", "down")).r, { flagged: false, checked: false, detail: "both_unavailable" });
+  // no NIM provider at all
+  assert.deepEqual(await checkContent("x", [], undefined, () => {}), { flagged: false, checked: false, detail: "both_unavailable" });
 });
 
 const chat = (content: string | null, finish = "stop") => new Response(JSON.stringify({ choices: [{ message: { content }, finish_reason: finish }] }), { status: 200 });
@@ -295,7 +321,7 @@ test("N4: the content check stops with the caller's signal and never exceeds its
   const t0 = Date.now();
   const p = checkContent("x", providers, hang, () => {}, ac.signal);
   setTimeout(() => ac.abort(), 30);
-  assert.deepEqual(await p, { flagged: false, checked: false });
+  assert.deepEqual(await p, { flagged: false, checked: false, detail: "both_unavailable" });
   assert.ok(Date.now() - t0 < 1000);
 });
 
