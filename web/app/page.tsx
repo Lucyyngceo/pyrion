@@ -111,6 +111,9 @@ export default async function Landing() {
             <Link data-help="landing-planner" href="/planner" className="ld-btn">
               Plan lunar tests
             </Link>
+            <Link data-help="landing-card" href="/example" className="ld-btn">
+              See a worked example
+            </Link>
           </div>
           <p className="ld-facts small muted">{facts.sentence}</p>
           </div>
@@ -239,8 +242,8 @@ export default async function Landing() {
             <div className="ld-finding-text">
               <p>
                 PYRION draws the Moon Base atmospheres on the oxygen-pressure plane, places the PSI tests and the planned FM2 points,
-                and shows which parts of that region no planned test reaches. That is where new lunar-gravity tests would add the
-                most evidence.
+                and shows which parts of that region no planned test reaches. That is where new lunar-gravity tests could add
+                evidence.
               </p>
               <p>Evidence for research and test planning — not a safety assessment, and not a prediction of how fire behaves on the Moon.</p>
               <Link data-help="landing-planner" href="/planner" className="ld-link">

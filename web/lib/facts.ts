@@ -31,7 +31,7 @@ export function loadFacts(): Promise<Facts> {
     const s = ds.stats;
     const v = lin.validation;
     const recordsInFiles = s.records + s.rejected;
-    const sentence = `${n(recordsInFiles)} records in the files; ${n(s.records)} used by the engine${s.rejected > 0 ? ` after ${n(s.rejected)} ${s.rejected === 1 ? "was" : "were"} rejected` : ""}`;
+    const sentence = `${n(recordsInFiles)} records extracted from NASA files; ${n(s.records - s.flagged)} used as evidence, ${n(s.flagged)} flagged insufficient${s.rejected > 0 ? `, ${n(s.rejected)} rejected by the validator` : ""}`;
     return {
       recordsInFiles,
       rejectedByValidator: s.rejected,

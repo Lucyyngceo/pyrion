@@ -16,6 +16,7 @@ No API key and no language model are needed for the envelope and the verdict: th
 - [Mission Planner](https://pyrion.us/planner)
 - [Investigations](https://pyrion.us/investigations)
 - [TARS SI](https://pyrion.us/tars)
+- [A worked example, step by step](https://pyrion.us/example)
 
 ## Run locally
 
@@ -49,7 +50,7 @@ PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=pro
 
 ## Features
 
-- **Evidence envelope** (`/`): every extracted PSI test point, O₂ mole fraction against pressure, with a deterministic applicability verdict for a target condition and presets such as the Moon Base band.
+- **Evidence envelope** (`/envelope`): every extracted PSI test point, O₂ mole fraction against pressure, with a deterministic applicability verdict for a target condition and presets such as the Moon Base band.
 - **Mission Planner** (`/planner`): how much of the Moon Base oxygen-pressure band lies inside the region spanned by PSI test points, what FM2 as planned would add, and the fewest test points that would span the band under a stated geometric convention (not a test programme). Evidence coverage, not a prediction.
 - **Investigations** (`/investigations`): one sheet per PSI combustion investigation, a side-by-side comparison (`/investigations/compare`) and a materials view (`/investigations/materials`).
 - **Lenses** (`/lenses`): PSI investigations by safety leg (prevention, detection, suppression) and phenomenon, each tag with a verbatim quote, a filter by leg, and the evidence timeline.
