@@ -1,0 +1,1461 @@
+{
+  "about": "Safety-leg, phenomenon and strength tags for the PSI investigations. Each tag carries a verbatim quote checked by tools/build_lenses.py. No quote, no tag.",
+  "axes": {
+    "legs": [
+      "prevention",
+      "detection",
+      "suppression"
+    ],
+    "phenomena": [
+      "ignition",
+      "spread",
+      "extinction",
+      "smoke"
+    ],
+    "strengths": [
+      "direct",
+      "fundamental",
+      "indirect"
+    ]
+  },
+  "challenge": {
+    "cfig_burner": {
+      "o2_percent_max": 85.0,
+      "quote": "an oxygen-nitrogen mixture of up to 85% oxygen flowed from the spherical burner creating an inside-out flame.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 70
+      }
+    },
+    "earth": {
+      "quote": "Your dashboard could also address potential applications of the PSI data to fire safety on Earth.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 38
+      }
+    },
+    "moon_base": {
+      "o2_percent_min": 30.0,
+      "pressure_psi_max": 10.2,
+      "quote": "The intermediate oxygen concentration used on the Moon will likely be 30% or greater, with a corresponding pressure of 10.2 psi or less.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 69
+      }
+    },
+    "not_as_strongly": {
+      "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 58
+      }
+    },
+    "partial_gravity": {
+      "quote": "there is currently no partial-gravity combustion data available in PSI",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 73
+      }
+    },
+    "rockets": {
+      "quote": "Fire safety involving rockets and propellants is generally beyond the scope of the research available in the PSI database. The high velocities within rocket engines render the combustion effectively independent of gravity — although a rocket's launch is of course strongly dependent on gravity.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 40
+      }
+    },
+    "suit": {
+      "o2_percent": 100.0,
+      "pressure_psi": 4.3,
+      "quote": "To enable flexibility, spacesuits are filled with 100% oxygen to only 4.3 psi (pounds per square inch), where the Earth's pressure at sea level is 14.7 psi.",
+      "source": {
+        "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+        "kind": "challenge",
+        "line": 66
+      }
+    }
+  },
+  "counts": {
+    "investigations": 24,
+    "legs": {
+      "detection": 6,
+      "prevention": 13,
+      "suppression": 5
+    },
+    "phenomena": {
+      "extinction": 13,
+      "ignition": 4,
+      "smoke": 5,
+      "spread": 6
+    },
+    "strength": {
+      "direct": 9,
+      "fundamental": 4,
+      "indirect": 11
+    },
+    "tag_rows": 95
+  },
+  "generated_by": "tools/build_lenses.py",
+  "investigations": [
+    {
+      "accession": "PSI-10",
+      "acronym": "ACME/Flame Design",
+      "context": [],
+      "doi": "10.60555/w4zy-bt45",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "Evaluate whether pseudo-flammability limits can be obtained for these flames.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-10/_investigation/PSI-10.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Obtain extinction limits as functions of Zst, amount of N2, and pressure for normal and inverse spherical C2H4 and CH4 flames.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-10/_investigation/PSI-10.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments / Flame Design"
+    },
+    {
+      "accession": "PSI-20",
+      "acronym": "ACME BRE",
+      "context": [],
+      "doi": "10.60555/vb93-3y72",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "While it burned gaseous fuels, the Burning Rate Emulator (BRE) experiment of the Advanced Combustion via Microgravity Experiments (ACME) project was a study of materials flammability in still atmospheres as a function of material properties.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 57
+            }
+          },
+          {
+            "quote": "they suggest that NASA may want to increase use of its alternative flammability Test 2, with the cone calorimeter",
+            "source": {
+              "file": "data/raw/psi-data/PSI-20/_investigation/PSI-20.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Consider the conditions of Objectives 1 – 2 for extinction limits.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-20/_investigation/PSI-20.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "such flames in a normal atmosphere of 21% oxygen self-extinguished in a short time.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-20/_investigation/PSI-20.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "While it burned gaseous fuels, the Burning Rate Emulator (BRE) experiment of the Advanced Combustion via Microgravity Experiments (ACME) project was a study of materials flammability in still atmospheres as a function of material properties.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 57
+        },
+        "value": "direct"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator"
+    },
+    {
+      "accession": "PSI-21",
+      "acronym": "ACME CLD Flame",
+      "context": [],
+      "doi": "10.60555/23e1-9950",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "through measurement of flame shape, lift-off heights, temperatures and extinction limits.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-21/_investigation/PSI-21.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": [
+          {
+            "quote": "an understanding of those factors that affect flame extinction in diffusion flames is critical in the suppression of fires",
+            "source": {
+              "file": "data/raw/psi-data/PSI-21/_investigation/PSI-21.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "through measurement of flame shape, lift-off heights, temperatures and extinction limits.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-21/_investigation/PSI-21.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame"
+    },
+    {
+      "accession": "PSI-22",
+      "acronym": "ACME E-FIELD Flames",
+      "context": [],
+      "doi": "10.60555/se5a-8c73",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Dilution levels were varied to explore a range of combustion dynamics, from highly stable to near-extinction flames.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-22/_investigation/PSI-22.json",
+              "key": "approach",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames"
+    },
+    {
+      "accession": "PSI-23",
+      "acronym": "ACME s-Flame",
+      "context": [],
+      "doi": "10.60555/k57n-p030",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "Determine the quasi-steady convective/chemical-kinetic extinction limits (low system Damköhler numbers) and radiative/chemical-kinetic extinction limits (high system Damköhler numbers)",
+            "source": {
+              "file": "data/raw/psi-data/PSI-23/_investigation/PSI-23.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Determine the quasi-steady convective/chemical-kinetic extinction limits (low system Damköhler numbers) and radiative/chemical-kinetic extinction limits (high system Damköhler numbers)",
+            "source": {
+              "file": "data/raw/psi-data/PSI-23/_investigation/PSI-23.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Fundamentally, the unique buoyancy-free environment offered by microgravity affords simple aerodynamic flow fields to acquire diffusion flame data of high fidelity",
+        "source": {
+          "file": "data/raw/psi-data/PSI-23/_investigation/PSI-23.json",
+          "key": "researchImpacts",
+          "kind": "psi"
+        },
+        "value": "fundamental"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames"
+    },
+    {
+      "accession": "PSI-25",
+      "acronym": "BASS-II",
+      "context": [],
+      "doi": "10.60555/4qc4-de67",
+      "legs": {
+        "detection": [
+          {
+            "quote": "BASS-II results contribute to the combustion computational models used in the design of fire detection and suppression systems in microgravity and on Earth.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "prevention": [
+          {
+            "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "BASS-II helps engineers select the safest materials and improve firefighting methods on future space missions.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 22
+            }
+          }
+        ],
+        "suppression": [
+          {
+            "quote": "BASS-II results contribute to the combustion computational models used in the design of fire detection and suppression systems in microgravity and on Earth.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Burning and Suppression of Solids",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "title",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "BASS-II helps engineers select the safest materials and improve firefighting methods on future space missions.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [
+          {
+            "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-25/_investigation/PSI-25.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 22
+        },
+        "value": "direct"
+      },
+      "title": "Burning and Suppression of Solids - II"
+    },
+    {
+      "accession": "PSI-26",
+      "acronym": "BASS",
+      "context": [],
+      "doi": "10.60555/58h4-dy80",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "Current NASA spacecraft materials selection is based on a standard test method (NASA–STD–6001 Test 1) that segregates material based on 1-g behavior without consideration of low gravity effects.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 22
+            }
+          }
+        ],
+        "suppression": [
+          {
+            "quote": "Assess the effectiveness of an inert, gaseous extinguishing agent (similar to that used on ISS) in putting out flames over different materials, geometries, preheating, and flow.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Burning and Suppression of Solids",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "title",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "data was collected on flame size, shape, color, spread rate, and potential flame quenching.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "approach",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "data was collected on flame size, shape, color, spread rate, and potential flame quenching.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-26/_investigation/PSI-26.json",
+              "key": "approach",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 22
+        },
+        "value": "direct"
+      },
+      "title": "Burning and Suppression of Solids"
+    },
+    {
+      "accession": "PSI-39",
+      "acronym": "CFI",
+      "context": [],
+      "doi": "10.60555/m6pj-a914",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Investigate the relationship between droplet size, pressure, and flame extinction",
+            "source": {
+              "file": "data/raw/psi-data/PSI-39/_investigation/PSI-39.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [
+          {
+            "quote": "A basic understanding of cool flames is important for understanding ignition phenomena of practical fuels and fuel additives.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-39/_investigation/PSI-39.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Cool Flames Investigation"
+    },
+    {
+      "accession": "PSI-47",
+      "acronym": "DAFT / DAFT-2",
+      "context": [],
+      "doi": "10.60555/ztgj-d202",
+      "legs": {
+        "detection": [
+          {
+            "quote": "This research will impact the development of novel fire and smoke detection systems for the International Space Station and future spacecrafts.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-47/_investigation/PSI-47.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "One of the instruments used for smoke detection in the SAME and SAME-R studies was instead used to detect dust in the Dust and Aerosol Measurement Feasibility Test (DAFT and DAFT-2) studies.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 56
+            }
+          }
+        ],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "One of the instruments used for smoke detection in the SAME and SAME-R studies was instead used to detect dust in the Dust and Aerosol Measurement Feasibility Test (DAFT and DAFT-2) studies.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 56
+        },
+        "value": "indirect"
+      },
+      "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2"
+    },
+    {
+      "accession": "PSI-60",
+      "acronym": "",
+      "context": [],
+      "doi": "10.60555/mzjm-yv57",
+      "legs": {
+        "detection": [
+          {
+            "quote": "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-60/_investigation/PSI-60.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "prevention": [],
+        "suppression": [
+          {
+            "quote": "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-60/_investigation/PSI-60.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [
+          {
+            "quote": "identify key physical and chemical processes influencing smoke point development",
+            "source": {
+              "file": "data/raw/psi-data/PSI-60/_investigation/PSI-60.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "spread": []
+      },
+      "project_type": "Ground Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Computational and Experimental Analysis of SPICE Data Sets"
+    },
+    {
+      "accession": "PSI-62",
+      "acronym": "",
+      "context": [],
+      "doi": "10.60555/e9xp-ex83",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "This research provides predictive tools for screening new materials’ flammability limits, which can lead to the design of safer spacecrafts.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-62/_investigation/PSI-62.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "The objective of this research was to develop and validate new flamelet generated manifold (FGM) modeling techniques for concurrent flame spread in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-62/_investigation/PSI-62.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Ground Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography"
+    },
+    {
+      "accession": "PSI-68",
+      "acronym": "FLEX-2",
+      "context": [],
+      "doi": "10.60555/byp8-h018",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "Determine the influence of droplet interactions on the flammability limits and extinction behavior of droplet arrays.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-68/_investigation/PSI-68.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Study flame extinction mechanisms and their boundaries.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-68/_investigation/PSI-68.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "allowing for a clear observation of the fundamental combustion processes",
+        "source": {
+          "file": "data/raw/psi-data/PSI-68/_investigation/PSI-68.json",
+          "key": "hypothesis",
+          "kind": "psi"
+        },
+        "value": "fundamental"
+      },
+      "title": "Flame Extinguishment Experiment - 2"
+    },
+    {
+      "accession": "PSI-69",
+      "acronym": "FLEX",
+      "context": [],
+      "doi": "10.60555/mbq8-0451",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "The FLEX (Flame Extinguishment Experiment) investigation aims to map the flammability limits of liquid fuels in microgravity environments",
+            "source": {
+              "file": "data/raw/psi-data/PSI-69/_investigation/PSI-69.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": [
+          {
+            "quote": "measure the effectiveness of various gaseous fire suppressants such as CO2, He, and SF6",
+            "source": {
+              "file": "data/raw/psi-data/PSI-69/_investigation/PSI-69.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Suppression was studied in the Flame Extinguishment Experiment (FLEX) through dilution of the chamber atmosphere with carbon dioxide and helium, both of which suppress fire.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 24
+            }
+          }
+        ]
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Key flight experiment goals include obtaining high-resolution measurements of droplet burning rates, flame extinction behavior, heat radiation, soot levels, and temperature profiles",
+            "source": {
+              "file": "data/raw/psi-data/PSI-69/_investigation/PSI-69.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [
+          {
+            "quote": "Continue step 7 to an ambient oxygen mole fraction where the droplet does not ignite.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-69/_investigation/PSI-69.json",
+              "key": "approach",
+              "kind": "psi"
+            }
+          }
+        ],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Suppression was studied in the Flame Extinguishment Experiment (FLEX) through dilution of the chamber atmosphere with carbon dioxide and helium, both of which suppress fire.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 24
+        },
+        "value": "direct"
+      },
+      "title": "Flame Extinguishment Experiment"
+    },
+    {
+      "accession": "PSI-98",
+      "acronym": "SAFFIRE-I",
+      "context": [
+        {
+          "label": "detection context",
+          "quote": "Instruments on an unmanned cargo vessel measure oxygen, carbon dioxide, heat, pressure and flame growth",
+          "source": {
+            "file": "data/raw/psi-data/PSI-98/_investigation/PSI-98.json",
+            "key": "researchImpacts",
+            "kind": "psi"
+          }
+        }
+      ],
+      "doi": "10.60555/0t15-1z43",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-98/_investigation/PSI-98.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 22
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "determine how rapidly a large scale fire grows in low-gravity",
+            "source": {
+              "file": "data/raw/psi-data/PSI-98/_investigation/PSI-98.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 22
+        },
+        "value": "direct"
+      },
+      "title": "Spacecraft Fire Safety Experiment-I"
+    },
+    {
+      "accession": "PSI-99",
+      "acronym": "SAFFIRE-II",
+      "context": [
+        {
+          "label": "detection context",
+          "quote": "Instruments on an unmanned cargo vessel measure oxygen, carbon dioxide, heat, pressure and flame growth",
+          "source": {
+            "file": "data/raw/psi-data/PSI-99/_investigation/PSI-99.json",
+            "key": "researchImpacts",
+            "kind": "psi"
+          }
+        }
+      ],
+      "doi": "10.60555/2chp-m469",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-99/_investigation/PSI-99.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 22
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "determine how rapidly a large scale fire grows in low-gravity",
+            "source": {
+              "file": "data/raw/psi-data/PSI-99/_investigation/PSI-99.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 22
+        },
+        "value": "direct"
+      },
+      "title": "Spacecraft Fire Experiment-II"
+    },
+    {
+      "accession": "PSI-100",
+      "acronym": "SAFFIRE-III",
+      "context": [
+        {
+          "label": "detection context",
+          "quote": "Instruments on an unmanned cargo vessel measure oxygen, carbon dioxide, heat, pressure and flame growth",
+          "source": {
+            "file": "data/raw/psi-data/PSI-100/_investigation/PSI-100.json",
+            "key": "researchImpacts",
+            "kind": "psi"
+          }
+        }
+      ],
+      "doi": "10.60555/040q-4h36",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-100/_investigation/PSI-100.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 22
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": [
+          {
+            "quote": "determine how rapidly a large scale fire grows in low-gravity",
+            "source": {
+              "file": "data/raw/psi-data/PSI-100/_investigation/PSI-100.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ]
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Flammability studies focus on solid materials such as fabrics and plastics, as studied in the Burning and Suppression of Solids (BASS and BASS-II) and Spacecraft Fire Safety Demonstration (Saffire-I, -II, and -III) investigations.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 22
+        },
+        "value": "direct"
+      },
+      "title": "Spacecraft Fire Experiment-III"
+    },
+    {
+      "accession": "PSI-101",
+      "acronym": "SAME-R",
+      "context": [],
+      "doi": "10.60555/2np7-jv14",
+      "legs": {
+        "detection": [
+          {
+            "quote": "the results from SAME-R can lead to technology for an advanced fire detector for future spacecraft",
+            "source": {
+              "file": "data/raw/psi-data/PSI-101/_investigation/PSI-101.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Fire detection was tested in microgravity through the Smoke and Aerosol Measurement Experiment studies (SAME and SAME-R).",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 24
+            }
+          }
+        ],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [
+          {
+            "quote": "the primary objective of the SAME-R investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity",
+            "source": {
+              "file": "data/raw/psi-data/PSI-101/_investigation/PSI-101.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Fire detection was tested in microgravity through the Smoke and Aerosol Measurement Experiment studies (SAME and SAME-R).",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 24
+        },
+        "value": "direct"
+      },
+      "title": "Smoke Aerosol Measurement Experiment-Reflight"
+    },
+    {
+      "accession": "PSI-102",
+      "acronym": "SAME",
+      "context": [],
+      "doi": "10.60555/gd4k-8h62",
+      "legs": {
+        "detection": [
+          {
+            "quote": "The SAME experiment will provide technology for an advanced fire detector for future spacecraft",
+            "source": {
+              "file": "data/raw/psi-data/PSI-102/_investigation/PSI-102.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          },
+          {
+            "quote": "Fire detection was tested in microgravity through the Smoke and Aerosol Measurement Experiment studies (SAME and SAME-R).",
+            "source": {
+              "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+              "kind": "challenge",
+              "line": 24
+            }
+          }
+        ],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [
+          {
+            "quote": "One of the major goals of this investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity",
+            "source": {
+              "file": "data/raw/psi-data/PSI-102/_investigation/PSI-102.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Fire detection was tested in microgravity through the Smoke and Aerosol Measurement Experiment studies (SAME and SAME-R).",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 24
+        },
+        "value": "direct"
+      },
+      "title": "Smoke and Aerosol Measurement Experiment"
+    },
+    {
+      "accession": "PSI-106",
+      "acronym": "SLICE",
+      "context": [],
+      "doi": "10.60555/pm12-rg61",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Structure and Liftoff In Combustion Experiment"
+    },
+    {
+      "accession": "PSI-107",
+      "acronym": "SPICE",
+      "context": [],
+      "doi": "10.60555/9kbh-e962",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [
+          {
+            "quote": "Identify the laminar smoke-point properties of non-buoyant jet diffusion flames under various co-flow conditions in microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-107/_investigation/PSI-107.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Smoke Point In Co-flow Experiment"
+    },
+    {
+      "accession": "PSI-115",
+      "acronym": "",
+      "context": [],
+      "doi": "10.60555/q0v5-1v28",
+      "legs": {
+        "detection": [
+          {
+            "quote": "This would directly lead to better smoke detection devices",
+            "source": {
+              "file": "data/raw/psi-data/PSI-115/_investigation/PSI-115.json",
+              "key": "researchImpacts",
+              "kind": "psi"
+            }
+          }
+        ],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [],
+        "ignition": [],
+        "smoke": [
+          {
+            "quote": "The objective of this investigation was to use numerical simulation to explore the influence of gravity on pyrolysis smoke growth from a fundamental perspective.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-115/_investigation/PSI-115.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "spread": []
+      },
+      "project_type": "Ground Investigation",
+      "strength": {
+        "quote": "The objective of this investigation was to use numerical simulation to explore the influence of gravity on pyrolysis smoke growth from a fundamental perspective.",
+        "source": {
+          "file": "data/raw/psi-data/PSI-115/_investigation/PSI-115.json",
+          "key": "objective",
+          "kind": "psi"
+        },
+        "value": "fundamental"
+      },
+      "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity"
+    },
+    {
+      "accession": "PSI-117",
+      "acronym": "",
+      "context": [],
+      "doi": "10.60555/gz0q-b577",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "the work mapped stability windows for ignition, sustained oscillation, transitions to hot ignition and warm-flame behavior, and extinction under microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-117/_investigation/PSI-117.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [
+          {
+            "quote": "the work mapped stability windows for ignition, sustained oscillation, transitions to hot ignition and warm-flame behavior, and extinction under microgravity.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-117/_investigation/PSI-117.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Ground Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis"
+    },
+    {
+      "accession": "PSI-142",
+      "acronym": "",
+      "context": [],
+      "doi": "10.60555/80qf-vj95",
+      "legs": {
+        "detection": [],
+        "prevention": [
+          {
+            "quote": "Develop a new diagram of the flammability limits of diffusional cool flames affected by radiation, diffusion, and convection.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-142/_investigation/PSI-142.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Obtain new, quantitative data of extinction limit, flame temperature, and species distribution for the validation of kinetic and radiation models involving cool flames.",
+            "source": {
+              "file": "data/raw/psi-data/PSI-142/_investigation/PSI-142.json",
+              "key": "objective",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Ground Investigation",
+      "strength": {
+        "quote": "Obtaining a fundamental understanding of the warm diffusion flame is particularly relevant to combustion in highly turbulent flow fields and in microgravity environments",
+        "source": {
+          "file": "data/raw/psi-data/PSI-142/_investigation/PSI-142.json",
+          "key": "researchImpacts",
+          "kind": "psi"
+        },
+        "value": "fundamental"
+      },
+      "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames"
+    },
+    {
+      "accession": "PSI-159",
+      "acronym": "ACME CFI-G",
+      "context": [],
+      "doi": "10.60555/cyt1-kh64",
+      "legs": {
+        "detection": [],
+        "prevention": [],
+        "suppression": []
+      },
+      "phenomena": {
+        "extinction": [
+          {
+            "quote": "Cool diffusion flames for which a decrease in fluent flow rate will cause extinction",
+            "source": {
+              "file": "data/raw/psi-data/PSI-159/_investigation/PSI-159.json",
+              "key": "hypothesis",
+              "kind": "psi"
+            }
+          }
+        ],
+        "ignition": [],
+        "smoke": [],
+        "spread": []
+      },
+      "project_type": "Microgravity Investigation",
+      "strength": {
+        "quote": "Other combustion investigations within the PSI database (but not explicitly referenced above) are still relevant to fire safety, just not as strongly or directly.",
+        "source": {
+          "file": "Challenge statement, Flame in Freefall (copy of https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/ in reto-oficial.md)",
+          "kind": "challenge",
+          "line": 58
+        },
+        "value": "indirect"
+      },
+      "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases"
+    }
+  ],
+  "rules": {
+    "keyword_note": "PYRION convention: a quote can carry a tag only if it contains one of these word stems. Extinction limits count as prevention, not automatically as suppression.",
+    "keywords": {
+      "detection": [
+        "detect"
+      ],
+      "detection context": [
+        "measure",
+        "sensor"
+      ],
+      "direct": [
+        "bass",
+        "saffire",
+        "same",
+        "flex",
+        "daft",
+        "burning rate emulator"
+      ],
+      "extinction": [
+        "extinc",
+        "extingu",
+        "quench"
+      ],
+      "fundamental": [
+        "fundamental"
+      ],
+      "ignition": [
+        "ignit"
+      ],
+      "indirect": [
+        "not as strongly or directly",
+        "was instead used to detect dust"
+      ],
+      "prevention": [
+        "flammab",
+        "material selection",
+        "materials selection",
+        "select the safest materials",
+        "extinction limit"
+      ],
+      "smoke": [
+        "smoke"
+      ],
+      "spread": [
+        "spread",
+        "grow"
+      ],
+      "suppression": [
+        "suppress",
+        "extinguishing agent",
+        "firefighting"
+      ]
+    },
+    "matching": "Word for word; only runs of whitespace (line breaks in the PSI JSON) are read as one space.",
+    "strength": "PYRION convention. direct: the investigation is named in the challenge's fire-safety text (Background, or the 'Other investigations in PSI' bullets). fundamental: not named there, and its own PSI record describes the work as fundamental. indirect: the rest; the challenge says such investigations are relevant 'just not as strongly or directly'. Exception: DAFT / DAFT-2 is named only because a SAME smoke-detection instrument 'was instead used to detect dust' there, so it is indirect."
+  }
+}
