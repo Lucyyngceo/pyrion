@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { readByCode, type ParsedTarget } from "@/lib/ask-core";
+import { decodeShare } from "@/lib/tars/share";
 import { deliver, getCurrentTarget, storePending, takePending, type Pending } from "@/lib/tars/bridge";
 import { resolveMode, type AnswerPair, type Mode } from "@/lib/tars/answer";
 import { routeMessage, type Route } from "@/lib/tars/route";
@@ -25,6 +26,8 @@ export interface SkepticView {
 }
 
 export interface ExpertResult {
+  /** SHA-256 of the engine's evaluation for the condition of this answer (null when the answer had no condition). */
+  fingerprint?: string | null;
   blocks: KeptBlock[];
   dropped: number;
   flagged: number;
@@ -227,6 +230,36 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
     [add],
   );
 
+  // A shared link (?share=...) carries a question and a condition. Opening it re-runs ONLY the engine part, with no model;
+  // it says whether the fingerprint matches the one that was shared, and the question stays in the box to ask again.
+  const sharedOnce = useRef(false);
+  useEffect(() => {
+    if (sharedOnce.current) return;
+    const raw = new URLSearchParams(window.location.search).get("share");
+    if (!raw) return;
+    sharedOnce.current = true;
+    const shared = decodeShare(raw);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("share");
+    window.history.replaceState(null, "", url.pathname + (url.search || "") + url.hash);
+    if (!shared) {
+      add({ role: "tars", kind: "note", text: "That shared link could not be read." });
+      return;
+    }
+    setOpen(true);
+    void (async () => {
+      add({ role: "user", text: shared.q });
+      const r = await postJson<{ fingerprint: string }>("/api/tars/replay", { target: shared.t });
+      if (!r.ok) {
+        add({ role: "tars", kind: "error", text: r.data.error ?? "The shared condition could not be reproduced." });
+        return;
+      }
+      const same = shared.fp ? (r.data.fingerprint === shared.fp ? "The engine fingerprint matches the one that was shared ✓." : "The engine fingerprint is DIFFERENT from the one that was shared (the engine or its data changed since).") : "";
+      add({ role: "tars", kind: "note", text: `Shared question and condition. The engine part is reproduced below by code, with no model. ${same} Ask the question again to get a model's words.` });
+      await answerFor(shared.t, "Shared link", shared.q, "condition");
+    })();
+  }, [add, answerFor]);
+
   /** The model-free fallback: a condition gets the three-part answer, anything else TARS Support. */
   const fallback = useCallback(
     async (t: string, route: Route) => {
@@ -395,3 +428,4 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
   );
   return <TarsContext.Provider value={value}>{children}</TarsContext.Provider>;
 }
+

@@ -6,6 +6,7 @@ import { resolveMode } from "@/lib/tars/answer";
 import { labelsFor, type Lang } from "@/lib/tars/lang";
 import { CitationQuote } from "./CitationPreview";
 import { suggestNext } from "@/lib/tars/suggest";
+import { encodeShare } from "@/lib/tars/share";
 import { useTars, type ExpertResult, type Msg, type SkepticView } from "./TarsProvider";
 
 /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text is never inserted as HTML. */
@@ -114,6 +115,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
         </p>
       )}
       <div className="tars-actions">
+        {r.target != null && r.fingerprint && <ReplayShare msg={msg} />}
         {r.actions.map((a, i) =>
           a.type === "show" ? (
             <button data-help="tars-show-on-envelope" key={i} type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
@@ -333,5 +335,48 @@ function SecondOpinion({ s, blocks, es }: { s: SkepticView; blocks: ("engine" | 
       )}
       {s.verdict === "unavailable" && <span className="muted">{es ? "no disponible" : "unavailable"}{s.note ? `: ${s.note}` : ""}</span>}
     </div>
+  );
+}
+
+/** Replay re-runs the engine part and compares fingerprints; Share builds a link that carries the question and the condition (nothing is stored on a server). */
+function ReplayShare({ msg }: { msg: Extract<Msg, { kind: "expert" }> }) {
+  const r = msg.result;
+  const [replay, setReplay] = useState<"idle" | "busy" | "same" | "different" | "failed">("idle");
+  const [shared, setShared] = useState<"idle" | "copied" | "shown">("idle");
+  const [link, setLink] = useState("");
+  const doReplay = async () => {
+    setReplay("busy");
+    try {
+      const res = await fetch("/api/tars/replay", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ target: r.target }) });
+      const j = (await res.json()) as { fingerprint?: string };
+      setReplay(!res.ok || !j.fingerprint ? "failed" : j.fingerprint === r.fingerprint ? "same" : "different");
+    } catch {
+      setReplay("failed");
+    }
+  };
+  const doShare = async () => {
+    const url = `${window.location.origin}/tars?share=${encodeShare({ q: msg.question ?? "", t: r.target, ...(r.fingerprint ? { fp: r.fingerprint } : {}) })}`;
+    setLink(url);
+    try {
+      await navigator.clipboard.writeText(url);
+      setShared("copied");
+    } catch {
+      setShared("shown");
+    }
+  };
+  return (
+    <>
+      <button data-help="tars-replay" type="button" className="tars-btn" disabled={replay === "busy"} onClick={() => void doReplay()} title="Run the engine part again and compare fingerprints">
+        Replay
+      </button>
+      {replay === "same" && <span className="small" role="status">same fingerprint ✓ <code>{r.fingerprint?.slice(0, 12)}…</code></span>}
+      {replay === "different" && <span className="small" role="status">different fingerprint: the engine or its data changed since this answer</span>}
+      {replay === "failed" && <span className="small" role="alert">the replay could not run</span>}
+      <button data-help="tars-share" type="button" className="tars-btn" onClick={() => void doShare()} title="A link with the question and the condition; nothing is stored on a server">
+        Share
+      </button>
+      {shared === "copied" && <span className="small" role="status">link copied</span>}
+      {shared === "shown" && <input data-help="tars-share-link" className="small" readOnly value={link} aria-label="Share link" onFocus={(e) => e.currentTarget.select()} />}
+    </>
   );
 }

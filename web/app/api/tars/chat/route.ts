@@ -3,7 +3,7 @@
 
 import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, visitorFor } from "@/lib/llm";
 import { shapeTarget } from "@/lib/ask-core";
-import { serverData } from "@/lib/server-eval";
+import { evaluateOnServer, serverData } from "@/lib/server-eval";
 import { helpTopics } from "@/lib/tars/topics-server";
 import { loadLibrary } from "@/lib/expert/library";
 import { runAgent, type AssistantMsg, type HistoryTurn, type UiContext } from "@/lib/expert/agent";
@@ -83,7 +83,9 @@ export async function POST(req: Request) {
           { message, history, lastTarget, ui },
         );
         if (result.report.dropped.length || result.report.flaggedNumbers.length) console.warn("[pyrion] expert answer check:", JSON.stringify(result.report));
-        send({ type: "result", blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, lang: result.lang, steps: result.steps, model: used });
+        const tShaped = result.target ? shapeTarget(result.target) : null;
+        const fingerprint = tShaped && tShaped.ok ? (await evaluateOnServer(tShaped.target)).sha256 : null;
+        send({ type: "result", fingerprint, blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, lang: result.lang, steps: result.steps, model: used });
         // Second opinion: a model of a different family reviews the checked answer; it never changes it. Sent after the answer, so the answer is not delayed.
         if (body.skeptic === true && result.kept.length > 0 && used) {
           send({ type: "status", text: "Asking for a second opinion…" });
