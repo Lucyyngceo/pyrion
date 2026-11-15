@@ -2,7 +2,7 @@
   "about": "Evidence timeline: PSI dates per investigation and the (O2, pressure) points of its tests. Built by tools/build_timeline.py.",
   "counts": {
     "investigations": 24,
-    "points": 676,
+    "points": 690,
     "undated": 4,
     "with_points": 9
   },
@@ -7404,6 +7404,496 @@
       ],
       "placed_by": "investigationEndDate",
       "points": [
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 467,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=108;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T9",
+              "unit": "1",
+              "value": "0.164",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 849,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T9",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T9"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.164,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 479,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=111;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T12",
+              "unit": "1",
+              "value": "0.168",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 852,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T12",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T12"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.168,
+          "pressure_kpa": 101.325,
+          "tests": 1
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 487,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=113;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T14",
+              "unit": "1",
+              "value": "0.169",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 854,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T14",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T14"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.169,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 475,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=110;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T11",
+              "unit": "1",
+              "value": "0.171",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 851,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T11",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T11"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.171,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 507,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=118;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T19",
+              "unit": "1",
+              "value": "0.172",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 859,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T19",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T19"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.172,
+          "pressure_kpa": 101.325,
+          "tests": 4
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 503,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=117;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T18",
+              "unit": "1",
+              "value": "0.174",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 858,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T18",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T18"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.174,
+          "pressure_kpa": 101.325,
+          "tests": 1
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 483,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=112;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T13",
+              "unit": "1",
+              "value": "0.175",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 853,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T13",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T13"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.175,
+          "pressure_kpa": 101.325,
+          "tests": 1
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 495,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=115;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T16",
+              "unit": "1",
+              "value": "0.176",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 856,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T16",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T16"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.176,
+          "pressure_kpa": 101.325,
+          "tests": 1
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 527,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=123;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T24",
+              "unit": "1",
+              "value": "0.182",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 864,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T24",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T24"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.182,
+          "pressure_kpa": 101.325,
+          "tests": 1
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 439,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=101;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T1",
+              "unit": "1",
+              "value": "0.185",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 844,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T1",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T1"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.185,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 451,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=104;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T4",
+              "unit": "1",
+              "value": "0.187",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 846,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T4",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T4"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.187,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 455,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=105;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T5",
+              "unit": "1",
+              "value": "0.188",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 847,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T5",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T5"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.188,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 539,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=126;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T27",
+              "unit": "1",
+              "value": "0.207",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 867,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T27",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T27"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.207,
+          "pressure_kpa": 101.325,
+          "tests": 4
+        },
+        {
+          "example": {
+            "o2_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 531,
+              "quote": "Calibrated  initial O2 % by vol ",
+              "source_file": "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv",
+              "source_location": "row=124;column=Calibrated  initial O2 % by vol ",
+              "status": "extracted",
+              "test_id": "T25",
+              "unit": "1",
+              "value": "0.208",
+              "variable": "o2_mole_fraction"
+            },
+            "pressure_row": {
+              "file": "data/conditions/PSI-25.csv",
+              "line": 865,
+              "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+              "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+              "source_location": "page=102",
+              "status": "extracted",
+              "test_id": "T25",
+              "unit": "kPa",
+              "value": "101.325",
+              "variable": "pressure"
+            },
+            "test_id": "T25"
+          },
+          "gravity_regime": [
+            "microgravity"
+          ],
+          "o2_mole_fraction": 0.208,
+          "pressure_kpa": 101.325,
+          "tests": 2
+        },
         {
           "example": {
             "o2_row": {
