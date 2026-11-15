@@ -383,6 +383,12 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
           Each card says in one sentence where your condition stands, then shows the reasons and the sources. Every verdict is computed by
           the PYRION engine ({evaluation.engine.name} {evaluation.engine.version}): deterministic rules, no language model.
         </p>
+        {evaluation.target.regime.fuel_phase === undefined && evaluation.counts.investigations.APPLICABLE + evaluation.counts.investigations.EXTRAPOLATION > 0 && (
+          <p data-help="results-fuel-open" className="small honesty">
+            Fuel phase is left open, so droplet and gas-flame studies are compared alongside solid materials. For cabin materials
+            (fabrics, plastics), set the fuel phase to solid in the condition panel.
+          </p>
+        )}
       </div>
 
       <div className="group">
