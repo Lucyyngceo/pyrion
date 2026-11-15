@@ -6,7 +6,7 @@
 // verdicts with code, asks the model for context only, and checks that context before it can reach the page.
 
 import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorId } from "@/lib/llm";
-import { openWeightsLabel } from "@/lib/llm/config";
+import { displayName, openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, parseTargetReply, readByCode, questionHasOxygenPartialPressure, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
@@ -49,6 +49,7 @@ export async function GET() {
 const metaOf = (m: { model: string; provider: string; latency_ms: number; fell_back_from?: string }) => ({
   provider: m.provider,
   model: m.model,
+  name: displayName(m.model),
   latency_ms: m.latency_ms,
   fell_back_from: m.fell_back_from ?? null,
   // Only a verified table entry is called open weights, with its license and source; anything else carries no label.
@@ -120,7 +121,7 @@ export async function POST(req: Request) {
         });
       }
       // Reasoning models on the fallback provider need room to think before the JSON.
-      const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 2000 }, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
+      const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 2000, openrouter: 1500 }, effort: "low", validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
       let parsed;
@@ -147,7 +148,7 @@ export async function POST(req: Request) {
       let dropped = 0;
       let meta = null;
       try {
-        const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 1200 }, validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify({ target: input.target, open_axes: input.open_axes }) }] }, visitor);
+        const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 1200, openrouter: 1500 }, effort: "low", validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify({ target: input.target, open_axes: input.open_axes }) }] }, visitor);
         meta = metaOf(c.meta);
         const text = c.json?.choices?.[0]?.message?.content;
         if (typeof text === "string") {

@@ -54,6 +54,10 @@ export interface ModelInfo {
   /** false: send chat_template_kwargs { enable_thinking: false } to NIM for short structured answers. Unknown models: true (provider default). */
   thinking?: boolean;
   /** Verified from the model page. Models not in this table are "unverified" and get no label. */
+  /** "required": the endpoint rejects reasoning disabled; send reasoning { effort, exclude: true } instead. */
+  reasoning?: "required";
+  /** The name the page shows ("GLM-5.3"). Models without one show their id. */
+  name?: string;
   open_weights: true;
   license: string;
   source: string;
@@ -62,6 +66,14 @@ export interface ModelInfo {
 
 /** One entry per model, checked against the model pages on 2026-11-14. Not environment: a license is a fact, not a setting. */
 export const MODEL_INFO: Readonly<Record<string, ModelInfo>> = {
+  "z-ai/glm-5.3": {
+    name: "GLM-5.3",
+    open_weights: true,
+    license: "GLM-5.3 License (permissive; Z.AI)",
+    source: "https://huggingface.co/zai-org/GLM-5.3",
+    checked: "2026-11-14",
+    reasoning: "required",
+  },
   "qwen/qwen3.8-27b": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
   "moonshotai/kimi-k2.6": { open_weights: true, license: "Modified MIT", source: "https://huggingface.co/moonshotai/Kimi-K2.6", checked: "2026-11-14" },
   "google/gemma-4-31b-it": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
@@ -81,3 +93,6 @@ export function openWeightsLabel(model: string): { license: string; source: stri
   const i = MODEL_INFO[model];
   return i?.open_weights ? { license: i.license, source: i.source } : null;
 }
+
+/** The name to show for a model: its table name, or its id. */
+export const displayName = (model: string): string => MODEL_INFO[model]?.name ?? model;

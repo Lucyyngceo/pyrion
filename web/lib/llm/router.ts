@@ -38,6 +38,8 @@ export interface CompleteArgs {
   maxCandidates?: number;
   /** Let a reasoning model think before answering (OpenRouter). Default false. */
   reasoning?: boolean;
+  /** How hard a model that must reason (reasoning: "required") thinks on this call: parse and narrate "low", the expert chat "medium". Default "low". */
+  effort?: "low" | "medium" | "high";
   /** The answer is usable only if this returns true for the cleaned text (for example: it parses). */
   validate?: (cleanedText: string) => boolean;
   /** Use exactly `model`, with no fallback (health checks and smoke tests). */
@@ -75,6 +77,8 @@ export const PROVIDER_DOWN_MS = 5 * 60_000;
 const sharedDown = new Map<string, number>();
 /** At most this many models are tried per provider, so the fallback provider is always reached. */
 const PER_PROVIDER = 2;
+/** Room for the thinking of a reasoning-required model (the answer itself is short). */
+export const REASONING_MIN_TOKENS = 1500;
 
 /**
  * A failure of the provider as a whole, not of one model or one request: a bad key (401), no payment (402), or a 4xx
@@ -158,9 +162,15 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
             messages: args.messages,
             ...(args.tools && args.tools.length ? { tools: args.tools } : {}),
             temperature: args.temperature ?? 0,
-            max_tokens: args.maxTokensByProvider?.[provider.id] ?? args.maxTokens ?? 800,
+            // A model that must reason spends tokens thinking: it never gets less than REASONING_MIN_TOKENS.
+            max_tokens: Math.max(args.maxTokensByProvider?.[provider.id] ?? args.maxTokens ?? 800, modelInfo(model)?.reasoning === "required" ? REASONING_MIN_TOKENS : 0),
             stream: !!args.stream,
-            ...(provider.id === "openrouter" && !args.reasoning ? { reasoning: { enabled: false } } : {}),
+            // Reasoning: a model that cannot run without it gets an effort and its thinking hidden from the answer; others are switched off unless asked.
+            ...(provider.id === "openrouter" && modelInfo(model)?.reasoning === "required"
+              ? { reasoning: { effort: args.effort ?? "low", exclude: true } }
+              : provider.id === "openrouter" && !args.reasoning
+                ? { reasoning: { enabled: false } }
+                : {}),
             // NIM: a model configured with thinking: false answers in a second or two instead of thinking first.
             ...(provider.id === "nim" && !args.reasoning && modelInfo(model)?.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),
           }),

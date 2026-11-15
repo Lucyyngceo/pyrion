@@ -108,8 +108,8 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
 
   /** The condition in a message: the Ask step (content check, code first, model only if code cannot), or code alone when the server has no model. */
   const readCondition = useCallback(async (text: string): Promise<{ parsed: ParsedTarget; readBy: string } | { error: string }> => {
-    const r = await postJson<{ parsed: ParsedTarget; meta?: { read_by?: string; model?: string | null } }>("/api/ask", { step: "parse", question: text });
-    if (r.ok) return { parsed: r.data.parsed, readBy: r.data.meta?.read_by === "code" || !r.data.meta?.model ? "Read by code" : `Read by ${r.data.meta.model}` };
+    const r = await postJson<{ parsed: ParsedTarget; meta?: { read_by?: string; model?: string | null; name?: string } }>("/api/ask", { step: "parse", question: text });
+    if (r.ok) return { parsed: r.data.parsed, readBy: r.data.meta?.read_by === "code" || !r.data.meta?.model ? "Read by code" : `Read by ${r.data.meta.name ?? r.data.meta.model}` };
     // No model configured on this server: code alone can still read a question whose numbers are all clear.
     if (r.status === 503) {
       const c = readByCode(text);

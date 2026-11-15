@@ -16,6 +16,8 @@ interface Meta {
   read_by?: string;
   latency_ms: number;
   fell_back_from: string | null;
+  /** The name to show ("GLM-5.3"); the model id when there is none. */
+  name?: string;
   open_weights: { license: string; source: string } | null;
 }
 
@@ -64,7 +66,7 @@ function Who({ m }: { m: Meta | null }) {
   if (m.read_by === "code" || m.model === null) return <>Read by code (no model needed)</>;
   return (
     <>
-      <code>{m.model}</code>
+      <code>{m.name ?? m.model}</code>
       {m.open_weights && (
         <>
           {" · open weights · "}

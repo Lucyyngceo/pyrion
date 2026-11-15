@@ -411,3 +411,28 @@ test("A1b: a second guard that times out once is retried; twice is 'unresolved',
   assert.equal(r.flagged, false);
   assert.equal(r.unresolved, true);
 });
+
+test("GLM-5.3 (reasoning required): effort instead of enabled:false, room to think, reasoning hidden; 402 still falls back to NIM", async () => {
+  const glmEnv = { ...env, OPENROUTER_MODELS: "z-ai/glm-5.3,qwen/qwen3.8-27b" };
+  const glmProviders = loadProviders(glmEnv);
+  const bodies: Record<string, unknown>[] = [];
+  const f = (async (url: string, init: RequestInit) => {
+    const b = JSON.parse(String(init.body)) as Record<string, unknown>;
+    bodies.push({ host: new URL(url).host, ...b });
+    return ok("answer");
+  }) as unknown as typeof fetch;
+  await complete({ messages, effort: "medium", maxTokens: 400 }, { providers: glmProviders, fetch: f, down: new Map() });
+  assert.deepEqual(bodies[0].reasoning, { effort: "medium", exclude: true });
+  assert.ok((bodies[0].max_tokens as number) >= 1500, "a reasoning model gets room to think");
+  bodies.length = 0;
+  await complete({ messages, model: "qwen/qwen3.8-27b" }, { providers: glmProviders, fetch: f, down: new Map() });
+  assert.deepEqual(bodies[0].reasoning, { enabled: false }, "other models stay switched off");
+  // OpenRouter has no credit (402): the whole provider is skipped and NIM answers
+  const g = (async (url: string, init: RequestInit) => {
+    const host = new URL(url).host;
+    return host === "or.test" ? new Response("{}", { status: 402 }) : ok("from nim");
+  }) as unknown as typeof fetch;
+  const r = await complete({ messages }, { providers: glmProviders, fetch: g, down: new Map() });
+  assert.equal(r.meta.provider, "nim");
+  assert.deepEqual(openWeightsLabel("z-ai/glm-5.3"), { license: "GLM-5.3 License (permissive; Z.AI)", source: "https://huggingface.co/zai-org/GLM-5.3" });
+});
