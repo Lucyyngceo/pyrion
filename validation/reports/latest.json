@@ -1,10 +1,12 @@
 {
- "generated_at_utc": "2026-11-15T02:06:35Z",
- "trace_ran": false,
+ "generated_at_utc": "2026-11-15T02:07:17Z",
+ "trace_ran": true,
  "stats": {
   "records": 10010,
   "units_identity_no_unit_in_source": 207,
   "units_rechecked": 3240,
+  "cells_traced": 8531,
+  "quotes_traced": 910,
   "text_files_scanned": 54
  },
  "counts": {

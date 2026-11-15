@@ -1,6 +1,6 @@
-# Validation report — 2026-11-15T02:06:35Z
+# Validation report — 2026-11-15T02:07:17Z
 
-Records: 10010 · trace check: skipped (no data/raw) · text_files_scanned: 54 · units_identity_no_unit_in_source: 207 · units_rechecked: 3240
+Records: 10010 · trace check: ran · cells_traced: 8531 · quotes_traced: 910 · text_files_scanned: 54 · units_identity_no_unit_in_source: 207 · units_rechecked: 3240
 
 **BLOCKER 0 · MAJOR 1 · MINOR 131**
 
