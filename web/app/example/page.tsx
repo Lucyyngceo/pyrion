@@ -4,6 +4,7 @@ import { evaluateOnServer, serverData } from "@/lib/server-eval";
 import { ISS_PRESET } from "@/lib/presets";
 import { KPA_PER_PSI, PRESETS, evaluate, levelSentence, verdictLabel, type ClusterVerdict, type ConditionRecord, type Target } from "@/lib/engine";
 import { loadPlanner } from "@/lib/planner/data";
+import { evidenceGaps } from "@/lib/gaps";
 import { profiles } from "@/lib/investigations/data";
 import "../landing.css";
 
@@ -82,6 +83,10 @@ export default async function Example() {
     }
   }
   const whatIf = evaluate([...records, ...hypo], target);
+  const gaps = await evidenceGaps(target);
+  const useful = gaps.filter((g) => g.reachable);
+  const fmt = (axis: string, x: number) => (axis === "pressure" ? `${Math.round(x * 10) / 10} kPa (${psia(x)} psia)` : pct(x));
+  const missingCorners = planner.minimumTest.missing;
   const verdictFor = (ev: typeof evaluation, acc: string) => {
     const v = [...ev.ranked, ...ev.unranked].find((x) => x.accession === acc);
     return v ? (v.extrapolationLevel ? levelSentence(v.extrapolationLevel) : verdictLabel(v.verdict)) : "—";
@@ -307,6 +312,68 @@ export default async function Example() {
         <p className="small muted">
           Why it matters: if a NASA document confirms the pressure, these large-scale cabin-material tests would join BASS and BASS-II
           as the closest evidence for ISS cabin air. Finding that statement, or measuring it in a future flight, is a concrete next step.
+        </p>
+      </section>
+
+      <section className="ld-section" aria-labelledby="ex-gaps">
+        <p className="ld-kicker">Evidence gaps that matter · computed, nothing assumed</p>
+        <h2 id="ex-gaps">Which missing number would make the most of NASA&apos;s data comparable?</h2>
+        <p>
+          For ISS cabin air (solid materials), PYRION lists every value that is not stated in PSI and blocks a comparison. For each, the
+          engine tries candidate values in memory and reports the range the NASA record would need to state for the investigation to
+          become comparable under PYRION&apos;s stated rule. Nothing is assumed and nothing is added to the data.
+        </p>
+        <div className="tars-cmptable">
+          <table>
+            <thead>
+              <tr>
+                <th>Investigation</th>
+                <th>Not stated in PSI</th>
+                <th>Tests</th>
+                <th>Would become comparable if PSI stated</th>
+                <th>Result then</th>
+              </tr>
+            </thead>
+            <tbody>
+              {gaps.map((g) => (
+                <tr key={`${g.accession}|${g.axis}`}>
+                  <td>
+                    <Link data-help="example-link" href={`/investigations/${g.accession}`}>
+                      {g.accession} {name(g.accession)}
+                    </Link>
+                  </td>
+                  <td>{g.axis === "pressure" ? "pressure" : "oxygen"}</td>
+                  <td>{g.tests.length}</td>
+                  <td>{g.range ? (g.range[0] === g.range[1] ? fmt(g.axis, g.range[0]) : `${fmt(g.axis, g.range[0])} to ${fmt(g.axis, g.range[1])}`) : "no value would (see why)"}</td>
+                  <td className="small">
+                    {g.reachable ? (g.reachableLevel ? levelSentence(g.reachableLevel as Parameters<typeof levelSentence>[0]) : verdictLabel(g.reachable)) : ""}
+                    {g.reason ? ` — ${g.reason}` : ""}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Reading it:</strong> {useful.length} of the {gaps.length} gaps could make an investigation comparable to ISS cabin air if a
+          NASA document stated the value; the rest would still be blocked by another missing value. Asking PSI for these few numbers is
+          the cheapest way to add evidence. Why it matters: large-scale tests of cabin materials in microgravity are the evidence that
+          checks NASA&apos;s ground test (Olson &amp; Ferkul, NTRS 20150008961).
+        </p>
+        {missingCorners.length > 0 && (
+          <p>
+            <strong>For the Moon, no number in PSI can help:</strong> no test was run in lunar gravity. The new tests that would span the
+            Moon Base band under PYRION&apos;s convention are{" "}
+            {missingCorners.map((m) => `${pct(m.o2_mole_fraction)} O₂ at ${psia(m.pressure_kpa)} psia`).join("; ")} (
+            <Link data-help="example-link" href="/planner">
+              Mission Planner
+            </Link>
+            ).
+          </p>
+        )}
+        <p className="ld-src small">
+          &ldquo;Comparable&rdquo; means inside or just outside the tested range under PYRION&apos;s stated rule (0.5 % tolerance); it does not
+          predict how a flame behaves.
         </p>
       </section>
 
