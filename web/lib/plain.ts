@@ -5,6 +5,11 @@ import { EXTRAPOLATION_LEVEL_NOTE, levelSentence, type ExtrapolationLevel } from
 import type { AxisCheck, ClusterVerdict, RegimeState, Verdict } from "./engine";
 import { fmt, valueLabel } from "./units";
 
+/** Shown whenever the target is at normal gravity (1 g). */
+export const GROUND_NOTE =
+  "PSI holds no ground (1 g) tests with oxygen and pressure per test; the only stated ground conditions are BASS-II (101 kPa, 21 % O₂) and BRE (1 bar, 21 % O₂), each stated once for its series.";
+export const GROUND_INVENTORY_URL = "https://github.com/Lucyyngceo/pyrion/blob/main/extraction/ground_tests_inventory.md";
+
 /** One sentence each, consistent with the Method page. */
 export const GLOSSARY: Record<string, string> = {
   "regime barrier": "A different physical regime: gravity, fuel phase, diluent or flame type. It is not a worse match, it is not comparable, so no distance is computed across it.",
@@ -13,6 +18,7 @@ export const GLOSSARY: Record<string, string> = {
   envelope: "The area of the oxygen-by-pressure plane covered by an investigation's measured test points.",
   "convex hull": "The smallest outline without dents around the measured points. A target inside it is covered by measurements.",
   diluent: "The gas that fills most of the atmosphere besides oxygen, such as nitrogen, helium or carbon dioxide. Changing it changes how the flame burns, so it is a regime axis.",
+  "normal gravity": `${GROUND_NOTE} Inventory: extraction/ground_tests_inventory.md.`,
   "normal flame": "A flame burning in the usual way: fuel is on one side, and oxygen reaches it from the surrounding gas.",
   "inverse flame": "A flame turned inside out: oxygen comes out of a burner into a surrounding fuel gas. It follows different physics, so it is a different regime.",
   "measurement tolerance": "A margin of 0.5 % so that a target exactly on the edge of a measured range, within measurement error, counts as inside.",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { levelPhrase } from "@/lib/plain";
+import { GROUND_INVENTORY_URL, GROUND_NOTE, levelPhrase } from "@/lib/plain";
 import type { ExtrapolationLevel } from "@/lib/engine";
 import { memo } from "react";
 import type { ClusterVerdict, Evaluation, Route, RouteSet, Target } from "@/lib/engine";
@@ -113,6 +113,15 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
           <p className="outcome-detail" key={status.detail}>
             {status.detail}
           </p>
+          {evaluation.target.regime.gravity_regime === "normal_gravity" && (
+            <p className="outcome-detail ground-note small">
+              {GROUND_NOTE} Inventory:{" "}
+              <a href={GROUND_INVENTORY_URL} target="_blank" rel="noreferrer">
+                extraction/ground_tests_inventory.md
+              </a>
+              .
+            </p>
+          )}
           <div className="compare">
             {pinned ? (
               <>
