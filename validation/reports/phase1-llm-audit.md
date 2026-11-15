@@ -132,3 +132,27 @@ Two separate agents reviewed the layer in parallel, neither of them an author of
 Found solid by both reviewers: no key in git history, the client bundle, responses, errors or logs; no XSS or SSRF; no ReDoS; conversion factors correct (psi, atm, mmHg, torr, bar, K); gauge pressure and mass-based oxygen refused; every cited NTRS quote matches its PDF page.
 
 Live tests after a clean restart: the lunar question, both candle questions, the oxygen-partial-pressure question, the harmful question and narration all behave as above, and the server log shows no errors. Tests: web 59/59, engine 166/166. **Phase 1 is closed: no open BLOCKER or MAJOR.**
+
+## Phase 1B — NAVIGATOR (guiding dashboard) — closed November 14, 2026, 21:40
+
+NAVIGATOR answers two questions with the deterministic engine: where the target stands, and what is the smallest change that reaches measured evidence. The pieces are routes to evidence, the evidence map, plain-language reasons, extrapolation distance levels, the scenario strip, full-screen pan and zoom, and a guided tour.
+
+- **Judge battery** (`validation/judge_battery/`): 31 phrasings (EN + ES) plus 11 traps.
+  - 0 parse failures.
+  - All 31 phrasings are read by code (no model) and give identical targets on repeat.
+  - The only remaining failure was a content-check timeout under load, fixed in `f4079e5`.
+- **Independent audit** (Opus, high effort): 1 BLOCKER, 7 MAJOR and 2 MINOR, all fixed (`f183839`, `1111326`, `a193316`). The BLOCKER was that half of the "Take me there" buttons did not reach APPLICABLE when a route left O₂ or pressure open.
+  - New rule: a stated continuous axis is never left open, just like gravity.
+- **Engine invariants**, all verified:
+  - every route target is APPLICABLE under `evaluate()` (364 routes in the audit);
+  - gravity and stated continuous axes are never dropped;
+  - evidence-map cells equal `evaluate()` (200 of 200);
+  - extrapolation levels are monotonic (11,952 neighbouring pairs, 0 violations);
+  - every scenario-tile number equals `evaluate()`.
+- **Browser check:**
+  - NASA's Moon Base shows "No PSI test in this gravity regime"; "Switch to microgravity" then gives PSI-20 APPLICABLE with its receipt.
+  - From ISS cabin air, the BASS route gives PSI-26 APPLICABLE.
+- **Data:**
+  - Excel tables are now traced, so 9,453 of 9,453 extracted values are located by code.
+  - The only ground (1 g) conditions PSI states were added: BASS-II and BRE, 20 records. The inventory of ground data is in `extraction/ground_tests_inventory.md`.
+- **Tests:** engine 339/339 (twice, deterministic); web 68/68.
