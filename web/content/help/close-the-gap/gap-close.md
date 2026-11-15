@@ -6,7 +6,7 @@ dataHelp: gap-close
 title: Close the gap dialog
 keywords: close the gap dialog, gap close, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-close"]
 ---
 What it is: The cross.

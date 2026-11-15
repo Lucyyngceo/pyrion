@@ -6,7 +6,7 @@ dataHelp: chart-view-cabin
 title: Cabin range
 keywords: cabin range, chart view cabin, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-view-cabin"]
 ---
 What it is: A view toggle (the default).

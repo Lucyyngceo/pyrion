@@ -6,7 +6,7 @@ dataHelp: chart-legend
 title: Chart legend
 keywords: chart legend, chart legend, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-legend"]
 ---
 What it is: The chips above the chart.

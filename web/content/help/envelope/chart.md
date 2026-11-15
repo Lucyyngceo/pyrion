@@ -6,7 +6,7 @@ dataHelp: chart
 title: Evidence envelope chart
 keywords: evidence envelope chart, chart, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart"]
 ---
 What it is: The oxygen-versus-pressure picture of what PSI tested.

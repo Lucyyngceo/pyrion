@@ -4,7 +4,7 @@ title: The steps, in order
 chapter: add-a-source
 order: 130
 keywords: steps, pipeline, read, extract, verify, validate, classify, recalculate, what changed, add a source
-link: /
+link: /envelope
 page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md

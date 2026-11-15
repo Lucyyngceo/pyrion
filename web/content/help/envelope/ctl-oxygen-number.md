@@ -6,7 +6,7 @@ dataHelp: ctl-oxygen-number
 title: Oxygen number box
 keywords: oxygen number box, ctl oxygen number, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-oxygen-number"]
 ---
 What it is: A number box for oxygen in percent by volume.

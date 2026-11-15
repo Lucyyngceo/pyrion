@@ -94,9 +94,9 @@ test("UI-context question: describe_ui returns the page context and the help top
     () => ({ content: null, tool_calls: [call("1", "describe_ui", { topic: "where the evidence is" }), call("2", "highlight", { element: "evidence_list" })] }),
     (m) => ({ content: JSON.stringify([{ layer: "expert", text: `That is the ${(toolOut(m, 0).topics as { title: string }[])[0].title} panel.` }]) }),
   ]);
-  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "what is that thing on the right?", ui: { route: "/", panels: ["strip", "evidence_list", "chart"] } });
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "what is that thing on the right?", ui: { route: "/envelope", panels: ["strip", "evidence_list", "chart"] } });
   const first = toolOut(s.seen[1], 0) as { page: { route: string }; topics: { id: string; title: string }[] };
-  assert.equal(first.page.route, "/");
+  assert.equal(first.page.route, "/envelope");
   assert.ok(first.topics.some((t) => ["navigator-take-me-there", "evidence-panel", "navigator-overview"].includes(t.id)), JSON.stringify(first.topics.map((t) => t.id)));
   assert.deepEqual(r.actions, [{ type: "highlight", selector: ".nav-evidence", label: "Where the evidence is" }]);
 });

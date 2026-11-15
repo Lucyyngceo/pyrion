@@ -6,7 +6,7 @@ dataHelp: tile-gap-button
 title: What would close this gap (tile button)
 keywords: what would close this gap (tile button), tile gap button, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-gap-button"]
 ---
 What it is: A small button on a tile.

@@ -6,7 +6,7 @@ dataHelp: page-bridge
 title: Bridge page overview
 keywords: bridge page overview, page bridge, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="page-bridge"]
 ---
 What it is: The page that explores a hypothesis relating gravity levels through flame stretch rate.

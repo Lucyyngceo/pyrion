@@ -6,7 +6,7 @@ dataHelp: result-ref-more
 title: More receipt references
 keywords: more receipt references, result ref more, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-ref-more"]
 ---
 What it is: A "+n" button.

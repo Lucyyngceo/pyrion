@@ -6,7 +6,7 @@ dataHelp: footer-psi
 title: psi.nasa.gov link
 keywords: psi.nasa.gov link, footer psi, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="footer-psi"]
 ---
 What it is: A link to NASA's Physical Sciences Informatics site.

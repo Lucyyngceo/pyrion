@@ -6,7 +6,7 @@ order: 10
 dataHelp: nav-planner
 keywords: planner tab, planner, moon base
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-planner"]
 ---
 What it is: The tab of the Mission Planner page.

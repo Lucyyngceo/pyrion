@@ -4,7 +4,7 @@ chapter: envelope
 order: 35
 title: Full screen, zoom and pan
 keywords: full screen, fullscreen, zoom, pan, drag, pinch, reset, wheel, keyboard
-link: /
+link: /envelope
 highlight: .fs-btn
 ---
 The Full screen button opens the chart over the whole window with a sidebar listing where the evidence is. Esc or "Exit full screen" returns to the page with the same view.

@@ -6,7 +6,7 @@ order: 5
 dataHelp: ask-submit
 keywords: ask tars, question bar, ask
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ask-submit"]
 ---
 What it is: The button of the Ask TARS SI bar.

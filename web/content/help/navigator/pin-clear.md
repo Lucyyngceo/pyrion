@@ -6,7 +6,7 @@ dataHelp: pin-clear
 title: Clear pinned condition
 keywords: clear pinned condition, pin clear, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="pin-clear"]
 ---
 What it is: A link next to a pinned comparison.

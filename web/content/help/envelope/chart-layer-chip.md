@@ -6,7 +6,7 @@ dataHelp: chart-layer-chip
 title: Regime layer chip
 keywords: regime layer chip, chart layer chip, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-layer-chip"]
 ---
 What it is: A chip for one regime combination (gravity, fuel phase, diluent, flame type).

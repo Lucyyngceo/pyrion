@@ -6,7 +6,7 @@ dataHelp: add-source-ntrs
 title: NTRS number field
 keywords: ntrs number field, add source ntrs, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-ntrs"]
 ---
 What it is: A text box for an NTRS document number.

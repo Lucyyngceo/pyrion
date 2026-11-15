@@ -6,7 +6,7 @@ dataHelp: result-source-doi
 title: Card DOI (header)
 keywords: card doi (header), result source doi, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-source-doi"]
 ---
 What it is: A link in the card header.

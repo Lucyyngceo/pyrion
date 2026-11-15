@@ -6,7 +6,7 @@ dataHelp: tile-condition
 title: Tile condition line
 keywords: tile condition line, tile condition, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-condition"]
 ---
 What it is: The monospaced line of numbers on a tile.

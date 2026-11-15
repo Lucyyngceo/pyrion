@@ -6,7 +6,7 @@ dataHelp: help-menu-mode
 title: Help mode
 keywords: help mode, help menu mode, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-menu-mode"]
 ---
 What it is: A menu item that switches Help mode on or off.

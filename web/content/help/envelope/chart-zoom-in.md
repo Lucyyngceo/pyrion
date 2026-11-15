@@ -6,7 +6,7 @@ dataHelp: chart-zoom-in
 title: Zoom in
 keywords: zoom in, chart zoom in, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-zoom-in"]
 ---
 What it is: A button with a plus sign.

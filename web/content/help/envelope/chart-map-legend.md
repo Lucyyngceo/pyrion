@@ -6,7 +6,7 @@ dataHelp: chart-map-legend
 title: Map legend
 keywords: map legend, chart map legend, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-map-legend"]
 ---
 What it is: The sentence under the chart.

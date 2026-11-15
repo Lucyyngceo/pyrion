@@ -6,7 +6,7 @@ dataHelp: help-center-topic
 title: Help topic in the list
 keywords: help topic in the list, help center topic, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-center-topic"]
 ---
 What it is: A topic title in the left list.

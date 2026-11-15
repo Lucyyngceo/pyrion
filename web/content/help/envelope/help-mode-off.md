@@ -6,7 +6,7 @@ dataHelp: help-mode-off
 title: Turn off Help mode
 keywords: turn off help mode, help mode off, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-mode-off"]
 ---
 What it is: The button in the Help mode banner.

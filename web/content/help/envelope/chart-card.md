@@ -6,7 +6,7 @@ dataHelp: chart-card
 title: Evidence envelope card
 keywords: evidence envelope card, chart card, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-card"]
 ---
 What it is: The card that holds the chart and its controls.

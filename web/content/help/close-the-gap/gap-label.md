@@ -6,7 +6,7 @@ dataHelp: gap-label
 title: Proposal label
 keywords: proposal label, gap label, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-label"]
 ---
 What it is: The line "What would close this gap — PYRION proposal ...".

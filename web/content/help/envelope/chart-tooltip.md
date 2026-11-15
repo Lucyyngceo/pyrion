@@ -6,7 +6,7 @@ dataHelp: chart-tooltip
 title: Point tooltip
 keywords: point tooltip, chart tooltip, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-tooltip"]
 ---
 What it is: The box that appears when you hover a point.

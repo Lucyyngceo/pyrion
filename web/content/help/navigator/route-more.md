@@ -6,7 +6,7 @@ dataHelp: route-more
 title: + n more
 keywords: + n more, route more, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-more"]
 ---
 What it is: A link under a route group.

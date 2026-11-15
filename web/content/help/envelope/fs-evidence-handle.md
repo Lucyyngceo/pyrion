@@ -6,7 +6,7 @@ dataHelp: fs-evidence-handle
 title: Evidence sheet handle
 keywords: evidence sheet handle, fs evidence handle, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="fs-evidence-handle"]
 ---
 What it is: The bar at the bottom of the full-screen chart on narrow screens.

@@ -4,7 +4,7 @@ title: Added evidence is external, and looks it
 chapter: add-a-source
 order: 150
 keywords: external evidence, labelled, toggle, per visitor, browser, export, csv, json, luci, partial gravity, rotating vehicle, not applicable
-link: /
+link: /envelope
 page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md, nasa/ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf

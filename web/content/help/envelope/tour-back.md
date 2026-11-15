@@ -6,7 +6,7 @@ dataHelp: tour-back
 title: Tour back
 keywords: tour back, tour back, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="tour-back"]
 ---
 What it is: A button.

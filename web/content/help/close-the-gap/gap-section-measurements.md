@@ -6,7 +6,7 @@ dataHelp: gap-section-measurements
 title: Measurements
 keywords: measurements, gap section measurements, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-measurements"]
 ---
 What it is: What flammability testing measures.

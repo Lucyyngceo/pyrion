@@ -6,7 +6,7 @@ dataHelp: tile-line
 title: Tile detail line
 keywords: tile detail line, tile line, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-line"]
 ---
 What it is: A smaller line below the summary on a tile.

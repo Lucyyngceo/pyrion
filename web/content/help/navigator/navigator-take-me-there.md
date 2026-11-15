@@ -4,7 +4,7 @@ chapter: navigator
 order: 5
 title: Where the evidence is, and "Take me there"
 keywords: navigator, take me there, routes, route, how to reach, evidence, where the evidence is, no route found, switch regime, does
-link: /
+link: /envelope
 highlight: .nav-evidence
 ---
 The right column, "Where the evidence is", lists the investigations that already apply and, for the others, the smallest change to your condition that would make each one comparable.

@@ -6,7 +6,7 @@ dataHelp: chart-plot
 title: Chart plot area
 keywords: chart plot area, chart plot, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-plot"]
 ---
 What it is: The drawing area.

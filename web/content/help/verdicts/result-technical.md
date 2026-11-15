@@ -6,7 +6,7 @@ dataHelp: result-technical
 title: Technical line
 keywords: technical line, result technical, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-technical"]
 ---
 What it is: The small line on a card.

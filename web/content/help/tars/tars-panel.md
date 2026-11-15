@@ -6,7 +6,7 @@ dataHelp: tars-panel
 title: TARS chat panel
 keywords: tars chat panel, tars panel, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="tars-panel"]
 ---
 What it is: The floating chat window.

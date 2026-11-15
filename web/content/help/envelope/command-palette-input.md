@@ -6,7 +6,7 @@ dataHelp: command-palette-input
 title: Command palette search box
 keywords: command palette search box, command palette input, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="command-palette-input"]
 ---
 What it is: The text box inside the command palette.

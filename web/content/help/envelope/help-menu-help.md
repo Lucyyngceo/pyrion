@@ -6,7 +6,7 @@ dataHelp: help-menu-help
 title: Help (the manual)
 keywords: help, manual, library, documentation
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-menu-help"]
 ---
 What it is: The first item of the ? menu.

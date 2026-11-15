@@ -4,7 +4,7 @@ title: Add a source: what it will do and what exists today
 chapter: add-a-source
 order: 110
 keywords: add a source, add source, overview, new evidence, ntrs, external evidence, next build, today, design
-link: /
+link: /envelope
 page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md

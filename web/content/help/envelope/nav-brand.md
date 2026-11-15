@@ -6,7 +6,7 @@ dataHelp: nav-brand
 title: PYRION Ω logo and name
 keywords: pyrion ω logo and name, nav brand, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-brand"]
 ---
 What it is: The mark and name at the left of the top bar.

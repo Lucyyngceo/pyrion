@@ -6,7 +6,7 @@ dataHelp: ctl-gravity-level
 title: Gravity level box
 keywords: gravity level box, ctl gravity level, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-gravity-level"]
 ---
 What it is: A number box shown for partial gravity.

@@ -6,7 +6,7 @@ dataHelp: evidence-panel
 title: Where the evidence is
 keywords: where the evidence is, evidence panel, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="evidence-panel"]
 ---
 What it is: The second card of the right column.

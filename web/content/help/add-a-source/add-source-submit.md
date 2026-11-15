@@ -6,7 +6,7 @@ dataHelp: add-source-submit
 title: See how every value is checked
 keywords: add source, how values are checked, data page, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-submit"]
 ---
 What it is: A link at the bottom of the Add a source dialog.

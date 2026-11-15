@@ -6,7 +6,7 @@ dataHelp: ctl-pressure-number
 title: Pressure number box
 keywords: pressure number box, ctl pressure number, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-pressure-number"]
 ---
 What it is: A number box for total pressure in kPa, with psia shown below.

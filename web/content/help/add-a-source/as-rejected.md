@@ -4,7 +4,7 @@ title: What is rejected, and why
 chapter: add-a-source
 order: 140
 keywords: rejected, reject, quote not found, number, figure, plot, gravity, oxygen during burn, ratio, slide table, header, row label
-link: /
+link: /envelope
 page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md, data/external/ntrs-20250010653/README.md

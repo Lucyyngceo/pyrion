@@ -6,7 +6,7 @@ dataHelp: gap-dialog
 title: What would close this gap dialog
 keywords: what would close this gap dialog, gap dialog, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-dialog"]
 ---
 What it is: The dialog opened from a tile.

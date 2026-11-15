@@ -6,7 +6,7 @@ dataHelp: ctl-pressure-slider
 title: Pressure slider
 keywords: pressure slider, ctl pressure slider, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-pressure-slider"]
 ---
 What it is: A slider for pressure.

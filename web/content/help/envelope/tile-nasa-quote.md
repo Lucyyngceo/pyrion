@@ -6,7 +6,7 @@ dataHelp: tile-nasa-quote
 title: NASA quote on a tile
 keywords: nasa quote on a tile, tile nasa quote, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-nasa-quote"]
 ---
 What it is: An italic line quoting NASA.

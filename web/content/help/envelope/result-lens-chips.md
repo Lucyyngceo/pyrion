@@ -6,7 +6,7 @@ order: 998
 dataHelp: result-lens-chips
 keywords: lens, safety leg, prevention, detection, suppression, relevance, tier
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-lens-chips"]
 ---
 What it is: Small chips on a result card.

@@ -6,7 +6,7 @@ dataHelp: chart-zoom-badge
 title: Zoomed badge
 keywords: zoomed badge, chart zoom badge, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-zoom-badge"]
 ---
 What it is: A small badge in the chart corner.

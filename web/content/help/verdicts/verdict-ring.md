@@ -6,7 +6,7 @@ dataHelp: verdict-ring
 title: Verdict ring
 keywords: verdict ring, verdict ring, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="verdict-ring"]
 ---
 What it is: The circular counter.

@@ -6,7 +6,7 @@ dataHelp: chart-zoom-out
 title: Zoom out
 keywords: zoom out, chart zoom out, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-zoom-out"]
 ---
 What it is: A button with a minus sign.

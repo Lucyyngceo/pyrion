@@ -24,11 +24,11 @@ export default function CommandPalette() {
   const cmds = useMemo<Cmd[]>(() => {
     const go = (href: string) => () => router.push(href);
     const preset = (id: string) => () => {
-      if (path === "/") window.dispatchEvent(new CustomEvent("pyrion:preset", { detail: id }));
-      else router.push(`/?preset=${id}`);
+      if (path === "/envelope") window.dispatchEvent(new CustomEvent("pyrion:preset", { detail: id }));
+      else router.push(`/envelope?preset=${id}`);
     };
     const scroll = (id: string) => () => {
-      if (path !== "/") router.push(`/#${id}`);
+      if (path !== "/envelope") router.push(`/envelope#${id}`);
       else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
     return [
@@ -36,7 +36,7 @@ export default function CommandPalette() {
       { id: "s-env", group: "Section", label: "Evidence envelope", run: scroll("envelope-h") },
       { id: "s-res", group: "Section", label: "Verdicts, one row per investigation", run: scroll("results-h") },
       { id: "s-tvp", group: "Section", label: "Text similarity vs physics", run: scroll("tvp-h") },
-      { id: "g-home", group: "Page", label: "Envelope", hint: "/", run: go("/") },
+      { id: "g-home", group: "Page", label: "Envelope", hint: "/envelope", run: go("/envelope") },
       { id: "g-bridge", group: "Page", label: "Bridge: transfer hypothesis (not evidence)", hint: "/bridge", run: go("/bridge") },
       { id: "g-method", group: "Page", label: "Method: how PYRION decides", hint: "/method", run: go("/method") },
       { id: "g-why", group: "Page", label: "Why this exists: a note from the author", hint: "/why", run: go("/why") },

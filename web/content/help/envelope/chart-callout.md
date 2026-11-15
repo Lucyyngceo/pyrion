@@ -6,7 +6,7 @@ dataHelp: chart-callout
 title: Target callout
 keywords: target callout, chart callout, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-callout"]
 ---
 What it is: The small label next to the target.

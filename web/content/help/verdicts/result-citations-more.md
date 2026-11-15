@@ -6,7 +6,7 @@ dataHelp: result-citations-more
 title: Show all receipts
 keywords: show all receipts, result citations more, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-citations-more"]
 ---
 What it is: A link in the receipt.

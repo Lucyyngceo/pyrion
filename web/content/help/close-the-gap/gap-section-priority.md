@@ -6,7 +6,7 @@ dataHelp: gap-section-priority
 title: Priority
 keywords: priority, gap section priority, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-priority"]
 ---
 What it is: A numbered list.

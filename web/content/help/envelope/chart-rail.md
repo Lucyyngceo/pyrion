@@ -6,7 +6,7 @@ dataHelp: chart-rail
 title: Verdict rail
 keywords: verdict rail, chart rail, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-rail"]
 ---
 What it is: The thin coloured strip at the chart's right edge.

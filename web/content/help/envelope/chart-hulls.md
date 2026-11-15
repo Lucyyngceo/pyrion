@@ -6,7 +6,7 @@ dataHelp: chart-hulls
 title: Regime outlines (convex hulls)
 keywords: regime outlines (convex hulls), chart hulls, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-hulls"]
 ---
 What it is: The shaded polygons.

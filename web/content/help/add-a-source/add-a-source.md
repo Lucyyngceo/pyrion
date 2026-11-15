@@ -4,7 +4,7 @@ chapter: add-a-source
 order: 5
 title: Add a source (as built today)
 keywords: add a source, add source, upload, ntrs, new evidence, csv, xlsx, import, your own data
-link: /
+link: /envelope
 highlight: .add-source-btn
 ---
 "+ Add a source" opens a dialog. Only NASA sources are accepted: an NTRS document number from ntrs.nasa.gov, or a NASA CSV or Excel table you upload (up to 20 MB). Typed links are never fetched.

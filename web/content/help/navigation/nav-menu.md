@@ -6,7 +6,7 @@ order: 996
 dataHelp: nav-menu
 keywords: menu button (phone), navigation, menu
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-menu"]
 ---
 What it is: The hamburger button of the top bar on a small screen.

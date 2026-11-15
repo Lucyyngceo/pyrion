@@ -6,7 +6,7 @@ dataHelp: comparable-name
 title: Comparable investigation name
 keywords: comparable investigation name, comparable name, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="comparable-name"]
 ---
 What it is: The bold name in "Already comparable".

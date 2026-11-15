@@ -6,7 +6,7 @@ dataHelp: gap-section-axes
 title: Other axes to set
 keywords: other axes to set, gap section axes, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-axes"]
 ---
 What it is: A list of axes the experimenter chooses.

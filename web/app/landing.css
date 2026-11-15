@@ -1,0 +1,54 @@
+/* Home page. Uses the cyberpunk tokens of cyber.css; multi-column on desktop, one column on phones. */
+.landing { max-width: 1180px; }
+.ld-hero { padding: clamp(28px, 6vh, 72px) 0 clamp(24px, 4vh, 48px); border-bottom: 1px solid var(--border); position: relative; }
+.ld-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 70% at 85% 20%, rgba(255, 43, 214, 0.12), transparent 70%), radial-gradient(50% 60% at 10% 90%, rgba(0, 240, 255, 0.1), transparent 70%);
+}
+.ld-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--neon-2); margin: 0 0 14px; }
+.ld-title { font-family: var(--font-display); font-size: clamp(28px, 4.2vw, 52px); line-height: 1.12; margin: 0 0 20px; color: var(--ink); max-width: 22ch; text-shadow: var(--glow); }
+.ld-problem, .ld-answer { font-size: clamp(16px, 1.4vw, 18px); line-height: 1.55; max-width: 70ch; margin: 0 0 10px; color: var(--ink-2); }
+.ld-problem strong, .ld-answer strong { color: var(--ink); }
+.ld-cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 14px; }
+.ld-btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border: 1px solid var(--border-strong);
+  color: var(--ink); text-decoration: none; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.04em; background: var(--surface);
+}
+.ld-btn:hover, .ld-btn:focus-visible { border-color: var(--neon); box-shadow: var(--glow); }
+.ld-btn-primary { background: var(--neon); color: #04050a; border-color: var(--neon); }
+.ld-btn-primary:hover, .ld-btn-primary:focus-visible { color: #04050a; }
+.ld-facts { margin: 0; }
+.ld-section { padding: clamp(28px, 5vh, 56px) 0; border-bottom: 1px solid var(--border); }
+.ld-section h2 { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 30px); margin: 0 0 18px; color: var(--neon); }
+.ld-section p { line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
+.ld-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ld-card { border: 1px solid var(--border); background: var(--surface); padding: 18px 20px; }
+.ld-card h3 { font-family: var(--font-display); font-size: 18px; margin: 0 0 8px; color: var(--ink); }
+.ld-card p { margin: 0; font-size: 15px; }
+.ld-card-link { text-decoration: none; color: inherit; display: block; }
+.ld-card-link:hover, .ld-card-link:focus-visible { border-color: var(--neon); box-shadow: var(--glow); }
+.ld-card-link h3::after { content: " →"; color: var(--neon); }
+.ld-finding-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: start; }
+.ld-big { border: 1px solid var(--border-strong); padding: 20px 22px; background: var(--surface); }
+.ld-num { display: block; font-family: var(--font-display); font-size: clamp(56px, 8vw, 96px); line-height: 1; color: var(--neon-2); text-shadow: var(--glow-2); margin-bottom: 10px; }
+.ld-big p { margin: 0; }
+.ld-big em { color: var(--ink); }
+.ld-finding-text p { margin-top: 0; }
+.ld-link { font-family: var(--font-display); font-weight: 600; color: var(--neon); text-decoration: none; }
+.ld-link:hover, .ld-link:focus-visible { text-decoration: underline; }
+.ld-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ld-steps li { border: 1px solid var(--border); padding: 18px 20px; background: var(--surface); }
+.ld-steps h3 { font-family: var(--font-display); font-size: 18px; margin: 8px 0; color: var(--ink); }
+.ld-steps p { margin: 0; font-size: 15px; }
+.ld-step-n { font-family: var(--font-mono); color: var(--neon-2); font-size: 14px; }
+.ld-rule { margin: 18px 0 0; font-family: var(--font-display); font-size: 20px; color: var(--neon-3) !important; }
+.ld-quote { margin: 0 0 14px; padding: 14px 20px; border-left: 3px solid var(--neon-2); color: var(--ink); max-width: 80ch; line-height: 1.6; }
+.ld-quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 13px; color: var(--muted); }
+.ld-faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 28px; margin: 0; }
+.ld-faq dt { font-family: var(--font-display); color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+.ld-faq dd { margin: 0; color: var(--ink-2); line-height: 1.55; }
+.footer-links a { white-space: nowrap; }
+@media (max-width: 860px) {
+  .ld-grid3, .ld-steps, .ld-finding-grid, .ld-faq { grid-template-columns: minmax(0, 1fr); }
+  .ld-btn { flex: 1 1 100%; justify-content: center; }
+}

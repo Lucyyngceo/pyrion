@@ -6,7 +6,7 @@ dataHelp: chart-grid
 title: Chart grid lines
 keywords: chart grid lines, chart grid, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-grid"]
 ---
 What it is: The faint lines behind the data.

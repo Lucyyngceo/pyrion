@@ -6,7 +6,7 @@ dataHelp: result-blocker-action
 title: Blocker action button
 keywords: blocker action button, result blocker action, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-blocker-action"]
 ---
 What it is: A button inside a card that is insufficient or not comparable.

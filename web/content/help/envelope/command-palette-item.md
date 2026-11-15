@@ -6,7 +6,7 @@ dataHelp: command-palette-item
 title: Command palette result
 keywords: command palette result, command palette item, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="command-palette-item"]
 ---
 What it is: One entry of the palette list: a preset, a section or a page.

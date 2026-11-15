@@ -6,7 +6,7 @@ dataHelp: result-receipt
 title: Receipt
 keywords: receipt, result receipt, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-receipt"]
 ---
 What it is: A collapsible list on a card.

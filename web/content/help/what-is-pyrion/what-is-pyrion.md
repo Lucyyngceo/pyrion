@@ -4,7 +4,7 @@ chapter: what-is-pyrion
 order: 5
 title: What is PYRION?
 keywords: what is this, pyrion, about, purpose, site, overview, flame in freefall
-link: /
+link: /envelope
 highlight: .scenario-strip
 ---
 PYRION ranks the NASA combustion investigations in PSI (Physical Sciences Informatics) by how well each one applies to a condition you choose: an oxygen level, a pressure and a gravity regime. It also shows where the measured evidence ends.

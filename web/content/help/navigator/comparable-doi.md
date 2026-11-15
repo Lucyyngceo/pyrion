@@ -6,7 +6,7 @@ dataHelp: comparable-doi
 title: Comparable DOI link
 keywords: comparable doi link, comparable doi, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="comparable-doi"]
 ---
 What it is: A small doi link.

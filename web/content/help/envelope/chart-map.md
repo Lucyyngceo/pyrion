@@ -6,7 +6,7 @@ dataHelp: chart-map
 title: Evidence map shading
 keywords: evidence map shading, chart map, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-map"]
 ---
 What it is: The coloured background.

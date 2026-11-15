@@ -6,7 +6,7 @@ order: 997
 dataHelp: explorer-retry
 keywords: loading, retry, evidence
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="explorer-retry"]
 ---
 What it is: A link that appears if the evidence files could not be loaded.

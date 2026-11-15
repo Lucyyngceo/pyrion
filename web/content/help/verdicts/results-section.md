@@ -6,7 +6,7 @@ dataHelp: results-section
 title: Result cards section
 keywords: result cards section, results section, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="results-section"]
 ---
 What it is: The long list under the dashboard.

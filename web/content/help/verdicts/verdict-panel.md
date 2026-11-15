@@ -6,7 +6,7 @@ dataHelp: verdict-panel
 title: Verdict panel
 keywords: verdict panel, verdict panel, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="verdict-panel"]
 ---
 What it is: The top card of the right column.

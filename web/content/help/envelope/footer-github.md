@@ -6,7 +6,7 @@ dataHelp: footer-github
 title: GitHub link in the footer
 keywords: github link in the footer, footer github, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="footer-github"]
 ---
 What it is: A link to the project repository.

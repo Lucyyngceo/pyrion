@@ -6,7 +6,7 @@ order: 5
 dataHelp: ask-box
 keywords: ask tars, question bar, ask
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ask-box"]
 ---
 What it is: The single question bar at the top of the Envelope page.

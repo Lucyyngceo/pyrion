@@ -6,7 +6,7 @@ dataHelp: chart-points
 title: Measured points
 keywords: measured points, chart points, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-points"]
 ---
 What it is: The dots, triangles and squares on the chart.

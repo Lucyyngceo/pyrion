@@ -6,7 +6,7 @@ dataHelp: header-status-line
 title: Header status line
 keywords: header status line, header status line, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="header-status-line"]
 ---
 What it is: The one small line under the page title.

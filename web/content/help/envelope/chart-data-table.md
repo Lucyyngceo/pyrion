@@ -6,7 +6,7 @@ dataHelp: chart-data-table
 title: Data table (chart)
 keywords: data table (chart), chart data table, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-data-table"]
 ---
 What it is: A collapsible table of every plotted point.

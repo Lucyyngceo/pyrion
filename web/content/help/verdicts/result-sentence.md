@@ -6,7 +6,7 @@ dataHelp: result-sentence
 title: Result sentence
 keywords: result sentence, result sentence, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-sentence"]
 ---
 What it is: The plain sentence of a card.

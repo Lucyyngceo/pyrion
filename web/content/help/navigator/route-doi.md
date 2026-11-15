@@ -6,7 +6,7 @@ dataHelp: route-doi
 title: Route DOI link
 keywords: route doi link, route doi, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-doi"]
 ---
 What it is: A small doi link on a route line.

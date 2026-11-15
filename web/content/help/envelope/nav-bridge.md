@@ -6,7 +6,7 @@ dataHelp: nav-bridge
 title: Bridge tab
 keywords: bridge tab, nav bridge, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-bridge"]
 ---
 What it is: The page about the flame-stretch-rate hypothesis that relates gravity levels.

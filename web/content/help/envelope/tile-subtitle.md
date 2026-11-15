@@ -6,7 +6,7 @@ dataHelp: tile-subtitle
 title: Tile subtitle
 keywords: tile subtitle, tile subtitle, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-subtitle"]
 ---
 What it is: The small line under a tile title.

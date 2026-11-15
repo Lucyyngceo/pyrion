@@ -6,7 +6,7 @@ dataHelp: ctl-regime-axis
 title: Regime selects (gravity, fuel phase, diluent, flame type)
 keywords: regime selects (gravity, fuel phase, diluent, flame type), ctl regime axis, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-regime-axis"]
 ---
 What it is: The drop-downs for the regime axes.

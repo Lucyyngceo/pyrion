@@ -6,7 +6,7 @@ dataHelp: result-card
 title: Result card
 keywords: result card, result card, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-card"]
 ---
 What it is: The card of one investigation.

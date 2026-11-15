@@ -6,7 +6,7 @@ dataHelp: add-source-close
 title: Close the dialog
 keywords: close the dialog, add source close, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-close"]
 ---
 What it is: The cross at the dialog's top right.
