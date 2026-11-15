@@ -165,6 +165,7 @@ export function History() {
       <button data-help="tars-new-chat" type="button" className="tars-btn" onClick={newChat}>
         + New chat
       </button>
+      {conversations.length === 0 && <p className="small muted">No conversations yet.</p>}
       <ul>
         {conversations.map((c) => (
           <li key={c.id} className={c.id === activeId ? "on" : undefined}>

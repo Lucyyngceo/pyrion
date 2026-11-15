@@ -12,7 +12,7 @@ export default function TarsPage() {
       <header className="hero hero-compact">
         <h1 data-help="page-tars" className="h1-small">TARS SI <span className="muted small">Traceable Applicability Reasoning System</span></h1>
       </header>
-      <TarsChat autoFocus />
+      <TarsChat autoFocus sidebar />
     </main>
   );
 }

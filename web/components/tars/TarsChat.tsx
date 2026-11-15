@@ -137,10 +137,12 @@ function Help({ help }: { help: HelpAnswer }) {
 }
 
 /** The chat itself: used by the floating panel and by the /tars page. */
-export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean }) {
+export default function TarsChat({ autoFocus = false, sidebar = false }: { autoFocus?: boolean; sidebar?: boolean }) {
   const { mode, setMode, messages, busy, status, send, skill } = useTars();
   const [text, setText] = useState("");
-  const [showHistory, setShowHistory] = useState(false);
+  const [historyOpen, setShowHistory] = useState(false);
+  // On the TARS tab the conversation list is always a left sidebar; in the panel it opens with the History button.
+  const showHistory = sidebar || historyOpen;
   const input = useRef<HTMLInputElement>(null);
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -155,9 +157,11 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
       {showHistory && <History />}
       <div className="tars-main">
       <div className="tars-top">
-        <button data-help="tars-history-toggle" type="button" className="chip" aria-pressed={showHistory} onClick={() => setShowHistory((h) => !h)} title="Your conversations, kept in this browser">
-          History
-        </button>
+        {!sidebar && (
+          <button data-help="tars-history-toggle" type="button" className="chip tars-plain-chip" aria-expanded={showHistory} onClick={() => setShowHistory((h) => !h)} title="Your conversations, kept in this browser">
+            History
+          </button>
+        )}
         <div className="seg" role="group" aria-label="TARS mode">
           {MODES.map((m) => (
             <button data-help="tars-mode" key={m.id} type="button" aria-pressed={mode === m.id} title={m.hint} onClick={() => setMode(m.id)}>
@@ -179,7 +183,7 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
       <div data-help="tars-log" className="tars-log" role="log" aria-live="polite">
         {messages.length === 0 && (
           <p className="tars-hello">
-            Ask me anything about fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own expert reasoning.
+            Ask me about PYRION, fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own expert reasoning.
           </p>
         )}
         {messages.map((m) => (
