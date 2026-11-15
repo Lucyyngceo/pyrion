@@ -1,0 +1,553 @@
+{
+ "entries": [
+  {
+   "accession": "PSI-25",
+   "acronym": "BASS-II",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+     "location": "pdf page=46 (printed p38), Section 2.3.5; pdf pages 47-52 (Figs 2.19-2.22)",
+     "what": "Downward (1 g) PMMA sheet flame spread at San Diego State University (SDSU flame stabilizer), 100 um to thick, vs ISS BASS-II; conditions stated once in text, per-thickness spread rates only in figures"
+    },
+    {
+     "file": "PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+     "location": "pdf pages 23-24 (Section 2.1.2.2), page 49 (Fig 2.20 caption)",
+     "what": "SDSU vertical flame tunnel (opposed flow up to 100 cm/s) and flame-stabilizer 1-g data described; Fig 2.20 caption: 1 g PMMA at SDSU in 20.7 percent O2 / 79 percent N2 at 1 atm, 100-400 um"
+    },
+    {
+     "file": "PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+     "location": "pdf pages 55-59 (Section 4, Fernandez-Pello rods; Fig 4.3), pages 96-97",
+     "what": "1 g PMMA rod spread (4 diameters, lowest O2 with all burning 19 vol%) and 1 g upward limit 15.4 percent O2 (ref. 23): only in figures / cited values"
+    }
+   ],
+   "n_ground_tests": "unknown (nine fuel thicknesses in Fig 2.21, plus further 2-cm sheets for the thick limit; 1 g rod tests of four diameters in Fig 4.3)",
+   "o2_and_pressure_per_test": {
+    "o2": "constant: 21 percent (Fig 2.20 caption: 20.7 percent O2, 79 percent N2) for the downward sheet tests, stated once; rod 1 g tests vary O2 but only inside Fig 4.3 (minimum 19 vol%)",
+    "pressure": "constant: 101 kPa (1 atm) for the downward sheet tests, stated once",
+    "note": "No per-test table of the 1 g runs. Spread rates per thickness are only plotted (Figs 2.19b, 2.21, 2.22); the only numbers in text are the 100 um average 2.0 mm/s and thick-limit 0.044 mm/s. The BASS-II CSV and Test Matrices in PSI-25 are ISS (microgravity) only."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
+    "file": "PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+    "location": "pdf page=46"
+   },
+   "fuel_and_flame_type": "PMMA thin sheets (100-400 um, 2 cm wide; also thick) downward (opposed buoyant-flow) flame spread; PMMA rods in 1 g",
+   "effort": "needs reading",
+   "why": "The Summary Report (NASA/TM-20210011385) includes a 1 g dataset of downward spread over PMMA in air at 101 kPa (Section 2.3), but the per-thickness 1 g values exist only as plots, so O2/pressure are a single stated condition rather than a per-test table. Drop-tower (5.18 s ZGRF) and sounding-rocket mentions were excluded. The 'computational model' downward values on pdf page 34 (2.8, 1.6, 1.2, 0.9 mm/s at 21 percent O2) are simulations, not tests."
+  },
+  {
+   "accession": "PSI-26",
+   "acronym": "BASS",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+     "location": "paragraphs 166-172 (Figs 13 and 14); also the 2013 pdf in Presentations pages 31-33",
+     "what": "Photos of a 1 g upward flame (Fig 13) and a 1 g downward flame (Fig 14) next to 0 g flames for 2-cm-wide cotton-fiberglass (SIBAL) samples; no 1 g test conditions given"
+    },
+    {
+     "file": "PSI-26/Presentations/PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf",
+     "location": "pdf pages 30-32",
+     "what": "Qualitative 0 g vs 1 g statements (e.g. Ultem/Nomex 'Similar to 1-g', 1-g opposed flame does not propagate)"
+    }
+   ],
+   "n_ground_tests": "unknown (1-2 flames shown as images)",
+   "o2_and_pressure_per_test": {
+    "o2": "no (1 g images have no stated O2; text says 'normal gravity air')",
+    "pressure": "no",
+    "note": "The As Run and Planned Test Matrix xlsx and the experimental table CSV are ISS runs; the only 1-g hit in the xlsx is a comment on row 49 ('This doesn't burn in 1g like this.')."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "These tests show the enhanced flammability in microgravity for this geometry, since, in normal gravity air, a flame self-extinguishes in the opposed-flow geometry (downward flame spread).",
+    "file": "PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+    "location": "paragraph=178"
+   },
+   "fuel_and_flame_type": "Cotton-fiberglass fabric (SIBAL), thin-fuel flame spread; also a PMMA sphere photo",
+   "effort": "not usable",
+   "why": "The 2013 paper shows 1-g comparison flames as photographs only and gives no O2, pressure, flow or spread rate for them. Zero-g facility / 5 s drop-tower mentions (2-cm PMMA sphere, SysAcceptanceReview pages 37 and 56) were excluded as not ground. SRD/ERD/SAR/crew-training files are requirements/planning."
+  },
+  {
+   "accession": "PSI-39",
+   "acronym": "CFI",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-39/Presentations/PSI-39_Presentations_Cool Flames in Space, a Hot Prospect on Earth_CFI.pdf",
+     "location": "page=3",
+     "what": "Slide has an image pair labelled 'ISS' and '1-g' with no conditions in the text layer"
+    },
+    {
+     "file": "PSI-39/Experimental table/PSI-39_Experimental table_CFI.csv",
+     "location": "23 rows",
+     "what": "FLEX runs on ISS (pressure, O2, N2, He, fuel per run): microgravity, not ground"
+    }
+   ],
+   "n_ground_tests": "0 usable",
+   "o2_and_pressure_per_test": {
+    "o2": "no ground data (the CSV has O2 per run but those are ISS tests)",
+    "pressure": "no ground data (the CSV has pressure per run but ISS)",
+    "note": "Final report p.6 says cool flames cannot be observed under normal gravity with droplet flames; final report p.33 says 1-g droplet experiments at 1 atm need droplets smaller than 1 mm (statements, no data)."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "Moreover, the cool flames need much longer residence times and cannot be observed under normal gravity conditions with droplet flames.",
+    "file": "PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf",
+    "location": "page=6"
+   },
+   "fuel_and_flame_type": "Droplet combustion (n-alkanes), hot and cool flames, ISS",
+   "effort": "not usable",
+   "why": "No ground test data: the 'ISS / 1-g' slide is a qualitative image without conditions, ground work is in cited literature, and the other ground-based mentions are drop towers (excluded) or planning. The Analyzed Data FLEX summary PDFs are flight data (one failed to open in the pre-scan)."
+  },
+  {
+   "accession": "PSI-47",
+   "acronym": "DAFT",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-47/Reports/PSI-47_Reports_DAFT_30Day.PostFlightReport.pdf",
+     "location": "page=8 (text), page=12 (Figure 7 'DAFT Ground Test data'), page=11 (Fig 5 slope 0g vs 1g)",
+     "what": "May 2003 ground test of Arizona Test Dust aerosol with crew training hardware: P-Trak vs DustTrak response, as a plot"
+    }
+   ],
+   "n_ground_tests": "unknown (a plot with several samples, no table)",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Aerosol detector calibration (dust, not a flame); no atmosphere statement."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "Section III C. Figure 7 contains a chart developed from the ground testing that was performed in May of 2003, using the crew training hardware in a flight like manner.",
+    "file": "PSI-47/Reports/PSI-47_Reports_DAFT_30Day.PostFlightReport.pdf",
+    "location": "page=8"
+   },
+   "fuel_and_flame_type": "none (Arizona road dust / Velcro dust aerosol, alcohol-wick particle counter); no flame",
+   "effort": "not usable",
+   "why": "Smoke-detector aerosol comparison, not combustion; the only ground data is one figure with no O2 or pressure. The DAFT experimental table lists ISS sessions on ARD with GN2."
+  },
+  {
+   "accession": "PSI-68",
+   "acronym": "FLEX-2",
+   "ground_data": "requirements_only",
+   "files": [
+    {
+     "file": "PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf",
+     "location": "page=27 (Fig 11 caption), pages 20-22, 56-58 (Section 7 Ground-Based Research Program)",
+     "what": "SRD literature-review figure of earlier 1 g ethanol droplet burning (not a PSI test) and a plan for the ground program (drop towers)"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "Fig 11 caption names 1 and 2 atm but it is a literature review figure",
+    "note": "Section 7 ground program is drop towers and aircraft (excluded)."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "Burning of ethanol droplet in normal-gravity under 1 and 2 atmospheric pressures.",
+    "file": "PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf",
+    "location": "Figure 11 caption, pdf page=27"
+   },
+   "fuel_and_flame_type": "Droplet combustion (literature figure: ethanol droplet; SRD for ISS)",
+   "effort": "not usable",
+   "why": "SRD/ERD only; ground statements are literature review and plans (SRD page 31: detailed test points not provided); ground tests named are drop towers/parabolic flights (excluded). Calibration zips and the CSV are ISS data."
+  },
+  {
+   "accession": "PSI-69",
+   "acronym": "FLEX",
+   "ground_data": "requirements_only",
+   "files": [
+    {
+     "file": "PSI-69/Engineering Documents/PSI-69_Engineering Documents_FLEX_EIRD_v4.pdf",
+     "location": "pages 44-45, 60-61, 73-77",
+     "what": "Requirements/plan text about ground-based droplet work (drop towers, literature)"
+    },
+    {
+     "file": "PSI-69/Science Documents/PSI-69_Science Documents_FLEX_Test_Plan.pdf",
+     "location": "pages 3-5",
+     "what": "Test plan: initial conditions to be set by ground testing in the drop towers"
+    },
+    {
+     "file": "PSI-69/Calibration/PSI-69_Calibration_20CAL08_Chamber_Gases.txt (and the other CAL files)",
+     "location": "whole file",
+     "what": "'Chamber gases used were ISS cabin air': on-orbit calibration test points, not ground"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "2G11-070HE-0310.pdf (Cornell, ISS plus ground-based experiments) uses a 1.2 s drop tower for Do < 0.85 mm: excluded as not ground."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "Droplet combustion; ISS",
+   "effort": "not usable",
+   "why": "Requirements/planning documents and drop-tower references only; calibration test points are on ISS. No 1 g test table."
+  },
+  {
+   "accession": "PSI-98",
+   "acronym": "SAFFIRE-I",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+     "location": "pages 1-5",
+     "what": "Paper states objectives; ground-based work is planned for SAFFIRE-IV-VI (Table 5 Ground column)"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no (the table has Percent O2 21.5-21.7 but for the flight run)",
+    "pressure": "no",
+    "note": "Experimental table CSV has 2 flight samples (SIBAL, 20 cm/s)."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "SIBAL cotton-fiberglass fabric, large-scale flame spread (flight)",
+   "effort": "not usable",
+   "why": "Flight only; the pre-scan hits are objective statements and the Operations PDF has no ground test data."
+  },
+  {
+   "accession": "PSI-99",
+   "acronym": "SAFFIRE-II",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+     "location": "rows 2-10 (samples 2-1 to 2-9), columns '1-g Burn Length' and '1-g Spread Rate'",
+     "what": "Per-sample 1-g outcome beside the flight outcome: e.g. 2-2 silicone 0.61 mm: 7.6 cm, 1.2 mm/s; 2-4 silicone opposed: Complete, 0.6 mm/s; 2-5 and 2-6 SIBAL: Complete, Acceleratory; 2-3 silicone and 2-7 Nomex: ~0"
+    },
+    {
+     "file": "PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+     "location": "pages 2-3",
+     "what": "Says samples were chosen with normal-gravity MOC limits near 21 percent O2 and sized like NASA-STD-6001 Test 1 samples"
+    }
+   ],
+   "n_ground_tests": "9 samples have a 1-g entry (only 2 numeric spread rates, 1.2 and 0.6 mm/s; the rest are Complete, Acceleratory, ~0 or n/a)",
+   "o2_and_pressure_per_test": {
+    "o2": "no for the 1-g tests: the Percent O2 column (~21.5 to 22.1) belongs to the ISS flight run (Note 1: derived from CO2 production, referenced to the initial O2 reported by ISS)",
+    "pressure": "no (there is no pressure column at all)",
+    "note": "The 1-g columns have no explanation in any PSI file: the first two columns are literally '?-g Burn Length' and '?-g Spread Length' (a lost character, evidently micro-g). The files do not say where, how or at what O2/pressure the 1-g runs were done. The link to NASA-STD-6001 Test 1 (upward burn in ambient air) is an inference, NOT stated."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "The second objective is to examine the flammability limits of materials in low gravity for comparison with results of NASA’s terrestrial normal gravity evaluation tests.",
+    "file": "PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+    "location": "page=2"
+   },
+   "fuel_and_flame_type": "Silicone, SIBAL cotton-fiberglass, Nomex, PMMA samples (5 x 29 cm), concurrent/opposed flame spread",
+   "effort": "unclear",
+   "why": "The CSV carries qualitative 1-g counterpart results per sample but nothing states the 1-g test conditions, so O2 and pressure cannot be established for them; ask the PI/PSI before using. The SAFFIRE-II Readme and image xlsx contain no ground data."
+  },
+  {
+   "accession": "PSI-100",
+   "acronym": "SAFFIRE-III",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv",
+     "location": "2 rows",
+     "what": "Two flight samples (SIBAL, 30 cm/s concurrent/opposed); no O2 or pressure column"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Objectives paper is the same one as in PSI-98/99."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "SIBAL fabric (flight)",
+   "effort": "not usable",
+   "why": "Flight only; no ground test data in the files."
+  },
+  {
+   "accession": "PSI-101",
+   "acronym": "SAME-R",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf",
+     "location": "pages 2, 9-14",
+     "what": "Post-flight ground tests: flow tests, TEM 1-g counterpart, drum plus SMPS tests (flight hardware, ground SMPS drum)"
+    },
+    {
+     "file": "PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+     "location": "sheets 'Gnd Verif. 8-2012' (~10 numbered tests), 'Drum 8-2012' (~20 numbered tests), 'Flight-ground plot', '3-tests Compar.'",
+     "what": "Per-test table: sample, inlet velocity (8.1 cm/s), Rt/R0, duration, aging times"
+    }
+   ],
+   "n_ground_tests": "~30 (about 10 ground verification plus about 20 drum tests, Aug 2012)",
+   "o2_and_pressure_per_test": {
+    "o2": "no (no O2 column; smoke is made by heating samples in an air stream)",
+    "pressure": "no (only upstream gauge pressure of instrument lines)",
+    "note": "Smoke generation by electric heating (Rt/R0 coil resistance ratio), not flames; ambient air at lab pressure is implicit and not stated."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "As a part of SAMER effort, three major post–flight ground tests were performed",
+    "file": "PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf",
+    "location": "page=2"
+   },
+   "fuel_and_flame_type": "Heated Kapton, lamp wick, silicone, Teflon, Pyrell: pyrolysis smoke, no flame",
+   "effort": "not usable",
+   "why": "Ground smoke-aerosol data exist but they are particle size results from heated samples; there are no O2 or pressure variables, so they cannot populate a flame O2-pressure envelope."
+  },
+  {
+   "accession": "PSI-102",
+   "acronym": "SAME",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-102/Presentations/PSI-102_Presentations_SAME2_FlightVSGroundTestResults.pptx",
+     "location": "slides 19-22, 28",
+     "what": "Ground test schematic and flight vs ground particle diameter comparison at 8 cm/s airflow"
+    },
+    {
+     "file": "PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf",
+     "location": "pages 56, 64",
+     "what": "1-g comparison runs mentioned; sizes compared with a comparable test in normal gravity"
+    },
+    {
+     "file": "PSI-102/Experimental table/PSI-102_Experimental table_SAME.csv",
+     "location": "9 rows",
+     "what": "Sample, air flow, weight loss rate, aging (flight)"
+    }
+   ],
+   "n_ground_tests": "unknown",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Pre-flaming pyrolysis smoke with varied pyrolysis rate and air flow rate (slide 6); no atmosphere composition or pressure variable."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "Ground based testing at 8 cm/s showed particle dimensions very close to the flight results",
+    "file": "PSI-102/Presentations/PSI-102_Presentations_SAME2_FlightVSGroundTestResults.pptx",
+    "location": "slide=28"
+   },
+   "fuel_and_flame_type": "Heated silicone, Teflon, Kapton, lamp wick, Pyrell, DBP: pyrolysis smoke, no flame",
+   "effort": "not usable",
+   "why": "Ground comparison of smoke particle size only (figures); no O2 or pressure; VPRED/EIRD/BCDD are requirements documents."
+  },
+  {
+   "accession": "PSI-106",
+   "acronym": "SLICE",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-106/Experimental table/PSI-106_Experimental table_Slice.csv",
+     "location": "12 rows",
+     "what": "ISS test days Feb-Mar 2012 with fuel type; no ground"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "PSI holds the table and a metadata zip only; the image set is 72.9 GB and not in the downloaded set."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "Gas-jet diffusion flames (CH4, C2H4, C2H6 with N2) on ISS",
+   "effort": "not usable",
+   "why": "Flight experiment (projectType Microgravity Investigation); nothing ground in the downloaded files."
+  },
+  {
+   "accession": "PSI-107",
+   "acronym": "SPICE",
+   "ground_data": "yes_table",
+   "files": [
+    {
+     "file": "PSI-107/Reports/PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf",
+     "location": "pdf page=80 (printed p.70), Table 6.3",
+     "what": "15 normal-gravity smoke points on the SPICE prototype module (University of Maryland): test number, fuel (75/50/100 percent C3H6 in N2), nozzle ID, coflow velocity, mass fuel flow, mean fuel velocity, smoke height"
+    },
+    {
+     "file": "PSI-107/Reports/PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf",
+     "location": "pdf page=81 (printed p.71), Table 6.4",
+     "what": "~21 smoke points for ethylene/propane/propylene on a 13.7 mm unconfined coflow burner in 1 g: coflow velocity, fuel velocity, mass flow, smoke height, Froude numbers (fuel column printed C2H6; Table 6.2 calls it ethylene)"
+    },
+    {
+     "file": "PSI-107/Reports/PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf",
+     "location": "pdf pages 42-44 (Sections 3.2-3.3), 59-60 (Section 4.2); also presentation 'Laminar Smoke Points in Coflow Measured Aboard ISS' page 3 (1 atm, 14 mm nozzle, air)",
+     "what": "How the 1 g tests were run"
+    }
+   ],
+   "n_ground_tests": "~36 (15 SPICE-module plus ~21 unconfined burner)",
+   "o2_and_pressure_per_test": {
+    "o2": "constant: ambient air (open module with fresh air; the 75 and 50 percent C3H6 mixtures dilute the fuel with N2, not the oxidizer); no O2 measurement. The thesis assumes 21±1% O2 only in the Table 3.1 note (the microgravity table)",
+    "pressure": "constant ambient: no per-test value; ambient pressure taken from NOAA College Park airport only for the rotameter calibration; the Table 3.1 note assumes 101 kPa",
+    "note": "Tables 6.3 and 6.4 list fuel, nozzle and flow but no O2 or pressure columns; both are ambient lab air by implication. Test dates/times are not in Tables 6.3/6.4. The Fig 6.3 stills (day of year 45, etc.) are microgravity flight tests, and the PSI-107 CSV is the ISS flight table."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "Experiments in normal gravity with the SPICE prototype module were conducted at the University of Maryland.",
+    "file": "PSI-107/Reports/PSI-107_Reports_SMOKE POINTS OF MICROGRAVITY AND  NORMAL GRAVITY COFLOW DIFFUSION  FLAMES_DotsonThesis.pdf",
+    "location": "pdf page=42 (printed p.32), Section 3.2"
+   },
+   "fuel_and_flame_type": "Laminar coflow gas-jet diffusion flames (ethylene, propane, propylene and propylene/N2 mixtures), smoke point",
+   "effort": "easy table",
+   "why": "Best candidate: a real per-test table of 1 g smoke points with fuel, nozzle and coflow. Caveat: O2 and pressure are ambient air by implication (not tabulated), so as conditions they are constant ~21 percent / ~101 kPa with an assumption flag. Parabolic-flight/KC-135/drop-tower mentions in the thesis and SPICE reports were excluded. The SPICE final and 30-day reports mention the 1 g smoke-point comparison in text only."
+  },
+  {
+   "accession": "PSI-115",
+   "acronym": "SAME smoke modelling (NNX17AF08A)",
+   "ground_data": "not_ground",
+   "files": [
+    {
+     "file": "PSI-115/Reports/PSI-115_Reports_NNX17AF08A_FinalReport.pdf",
+     "location": "pages 3, 9, 11, 14-16",
+     "what": "Simulated Earth-gravity (EG) vs microgravity (MG) smoke cases (inlet velocity 0.08 and 0.1 m/s)"
+    },
+    {
+     "file": "PSI-115/Analyzed Data/*.dat (44 files, e.g. 8cmGravity*.dat)",
+     "location": "whole files",
+     "what": "Simulation output fields; 'Gravity' means Earth-gravity cases"
+    }
+   ],
+   "n_ground_tests": "0 (4 Earth-gravity simulation cases)",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Computation, not measurement; the final report mentions no ground tests."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "We have simulated smoke formation and growth in microgravity and Earth gravity",
+    "file": "PSI-115/Reports/PSI-115_Reports_NNX17AF08A_FinalReport.pdf",
+    "location": "page=15"
+   },
+   "fuel_and_flame_type": "Simulated heated vapor source and smoke (SAME geometry), no flame",
+   "effort": "not usable",
+   "why": "No ground tests: it is a numerical study with Earth-gravity cases, no experimental data and no O2/pressure."
+  },
+  {
+   "accession": "PSI-117",
+   "acronym": "(cool flames, Farouk; Effect of External T...)",
+   "ground_data": "not_ground",
+   "files": [
+    {
+     "file": "PSI-117/Analyzed Data/PSI-117_Analyzed Data_ReadMe_List_of_Data.xlsx",
+     "location": "Sheet1",
+     "what": "Lists each CSV with fuel, droplet diameter, P (atm), XO2: droplet-combustion model/ISS figure data (PROCI 2019, 2023; MST 2024)"
+    },
+    {
+     "file": "PSI-117/Reports/PSI-117_Reports_Dissertation_Combustion Behavior Of Sub-Millimeter Sized Oxygenated And N-Alka.pdf",
+     "location": "pages 9, 30-31, 128, 158, 196",
+     "what": "Numerical analysis with comparisons to Cornell drop tower data (excluded) and ISS"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "yes in ReadMe (0.1 or 0.21) but for droplet-combustion simulations/ISS data",
+    "pressure": "yes in ReadMe (0.5-5 atm) but same",
+    "note": "Not ground: numerical and microgravity. Presentation page 26 'Cool diffusion flame, 1 g (Won et al.)' is a literature reference."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "n-alkane and butanol droplet flames (numerical/ISS)",
+   "effort": "not usable",
+   "why": "The thesis is numerical with drop-tower validation (excluded); the CSV tables are model results for microgravity droplets, not 1 g tests."
+  },
+  {
+   "accession": "PSI-142",
+   "acronym": "(Quantitative Studies of Cool Flame Transitions, Princeton)",
+   "ground_data": "partial",
+   "files": [
+    {
+     "file": "PSI-142/Analyzed Data/PSI-142_Analyzed Data_PSI data summary Princeton with links.xlsx",
+     "location": "sheets 'data ID 1' to 'data ID 8' and 'data summary'",
+     "what": "Digitized figure data from counterflow flame papers (Reuter et al. 2017 CFE/HFE extinction limits vs fuel mass fraction and strain rate; ozone effect; PLIF, thermometry, chemiluminescence profiles)"
+    },
+    {
+     "file": "PSI-142/Experimental table/PSI-142_Experimental table_Data Summary Table.csv",
+     "location": "8 rows",
+     "what": "Index of the datasets with DOIs"
+    },
+    {
+     "file": "PSI-142/_investigation/PSI-142.json",
+     "location": "projectType",
+     "what": "'Ground Investigation'; hardware is PI laboratory hardware"
+    }
+   ],
+   "n_ground_tests": "unknown (8 datasets, each a curve of many points)",
+   "o2_and_pressure_per_test": {
+    "o2": "no (columns are fuel mass fraction Yf, strain rate, O3 mol%, etc.; the oxidizer O2 level is in the cited papers)",
+    "pressure": "no (not in the tables)",
+    "note": "The approach text says the numerical modelling used the experimental conditions of FLEX flight. These are lab counterflow flames; that they are 1 g is inferred from 'Ground Investigation', not stated explicitly."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "Counterflow diffusion flames of n-alkanes and DME, with/without ozone; cool and hot flame extinction",
+   "effort": "unclear",
+   "why": "Real ground (lab) experimental data, but extinction-limit curves and profiles with O2 and pressure not in the PSI files; the cited papers (Combust. Flame 179 (2017) 23-32; Proc. Combust. Inst. 2018) would be needed."
+  },
+  {
+   "accession": "PSI-60",
+   "acronym": "(Computational and Experimental Analysis of SPICE Data Sets)",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-60/metadata/PSI-60_metadata_NEWID-5_Computational and Ex.zip",
+     "location": "i_Investigation.txt, s_PSI-60.txt",
+     "what": "Metadata only (7.7 kB total)"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Approach: color-ratio pyrometry on SPICE images plus soot modelling; hypothesis compares microgravity to normal gravity."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "SPICE coflow gas jet flames (analysis of existing images)",
+   "effort": "not usable",
+   "why": "PSI holds a Ground Investigation record (projectType, related PSI-107) with no data files."
+  },
+  {
+   "accession": "PSI-62",
+   "acronym": "(Concurrent flame spread FGM modelling vs BASS)",
+   "ground_data": "none",
+   "files": [
+    {
+     "file": "PSI-62/metadata/PSI-62_metadata_NEWID-7_Concurrent Flame Spr.zip",
+     "location": "i_Investigation.txt, s_PSI-62.txt",
+     "what": "Metadata only (9.4 kB total)"
+    }
+   ],
+   "n_ground_tests": "0",
+   "o2_and_pressure_per_test": {
+    "o2": "no",
+    "pressure": "no",
+    "note": "Computational study compared with BASS (PSI-25/26) flight tests."
+   },
+   "ground_vs_flight_quote": {
+    "quote": "",
+    "file": "",
+    "location": ""
+   },
+   "fuel_and_flame_type": "Modelling of concurrent spread over charring fabrics",
+   "effort": "not usable",
+   "why": "PSI holds the investigation record only (Ground Investigation, related PSI-25 and PSI-26); no data files."
+  }
+ ],
+ "notes": "Cross-cutting (not PSI investigations, in data/raw/nasa): (1) ntrs-20000004509 (Olson and T'ien, Buoyant Low Stretch Diffusion Flames Beneath Cylindrical PMMA Samples): a genuine normal-gravity experiment paper: PMMA cylinders of radius 2.5 to 200 cm (Table 1, pdf page 28, ~8 stretch-rate rows) burning in air (text: 'full range of flammability in air'; ambient air density 1.176 kg/m3). O2 constant (air); pressure not stated (ambient implied); results in a table plus figures. Effort: needs reading. (2) ntrs-20150008961 (Olson and Ferkul, PMMA rods in concurrent flow, 2015): ISS BASS-II microgravity rods plus 5.18 s Zero Gravity Research Facility drop tests (excluded); the only 1 g items are general statements (1 g upward-spread limit 15.4 percent O2 with 4 cm/s forced flow cited from a reference); no 1 g test table. Overall: of the 18 investigations, only PSI-107 has a clean per-test 1 g table (SPICE, Dotson thesis Tables 6.3 and 6.4; O2 and pressure constant ambient air, not tabulated). PSI-25 has 1 g downward PMMA at 101 kPa / ~21 percent O2 but only as figures. PSI-99 has 1-g result columns with undocumented conditions. PSI-142 holds lab counterflow flame data without O2/pressure in the tables. PSI-101/102 ground tests are smoke particle sizes from heated samples (no flame, no O2/pressure). Drop-tower, KC-135 and ZGRF mentions (FLEX, FLEX-2, BASS, CFI, PSI-117) were excluded as not ground. Image labels 'ISS' and '1-g' (PSI-39 p3) and literature citations were not treated as ground tests. The pre-scan could not open one PSI-39 Analyzed Data PDF (FLEX-1248 Summary; flight data anyway)."
+}

@@ -1,0 +1,107 @@
+{
+ "entries": [
+  {
+   "accession": "PSI-10",
+   "acronym": "ACME Flame Design",
+   "ground_data": "none",
+   "files": [
+    {"file": "PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv", "location": "whole file (207 rows)", "what": "ISS microgravity flight tests (XO2 and pressure per test) - NOT ground"},
+    {"file": "PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv", "location": "whole file (120 rows)", "what": "ISS microgravity flight tests - NOT ground"},
+    {"file": "PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf", "location": "page=4,6,7,29 (normal-gravity wording); page=98 (ref 50: Wang et al., 'Ground-Based Research Supporting Flame Design', ASGSR abstract 2017)", "what": "Only background/literature statements about normal-gravity flames and a cited ground-research abstract; no ground test table or conditions"},
+    {"file": "PSI-10/Reports/PSI-10_Reports_TaskbookRpts.pdf", "location": "page=2,5,7,...", "what": "Says the PI directs 'normal gravity experiments' at Washington University; no data or conditions"}
+   ],
+   "n_ground_tests": "0 found",
+   "o2_and_pressure_per_test": {"o2": "no (no ground tests in the files)", "pressure": "no", "note": "The only per-test XO2/pressure tables are the ISS flight CSVs."},
+   "ground_vs_flight_quote": {"quote": "There are no analogous experiments at 1g that can accomplish this.", "file": "PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf", "location": "page=7 (a statement that no 1-g analog exists, not a ground test)"},
+   "fuel_and_flame_type": "none (ground); flight: ethylene and other fuels, spherical burner-supported normal and inverse diffusion flames",
+   "effort": "not usable",
+   "why": "All test tables are ISS flight data. Ground mentions are background/literature and the PI's separate Washington University program, whose data are not in the downloaded files. SRD/ISRD/SORD are requirements documents. Drop-tower (5 s) mentions excluded."
+  },
+  {
+   "accession": "PSI-20",
+   "acronym": "ACME BRE (Burning Rate Emulator)",
+   "ground_data": "partial",
+   "files": [
+    {"file": "PSI-20/Science Documents/PSI-20_Science Documents_BRE_SRD_201306.pdf", "location": "page=20-21 (Fig. 13, Table 3 'BRE Simulation' rows); page=15-16 (BRE vs 50 mm methanol pool, 52% CH4/48% N2); page=56-57 (Fig. 6 flammability map by BRE in normal gravity)", "what": "1-g BRE prototype (50 mm) runs in air with methane and ethylene, plus methanol/heptane pool comparisons. Table 3 lists heat of combustion, heat of gasification, re-radiation per point (about 15 BRE points); no per-test O2 or pressure columns. Table 1 (D9023-D9030) is a 5 s drop-tower table (ignition at 1g, then microgravity): excluded."},
+    {"file": "PSI-20/Science Documents/PSI-20_Science Documents_BRE_science_concept_RDR_201306.pdf", "location": "page=14 ('Proof of Concept in Normal Gravity'), page=35", "what": "Same preliminary normal-gravity proof-of-concept material and the same drop-tower table (sampled, not read in full)"},
+    {"file": "PSI-20/Reports/PSI-20_Reports_Dissertation-PD-revised_.pdf", "location": "page=104-106 (printed 101-103), Fig. 5.4 legend; page=50-51", "what": "Flammability map overlays 1-g data (from Auth's thesis, refs 55,56) for propane-nitrogen BRE. Figure legend text lists 4 one-gravity points: heat of combustion 43.7/35/26.2/17.5 kJ/g, each XO2=0.21, p=1 bar. The underlying 1-g data points are not tabulated here."},
+    {"file": "PSI-20/Reports/PSI-20_Reports_Final_20220201.pdf", "location": "page=29, 98, 127 (1-g BRE results quoted qualitatively); page=52, 68 (1-g lab duplicate of the flight burner, water-condensation test); page=49 (UMD ground runs with identical burner for igniter timing)", "what": "Qualitative statements of 1-g BRE experiments at University of Maryland; no conditions table"},
+    {"file": "PSI-20/Experimental table/PSI-20_Experimental table_ACME BRE.csv", "location": "whole file", "what": "ISS flight days (O2 21-40%, pressure not listed) - NOT ground"}
+   ],
+   "n_ground_tests": "~15 BRE gas-fuel points in SRD Table 3 (plus methanol and heptane pool comparisons); 4 legend entries for Auth 1-g data in the dissertation",
+   "o2_and_pressure_per_test": {"o2": "constant: 'air' (about 21%) stated once for the SRD 1-g BRE runs; XO2 = 0.21 in the Fig. 5.4 legend for the 4 Auth points", "pressure": "SRD runs: not stated; Fig. 5.4 legend: p = 1 bar for the 4 Auth points", "note": "O2 and pressure appear only as a single statement or figure-legend text, not as per-test columns. Auth's primary data (a thesis) is not among the files."},
+   "ground_vs_flight_quote": {"quote": "prototype BRE burner at 50 mm operating in normal gravity and air with pure methane and ethylene as the fuels.", "file": "PSI-20/Science Documents/PSI-20_Science Documents_BRE_SRD_201306.pdf", "location": "page=20 (sentence fragment; the sentence starts after the Fig. 13 caption text)"},
+   "fuel_and_flame_type": "gas burner emulating condensed-fuel pool fires: ethylene, methane, CH4/N2 and propane-N2 mixtures, 25 and 50 mm porous burner (laminar diffusion flames above a flat burner)",
+   "effort": "needs reading",
+   "why": "BRE is a gas burner, not a real solid or liquid fuel. The only 1-g numbers are a heat-of-combustion/heat-of-gasification table and plot points, with air stated once. The SRD is a requirements document that happens to include preliminary results. Drop tower (2.2 s/5 s) and aircraft results excluded. At best a weak contextual 1-g reference."
+  },
+  {
+   "accession": "PSI-21",
+   "acronym": "ACME CLD Flame",
+   "ground_data": "none",
+   "files": [
+    {"file": "PSI-21/Experimental table/PSI-21_Experimental table_CLD Flame.csv", "location": "whole file (32 rows)", "what": "ISS flight test days (fuel conc. range, flames ignited); no pressure column; NOT ground"},
+    {"file": "PSI-21/metadata/PSI-21_metadata_PSI-97_ACME CLD Flame.zip", "location": "i_Investigation.txt", "what": "Metadata only; lists publications 'under microgravity and normal gravity' by title but holds no data"}
+   ],
+   "n_ground_tests": "0 found",
+   "o2_and_pressure_per_test": {"o2": "no", "pressure": "no", "note": "Only the CSV and metadata exist for PSI-21 in the download; no report or paper."},
+   "ground_vs_flight_quote": {"quote": "", "file": "", "location": "no verbatim ground statement in the PSI-21 files"},
+   "fuel_and_flame_type": "none (ground); flight: methane/ethylene coflow laminar diffusion flames",
+   "effort": "not usable",
+   "why": "Folder contains just the flight CSV and metadata. The 1-g comparisons referenced in metadata and in the PSI-20 CSSCI papers (Tinajero and Long 2021) are not in the files."
+  },
+  {
+   "accession": "PSI-22",
+   "acronym": "ACME E-FIELD Flames",
+   "ground_data": "partial",
+   "files": [
+    {"file": "PSI-22/Reports/PSI-22_Reports_E-FIELD Flames Final Report.pdf", "location": "page=25 (Fig. 10: 1-g V-I curves), page=34-35 (Figs. 21-22: 1-g vs 0-g coflow methane flame images vs field strength)", "what": "1-g UC Irvine laboratory comparisons of ion current vs field strength and flame images, taken from Tinajero 2015/2017 and Chien 2015 dissertations (cited, not included). Conditions only in figures; no O2/pressure table."},
+    {"file": "PSI-22/Presentations/PSI-22_Presentations_Karnani et al 2009 Exploring the effects of gravity on a coflow diffusion flame.pdf", "location": "page=7-10 'Normal-Gravity Results (UCI)'; page=11-12 'Normal and Low Gravity Results (NASA)'", "what": "15-slide deck; text layer is mostly slide titles and bullets; UCI 1-g coflow methane flames in an electric field (figures). The NASA low-gravity part is the 2.2 s drop tower (excluded). No O2 or pressure given."},
+    {"file": "PSI-22/Presentations/PSI-22_Presentations_Tinajero et al 2014 Ground-Based Schlieren Experiments.pdf", "location": "page=6-10", "what": "Ground UCI coflow burner, methane, fuel velocity 7 cm/s; plots of ion current vs field strength for 25/30/35 mm gaps. Ambient air/pressure not stated; data only in plots."},
+    {"file": "PSI-22/Presentations/PSI-22_Presentations_Tinajero et al 2016 characterizing i-v curves for non-premixed methane flames.pdf", "location": "page=9 onward", "what": "1-g I-V curves for methane/hydrogen on three burners; fuel flow in mL/min on plots; no O2/pressure"},
+    {"file": "PSI-22/Presentations/PSI-22_Presentations_Swenson et al 2011 Electric field induced convection in microgravity combustion.pdf", "location": "page=1-6 (Fig. 3, 6)", "what": "1g vs microgravity (2.2 s drop tower, excluded) ion current for a 24 cm/s methane flame; coflow is air; no O2 or pressure value"},
+    {"file": "PSI-22/Engineering Documents/PSI-22_Engineering Documents_ACME CLD burner hot wire anemometry measurements.pdf", "location": "page=1", "what": "1g cold-flow (air/N2, no flame) velocity profiles of the burner: not a flame test"}
+   ],
+   "n_ground_tests": "unknown",
+   "o2_and_pressure_per_test": {"o2": "no (implicit lab air, never stated as a number)", "pressure": "no", "note": "Only in figures; ground curves are ion current vs electric field for methane in air. The varied parameter is the electric field, not gravity or O2."},
+   "ground_vs_flight_quote": {"quote": "For comparison, the equivalent V-I curves for 1-g flames with the same burner configuration with no coflow are shown Figure 10 [J. Tinajero, dissertation, 2015].", "file": "PSI-22/Reports/PSI-22_Reports_E-FIELD Flames Final Report.pdf", "location": "page=25"},
+   "fuel_and_flame_type": "methane (also ethylene, hydrogen) laminar coflow or jet diffusion flames in an applied electric field",
+   "effort": "not usable",
+   "why": "1-g laboratory comparisons exist but only as figures from other people's dissertations (not in the files), with no O2 or pressure; the electric field (not gravity) is the controlled variable. Karnani/Swenson low-gravity runs are 2.2 s drop tower and are excluded. Lopez-Camara decks are numerical simulations, not tests. Not suitable for an O2+pressure envelope."
+  },
+  {
+   "accession": "PSI-23",
+   "acronym": "ACME s-Flame",
+   "ground_data": "none",
+   "files": [
+    {"file": "PSI-23/Experimental table/PSI-23_Experimental table_ACME s-Flame.csv", "location": "whole file", "what": "ISS flight test days; 'Atmosphere is ~1 atm' with O2 about 21/30%; NOT ground"},
+    {"file": "PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf", "location": "page=4 (2.5.1 Limitations of Terrestrial 1g Testing), 17 and 40 (returned fuel bottle tested in the ground copy of CIR for a leak), 26, 29, 43, 53, 55, 84 ('not observed in our ground-based' studies)", "what": "Qualitative statements only; no ground test conditions or data"},
+    {"file": "PSI-23/Science Documents/PSI-23_Science Documents_s-Flame_SRD_20100125.pdf", "location": "page=16-22", "what": "Literature review of low-pressure normal-gravity experiments by others; requirements document"}
+   ],
+   "n_ground_tests": "0 found",
+   "o2_and_pressure_per_test": {"o2": "no", "pressure": "no", "note": "None for ground."},
+   "ground_vs_flight_quote": {"quote": "Previous experimentation on earth has amply demonstrated", "file": "PSI-23/Reports/PSI-23_Reports_s_Flame_final_report_20210729.pdf", "location": "page=4 (literature statement, not a test; sentence continues on the page)"},
+   "fuel_and_flame_type": "none (ground); flight: spherical diffusion flames of ethylene, methane, hydrogen and mixtures",
+   "effort": "not usable",
+   "why": "Ground items are literature references, a CIR ground-unit leak check (not a flame test) and requirements text. Drop tower 2.2 s/5 s preparatory testing excluded."
+  },
+  {
+   "accession": "PSI-159",
+   "acronym": "ACME CFI-G (Cool Flames Investigation, Gaseous)",
+   "ground_data": "partial",
+   "files": [
+    {"file": "PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf", "location": "page=22-24 (abstract of Waddell et al., 'Cool Diffusion Flames in a Stably Stratified Stagnation Flow'; section F 'Additional Objectives Achieved')", "what": "Abstract-level text about a ground (normal-gravity) liquid n-heptane pool cool-flame experiment: peak gas temperatures 705-760 K, autoignition first at 550 K. No test table, O2 or pressure; the paper itself is not in the files."},
+    {"file": "PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf", "location": "page=17 (4.A), page=23", "what": "'ground testing' only to decide n-pentane vs ethane (low vapor pressure); no data"},
+    {"file": "PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Normal Flames.csv", "location": "whole file (179 rows)", "what": "ISS flight tests with XO2 and approx p (bar) per test - NOT ground"},
+    {"file": "PSI-159/Experimental table/PSI-159_Experimental table_CFI-G_Inverse Flames.csv", "location": "whole file (1015 rows)", "what": "ISS flight tests with XO2 and p per test - NOT ground"}
+   ],
+   "n_ground_tests": "unknown (heptane pool: number of tests not stated)",
+   "o2_and_pressure_per_test": {"o2": "no", "pressure": "no", "note": "The heptane pool experiment is in a stably stratified stagnation flow between heated parallel plates; ambient O2 and pressure are not given in the report. The per-test XO2/p tables are flight data only."},
+   "ground_vs_flight_quote": {"quote": "Cool diffusion flames burning near the surface of fuel pools in normal gravity were observed for the first time.", "file": "PSI-159/Reports/PSI-159_Reports_FinalRpt_ACME.CFI-G.pdf", "location": "page=24 (section F)"},
+   "fuel_and_flame_type": "liquid n-heptane pool, cool diffusion flame, heated parallel plates (stagnation flow)",
+   "effort": "not usable",
+   "why": "The ground heptane pool work appears only as a summary in the report; no conditions table is in the downloaded files (would need the Combustion and Flame paper by Waddell et al. or Waddell's dissertation)."
+  }
+ ],
+ "notes": "1) All six 'Experimental table' CSVs in these folders are ISS flight test tables, not ground. 2) The ACME Engineering Requirements Doc, Integrated Science Requirements (ISRD/RevB), Science Operations Requirements, fact sheets, CDR package, Researcher's Guide and the SRDs are requirements/planning or background documents; their ground/1-g hits are statements of intent, literature references, or ground-unit/hardware checks. Hardware-only items (ground copy of CIR leak check, cold-flow hot-wire anemometry, UMD identical-burner igniter timing runs) are not flame condition data. 3) The only items with any 1-g O2 value: PSI-20 SRD (air, stated once) and PSI-20 dissertation Fig. 5.4 legend (XO2 0.21, p 1 bar for 4 Auth points whose primary data are in a thesis not in the files). Both are BRE gas-burner emulations, not real fuels. 4) 5 s/2.2 s drop towers and aircraft tests (BRE SRD Table 1 D9023-D9030, Figs. 7-9 heptane at 30% O2 and 2 atm, Swenson 2011, Karnani 2009 NASA part) were excluded as not_ground_drop_or_parabolic. 5) Karnani 2009 text layer is slide titles only; figures were not visually inspected, so numeric conditions printed only in an image would be missed. 6) PSI-20 RDR/SCR 2012 concept documents were only sampled by page-level snippets, not read in full."
+}
