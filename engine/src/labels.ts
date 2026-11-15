@@ -32,3 +32,6 @@ const VALUE_LABELS: Readonly<Record<string, string>> = {
 export const axisLabel = (axis: string): string => AXIS_LABELS[axis] ?? axis.replace(/_/g, ' ');
 export const valueLabel = (value: string): string => VALUE_LABELS[value] ?? value;
 
+
+/** "1 test" / "2 tests": the form that agrees with n. */
+export const plural = (n: number, one: string, many: string): string => (n === 1 ? one : many);

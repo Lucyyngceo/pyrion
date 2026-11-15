@@ -186,6 +186,11 @@ function checkInvariant(label: string, recs: readonly ConditionRecord[], t: Targ
     assert.equal(verdictOf(recs, route.target, route.accession), 'APPLICABLE', `${label}: route of ${route.accession} (${route.kind}): ${route.sentence}`);
     assert.ok(route.changeCount >= 1 && route.changes.length === route.changeCount);
     assert.ok(!/undefined|NaN/.test(route.sentence), `${label}: sentence text`);
+    // Gravity regime is never left open; no change is a no-op within the measurement tolerance.
+    assert.ok(!route.changes.some((c) => c.kind === 'leave_open' && c.axis === 'gravity_regime'), `${label}: ${route.accession} leaves gravity open`);
+    for (const c of route.changes) {
+      if (c.kind === 'move') assert.ok(Math.abs((c.to as number) - (c.from as number)) > 0.005 * Math.abs(c.from as number), `${label}: no-op move ${c.sentence}`);
+    }
   }
   const firstSwitch = r.routes.findIndex((x) => x.kind === 'different_regime');
   if (firstSwitch >= 0) assert.ok(r.routes.slice(firstSwitch).every((x) => x.kind === 'different_regime'), `${label}: regime switches ranked after every other route`);
@@ -215,4 +220,48 @@ describe('routesToEvidence: applying a route gives APPLICABLE under evaluate()',
       for (let i = 0; i < 50; i += 1) checkInvariant(`${name}/random#${i}`, recs, randomTarget(rnd));
     });
   }
+});
+
+describe('routes: gravity is never left open; no-op moves are dropped', () => {
+  const HEAD2 = 'accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note';
+  const r2 = (acc: string, test: string, variable: string, value: string, unit = '') =>
+    `${acc},${test},${variable},${value},${unit},${value},${unit},table,SYNTHETIC/${acc}.csv,row=0,SYNTHETIC TEST FIXTURE,verified,SYNTHETIC - not NASA data`;
+  const recs = parseConditionCsv(
+    [
+      HEAD2,
+      // PSI-9501 states no gravity regime at all (like an investigation whose records omit it).
+      r2('PSI-9501', 'T1', 'o2_mole_fraction', '0.21', '1'), r2('PSI-9501', 'T1', 'pressure', '101.325', 'kPa'),
+      // PSI-9502: microgravity, tested as a segment 17-30 % O2 at 70 kPa; target pressure will be inside only via tolerance.
+      r2('PSI-9502', '*', 'gravity_regime', 'microgravity'),
+      r2('PSI-9502', 'T1', 'o2_mole_fraction', '0.17', '1'), r2('PSI-9502', 'T1', 'pressure', '70', 'kPa'),
+      r2('PSI-9502', 'T2', 'o2_mole_fraction', '0.30', '1'), r2('PSI-9502', 'T2', 'pressure', '70', 'kPa'),
+    ].join('\n'),
+    's.csv',
+  ).records;
+
+  it('an investigation that states no gravity regime is unreachable for a target that states gravity, with the fixed reason', () => {
+    const r = routesToEvidence(recs, target({ gravity_regime: 'microgravity' }, 0.21, 101.325));
+    assert.ok(!r.routes.some((x) => x.accession === 'PSI-9501'));
+    assert.equal(r.unreachable.find((u) => u.accession === 'PSI-9501')?.reason, 'the extracted records do not state its gravity regime, so it cannot be compared on gravity');
+  });
+  it('leaving fuel phase open stays allowed', () => {
+    const r = routesToEvidence(synthetic(), target({ gravity_regime: 'microgravity', fuel_phase: 'solid', diluent: 'N2' }, 0.25, 90));
+    assert.ok(r.routes.some((x) => x.changes.some((c) => c.kind === 'leave_open' && c.axis === 'fuel_phase')));
+  });
+  it('a target whose pressure is inside only by tolerance gets no pressure change, only the oxygen move', () => {
+    const t = target({ gravity_regime: 'microgravity' }, 0.5, 70.2); // 70.2 is within 0.5 % of 70
+    const route = routesToEvidence(recs, t).routes.find((x) => x.accession === 'PSI-9502') as Route;
+    assert.deepEqual(route.changes.map((c) => c.axis), ['o2_mole_fraction']);
+    assert.ok(!/pressure/.test(route.sentence));
+    assert.equal(verdictOf(recs, route.target, 'PSI-9502'), 'APPLICABLE');
+  });
+  it('the real records: which investigations state no gravity regime (data question for the extraction)', () => {
+    const dir = join(import.meta.dirname, '..', '..', 'data', 'conditions');
+    if (!existsSync(dir)) return;
+    const real = loadConditionDir(dir).records;
+    const r = routesToEvidence(real, presetTarget('challenge-lunar-base'));
+    const noGravity = r.unreachable.filter((u) => /do not state its gravity regime/.test(u.reason)).map((u) => u.accession);
+    console.log(`investigations with no usable gravity_regime record: ${noGravity.join(', ') || 'none'}`);
+    assert.ok(!r.routes.some((x) => noGravity.includes(x.accession)));
+  });
 });

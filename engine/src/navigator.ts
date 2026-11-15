@@ -144,6 +144,16 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
       }
       continue;
     }
+    if (axis === 'gravity_regime' && (st.state === 'missing' || st.state === 'conflicting')) {
+      // Never leave gravity open to reach an investigation: that would compare a gravity with one nobody stated.
+      return {
+        route: null,
+        why:
+          st.state === 'missing'
+            ? 'the extracted records do not state its gravity regime, so it cannot be compared on gravity'
+            : `the extracted records disagree on its gravity regime (${st.values.map(valueLabel).join(' / ')}), so it cannot be compared on gravity`,
+      };
+    }
     if (st.state === 'missing' || st.state === 'conflicting') {
       delete T.regime[axis];
       changes.push({
@@ -282,6 +292,8 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
   }
   for (const m of moved) {
     T.continuous[m.axis] = m.to;
+    // A move smaller than the measurement tolerance is not a change: say nothing about that axis.
+    if (Math.abs(m.to - m.from) <= MEASUREMENT_TOLERANCE_REL * Math.abs(m.from)) continue;
     changes.push({
       kind: 'move',
       axis: m.axis,
@@ -291,6 +303,8 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
       citations: moveCitations.get(m.axis) ?? [],
     });
   }
+
+  if (changes.length === 0) return { route: null, why: `${acc}: no change of the kinds this tool offers is needed or possible.` };
 
   // ---- verify with the engine's own judgement ----
   const finalTarget = canonicalTarget(T);

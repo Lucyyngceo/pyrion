@@ -10,7 +10,7 @@ import {
   type Cluster,
   type TestEvidence,
 } from './evidence.ts';
-import { axisLabel, valueLabel } from './labels.ts';
+import { axisLabel, plural, valueLabel } from './labels.ts';
 import { convexHull, distanceToHull, hullContains, hullNearBox, type Vec2 } from './geometry.ts';
 import {
   AXIS_UNITS,
@@ -118,7 +118,7 @@ function blockersOf(accession: string, best: ClusterVerdict, all: ClusterVerdict
         sentence: unusable
           ? `${accession} has records for ${label}, but none can be used as evidence (flagged as insufficient, or not verified).`
           : `${accession} did not record ${label}.`,
-        action: { kind: 'leave_open', axis, sentence: `Leave ${label} open.` },
+        ...(axis === 'gravity_regime' ? {} : { action: { kind: 'leave_open' as const, axis, sentence: `Leave ${label} open.` } }),
       });
     } else if (r.code === 'regime_conflicting' && axis) {
       const vals = best.regime.find((s) => s.axis === axis)?.values ?? [];
@@ -127,7 +127,7 @@ function blockersOf(accession: string, best: ClusterVerdict, all: ClusterVerdict
         axis,
         testedValues: vals,
         sentence: `The records of ${accession} disagree on ${label} (${vals.map(valueLabel).join(' / ')}).`,
-        action: { kind: 'leave_open', axis, sentence: `Leave ${label} open.` },
+        ...(axis === 'gravity_regime' ? {} : { action: { kind: 'leave_open' as const, axis, sentence: `Leave ${label} open.` } }),
       });
     } else if (r.code === 'axis_missing') {
       out.push({ code: 'AXES_NOT_RECORDED_TOGETHER', axis: null, sentence: `No single test of ${accession} records all the axes you set together.` });
@@ -170,7 +170,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
     if (state.state !== 'missing') usedRecords.push(...recs);
     if (state.state === 'missing') {
       regimeUnknown = true;
-      const extra = excl.length > 0 ? ` ${excl.length} record(s) exist but are excluded (status ${[...new Set(excl.map((r) => r.status))].join(', ')}).` : '';
+      const extra = excl.length > 0 ? ` ${excl.length} ${plural(excl.length, 'record exists but is', 'records exist but are')} excluded (status ${[...new Set(excl.map((r) => r.status))].join(', ')}).` : '';
       regimeReasons.push(reason('regime_missing', false, axis, `${axis}: no usable record states it for these tests.${extra}`, citationsOf(excl)));
       continue;
     }
@@ -223,8 +223,8 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
       missingAxis = true;
       axisChecks.push({ axis, unit: AXIS_UNITS[axis], target: tv, min: null, max: null, status: 'missing', gap: null, gapNormalized: null, minCitations: [], maxCitations: [] });
       const excl = cluster.tests.flatMap((t) => t.continuous[axis].excluded);
-      const extra = excl.length > 0 ? ` ${excl.length} record(s) exist but are excluded (status ${[...new Set(excl.map((r) => r.status))].join(', ')}).` : '';
-      reasons.push(reason('axis_missing', decided, axis, `No usable ${axis} value for any of the ${cluster.tests.length} test(s).${extra}`, citationsOf(excl)));
+      const extra = excl.length > 0 ? ` ${excl.length} ${plural(excl.length, 'record exists but is', 'records exist but are')} excluded (status ${[...new Set(excl.map((r) => r.status))].join(', ')}).` : '';
+      reasons.push(reason('axis_missing', decided, axis, `No usable ${axis} value for ${cluster.tests.length === 1 ? 'the 1 test' : `any of the ${cluster.tests.length} tests`}.${extra}`, citationsOf(excl)));
       continue;
     }
     const values = pool.flatMap((t) => t.continuous[axis].values);
@@ -295,7 +295,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
         'incomplete_tests',
         true,
         null,
-        `${incomplete.length} of ${cluster.tests.length} test(s) lack a usable value for ${lackingAxes.join(', ')} and are not part of this envelope: ${incomplete.map((t) => t.test_id).join(', ')}.`,
+        `${incomplete.length} of ${cluster.tests.length} ${plural(incomplete.length, 'test lacks', 'tests lack')} a usable value for ${lackingAxes.join(', ')}, so ${plural(incomplete.length, 'it is', 'they are')} not part of this envelope: ${incomplete.map((t) => t.test_id).join(', ')}.`,
       ),
     );
   }
@@ -322,7 +322,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
           'unpaired_values',
           decided || pts.length > 0,
           null,
-          `${unpaired.length} test(s) list several O2 and several pressure values without saying which go together; they bound the per-axis ranges but not the 2-D envelope: ${unpaired.map((t) => t.test_id).join(', ')}.`,
+          `${unpaired.length} ${plural(unpaired.length, 'test lists', 'tests list')} several O2 and several pressure values without saying which go together; ${plural(unpaired.length, 'it bounds', 'they bound')} the per-axis ranges but not the 2-D envelope: ${unpaired.map((t) => t.test_id).join(', ')}.`,
         ),
       );
     }
@@ -357,8 +357,8 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
       };
       if (inside) {
         const msg = tolInside
-          ? `(O2, pressure) is within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the convex hull of ${pts.length} measured point(s). ${MEASUREMENT_TOLERANCE_NOTE}`
-          : `(O2, pressure) is inside the convex hull of ${pts.length} measured point(s).`;
+          ? `(O2, pressure) is within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the convex hull of ${pts.length} measured ${plural(pts.length, 'point', 'points')}. ${MEASUREMENT_TOLERANCE_NOTE}`
+          : `(O2, pressure) is inside the convex hull of ${pts.length} measured ${plural(pts.length, 'point', 'points')}.`;
         reasons.push(reason('inside_hull', decided, 'o2_mole_fraction+pressure', msg, citationsOf(vertexRecs)));
       } else {
         outsideHull = true;
@@ -367,7 +367,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
             'outside_hull',
             decided,
             'o2_mole_fraction+pressure',
-            `(O2, pressure) is outside the convex hull of ${pts.length} measured point(s), at normalized distance ${fmt(dist)}.`,
+            `(O2, pressure) is outside the convex hull of ${pts.length} measured ${plural(pts.length, 'point', 'points')}, at normalized distance ${fmt(dist)}.`,
             citationsOf(vertexRecs),
           ),
         );
@@ -433,7 +433,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
         'flagged_records_ignored',
         true,
         null,
-        `${citationsOf(excludedRelevant).length} record(s) on the axes of this target were not counted as evidence (status insufficient_evidence, or not verified when only verified records count).`,
+        `${citationsOf(excludedRelevant).length} ${plural(citationsOf(excludedRelevant).length, 'record on the axes of this target was', 'records on the axes of this target were')} not counted as evidence (status insufficient_evidence, or not verified when only verified records count).`,
         citationsOf(excludedRelevant),
       ),
     );

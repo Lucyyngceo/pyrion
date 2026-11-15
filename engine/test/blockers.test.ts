@@ -129,3 +129,25 @@ describe('no "undefined" or raw distance in reason text', () => {
     });
   }
 });
+
+describe('plural agreement in summary sentences', () => {
+  const H = 'accession,test_id,variable,value,unit,value_original,unit_original,method,source_file,source_location,quote,status,note';
+  const build = (extraTests: number) => {
+    const L = [H, row('PSI-9601', '*', 'gravity_regime', 'microgravity'), row('PSI-9601', 'T1', 'o2_mole_fraction', '0.21', '1'), row('PSI-9601', 'T1', 'pressure', '101.325', 'kPa')];
+    // Tests that lack pressure (and so are not part of the envelope).
+    for (let i = 0; i < extraTests; i += 1) L.push(row('PSI-9601', `X${i + 1}`, 'o2_mole_fraction', '0.25', '1'));
+    return parseConditionCsv(L.join('\n'), 's.csv').records;
+  };
+  const message = (extra: number) => {
+    const ev = evaluate(build(extra), { regime: { gravity_regime: 'microgravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 } });
+    return [...ev.ranked, ...ev.unranked].flatMap((c) => c.reasons.map((r) => r.message)).find((m) => /lack/.test(m)) as string;
+  };
+  it('1 test lacks ... so it is not part; 2 tests lack ... so they are not part', () => {
+    assert.match(message(1), /1 of 2 test lacks a usable value for pressure, so it is not part of this envelope/);
+    assert.match(message(2), /2 of 3 tests lack a usable value for pressure, so they are not part of this envelope/);
+  });
+  it('no "(s)" placeholders remain in engine reason text', () => {
+    const msgs = [message(1), message(2)];
+    for (const m of msgs) assert.ok(!/\(s\)/.test(m), m);
+  });
+});
