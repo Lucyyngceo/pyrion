@@ -37,7 +37,7 @@ server {
 and the app is started with:
 
 ```bash
-PYRION_TRUST_PROXY=1 HOSTNAME=127.0.0.1 PORT=3000 NODE_ENV=production npm --prefix web run start
+PYRION_TRUST_PROXY=1 NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
 ```
 
 Without `PYRION_TRUST_PROXY=1` the app ignores every client-supplied address header and all callers share one hourly bucket. That is safe (no one can create fresh allowances by forging headers) but it would let a single heavy user use up the hour for everyone, so production must set it. The app logs an error at startup in production when it is missing, and `GET /api/llm/health` reports `visitor_isolation`.
