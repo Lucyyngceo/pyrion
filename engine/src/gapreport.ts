@@ -6,6 +6,7 @@ import { type CatalogEntry } from './experiments.ts';
 import { ERL_NOTE, ERL_SCALE, erlFor, type ErlResult } from './erl.ts';
 import { canonicalJson } from './json.ts';
 import {
+  CONVENTION_SOURCE,
   COVERAGE_NOTE,
   PLANNER_LABEL,
   coverage,
@@ -109,6 +110,7 @@ export function gapReport(records: readonly ConditionRecord[], band: DesignBand,
     sources.push({ used, title: s.title, locator: s.locator, url: s.url, quote: s.quote });
   };
   addSource('band gravity', band.gravity.source);
+  addSource('convention: flammability limits need not be monotonic', CONVENTION_SOURCE as unknown as SourceRef);
   for (const v of [...band.vertices, ...band.edgePoints]) if (v.source) addSource(`band vertex: ${v.label}`, v.source);
   for (const ps of [...fm2.sources, ...luci.sources]) {
     const k = `planned|${ps.id}`;

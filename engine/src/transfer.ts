@@ -68,7 +68,7 @@ export const GRAVITY_TARGETS: Record<GravityTargetId, GravityTarget> = {
       file: 'ntrs-20260001966/Ferkul-Lunar and Planetary Science Conf 2026 v2.pdf',
       page: 13,
       quote: 'Lunar-g = 0.165 gE',
-      supports: 'lunar gravity level of the FM2 centrifuge setup (PDF p. 13, slide 12; the engine presets use 0.16 g from NTRS 20210020446, p. 3)',
+      supports: "the lunar-g setting of NASA's ground-test centrifuge (turntable in the drop bus; a SIBAL fabric burning in air at 1 atm, PDF p. 13, slide 12), not a setting of the planned FM2 experiment; the engine presets use 0.16 g from NTRS 20210020446, p. 3",
     },
   },
   mars: {

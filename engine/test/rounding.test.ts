@@ -1,7 +1,7 @@
 // Wording a judge reads: no raw floats in sentences, and no "tested only in" for records that merely lack comparable values.
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { MOON_BASE_BAND, MINIMUM_TEST_SET_RULE, erlFor, evaluate, experimentsNeeded, gapReport, routesToEvidence, threePartAnswer, type Target } from '../src/index.ts';
+import { MOON_BASE_BAND, MINIMUM_TEST_SET_RULE, CONVENTION_SOURCE, erlFor, evaluate, experimentsNeeded, gapReport, routesToEvidence, threePartAnswer, type Target } from '../src/index.ts';
 import { fixtureRecords } from './helpers.ts';
 
 const records = fixtureRecords();
@@ -62,7 +62,9 @@ describe('the minimum test set never reads as "this closes the gap"', () => {
     assert.match(MINIMUM_TEST_SET_RULE, /PYRION's convention that the region between measured tests counts as covered/);
     assert.match(MINIMUM_TEST_SET_RULE, /separately for each material, flow velocity and sample thickness/);
     assert.match(MINIMUM_TEST_SET_RULE, /thresholds and need not behave monotonically/);
-    assert.match(MINIMUM_TEST_SET_RULE, /Olson and T'ien/);
+    assert.match(MINIMUM_TEST_SET_RULE, /Olson and T'ien \(NTRS 20000057046, PDF p\. 3\)/);
+    assert.ok(MINIMUM_TEST_SET_RULE.includes(CONVENTION_SOURCE.quote));
+    assert.doesNotMatch(MINIMUM_TEST_SET_RULE, /uncited|not cited/);
   });
 
   it('the gap report heading and closing sentence carry the convention', () => {
