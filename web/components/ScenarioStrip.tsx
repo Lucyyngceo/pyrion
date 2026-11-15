@@ -52,6 +52,8 @@ function conditionOf(presetId: string) {
     pressure: pr ? `${pr.value_original ?? fmt(kpaToPsi(pr.value), 1)} ${unit || "psia"}` : "",
     absoluteNote: unit === "psi" ? "Absolute pressure per the source (the source writes “psi”)." : undefined,
     gravity: gl !== undefined ? `${fmt(gl, 2)} g` : g ? valueLabel(g) : "",
+    // The NTRS id of the source of the oxygen and pressure values (not of the gravity level).
+    ntrs: /NTRS \d+/.exec((o2 ?? pr)?.source.identifier ?? "")?.[0],
     sources: sourcesOf(p)
       .map((s) => `${s.identifier.split(" (")[0]}, ${s.locator}: “${s.quote}”`)
       .join("\n"),
@@ -75,6 +77,7 @@ const nameFor = (investigations: Investigation[]) => (accession: string) => inve
 function Tile({
   active,
   title,
+  subtitle,
   cond,
   onPick,
   children,
@@ -83,6 +86,7 @@ function Tile({
 }: {
   active: boolean;
   title: string;
+  subtitle?: string;
   cond: React.ReactNode;
   onPick: () => void;
   children: React.ReactNode;
@@ -93,6 +97,7 @@ function Tile({
     <div className={`tile ${active ? "tile-on" : ""} ${className}`} title={hover}>
       <button type="button" className="tile-pick" aria-pressed={active} onClick={onPick}>
         <span className="tile-title">{title}</span>
+        {subtitle && <span className="tile-sub">{subtitle}</span>}
         <span className="tile-cond">{cond}</span>
       </button>
       <div className="tile-body">{children}</div>
@@ -133,7 +138,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
         {iss && <p className="tile-line">{solidLine(iss.facts, name)}</p>}
       </Tile>
 
-      <Tile active={preset === TILE_PRESETS.lunar} title="Lunar habitat (challenge)" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
+      <Tile active={preset === TILE_PRESETS.lunar} title="NASA's Moon Base" subtitle="as stated in the Flame in Freefall challenge: 30 % O₂ or more at 10.2 psi or less" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
         <p className="tile-head" title={`From the challenge statement (${SOURCES.challenge.url}). It is NASA's text, not our extraction.`}>
           NASA: “{CHALLENGE_QUOTE}”.
         </p>
@@ -155,6 +160,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
       <Tile
         active={preset === TILE_PRESETS.nesc || preset === TILE_PRESETS.nescA}
         title="NASA exploration atmosphere"
+        subtitle={cNesc?.ntrs ? `proposed for lunar habitats (${cNesc.ntrs})` : "proposed for lunar habitats"}
         cond={cNesc ? cond(cNesc) : ""}
         hover={cNesc?.sources}
         onPick={() => onPick(TILE_PRESETS.nesc)}

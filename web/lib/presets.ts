@@ -63,7 +63,7 @@ export const ISS_PRESET: Preset = {
 
 const SHORT_LABEL: Record<string, string> = {
   "iss-cabin-air": "ISS cabin air",
-  "challenge-lunar-base": "Lunar base",
+  "challenge-lunar-base": "NASA's Moon Base",
   "nesc-10.2psia-26.5o2-lunar": "Exploration atmosphere A",
   "nesc-8.2psia-34o2-lunar": "Exploration atmosphere B",
 };

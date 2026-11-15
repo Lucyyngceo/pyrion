@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const KEY = "pyrion.tour.v1";
 const STEPS = [
-  { sel: ".scenario-strip", title: "1 · Pick a scenario", text: "Start from a condition NASA has written down: the ISS cabin, a lunar habitat, or an exploration atmosphere. Each tile is computed live and cites its source on hover." },
+  { sel: ".scenario-strip", title: "1 · Pick a scenario", text: "Start from a condition NASA has written down: the ISS cabin, NASA's Moon Base, or an exploration atmosphere. Each tile is computed live and cites its source on hover." },
   { sel: ".nav-center", title: "2 · See where the evidence is", text: "The bright area is where NASA investigations apply. The right column says which ones, and what would bring your condition closer to them." },
   { sel: ".take-btn", fallback: ".nav-evidence", title: "3 · Take me there", text: "One click moves your condition to the nearest place the evidence covers. A different regime is never a small step: that button says so." },
 ] as const;

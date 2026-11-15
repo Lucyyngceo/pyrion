@@ -297,3 +297,5 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .more-btn { margin: 4px 0 0; }
 .nav-left, .nav-right { grid-template-columns: minmax(0, 1fr); }
 .nav-right .card, .where-list, .where-list li { min-width: 0; }
+
+.tile-sub { font-size: 11.5px; line-height: 1.3; color: var(--ink-2); }
