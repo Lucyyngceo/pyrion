@@ -100,7 +100,7 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       </p>
 
       <section className="card" aria-labelledby="pl-chart">
-        <h2 id="pl-chart">The Moon Base band</h2>
+        <h2 id="pl-chart">The Moon Base band (built by PYRION from NASA atmospheres)</h2>
         <p data-help="planner-coverage" className="lede">
           <strong>{pct(data.coverage.fraction)} of the band lies inside the region spanned by PSI test points.</strong> ({data.coverage.covered} of {data.coverage.total} grid cells, partial gravity {data.band.gravityLevel} g.){" "}
           <span data-help="planner-erl-badge" className="chip" title={data.erl.atCentre.reason}>
