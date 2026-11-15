@@ -29,6 +29,11 @@ REVIEW = HERE / "documents" / "review"
 SCHEMA_NUMERIC = set(documents.SCHEMA_UNIT)
 
 
+def _lead0(n: str) -> str:
+    """'.6' -> '0.6' so that a range reads lo..hi unambiguously."""
+    return "0" + n if n.startswith(".") else n
+
+
 def _external_value(r: dict):
     """Outcomes keep the number and unit exactly as written (no schema unit exists for them); text-only values stay text."""
     var = r["variable"]
@@ -39,7 +44,7 @@ def _external_value(r: dict):
         unit = (r.get("unit_original") or "").strip()
         if r.get("kind") == "range" and len(nums) == 2:
             lo, hi = sorted(nums, key=float)
-            return f"{lo}..{hi}", unit, "range stated in the source; written as it appears, unit as written, no conversion"
+            return f"{_lead0(lo)}..{_lead0(hi)}", unit, "range stated in the source; written as it appears, unit as written, no conversion"
         return nums[0], unit, "unit as written in the source, no conversion"
     if var in SCHEMA_NUMERIC and not nums:
         text = str(r.get("value", "")).strip() or str(r.get("value_original", "")).strip()
