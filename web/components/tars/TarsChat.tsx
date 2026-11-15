@@ -197,7 +197,7 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
       <div data-help="tars-log" className="tars-log" role="log" aria-live="polite">
         {messages.length === 0 && (
           <p className="tars-hello">
-            Ask me about PYRION, fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own expert reasoning.
+            Ask me about PYRION, fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own reasoning, labelled as not verified against a source.
           </p>
         )}
         {messages.map((m) => (

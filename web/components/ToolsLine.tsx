@@ -8,7 +8,7 @@ export default function ToolsLine() {
       {" · "}
       <Link data-help="home-tools-line" href="/investigations">Investigations — the 24 PSI studies</Link>
       {" · "}
-      <Link data-help="home-tools-line" href="/tars">✦ TARS SI — ask the expert</Link>
+      <Link data-help="home-tools-line" href="/tars">✦ TARS SI — ask the AI assistant</Link>
     </p>
   );
 }

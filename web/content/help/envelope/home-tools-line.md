@@ -11,7 +11,7 @@ highlight: [data-help="home-tools-line"]
 ---
 What it is: One line of links under the scenario tiles.
 
-What it shows: Three links: Mission Planner (what would close the Moon gap), Investigations (the 24 PSI studies) and TARS SI (ask the expert).
+What it shows: Three links: Mission Planner (what would close the Moon gap), Investigations (the 24 PSI studies) and TARS SI (ask the AI assistant).
 
 How to use it: Click one to open that page.
 

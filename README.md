@@ -2,7 +2,7 @@
 
 **NASA Space Apps Challenge 2026** · Challenge: *Flame in Freefall: SI-Powered Fire Safety Insights from Microgravity Combustion Data* · Team **NDMLM** · Local event: San José, Costa Rica
 
-> **Status:** under construction during the hackathon (November 14–15, 2026).
+> Built during the NASA Space Apps Challenge hackathon, November 14–15, 2026.
 
 ## What it is
 
@@ -15,7 +15,7 @@ The applicability verdict is computed by a deterministic engine. A language mode
 ## Data
 
 Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>: the 24 investigations in the Combustion Science research area.
-Each investigation is cited with its DOI and its license in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
+Each investigation is cited with its DOI and the license its PSI record states (the PSI-10 record states none) in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
 How the data are selected, downloaded and checked: [`data/README.md`](data/README.md).
 
 ## Provenance
@@ -45,7 +45,7 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 
 | Role | Model | License | Provider |
 |---|---|---|---|
-| TARS SI brain (expert chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
+| TARS SI brain (chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
 | Fallback | Qwen3.8-27B | Apache-2.0 | OpenRouter |
 | Free fallback | NVIDIA Nemotron 3 Ultra; Gemma 4 31B | OpenMDW-1.1 (per NVIDIA NGC); Apache-2.0 | NVIDIA NIM |
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
