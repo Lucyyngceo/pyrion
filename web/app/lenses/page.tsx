@@ -4,13 +4,15 @@ import LensMatrix from "@/components/lenses/LensMatrix";
 import Timeline from "@/components/lenses/Timeline";
 import { loadLenses, loadTimeline } from "@/lib/lenses/data";
 import { displayName, fm2Planned, frames, inPolygon, moonBand, pct, round, slimPoints, sourceLabel } from "@/lib/lenses/model";
+import { LENS_LEGS, lensFilterHref, parseLeg } from "@/lib/lenses/equipment";
 
 export const metadata: Metadata = {
   title: "Lenses · PYRION Ω",
   description: "PSI investigations by safety leg and phenomenon, each tag with a verbatim quote, and the evidence timeline.",
 };
 
-export default function LensesPage() {
+export default async function LensesPage({ searchParams }: { searchParams: Promise<{ leg?: string | string[] }> }) {
+  const leg = parseLeg((await searchParams).leg);
   const lenses = loadLenses();
   const timeline = loadTimeline();
   const band = moonBand();
@@ -18,6 +20,8 @@ export default function LensesPage() {
   const ch = lenses.challenge;
   const names = Object.fromEntries(lenses.investigations.map((i) => [i.accession, displayName(i)]));
   const c = lenses.counts;
+  // ?leg=prevention|detection|suppression keeps the rows with at least one quote for that leg; anything else shows all.
+  const rows = leg ? lenses.investigations.filter((i) => (i.legs[leg] ?? []).length > 0) : lenses.investigations;
   const pts = slimPoints(timeline);
   const inBandPts = pts.filter((p) => inPolygon(p, band.vertices));
   const inBand = inBandPts.length;
@@ -31,6 +35,10 @@ export default function LensesPage() {
       <header className="hero">
         <h1>Lenses: what each PSI investigation is about, for fire safety</h1>
         <p className="lede">
+          This page is for finding, in one table, which of the 24 PSI combustion investigations speak to fire prevention, detection or suppression, using only their own
+          PSI records and NASA&apos;s challenge statement as evidence.
+        </p>
+        <p className="muted">
           Each investigation is tagged by safety leg (prevention, detection, suppression) and by phenomenon (ignition, spread, extinction, smoke). Every tag has a word-for-word
           quote from the investigation&apos;s PSI record or from NASA&apos;s challenge text, checked by code (tools/build_lenses.py). No quote, no tag.
         </p>
@@ -44,7 +52,26 @@ export default function LensesPage() {
             these fields, not that the investigation has nothing to say.
           </p>
         </div>
-        <LensMatrix rows={lenses.investigations} legs={lenses.axes.legs} phenomena={lenses.axes.phenomena} />
+        <p className="lens-filter" role="group" aria-label="Filter by safety leg">
+          Show:{" "}
+          <a data-help="lenses-leg-filter" href="/lenses" aria-current={leg === null ? "true" : undefined}>
+            all {lenses.investigations.length}
+          </a>
+          {LENS_LEGS.map((l) => (
+            <span key={l}>
+              {" · "}
+              <a data-help="lenses-leg-filter" href={lensFilterHref(l)} aria-current={leg === l ? "true" : undefined}>
+                {l} ({c.legs[l]})
+              </a>
+            </span>
+          ))}
+        </p>
+        {leg && (
+          <p className="muted lens-rule" role="status">
+            Showing the {rows.length} investigations with at least one {leg} quote. The other columns are still shown for these rows.
+          </p>
+        )}
+        <LensMatrix rows={rows} legs={lenses.axes.legs} phenomena={lenses.axes.phenomena} />
         <p className="muted lens-rule">
           <strong>Strength.</strong> {lenses.rules.strength}
         </p>
