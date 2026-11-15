@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { createBusyGate, createTarsStream, splitLines, type ReviewStatus } from "@/lib/tars/stream";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { readByCode, type ParsedTarget } from "@/lib/ask-core";
 import { decodeShare } from "@/lib/tars/share";
@@ -24,6 +25,8 @@ export interface SkepticView {
   model: { model: string; name?: string; family: string } | null;
   note?: string;
 }
+
+export type { ReviewStatus };
 
 export interface ExpertResult {
   /** True when no model answered and the answer comes from code alone (engine, help topics, NASA passages). */
@@ -54,7 +57,7 @@ export type Msg =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "tars"; kind: "error" | "note"; text: string }
   | { id: number; role: "tars"; kind: "help"; route: Route; help: HelpAnswer }
-  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult; question?: string; skeptic?: SkepticView }
+  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult; question?: string; skeptic?: SkepticView; review?: ReviewStatus }
   | { id: number; role: "tars"; kind: "answer"; route: Route; answer: AnswerPair; question: string }
   | { id: number; role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
 
@@ -128,6 +131,8 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
   const [convs, setConvs] = useState<StoredConversation[]>([]);
   const [activeId, setActiveId] = useState<string>(() => newId());
   const [busy, setBusy] = useState(false);
+  // Only the latest request may clear "busy": a second opinion still streaming for an earlier answer never blocks the next question.
+  const gate = useRef(createBusyGate(setBusy)).current;
   const [status, setStatus] = useState<string | null>(null);
   const id = useRef(0);
   const router = useRouter();
@@ -184,10 +189,10 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
 
   /** Update a message already in the conversation (the second opinion arrives after the answer). */
   const patchMsg = useCallback(
-    (mid: number, patch: Record<string, unknown>) => {
+    (mid: number, patch: Record<string, unknown>, convId: string = activeId) => {
       setConvs((all) =>
         all.map((c) => {
-          if (c.id !== activeId) return c;
+          if (c.id !== convId) return c;
           const n = { ...c, messages: c.messages.map((m: { id: number }) => (m.id === mid ? { ...m, ...patch } : m)) };
           void saveConversation(n);
           return n;
@@ -289,7 +294,8 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
 
   /** The expert agent: streamed status lines, then one checked result. Returns false when no model is available (the fallback answers). */
   const expert = useCallback(
-    async (t: string, route: Route): Promise<boolean> => {
+    async (t: string, route: Route, onPrimary: () => void = () => {}): Promise<boolean> => {
+      const convId = activeId;
       const history = messages.slice(-10).flatMap((m) => {
         const text = textOfMsg(m);
         return text ? [{ role: m.role === "user" ? "user" : "assistant", text }] : [];
@@ -321,25 +327,31 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       const dec = new TextDecoder();
       let buf = "";
       let lastId: number | null = null;
+      const stream = createTarsStream<ExpertResult, SkepticView>({
+        onStatus: (text) => setStatus(text),
+        onError: (error) => add({ role: "tars", kind: "error", text: error }),
+        onResult: (result) => {
+          lastId = add({ role: "tars", kind: "expert", route, result, question: t });
+          // The answer is in: the visitor can ask the next question while the second opinion runs.
+          onPrimary();
+        },
+        onReview: (review, skeptic) => {
+          if (lastId !== null) patchMsg(lastId, skeptic ? { review, skeptic } : { review }, convId);
+        },
+      });
       for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
         buf += dec.decode(value, { stream: true });
-        let nl: number;
-        while ((nl = buf.indexOf("\n")) >= 0) {
-          const line = buf.slice(0, nl).trim();
-          buf = buf.slice(nl + 1);
-          if (!line) continue;
-          const ev = JSON.parse(line) as { type: string; text?: string; error?: string } & Partial<ExpertResult>;
-          if (ev.type === "status") setStatus(ev.text ?? null);
-          else if (ev.type === "error") add({ role: "tars", kind: "error", text: ev.error ?? "TARS could not answer." });
-          else if (ev.type === "result") lastId = add({ role: "tars", kind: "expert", route, result: ev as ExpertResult, question: t });
-          else if (ev.type === "skeptic" && lastId !== null) patchMsg(lastId, { skeptic: (ev as unknown as { skeptic: SkepticView }).skeptic });
-        }
+        const { lines, rest } = splitLines(buf);
+        buf = rest;
+        for (const line of lines) stream.push(line);
       }
+      if (buf.trim()) stream.push(buf);
+      stream.end();
       return true;
     },
-    [add, answerFor, messages, patchMsg, path],
+    [activeId, add, answerFor, messages, patchMsg, path],
   );
 
   const send = useCallback(
@@ -347,13 +359,16 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       const t = text.trim();
       if (!t || busy) return;
       add({ role: "user", text: t });
-      setBusy(true);
+      const token = gate.begin();
       setStatus("Thinking…");
+      const release = () => {
+        if (gate.release(token)) setStatus(null);
+      };
       try {
         const route = routeMessage(t);
         let handled = false;
         try {
-          handled = await expert(t, route);
+          handled = await expert(t, route, release);
         } catch {
           handled = false;
         }
@@ -361,11 +376,10 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       } catch {
         add({ role: "tars", kind: "error", text: "TARS could not reach the server. Try again in a moment." });
       } finally {
-        setBusy(false);
-        setStatus(null);
+        release();
       }
     },
-    [add, busy, expert, fallback],
+    [add, busy, expert, fallback, gate],
   );
 
   const skill = useCallback(
