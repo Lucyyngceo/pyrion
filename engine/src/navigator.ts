@@ -406,3 +406,128 @@ export function routesToEvidence(records: readonly ConditionRecord[], target: Ta
   unreachable.sort((a, b) => compareAccession(a.accession, b.accession));
   return { engine: { name: ENGINE_NAME, version: ENGINE_VERSION }, target: tgt, routes, unreachable, notes };
 }
+
+// ---------- N2: the evidence map ----------
+
+export interface EvidenceMapGrid {
+  /** [min, max, n]: n values from min to max inclusive (n = 1 gives min). O2 as a mole fraction. */
+  o2: readonly [number, number, number];
+  /** [min, max, n], pressure in kPa. */
+  pressure: readonly [number, number, number];
+}
+
+export interface EvidenceCell {
+  o2: number;
+  pressure: number;
+  /** Investigations APPLICABLE at this (O2, pressure), in accession order. */
+  applicable: string[];
+  /** Investigations EXTRAPOLATION here (nothing better), in accession order. */
+  extrapolation: string[];
+}
+
+export interface EvidenceMap {
+  engine: { name: string; version: string };
+  regime: Target['regime'];
+  o2Values: number[];
+  pressureValues: number[];
+  /** Row-major: pressure index outer, O2 index inner (cells[i * o2Values.length + j]). */
+  cells: EvidenceCell[];
+  maxApplicable: number;
+  maxExtrapolation: number;
+}
+
+function linspace([lo, hi, n]: readonly [number, number, number], name: string): number[] {
+  if (!Number.isFinite(lo) || !Number.isFinite(hi) || !Number.isInteger(n) || n < 1 || hi < lo) throw new RangeError(`grid.${name}: need finite min <= max and an integer n >= 1`);
+  if (n === 1) return [lo];
+  return Array.from({ length: n }, (_, i) => (i === n - 1 ? hi : lo + ((hi - lo) * i) / (n - 1)));
+}
+
+interface PreparedCluster {
+  accession: string;
+  /** Fixed by the regime selection: 'barrier' | 'unknown' | 'incomplete' | 'ok'. */
+  state: 'barrier' | 'unknown' | 'incomplete' | 'ok';
+  o2: [number, number];
+  p: [number, number];
+  hull: Vec2[];
+  hasPoints: boolean;
+}
+
+const VERDICT_RANK: Record<string, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
+
+/**
+ * For each cell of an (O2 × pressure) grid, which investigations are APPLICABLE and which EXTRAPOLATION, with the
+ * regime axes of `regime` fixed (axes it leaves open are not compared). Each cell equals evaluate() for the target
+ * {regime, continuous: {o2, pressure}}: the hulls are built once and every cell is a cheap test against them.
+ * Other continuous axes are not part of the map.
+ */
+export function evidenceMap(records: readonly ConditionRecord[], regime: Target['regime'], grid: EvidenceMapGrid, options: EngineOptions = {}): EvidenceMap {
+  validateTarget({ regime, continuous: {} });
+  const o2Values = linspace(grid.o2, 'o2');
+  const pressureValues = linspace(grid.pressure, 'pressure');
+  const opts: Required<EngineOptions> = { minimumStatus: options.minimumStatus ?? 'extracted' };
+  const corpus = buildCorpus(records, opts);
+  const so = (corpus.normalization.find((s) => s.axis === 'o2_mole_fraction') as AxisScale).scale;
+  const sp = (corpus.normalization.find((s) => s.axis === 'pressure') as AxisScale).scale;
+  const planeAxes: ContinuousAxis[] = ['o2_mole_fraction', 'pressure'];
+
+  const prepared: PreparedCluster[] = corpus.clusters.map((c) => {
+    let barrier = false;
+    let unknown = false;
+    for (const st of c.regime) {
+      const t = regime[st.axis];
+      if (t === undefined) continue;
+      if (st.state === 'missing' || st.state === 'conflicting') unknown = true;
+      else if (!st.values.includes(t)) barrier = true;
+    }
+    const complete = c.tests.filter((t) => planeAxes.every((a) => t.continuous[a].values.length > 0));
+    const base = { accession: c.accession, o2: [0, 0] as [number, number], p: [0, 0] as [number, number], hull: [] as Vec2[], hasPoints: false };
+    if (barrier) return { ...base, state: 'barrier' as const };
+    if (unknown) return { ...base, state: 'unknown' as const };
+    if (complete.length === 0) return { ...base, state: 'incomplete' as const };
+    const o2v = complete.flatMap((t) => t.continuous.o2_mole_fraction.values);
+    const pv = complete.flatMap((t) => t.continuous.pressure.values);
+    const pts: Vec2[] = [];
+    for (const t of complete) {
+      const tp = testPoints(t, planeAxes);
+      if (tp !== null) for (const [o2, p] of tp) pts.push({ x: o2 / so, y: p / sp });
+    }
+    return { ...base, state: 'ok' as const, o2: [Math.min(...o2v), Math.max(...o2v)], p: [Math.min(...pv), Math.max(...pv)], hull: pts.length > 0 ? convexHull(pts) : [], hasPoints: pts.length > 0 };
+  });
+
+  const accessions = [...new Set(prepared.map((c) => c.accession))].sort(compareAccession);
+  const byAcc = new Map(accessions.map((a) => [a, prepared.filter((c) => c.accession === a)] as const));
+
+  const cells: EvidenceCell[] = [];
+  let maxA = 0;
+  let maxE = 0;
+  for (const p of pressureValues) {
+    for (const o2 of o2Values) {
+      const tv: Vec2 = { x: o2 / so, y: p / sp };
+      const hx = (MEASUREMENT_TOLERANCE_REL * Math.abs(o2)) / so;
+      const hy = (MEASUREMENT_TOLERANCE_REL * Math.abs(p)) / sp;
+      const applicable: string[] = [];
+      const extrapolation: string[] = [];
+      for (const acc of accessions) {
+        let best = 3;
+        for (const c of byAcc.get(acc) as PreparedCluster[]) {
+          let v: number;
+          if (c.state === 'barrier') v = 3;
+          else if (c.state !== 'ok') v = 2;
+          else {
+            const outside = !inRange(o2, c.o2[0], c.o2[1]) || !inRange(p, c.p[0], c.p[1]);
+            const outsideHull = c.hasPoints && !(hullContains(tv, c.hull) || hullNearBox(c.hull, tv, hx, hy));
+            v = outside || outsideHull ? 1 : !c.hasPoints ? 2 : 0;
+          }
+          if (v < best) best = v;
+          if (best === 0) break;
+        }
+        if (best === VERDICT_RANK.APPLICABLE) applicable.push(acc);
+        else if (best === VERDICT_RANK.EXTRAPOLATION) extrapolation.push(acc);
+      }
+      maxA = Math.max(maxA, applicable.length);
+      maxE = Math.max(maxE, extrapolation.length);
+      cells.push({ o2, pressure: p, applicable, extrapolation });
+    }
+  }
+  return { engine: { name: ENGINE_NAME, version: ENGINE_VERSION }, regime: { ...regime }, o2Values, pressureValues, cells, maxApplicable: maxA, maxExtrapolation: maxE };
+}
