@@ -125,12 +125,13 @@ These are separate from the verdict. They never change `evaluate()` and never pr
 - **One buoyant formula.** `a_b = [((T*−Te)/T*)·g/R]^½`, Eqn. 1 on p. 11 (id `OT2000-ab-eq1`). The density factor is a band from T\* = 865 to 990 K and Te = 22 °C, with the ρ ∝ 1/T assumption stated in each result; every `a_b` is a band.
 - **Documented discrepancy.** The same paper prints the factor outside the root on p. 3 (`[(ρe−ρ*)/ρe]·[g/R]^½`). That form does not reproduce the paper's own numbers (R = 2.5 to 200 cm gives 2 to 16 s⁻¹, p. 6): it gives about 14 s⁻¹ at 2.5 cm, against 16 for Eqn. 1. The engine uses only Eqn. 1; `test/stretch.test.ts` shows both forms against the paper's numbers.
 
-**`src/transfer.ts`: `TRANSFER_HYPOTHESIS`.** For a target with a gravity level other than microgravity (`GRAVITY_TARGETS`: Moon 0.165 g, Mars 1/3 g, Earth 1 g; `withGravity(target, 'moon')`), `transferHypotheses(target, tests)` lists the microgravity tests of a rod or cylinder with a known radius and flow, the test's stretch band, the buoyant-stretch band of a body of the same radius at the target gravity, and the relation `within`, `overlap` or `outside`. `isAnalog` is true only for `within` with no regime axis (fuel phase, diluent, flame type) that the target states being different or unknown for the test. O2 and pressure differences are reported, not gated: pressure stays a separate axis. Each result has `countsAsApplicable: false`, the formula ids, the sources, the input records and the five limits of the spec (`TRANSFER_LIMITS`), including that flat sheets have no radius and get no stretch rate.
+**`src/transfer.ts`: `TRANSFER_HYPOTHESIS`.** For a target with a gravity level other than microgravity (`GRAVITY_TARGETS`: Moon 0.165 g, Mars 0.38 g, Earth 1 g; `withGravity(target, 'moon')`), `transferHypotheses(target, tests)` lists the microgravity tests of a rod or cylinder with a known radius and flow, the test's stretch band, the buoyant-stretch band of a body of the same radius at the target gravity, and the relation `within`, `overlap` or `outside`. `isAnalog` is true only for `within` with no regime axis (fuel phase, diluent, flame type) that the target states being different or unknown for the test. O2 and pressure differences are reported, not gated: pressure stays a separate axis. Each result has `countsAsApplicable: false`, the formula ids, the sources, the input records and the five limits of the spec (`TRANSFER_LIMITS`), including that flat sheets have no radius and get no stretch rate.
 
 - A test is used only if a source states its gravity regime as microgravity. `data/derived/bass2_flow_steps.csv` has no such column and the condition records of PSI-25 state none yet, so the tests from `transferTestsFromFlowSteps(csv, { gravityRegime })` are excluded until the caller passes a regime it can cite.
 - The table does not say how a rod sits in the flow. `rodFormula` (`rod_tip` by default, or `cylinder`) is an explicit choice and is repeated in each result.
 - The flow of a BASS-II test is a series of display readings (response time about one minute). The test's stretch is the band from its lowest to its highest reading.
-- The Mars level is 1/3 g, as source 1 p. 3 prints it ("Mars (1/3 g)"). 0.38 g is not used: no downloaded source labels it Mars.
+- The Mars level is 0.38 g, cited to NTRS 20010074003, PDF p. 2: "partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth". That passage lists the level without naming Mars, so using 0.38 g as the Mars level is a PYRION choice, and every result says so. NTRS 20000004509 (PDF p. 3) prints "Mars (1/3 g)", a rounded value; it is no longer used.
+- NTRS 20260001966 is cited by PDF page, with the printed slide number beside it ("PDF p. 17 (slide 16)"): the slide number is the PDF page minus one.
 
 **`src/fm2.ts`: FM2 chamber balance.** `fm2Balance(inputs)` and `fm2FinalO2(inputs, fuelMassG)`: ideal gas, fixed temperature, total moles constant (the mole change from products is ignored), O2 demand per gram of fuel as an input. Inputs are `Sourced` values (value, unit, source); `fm2Chamber` fixes the published volume (14.4 L, p. 6) and pressure (8.2 psia, p. 10). The chamber temperature is **not** in the source and is a required input. The limit L is a hypothesis supplied by the caller. Assumptions and formulas are returned as data. Check case (NTRS 20260001966, p. 26): PMMA, 34 % O2, 8.2 psia, up to 1.2 g burned, with 1.9176 g O2 per g of PMMA (C5H8O2, derived, not from NASA) gives a final O2 of 12.7 % at 290 K, 12.3 % at 295 K and 12.0 % at 300 K, against NASA's 13 % to 21 %. 1.2 g is the most the source says was burned, so these are the lowest values the model gives, about one percentage point under NASA's lower bound.
 
@@ -177,7 +178,7 @@ this file with that one. (`psi` there is 6.894757; the engine's `KPA_PER_PSI` ha
 - oxygen: `34 %`, `34%`, `34 vol%`, `0.34`, `34` → fraction. Bare number > 1 is percent, ≤ 1 is a fraction; the rule
   applied is returned in `rule`. A written unit wins (`0.34 %` is 0.0034, with a note).
 - flow: cm/s, mm/s, m/s → cm/s. thickness: mm, cm, µm, in → mm. temperature: K, °C → K.
-- gravity: `0.165 g`, `1/6 g`, `lunar` (0.165 g, NTRS 20260001966 p. 13), `mars` (1/3 g, NTRS 20000004509 p. 3),
+- gravity: `0.165 g`, `1/6 g`, `lunar` (0.165 g, NTRS 20260001966 PDF p. 13 (slide 12)), `mars` (0.38 g, NTRS 20010074003 PDF p. 2),
   `microgravity` (sets the regime, asserts no level).
 
 `targetFromQuantities({ gravity, o2, pressure, ...})` returns a validated `Target` and the list of conversions
@@ -192,3 +193,14 @@ Vocabulary also accepted: `normal/standard/sea-level air pressure`, `1 atmospher
 `Moon gravity`, `Martian gravity`; `22 degrees C`, `22 degrees Celsius`. Gravity levels from 0 to < 0.01 g
 (`MICROGRAVITY_BELOW_G`, a PYRION convention, not a NASA value; see `MICROGRAVITY_CONVENTION_NOTE`) are regime `microgravity`, 0.01 to < 1 g `partial_gravity`, 1 g
 `normal_gravity`; negative or above 3 g is an error.
+
+Gravity and the Target (deep audit): a gravity level or name only selects `gravity_regime`; it is never a continuous
+axis, because no condition record carries `gravity_level`. The level is kept in `target.informational.gravity_level`
+(shown, never compared). Regimes by level: below `MICROGRAVITY_BELOW_G` (0.01 g) microgravity; 0.01 g up to
+`NORMAL_GRAVITY_BAND.lo` (0.9 g) partial; 0.9 to 1.1 g normal (both cuts are PYRION conventions, not NASA values;
+`MICROGRAVITY_CONVENTION_NOTE`, `NORMAL_GRAVITY_CONVENTION_NOTE`). Above 1.1 g no regime exists: the Target carries
+`informational.gravity_not_covered` (`ABOVE_NORMAL_GRAVITY_MESSAGE`) and `evaluate()` returns INSUFFICIENT_EVIDENCE
+for every cluster with that message as the reason, never a silently open axis. More names are accepted: Earth,
+Earth gravity, normal gravity, `1 g Earth`, micro-gravity, zero-g, zero gravity, weightlessness, ISS (microgravity),
+`sea level` (101.325 kPa), `kPa abs`, `psia (absolute)`, `mol%`, `per cent`. The O2 and pressure plausibility windows
+(`HABITAT_WINDOWS`) are PYRION windows, not NASA values, and the warnings say so.

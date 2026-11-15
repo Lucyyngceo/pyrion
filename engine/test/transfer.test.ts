@@ -115,10 +115,11 @@ describe('TRANSFER_HYPOTHESIS', () => {
     assert.deepEqual(transferHypotheses(moon, ts).hypotheses.map((h) => h.test_id), ['T1', 'T2', 'T10']);
   });
 
-  it('Mars is 1/3 g with the source quote, not 0.38', () => {
+  it('Mars is 0.38 g, cited to NTRS 20010074003 PDF p. 2 (the passage lists the level without naming Mars)', () => {
     const m = GRAVITY_TARGETS.mars;
-    assert.equal(m.level, 1 / 3);
-    assert.ok('quote' in m.source && m.source.quote.includes('Mars (1/3 g)') && m.source.page === 3);
+    assert.equal(m.level, 0.38);
+    assert.ok('quote' in m.source && m.source.quote.includes('0.38 g/gearth') && m.source.page === 2 && m.source.file.startsWith('ntrs-20010074003'));
+    assert.ok('supports' in m.source && m.source.supports.includes('without naming Mars'));
   });
 });
 

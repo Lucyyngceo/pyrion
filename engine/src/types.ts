@@ -104,6 +104,13 @@ export type Verdict = 'APPLICABLE' | 'EXTRAPOLATION' | 'INSUFFICIENT_EVIDENCE' |
 export interface Target {
   regime: Partial<Record<RegimeAxis, string>>;
   continuous: Partial<Record<ContinuousAxis, number>>;
+  /**
+   * Shown, never compared. A gravity level typed by the user selects the regime but is not a
+   * continuous axis (no condition record carries gravity_level), so it lives here.
+   * `gravity_not_covered`: the stated gravity has no regime in this dataset (above normal gravity);
+   * every cluster is then INSUFFICIENT_EVIDENCE with this message as the reason.
+   */
+  informational?: { gravity_level?: number; gravity_not_covered?: string };
 }
 
 export interface EngineOptions {

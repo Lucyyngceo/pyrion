@@ -14,7 +14,7 @@ NASA's own combustion literature offers a published way to relate the two: the *
    > "Equivalent stretch rates can be determined as a function of gravity, imposed flow, and geometry."
    > "The buoyant stretch rate could also be obtained through varying g, the gravity level. In this way the effect of partial gravity, such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability can be examined at Earth's gravity through equivalence of flame stretch rates."
    It also reports, from Foutch & T'ien, that the extinction boundary was "almost identical for the buoyant, forced, and mixed convective environments they modelled."
-2. Ferkul et al., *Material Flammability at Lunar and Martian Gravity*, LPSC 2026 (NTRS 20260001966), p. 17: flammability boundary plotted against "Gravity Level (g/gEarth) or Characteristic Flow Speed (cm/s)"; p. 18: "Numerical and experimental evidence suggests that Lunar gravity is nearly the most flammable condition."
+2. Ferkul et al., *Material Flammability at Lunar and Martian Gravity*, LPSC 2026 (NTRS 20260001966), PDF p. 17 (slide 16): flammability boundary plotted against "Gravity Level (g/gEarth) or Characteristic Flow Speed (cm/s)"; PDF p. 18 (slide 17): "Numerical and experimental evidence suggests that Lunar gravity is nearly the most flammable condition."
 3. Olson & Ferkul, *Microgravity Flammability of PMMA Rods in Concurrent Flow* (NTRS 20150008961), p. 7: "The flow-induced stretch around the approximately spherical rod tip is af = 3/2 U/R."
 4. Urban et al., ICES 2025 (NTRS 20250006779), pp. 18–19: "35 cm/s was identified as a surrogate for 1-g buoyant flow"; "Higher temperature materials (Nomex and polycarbonate) may show decreased flammability at lunar gravity conditions."
 
@@ -37,7 +37,7 @@ The source gives no single factor. It gives T* = 865 to 990 K (p. 11) and a labo
 
 For a PSI microgravity test with a **curved sample of known radius** and a known forced flow: its stretch rate `a` (with `g = 0`, `a = a_f`).
 
-For a target gravity level (Moon 0.165 g, Mars 0.38 g, Earth 1 g) and the same sample radius: the buoyant stretch `a_b(g)`, as a band if the density factor is a range.
+For a target gravity level (Moon 0.165 g, Mars 0.38 g, Earth 1 g; the Mars value is cited to NTRS 20010074003, PDF p. 2, which lists "0.1, 0.16, and 0.38 g/gearth" without naming Mars, so it is a PYRION choice. Source 1 below prints "Mars (1/3 g)", a rounded value that the engine no longer uses. No sealed prediction uses a Mars level) and the same sample radius: the buoyant stretch `a_b(g)`, as a band if the density factor is a range.
 
 A PSI test is a **transfer analog** of the target when its stretch rate falls inside the target's stretch band, **and** every other regime axis and continuous axis would otherwise be comparable (same material class, fuel phase, diluent; O2 and pressure handled as today).
 
@@ -57,4 +57,4 @@ Each one carries: the formula used, the sources above with page, the inputs with
 
 ## FM2 instrument balance (separate, simpler model)
 
-A closed-chamber mass balance, not a flame model: from FM2's published chamber volume (14.4 L), pressure (8.2 psia) and starting oxygen fractions (37, 33, 29, 25 %; NTRS 20260001966, pp. 5–10), and a hypothesised limiting oxygen fraction L, compute the oxygen that can be consumed before the atmosphere reaches L, and the fuel mass that consumes it for a stated stoichiometry. Assumptions (ideal gas, fixed temperature, mole change from products ignored) are stated with the output. Check case: source 2, p. 26 reports PMMA at 34 % O2 / 8.2 psi, up to 1.2 g burned, final O2 13 to 21 %.
+A closed-chamber mass balance, not a flame model: from FM2's published chamber volume (14.4 L), pressure (8.2 psia) and starting oxygen fractions (37, 33, 29, 25 %; NTRS 20260001966, PDF pp. 5–10), and a hypothesised limiting oxygen fraction L, compute the oxygen that can be consumed before the atmosphere reaches L, and the fuel mass that consumes it for a stated stoichiometry. Assumptions (ideal gas, fixed temperature, mole change from products ignored) are stated with the output. Check case: source 2, PDF p. 26 (slide 25) reports PMMA at 34 % O2 / 8.2 psi, up to 1.2 g burned, final O2 13 to 21 %.

@@ -180,10 +180,13 @@ describe('gravity', () => {
     assert.equal(q.source.document?.page, 13);
     assert.equal(q.source.document?.quote, 'Lunar-g = 0.165 gE');
   });
-  it('"mars" is 1/3 g with the source quote', () => {
+  it('"mars" is 0.38 g, cited to NTRS 20010074003 PDF p. 2, with the note that the passage does not name Mars', () => {
     const q = ok('mars', 'gravity_level');
-    assert.equal(q.value, 1 / 3);
-    assert.match(q.source.document?.quote ?? '', /Mars \(1\/3 g\)/);
+    assert.equal(q.value, 0.38);
+    assert.equal(q.source.document?.file, 'ntrs-20010074003/20010074003.pdf');
+    assert.equal(q.source.document?.page, 2);
+    assert.match(q.source.document?.quote ?? '', /0\.1, 0\.16, and 0\.38 g\/gearth/);
+    assert.ok(q.notes.some((n) => n.includes('without naming Mars')));
   });
   it('"microgravity" sets the regime and asserts no level', () => {
     const q = ok('microgravity', 'gravity_level');
@@ -236,7 +239,8 @@ describe('targetFromQuantities', () => {
     assert.ok(r.ok);
     close(r.target.continuous.pressure as number, 8.2 * 6.894757);
     close(r.target.continuous.o2_mole_fraction as number, 0.34);
-    assert.equal(r.target.continuous.gravity_level, 0.165);
+    assert.equal(r.target.continuous.gravity_level, undefined);
+    assert.equal(r.target.informational?.gravity_level, 0.165);
     assert.equal(r.target.regime.gravity_regime, 'partial_gravity');
     assert.deepEqual(r.conversions.map((c) => c.display), ['lunar → 0.165 g (Moon, 0.165 g)', '34 % → 0.34 (×0.01)', '8.2 psia → 56.54 kPa (×6.894757)']);
   });
@@ -315,17 +319,18 @@ describe('audit fix 4: microgravity below 0.01 g', () => {
   it('0.01 up to < 1 is partial, 1 is normal; negative and > 3 are rejected', () => {
     assert.equal(ok('0.01 g', 'gravity_level').gravity_regime, 'partial_gravity');
     assert.equal(ok('0.165 g', 'gravity_level').gravity_regime, 'partial_gravity');
-    assert.equal(ok('0.999 g', 'gravity_level').gravity_regime, 'partial_gravity');
+    assert.equal(ok('0.899 g', 'gravity_level').gravity_regime, 'partial_gravity');
     assert.equal(ok('1 g', 'gravity_level').gravity_regime, 'normal_gravity');
     assert.equal((err('-0.1 g', 'gravity_level') as { code: string }).code, 'out_of_range');
     assert.equal((err('3.5 g', 'gravity_level') as { code: string }).code, 'out_of_range');
-    assert.equal(ok('3 g', 'gravity_level').gravity_regime, undefined);
+    assert.equal(ok('3 g', 'gravity_level').gravity_regime, undefined); // above the band: see deep audit 5
   });
   it('a numeric microgravity level keeps its level in the Target; the name "microgravity" does not assert one', () => {
     const n = targetFromQuantities({ gravity: '0.0001 g' });
     assert.ok(n.ok);
     assert.equal(n.target.regime.gravity_regime, 'microgravity');
-    assert.equal(n.target.continuous.gravity_level, 1e-4);
+    assert.equal(n.target.continuous.gravity_level, undefined);
+    assert.equal(n.target.informational?.gravity_level, 1e-4);
     const m = targetFromQuantities({ gravity: 'microgravity' });
     assert.ok(m.ok && m.target.continuous.gravity_level === undefined);
   });
@@ -356,7 +361,7 @@ describe('audit fix 12: vocabulary', () => {
       assert.equal(q.value, 0.165, t);
       assert.equal(q.source.document?.page, 13);
     }
-    for (const t of ['Martian gravity', 'Mars', 'Mars gravity']) assert.equal(ok(t, 'gravity_level').value, 1 / 3, t);
+    for (const t of ['Martian gravity', 'Mars', 'Mars gravity']) assert.equal(ok(t, 'gravity_level').value, 0.38, t);
   });
   it('22 degrees C, 22 degrees Celsius, 22 °C → 295.15 K; 300 kelvin → 300 K', () => {
     for (const t of ['22 degrees C', '22 degrees Celsius', '22 °C', '22 celsius', '22 deg C']) close(ok(t, 'ambient_temperature').value, 295.15, 1e-9);
@@ -400,6 +405,122 @@ describe('the three AskBox example questions, with the strings a model would cop
 describe('microgravity cut is a named constant', () => {
   it('is 0.01 g and appears in the note', () => {
     assert.equal(MICROGRAVITY_BELOW_G, 0.01);
-    assert.ok(MICROGRAVITY_CONVENTION_NOTE.includes('NTRS 20260001966, p. 17'));
+    assert.ok(MICROGRAVITY_CONVENTION_NOTE.includes('NTRS 20260001966, PDF p. 17 (slide 16)'));
+  });
+});
+
+// ---------- deep audit: one test per fix ----------
+import { ABOVE_NORMAL_GRAVITY_MESSAGE, NORMAL_GRAVITY_BAND, NORMAL_GRAVITY_CONVENTION_NOTE, HABITAT_WINDOWS, evaluate } from '../src/index.ts';
+import { fixtureRecords } from './helpers.ts';
+
+describe('deep audit 1 (BLOCKER): a gravity level selects the regime and is only shown, never compared', () => {
+  const counts = (gravity: string) => {
+    const t = targetFromQuantities({ gravity, o2: '21 %', pressure: '1 atm' });
+    assert.ok(t.ok, JSON.stringify(t));
+    assert.equal(t.target.continuous.gravity_level, undefined);
+    return JSON.stringify(evaluate(fixtureRecords(), t.target).counts);
+  };
+  it('"0 g", "1e-4 g" and "microgravity" give identical verdict counts', () => {
+    const a = counts('microgravity');
+    assert.equal(counts('0 g'), a);
+    assert.equal(counts('1e-4 g'), a);
+  });
+  it('"0.165 g" and "lunar" give identical verdict counts', () => {
+    assert.equal(counts('0.165 g'), counts('lunar'));
+  });
+  it('the level is kept as an informational field', () => {
+    const t = targetFromQuantities({ gravity: '0.165 g' });
+    assert.ok(t.ok && t.target.informational?.gravity_level === 0.165);
+  });
+});
+
+describe('deep audit 5 (MAJOR): normal gravity is a band; above it the verdict says why', () => {
+  it('0.998 g, 1.003 g and 1.1 g are normal gravity with the PYRION convention note; 0.9 g is the band edge', () => {
+    for (const t of ['0.998 g', '1.003 g', '1.1 g', '0.9 g', '1 g']) {
+      const q = ok(t, 'gravity_level');
+      assert.equal(q.gravity_regime, 'normal_gravity', t);
+      assert.ok(q.notes.includes(NORMAL_GRAVITY_CONVENTION_NOTE), t);
+    }
+    assert.deepEqual([NORMAL_GRAVITY_BAND.lo, NORMAL_GRAVITY_BAND.hi], [0.9, 1.1]);
+    assert.match(NORMAL_GRAVITY_CONVENTION_NOTE, /PYRION convention, not a NASA value/);
+  });
+  it('1.5 g has no regime and says "above 1 g: not covered by this dataset"; every cluster is INSUFFICIENT_EVIDENCE with that reason', () => {
+    const q = ok('1.5 g', 'gravity_level');
+    assert.equal(q.gravity_regime, undefined);
+    assert.equal(q.gravity_not_covered, ABOVE_NORMAL_GRAVITY_MESSAGE);
+    assert.match(ABOVE_NORMAL_GRAVITY_MESSAGE, /^above 1 g: not covered by this dataset/);
+    const t = targetFromQuantities({ gravity: '1.5 g', o2: '21 %', pressure: '1 atm' });
+    assert.ok(t.ok);
+    const ev = evaluate(fixtureRecords(), t.target);
+    const all = [...ev.ranked, ...ev.unranked];
+    assert.ok(all.length > 0);
+    for (const c of all) {
+      assert.equal(c.verdict, 'INSUFFICIENT_EVIDENCE');
+      assert.ok(c.reasons.some((r) => r.message.includes('above 1 g: not covered by this dataset')));
+    }
+  });
+});
+
+describe('deep audit 4 (MAJOR): Mars is 0.38 g everywhere', () => {
+  it('parseQuantity and GRAVITY_TARGETS agree; the Moon is unchanged', () => {
+    assert.equal(ok('mars', 'gravity_level').value, 0.38);
+    assert.equal(ok('lunar', 'gravity_level').value, 0.165);
+  });
+});
+
+describe('deep audit 6 (MINOR): aliases', () => {
+  it('Earth names and "1 g Earth" are normal gravity', () => {
+    for (const t of ['Earth', 'Earth gravity', 'normal gravity', '1 g Earth', '1 g earth']) {
+      const q = ok(t, 'gravity_level');
+      assert.equal(q.value, 1, t);
+      assert.equal(q.gravity_regime, 'normal_gravity', t);
+    }
+  });
+  it('micro-gravity, zero-g, zero gravity, weightlessness and ISS are microgravity with the convention note', () => {
+    for (const t of ['micro-gravity', 'zero-g', 'zero gravity', 'weightlessness', 'ISS', 'the ISS']) {
+      const q = ok(t, 'gravity_level');
+      assert.equal(q.gravity_regime, 'microgravity', t);
+      assert.ok(q.notes.includes(MICROGRAVITY_CONVENTION_NOTE), t);
+    }
+  });
+  it('"sea level" is 101.325 kPa; "kPa abs", "psia (absolute)" and "psi absolute" work; gauge still fails', () => {
+    close(ok('sea level', 'pressure').value, 101.325, 1e-9);
+    close(ok('101 kPa abs', 'pressure').value, 101, 1e-9);
+    close(ok('8.2 psia (absolute)', 'pressure').value, 8.2 * 6.894757, 1e-9);
+    close(ok('8.2 psi absolute', 'pressure').value, 8.2 * 6.894757, 1e-9);
+    assert.equal((err('8.2 psi(g)', 'pressure') as { code: string }).code, 'gauge_pressure');
+  });
+  it('"mol%" and "per cent" are percent', () => {
+    close(ok('34 mol%', 'o2_mole_fraction').value, 0.34);
+    close(ok('34 mol %', 'o2_mole_fraction').value, 0.34);
+    close(ok('34 per cent', 'o2_mole_fraction').value, 0.34);
+  });
+  it('anything ambiguous is still a typed error', () => {
+    assert.equal((err('Earth', 'pressure') as { code: string }).code, 'not_a_number');
+    assert.equal((err('mars atmosphere', 'gravity_level') as { code: string }).code, 'not_a_number');
+    assert.equal((err('34 mol', 'o2_mole_fraction') as { code: string }).code, 'unknown_unit');
+  });
+});
+
+describe('deep audit 7 (MINOR): plausibility windows are labelled as PYRION windows, not NASA values', () => {
+  it('every warning says so', () => {
+    const ws = [
+      ...ok('0.34 %', 'o2_mole_fraction').warnings,
+      ...ok('70 %', 'o2_mole_fraction').warnings,
+      ...ok('5 kPa', 'pressure').warnings,
+      ...ok('2 atm', 'pressure').warnings,
+    ];
+    assert.equal(ws.length, 4);
+    for (const w of ws) assert.match(w, /PYRION plausibility window[^)]*not a NASA value/);
+    for (const w of ws) assert.ok(!w.includes('habitat-type'));
+    assert.deepEqual(HABITAT_WINDOWS.pressure, [20, 120]);
+  });
+});
+
+describe('deep audit 10 (MINOR): NTRS 20260001966 is cited by PDF page and slide number', () => {
+  it('the Moon note and the convention note give "PDF p. N (slide M)"', () => {
+    const moon = ok('lunar', 'gravity_level');
+    assert.ok(moon.notes.some((n) => n.includes('PDF p. 13 (slide 12)')));
+    assert.ok(MICROGRAVITY_CONVENTION_NOTE.includes('PDF p. 17 (slide 16)'));
   });
 });

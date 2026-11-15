@@ -68,6 +68,8 @@ export interface Quantity {
   source: QuantitySource;
   /** gravity only: the regime this name or level implies. */
   gravity_regime?: 'microgravity' | 'partial_gravity' | 'normal_gravity';
+  /** gravity only: set when the level is above the normal-gravity band and no regime covers it. */
+  gravity_not_covered?: string;
   /** Things the reader should know (e.g. psi taken as absolute). */
   notes: string[];
   /** Plausibility warnings for a habitat-type question (not errors; the value is still returned). */
@@ -155,7 +157,10 @@ function readNumber(text: string, variable: string): { n: number; unit: string }
   return { n, unit: m[2].trim() };
 }
 
-/** Habitat-type plausibility windows: O2 fraction 0.05–0.60, pressure 20–120 kPa. Warnings only. */
+/**
+ * PYRION plausibility windows (not NASA values): O2 fraction 0.05–0.60, pressure 20–120 kPa. Warnings only;
+ * no source backs these numbers, and every message says so.
+ */
 export const HABITAT_WINDOWS = { o2_mole_fraction: [0.05, 0.6], pressure: [20, 120] } as const;
 
 function warningsFor(q: Omit<Quantity, 'display' | 'warnings'>): string[] {
@@ -167,13 +172,13 @@ function warningsFor(q: Omit<Quantity, 'display' | 'warnings'>): string[] {
     if (v < lo) {
       const n = Number(/^[+-]?[\d.]+(?:e[+-]?\d+)?/i.exec(asWritten)?.[0]);
       const hint = q.unit_original !== '' && q.factor === 0.01 && n > 0 && n <= 1 ? ` did you mean ${sig(n * 100)} %?` : '';
-      out.push(`${asWritten} O2 is far below any breathable atmosphere (${sig(v * 100)} % of the gas, window ${lo * 100}–${hi * 100} %).${hint}`);
+      out.push(`${asWritten} O2 is far below any breathable atmosphere (${sig(v * 100)} % of the gas; PYRION plausibility window ${lo * 100}–${hi * 100} %, not a NASA value).${hint}`);
     } else if (v > hi) {
-      out.push(`${asWritten} O2 is far above the oxygen levels of habitat-type atmospheres (window ${lo * 100}–${hi * 100} %); check the unit.`);
+      out.push(`${asWritten} O2 is far above the usual oxygen levels (PYRION plausibility window ${lo * 100}–${hi * 100} %, not a NASA value); check the unit.`);
     }
   } else if (q.variable === 'pressure') {
     const [lo, hi] = HABITAT_WINDOWS.pressure;
-    if (v < lo || v > hi) out.push(`${sig(v)} kPa is outside ${lo}–${hi} kPa, the range of habitat-type atmospheres; check the unit.`);
+    if (v < lo || v > hi) out.push(`${sig(v)} kPa is outside ${lo}–${hi} kPa (PYRION plausibility window, not a NASA value); check the unit.`);
   }
   return out;
 }
@@ -217,7 +222,7 @@ function viaTable(
 
 // ---- per variable ----
 
-const NORMAL_PRESSURE = /^(?:the\s+)?(?:(?:normal|standard|sea[- ]level)(?:\s+(?:air|atmospheric))?\s+pressure|standard\s+atmosphere|one\s+atmosphere)$/i;
+const NORMAL_PRESSURE = /^(?:the\s+)?(?:(?:normal|standard|sea[- ]level)(?:\s+(?:air|atmospheric))?\s+pressure|sea[- ]level|standard\s+atmosphere|one\s+atmosphere)$/i;
 const ATM_WORDS = /^(?:atmospheres?|standard atmospheres?)$/i;
 
 function pressure(original: string): QuantityResult {
@@ -235,8 +240,10 @@ function pressure(original: string): QuantityResult {
       notes: [`"${original.trim()}" is read as one standard atmosphere = 101.325 kPa (the atm factor of validation/run_all.py)`],
     });
   }
-  const r = readNumber(original, 'pressure');
-  if ('ok' in r) return r;
+  const r0 = readNumber(original, 'pressure');
+  if ('ok' in r0) return r0;
+  // "kPa abs", "psia (absolute)": the word only restates what the engine needs (gauge is checked first).
+  const r = { n: r0.n, unit: GAUGE.test(r0.unit) ? r0.unit : r0.unit.replace(/\s*\(?\s*(?:abs|absolute)\.?\s*\)?\s*$/i, '').trim() };
   if (ATM_WORDS.test(r.unit)) {
     const out = viaTable('pressure', original, r.n, 'atm', TO_KPA, AXIS_UNITS.pressure, 'atm');
     if (out.ok) {
@@ -269,6 +276,17 @@ function o2Inner(original: string): QuantityResult {
   return out0.ok && stripNote.length ? { ...out0, notes: [...stripNote, ...out0.notes] } : out0;
 }
 
+const O2_UNIT_ALIASES: Readonly<Record<string, string>> = {
+  'mol%': '%',
+  'mol %': '%',
+  'mole%': '%',
+  'mole %': '%',
+  'per cent': 'percent',
+  'mol percent': 'percent',
+  'mole percent': 'percent',
+  'vol. %': '%',
+};
+
 function o2Units(original: string, r: { n: number; unit: string }): QuantityResult {
   const key = r.unit.toLowerCase();
   if (r.unit === '') {
@@ -292,8 +310,10 @@ function o2Units(original: string, r: { n: number; unit: string }): QuantityResu
     });
     return out;
   }
-  const out = viaTable('o2_mole_fraction', original, r.n, r.unit, TO_FRACTION, AXIS_UNITS.o2_mole_fraction, '%, vol%, % by vol, percent, fraction, mole fraction, or no unit');
+  const aliased = O2_UNIT_ALIASES[key] ?? r.unit;
+  const out = viaTable('o2_mole_fraction', original, r.n, aliased, TO_FRACTION, AXIS_UNITS.o2_mole_fraction, '%, vol%, mol%, % by vol, percent, per cent, fraction, mole fraction, or no unit');
   if (out.ok) {
+    out.unit_original = r.unit;
     out.rule = `unit "${r.unit}" stated, so the number is read as written (${key === '1' || key.includes('fraction') ? 'fraction' : 'percent'})`;
     if (out.value > 1 || out.value < 0) return fail('percent_out_of_range', 'o2_mole_fraction', original, `${original.trim()} gives ${out.value}, outside 0–1`);
     if (out.factor === 0.01 && r.n <= 1 && r.n > 0) out.notes.push(`"${r.n} ${r.unit}" is read as ${r.n} percent (${out.value} as a fraction) because the unit is written`);
@@ -340,12 +360,20 @@ export const MICROGRAVITY_BELOW_G = 0.01;
 
 /** Shown with every numeric result that falls under the cut. */
 export const MICROGRAVITY_CONVENTION_NOTE =
-  `PYRION convention, not a NASA value: gravity levels below ${MICROGRAVITY_BELOW_G} g are treated as microgravity. NASA's own flammability chart places 1e-4 g and 1e-2 g on one continuous axis (NTRS 20260001966, p. 17), so this cut is a modelling choice and is shown with every result.`;
+  `PYRION convention, not a NASA value: gravity levels below ${MICROGRAVITY_BELOW_G} g are treated as microgravity. NASA's own flammability chart places 1e-4 g and 1e-2 g on one continuous axis (NTRS 20260001966, PDF p. 17 (slide 16)), so this cut is a modelling choice and is shown with every result.`;
+
+/** Normal gravity is a band, not the single value 1 (PYRION convention, not a NASA value). */
+export const NORMAL_GRAVITY_BAND = { lo: 0.9, hi: 1.1 } as const;
+export const NORMAL_GRAVITY_CONVENTION_NOTE =
+  `PYRION convention, not a NASA value: gravity levels from ${NORMAL_GRAVITY_BAND.lo} to ${NORMAL_GRAVITY_BAND.hi} g are treated as normal gravity.`;
+/** The reason shown when a stated gravity has no regime in this dataset. */
+export const ABOVE_NORMAL_GRAVITY_MESSAGE =
+  `above 1 g: not covered by this dataset (no regime exists above normal gravity; normal gravity is the ${NORMAL_GRAVITY_BAND.lo}–${NORMAL_GRAVITY_BAND.hi} g band, a PYRION convention).`;
 
 function regimeOfLevel(level: number): Quantity['gravity_regime'] | undefined {
   if (level >= 0 && level < MICROGRAVITY_BELOW_G) return 'microgravity';
-  if (level >= MICROGRAVITY_BELOW_G && level < 1) return 'partial_gravity';
-  if (level === 1) return 'normal_gravity';
+  if (level >= MICROGRAVITY_BELOW_G && level < NORMAL_GRAVITY_BAND.lo) return 'partial_gravity';
+  if (level >= NORMAL_GRAVITY_BAND.lo && level <= NORMAL_GRAVITY_BAND.hi) return 'normal_gravity';
   return undefined;
 }
 
@@ -358,7 +386,18 @@ const GRAVITY_NAMES: Readonly<Record<string, GravityTargetId | 'microgravity'>> 
   martian: 'mars',
   'martian gravity': 'mars',
   'mars gravity': 'mars',
+  earth: 'earth',
+  'earth gravity': 'earth',
+  'normal gravity': 'earth',
   microgravity: 'microgravity',
+  'micro-gravity': 'microgravity',
+  'micro gravity': 'microgravity',
+  'zero-g': 'microgravity',
+  'zero g': 'microgravity',
+  'zero gravity': 'microgravity',
+  'zero-gravity': 'microgravity',
+  weightlessness: 'microgravity',
+  iss: 'microgravity',
 };
 
 function gravity(original: string): QuantityResult {
@@ -379,7 +418,7 @@ function gravity(original: string): QuantityResult {
         source: { table: 'engine rule: the name selects gravity_regime = microgravity; no gravity level is asserted' },
         gravity_regime: 'microgravity',
         warnings: [],
-        notes: ['The residual acceleration of a real microgravity platform is small but not zero; the engine uses the regime, not the number 0.'],
+        notes: ['The residual acceleration of a real microgravity platform is small but not zero; the engine uses the regime, not the number 0.', MICROGRAVITY_CONVENTION_NOTE],
         display: `${text} → regime microgravity (no gravity level asserted)`,
       };
     }
@@ -394,7 +433,7 @@ function gravity(original: string): QuantityResult {
       factor_or_formula: `name "${name}" → ${g.label}`,
       source: { table: 'engine/src/transfer.ts GRAVITY_TARGETS', ...(('quote' in g.source) ? { document: { file: g.source.file, page: g.source.page, quote: g.source.quote } } : {}) },
       gravity_regime: g.regime,
-      notes: id === 'moon' ? ['The engine presets use 0.16 g (NTRS 20210020446 p. 3); 0.165 g is the FM2 level (NTRS 20260001966 p. 13).'] : [],
+      notes: id === 'mars' ? ['0.38 g is a PYRION choice for Mars: NTRS 20010074003 PDF p. 2 lists "0.1, 0.16, and 0.38 g/gearth" without naming Mars.'] : id === 'earth' ? [NORMAL_GRAVITY_CONVENTION_NOTE] : id === 'moon' ? ['The engine presets use 0.16 g (NTRS 20210020446 p. 3); 0.165 g is the FM2 level (NTRS 20260001966, PDF p. 13 (slide 12)).'] : [],
     };
     const b = bounded(q);
     return b.ok ? { ...b, display: `${text} → ${sig(g.level)} g (${g.label})` } : b;
@@ -418,7 +457,7 @@ function gravity(original: string): QuantityResult {
     how = String(r.n);
   }
   if (unit === '') return fail('missing_unit', 'gravity_level', original, `"${original}" has no unit; write "g" (for example "0.165 g"), or a name: lunar, mars, microgravity`);
-  if (!/^g(?:e|0|_?earth)?$/i.test(unit)) return fail('unknown_unit', 'gravity_level', original, `unit "${unit}" is not accepted for gravity_level; accepted: g (gE, g0)`);
+  if (!/^g(?:e|0|_?earth)?$|^g\s*earth$/i.test(unit)) return fail('unknown_unit', 'gravity_level', original, `unit "${unit}" is not accepted for gravity_level; accepted: g (gE, g0)`);
   const regime = regimeOfLevel(n);
   const out = bounded({
     ok: true,
@@ -431,11 +470,14 @@ function gravity(original: string): QuantityResult {
     factor: 1,
     source: { table: TABLE },
     ...(regime ? { gravity_regime: regime } : {}),
+    ...(regime ? {} : { gravity_not_covered: ABOVE_NORMAL_GRAVITY_MESSAGE }),
     notes: !regime
-      ? []
+      ? [ABOVE_NORMAL_GRAVITY_MESSAGE]
       : regime === 'microgravity'
         ? [MICROGRAVITY_CONVENTION_NOTE]
-        : [`regime ${regime} inferred from the level (${MICROGRAVITY_BELOW_G} to < 1 g = partial_gravity, 1 g = normal_gravity)`],
+        : regime === 'normal_gravity'
+          ? [NORMAL_GRAVITY_CONVENTION_NOTE]
+          : [`regime ${regime} inferred from the level (${MICROGRAVITY_BELOW_G} to < ${NORMAL_GRAVITY_BAND.lo} g = partial_gravity)`],
   });
   return out.ok && f ? { ...out, display: `${original.trim()} → ${sig(n)} g` } : out;
 }
@@ -515,8 +557,12 @@ export function targetFromQuantities(input: TargetQuantities): TargetFromQuantit
     }
     conversions.push(q);
     if (variable === 'gravity_level') {
+      // The level selects the regime; it is not a continuous axis (no record carries it), so it is only shown.
       if (q.gravity_regime) target.regime.gravity_regime = q.gravity_regime;
-      if (!(q.gravity_regime === 'microgravity' && q.unit_original === '')) target.continuous.gravity_level = q.value;
+      const info: NonNullable<Target['informational']> = {};
+      if (!(q.gravity_regime === 'microgravity' && q.unit_original === '')) info.gravity_level = q.value;
+      if (q.gravity_not_covered) info.gravity_not_covered = q.gravity_not_covered;
+      if (Object.keys(info).length > 0) target.informational = info;
     } else {
       target.continuous[axis] = q.value;
     }

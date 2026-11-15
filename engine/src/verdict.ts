@@ -80,7 +80,9 @@ function canonicalTarget(target: Target): Target {
   for (const a of REGIME_AXES) if (target.regime[a] !== undefined) regime[a] = target.regime[a];
   const continuous: Target['continuous'] = {};
   for (const a of CONTINUOUS_AXES) if (target.continuous[a] !== undefined) continuous[a] = target.continuous[a];
-  return { regime, continuous };
+  const out: Target = { regime, continuous };
+  if (target.informational) out.informational = { ...target.informational };
+  return out;
 }
 
 function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAxis, AxisScale>): ClusterVerdict {
@@ -99,6 +101,12 @@ function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAx
     const t = target.regime[axis];
     const recs = cluster.tests.flatMap((x) => x.regime[axis].records);
     const excl = cluster.tests.flatMap((x) => x.regime[axis].excluded);
+    if (t === undefined && axis === 'gravity_regime' && target.informational?.gravity_not_covered) {
+      // The target states a gravity that no regime of this dataset covers: never a silent open axis.
+      regimeUnknown = true;
+      regimeReasons.push(reason('regime_missing', false, axis, `${axis}: ${target.informational.gravity_not_covered}`, []));
+      continue;
+    }
     if (t === undefined) {
       const ev = state.state === 'missing' ? 'not stated by the evidence either' : `evidence is ${state.values.join(' / ')}`;
       regimeReasons.push(reason('target_regime_unstated', true, axis, `${axis}: left open by the target, so not compared (${ev}).`, citationsOf(recs)));
