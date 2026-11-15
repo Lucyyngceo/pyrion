@@ -2,10 +2,11 @@ import Explorer from "@/components/Explorer";
 import AddSource from "@/components/AddSource";
 import HelpMenu from "@/components/HelpMenu";
 import { loadDataset, loadLineage } from "@/lib/data";
+import { loadFacts } from "@/lib/facts";
 import "./navigator.css";
 
 export default async function Page() {
-  const [dataset, lineage] = await Promise.all([loadDataset(), loadLineage()]);
+  const [dataset, lineage, facts] = await Promise.all([loadDataset(), loadLineage(), loadFacts()]);
   const v = lineage.validation;
   const traced = v && v.traceRan ? v.cellsTraced + v.quotesTraced : null;
   const s = dataset.stats;
@@ -22,7 +23,7 @@ export default async function Page() {
           <h1 data-help="page-envelope" className="h1-small">The evidence envelope</h1>
           {!synthetic && (
             <p data-help="header-status-line" className="hero-status small muted">
-              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations · {located} · <a data-help="header-details-link" href="/data">details</a>
+              {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} PSI combustion investigations · {located} · <a data-help="header-details-link" href="/data">details</a>
             </p>
           )}
         </div>

@@ -52,7 +52,7 @@ export default async function ProofPage() {
         {p.validation ? (
           <>
             <p>
-              PYRION extracted <strong>{n(p.validation.records)}</strong> condition values from NASA documents. A validator then looks each one up in the source file: <strong>{n(p.validation.cells)}</strong> table cells at their row and column and{" "}
+              PYRION extracted <strong>{n(p.validation.records)}</strong> records into the files (the engine uses the ones its validator does not reject; see /data). A validator then looks each one up in the source file: <strong>{n(p.validation.cells)}</strong> table cells at their row and column and{" "}
               <strong>{n(p.validation.quotes)}</strong> quotations word for word, across {n(p.validation.textFiles)} text files. A value it cannot find is rejected.
               {!p.validation.traceRan && " (The last report was written without the source trace; the numbers above are from the last full one.)"}
             </p>

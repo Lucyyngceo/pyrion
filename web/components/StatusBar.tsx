@@ -1,14 +1,15 @@
 import { ENGINE_NAME, ENGINE_VERSION } from "@/lib/engine";
 import { loadDataset, loadLineage } from "@/lib/data";
+import { loadFacts } from "@/lib/facts";
 
 /** Console-style system line: engine, data, last committed validation report. Server-rendered, static. */
 export default async function StatusBar() {
-  const [ds, lin] = await Promise.all([loadDataset(), loadLineage()]);
+  const [ds, lin, facts] = await Promise.all([loadDataset(), loadLineage(), loadFacts()]);
   const v = lin.validation;
   const cells: { k: string; v: string; tone?: string }[] = [
     { k: "Engine", v: `${ENGINE_NAME} ${ENGINE_VERSION}` },
     { k: "Mode", v: "deterministic · no LLM in the verdict" },
-    { k: "Data", v: ds.mode === "psi" ? `NASA PSI · ${ds.stats.records.toLocaleString("en-US")} values` : "synthetic fixtures (not NASA data)", tone: ds.mode === "psi" ? undefined : "caution" },
+    { k: "Data", v: ds.mode === "psi" ? `NASA PSI · ${facts.usedByEngine.toLocaleString("en-US")} records used by the engine` : "synthetic fixtures (not NASA data)", tone: ds.mode === "psi" ? undefined : "caution" },
   ];
   if (v) {
     cells.push({ k: "Checked", v: v.generatedAt.replace("T", " ").replace(/:\d\dZ$/, " UTC") });

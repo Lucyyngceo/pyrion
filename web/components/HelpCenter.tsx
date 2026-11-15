@@ -30,6 +30,7 @@ const PAGES: { id: string; label: string }[] = [
 export default function HelpCenter() {
   const [open, setOpen] = useState(false);
   const [topics, setTopics] = useState<HelpTopic[]>([]);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const [page, setPage] = useState("all");
@@ -42,10 +43,13 @@ export default function HelpCenter() {
     if (topics.length > 0) return topics;
     try {
       const r = await fetch("/api/tars", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind: "help-all" }) });
+      if (!r.ok) throw new Error(String(r.status));
       const d = (await r.json()) as { topics?: HelpTopic[] };
       setTopics(d.topics ?? []);
+      setLoadFailed(false);
       return d.topics ?? [];
     } catch {
+      setLoadFailed(true);
       return [];
     }
   };
@@ -68,8 +72,11 @@ export default function HelpCenter() {
   }, [topics.length]);
 
   useEffect(() => {
-    if (open) dialog.current?.showModal();
-    else if (dialog.current?.open) dialog.current.close();
+    if (open) {
+      dialog.current?.showModal();
+      // Whatever opened the center (the ? menu, Help mode, a link on /tars), the topics are loaded now; a failed load is retried.
+      void load();
+    } else if (dialog.current?.open) dialog.current.close();
   }, [open]);
 
   // Help mode: a click on any element with a topic opens the topic and does not run the element's action. The help UI itself stays usable.
@@ -147,7 +154,7 @@ export default function HelpCenter() {
             ×
           </button>
         </div>
-        <p className="small muted">Every page, button and number explained. {topics.length} topics. Press the ? menu, then Help mode, to point at anything.</p>
+        <p className="small muted">Every page, button and number explained. {topics.length > 0 ? `${topics.length} topics.` : loadFailed ? "The topics could not be loaded." : "Loading the topics…"} Press the ? menu, then Help mode, to point at anything.</p>
         <input data-help="help-center-search" type="search" className="hc-search" placeholder="Search the help (for example: zoom, extrapolation, add a source)" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search the help" />
         <div className="hc-pages" role="group" aria-label="Page">
           {PAGES.map((p) => (
