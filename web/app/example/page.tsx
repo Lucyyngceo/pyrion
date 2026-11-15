@@ -49,7 +49,15 @@ export default async function Example() {
   const barrier = all.filter((v) => v.verdict === "REGIME_BARRIER");
   const top = evaluation.ranked[0] ?? null;
   const decisive = top ? top.reasons.filter((r) => !r.informational) : [];
-  const cites = top ? decisive.flatMap((r) => r.citations).filter((c, i, a) => a.findIndex((x) => x.test_id === c.test_id && x.variable === c.variable) === i).slice(0, 4) : [];
+  // The receipt shows only the nearest test's own rows (oxygen and pressure), read from the server's records.
+  const { records: allRecords } = await serverData();
+  const nearestTest = top ? (/test ([^)\s]+)\)/.exec(top.distanceNote)?.[1] ?? decisive.flatMap((r) => r.citations)[0]?.test_id ?? null) : null;
+  const cites = top && nearestTest
+    ? allRecords.filter((r) => r.accession === top.accession && r.test_id === nearestTest && (r.variable === "o2_mole_fraction" || r.variable === "pressure") && r.status !== "insufficient_evidence")
+    : [];
+  /** How many tests of the same investigation cite this exact sentence (a campaign-wide statement when more than one). */
+  const sharedBy = (q: string) => (q ? new Set(allRecords.filter((r) => top && r.accession === top.accession && r.quote === q).map((r) => r.test_id)).size : 0);
+  const loc = (s: string) => Object.fromEntries(s.split(";").map((kv) => kv.split("=").map((x) => x.trim())).filter((kv) => kv.length === 2)) as Record<string, string>;
   const profile = top ? (profiles as unknown as { accession: string; summary_quotes?: Quote[] }[]).find((x) => x.accession === top.accession) : undefined;
   const words = profile?.summary_quotes ?? [];
   const c = evaluation.counts.investigations;
@@ -279,24 +287,43 @@ export default async function Example() {
               <thead>
                 <tr>
                   <th>Test</th>
-                  <th>Value</th>
-                  <th>Where in the NASA file</th>
-                  <th>Text in the file</th>
+                  <th>Quantity</th>
+                  <th>Value in the file</th>
+                  <th>File</th>
+                  <th>Where</th>
+                  <th>Source text</th>
                 </tr>
               </thead>
               <tbody>
-                {cites.map((x) => (
-                  <tr key={`${x.test_id}|${x.variable}`}>
-                    <td>{x.test_id}</td>
-                    <td>
-                      {x.variable.replaceAll("_", " ")}: {x.value_original} {x.unit_original}
-                    </td>
-                    <td className="small">
-                      {x.source_file.split("/").pop()} · {x.source_location}
-                    </td>
-                    <td className="small">{x.quote ? `“${x.quote.slice(0, 160)}${x.quote.length > 160 ? "…" : ""}”` : "table cell (header and row above)"}</td>
-                  </tr>
-                ))}
+                {cites.map((x) => {
+                  const l = loc(x.source_location);
+                  const shared = sharedBy(x.quote);
+                  const isCell = Boolean(l.row && l.column);
+                  return (
+                    <tr key={`${x.test_id}|${x.variable}`}>
+                      <td>{x.test_id}</td>
+                      <td>{x.variable === "pressure" ? "pressure" : "oxygen"}</td>
+                      <td>
+                        {x.value_original} {x.unit_original}
+                      </td>
+                      <td className="small">{x.source_file.split("/").pop()}</td>
+                      <td className="small">
+                        {isCell ? (
+                          <>
+                            row {l.row}, column &ldquo;{l.column}&rdquo;
+                          </>
+                        ) : l.page ? (
+                          shared > 1 ? `one campaign sentence, applies to all ${shared} tests that use it, report p. ${l.page}` : `report p. ${l.page}`
+                        ) : (
+                          x.source_location
+                        )}
+                      </td>
+                      <td className="small">
+                        {isCell ? "table cell (its column name is in Where)" : x.quote ? `“${x.quote.slice(0, 160)}${x.quote.length > 160 ? "…" : ""}”` : ""}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
