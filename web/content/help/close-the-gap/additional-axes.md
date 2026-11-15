@@ -1,6 +1,7 @@
 ---
 id: additional-axes
 title: "Additional axes: listed, not gridded"
+keywords: additional axes, gravity level, flow velocity, sample thickness, experimenter, listed not gridded, 0.16 g, 0.38 g, lunar gravity, mars gravity
 chapter: 5
 order: 4
 dataHelp: [gap-section-axes]

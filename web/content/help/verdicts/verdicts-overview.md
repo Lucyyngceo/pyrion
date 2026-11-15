@@ -1,6 +1,7 @@
 ---
 id: verdicts-overview
 title: "The four verdicts"
+keywords: verdicts, four verdicts, applicable, extrapolation, insufficient evidence, not comparable, verdict meaning, what does the verdict mean, grey, why grey
 chapter: 4
 order: 1
 dataHelp: [verdict-headline, verdict-ring, verdict-panel]

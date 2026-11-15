@@ -1,6 +1,7 @@
 ---
 id: measurement-tolerance
 title: "The 0.5 % measurement tolerance"
+keywords: tolerance, 0.5 percent, measurement tolerance, 101.3 kpa, 14.7 psia, 760 mmhg, rounding, why 101.3 is applicable, within tolerance
 chapter: 4
 order: 9
 dataHelp: [result-technical, result-reasons]

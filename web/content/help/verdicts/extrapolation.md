@@ -1,6 +1,7 @@
 ---
 id: extrapolation
 title: "Extrapolation"
+keywords: extrapolation, outside tested data, outside range, beyond tested, close in kind, how far outside, what extrapolation means
 chapter: 4
 order: 3
 dataHelp: [verdict-headline, result-reasons]

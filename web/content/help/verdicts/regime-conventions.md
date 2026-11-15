@@ -1,6 +1,7 @@
 ---
 id: regime-conventions
 title: "Gravity conventions: below 0.01 g, 0.9 to 1.1 g, and above"
+keywords: microgravity, 0.01 g, normal gravity, 0.9 g, 1.1 g, partial gravity, lunar, moon base, mars, above 1 g, gravity cut, 1e-4 g
 chapter: 4
 order: 10
 dataHelp: [ctl-gravity-level, ctl-regime-axis]

@@ -1,6 +1,7 @@
 ---
 id: clusters-and-investigations
 title: "Clusters and the verdict of an investigation"
+keywords: cluster, clusters, investigation verdict, best verdict, tests, same regime, why one verdict per investigation, regime group
 chapter: 4
 order: 8
 dataHelp: [result-card, result-ref]

@@ -1,6 +1,7 @@
 ---
 id: conventions-not-nasa-values
 title: "The conventions PYRION chose (not NASA values)"
+keywords: conventions, not nasa values, pyrion convention, choices, 0.5 percent, 0.01 g, 10 percent, 30 percent, plausibility window, arbitrary
 chapter: 12
 order: 3
 dataHelp: [result-technical]

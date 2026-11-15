@@ -1,6 +1,7 @@
 ---
 id: margin-points
 title: "Margin points"
+keywords: margin points, margin, more oxygen, oxygen partial pressure, safety margin, severe points, psia, what is a margin point
 chapter: 5
 order: 3
 dataHelp: [gap-section-matrix]

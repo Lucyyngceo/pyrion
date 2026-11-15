@@ -1,6 +1,7 @@
 ---
 id: navigator-overview
 title: "NAVIGATOR: where is the evidence?"
+keywords: navigator, route, routes, where is the evidence, how do i get to evidence, make it comparable, closest investigation, smallest change, what do i change
 chapter: 3
 order: 1
 dataHelp: [route-group-heading, no-route-item]

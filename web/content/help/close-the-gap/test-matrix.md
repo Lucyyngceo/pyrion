@@ -1,6 +1,7 @@
 ---
 id: test-matrix
 title: "The test matrix: target plus a bracketing grid"
+keywords: test matrix, test points, oxygen steps, plus minus 4 points, plus minus 8 points, pressure 15 percent, how many tests, grid, bracketing, 15 points
 chapter: 5
 order: 2
 dataHelp: [gap-section-matrix]

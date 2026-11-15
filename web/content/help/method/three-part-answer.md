@@ -1,6 +1,7 @@
 ---
 id: three-part-answer
 title: "The three-part answer: what is known, unknown, and next"
+keywords: three part answer, known unknown next, tars answer, what is known, where evidence ends, next steps, easy mode, advanced mode, fingerprint, steps
 chapter: 10
 order: 5
 dataHelp: [tars-bubble, tars-steps, tars-fingerprint, tars-related]

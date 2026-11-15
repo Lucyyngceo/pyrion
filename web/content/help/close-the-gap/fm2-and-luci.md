@@ -1,6 +1,7 @@
 ---
 id: fm2-and-luci
 title: "FM2 and LUCI: what is stated, and what is not"
+keywords: fm2, luci, planned experiments, lunar, moon, simulated partial gravity, rotating vehicle, synergy pro, 8.2 psia, what nasa plans, follow-on
 chapter: 5
 order: 6
 dataHelp: [gap-section-planned, fm2-panel, tile-fm2-link]

@@ -1,6 +1,7 @@
 ---
 id: not-safety-advice
 title: "PYRION is not a safety tool"
+keywords: safety, safe, not a safety tool, not advice, validated by nasa, nasa endorsed, nasa standard, material selection, is it safe
 chapter: 12
 order: 5
 dataHelp: [bridge-limits, tars-honesty]

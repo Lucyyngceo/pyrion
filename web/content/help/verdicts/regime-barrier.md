@@ -1,6 +1,7 @@
 ---
 id: regime-barrier
 title: "Not comparable: the regime barrier"
+keywords: regime barrier, not comparable, different regime, why not comparable, infinity is not a big number, regime, gravity differs, barrier, no distance
 chapter: 4
 order: 7
 dataHelp: [verdict-headline, result-barrier-toggle, result-barrier-doi]

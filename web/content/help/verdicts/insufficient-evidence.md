@@ -1,6 +1,7 @@
 ---
 id: insufficient-evidence
 title: "Insufficient evidence"
+keywords: insufficient evidence, not enough evidence, why grey, not recorded, no usable value, unknown, flagged, cannot place my condition, undefined
 chapter: 4
 order: 5
 dataHelp: [verdict-headline, result-blocker-action]

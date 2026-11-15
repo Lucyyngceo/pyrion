@@ -1,6 +1,7 @@
 ---
 id: never-left-open
 title: "Why gravity, oxygen and pressure are never left open"
+keywords: leave open, gravity open, never left open, why not leave pressure open, ignore gravity, ignore oxygen, cheating, honest route, stated axis
 chapter: 3
 order: 3
 dataHelp: [route-sentence, no-route-item]

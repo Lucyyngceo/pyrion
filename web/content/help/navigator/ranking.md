@@ -1,6 +1,7 @@
 ---
 id: ranking
 title: "How routes are ranked"
+keywords: route order, ranking, which route first, fewest changes, distance, why this order, sorted routes, closest route
 chapter: 3
 order: 4
 dataHelp: [route-group-heading, route-more]

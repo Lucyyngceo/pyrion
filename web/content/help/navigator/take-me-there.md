@@ -1,6 +1,7 @@
 ---
 id: take-me-there
 title: "\"Take me there\""
+keywords: take me there, apply route, move my condition, switch to, go to evidence, button on route, apply a route, custom condition
 chapter: 3
 order: 6
 dataHelp: [take-me-there, tars-take-me-there, help-center-take-me-there]

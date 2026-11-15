@@ -1,6 +1,7 @@
 ---
 id: determinism-and-fingerprint
 title: "Determinism and the SHA-256 fingerprint"
+keywords: determinism, fingerprint, sha-256, same result, reproducible, hash, checkable, byte for byte, no randomness, why same answer
 chapter: 4
 order: 11
 dataHelp: [tars-fingerprint, result-receipt]

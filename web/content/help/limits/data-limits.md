@@ -1,6 +1,7 @@
 ---
 id: data-limits
 title: "What the data can and cannot tell you"
+keywords: data limits, only psi, extraction, records, verified, extracted, flagged, why insufficient, what the data can tell, incomplete data
 chapter: 12
 order: 4
 dataHelp: [data-evidence-status, evidence-panel]

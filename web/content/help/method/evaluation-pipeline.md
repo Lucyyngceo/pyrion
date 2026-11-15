@@ -1,6 +1,7 @@
 ---
 id: evaluation-pipeline
 title: "The evaluation, step by step"
+keywords: pipeline, how it works, method, steps, how the engine decides, evaluation, how is the verdict computed, algorithm, from records to verdict
 chapter: 10
 order: 1
 dataHelp: [verdict-panel, result-reasons, method-verdicts]

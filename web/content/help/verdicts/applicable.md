@@ -1,6 +1,7 @@
 ---
 id: applicable
 title: "Applicable"
+keywords: applicable, comparable, inside tested range, inside tested region, what applicable means, green, applies to my condition, same regime
 chapter: 4
 order: 2
 dataHelp: [verdict-headline, result-reasons]

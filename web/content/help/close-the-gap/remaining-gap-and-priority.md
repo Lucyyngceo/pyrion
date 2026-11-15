@@ -1,6 +1,7 @@
 ---
 id: remaining-gap-and-priority
 title: "The remaining gap and the order of priority"
+keywords: remaining gap, priority, solids first, order of priority, untested regime, what is not covered, cabin fires, which first
 chapter: 5
 order: 7
 dataHelp: [gap-section-remaining, gap-section-priority, gap-section-solids, gap-section-gap]

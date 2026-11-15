@@ -1,6 +1,7 @@
 ---
 id: route-kinds
 title: "The three kinds of change: move, leave open, different regime"
+keywords: move, leave open, different regime, switch regime, route kinds, kinds of change, combined route, what a route says, another regime not a small step
 chapter: 3
 order: 2
 dataHelp: [route-sentence, route-chip, route-name]

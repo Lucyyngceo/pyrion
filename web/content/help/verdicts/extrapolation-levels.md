@@ -1,6 +1,7 @@
 ---
 id: extrapolation-levels
 title: "Extrapolation and its four levels"
+keywords: extrapolation levels, just outside, far outside, outside, combination, how far outside, distance level, hatch, 10 percent, 30 percent, thresholds
 chapter: 4
 order: 4
 dataHelp: [verdict-ring, chart-map-legend]

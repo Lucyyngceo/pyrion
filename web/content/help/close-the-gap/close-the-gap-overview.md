@@ -1,6 +1,7 @@
 ---
 id: close-the-gap-overview
 title: "What would close this gap: what it is and what it is not"
+keywords: close the gap, what would close this gap, proposal, pyrion proposal, plan, experiments, testable plan, not a nasa plan, what to test
 chapter: 5
 order: 1
 dataHelp: [gap-dialog, gap-label, gap-close]

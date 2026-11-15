@@ -1,6 +1,7 @@
 ---
 id: the-model-never-decides
 title: "The model never decides"
+keywords: model never decides, language model, llm, ai, who decides, numbers from code, quotes checked, expert knowledge, trust, hallucination
 chapter: 12
 order: 2
 dataHelp: [ask-box, tars-honesty, ai-limits]

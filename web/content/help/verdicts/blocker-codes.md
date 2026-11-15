@@ -1,6 +1,7 @@
 ---
 id: blocker-codes
 title: "Why an investigation is not comparable: the blocker codes"
+keywords: blocker, blockers, codes, axis not recorded, no usable value, regime not tested, records disagree, why not comparable, reason codes, leave fuel phase open
 chapter: 4
 order: 6
 dataHelp: [result-blocker-action, result-reasons, no-route-item]

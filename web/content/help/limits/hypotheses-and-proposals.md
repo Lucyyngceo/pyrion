@@ -1,6 +1,7 @@
 ---
 id: hypotheses-and-proposals
 title: "Hypotheses and proposals are not evidence"
+keywords: hypothesis, bridge, stretch rate, analog, transfer, fm2 balance, proposal, not evidence, microgravity to moon, flat sheets
 chapter: 12
 order: 6
 dataHelp: [bridge-hypothesis-tag, bridge-limits, bridge-intro]
