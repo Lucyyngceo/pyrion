@@ -128,3 +128,11 @@ main.page:has(.nav-grid) { max-width: 1500px; }
   .tvp-row .tvp-score { display: none; }
   .tvp-name { min-width: 0; overflow-wrap: anywhere; }
 }
+
+/* routes to evidence */
+.where-sub { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 16px 0 4px; }
+.take-btn { margin-top: 6px; font: inherit; font-size: 12.5px; font-weight: 600; padding: 4px 12px; color: #000; background: var(--neon); border: 0; cursor: pointer; }
+.take-btn:hover { box-shadow: var(--glow); }
+.where-list-regime li { border-left-color: var(--st-off); border-left-style: dashed; }
+.take-regime { background: transparent; color: var(--ink); border: 1px dashed var(--neon-2); }
+.where-unreach { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }

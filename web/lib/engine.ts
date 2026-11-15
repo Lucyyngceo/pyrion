@@ -20,6 +20,7 @@ export {
   parseCsv,
   validateTarget,
   HABITAT_WINDOWS,
+  routesToEvidence,
   // transfer hypothesis (docs/TRANSFER.md) and FM2 instrument balance
   DENSITY_FACTOR_PMMA_AIR,
   FM2_SOURCES,
@@ -56,6 +57,8 @@ export type {
   Target,
   TargetLocation,
   Verdict,
+  Route,
+  RouteSet,
   Band,
   Fm2Balance,
   Fm2Inputs,

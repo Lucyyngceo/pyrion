@@ -15,6 +15,7 @@ import {
   locateTarget,
   parseConditionCsv,
   HABITAT_WINDOWS,
+  routesToEvidence,
   type ConditionRecord,
   type Evaluation,
   type Target,
@@ -145,6 +146,15 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
 
+  // N1: the engine's routes to evidence, recomputed whenever the target changes.
+  const routes = useMemo(() => {
+    try {
+      return routesToEvidence(records, target, options);
+    } catch {
+      return null;
+    }
+  }, [records, target, options]);
+
   // Verdict rail: the same target swept over pressure (O2 and regime fixed), so the viewer sees where the verdict changes.
   // Computed in small chunks after the main verdict has rendered, so it never delays the result.
   const [rail, setRail] = useState<{ pressure: number; tone: string }[]>([]);
@@ -266,6 +276,17 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               pinned={pinned && pinnedStatus ? { label: pinned.label, headline: pinnedStatus.headline, tone: pinnedStatus.tone } : null}
               onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
               onClearPin={() => setPinned(null)}
+              routes={routes}
+              onApplyRoute={(t) =>
+                setState((st) => ({
+                  presetId: null,
+                  regime: { ...t.regime },
+                  o2: t.continuous.o2_mole_fraction ?? st.o2,
+                  pressure: t.continuous.pressure ?? st.pressure,
+                  gravityLevel: t.informational?.gravity_level,
+                  gravityNotCovered: t.informational?.gravity_not_covered,
+                }))
+              }
               onHover={setHighlight}
               onOpen={(a) => {
                 setOpenAccession(a);
