@@ -1,0 +1,8 @@
+"use client";
+import { useState } from "react";
+import type { Profile } from "@/lib/investigations/data";
+export default function InvestigationList({ profiles,legs }: {profiles: Profile[];legs:Record<string,string[]>}) {
+ const [leg,setLeg]=useState(""); const [query,setQuery]=useState(""); const [phase,setPhase]=useState(""); const [flow,setFlow]=useState(false);
+ const phases=[...new Set(profiles.flatMap(p=>p.variables.filter(v=>v.variable==="fuel_phase").flatMap(v=>v.values)))];
+ const filtered=profiles.filter(p=>(p.accession+" "+p.acronym+" "+p.fields.experimentHardware.value).toLowerCase().includes(query.toLowerCase()) && (!phase || p.variables.some(v=>v.variable==="fuel_phase" && v.values.includes(phase))) && (!leg || (legs[p.accession]||[]).includes(leg)) && (!flow || p.variables.some(v=>v.variable === "flow_velocity")));
+ return <><label>Investigation or hardware <input data-help="investigation-list" value={query} onChange={e=>setQuery(e.target.value)}/></label>{phases.length>0&&<label>Fuel phase <select data-help="investigation-list" value={phase} onChange={e=>setPhase(e.target.value)}><option value="">All</option>{phases.map(x=><option key={x}>{x}</option>)}</select></label>} <label><input data-help="investigation-list" type="checkbox" checked={flow} onChange={e=>setFlow(e.target.checked)}/> Has flow values</label>{Object.keys(legs).length>0&&<label>Safety leg <select data-help="investigation-list" value={leg} onChange={e=>setLeg(e.target.value)}><option value="">All</option><option value="prevention">Prevention</option><option value="detection">Detection</option><option value="suppression">Suppression</option></select></label>}<p>Safety-leg tags use so

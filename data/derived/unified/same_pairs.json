@@ -1,0 +1,1916 @@
+[
+  {
+    "flight": "F58",
+    "flight_row": 4,
+    "ground": "G678",
+    "ground_row": 3,
+    "measurements": [
+      {
+        "flight_cell": "CB4",
+        "flight_value": "0.0531282678168605",
+        "ground_cell": "CB3",
+        "ground_value": "0.09342995031244071",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ4"
+      },
+      {
+        "flight_cell": "CC4",
+        "flight_value": "0.14934491754394455",
+        "ground_cell": "CC3",
+        "ground_value": "0.1343792968854397",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK4"
+      },
+      {
+        "flight_cell": "CD4",
+        "flight_value": "0.2503933801475273",
+        "ground_cell": "CD3",
+        "ground_value": "0.16115934278623062",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL4"
+      },
+      {
+        "flight_cell": "CE4",
+        "flight_value": "2.7638822532432576",
+        "ground_cell": "CE3",
+        "ground_value": "1.827359092641527",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM4"
+      },
+      {
+        "flight_cell": "CF4",
+        "flight_value": "0.031687885565052865",
+        "ground_cell": "CF3",
+        "ground_value": "0.0779045807333736",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN4"
+      },
+      {
+        "flight_cell": "CG4",
+        "flight_value": "516.3384220306831",
+        "ground_cell": "CG3",
+        "ground_value": "500.4075172379268",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO4"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F89",
+    "flight_row": 6,
+    "ground": "G678",
+    "ground_row": 3,
+    "measurements": [
+      {
+        "flight_cell": "CB6",
+        "flight_value": "0.05508867666449692",
+        "ground_cell": "CB3",
+        "ground_value": "0.09342995031244071",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ6"
+      },
+      {
+        "flight_cell": "CC6",
+        "flight_value": "0.15132510528359466",
+        "ground_cell": "CC3",
+        "ground_value": "0.1343792968854397",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK6"
+      },
+      {
+        "flight_cell": "CD6",
+        "flight_value": "0.25080449001119365",
+        "ground_cell": "CD3",
+        "ground_value": "0.16115934278623062",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL6"
+      },
+      {
+        "flight_cell": "CE6",
+        "flight_value": "2.732534317487376",
+        "ground_cell": "CE3",
+        "ground_value": "1.827359092641527",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM6"
+      },
+      {
+        "flight_cell": "CF6",
+        "flight_value": "0.03323823985693733",
+        "ground_cell": "CF3",
+        "ground_value": "0.0779045807333736",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN6"
+      },
+      {
+        "flight_cell": "CG6",
+        "flight_value": "515.1698437615016",
+        "ground_cell": "CG3",
+        "ground_value": "500.4075172379268",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO6"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F58a",
+    "flight_row": 10,
+    "ground": "G678a",
+    "ground_row": 9,
+    "measurements": [
+      {
+        "flight_cell": "CB10",
+        "flight_value": "0.10459065809534994",
+        "ground_cell": "CB9",
+        "ground_value": "0.2124496439521145",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ10"
+      },
+      {
+        "flight_cell": "CC10",
+        "flight_value": "0.23211570631965311",
+        "ground_cell": "CC9",
+        "ground_value": "0.21323033954101123",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK10"
+      },
+      {
+        "flight_cell": "CD10",
+        "flight_value": "0.3457883400003648",
+        "ground_cell": "CD9",
+        "ground_value": "0.21362176249523962",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL10"
+      },
+      {
+        "flight_cell": "CE10",
+        "flight_value": "2.4420805206174716",
+        "ground_cell": "CE9",
+        "ground_value": "1.0624355821945817",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM10"
+      },
+      {
+        "flight_cell": "CF10",
+        "flight_value": "0.07020807722496909",
+        "ground_cell": "CF9",
+        "ground_value": "0.21206036869153627",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN10"
+      },
+      {
+        "flight_cell": "CG10",
+        "flight_value": "516.3384220306831",
+        "ground_cell": "CG9",
+        "ground_value": "500.4075172379268",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO10"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F94",
+    "flight_row": 24,
+    "ground": "G680",
+    "ground_row": 23,
+    "measurements": [
+      {
+        "flight_cell": "CB24",
+        "flight_value": "0.0919403014378164",
+        "ground_cell": "CB23",
+        "ground_value": "0.14756172889997987",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ24"
+      },
+      {
+        "flight_cell": "CC24",
+        "flight_value": "0.11646654330236111",
+        "ground_cell": "CC23",
+        "ground_value": "0.19106698527129054",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK24"
+      },
+      {
+        "flight_cell": "CD24",
+        "flight_value": "0.13108373797981254",
+        "ground_cell": "CD23",
+        "ground_value": "0.21750421019833635",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL24"
+      },
+      {
+        "flight_cell": "CE24",
+        "flight_value": "1.6262491679176359",
+        "ground_cell": "CE23",
+        "ground_value": "1.6562408714778571",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM24"
+      },
+      {
+        "flight_cell": "CF24",
+        "flight_value": "0.08168800542053994",
+        "ground_cell": "CF23",
+        "ground_value": "0.12973049243668974",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN24"
+      },
+      {
+        "flight_cell": "CG24",
+        "flight_value": "527.3436756384525",
+        "ground_cell": "CG23",
+        "ground_value": "509.72777023427915",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO24"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F94a",
+    "flight_row": 29,
+    "ground": "G680a",
+    "ground_row": 28,
+    "measurements": [
+      {
+        "flight_cell": "CB29",
+        "flight_value": "0.13550220539017285",
+        "ground_cell": "CB28",
+        "ground_value": "0.1804147125143942",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ29"
+      },
+      {
+        "flight_cell": "CC29",
+        "flight_value": "0.1761433869212854",
+        "ground_cell": "CC28",
+        "ground_value": "0.2807301369112767",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK29"
+      },
+      {
+        "flight_cell": "CD29",
+        "flight_value": "0.2008289567990138",
+        "ground_cell": "CD28",
+        "ground_value": "0.3514594498869605",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL29"
+      },
+      {
+        "flight_cell": "CE29",
+        "flight_value": "1.6688963150865648",
+        "ground_cell": "CE28",
+        "ground_value": "1.9400167146950391",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM29"
+      },
+      {
+        "flight_cell": "CF29",
+        "flight_value": "0.118846493917783",
+        "ground_cell": "CF28",
+        "ground_value": "0.14517617387422568",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN29"
+      },
+      {
+        "flight_cell": "CG29",
+        "flight_value": "527.3436756384525",
+        "ground_cell": "CG28",
+        "ground_value": "509.72777023427915",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO29"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F62",
+    "flight_row": 34,
+    "ground": "G681",
+    "ground_row": 33,
+    "measurements": [
+      {
+        "flight_cell": "CB34",
+        "flight_value": "0.1483363981099871",
+        "ground_cell": "CB33",
+        "ground_value": "0.18961786805339287",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ34"
+      },
+      {
+        "flight_cell": "CC34",
+        "flight_value": "0.25116720161368244",
+        "ground_cell": "CC33",
+        "ground_value": "0.29378523422798186",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK34"
+      },
+      {
+        "flight_cell": "CD34",
+        "flight_value": "0.3268289552827402",
+        "ground_cell": "CD33",
+        "ground_value": "0.3706263763735004",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL34"
+      },
+      {
+        "flight_cell": "CE34",
+        "flight_value": "2.0661708170425976",
+        "ground_cell": "CE33",
+        "ground_value": "1.9647988850018823",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM34"
+      },
+      {
+        "flight_cell": "CF34",
+        "flight_value": "0.11399613592531087",
+        "ground_cell": "CF33",
+        "ground_value": "0.15462774082420688",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN34"
+      },
+      {
+        "flight_cell": "CG34",
+        "flight_value": "574.2669759303799",
+        "ground_cell": "CG33",
+        "ground_value": "556.7177384091525",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO34"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F62a",
+    "flight_row": 42,
+    "ground": "G681a",
+    "ground_row": 41,
+    "measurements": [
+      {
+        "flight_cell": "CB42",
+        "flight_value": "0.24311218052959396",
+        "ground_cell": "CB41",
+        "ground_value": "0.23892358512949002",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ42"
+      },
+      {
+        "flight_cell": "CC42",
+        "flight_value": "0.382918215564983",
+        "ground_cell": "CC41",
+        "ground_value": "0.39515141684515526",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK42"
+      },
+      {
+        "flight_cell": "CD42",
+        "flight_value": "0.48056892019340053",
+        "ground_cell": "CD41",
+        "ground_value": "0.5182935258401986",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL42"
+      },
+      {
+        "flight_cell": "CE42",
+        "flight_value": "1.9621025940506183",
+        "ground_cell": "CE41",
+        "ground_value": "2.0905425591314475",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM42"
+      },
+      {
+        "flight_cell": "CF42",
+        "flight_value": "0.19371224071885487",
+        "ground_cell": "CF41",
+        "ground_value": "0.18975504429155593",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN42"
+      },
+      {
+        "flight_cell": "CG42",
+        "flight_value": "574.2669759303799",
+        "ground_cell": "CG41",
+        "ground_value": "556.7177384091525",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO42"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F68",
+    "flight_row": 50,
+    "ground": "G682",
+    "ground_row": 49,
+    "measurements": [
+      {
+        "flight_cell": "CB50",
+        "flight_value": "0.2300449811647426",
+        "ground_cell": "CB49",
+        "ground_value": "0.17697792967417145",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ50"
+      },
+      {
+        "flight_cell": "CC50",
+        "flight_value": "0.3771048633840024",
+        "ground_cell": "CC49",
+        "ground_value": "0.3368745356851026",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK50"
+      },
+      {
+        "flight_cell": "CD50",
+        "flight_value": "0.48282174204031963",
+        "ground_cell": "CD49",
+        "ground_value": "0.46609941940314376",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL50"
+      },
+      {
+        "flight_cell": "CE50",
+        "flight_value": "2.019859695422917",
+        "ground_cell": "CE49",
+        "ground_value": "2.225358392899674",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM50"
+      },
+      {
+        "flight_cell": "CF50",
+        "flight_value": "0.17967517541300185",
+        "ground_cell": "CF49",
+        "ground_value": "0.1286322480742228",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN50"
+      },
+      {
+        "flight_cell": "CG50",
+        "flight_value": "297.3814702083521",
+        "ground_cell": "CG49",
+        "ground_value": "285.35603971801237",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO50"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F80",
+    "flight_row": 51,
+    "ground": "G682",
+    "ground_row": 49,
+    "measurements": [
+      {
+        "flight_cell": "CB51",
+        "flight_value": "0.12429628628849503",
+        "ground_cell": "CB49",
+        "ground_value": "0.17697792967417145",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ51"
+      },
+      {
+        "flight_cell": "CC51",
+        "flight_value": "0.28945017623069236",
+        "ground_cell": "CC49",
+        "ground_value": "0.3368745356851026",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK51"
+      },
+      {
+        "flight_cell": "CD51",
+        "flight_value": "0.44170432422942657",
+        "ground_cell": "CD49",
+        "ground_value": "0.46609941940314376",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL51"
+      },
+      {
+        "flight_cell": "CE51",
+        "flight_value": "2.507810768323902",
+        "ground_cell": "CE49",
+        "ground_value": "2.225358392899674",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM51"
+      },
+      {
+        "flight_cell": "CF51",
+        "flight_value": "0.08145173139020088",
+        "ground_cell": "CF49",
+        "ground_value": "0.1286322480742228",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN51"
+      },
+      {
+        "flight_cell": "CG51",
+        "flight_value": "293.0215638670337",
+        "ground_cell": "CG49",
+        "ground_value": "285.35603971801237",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO51"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F82",
+    "flight_row": 52,
+    "ground": "G682",
+    "ground_row": 49,
+    "measurements": [
+      {
+        "flight_cell": "CB52",
+        "flight_value": "0.13891501803978532",
+        "ground_cell": "CB49",
+        "ground_value": "0.17697792967417145",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ52"
+      },
+      {
+        "flight_cell": "CC52",
+        "flight_value": "0.28973711732419516",
+        "ground_cell": "CC49",
+        "ground_value": "0.3368745356851026",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK52"
+      },
+      {
+        "flight_cell": "CD52",
+        "flight_value": "0.4184384671617851",
+        "ground_cell": "CD49",
+        "ground_value": "0.46609941940314376",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL52"
+      },
+      {
+        "flight_cell": "CE52",
+        "flight_value": "2.356992697809274",
+        "ground_cell": "CE49",
+        "ground_value": "2.225358392899674",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM52"
+      },
+      {
+        "flight_cell": "CF52",
+        "flight_value": "0.09618818545266336",
+        "ground_cell": "CF49",
+        "ground_value": "0.1286322480742228",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN52"
+      },
+      {
+        "flight_cell": "CG52",
+        "flight_value": "282.5836772631244",
+        "ground_cell": "CG49",
+        "ground_value": "285.35603971801237",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO52"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F80a",
+    "flight_row": 58,
+    "ground": "G682a",
+    "ground_row": 57,
+    "measurements": [
+      {
+        "flight_cell": "CB58",
+        "flight_value": "0.25394710707642226",
+        "ground_cell": "CB57",
+        "ground_value": "0.20500732702833943",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ58"
+      },
+      {
+        "flight_cell": "CC58",
+        "flight_value": "0.4140788322281281",
+        "ground_cell": "CC57",
+        "ground_value": "0.3970715334602575",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK58"
+      },
+      {
+        "flight_cell": "CD58",
+        "flight_value": "0.5287530796941494",
+        "ground_cell": "CD57",
+        "ground_value": "0.56014937154281",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL58"
+      },
+      {
+        "flight_cell": "CE58",
+        "flight_value": "2.0122138995127745",
+        "ground_cell": "CE57",
+        "ground_value": "2.312754166612977",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM58"
+      },
+      {
+        "flight_cell": "CF58",
+        "flight_value": "0.19887188478739723",
+        "ground_cell": "CF57",
+        "ground_value": "0.14905795099870642",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN58"
+      },
+      {
+        "flight_cell": "CG58",
+        "flight_value": "293.0215638670337",
+        "ground_cell": "CG57",
+        "ground_value": "285.35603971801237",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO58"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F82a",
+    "flight_row": 59,
+    "ground": "G682a",
+    "ground_row": 57,
+    "measurements": [
+      {
+        "flight_cell": "CB59",
+        "flight_value": "0.2301097131615957",
+        "ground_cell": "CB57",
+        "ground_value": "0.20500732702833943",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ59"
+      },
+      {
+        "flight_cell": "CC59",
+        "flight_value": "0.3853941144913613",
+        "ground_cell": "CC57",
+        "ground_value": "0.3970715334602575",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK59"
+      },
+      {
+        "flight_cell": "CD59",
+        "flight_value": "0.49875830643636493",
+        "ground_cell": "CD57",
+        "ground_value": "0.56014937154281",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL59"
+      },
+      {
+        "flight_cell": "CE59",
+        "flight_value": "2.0505944091004547",
+        "ground_cell": "CE57",
+        "ground_value": "2.312754166612977",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM59"
+      },
+      {
+        "flight_cell": "CF59",
+        "flight_value": "0.17780742294482293",
+        "ground_cell": "CF57",
+        "ground_value": "0.14905795099870642",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN59"
+      },
+      {
+        "flight_cell": "CG59",
+        "flight_value": "282.5836772631244",
+        "ground_cell": "CG57",
+        "ground_value": "285.35603971801237",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO59"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F54",
+    "flight_row": 65,
+    "ground": "G684",
+    "ground_row": 64,
+    "measurements": [
+      {
+        "flight_cell": "CB65",
+        "flight_value": "0.10962569424235284",
+        "ground_cell": "CB64",
+        "ground_value": "0.11559470405220382",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ65"
+      },
+      {
+        "flight_cell": "CC65",
+        "flight_value": "0.2525293360712136",
+        "ground_cell": "CC64",
+        "ground_value": "0.25966849967658073",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK65"
+      },
+      {
+        "flight_cell": "CD65",
+        "flight_value": "0.3832759572941698",
+        "ground_cell": "CD64",
+        "ground_value": "0.3948697100184442",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL65"
+      },
+      {
+        "flight_cell": "CE65",
+        "flight_value": "2.492996586982887",
+        "ground_cell": "CE64",
+        "ground_value": "2.5209597478550245",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM65"
+      },
+      {
+        "flight_cell": "CF65",
+        "flight_value": "0.07222916871386115",
+        "ground_cell": "CF64",
+        "ground_value": "0.07818347065561375",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN65"
+      },
+      {
+        "flight_cell": "CG65",
+        "flight_value": "264.6687301176407",
+        "ground_cell": "CG64",
+        "ground_value": "249.18466968558585",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO65"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F55",
+    "flight_row": 66,
+    "ground": "G684",
+    "ground_row": 64,
+    "measurements": [
+      {
+        "flight_cell": "CB66",
+        "flight_value": "0.11626086070116975",
+        "ground_cell": "CB64",
+        "ground_value": "0.11559470405220382",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ66"
+      },
+      {
+        "flight_cell": "CC66",
+        "flight_value": "0.2747462311844157",
+        "ground_cell": "CC64",
+        "ground_value": "0.25966849967658073",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK66"
+      },
+      {
+        "flight_cell": "CD66",
+        "flight_value": "0.422358120595059",
+        "ground_cell": "CD64",
+        "ground_value": "0.3948697100184442",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL66"
+      },
+      {
+        "flight_cell": "CE66",
+        "flight_value": "2.527847124693362",
+        "ground_cell": "CE64",
+        "ground_value": "2.5209597478550245",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM66"
+      },
+      {
+        "flight_cell": "CF66",
+        "flight_value": "0.07562831576885375",
+        "ground_cell": "CF64",
+        "ground_value": "0.07818347065561375",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN66"
+      },
+      {
+        "flight_cell": "CG66",
+        "flight_value": "262.8992657228306",
+        "ground_cell": "CG64",
+        "ground_value": "249.18466968558585",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO66"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F78",
+    "flight_row": 67,
+    "ground": "G684",
+    "ground_row": 64,
+    "measurements": [
+      {
+        "flight_cell": "CB67",
+        "flight_value": "0.12988195937811292",
+        "ground_cell": "CB64",
+        "ground_value": "0.11559470405220382",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ67"
+      },
+      {
+        "flight_cell": "CC67",
+        "flight_value": "0.2645744987929001",
+        "ground_cell": "CC64",
+        "ground_value": "0.25966849967658073",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK67"
+      },
+      {
+        "flight_cell": "CD67",
+        "flight_value": "0.37761353909985346",
+        "ground_cell": "CD64",
+        "ground_value": "0.3948697100184442",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL67"
+      },
+      {
+        "flight_cell": "CE67",
+        "flight_value": "2.324494786421839",
+        "ground_cell": "CE64",
+        "ground_value": "2.5209597478550245",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM67"
+      },
+      {
+        "flight_cell": "CF67",
+        "flight_value": "0.09100164783979632",
+        "ground_cell": "CF64",
+        "ground_value": "0.07818347065561375",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN67"
+      },
+      {
+        "flight_cell": "CG67",
+        "flight_value": "259.4913138027721",
+        "ground_cell": "CG64",
+        "ground_value": "249.18466968558585",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO67"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F55a",
+    "flight_row": 71,
+    "ground": "G684a",
+    "ground_row": 70,
+    "measurements": [
+      {
+        "flight_cell": "CB71",
+        "flight_value": "0.14894929432553272",
+        "ground_cell": "CB70",
+        "ground_value": "0.12633483579711152",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ71"
+      },
+      {
+        "flight_cell": "CC71",
+        "flight_value": "0.3204661071487239",
+        "ground_cell": "CC70",
+        "ground_value": "0.3020863473225657",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK71"
+      },
+      {
+        "flight_cell": "CD71",
+        "flight_value": "0.47006068835141385",
+        "ground_cell": "CD70",
+        "ground_value": "0.4672038736942204",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL71"
+      },
+      {
+        "flight_cell": "CE71",
+        "flight_value": "2.399623149808362",
+        "ground_cell": "CE70",
+        "ground_value": "2.5445261743405583",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM71"
+      },
+      {
+        "flight_cell": "CF71",
+        "flight_value": "0.10154688893994045",
+        "ground_cell": "CF70",
+        "ground_value": "0.08171286417590423",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN71"
+      },
+      {
+        "flight_cell": "CG71",
+        "flight_value": "262.8992657228306",
+        "ground_cell": "CG70",
+        "ground_value": "249.18466968558585",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO71"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F78a",
+    "flight_row": 72,
+    "ground": "G684a",
+    "ground_row": 70,
+    "measurements": [
+      {
+        "flight_cell": "CB72",
+        "flight_value": "0.22351514410596268",
+        "ground_cell": "CB70",
+        "ground_value": "0.12633483579711152",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ72"
+      },
+      {
+        "flight_cell": "CC72",
+        "flight_value": "0.3551212014658097",
+        "ground_cell": "CC70",
+        "ground_value": "0.3020863473225657",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK72"
+      },
+      {
+        "flight_cell": "CD72",
+        "flight_value": "0.4476220018407962",
+        "ground_cell": "CD70",
+        "ground_value": "0.4672038736942204",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL72"
+      },
+      {
+        "flight_cell": "CE72",
+        "flight_value": "1.9747194096960874",
+        "ground_cell": "CE70",
+        "ground_value": "2.5445261743405583",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM72"
+      },
+      {
+        "flight_cell": "CF72",
+        "flight_value": "0.17732588253993828",
+        "ground_cell": "CF70",
+        "ground_value": "0.08171286417590423",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN72"
+      },
+      {
+        "flight_cell": "CG72",
+        "flight_value": "259.4913138027721",
+        "ground_cell": "CG70",
+        "ground_value": "249.18466968558585",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO72"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F59",
+    "flight_row": 77,
+    "ground": "G683",
+    "ground_row": 76,
+    "measurements": [
+      {
+        "flight_cell": "CB77",
+        "flight_value": "0.19225459171796622",
+        "ground_cell": "CB76",
+        "ground_value": "0.15742592110062165",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ77"
+      },
+      {
+        "flight_cell": "CC77",
+        "flight_value": "0.45513242180855784",
+        "ground_cell": "CC76",
+        "ground_value": "0.3998939326494446",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK77"
+      },
+      {
+        "flight_cell": "CD77",
+        "flight_value": "0.7002744812273739",
+        "ground_cell": "CD76",
+        "ground_value": "0.6381894033077198",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL77"
+      },
+      {
+        "flight_cell": "CE77",
+        "flight_value": "2.5302410110434193",
+        "ground_cell": "CE76",
+        "ground_value": "2.6326427968186477",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM77"
+      },
+      {
+        "flight_cell": "CF77",
+        "flight_value": "0.12495285816934183",
+        "ground_cell": "CF76",
+        "ground_value": "0.0989028525905429",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN77"
+      },
+      {
+        "flight_cell": "CG77",
+        "flight_value": "351.9104098933448",
+        "ground_cell": "CG76",
+        "ground_value": "340.01206018638493",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO77"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F65",
+    "flight_row": 78,
+    "ground": "G683",
+    "ground_row": 76,
+    "measurements": [
+      {
+        "flight_cell": "CB78",
+        "flight_value": "0.19513944234574185",
+        "ground_cell": "CB76",
+        "ground_value": "0.15742592110062165",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ78"
+      },
+      {
+        "flight_cell": "CC78",
+        "flight_value": "0.46185714375132125",
+        "ground_cell": "CC76",
+        "ground_value": "0.3998939326494446",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK78"
+      },
+      {
+        "flight_cell": "CD78",
+        "flight_value": "0.7105407145153888",
+        "ground_cell": "CD76",
+        "ground_value": "0.6381894033077198",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL78"
+      },
+      {
+        "flight_cell": "CE78",
+        "flight_value": "2.5299320831158894",
+        "ground_cell": "CE76",
+        "ground_value": "2.6326427968186477",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM78"
+      },
+      {
+        "flight_cell": "CF78",
+        "flight_value": "0.12684219726451437",
+        "ground_cell": "CF76",
+        "ground_value": "0.0989028525905429",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN78"
+      },
+      {
+        "flight_cell": "CG78",
+        "flight_value": "349.0710846940881",
+        "ground_cell": "CG76",
+        "ground_value": "340.01206018638493",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO78"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F59a",
+    "flight_row": 82,
+    "ground": "G683a",
+    "ground_row": 81,
+    "measurements": [
+      {
+        "flight_cell": "CB82",
+        "flight_value": "0.3380752866414779",
+        "ground_cell": "CB81",
+        "ground_value": "0.17899208293596974",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ82"
+      },
+      {
+        "flight_cell": "CC82",
+        "flight_value": "0.6147093367763036",
+        "ground_cell": "CC81",
+        "ground_value": "0.47597109103527935",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK82"
+      },
+      {
+        "flight_cell": "CD82",
+        "flight_value": "0.8288921028808338",
+        "ground_cell": "CD81",
+        "ground_value": "0.7935060641105106",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL82"
+      },
+      {
+        "flight_cell": "CE82",
+        "flight_value": "2.166748376099798",
+        "ground_cell": "CE81",
+        "ground_value": "2.7853558786846078",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM82"
+      },
+      {
+        "flight_cell": "CF82",
+        "flight_value": "0.2507178371099991",
+        "ground_cell": "CF81",
+        "ground_value": "0.11199509213182168",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN82"
+      },
+      {
+        "flight_cell": "CG82",
+        "flight_value": "351.9104098933448",
+        "ground_cell": "CG81",
+        "ground_value": "340.01206018638493",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO82"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F65a",
+    "flight_row": 83,
+    "ground": "G683a",
+    "ground_row": 81,
+    "measurements": [
+      {
+        "flight_cell": "CB83",
+        "flight_value": "0.46210291491123606",
+        "ground_cell": "CB81",
+        "ground_value": "0.17899208293596974",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ83"
+      },
+      {
+        "flight_cell": "CC83",
+        "flight_value": "0.7055569307920524",
+        "ground_cell": "CC81",
+        "ground_value": "0.47597109103527935",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK83"
+      },
+      {
+        "flight_cell": "CD83",
+        "flight_value": "0.8718238378124535",
+        "ground_cell": "CD81",
+        "ground_value": "0.7935060641105106",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL83"
+      },
+      {
+        "flight_cell": "CE83",
+        "flight_value": "1.9165718859067358",
+        "ground_cell": "CE81",
+        "ground_value": "2.7853558786846078",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM83"
+      },
+      {
+        "flight_cell": "CF83",
+        "flight_value": "0.3739745350080345",
+        "ground_cell": "CF81",
+        "ground_value": "0.11199509213182168",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN83"
+      },
+      {
+        "flight_cell": "CG83",
+        "flight_value": "349.0710846940881",
+        "ground_cell": "CG81",
+        "ground_value": "340.01206018638493",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO83"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F53",
+    "flight_row": 87,
+    "ground": "G685",
+    "ground_row": 86,
+    "measurements": [
+      {
+        "flight_cell": "CB87",
+        "flight_value": "0.25033936032853354",
+        "ground_cell": "CB86",
+        "ground_value": "0.2386504779187313",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ87"
+      },
+      {
+        "flight_cell": "CC87",
+        "flight_value": "0.5474196807379078",
+        "ground_cell": "CC86",
+        "ground_value": "0.4622522260635844",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK87"
+      },
+      {
+        "flight_cell": "CD87",
+        "flight_value": "0.8094984871753268",
+        "ground_cell": "CD86",
+        "ground_value": "0.6611366290372283",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL87"
+      },
+      {
+        "flight_cell": "CE87",
+        "flight_value": "2.421852687022607",
+        "ground_cell": "CE86",
+        "ground_value": "2.334862518043973",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM87"
+      },
+      {
+        "flight_cell": "CF87",
+        "flight_value": "0.1692908570902574",
+        "ground_cell": "CF86",
+        "ground_value": "0.17584356609760404",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN87"
+      },
+      {
+        "flight_cell": "CG87",
+        "flight_value": "379.7281673459634",
+        "ground_cell": "CG86",
+        "ground_value": "367.7349679730139",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO87"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F60",
+    "flight_row": 88,
+    "ground": "G685",
+    "ground_row": 86,
+    "measurements": [
+      {
+        "flight_cell": "CB88",
+        "flight_value": "0.24064095529695867",
+        "ground_cell": "CB86",
+        "ground_value": "0.2386504779187313",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ88"
+      },
+      {
+        "flight_cell": "CC88",
+        "flight_value": "0.5331371830040863",
+        "ground_cell": "CC86",
+        "ground_value": "0.4622522260635844",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK88"
+      },
+      {
+        "flight_cell": "CD88",
+        "flight_value": "0.7935488888933807",
+        "ground_cell": "CD86",
+        "ground_value": "0.6611366290372283",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL88"
+      },
+      {
+        "flight_cell": "CE88",
+        "flight_value": "2.439743219733047",
+        "ground_cell": "CE86",
+        "ground_value": "2.334862518043973",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM88"
+      },
+      {
+        "flight_cell": "CF88",
+        "flight_value": "0.16167200637296847",
+        "ground_cell": "CF86",
+        "ground_value": "0.17584356609760404",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN88"
+      },
+      {
+        "flight_cell": "CG88",
+        "flight_value": "379.84692208150824",
+        "ground_cell": "CG86",
+        "ground_value": "367.7349679730139",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO88"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F60a",
+    "flight_row": 94,
+    "ground": "G685a",
+    "ground_row": 93,
+    "measurements": [
+      {
+        "flight_cell": "CB94",
+        "flight_value": "0.46768580414007993",
+        "ground_cell": "CB93",
+        "ground_value": "0.2291384953061258",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ94"
+      },
+      {
+        "flight_cell": "CC94",
+        "flight_value": "0.7484726480887385",
+        "ground_cell": "CC93",
+        "ground_value": "0.5364038733084344",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK94"
+      },
+      {
+        "flight_cell": "CD94",
+        "flight_value": "0.9468622615401742",
+        "ground_cell": "CD93",
+        "ground_value": "0.8430417965432304",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL94"
+      },
+      {
+        "flight_cell": "CE94",
+        "flight_value": "1.985238345650711",
+        "ground_cell": "CE93",
+        "ground_value": "2.6376367028647545",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM94"
+      },
+      {
+        "flight_cell": "CF94",
+        "flight_value": "0.3696947766498185",
+        "ground_cell": "CF93",
+        "ground_value": "0.15337264299263542",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN94"
+      },
+      {
+        "flight_cell": "CG94",
+        "flight_value": "379.84692208150824",
+        "ground_cell": "CG93",
+        "ground_value": "367.7349679730139",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO94"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F52",
+    "flight_row": 100,
+    "ground": "G686",
+    "ground_row": 99,
+    "measurements": [
+      {
+        "flight_cell": "CB100",
+        "flight_value": "0.2080442916652481",
+        "ground_cell": "CB99",
+        "ground_value": "0.20100924224648056",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ100"
+      },
+      {
+        "flight_cell": "CC100",
+        "flight_value": "0.40519053314258846",
+        "ground_cell": "CC99",
+        "ground_value": "0.3934161373196564",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK100"
+      },
+      {
+        "flight_cell": "CD100",
+        "flight_value": "0.5654719058673802",
+        "ground_cell": "CD99",
+        "ground_value": "0.5580569165395965",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL100"
+      },
+      {
+        "flight_cell": "CE100",
+        "flight_value": "2.262475756453556",
+        "ground_cell": "CE99",
+        "ground_value": "2.3122479061402217",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM100"
+      },
+      {
+        "flight_cell": "CF100",
+        "flight_value": "0.1490747401991785",
+        "ground_cell": "CF99",
+        "ground_value": "0.14545611954619117",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN100"
+      },
+      {
+        "flight_cell": "CG100",
+        "flight_value": "230.42121123513496",
+        "ground_cell": "CG99",
+        "ground_value": "225.41269592452315",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO100"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F63",
+    "flight_row": 101,
+    "ground": "G686",
+    "ground_row": 99,
+    "measurements": [
+      {
+        "flight_cell": "CB101",
+        "flight_value": "0.20703943977434275",
+        "ground_cell": "CB99",
+        "ground_value": "0.20100924224648056",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ101"
+      },
+      {
+        "flight_cell": "CC101",
+        "flight_value": "0.39164217089803754",
+        "ground_cell": "CC99",
+        "ground_value": "0.3934161373196564",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK101"
+      },
+      {
+        "flight_cell": "CD101",
+        "flight_value": "0.538651200272681",
+        "ground_cell": "CD99",
+        "ground_value": "0.5580569165395965",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL101"
+      },
+      {
+        "flight_cell": "CE101",
+        "flight_value": "2.2219783573112184",
+        "ground_cell": "CE99",
+        "ground_value": "2.3122479061402217",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM101"
+      },
+      {
+        "flight_cell": "CF101",
+        "flight_value": "0.15053410372740142",
+        "ground_cell": "CF99",
+        "ground_value": "0.14545611954619117",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN101"
+      },
+      {
+        "flight_cell": "CG101",
+        "flight_value": "225.3",
+        "ground_cell": "CG99",
+        "ground_value": "225.41269592452315",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO101"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F74",
+    "flight_row": 102,
+    "ground": "G686",
+    "ground_row": 99,
+    "measurements": [
+      {
+        "flight_cell": "CB102",
+        "flight_value": "0.1976149506837051",
+        "ground_cell": "CB99",
+        "ground_value": "0.20100924224648056",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ102"
+      },
+      {
+        "flight_cell": "CC102",
+        "flight_value": "0.35472823373879336",
+        "ground_cell": "CC99",
+        "ground_value": "0.3934161373196564",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK102"
+      },
+      {
+        "flight_cell": "CD102",
+        "flight_value": "0.4752627050441371",
+        "ground_cell": "CD99",
+        "ground_value": "0.5580569165395965",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL102"
+      },
+      {
+        "flight_cell": "CE102",
+        "flight_value": "2.148722604077893",
+        "ground_cell": "CE99",
+        "ground_value": "2.3122479061402217",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM102"
+      },
+      {
+        "flight_cell": "CF102",
+        "flight_value": "0.14749653543696306",
+        "ground_cell": "CF99",
+        "ground_value": "0.14545611954619117",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN102"
+      },
+      {
+        "flight_cell": "CG102",
+        "flight_value": "234.18212761794004",
+        "ground_cell": "CG99",
+        "ground_value": "225.41269592452315",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO102"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F63a",
+    "flight_row": 108,
+    "ground": "G686a",
+    "ground_row": 107,
+    "measurements": [
+      {
+        "flight_cell": "CB108",
+        "flight_value": "0.3590427447986828",
+        "ground_cell": "CB107",
+        "ground_value": "0.24654986096399667",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ108"
+      },
+      {
+        "flight_cell": "CC108",
+        "flight_value": "0.539241536276565",
+        "ground_cell": "CC107",
+        "ground_value": "0.4781708672323456",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK108"
+      },
+      {
+        "flight_cell": "CD108",
+        "flight_value": "0.6608485300252369",
+        "ground_cell": "CD107",
+        "ground_value": "0.6893409078686655",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL108"
+      },
+      {
+        "flight_cell": "CE108",
+        "flight_value": "1.8922142617359956",
+        "ground_cell": "CE107",
+        "ground_value": "2.3701000178655085",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM108"
+      },
+      {
+        "flight_cell": "CF108",
+        "flight_value": "0.29297297716135123",
+        "ground_cell": "CF107",
+        "ground_value": "0.18378176657986622",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN108"
+      },
+      {
+        "flight_cell": "CG108",
+        "flight_value": "225.3",
+        "ground_cell": "CG107",
+        "ground_value": "225.41269592452315",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO108"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F74a",
+    "flight_row": 109,
+    "ground": "G686a",
+    "ground_row": 107,
+    "measurements": [
+      {
+        "flight_cell": "CB109",
+        "flight_value": "0.37899697072214944",
+        "ground_cell": "CB107",
+        "ground_value": "0.24654986096399667",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ109"
+      },
+      {
+        "flight_cell": "CC109",
+        "flight_value": "0.5121886831044689",
+        "ground_cell": "CC107",
+        "ground_value": "0.4781708672323456",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK109"
+      },
+      {
+        "flight_cell": "CD109",
+        "flight_value": "0.5954250451719022",
+        "ground_cell": "CD107",
+        "ground_value": "0.6893409078686655",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL109"
+      },
+      {
+        "flight_cell": "CE109",
+        "flight_value": "1.731148221373688",
+        "ground_cell": "CE107",
+        "ground_value": "2.3701000178655085",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM109"
+      },
+      {
+        "flight_cell": "CF109",
+        "flight_value": "0.32601577798716497",
+        "ground_cell": "CF107",
+        "ground_value": "0.18378176657986622",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN109"
+      },
+      {
+        "flight_cell": "CG109",
+        "flight_value": "234.18212761794004",
+        "ground_cell": "CG107",
+        "ground_value": "225.41269592452315",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO109"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F64",
+    "flight_row": 115,
+    "ground": "G687",
+    "ground_row": 114,
+    "measurements": [
+      {
+        "flight_cell": "CB115",
+        "flight_value": "0.2538303437849373",
+        "ground_cell": "CB114",
+        "ground_value": "0.20513076777118716",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ115"
+      },
+      {
+        "flight_cell": "CC115",
+        "flight_value": "0.4447115903370564",
+        "ground_cell": "CC114",
+        "ground_value": "0.43482268085660275",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK115"
+      },
+      {
+        "flight_cell": "CD115",
+        "flight_value": "0.5886347589611365",
+        "ground_cell": "CD114",
+        "ground_value": "0.634272360041225",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL115"
+      },
+      {
+        "flight_cell": "CE115",
+        "flight_value": "2.1145436150408896",
+        "ground_cell": "CE114",
+        "ground_value": "2.39319676654959",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM115"
+      },
+      {
+        "flight_cell": "CF115",
+        "flight_value": "0.19176797520354047",
+        "ground_cell": "CF114",
+        "ground_value": "0.14115676249675974",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN115"
+      },
+      {
+        "flight_cell": "CG115",
+        "flight_value": "242.10308472492756",
+        "ground_cell": "CG114",
+        "ground_value": "233.60728248393985",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO115"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F76",
+    "flight_row": 116,
+    "ground": "G687",
+    "ground_row": 114,
+    "measurements": [
+      {
+        "flight_cell": "CB116",
+        "flight_value": "0.3539879092760971",
+        "ground_cell": "CB114",
+        "ground_value": "0.20513076777118716",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ116"
+      },
+      {
+        "flight_cell": "CC116",
+        "flight_value": "0.5145502341662288",
+        "ground_cell": "CC114",
+        "ground_value": "0.43482268085660275",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK116"
+      },
+      {
+        "flight_cell": "CD116",
+        "flight_value": "0.6203652404413846",
+        "ground_cell": "CD114",
+        "ground_value": "0.634272360041225",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL116"
+      },
+      {
+        "flight_cell": "CE116",
+        "flight_value": "1.843342080682528",
+        "ground_cell": "CE114",
+        "ground_value": "2.39319676654959",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM116"
+      },
+      {
+        "flight_cell": "CF116",
+        "flight_value": "0.29360858690347513",
+        "ground_cell": "CF114",
+        "ground_value": "0.14115676249675974",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN116"
+      },
+      {
+        "flight_cell": "CG116",
+        "flight_value": "240.92870800332065",
+        "ground_cell": "CG114",
+        "ground_value": "233.60728248393985",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO116"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F64a",
+    "flight_row": 120,
+    "ground": "G687a",
+    "ground_row": 119,
+    "measurements": [
+      {
+        "flight_cell": "CB120",
+        "flight_value": "0.45014457959499116",
+        "ground_cell": "CB119",
+        "ground_value": "0.32074870929345284",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ120"
+      },
+      {
+        "flight_cell": "CC120",
+        "flight_value": "0.6157285904964299",
+        "ground_cell": "CC119",
+        "ground_value": "0.53870033626751",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK120"
+      },
+      {
+        "flight_cell": "CD120",
+        "flight_value": "0.7201251312557175",
+        "ground_cell": "CD119",
+        "ground_value": "0.7240271472319215",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL120"
+      },
+      {
+        "flight_cell": "CE120",
+        "flight_value": "1.7501057221171064",
+        "ground_cell": "CE119",
+        "ground_value": "2.209331401540442",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM120"
+      },
+      {
+        "flight_cell": "CF120",
+        "flight_value": "0.38488711959034433",
+        "ground_cell": "CF119",
+        "ground_value": "0.25532598992092875",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN120"
+      },
+      {
+        "flight_cell": "CG120",
+        "flight_value": "242.10308472492756",
+        "ground_cell": "CG119",
+        "ground_value": "233.60728248393985",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO120"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  },
+  {
+    "flight": "F76a",
+    "flight_row": 121,
+    "ground": "G687a",
+    "ground_row": 119,
+    "measurements": [
+      {
+        "flight_cell": "CB121",
+        "flight_value": "0.4448100716712697",
+        "ground_cell": "CB119",
+        "ground_value": "0.32074870929345284",
+        "name": "M1/M0 (micro-m)--AMD",
+        "pair_cell": "CJ121"
+      },
+      {
+        "flight_cell": "CC121",
+        "flight_value": "0.6427918514728149",
+        "ground_cell": "CC119",
+        "ground_value": "0.53870033626751",
+        "name": "Diameter of Average mass (micro-m)",
+        "pair_cell": "CK121"
+      },
+      {
+        "flight_cell": "CD121",
+        "flight_value": "0.7727130339375942",
+        "ground_cell": "CD119",
+        "ground_value": "0.7240271472319215",
+        "name": "George's d2,1,  (micro-m)",
+        "pair_cell": "CL121"
+      },
+      {
+        "flight_cell": "CE121",
+        "flight_value": "1.834502046916247",
+        "ground_cell": "CE119",
+        "ground_value": "2.209331401540442",
+        "name": "Hatch Choate Sigma g",
+        "pair_cell": "CM121"
+      },
+      {
+        "flight_cell": "CF121",
+        "flight_value": "0.3700213105845219",
+        "ground_cell": "CF119",
+        "ground_value": "0.25532598992092875",
+        "name": "Hatch Choate Dg",
+        "pair_cell": "CN121"
+      },
+      {
+        "flight_cell": "CG121",
+        "flight_value": "240.92870800332065",
+        "ground_cell": "CG119",
+        "ground_value": "233.60728248393985",
+        "name": "T ( C) - Eq. 2 of lrt",
+        "pair_cell": "CO121"
+      }
+    ],
+    "source_file": "psi-data/PSI-101/Analyzed Data/PSI-101_Analyzed Data_SAME, SAME-R_Results.xlsx",
+    "source_sheet": "3-tests Compar."
+  }
+]

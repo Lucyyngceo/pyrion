@@ -1,0 +1,23 @@
+.investigations { color: #e6f6ff; }
+.investigations > h2 { margin-top: 2rem; font-family: var(--font-mono), monospace; }
+.investigations > section { display: inline-block; vertical-align: top; width: calc(50% - 1rem); margin: .5rem .5rem .5rem 0; padding: 1rem; background: #0a0e18; border: 1px solid #416170; border-radius: 14px; }
+.investigations h3 { color: #e6f6ff; margin-top: 0; }
+.investigations a { color: #62eaff; }
+.investigations label { display: inline-flex; align-items: center; gap: .5rem; margin: .5rem 1rem .5rem 0; }
+.investigations input, .investigations select, .investigations button { color: #e6f6ff; background: #101b28; border: 1px solid #7295a8; border-radius: 6px; padding: .5rem; }
+.investigations input[type=checkbox] { width: auto; }
+.investigations .inv-table { max-width: 100%; overflow-x: auto; margin: 1rem 0; border: 1px solid #416170; border-radius: 12px; }
+.investigations table { width: 100%; border-collapse: collapse; background: #0a0e18; }
+.investigations th, .investigations td { padding: .75rem; border-bottom: 1px solid #416170; text-align: left; vertical-align: top; }
+.investigations th { color: #bfeeff; }
+.investigations .inv-different { background: #4e3810; }
+.investigations .inv-verbatim { white-space: pre-wrap; }
+.investigations small { color: #b9cfdb; overflow-wrap: anywhere; }
+@media (max-width: 700px) { .investigations > section { display: block; width: 100%; margin: .5rem 0; } .investigations label { display: flex; } }
+.investigations .inv-test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1rem; }
+.investigations .inv-test-grid .card { background: #0a0e18; border-color: #416170; }
+.investigations .inv-receipt { cursor: help; border-bottom: 1px dotted #a5c8d8; overflow-wrap: anywhere; }
+.investigations .inv-pagination { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
+.investigations .inv-bar { width: 100%; height: 1rem; background: #162a35; border: 1px solid #7295a8; }
+.investigations .inv-bar > div { height: 100%; background: #62eaff; }
+.investigations summary { cursor: pointer; color: #62eaff; }
