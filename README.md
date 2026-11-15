@@ -86,6 +86,30 @@ The public instance behind nginx, as in `docs/DEPLOY.md`:
 PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
 ```
 
+## Reproduce the source checks
+
+CI runs only the checks that do not need the NASA files (`python -I validation/run_all.py --no-trace`), and a clean clone skips 5 web tests that read them. A skipped check has not passed. To run them yourself (Python 3.12, standard library; Node 24):
+
+```bash
+python -I tools/reproduce_source_checks.py --fetch P1 --fetch P2 --fetch P3 --fetch P4
+```
+
+This downloads the public files listed in `data/manifest/` into `data/raw/` (`pipeline/fetch.py`: PSI files through the PSI API's pre-signed links, NTRS and NASA web documents directly), verifies every file marked `ok` in `data/manifest/checksums_*.csv` (present, same size, same SHA-256), runs `validation/run_all.py` **with** the `trace` check (each table cell and each quote against its file; result in `validation/reports/latest.md`, fields `trace_ran`, `cells_traced`, `quotes_traced`), and lists which web tests will still skip. It exits non-zero if any step fails. Without `--fetch` it only verifies what is already in `data/raw/`.
+
+Then run the web tests (`cd web && npm test`); `node:test` reports each remaining skip with its reason.
+
+| Web test that skips in a clean clone | Needs | How to enable |
+|---|---|---|
+| `lenses-data`: PSI quotes word for word; timeline dates | `data/raw/` (PSI investigation records) | the command above |
+| `expert-claims`: real-corpus FM2 chamber quote | `web/.data/corpus/pages.jsonl` | add `--corpus` (needs PyMuPDF and openpyxl, as `tools/build_corpus.py`) |
+| `lenses-data` and `more-equipment`: challenge quotes word for word | a text copy of the NASA Space Apps 2026 challenge statement | **manual**: save the statement's text from the challenge page on spaceappschallenge.org to a file and set `PYRION_CHALLENGE=<path>`; the page is not downloaded by the pipeline and its copy is not in the repository |
+
+Limitations, stated rather than worked around:
+
+- `data/raw/` is not committed. The PSI files are CC0-1.0 or U.S. Government works per investigation, except PSI-10, whose license is not stated on PSI; the repository redistributes none of them, only their checksums.
+- PSI downloads depend on the PSI API being reachable; a file the source no longer serves stays "missing" and its trace check fails rather than passing.
+- Some networks block Python's HTTPS (an antivirus that inspects TLS, for example) while browsers and `curl` work; then the download times out and nothing is verified.
+
 ## Features
 
 - **Evidence envelope** (`/envelope`): every extracted PSI test point, O₂ mole fraction against pressure, with a deterministic applicability verdict for a target condition and presets such as the Moon Base band.
