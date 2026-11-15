@@ -1,7 +1,7 @@
 // Server only. The expert chat: an agent that calls tools (engine, NASA library, calculators), then code checks its answer.
 // The response is a stream of JSON lines: {"type":"status","text"}, then {"type":"result",...} or {"type":"error","error"}.
 
-import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, visitorId } from "@/lib/llm";
+import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, visitorFor } from "@/lib/llm";
 import { shapeTarget } from "@/lib/ask-core";
 import { serverData } from "@/lib/server-eval";
 import { helpTopics } from "@/lib/tars/topics-server";
@@ -18,6 +18,8 @@ const MAX_BODY = 16 * 1024;
 const line = (o: unknown) => `${JSON.stringify(o)}\n`;
 
 export async function POST(req: Request) {
+  const { visitor, setCookie } = visitorFor(req);
+  const cookie: Record<string, string> = setCookie ? { "Set-Cookie": setCookie } : {};
   const raw = await req.text();
   if (raw.length > MAX_BODY) return Response.json({ error: "the request is too large" }, { status: 413 });
   let body: { message?: unknown; history?: unknown; lastTarget?: unknown; ui?: unknown };
@@ -40,7 +42,6 @@ export async function POST(req: Request) {
   const lastTarget = shaped && shaped.ok ? shaped.target : null;
   const ui = (body.ui && typeof body.ui === "object" ? body.ui : {}) as UiContext;
 
-  const visitor = visitorId(req);
   const started = Date.now();
   const deadline = AbortSignal.any([req.signal, AbortSignal.timeout(DEADLINE_MS)]);
   const remaining = () => Math.max(1000, DEADLINE_MS - (Date.now() - started));
@@ -90,5 +91,5 @@ export async function POST(req: Request) {
       }
     },
   });
-  return new Response(stream, { headers: { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-store" } });
+  return new Response(stream, { headers: { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-store", ...cookie } });
 }

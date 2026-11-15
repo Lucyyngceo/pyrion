@@ -1,9 +1,10 @@
 // The server-side entry point: providers from the environment, one shared budget, one call that applies all of it.
 
 import { createHash, timingSafeEqual } from "node:crypto";
+import { deviceCookie, deviceKey, newDeviceId, readDeviceId } from "./device.ts";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { createBudget, RateLimited, type Budget, type BudgetState, type BudgetStore } from "./budget.ts";
+import { createBudget, type Visitor, RateLimited, type Budget, type BudgetState, type BudgetStore } from "./budget.ts";
 import { clientModels, loadProviders, type Provider } from "./config.ts";
 import { complete, NoModelAvailable, type CompleteArgs, type Completion } from "./router.ts";
 
@@ -62,6 +63,8 @@ export function budget(): Budget {
   g.__pyrionBudget ??= createBudget({
     perVisitorPerHour: numEnv("PYRION_VISITOR_LIMIT_PER_HOUR", 20),
     perVisitorPrimaryPerHour: numEnv("PYRION_VISITOR_PRIMARY_PER_HOUR", 10),
+    perNetworkPerHour: numEnv("PYRION_NETWORK_LIMIT_PER_HOUR", 120),
+    perNetworkPrimaryPerHour: numEnv("PYRION_NETWORK_PRIMARY_PER_HOUR", 60),
     dailyCap: numEnv("PYRION_DAILY_REQUEST_CAP", 300),
     store: fileStore,
   });
@@ -88,6 +91,19 @@ export function visitorId(req: Request): string {
   return "shared";
 }
 
+/**
+ * Who is asking, for the rate limits: the anonymous device (cookie) and the network (trusted client IP, as above).
+ * `setCookie` is set when the request has no valid device cookie: the response should send it.
+ */
+export function visitorFor(req: Request): { visitor: { device: string | null; network: string }; setCookie?: string } {
+  const network = visitorId(req);
+  const id = readDeviceId(req.headers.get("cookie"));
+  if (id) return { visitor: { device: deviceKey(id), network } };
+  const fresh = newDeviceId();
+  // This request counts against the network's own bucket; the next one carries the new cookie.
+  return { visitor: { device: null, network }, setCookie: deviceCookie(fresh) };
+}
+
 /** True only when visitors can be told apart: the proxy is trusted and its secret is configured. */
 export const visitorIsolation = () => process.env.PYRION_TRUST_PROXY === "1" && (process.env.PYRION_PROXY_SECRET ?? "") !== "";
 
@@ -112,7 +128,7 @@ export function selectableModels(): string[] {
 }
 
 /** complete() with the budget applied: the daily cap and the visitor's quota send the primary provider's traffic to the fallback. */
-export async function askLlm(args: CompleteArgs, visitor?: string): Promise<Completion> {
+export async function askLlm(args: CompleteArgs, visitor?: Visitor): Promise<Completion> {
   const b = budget();
   const ps = providers();
   if (ps.length === 0) throw new NoModelAvailable("no language-model provider is configured");

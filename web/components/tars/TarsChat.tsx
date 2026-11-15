@@ -221,6 +221,9 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
           Send
         </button>
       </form>
+      <p data-help="tars-privacy" className="tars-privacy small muted">
+        No account. Your conversations stay in this browser. An anonymous device id (a random number) is used only for fair rate limits.
+      </p>
       </div>
     </div>
   );

@@ -17,6 +17,10 @@ export interface BudgetOptions {
   perVisitorPerHour: number;
   /** Requests per visitor per hour on the primary provider; past it that visitor is served by the fallback. */
   perVisitorPrimaryPerHour: number;
+  /** Questions per network (one public IP, for example a venue's Wi-Fi) per hour. Higher than a device's, so several devices fit and clearing a cookie cannot bypass it. */
+  perNetworkPerHour?: number;
+  /** Requests per network per hour on the primary provider. */
+  perNetworkPrimaryPerHour?: number;
   /** Requests per UTC day on the primary provider. 0 means 0. */
   dailyCap: number;
   /** Hard cap on remembered visitors (least recently used are dropped). */
@@ -24,6 +28,9 @@ export interface BudgetOptions {
   now?: () => number;
   store?: BudgetStore;
 }
+
+/** A visitor: a plain key (one bucket), or a device and the network it comes from (two buckets, both must have room). */
+export type Visitor = string | { device: string | null; network: string };
 
 export class RateLimited extends Error {
   retryAfterSeconds: number;
@@ -63,25 +70,37 @@ export function createBudget(opts: BudgetOptions) {
     return recent;
   };
 
+  const perNetwork = opts.perNetworkPerHour ?? opts.perVisitorPerHour * 6;
+  const perNetworkPrimary = opts.perNetworkPrimaryPerHour ?? opts.perVisitorPrimaryPerHour * 6;
+  /** The buckets a visitor counts against, with their limits. No cookie: the "device" bucket is the network's own, so a caller without a cookie is still limited. */
+  const buckets = (v: Visitor): { key: string; ask: number; primary: number }[] =>
+    typeof v === "string"
+      ? [{ key: v, ask: opts.perVisitorPerHour, primary: opts.perVisitorPrimaryPerHour }]
+      : [
+          { key: v.device ? `d:${v.device}` : `nc:${v.network}`, ask: opts.perVisitorPerHour, primary: opts.perVisitorPrimaryPerHour },
+          { key: `n:${v.network}`, ask: perNetwork, primary: perNetworkPrimary },
+        ];
+
   return {
-    /** Count one question for this visitor; throws RateLimited past the hourly limit. */
-    visitor(id: string): void {
+    /** Count one question for this visitor; throws RateLimited past the hourly limit of any of its buckets. */
+    visitor(v: Visitor): void {
       const t = now();
-      const recent = touch(asks, id, t);
-      if (recent.length >= opts.perVisitorPerHour) throw new RateLimited((recent[0] + HOUR - t) / 1000);
-      recent.push(t);
+      const bs = buckets(v);
+      const recents = bs.map((b) => ({ b, recent: touch(asks, b.key, t) }));
+      for (const { b, recent } of recents) if (recent.length >= b.ask) throw new RateLimited((recent[0] + HOUR - t) / 1000);
+      for (const { recent } of recents) recent.push(t);
     },
     /** May this visitor use the primary provider now (daily cap and personal quota)? */
-    primaryAllowed(visitor?: string): boolean {
+    primaryAllowed(visitor?: Visitor): boolean {
       roll();
       if (state.used >= opts.dailyCap) return false;
-      if (visitor !== undefined && touch(primary, visitor, now()).length >= opts.perVisitorPrimaryPerHour) return false;
+      if (visitor !== undefined && buckets(visitor).some((b) => touch(primary, b.key, now()).length >= b.primary)) return false;
       return true;
     },
-    recordPrimary(visitor?: string): void {
+    recordPrimary(visitor?: Visitor): void {
       roll();
       state.used++;
-      if (visitor !== undefined) touch(primary, visitor, now()).push(now());
+      if (visitor !== undefined) for (const b of buckets(visitor)) touch(primary, b.key, now()).push(now());
       opts.store?.save(state);
     },
     recordSafety(): void {

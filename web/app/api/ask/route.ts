@@ -5,7 +5,7 @@
 // engine converts them. Narrate: the client sends only a target; the server runs the engine itself, writes the counts and
 // verdicts with code, asks the model for context only, and checks that context before it can reach the page.
 
-import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorId } from "@/lib/llm";
+import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorFor } from "@/lib/llm";
 import { displayName, openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, parseTargetReply, readByCode, questionHasOxygenPartialPressure, renderVerdicts, shapeTarget } from "@/lib/ask-core";
@@ -75,6 +75,9 @@ const parsesAsObject = (t: string) => {
 };
 
 export async function POST(req: Request) {
+  const { visitor, setCookie } = visitorFor(req);
+  // Every reply carries the device cookie when the request had none.
+  const json = (body: unknown, status = 200) => Response.json(body, { status, headers: { "Cache-Control": "no-store", ...(setCookie ? { "Set-Cookie": setCookie } : {}) } });
   if (providers().length === 0) return json({ error: `Structured mode: add a key to enable questions. ${STRUCTURED}` }, 503);
   // The body is read through a hard limit: a huge or endless upload is refused before it is buffered.
   const declared = Number(req.headers.get("content-length") ?? "0");
@@ -89,7 +92,6 @@ export async function POST(req: Request) {
   }
   // Visitors may choose only the models PYRION_CLIENT_MODELS allows; anything else uses the default.
   const model = typeof body.model === "string" && selectableModels().includes(body.model) ? body.model : undefined;
-  const visitor = visitorId(req);
   // One deadline for the whole step, started now: the content check and the model calls share it.
   const started = Date.now();
   const deadline = AbortSignal.any([req.signal, AbortSignal.timeout(DEADLINE_MS)]);

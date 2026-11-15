@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createBudget, RateLimited } from "../lib/llm/budget.ts";
+import { deviceCookie, deviceKey, newDeviceId, readDeviceId } from "../lib/llm/device.ts";
 import { clientModels, loadProviders, openWeightsLabel, publicConfig } from "../lib/llm/config.ts";
 import { cleanModelText } from "../lib/llm/clean.ts";
 import { numEnv, visitorId, visitorIsolation } from "../lib/llm/index.ts";
@@ -435,4 +436,56 @@ test("GLM-5.3 (reasoning required): effort instead of enabled:false, room to thi
   const r = await complete({ messages }, { providers: glmProviders, fetch: g, down: new Map() });
   assert.equal(r.meta.provider, "nim");
   assert.deepEqual(openWeightsLabel("z-ai/glm-5.3"), { license: "GLM-5.3 License (permissive; Z.AI)", source: "https://huggingface.co/zai-org/GLM-5.3" });
+});
+
+test("device id: a random 128-bit number in an HttpOnly SameSite=Lax cookie; bad or missing cookies are not accepted", () => {
+  const id = newDeviceId();
+  assert.match(id, /^[0-9a-f]{32}$/);
+  assert.notEqual(id, newDeviceId());
+  const c = deviceCookie(id, true);
+  assert.match(c, /HttpOnly/);
+  assert.match(c, /SameSite=Lax/);
+  assert.match(c, /Secure/);
+  assert.match(c, /Max-Age=31536000/);
+  assert.ok(!deviceCookie(id, false).includes("Secure"));
+  assert.equal(readDeviceId(`a=1; pyrion_device=${id}; b=2`), id);
+  assert.equal(readDeviceId("pyrion_device=short"), null);
+  assert.equal(readDeviceId("pyrion_device=" + "z".repeat(32)), null);
+  assert.equal(readDeviceId(null), null);
+  assert.notEqual(deviceKey(id), id, "limits see a hash, not the id");
+});
+
+test("rate limits per device and per network: two devices on one IP have separate buckets; the network cap holds across devices; no cookie is still limited", () => {
+  const t = 1_000_000;
+  const b = createBudget({ perVisitorPerHour: 3, perVisitorPrimaryPerHour: 2, perNetworkPerHour: 5, perNetworkPrimaryPerHour: 3, dailyCap: 100, now: () => t });
+  const A = { device: "devA", network: "wifi" };
+  const B = { device: "devB", network: "wifi" };
+  for (let i = 0; i < 3; i++) b.visitor(A);
+  assert.throws(() => b.visitor(A), RateLimited, "device A is out");
+  b.visitor(B); // device B on the same Wi-Fi still has its own allowance
+  b.visitor(B);
+  // the network has now seen 5 questions: the cap holds across devices
+  assert.throws(() => b.visitor({ device: "devC", network: "wifi" }), RateLimited, "the network cap applies to a new device");
+  // clearing the cookie (a fresh device id) does not bypass the network cap
+  assert.throws(() => b.visitor({ device: "freshAfterClearing", network: "wifi" }), RateLimited);
+  // another network is untouched
+  b.visitor({ device: "devA2", network: "cafe" });
+  // no cookie: a caller without one is limited too (by the network's own no-cookie bucket)
+  const c = createBudget({ perVisitorPerHour: 2, perVisitorPrimaryPerHour: 2, perNetworkPerHour: 50, perNetworkPrimaryPerHour: 50, dailyCap: 100, now: () => t });
+  const N = { device: null, network: "wifi" };
+  c.visitor(N);
+  c.visitor(N);
+  assert.throws(() => c.visitor(N), RateLimited);
+  // the primary provider: a device's quota is 2 here, the network's 3
+  const d = createBudget({ perVisitorPerHour: 9, perVisitorPrimaryPerHour: 2, perNetworkPerHour: 50, perNetworkPrimaryPerHour: 3, dailyCap: 100, now: () => t });
+  d.recordPrimary(A);
+  d.recordPrimary(A);
+  assert.equal(d.primaryAllowed(A), false);
+  assert.equal(d.primaryAllowed(B), true);
+  d.recordPrimary(B);
+  assert.equal(d.primaryAllowed({ device: "devC", network: "wifi" }), false, "the network's primary quota is used up");
+  // plain string visitors behave as before
+  const e = createBudget({ perVisitorPerHour: 1, perVisitorPrimaryPerHour: 1, dailyCap: 5, now: () => t });
+  e.visitor("x");
+  assert.throws(() => e.visitor("x"), RateLimited);
 });
