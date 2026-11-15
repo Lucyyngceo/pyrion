@@ -15,6 +15,17 @@ const TOOLS = [
   ["search_nasa_library", "passages from NASA documents"],
   ["list_investigations", "the 24 PSI investigations"],
   ["list_presets", "ISS air, Moon Base, NASA atmospheres (Moon and Mars)"],
+  ["oxygen_partial_pressure", "pO₂ in kPa and psia, computed by code"],
+  ["compare_two_atmospheres", "two atmospheres by the numbers"],
+  ["convert_units", "pressure and temperature units"],
+  ["gravity_value", "Moon, Mars, Earth gravity with its source"],
+];
+const PROMPTS = [
+  ["assess_habitat_atmosphere", "any cabin or habitat, step by step"],
+  ["moon_base_brief", "the challenge's Moon Base, end to end"],
+  ["mars_habitat_check", "Mars next to the Moon and microgravity"],
+  ["find_nasa_evidence", "NASA quotes on a topic"],
+  ["explain_a_verdict", "why one investigation applies or not"],
 ];
 
 function Copy({ text, id }: { text: string; id: string }) {
@@ -64,6 +75,17 @@ export default function McpPanel() {
         </p>
         <ul className="mcp-tools small">
           {TOOLS.map(([n, d]) => (
+            <li key={n}>
+              <code>{n}</code> {d}
+            </li>
+          ))}
+        </ul>
+        <p className="small" style={{ marginTop: 10 }}>
+          <strong>Skills (MCP prompts)</strong> your assistant can pick, each a guided recipe over the tools, plus three reference
+          resources (method, verdicts, citing):
+        </p>
+        <ul className="mcp-tools small">
+          {PROMPTS.map(([n, d]) => (
             <li key={n}>
               <code>{n}</code> {d}
             </li>
