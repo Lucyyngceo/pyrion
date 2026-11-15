@@ -2,19 +2,19 @@
 id: add-source-ntrs
 chapter: add-a-source
 order: 50
-dataHelp: add-source-ntrs
+dataHelp: 
 title: NTRS number field
 keywords: ntrs number field, add source ntrs, envelope
 page: envelope
 link: /envelope
-highlight: [data-help="add-source-ntrs"]
+highlight: 
 ---
-What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. A text box for an NTRS document number.
+What it is: NTRS number field, a control from the removed Add a source design. It is not available on the current site.
 
-What it shows: Digits only, or the digits of a pasted ntrs.nasa.gov link.
+What it shows: Nothing on the live dashboard or Data page. The former dialog and its controls have been removed.
 
-How to use it: Type 20250010653 or paste a citation link.
+How to use it: There is no current action for this control. Open the Data page to inspect the curated evidence and its sources.
 
-Example: 20250010653.
+Example: Use the Data page to find an investigation and follow its DOI or source receipts.
 
-What it does not do: It never fetches the text you type: the server will build the address itself.
+What it does not do: Visitors cannot upload a file, submit an NTRS number or add evidence through this removed control. No release date is confirmed.

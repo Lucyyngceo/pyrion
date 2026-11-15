@@ -15,6 +15,6 @@ What it shows: Its group and its label.
 
 How to use it: Click it or press Enter on it to run it.
 
-Example: Click "ISS cabin air" to load that scenario.
+Example: Choose the Dashboard page entry, then select ISS cabin air from the scenario tiles.
 
 What it does not do: It does not change anything until you pick it.

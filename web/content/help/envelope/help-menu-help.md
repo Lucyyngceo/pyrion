@@ -13,7 +13,7 @@ What it is: The first item of the ? menu.
 
 What it shows: Nothing by itself; it opens the manual at /help.
 
-How to use it: Click it to read PYRION's documentation: twelve chapters, a table of contents, search, and a Show me link on every topic.
+How to use it: Click Help to open the manual at /help. It has thirteen chapters, a table of contents and search. Topics with a highlight target also offer Show me.
 
 Example: Open Help and read chapter 2, The Envelope page.
 

@@ -11,7 +11,7 @@ highlight: [data-help="nav-menu"]
 ---
 What it is: The hamburger button of the top bar on a small screen.
 
-What it shows: The same links as the bar: Envelope, Planner, TARS SI, Investigations and the More group.
+What it shows: Example, Dashboard, Mission Planner, Evidence gaps, Investigations, Ask TARS and the More group.
 
 How to use it: Tap it to open or close the links.
 

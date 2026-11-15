@@ -11,7 +11,7 @@ sources: doi:10.60555/byp8-h018, psi-data/PSI-68/_investigation/PSI-68.json sect
 ---
 PSI-68 FLEX-2 is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Flame Extinguishment Experiment - 2”. Release 30-Sep-2019, version 6. DOI [10.60555/byp8-h018](https://doi.org/10.60555/byp8-h018). License: CC0-1.0.
 
-In plain words: this page says what PSI-68 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 126 of its 129 records are usable as evidence.
+In plain words: this topic explains PSI-68, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-68) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -31,49 +31,32 @@ As recorded by PSI: flight program: International Space Station (ISS); hardware:
 - Gravity regime: **microgravity** for test(s) `*` (quote: “4. Allow the droplet to stabilize in the microgravity environment.”, `section=approach`, PSI-68.json).
 
 ## Fuel and flame configuration
-fuel phase: liquid (1); diluent: N2 (8), He (8); fuel (8 distinct): IsoOctane (pure) (1), n-Octane (pure) (1), Heptane (pure) (1), Decane (pure) (1), Ethanol (pure) (1), Propanol (95%) Glycerol (5%) (mixture) (1), Heptane (50%) IsoOctane (50%) (mixture) (1), Propanol (80%) Glycerol (20%) (mixture) (1).
+fuel phase: liquid; diluent: N2, He; fuel descriptions: IsoOctane (pure), n-Octane (pure), Heptane (pure), Decane (pure), Ethanol (pure), Propanol (95%) Glycerol (5%) (mixture), Heptane (50%) IsoOctane (50%) (mixture), Propanol (80%) Glycerol (20%) (mixture).
 
 ## What was extracted
-129 condition records in `data/conditions/PSI-68.csv`: 126 usable, 3 marked `insufficient_evidence`. They cover 8 distinct tests (plus 9 records that apply to every test of the investigation).
 
-| Variable | Usable records | Insufficient |
-|---|---|---|
-| gravity regime | 1 | 1 |
-| fuel phase | 1 | 2 |
-| diluent | 16 | 0 |
-| ambient O2 (mole fraction) | 32 | 0 |
-| pressure (kPa) | 40 | 0 |
-| flow velocity (cm/s) | 8 | 0 |
-| initial droplet diameter (mm) | 8 | 0 |
-| ambient temperature (K) | 8 | 0 |
-| fuel | 8 | 0 |
-| platform | 4 | 0 |
+The [live investigation sheet](/investigations/PSI-68) shows the extracted variables, test identifiers, condition ranges and recorded outcomes. The [Data page](/data) reports the current record counts. These can change when extraction or validation changes.
 
-Measured ranges over the usable records:
-- ambient O2 (mole fraction): 0.17 to 0.3 (that is 17 to 30 % by volume, arithmetic on the stored fraction)
-- pressure (kPa): 50.6625 to 303.975
-- flow velocity (cm/s): 0.1 to 5
-- initial droplet diameter (mm): 1.5 to 5
-- ambient temperature (K): 298.15 to 298.15
+Read each value's source and status. Records flagged as insufficient evidence are not usable evidence; rejected rows are separate from accepted records. A raw download row count does not establish how many records the engine can use.
 
 ## What could not be extracted, and why
 Records kept as `insufficient_evidence` carry their reason in the `note` field. The most common ones:
 
-- `gravity_regime` (1): The sentence sits in the PSI 'hypothesis' field and gives the rationale for microgravity, so it is proposed as ambiguous (brief rule 3). The double space after 'processes,' and the run-on ending are as written in the record.
-- `fuel_phase` (1): Pre-flight requirement ('shall') in SRD 5.1.1 Test Fuels (printed page 33), dated March 15, 2010; 'all liquids' are the planned test fuels by context. Planned, not as-run: the PSI experimental table lists fuels the SRD does not.
-- `fuel_phase` (1): Objective statement in the pre-flight SRD introduction (printed page 1), not a description of the tests run; '[...]' skips 'fundamental', hyphenated across a line break.
+- `gravity_regime`: The sentence sits in the PSI 'hypothesis' field and gives the rationale for microgravity, so it is proposed as ambiguous (brief rule 3). The double space after 'processes,' and the run-on ending are as written in the record.
+- `fuel_phase`: Pre-flight requirement ('shall') in SRD 5.1.1 Test Fuels (printed page 33), dated March 15, 2010; 'all liquids' are the planned test fuels by context. Planned, not as-run: the PSI experimental table lists fuels the SRD does not.
+- `fuel_phase`: Objective statement in the pre-flight SRD introduction (printed page 1), not a description of the tests run; '[...]' skips 'fundamental', hyphenated across a line break.
 
 Ground (1 g) data check: `requirements_only` in the ground-test inventory (see the article on the ground inventory).
 
-Published papers listed for this investigation: 48 (see `data/manifest/publications.csv`).
+Publications are listed on the [investigation sheet](/investigations/PSI-68) with their identifiers and sources.
 
 ## For engineers
-- `method`: 120 `table` records (read by code from a PSI table; the quote is the column header) and 9 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
+- `method` distinguishes table cells from document quotations. The live download supplies each record's method and status; an extracted status does not imply independent scientific verification.
 - Source files used (path under `data/raw/`):
-  - `psi-data/PSI-68/Experimental table/PSI-68_Experimental table_Flex2.csv` (120 records)
-  - `psi-data/PSI-68/_investigation/PSI-68.json` (5 records)
-  - `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf` (2 records)
-  - `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 DoD.docx` (2 records)
-- Every value is located in its source by code; see the articles on how values are located and on validation severities.
+  - `psi-data/PSI-68/Experimental table/PSI-68_Experimental table_Flex2.csv`
+  - `psi-data/PSI-68/_investigation/PSI-68.json`
+  - `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 SRD Final.pdf`
+  - `psi-data/PSI-68/Science Documents/PSI-68_Science Documents_FLEX-2 DoD.docx`
+- Each record identifies its source. See the Data and Proof pages for how many values the checker located and which formats it could not check.
 - Investigation record: `data/raw/psi-data/PSI-68/_investigation/PSI-68.json` (the text fields quoted above).
-- Accession `PSI-68`; DOI `10.60555/byp8-h018`; PSI version 6; files in version 10156, files selected for PYRION 75.
+- Accession `PSI-68`; DOI `10.60555/byp8-h018`; PSI version 6.

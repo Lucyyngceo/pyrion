@@ -17,4 +17,4 @@ How to use it: Read top to bottom.
 
 Example: "Run at least one test in partial gravity".
 
-What it does not do: It is an ordering rule by the engine.
+What it does not do: It does not establish a NASA research priority or recommend a flight design; it applies PYRION's ordering rule.

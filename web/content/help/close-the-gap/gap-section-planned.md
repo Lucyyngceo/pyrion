@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="gap-section-planned"]
 ---
-What it is: FM2 and LUCI and what their sources state.
+What it is: The cited FM2 plan and LUCI source descriptions. FM2 is planned; LUCI has flight results from simulated partial gravity in a rotating vehicle.
 
 What it shows: Their quoted plans with qualifiers, for example LUCI's simulated partial gravity from a rotating vehicle.
 

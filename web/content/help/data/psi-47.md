@@ -11,7 +11,7 @@ sources: doi:10.60555/ztgj-d202, psi-data/PSI-47/_investigation/PSI-47.json sect
 ---
 PSI-47 DAFT / DAFT-2 is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2”. Release 01-Jun-2009, version 5. DOI [10.60555/ztgj-d202](https://doi.org/10.60555/ztgj-d202). License: CC0-1.0.
 
-In plain words: this page says what PSI-47 looked at and why PYRION holds no condition values from it.
+In plain words: this topic explains PSI-47, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-47) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -25,15 +25,12 @@ PSI hypothesis (quoted, section `hypothesis`):
 As recorded by PSI: flight program: International Space Station (ISS); hardware: TSI P-Trak; managing center: Glenn Research Center (GRC).
 
 ## What was extracted
-**No condition records were extracted from PSI-47.** Why: DAFT / DAFT-2 tested aerosol instruments with Arizona Road Dust in ISS nitrogen: no flame, so there is no combustion condition to extract. Its table lists hardware, dust and sampling location only.
 
-This is a statement about what PSI holds for this investigation and what the extraction rules allow, not about the science. An investigation with no usable record never moves a verdict: the engine reads it as “not enough evidence”.
+The audited extraction does not provide condition records for this investigation. DAFT / DAFT-2 tested aerosol instruments with Arizona Road Dust in ISS nitrogen: no flame, so there is no combustion condition to extract. Its table lists hardware, dust and sampling location only.
 
-Ground (1 g) data check: classed `partial` in the ground-test inventory.
-
-Published papers listed for this investigation: 2 (see `data/manifest/publications.csv`).
+Check the [live investigation sheet](/investigations/PSI-47) and [Data page](/data) for current coverage. Investigations without extracted records are listed separately on the dashboard, without a verdict.
 
 ## For engineers
 - No file `data/conditions/PSI-47.csv` exists. The investigation is still one of the 24 combustion investigations in `data/manifest/investigations.csv`.
 - Investigation record: `data/raw/psi-data/PSI-47/_investigation/PSI-47.json` (the text fields quoted above).
-- Accession `PSI-47`; DOI `10.60555/ztgj-d202`; PSI version 5; files in version 33, files selected for PYRION 27.
+- Accession `PSI-47`; DOI `10.60555/ztgj-d202`; PSI version 5.

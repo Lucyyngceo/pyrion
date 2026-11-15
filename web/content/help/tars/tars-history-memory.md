@@ -6,4 +6,4 @@ order: 6
 ---
 TARS remembers the conversation. A follow-up such as "and at 25 %?" keeps the previous condition and changes only the oxygen.
 
-The **History** button opens your conversations. You can start a new chat, open an old one, rename it, delete one, or delete all. Conversations are kept in this browser only; nothing is stored on a server. An anonymous device id, a random number in a cookie, is used only for fair rate limits.
+Your conversations are kept in this browser. The full TARS page shows a conversation list; the floating panel offers History to open the list. You can start, reopen, rename or delete chats. Messages and relevant context are sent to the server when answering; local history storage is separate from that processing. A random device identifier is used for rate limits.

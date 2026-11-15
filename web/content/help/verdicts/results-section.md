@@ -11,7 +11,7 @@ highlight: [data-help="results-section"]
 ---
 What it is: The long list under the dashboard.
 
-What it shows: One card per investigation with its verdict, reasons and receipts.
+What it shows: A verdict card for each investigation with extracted records, plus a separate list of investigations with no extracted records and no verdict.
 
 How to use it: Scroll through it or open a card from the chart.
 

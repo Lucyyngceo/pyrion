@@ -8,7 +8,7 @@ dataHelp: [gap-section-remaining, gap-section-priority, gap-section-solids, gap-
 sources: ["engine/src/experiments.ts", "NASA-STD-6001B PDF p. 28", "NTRS 20260001966 PDF p. 10", "NTRS 20250010653 PDF p. 12"]
 ---
 
-**The remaining gap** is the part of the test matrix that no planned experiment is stated to cover. For a lunar-gravity target, it is every point that FM2's stated conditions do not fall on (FM2 starts at 8.2 psia with 37, 33, 29 or 25 % oxygen); for LUCI the sentence says coverage "is not stated by the source". For a target that is not at partial gravity (microgravity, for example), the whole matrix remains, because FM2 and LUCI are about lunar gravity.
+**The remaining gap** is the part of PYRION's proposed matrix that the cited plans are not stated to cover. FM2's plan concerns one fabric at lunar gravity, not every partial-gravity level or solid material. LUCI coverage cannot be placed without stated numerical conditions. For other gravity regimes, the cited plans do not establish coverage.
 
 **The order of priority** is a fixed rule, not a judgement:
 

@@ -8,7 +8,7 @@ dataHelp: [tars-fingerprint]
 sources: ["engine/src/sha256.ts"]
 ---
 
-A 64-character code computed from the whole result. Same question, same data, same engine: same fingerprint. A different fingerprint means something changed.
+A 64-character code computed from an engine evaluation. The same interpreted target, records, engine and options give the same fingerprint. A natural-language question alone does not identify all of those inputs.
 
 ## For engineers
 

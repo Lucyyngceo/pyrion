@@ -11,7 +11,7 @@ sources: doi:10.60555/m6pj-a914, psi-data/PSI-39/_investigation/PSI-39.json sect
 ---
 PSI-39 CFI is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Cool Flames Investigation”. Release 18-Sep-2024, version 4. DOI [10.60555/m6pj-a914](https://doi.org/10.60555/m6pj-a914). License: CC0-1.0.
 
-In plain words: this page says what PSI-39 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 346 of its 357 records are usable as evidence.
+In plain words: this topic explains PSI-39, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-39) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -31,47 +31,34 @@ As recorded by PSI: flight program: International Space Station (ISS); hardware:
 - **No usable gravity-regime record.** Gravity is only recorded when a source sentence states it for the tests; the platform is never used for it. The engine reads gravity here as insufficient evidence.
 
 ## Fuel and flame configuration
-fuel phase: liquid (2); diluent: N2 (69), mixed (14); fuel (3 distinct): [.60]/[.40] C12H26/iso-dodecane (41), [.75]/[.25] C12H26/iso-dodecane (24), C12H26 (22).
+fuel phase: liquid; diluent: N2, mixed; fuel descriptions: [.60]/[.40] C12H26/iso-dodecane, [.75]/[.25] C12H26/iso-dodecane, C12H26.
 
 ## What was extracted
-357 condition records in `data/conditions/PSI-39.csv`: 346 usable, 11 marked `insufficient_evidence`. They cover 79 distinct tests (plus 13 records that apply to every test of the investigation).
 
-| Variable | Usable records | Insufficient |
-|---|---|---|
-| gravity regime | 0 | 3 |
-| fuel phase | 2 | 0 |
-| diluent | 83 | 0 |
-| ambient O2 (mole fraction) | 83 | 4 |
-| pressure (kPa) | 87 | 0 |
-| ambient temperature (K) | 0 | 1 |
-| fuel | 87 | 0 |
-| flow configuration | 0 | 3 |
-| platform | 4 | 0 |
+The [live investigation sheet](/investigations/PSI-39) shows the extracted variables, test identifiers, condition ranges and recorded outcomes. The [Data page](/data) reports the current record counts. These can change when extraction or validation changes.
 
-Measured ranges over the usable records:
-- ambient O2 (mole fraction): 0.17 to 0.21 (that is 17 to 21 % by volume, arithmetic on the stored fraction)
-- pressure (kPa): 50.6625 to 506.625
+Read each value's source and status. Records flagged as insufficient evidence are not usable evidence; rejected rows are separate from accepted records. A raw download row count does not establish how many records the engine can use.
 
 ## What could not be extracted, and why
 Records kept as `insufficient_evidence` carry their reason in the `note` field. The most common ones:
 
-- `o2_mole_fraction` (4): header gives no unit
-- `gravity_regime` (1): Rationale statement (Final Report section 3b); it implies, but does not state, that the CFI tests were burned in microgravity. 'onboard the ISS' is a platform, not a gravity statement.
-- `gravity_regime` (1): Hypothesis field: names microgravity as the intended condition, not as a reported condition of the tests.
-- `gravity_regime` (1): Pre-flight objective (SRD dated November 7, 2014, 'proposed experiments'); not a statement about the tests as run.
-- `flow_configuration` (1): Pre-flight plan (SRD dated November 7, 2014, section 6.1, 'proposed CFI experiments'); the Final Report (2020) does not restate the flow configuration. 'q quiescent' and 'envrionment' are typos in the source, kept verbatim.
+- `o2_mole_fraction`: header gives no unit
+- `gravity_regime`: Rationale statement (Final Report section 3b); it implies, but does not state, that the CFI tests were burned in microgravity. 'onboard the ISS' is a platform, not a gravity statement.
+- `gravity_regime`: Hypothesis field: names microgravity as the intended condition, not as a reported condition of the tests.
+- `gravity_regime`: Pre-flight objective (SRD dated November 7, 2014, 'proposed experiments'); not a statement about the tests as run.
+- `flow_configuration`: Pre-flight plan (SRD dated November 7, 2014, section 6.1, 'proposed CFI experiments'); the Final Report (2020) does not restate the flow configuration. 'q quiescent' and 'envrionment' are typos in the source, kept verbatim.
 
 Ground (1 g) data check: `none` in the ground-test inventory (see the article on the ground inventory).
 
-Published papers listed for this investigation: 7 (see `data/manifest/publications.csv`).
+Publications are listed on the [investigation sheet](/investigations/PSI-39) with their identifiers and sources.
 
 ## For engineers
-- `method`: 344 `table` records (read by code from a PSI table; the quote is the column header) and 13 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
+- `method` distinguishes table cells from document quotations. The live download supplies each record's method and status; an extracted status does not imply independent scientific verification.
 - Source files used (path under `data/raw/`):
-  - `psi-data/PSI-39/Experimental table/PSI-39_Experimental table_CFI.csv` (344 records)
-  - `psi-data/PSI-39/_investigation/PSI-39.json` (5 records)
-  - `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf` (5 records)
-  - `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf` (3 records)
-- Every value is located in its source by code; see the articles on how values are located and on validation severities.
+  - `psi-data/PSI-39/Experimental table/PSI-39_Experimental table_CFI.csv`
+  - `psi-data/PSI-39/_investigation/PSI-39.json`
+  - `psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf`
+  - `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Each record identifies its source. See the Data and Proof pages for how many values the checker located and which formats it could not check.
 - Investigation record: `data/raw/psi-data/PSI-39/_investigation/PSI-39.json` (the text fields quoted above).
-- Accession `PSI-39`; DOI `10.60555/m6pj-a914`; PSI version 4; files in version 2812, files selected for PYRION 41.
+- Accession `PSI-39`; DOI `10.60555/m6pj-a914`; PSI version 4.

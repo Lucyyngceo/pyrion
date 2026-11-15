@@ -15,6 +15,6 @@ What it shows: A line of four planned tests at 8.2 psia, labelled planned, not i
 
 How to use it: Tick it.
 
-Example: See the line and the 9 of 81 cells it covers.
+Example: Compare the baseline with the layer labelled FM2 as planned; read its current cells-gained count in the table.
 
-What it does not do: FM2 has not been measured; its points are planned.
+What it does not do: The displayed points are planned starting conditions, not measured FM2 results. Their geometric coverage is hypothetical.

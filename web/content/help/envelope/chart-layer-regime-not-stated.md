@@ -11,10 +11,10 @@ highlight: [data-help="chart-layer-regime-not-stated"]
 ---
 What it is: A chip for tests whose regime is not fully stated.
 
-What it shows: The count of points whose gravity or fuel phase is unknown.
+What it shows: The count of points grouped under Regime not stated. Hover the chip to read the included regime combinations; a missing axis is not guessed.
 
 How to use it: Click to hide or show them.
 
 Example: Hide them to simplify the chart.
 
-What it does not do: These points are never used as a match: PYRION does not guess a regime.
+What it does not do: Missing axes prevent a match when your condition requires them. An axis left open is not compared. Hiding this layer changes the view, not the verdict.

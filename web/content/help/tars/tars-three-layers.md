@@ -11,3 +11,5 @@ order: 2
 **🧠 TARS own reasoning.** TARS's own explanation of the physics. It is labelled "not verified against a source". A number in it that is not from a tool or a verified quote is replaced by "[number removed: not from a source]".
 
 When a block is withheld or a number removed, a small line says so.
+
+Code checks quotations and numbers, not the scientific correctness of an explanation. The own-reasoning layer and a second opinion can be wrong; use the engine verdict and inspect the cited source.

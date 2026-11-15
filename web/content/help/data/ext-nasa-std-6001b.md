@@ -9,9 +9,9 @@ page: data
 dataHelp:
 sources: https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf, nasa/nasa-std-6001b/nasa-std-6001b.pdf page=1
 ---
-NASA-STD-6001B is the NASA technical standard for flammability, offgassing and compatibility of materials used in spacecraft. Its Test 1 is the 1 g upward flame propagation test: a sample is ignited near the bottom and the flame spreads upward. Materials that pass are cleared for flight use; materials that fail are restricted.
+PYRION cites a historical copy of NASA-STD-6001B for its upward flame propagation test (Test 1), performed in normal gravity. Passing that test alone is not a blanket clearance for every material, configuration or flight environment.
 
-In plain words: this is the ground test every spacecraft material must pass today. The whole question behind PYRION is how well that 1 g test predicts what happens at lunar gravity or in microgravity, so the standard is the baseline the other evidence is compared with.
+NASA currently lists NASA-STD-6001B with Change 3, dated 9 June 2025, as active. For current requirements and applicability, use [NASA's standard record](https://standards.nasa.gov/standard/nasa/nasa-std-6001). The historical copy used by PYRION remains the source for the quotations and page numbers in this project.
 
 The cover page reads: “NASA TECHNICAL STANDARD NASA-STD-6001B [...] Approved: 08-26-2011”, and it is “APPROVED FOR PUBLIC RELEASE”.
 
@@ -22,4 +22,4 @@ What PYRION uses it for (from the manifest): **the 1-g upward flammability test 
 - File `data/raw/nasa/nasa-std-6001b/nasa-std-6001b.pdf` (1514218 bytes), SHA-256 `3565820b2267be5252ed48653d23491cf81dc151155ea176fe5480dc162ee03a`, downloaded from https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf.
 - TARS library: 108 pages with a text layer.
 - Referenced in the repository by: `engine/src/experiments.ts`.
-- Not a PSI investigation: any record from it would use an accession `NTRS-<id>` and is labelled external; none is mixed into `data/conditions/`.
+- This background document is not a PSI investigation. Its source is cited explicitly; using it does not add a new PSI investigation to the catalogue.

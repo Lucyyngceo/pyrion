@@ -7,30 +7,17 @@ order: 4
 dataHelp: [tars-bubble]
 sources: ["engine/src/extract.ts"]
 ---
+When you type a question, code first looks for recognised quantities: oxygen next to a percent or fraction, pressure with a unit, a gravity level, or a gravity name such as Moon, Mars, microgravity or normal gravity. It preserves the matched input text; code performs the unit conversions.
 
-When you type a question, **code reads it first**. A deterministic extractor looks for what it can recognise with certainty: an oxygen figure next to the word oxygen, a pressure with its unit, a gravity as "0.165 g" or a word like "Moon", "Luna", "microgravity", "freefall" or "on the ground". It hands back the words **exactly as you wrote them**; the unit conversion is done afterwards by the conversion table, never by a model.
+If it cannot assign a number, it reports the unresolved input rather than silently treating it as a condition. For example:
 
-The extractor never guesses. If a number cannot be assigned, it is set aside as "left over" and reported. Some examples of what it will not assume:
+- A “2 mm sheet” does not establish thickness; “2 mm thick” states it explicitly.
+- An oxygen partial pressure is not the total pressure needed for the condition.
+- Conflicting pressures or a gravity level that disagrees with a gravity name require clarification.
+- An unrecognised spelling may not be parsed.
 
-- "a 2 mm sheet" is not a thickness (a length may be a width); only "2 mm thick" is.
-- "ppO2 of 21 kPa" is a partial pressure, not the total pressure the engine needs: it is not used, and it says why.
-- Two different pressures in one question are not resolved by picking one; both are reported.
-- A gravity number that disagrees with a gravity word ("lunar base at 1 g") is reported, not resolved.
-- Typos ("oxigen") are not corrected.
-
-What the extractor cannot read is left for the next step, where TARS SI (a language model) may help to *understand* the question, but never to convert or compute: its numbers must come from code.
+TARS can help interpret a question, but a language model does not decide a verdict or replace the unit-conversion code. Check the interpreted condition and correct it if necessary. The live chat does not guarantee a separate confirmation step before computing an answer.
 
 ## For engineers
 
-`extractQuantities(question)` (`engine/src/extract.ts:83`) returns `{ gravity?, o2?, pressure?, flow_velocity?, sample_thickness?, ambient_temperature?, leftover[], issues[] }` (raw substrings of the question), ready for `targetFromQuantities` (`engine/src/quantity.ts:682`). Text is folded (lower case, accents removed, same length) for matching only; the raw string is sliced from the original.
-
-Rules:
-
-- **Numbers:** `NUMBER_RE` excludes numbers inside words and codes ("PSI-12", "ppO2", "H2O").
-- **Oxygen:** a number followed by `%`, `percent`, `per cent`, `por ciento`, `vol%`, `mol%` **with an oxygen word (`o2`, `oxygen`, `oxigeno`) within 30 characters**; or "oxygen fraction of 0.34" / "fracción molar de oxígeno de 0,34" (the number alone).
-- **Pressure:** number + `kpa|pa|atm|atmosphere(s)|bar|mbar|psia|psig|psid|psi|mmhg|torr|barg|kpag` (+ "abs" / "(g)" qualifiers; a gauge unit is kept so the parser refuses it); phrases "sea level pressure", "normal/standard air pressure", "nivel del mar", "presión normal". A number within 25 characters after `pp O2`, "partial pressure" or "presión parcial" is an issue `partial_pressure` and goes to `leftover`.
-- **Gravity:** number + `g`/`gE`/`g0` or `1/6 g`; keywords as whole words (`GRAVITY_KEYWORDS`, `engine/src/quantity.ts`): moon, lunar, luna; mars, martian, marte, marciano; earth, ground, terrestrial, tierra, terrestre, normal gravity; microgravity, microgravedad, freefall, free fall, weightless, orbit, orbital, ISS, ingravidez, caída libre, gravedad cero, zero-g, micro-g, µg. Two classes: issue `ambiguous_gravity`; number and keyword disagreeing: issue `gravity_conflict`.
-- **Flow, thickness, ambient temperature:** number + unit and a context word within 40, 30 and 40 characters (`flow|wind|velocity|flujo`, `thick|espesor|grosor`, `ambient|room temperature|cabin temperature|ambiente`).
-- **Several values** for one quantity: kept only if all parse and agree within 0.5 %; otherwise issue `multiple_values` and all go to `leftover`.
-
-`parseQuantity` also finds gravity keywords anywhere in a text that does not start with a number (`gravityFromKeywords`); two classes give `ambiguous_gravity`. Tests: `engine/test/extract.test.ts` over the 31 questions and 11 traps of `validation/judge_battery/questions.json` (English and Spanish).
+`extractQuantities(question)` in `engine/src/extract.ts` returns matched quantity text, unresolved input and issues. `targetFromQuantities` in `engine/src/quantity.ts` parses and converts the quantities. The extractor uses context around numbers to distinguish oxygen, total pressure, flow, thickness and ambient temperature. The parser supports additional language aliases; the implementation is the reference for that vocabulary. Tests cover ambiguous values and conflicting gravity descriptions.

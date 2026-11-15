@@ -6,7 +6,7 @@ order: 990
 dataHelp: tars-compare-run
 keywords: compare, compare
 ---
-What it is: The button that runs the comparison.
+What it is: The comparison button, labelled Compare followed by the number of selected conditions.
 
 What it shows: Nothing until pressed.
 

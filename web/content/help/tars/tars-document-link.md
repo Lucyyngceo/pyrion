@@ -17,4 +17,4 @@ How to use it: Click it.
 
 Example: Read the page around the quote.
 
-What it does not do: The quote was checked against the cited page by code.
+What it does not do: Opening the document does not establish that TARS's interpretation is correct; read the cited passage in context.

@@ -3,13 +3,13 @@ id: nav-tars
 chapter: tars
 order: 10
 dataHelp: nav-tars
-title: TARS SI tab
+title: Ask TARS navigation link
 keywords: tars tab, nav tars, global
 page: global
 link: /envelope
 highlight: [data-help="nav-tars"]
 ---
-What it is: The full-width page of the TARS chat (the Traceable Applicability Reasoning System).
+What it is: The Ask TARS link in the top bar, which opens the full-width TARS SI chat at /tars.
 
 What it shows: The same chat as the floating TARS bubble, with more room and a conversation list.
 

@@ -20,10 +20,10 @@ In plain words: an AI may read the document and propose values, but it cannot ma
 | The “+ Add a source” button and the dialog | **Removed from the site** (the Envelope and Data pages no longer show it) |
 | The NTRS number field and the file chooser (CSV or Excel up to 20 MB) that check what you type or pick | Built, **not shown on the site** |
 | The strip of steps that will run | Built, **not shown on the site** (display only) |
-| The submit button | Disabled: **in the next build** |
-| Reading, extracting, verifying, locating by code, classifying, recalculating | **In the next build** |
-| The recorded run on LUCI, the external-evidence switch, before and after per scenario | **In the next build** |
-| The precision exam on the LUCI golden set | **In the next build** (the golden set itself exists today) |
+| The submit button | Disabled: **not available** |
+| Reading, extracting, verifying, locating by code, classifying, recalculating | **Planned, not available** |
+| The recorded run on LUCI, the external-evidence switch, before and after per scenario | **Planned, not available** |
+| The precision exam on the LUCI golden set | **Planned, not available** (the golden set itself exists today) |
 
 Nothing can be added to the evidence today. This chapter describes the design, not a working feature.
 

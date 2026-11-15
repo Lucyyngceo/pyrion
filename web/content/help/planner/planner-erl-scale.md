@@ -15,6 +15,6 @@ What it shows: What each level means.
 
 How to use it: Read it.
 
-Example: ERL 4 means measured at the condition.
+Example: ERL 4 is labelled measured on the page. It means at least one investigation is applicable under PYRION's rules; it does not guarantee a test at that exact condition.
 
 What it does not do: It is not a safety scale.

@@ -8,7 +8,7 @@ dataHelp: [result-doi, route-doi, comparable-doi]
 sources: ["data/manifest/investigations.csv"]
 ---
 
-A permanent web identifier for a published dataset. Every PSI investigation has one, and PYRION shows it with every result that rests on that investigation. NASA technical reports (NTRS) and NASA standards have no DOI; they are cited by their NTRS number or URL instead.
+A DOI is a persistent identifier for a published research object, such as a dataset, paper or report. PYRION shows the PSI dataset DOI with investigation results. NASA technical reports may also have DOIs; where no DOI is supplied, cite the NTRS record number or the source URL.
 
 ## For engineers
 

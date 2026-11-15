@@ -14,4 +14,4 @@ How to use it: Press it and choose Save as PDF.
 
 Example: Hand the PDF to someone who can check it.
 
-What it does not do: Printing is done by your browser.
+What it does not do: It does not generate a separate PDF on the server; use your browser's print options to save a PDF.

@@ -15,7 +15,7 @@ A language model is used for two jobs only: understanding what you typed and wor
 - **Quotes from NASA** are checked by code: the quote must be on the page of the document the model cites, with the numbers exactly as written (1.5 is never accepted for 15). If the quote is not there, the whole statement is dropped and not shown.
 - **General background knowledge** is allowed, but it is always labelled "TARS own reasoning — not verified against a source", and any number in it that does not come from a calculator or a verified quote is replaced by "[number removed: not from a source]".
 
-A model can still misunderstand a question. That is why the extractor reads the question first by code, shows you what it understood, and lets you correct it before anything is computed.
+A model can misunderstand a question or give a wrong explanation. Check the interpreted condition, the engine result and the cited source. The own-reasoning layer remains unverified, even when its numbers pass the code checks; a second opinion can also be wrong.
 
 ## For engineers
 

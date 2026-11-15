@@ -17,7 +17,7 @@ The list:
 - crawl-combustion-science-solid-fuel-ignition-and-extinction-sofie-73ee2172: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/solid-fuel-ignition-and-extinction-sofie/
 - crawl-on-science-flammability-limits-at-reduced-g-experiment-flare-349e092c: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-limits-at-reduced-g-experiment-flare/
 - crawl-oration-physical-sciences-program-fluids-combustion-facility-e5cca718: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/fluids-combustion-facility/
-- crawl-bustion-science-multi-user-droplet-combustion-apparatus-mdca-31c670fd: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/multi-user-droplet-combustion-apparatus-mdca/
+- Multi-user Droplet Combustion Apparatus (MDCA): the former direct page returned 404 during this audit. Use the [NASA Glenn Combustion Science page](https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/) to locate the current description.
 - crawl-science-biological-physical-focus-areas-combustion-science-a8cdd961: https://science.nasa.gov/biological-physical/focus-areas/combustion-science/
 - crawl-ram-science-facilities-on-the-iss-fluids-combustion-facility-7ef8640c: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/science-facilities-on-the-iss/fluids-combustion-facility/
 - crawl-se-nasa-glenn-combustion-experiment-arrives-at-space-station-2edda286: https://www.nasa.gov/news-release/nasa-glenn-combustion-experiment-arrives-at-space-station/

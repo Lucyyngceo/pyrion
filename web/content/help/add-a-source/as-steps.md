@@ -9,7 +9,7 @@ page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md
 ---
-Once built, a source goes through these steps, each visible on screen with its state (done, failed with the reason, or waiting).
+This topic describes the proposed Add a source feature. Its button and dialog were removed from the live site, and visitors cannot add evidence. The design below is an archived proposal; no release date is confirmed.
 
 In plain words: read the document, let an AI propose records with quotes, let a different AI object, let a program have the last word, label only what the source states, then recalculate every scenario and show what changed.
 
@@ -25,9 +25,9 @@ Before you accept anything, a table lists every proposed record: value, unit, qu
 
 ## Status
 
-**In the next build.** The dialog that listed these steps is no longer on the site; nothing runs them.
+**Planned, not available** The dialog that listed these steps is no longer on the site; nothing runs them.
 
 ## For engineers
 
 - Steps 3 and 4 use two different model families so that one model’s habit is not the other’s. Neither decides: step 5 does.
-- Without a model configured, CSV and Excel with hand-mapped columns are still accepted (read by code); PDFs need the model and say so.
+- In the proposed design, CSV and Excel files would be read by code after the visitor maps their columns. PDF extraction would need a model. None of these inputs is available on the live site.

@@ -15,6 +15,6 @@ What it shows: A level from 0 to 4 and its name; hover for the reason.
 
 How to use it: Hover it.
 
-Example: ERL 0 means no measured evidence.
+Example: ERL 0 is labelled no test. Read its reason: it can mean no PSI test in the gravity regime or that the extracted records cannot be compared with the condition.
 
 What it does not do: ERL is a PYRION convention about evidence, never about safety.

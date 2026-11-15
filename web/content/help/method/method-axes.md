@@ -11,7 +11,7 @@ highlight: [data-help="method-axes"]
 ---
 What it is: A section.
 
-What it shows: Regime axes (barriers) and continuous axes (compared inside hulls).
+What it shows: Regime axes, which are barriers; a joint oxygen-pressure check against the outline of measured points; and separate range checks for the other continuous axes.
 
 How to use it: Read it first.
 

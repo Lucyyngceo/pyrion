@@ -12,6 +12,6 @@ What it shows: A table with oxygen, total pressure, oxygen partial pressure, how
 
 How to use it: Pick scenarios or write your own, then press Compare.
 
-Example: ISS cabin against a 34% oxygen, 8.2 psia cabin.
+Example: Compare the Moon Base with the listed 34% oxygen, 8.2 psia exploration atmosphere.
 
 What it does not do: The ranking says how much measured evidence PSI holds near a condition, not which is better.

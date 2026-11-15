@@ -11,7 +11,7 @@ sources: doi:10.60555/w4zy-bt45, psi-data/PSI-10/_investigation/PSI-10.json sect
 ---
 PSI-10 ACME/Flame Design is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Advanced Combustion via Microgravity Experiments / Flame Design”. Release 20-Nov-2025, version 1. DOI [10.60555/w4zy-bt45](https://doi.org/10.60555/w4zy-bt45). License: not stated on its PSI page or record.
 
-In plain words: this page says what PSI-10 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 2165 of its 2165 records are usable as evidence.
+In plain words: this topic explains PSI-10, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-10) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -31,46 +31,30 @@ As recorded by PSI: flight program: International Space Station (ISS); hardware:
 - Gravity regime: **microgravity** for test(s) `*` (quote: “In this work, experiments aboard the International Space Station and a transient numerical model are used to investigate the existence of steady-state microgravity spherical diffusion flames. [...]”, `page=25`, PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf).
 
 ## Fuel and flame configuration
-fuel phase: gas (30); diluent: N2 (327); flame type: normal (207), inverse (120); fuel (3 distinct): C2H4 (187), ethylene (132), C3H8 (20).
+fuel phase: gas; diluent: N2; flame type: normal, inverse; fuel descriptions: C2H4, ethylene, C3H8.
 
 ## What was extracted
-2165 condition records in `data/conditions/PSI-10.csv`: 2165 usable, 0 marked `insufficient_evidence`. They cover 327 distinct tests (plus 7 records that apply to every test of the investigation).
 
-| Variable | Usable records | Insufficient |
-|---|---|---|
-| gravity regime | 2 | 0 |
-| fuel phase | 30 | 0 |
-| diluent | 327 | 0 |
-| flame type | 327 | 0 |
-| ambient O2 (mole fraction) | 207 | 0 |
-| burner-stream O2 (mole fraction) | 109 | 0 |
-| pressure (kPa) | 327 | 0 |
-| fuel | 339 | 0 |
-| platform | 3 | 0 |
-| outcomes (measured results) | 494 | 0 |
+The [live investigation sheet](/investigations/PSI-10) shows the extracted variables, test identifiers, condition ranges and recorded outcomes. The [Data page](/data) reports the current record counts. These can change when extraction or validation changes.
 
-Measured ranges over the usable records:
-- ambient O2 (mole fraction): 0.198048 to 0.4 (that is 19.8 to 40 % by volume, arithmetic on the stored fraction)
-- burner-stream O2 (mole fraction): 0.212017 to 0.849978 (that is 21.2 to 85 % by volume, arithmetic on the stored fraction)
-- pressure (kPa): 43.0233 to 304.748
+Read each value's source and status. Records flagged as insufficient evidence are not usable evidence; rejected rows are separate from accepted records. A raw download row count does not establish how many records the engine can use.
 
 ## What could not be extracted, and why
-No record of this investigation is marked insufficient.
+The audited snapshot had no records flagged as insufficient for this investigation. Consult the live sheet for the current statuses.
 
 Table cells that hold no readable number (listed in `extraction/skipped_cells.csv`):
-- column `XO2`: 11 cells (cell marks 'no value')
-
+- Column `XO2`: some cells have no usable numeric value; see `extraction/skipped_cells.csv` for the source text.
 Ground (1 g) data check: `none` in the ground-test inventory (see the article on the ground inventory).
 
-Published papers listed for this investigation: 33 (see `data/manifest/publications.csv`).
+Publications are listed on the [investigation sheet](/investigations/PSI-10) with their identifiers and sources.
 
 ## For engineers
-- `method`: 1671 `table` records (read by code from a PSI table; the quote is the column header) and 494 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
+- `method` distinguishes table cells from document quotations. The live download supplies each record's method and status; an extracted status does not imply independent scientific verification.
 - Source files used (path under `data/raw/`):
-  - `psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv` (1202 records)
-  - `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf` (492 records)
-  - `psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv` (469 records)
-  - `psi-data/PSI-10/_investigation/PSI-10.json` (2 records)
-- Every value is located in its source by code; see the articles on how values are located and on validation severities.
+  - `psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Normal Flame.csv`
+  - `psi-data/PSI-10/Reports/PSI-10_Reports_FinalRpt_ACMEFlameDesign.pdf`
+  - `psi-data/PSI-10/Experimental table/PSI-10_Experimental table_Flame Design_Inverse Flame.csv`
+  - `psi-data/PSI-10/_investigation/PSI-10.json`
+- Each record identifies its source. See the Data and Proof pages for how many values the checker located and which formats it could not check.
 - Investigation record: `data/raw/psi-data/PSI-10/_investigation/PSI-10.json` (the text fields quoted above).
-- Accession `PSI-10`; DOI `10.60555/w4zy-bt45`; PSI version 1; files in version 3807, files selected for PYRION 15.
+- Accession `PSI-10`; DOI `10.60555/w4zy-bt45`; PSI version 1.

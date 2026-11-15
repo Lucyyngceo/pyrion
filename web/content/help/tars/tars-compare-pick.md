@@ -12,6 +12,6 @@ What it shows: One checkbox per scenario.
 
 How to use it: Tick two or more.
 
-Example: Tick ISS cabin air and NASA's Moon Base.
+Example: Select the Moon Base and one of the listed NESC exploration atmospheres.
 
 What it does not do: It lists only the scenarios the site already has.

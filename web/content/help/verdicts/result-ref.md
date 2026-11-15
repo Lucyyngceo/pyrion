@@ -17,4 +17,4 @@ How to use it: Click it to jump to that row of the receipt.
 
 Example: Click [1].
 
-What it does not do: It does not open the NASA document; use the DOI for that.
+What it does not do: It does not open the NASA source document. The DOI opens the investigation's dataset record; use the receipt's file and location to identify the underlying source.

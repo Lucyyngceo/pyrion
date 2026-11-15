@@ -17,4 +17,4 @@ How to use it: Choose solid, liquid or gas.
 
 Example: Pick solid.
 
-What it does not do: It changes which investigations count as comparable.
+What it does not do: It does not turn hypothetical points into measurements. Selecting a phase changes which investigations are comparable.

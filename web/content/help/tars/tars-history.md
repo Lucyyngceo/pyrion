@@ -17,4 +17,4 @@ How to use it: Click one to open it.
 
 Example: Open a chat.
 
-What it does not do: Nothing is stored on a server.
+What it does not do: PYRION keeps conversation history in this browser. Sending a message transmits it and relevant context to the server for processing; this is separate from saving a conversation history.

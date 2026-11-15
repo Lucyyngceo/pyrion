@@ -4,8 +4,8 @@ title: How to read this manual
 chapter: what-is-pyrion
 order: 2
 ---
-The manual has twelve chapters in a fixed order. Chapter 2 walks through the Envelope page (the dashboard) element by element. Chapters 3 to 6 explain the right-hand column, the verdicts, the plan of experiments and the Add a source design (not on the site today). Chapter 7 is TARS SI, the chat. Chapter 8 is the Bridge. Chapters 9 and 10 explain the data and the method. Chapter 11 is a glossary and chapter 12 lists what PYRION does not claim.
+The manual has thirteen chapters. Chapter 2 covers the dashboard; chapters 3 to 6 cover evidence routes, verdicts, gap proposals and the removed Add a source design. Chapter 7 covers TARS SI, chapter 8 the Bridge, chapters 9 and 10 data and method, chapter 11 the glossary, chapter 12 limits, and chapter 13 the Mission Planner.
 
-Every topic about something on screen has a **Show me** button. It takes you to the page and outlines the element. In the ? menu, **Help mode** does the reverse: turn it on, click any element, and its topic opens.
+Topics with a highlight target have a Show me button that opens the relevant page and outlines the element if it is available. In the ? menu, Help mode opens a topic when you click a tagged element. A closed dialog or a removed control cannot be highlighted.
 
 If a sentence in this manual describes something that is not built, it says so. Nothing here describes an unbuilt feature as working.

@@ -1,6 +1,6 @@
 ---
 id: footer-links
-chapter: navigation
+chapter: envelope
 order: 6
 dataHelp: [footer-why, footer-method, footer-data, footer-bridge, footer-lenses, footer-more, footer-help]
 title: Footer links

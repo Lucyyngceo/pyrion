@@ -3,18 +3,18 @@ id: ask-input
 title: Question box
 chapter: envelope
 order: 5
-dataHelp: ask-input
+dataHelp: 
 keywords: ask tars, question bar, ask
 page: envelope
 link: /envelope
-highlight: [data-help="ask-input"]
+highlight: 
 ---
-What it is: The text box of the Ask TARS SI bar.
+What it is: The text field of the former dashboard Ask bar. The bar and its text field are no longer on the site.
 
-What it shows: Example questions that rotate while it is empty.
+What it shows: Nothing on the current dashboard.
 
-How to use it: Type your question, with numbers and units if it is about a condition.
+How to use it: Open the TARS SI bubble, type your question and press Send.
 
-Example: Would solid fuel burn differently in a lunar base at 30 % oxygen and 10.2 psi?
+Example: Ask what PSI supports at 34% oxygen and 8.2 psia on the Moon.
 
-What it does not do: It does not run the engine on its own; it hands the question to TARS SI.
+What it does not do: TARS does not decide verdicts; the fixed-rule engine does.

@@ -17,4 +17,4 @@ How to use it: Open More, then Help.
 
 Example: Read the chapter about the Planner.
 
-What it does not do: It is a reading view; the Help center (the ? menu) searches the same topics.
+What it does not do: It does not start a conversation. Help mode in the ? menu opens a quick topic view; the Help menu item opens the manual.

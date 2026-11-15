@@ -8,7 +8,7 @@ dataHelp: [gap-section-matrix]
 sources: ["engine/src/experiments.ts", "NTRS 20260001966 PDF p. 5"]
 ---
 
-Some points of the matrix are more severe than your target: they have **more oxygen pressing on the flame** than your target has. Those are *margin points*. If something burns at your target, it will probably burn at them; if it does not burn at your target, the margin points are where you would look for how much room there is.
+A margin point is a proposed test point with a higher oxygen partial pressure than your target. This is PYRION's naming convention. It does not establish a more severe fire condition, predict whether a material burns, or measure a safety margin. Oxygen fraction, total pressure, material, flow and gravity can affect flame behaviour separately.
 
 FM2 does the same kind of thing: one of its four planned tests (25 % oxygen) "is not expected to ignite" and is there to provide a margin of safety if the limit is lower than expected.
 

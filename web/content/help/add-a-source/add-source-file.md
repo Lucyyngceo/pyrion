@@ -2,19 +2,19 @@
 id: add-source-file
 chapter: add-a-source
 order: 60
-dataHelp: add-source-file
+dataHelp: 
 title: Upload a table
 keywords: upload a table, add source file, envelope
 page: envelope
 link: /envelope
-highlight: [data-help="add-source-file"]
+highlight: 
 ---
-What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. A file picker.
+What it is: Upload a table, a control from the removed Add a source design. It is not available on the current site.
 
-What it shows: CSV or Excel tables up to 20 MB.
+What it shows: Nothing on the live dashboard or Data page. The former dialog and its controls have been removed.
 
-How to use it: Choose a file; it is checked for type and size.
+How to use it: There is no current action for this control. Open the Data page to inspect the curated evidence and its sources.
 
-Example: A NASA CSV table.
+Example: Use the Data page to find an investigation and follow its DOI or source receipts.
 
-What it does not do: Uploads will be labelled "your file, not verified as NASA" unless they match an NTRS download. PDFs are not accepted yet.
+What it does not do: Visitors cannot upload a file, submit an NTRS number or add evidence through this removed control. No release date is confirmed.

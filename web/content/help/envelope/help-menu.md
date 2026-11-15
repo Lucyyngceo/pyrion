@@ -11,7 +11,7 @@ highlight: [data-help="help-menu"]
 ---
 What it is: The round question mark at the top right.
 
-What it shows: A small menu: Help center, Help mode, Guide.
+What it shows: A menu with Help, Help mode and Guide.
 
 How to use it: Click it.
 

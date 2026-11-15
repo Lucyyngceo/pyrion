@@ -9,7 +9,7 @@ page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md, nasa/ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf
 ---
-Evidence you add is **external**: it is never mixed silently with the curated PSI base.
+This topic describes the proposed Add a source feature. Its button and dialog were removed from the live site, and visitors cannot add evidence. The design below is an archived proposal; no release date is confirmed.
 
 In plain words: added evidence has its own colour or mark on the map, its own label on the cards and a switch, “show added evidence”, so you can see the app with and without it.
 
@@ -23,7 +23,7 @@ LUCI is the first external source and the exam case. Its lunar gravity is **simu
 
 ## Status
 
-**In the next build.** The first version is planned as: an NTRS number box with LUCI as a **recorded run** of the process, labelled as recorded, with a receipt per record; the external-evidence switch and before-and-after per scenario; CSV and Excel upload with hand-mapped columns and no model; and live PDF extraction only behind an “experimental” option if time allows.
+**Planned, not available** The first version is planned as: an NTRS number box with LUCI as a **recorded run** of the process, labelled as recorded, with a receipt per record; the external-evidence switch and before-and-after per scenario; CSV and Excel upload with hand-mapped columns and no model; and live PDF extraction only behind an “experimental” option if time allows.
 
 ## For engineers
 

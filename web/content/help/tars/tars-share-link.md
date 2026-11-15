@@ -14,4 +14,4 @@ How to use it: Click it and copy the text.
 
 Example: Select all and copy.
 
-What it does not do: It does not contain your name or any account.
+What it does not do: The app adds no account name, but the link includes your question and condition. Personal details you typed into the question can therefore appear in it.

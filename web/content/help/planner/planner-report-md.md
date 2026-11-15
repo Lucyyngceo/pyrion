@@ -17,4 +17,4 @@ How to use it: Click it.
 
 Example: Keep it with your notes.
 
-What it does not do: Same content as the print view.
+What it does not do: It does not add measurements; it downloads the same report content as the print view.

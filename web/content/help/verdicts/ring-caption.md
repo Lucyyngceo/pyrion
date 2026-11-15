@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="ring-caption"]
 ---
-What it is: The small line under the ring.
+What it is: The coverage line beside the verdict-count summary.
 
 What it shows: "of N PSI combustion investigations · M have no extracted values yet", with the counts computed from the data.
 

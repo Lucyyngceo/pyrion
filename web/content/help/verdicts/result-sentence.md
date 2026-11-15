@@ -17,4 +17,4 @@ How to use it: Read it first.
 
 Example: "Inside the tested range: ...".
 
-What it does not do: It is written by the engine.
+What it does not do: It does not predict a flame outcome or rate safety; fixed engine templates state the comparison result.

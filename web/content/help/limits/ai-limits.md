@@ -6,6 +6,6 @@ title: What the AI does and does not do
 keywords: ai, model, llm, language model, honesty, decide, hallucinate, guard, trust, safe
 link: /method
 ---
-The language model never decides a verdict, and it never supplies a number. It may translate a question into a target, and it may add a short description of that target that code checks sentence by sentence.
+The language model does not decide a verdict or calculate the numerical result. It may repeat numbers supplied by code or quoted from a source. It may translate a question into a target, and it may add a short description of that target that code checks sentence by sentence.
 
-Verdicts, counts, distances and every figure come from the deterministic engine. If a value cannot be verified, the answer is "insufficient evidence". PYRION states what PSI contains ("in PSI"), never that no data exists anywhere.
+Verdicts, counts and distances come from the fixed-rule engine; calculators provide arithmetic. NASA quotation checks verify that quoted text appears in the cited library page. These checks do not establish that a model's explanation is scientifically correct. Missing condition evidence is reported as insufficient evidence; a failed quotation check instead causes the quotation block to be withheld.

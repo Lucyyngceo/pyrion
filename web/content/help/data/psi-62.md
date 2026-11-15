@@ -11,7 +11,7 @@ sources: doi:10.60555/e9xp-ex83, psi-data/PSI-62/_investigation/PSI-62.json sect
 ---
 PSI-62 is a NASA ground investigation in the PSI (Physical Sciences Informatics) archive: “Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography”. Release 14-Nov-2025, version 1. DOI [10.60555/e9xp-ex83](https://doi.org/10.60555/e9xp-ex83). License: CC0-1.0.
 
-In plain words: this page says what PSI-62 looked at and why PYRION holds no condition values from it.
+In plain words: this topic explains PSI-62, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-62) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -25,15 +25,12 @@ PSI hypothesis (quoted, section `hypothesis`):
 As recorded by PSI: managing center: Glenn Research Center (GRC).
 
 ## What was extracted
-**No condition records were extracted from PSI-62.** Why: Ground (computational) investigation modelling BASS flame spread. PSI holds only its record and a metadata archive: no table or document with test conditions.
 
-This is a statement about what PSI holds for this investigation and what the extraction rules allow, not about the science. An investigation with no usable record never moves a verdict: the engine reads it as “not enough evidence”.
+The audited extraction does not provide condition records for this investigation. Ground (computational) investigation modelling BASS flame spread. PSI holds only its record and a metadata archive: no table or document with test conditions.
 
-Ground (1 g) data check: classed `none` in the ground-test inventory.
-
-Published papers listed for this investigation: 4 (see `data/manifest/publications.csv`).
+Check the [live investigation sheet](/investigations/PSI-62) and [Data page](/data) for current coverage. Investigations without extracted records are listed separately on the dashboard, without a verdict.
 
 ## For engineers
 - No file `data/conditions/PSI-62.csv` exists. The investigation is still one of the 24 combustion investigations in `data/manifest/investigations.csv`.
 - Investigation record: `data/raw/psi-data/PSI-62/_investigation/PSI-62.json` (the text fields quoted above).
-- Accession `PSI-62`; DOI `10.60555/e9xp-ex83`; PSI version 1; files in version 1, files selected for PYRION 1.
+- Accession `PSI-62`; DOI `10.60555/e9xp-ex83`; PSI version 1.

@@ -34,7 +34,7 @@ In plain words: a record is a labelled fact with a receipt. The label says what 
 ## The variables
 
 - **Regime axes (barriers, never interpolated across):** `gravity_regime` (`microgravity`, `partial_gravity`, `normal_gravity`), `fuel_phase` (`solid`, `liquid`, `gas`), `diluent` (`N2`, `He`, `CO2`, `Ar`, `mixed`), `flame_type` (`normal`, `inverse`).
-- **Continuous axes (interpolated only inside the measured range):** `o2_mole_fraction` (ambient oxygen, 0 to 1), `burner_o2_mole_fraction`, `pressure` (kPa), `flow_velocity` (cm/s), `sample_thickness` (mm), `droplet_diameter_initial` (mm), `ambient_temperature` (K), `gravity_level` (g, only when stated).
+- **Continuous axes (checked against recorded ranges, without predicting outcomes):** `o2_mole_fraction` (ambient oxygen, 0 to 1), `burner_o2_mole_fraction`, `pressure` (kPa), `flow_velocity` (cm/s), `sample_thickness` (mm), `droplet_diameter_initial` (mm), `ambient_temperature` (K) and `gravity_level` (g, when stated). Oxygen and pressure also have a joint region check. A target gravity level selects a regime but is otherwise informational.
 - **Descriptive:** `fuel`, `material`, `geometry`, `flow_configuration`, `platform`.
 - **Outcomes:** `outcome:<name>` with its unit, for results such as a spread rate or an extinction. An outcome is a measured result, never a condition.
 

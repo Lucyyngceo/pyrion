@@ -11,7 +11,7 @@ highlight: [data-help="verdict-panel"]
 ---
 What it is: The top card of the right column.
 
-What it shows: "Result for ..." the headline and its detail, a compare button and the verdict ring.
+What it shows: Result for the selected condition, its headline and detail, Pin to compare, and labelled counts for the four verdicts.
 
 How to use it: Read it first after changing a condition.
 

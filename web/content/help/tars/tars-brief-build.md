@@ -14,4 +14,4 @@ How to use it: Press it after asking questions.
 
 Example: Press it, then read the preview.
 
-What it does not do: It recomputes the engine part and re-verifies every NASA quote.
+What it does not do: It does not call a model to write a new explanation. The brief rebuilds the engine section and rechecks NASA quotations.

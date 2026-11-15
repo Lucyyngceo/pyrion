@@ -8,7 +8,7 @@ dataHelp: [chart-hulls]
 sources: ["engine/src/geometry.ts"]
 ---
 
-On the oxygen-pressure chart, the smallest convex shape that contains all the points an investigation's tests measured: the region its tests cover. Inside it (with the 0.5 % tolerance) your condition is Applicable; outside, Extrapolation.
+On the oxygen-pressure chart, the smallest convex outline containing the measured points of one investigation in one regime. The engine checks this outline with its 0.5% tolerance, alongside the other axes you set. Being inside does not by itself establish applicability, and no flame outcome is calculated between measurements.
 
 ## For engineers
 

@@ -17,4 +17,4 @@ In plain words: PSI holds the experiments; documents like this one give the cont
 - Manifest entry: `data/manifest/external_sources.json`, id `jsc-29353d`, priority P1. Everything in that file is a NASA-published document or page.
 - File `data/raw/nasa/jsc-29353d/JSC 29353D Flammability Configuration Analysis for Spacecraft Applications.pdf` (2915192 bytes), SHA-256 `e10f0155ae26048eb8bdfb1c55143b572a9617497b21df87ff29704a523765ab`, downloaded from https://standards.nasa.gov/system/files/tmp/JSC%2029353D%20Flammability%20Configuration%20Analysis%20for%20Spacecraft%20Applications.pdf.
 - TARS library: 60 pages with a text layer.
-- Not a PSI investigation: any record from it would use an accession `NTRS-<id>` and is labelled external; none is mixed into `data/conditions/`.
+- This background document is not a PSI investigation. Its source is cited explicitly; using it does not add a new PSI investigation to the catalogue.

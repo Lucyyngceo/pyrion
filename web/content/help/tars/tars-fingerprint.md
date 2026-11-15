@@ -15,6 +15,6 @@ What it shows: The SHA-256 of the engine's evaluation.
 
 How to use it: Compare it across runs.
 
-Example: The same question gives the same fingerprint.
+Example: The same interpreted condition, records, engine and options give the same fingerprint.
 
 What it does not do: It proves reproducibility of the computation, not correctness of the data.

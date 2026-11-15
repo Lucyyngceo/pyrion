@@ -17,4 +17,4 @@ How to use it: Choose a value to compare only tests in that regime; leave an axi
 
 Example: Set gravity to microgravity.
 
-What it does not do: A regime is a barrier: tests in a different regime are not compared. An axis left open is not compared, and an investigation that did not record it may become insufficient evidence.
+What it does not do: A regime axis left open is not compared. A stated axis that differs is a barrier; a stated axis with no usable evidence can make the verdict insufficient evidence.

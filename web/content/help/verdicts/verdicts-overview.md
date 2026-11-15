@@ -8,7 +8,7 @@ dataHelp: [verdict-headline, verdict-ring, verdict-panel]
 sources: ["engine/src/verdict.ts", "engine/src/types.ts"]
 ---
 
-Every investigation in PSI gets exactly one of four verdicts for your condition. They are decided by fixed rules; no language model takes part.
+Every investigation with extracted records gets one of four verdicts for your condition. Fixed rules decide them; no language model takes part. Investigations with no extracted records are listed separately, with no verdict.
 
 - **Applicable.** Your condition lies inside what the investigation tested, in every respect you stated. Its results are directly comparable.
 - **Extrapolation.** Everything is comparable in kind (same regime), but your numbers fall outside the tested region. The verdict also says *how far outside* (see "Extrapolation and its four levels").

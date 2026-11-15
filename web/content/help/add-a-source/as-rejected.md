@@ -9,7 +9,7 @@ page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md, data/external/ntrs-20250010653/README.md
 ---
-A proposed record is rejected, with its reason on screen, whenever code cannot place it in the source or the source does not say what the record claims.
+This topic describes the proposed Add a source feature. Its button and dialog were removed from the live site, and visitors cannot add evidence. The design below is an archived proposal; no release date is confirmed.
 
 In plain words: the program prefers to throw away a true value it cannot prove than to accept a false one.
 
@@ -25,7 +25,7 @@ In plain words: the program prefers to throw away a true value it cannot prove t
 
 ## Status
 
-**In the next build** as an automatic pipeline. The same rules were applied by hand, with separate checkers, to the LUCI golden set today.
+**Planned, not available** as an automatic pipeline. The same rules were applied by hand, with separate checkers, to the LUCI golden set today.
 
 ## For engineers
 

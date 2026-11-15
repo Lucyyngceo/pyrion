@@ -14,4 +14,4 @@ How to use it: Click it and paste the link to someone.
 
 Example: Send the link to a teammate.
 
-What it does not do: Nothing is stored on a server; whoever opens it sees the engine part reproduced, not the model's words.
+What it does not do: It does not save the model's answer in the shared link. The link includes the question and condition, so anyone with the link can read them and reproduce the engine part. Avoid sharing private text.

@@ -9,9 +9,9 @@ page: data
 dataHelp:
 sources: validation/run_all.py, schema/README.md, extraction/validate.py
 ---
-Every condition value in PYRION points to the exact place in a NASA file where it is written, and a program (not a language model) checks that place.
+Every condition record identifies a location in a NASA file. The automated checker can locate supported table cells and quotations; some file formats are not yet readable by that checker. The Data page reports those cases separately.
 
-In plain words: a value is only accepted if the program can open the NASA file and find it. A table value must sit in its own cell. A value taken from a sentence must come with the sentence, word for word, and the numbers in that sentence must be the numbers in the file, written the same way. If the program cannot find it, the record is rejected and the reason is shown.
+In plain words: a receipt records where a value was read. A successful automated trace check confirms a supported cell or finds a quotation in the file. That is different from confirming the cited page or checking scientific interpretation. A failed check, an unreadable format and a value flagged as insufficient evidence are reported separately.
 
 ## The three kinds of location
 
@@ -25,7 +25,7 @@ The numbers of a quote must appear in the file exactly as written, in the same o
 
 ## What it checks today, and what it does not
 
-- Today: the quote is found **in the file**, and each table value is found in its cell. 942 quoted values and 8531 table cells were traced in the last full run.
+- Today: supported table cells are checked at their recorded row and column, and document quotations are searched in the source file. The Data and Proof pages give the latest counts and report timestamp.
 - Not yet: that the quote sits on the **cited page**. The page number is stored and shown, but the program searches the whole file. A page check is planned.
 - The text comes from the text layer of the original file. A value that exists only in a figure or an image cannot be located and is never accepted.
 
@@ -34,4 +34,4 @@ The numbers of a quote must appear in the file exactly as written, in the same o
 - `validation/run_all.py` (`check_trace`) is written separately from `extraction/validate.py` on purpose: two implementations catch mistakes that one shares with the code that produced the records.
 - Text normalisation: NFKC (ligatures), hyphenated line breaks joined, case and punctuation dropped for the word-for-word comparison; numbers are compared as tokens with `numbers_in`.
 - `validation/selftest.py` seeds errors (a number off by a decimal point, a wrong cell, an invented quote) and checks the validator catches them.
-- Table units are recomputed from `value_original` and `unit_original` with fixed conversion factors; 3250 values were recomputed in the last run.
+- Table units are recomputed from `value_original` and `unit_original` where a supported conversion is available. Consult the current validation report for the count and any conversions it could not recompute.

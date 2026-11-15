@@ -1,6 +1,6 @@
 ---
 id: nav-planner
-title: Planner tab
+title: Mission Planner navigation link
 chapter: planner
 order: 10
 dataHelp: nav-planner

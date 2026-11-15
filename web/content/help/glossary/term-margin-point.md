@@ -8,7 +8,7 @@ dataHelp: [gap-section-matrix]
 sources: ["engine/src/experiments.ts"]
 ---
 
-A point of the proposed test matrix with a higher oxygen partial pressure than your target: more severe than your target, so it shows how much room there is.
+A proposed test point with a higher oxygen partial pressure than your target. This is PYRION's convention, not a prediction of more severe burning or a demonstrated safety margin.
 
 ## For engineers
 

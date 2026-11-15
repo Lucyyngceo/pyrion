@@ -11,7 +11,7 @@ sources: doi:10.60555/mbq8-0451, psi-data/PSI-69/_investigation/PSI-69.json sect
 ---
 PSI-69 FLEX is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Flame Extinguishment Experiment”. Release 31-Jul-2016, version 5. DOI [10.60555/mbq8-0451](https://doi.org/10.60555/mbq8-0451). License: CC0-1.0.
 
-In plain words: this page says what PSI-69 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 2096 of its 2358 records are usable as evidence.
+In plain words: this topic explains PSI-69, its cited sources and extraction limits. The [investigation sheet](/investigations/PSI-69) and [Data page](/data) provide the current records, statuses and coverage.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -32,54 +32,39 @@ As recorded by PSI: flight program: International Space Station (ISS); hardware:
 - Gravity regime: **microgravity** for test(s) `*` (quote: “FLEX series of experiments showed for the first time that quasi-steady stable flames can be established surrounding a droplet in microgravity under certain conditions”, `page=3`, PSI-39_Reports_CFI Science Final Report.pdf).
 
 ## Fuel and flame configuration
-fuel phase: liquid (1); diluent: mixed (173), N2 (95); fuel (2 distinct): Methanol (157), Heptane (117).
+fuel phase: liquid; diluent: mixed, N2; fuel descriptions: Methanol, Heptane.
 
 ## What was extracted
-2358 condition records in `data/conditions/PSI-69.csv`: 2096 usable, 262 marked `insufficient_evidence`. They cover 274 distinct tests (plus 9 records that apply to every test of the investigation).
 
-| Variable | Usable records | Insufficient |
-|---|---|---|
-| gravity regime | 2 | 3 |
-| fuel phase | 1 | 0 |
-| diluent | 268 | 0 |
-| ambient O2 (mole fraction) | 274 | 0 |
-| pressure (kPa) | 273 | 1 |
-| initial droplet diameter (mm) | 262 | 0 |
-| fuel | 274 | 0 |
-| platform | 3 | 0 |
-| outcomes (measured results) | 739 | 258 |
+The [live investigation sheet](/investigations/PSI-69) shows the extracted variables, test identifiers, condition ranges and recorded outcomes. The [Data page](/data) reports the current record counts. These can change when extraction or validation changes.
 
-Measured ranges over the usable records:
-- ambient O2 (mole fraction): 0.12 to 0.34 (that is 12 to 34 % by volume, arithmetic on the stored fraction)
-- pressure (kPa): 70.1676 to 309.295
-- initial droplet diameter (mm): 1.1 to 4.67
+Read each value's source and status. Records flagged as insufficient evidence are not usable evidence; rejected rows are separate from accepted records. A raw download row count does not establish how many records the engine can use.
 
 ## What could not be extracted, and why
 Records kept as `insufficient_evidence` carry their reason in the `note` field. The most common ones:
 
-- `outcome:burning_rate` (258): header gives the unit 'mm', which is not a unit of burning rate
-- `pressure` (1): mmHg x 101.325/760
-- `gravity_regime` (1): Objective statement ('aims to'), not a statement that the tests were run in microgravity (brief rule 3). No g-level stated. 'reduced gravity conditions' in the same sentence refers to the predictive models; [...]
-- `gravity_regime` (1): Scope sentence of the Description of Data: says what FLEX investigates, not that the tests were run in microgravity. No g-level stated. Grammar ('quantify') as in the source.
-- `gravity_regime` (1): Facility-purpose sentence about the MDCA, not about FLEX tests. Sentence spans three PDF lines, joined with one space. [...]
+- `outcome:burning_rate`: header gives the unit 'mm', which is not a unit of burning rate
+- `pressure`: mmHg x 101.325/760
+- `gravity_regime`: Objective statement ('aims to'), not a statement that the tests were run in microgravity (brief rule 3). No g-level stated. 'reduced gravity conditions' in the same sentence refers to the predictive models; [...]
+- `gravity_regime`: Scope sentence of the Description of Data: says what FLEX investigates, not that the tests were run in microgravity. No g-level stated. Grammar ('quantify') as in the source.
+- `gravity_regime`: Facility-purpose sentence about the MDCA, not about FLEX tests. Sentence spans three PDF lines, joined with one space. [...]
 
 Table cells that hold no readable number (listed in `extraction/skipped_cells.csv`):
-- column `Droplet initial diameter; mm`: 6 cells (cell marks 'no value')
-- column `Visible flame extinction diameter; mm`: 28 cells (cell marks 'no value')
-
+- Column `Droplet initial diameter; mm`: some cells have no usable numeric value; see `extraction/skipped_cells.csv` for the source text.
+- Column `Visible flame extinction diameter; mm`: some cells have no usable numeric value; see `extraction/skipped_cells.csv` for the source text.
 Ground (1 g) data check: `requirements_only` in the ground-test inventory (see the article on the ground inventory).
 
-Published papers listed for this investigation: 51 (see `data/manifest/publications.csv`).
+Publications are listed on the [investigation sheet](/investigations/PSI-69) with their identifiers and sources.
 
 ## For engineers
-- `method`: 2349 `table` records (read by code from a PSI table; the quote is the column header) and 9 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
+- `method` distinguishes table cells from document quotations. The live download supplies each record's method and status; an extracted status does not imply independent scientific verification.
 - Source files used (path under `data/raw/`):
-  - `psi-data/PSI-69/Experimental table/PSI-69_Experimental table_FLEX.csv` (2349 records)
-  - `psi-data/PSI-69/_investigation/PSI-69.json` (5 records)
-  - `psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX DoD.docx` (1 records)
-  - `psi-data/PSI-69/Engineering Documents/PSI-69_Engineering Documents_FLEX Engineering Requirements Document.pdf` (1 records)
-  - `nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf` (1 records)
-  - `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf` (1 records)
-- Every value is located in its source by code; see the articles on how values are located and on validation severities.
+  - `psi-data/PSI-69/Experimental table/PSI-69_Experimental table_FLEX.csv`
+  - `psi-data/PSI-69/_investigation/PSI-69.json`
+  - `psi-data/PSI-69/Science Documents/PSI-69_Science Documents_FLEX DoD.docx`
+  - `psi-data/PSI-69/Engineering Documents/PSI-69_Engineering Documents_FLEX Engineering Requirements Document.pdf`
+  - `nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf`
+  - `psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf`
+- Each record identifies its source. See the Data and Proof pages for how many values the checker located and which formats it could not check.
 - Investigation record: `data/raw/psi-data/PSI-69/_investigation/PSI-69.json` (the text fields quoted above).
-- Accession `PSI-69`; DOI `10.60555/mbq8-0451`; PSI version 5; files in version 6555, files selected for PYRION 131.
+- Accession `PSI-69`; DOI `10.60555/mbq8-0451`; PSI version 5.

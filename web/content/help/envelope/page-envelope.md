@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="page-envelope"]
 ---
-What it is: The home page: choose a condition, see where NASA's tests stand relative to it, and read the verdicts.
+What it is: The dashboard at /envelope: choose a condition, compare it with NASA tests, and read the verdicts.
 
 What it shows: From top to bottom: header line, the MCP panel, four scenario tiles, the controls, the chart, the verdict and the list "Where the evidence is", then the result cards for every investigation.
 

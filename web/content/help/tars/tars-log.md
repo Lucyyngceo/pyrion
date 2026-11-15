@@ -17,4 +17,4 @@ How to use it: Scroll it.
 
 Example: Read an earlier answer.
 
-What it does not do: It is not exported anywhere.
+What it does not do: Reading the log does not export it. Share can encode a question and condition in a link; Brief me can build a document from eligible answered questions.

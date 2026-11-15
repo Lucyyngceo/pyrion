@@ -14,4 +14,4 @@ How to use it: Press it after building.
 
 Example: Keep the file with your notes.
 
-What it does not do: The file is made in your browser from the built brief.
+What it does not do: It does not rerun the analysis; it saves the built brief from your browser.

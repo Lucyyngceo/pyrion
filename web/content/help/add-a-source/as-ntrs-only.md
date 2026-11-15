@@ -9,7 +9,7 @@ page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md
 ---
-“Add a source” accepts one kind of source: **an NTRS document number** (digits only, from ntrs.nasa.gov). If you paste an ntrs.nasa.gov link, only its digits are kept.
+This topic describes the proposed Add a source feature. Its button and dialog were removed from the live site, and visitors cannot add evidence. The design below is an archived proposal; no release date is confirmed.
 
 In plain words: you give a number, and the server builds the NASA address itself. Nothing you type is ever fetched as a web address, so the feature cannot be used to make the server visit an arbitrary site. Other kinds of links (doi.org, other pages) are not accepted.
 
@@ -25,7 +25,7 @@ A CSV or Excel file you upload is read by code with columns you map by hand. A f
 
 ## Status
 
-**In the next build.** The NTRS number field and the file chooser exist in the code but are not shown on the site; nothing is fetched or read.
+**Planned, not available** The NTRS number field and the file chooser exist in the code but are not shown on the site; nothing is fetched or read.
 
 ## For engineers
 

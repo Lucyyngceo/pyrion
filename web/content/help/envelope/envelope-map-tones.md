@@ -10,7 +10,7 @@ Behind the outlines and points the chart is shaded. The shading is the evidence 
 
 **Three violet tones** mark extrapolation by distance from the tested data: just outside, outside and far outside. They are steps of distance, not degrees of safety.
 
-**A hatch** marks a combination that was never tested although each setting was tested on its own.
+**Hatching** marks the part of the oxygen-pressure plane outside the measured hulls for the selected regime. Read the verdict or hover text to distinguish an untested combination from values beyond the tested ranges.
 
 **Dark** means no investigation of this regime covers the point.
 

@@ -7,7 +7,7 @@ keywords: verdict, applicable, extrapolation, insufficient evidence, not compara
 link: /envelope
 highlight: .vring
 ---
-Each investigation gets one verdict for your condition.
+Each investigation with extracted records gets one verdict for your condition. Investigations with no extracted records are listed separately, without a verdict.
 
 Applicable: the investigation tested the same regime, and your oxygen and pressure fall inside what it measured.
 

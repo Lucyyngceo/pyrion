@@ -17,4 +17,4 @@ How to use it: Click it and print.
 
 Example: Attach the PDF to a proposal.
 
-What it does not do: It carries the fingerprint so anyone can check it.
+What it does not do: It does not validate the proposal; its fingerprint lets readers compare copies of the report.

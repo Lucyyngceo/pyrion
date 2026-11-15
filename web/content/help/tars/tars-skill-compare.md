@@ -12,6 +12,6 @@ What it shows: Opens the Compare atmospheres panel.
 
 How to use it: Click it, pick two or more scenarios, press Compare.
 
-Example: Compare the ISS cabin and NASA's Moon Base.
+Example: Compare the Moon Base with a listed NESC exploration atmosphere.
 
 What it does not do: It does not say which atmosphere is safer.

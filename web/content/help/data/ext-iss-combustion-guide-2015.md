@@ -17,4 +17,4 @@ In plain words: PSI holds the experiments; documents like this one give the cont
 - Manifest entry: `data/manifest/external_sources.json`, id `iss-combustion-guide-2015`, priority P1. Everything in that file is a NASA-published document or page.
 - File `data/raw/nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf` (1500825 bytes), SHA-256 `5fe046efe4e35e506023e27a9784d041e893026f19c9987591483614aea5d6b6`, downloaded from https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf.
 - TARS library: 55 pages with a text layer.
-- Not a PSI investigation: any record from it would use an accession `NTRS-<id>` and is labelled external; none is mixed into `data/conditions/`.
+- This background document is not a PSI investigation. Its source is cited explicitly; using it does not add a new PSI investigation to the catalogue.

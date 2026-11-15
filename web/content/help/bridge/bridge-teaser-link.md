@@ -5,8 +5,8 @@ order: 260
 dataHelp: bridge-teaser-link
 title: See the transfer hypothesis
 keywords: see the transfer hypothesis, bridge teaser link, bridge
-page: bridge
-link: /bridge
+page: envelope
+link: /envelope
 highlight: [data-help="bridge-teaser-link"]
 ---
 What it is: A link under the chart for partial gravity.

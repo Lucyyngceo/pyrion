@@ -13,8 +13,8 @@ What it is: The mark and name at the left of the top bar.
 
 What it shows: Nothing: it is the way home.
 
-How to use it: Click it from any page to go back to the Envelope page.
+How to use it: Click it from any page to open the landing page at /.
 
-Example: From the Data page, click it to return to the chart.
+Example: From the Data page, click the brand to open the landing page; choose Explore the dashboard to return to the chart.
 
 What it does not do: It is not a menu and it does not reset your condition by itself.

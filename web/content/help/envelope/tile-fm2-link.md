@@ -17,4 +17,4 @@ How to use it: Click it to open the page in a new tab.
 
 Example: Read the FM2 plan after the tile.
 
-What it does not do: It does not show FM2 results: none are public yet.
+What it does not do: It does not turn the planned FM2 conditions used by PYRION into measured results. Read the linked NASA page for its current experiment status.

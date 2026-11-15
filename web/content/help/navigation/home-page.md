@@ -1,6 +1,6 @@
 ---
 id: home-page
-chapter: navigation
+chapter: what-is-pyrion
 order: 5
 dataHelp: [nav-home, landing-nav, landing-warp, landing-start, landing-explore, landing-source, landing-planner, landing-card]
 title: Home page

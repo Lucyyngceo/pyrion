@@ -10,7 +10,7 @@ sources: ["engine/src/levels.ts", "NTRS 20260001966 PDF p. 17"]
 
 The word "extrapolation" alone would say little, because at some oxygen and pressure almost every condition is an extrapolation for *some* investigation. So the verdict carries one of four levels:
 
-- **Inside each tested range, but this combination was not tested.** Every number is within the range tested, but the pairing (oxygen, pressure) was never tested. Shown with a hatch on the map.
+- **Inside each tested range, but this combination was not tested.** Every number is inside its own tested range, but the oxygen-pressure pair lies outside the region spanned by the paired measurements. Hatching marks areas outside measured hulls; use the verdict text to identify this level.
 - **Just outside the tested data.** The worst axis is beyond the tested range by up to 10 % of the nearest tested value.
 - **Outside the tested data.** Up to 30 %.
 - **Far outside the tested data.** More than 30 %.

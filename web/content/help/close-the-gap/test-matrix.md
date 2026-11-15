@@ -17,7 +17,7 @@ That is up to 15 test points, each at the gravity regime (and level, if you gave
 
 Why these steps: the 4-point oxygen step is the size of the steps in FM2's own plan (25, 29, 33 and 37 %, NTRS 20260001966, PDF p. 10), so a neighbouring grid would be compatible with NASA's. The 8-point step is a coarse bracket, double that. The 15 % pressure step is PYRION's design choice, **not a NASA design**.
 
-Points that would need more than 100 % oxygen (or a pressure of 0 or less) are dropped, so near-pure-oxygen targets get fewer points. If you set only oxygen or only pressure, only that axis is gridded.
+Points at or below 0% oxygen, above 100% oxygen, or at a pressure of 0 or less are dropped. If you set only oxygen or only pressure, only that axis is gridded.
 
 ## For engineers
 

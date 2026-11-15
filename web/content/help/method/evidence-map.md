@@ -8,7 +8,7 @@ dataHelp: [chart-map, chart-map-legend, chart-map-tip]
 sources: ["engine/src/navigator.ts"]
 ---
 
-The map behind the chart shows, for every pair of oxygen and pressure on a grid, how many investigations are *Applicable* and how many *Extrapolation*, for the regime you selected. A darker cell has more investigations; extrapolation cells are shaded in three tones by how far outside the closest investigation is.
+The map behind the chart shows, on an oxygen-pressure grid, how many investigations apply in the selected regime. Brighter cyan means more applicable investigations. Violet tones show extrapolation by distance; dark areas have no applicable investigation.
 
 The map is not a separate model. Each cell gives exactly what the engine would answer if you typed that oxygen and pressure: this is tested on hundreds of random cells. The map is fast because the tested regions are computed once and each cell is only a quick check against them.
 

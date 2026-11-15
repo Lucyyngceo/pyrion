@@ -14,4 +14,4 @@ How to use it: Press it once the text has at least a sentence.
 
 Example: Paste a paragraph, press it, wait a few seconds.
 
-What it does not do: It counts against the same limits as a question.
+What it does not do: It does not bypass rate limits; a claim check uses the same allowance as a question.

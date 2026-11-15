@@ -11,7 +11,7 @@ sources: https://www.nasa.gov/wp-content/uploads/2025/07/advanced-combustion-via
 ---
 NASA Glenn publishes one fact sheet per flight combustion experiment. PYRION keeps eight of them next to the PSI data to explain what each experiment is.
 
-In plain words: these are short NASA descriptions, written for the public. They help read the PSI files, but they are not test data: no condition value is taken from a fact sheet alone.
+In plain words: these are short NASA descriptions that help explain the PSI investigations. Some quoted fact-sheet descriptions support regime records; they do not supply missing per-test oxygen or pressure measurements. The receipt identifies a fact sheet whenever it is used.
 
 The eight fact sheets:
 - NASA Glenn fact sheet: Advanced Combustion via Microgravity Experiments (ACME): https://www.nasa.gov/wp-content/uploads/2025/07/advanced-combustion-via-microgravity-experiments-acme.pdf (role: experiment fact sheet)

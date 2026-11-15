@@ -8,7 +8,7 @@ dataHelp: [tars-bubble, tars-steps, tars-fingerprint, tars-related]
 sources: ["engine/src/answer.ts"]
 ---
 
-TARS answers in three parts, built from the engine's results:
+For a structured condition answer, the engine can build these three parts. General TARS questions can instead produce the Engine, NASA said it and TARS own reasoning layers; only the engine decides any verdict.
 
 1. **What PSI supports.** The investigations that are Applicable for your condition, each with its receipts (the records behind the statement, with DOI). If there are none, the answer says so: "Nothing in PSI applies directly to this condition."
 2. **Where the evidence ends, and why.** Whether PSI has any test in your gravity regime; which investigations are just outside, outside or far outside the tested data; and which are not comparable for which reason, grouped with counts.

@@ -11,7 +11,7 @@ sources: https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-s
 ---
 FM2 (Flammability of Materials on the Moon) is a planned NASA experiment to burn materials at lunar gravity on the Moon. PYRION holds two NASA sources about it: the NASA Glenn web page and the 2026 Lunar and Planetary Science Conference presentation by Ferkul and colleagues (NTRS 20260001966).
 
-In plain words: FM2 is the reason the app has a "Moon base" question. It is a plan. It has produced no measurement yet, so PYRION uses it to say what will be tested, never as evidence that a material does or does not burn.
+In plain words: FM2 is a planned experiment relevant to the Moon Base question. PYRION treats its stated starting conditions as plans, not measured flame outcomes. Read the cited NASA source for its dated status; this help topic does not establish that no results exist anywhere.
 
 What the NASA page says (quoted):
 

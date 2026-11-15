@@ -8,4 +8,4 @@ order: 4
 
 **What would close this gap** shows the engine's plan of experiments for the same condition.
 
-Both need a current condition. If there is none, TARS asks you for one.
+Map the unknown and What would close this gap use the current condition; if none is available, TARS asks for one. The other skill buttons are Check a claim, Brief me and Compare atmospheres. They have their own input requirements, explained in their topics.

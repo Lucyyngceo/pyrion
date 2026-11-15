@@ -35,9 +35,9 @@ test("Support finds the right topic for the site questions", () => {
   assert.equal(best("how do I add a source"), "add-a-source");
   assert.ok(["extrapolation-levels", "extrapolation"].includes(best("what does extrapolation mean") ?? ""));
   assert.equal(best("what does Take me there do"), "navigator-take-me-there");
-  assert.equal(best("how do I zoom the chart in full screen"), "full-screen-chart");
+  assert.equal(best("how do I zoom the chart in full screen"), "envelope-full-screen-zoom-pan");
   assert.equal(best("can the AI decide the verdict"), "ai-limits");
-  assert.equal(best("what is the bridge"), "bridge");
+  assert.ok(["bridge", "bridge-explained"].includes(best("what is the bridge")));
   assert.equal(best("blorfzzt quux"), null);
 });
 

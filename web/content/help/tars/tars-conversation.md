@@ -17,4 +17,4 @@ How to use it: Click it to open.
 
 Example: Open a chat.
 
-What it does not do: Titles are the first thing you said.
+What it does not do: Opening an entry does not start a new conversation. The initial title comes from the first message.

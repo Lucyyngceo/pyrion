@@ -10,7 +10,7 @@ What it is: A button under an answer that has a condition.
 
 What it shows: Runs only the engine part again and says same fingerprint ✓ when the bytes match.
 
-How to use it: Click it on any answer.
+How to use it: Click Replay on an answer that includes a condition.
 
 Example: Replay an answer from earlier today.
 

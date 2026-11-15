@@ -9,9 +9,9 @@ page: example
 link: /example
 highlight: [data-help="example-link"]
 ---
-What it is: One complete question run through PYRION on the server, printed step by step: solid cabin materials in ISS cabin air.
+What it is: Two worked questions computed on the server: the Moon Base condition and solid cabin materials in ISS cabin air.
 
-What it shows: The condition and its source, the verdict for every PSI investigation, the receipt of the closest one (test, value, file location, text), what NASA set out to learn there in its own words, the limits, and a fingerprint of the computation.
+What it shows: The conditions and their sources, the Moon Base gap and planned FM2 coverage, the ISS comparison results and closest receipt, an evidence-gaps table, limits and a computation fingerprint. Investigations without extracted records do not receive a dashboard verdict.
 
 How to use it: Read it top to bottom; every link opens the investigation, its DOI or the same question on the dashboard.
 

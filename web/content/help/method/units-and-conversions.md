@@ -12,7 +12,7 @@ Language models are bad at arithmetic: in a benchmark they put wrong numbers int
 
 **Pressure** goes to kilopascals (kPa): 1 Pa = 0.001 kPa; 1 atm = 101.325 kPa; 1 bar = 100 kPa; 1 mbar = 0.1 kPa; 1 psi = 1 psia = 6.894757 kPa; 1 mmHg = 1 torr = 0.1333224 kPa. Gauge pressure (psig, barg, kPag) is refused, because the engine needs absolute pressure; plain "psi" is taken as absolute and says so.
 
-**Oxygen** goes to a mole fraction: "34 %", "34 vol%", "34 percent" and "34 por ciento" are 0.34. A bare number above 1 is read as a percent and one up to 1 as a fraction, and the result says which rule it applied; a written unit always wins ("0.34 %" is 0.0034, with a warning).
+**Oxygen** goes to a mole fraction: "34 %", "34 vol%", "34 percent" are 0.34. A bare number above 1 is read as a percent and one up to 1 as a fraction, and the result says which rule it applied; a written unit always wins ("0.34 %" is 0.0034, with a warning).
 
 **Flow**: 1 m/s = 100 cm/s; 1 mm/s = 0.1 cm/s. **Thickness** in millimetres: 1 cm = 10 mm; 1 µm = 0.001 mm; 1 in = 25.4 mm; 1 m = 1000 mm. **Temperature** in kelvin: K = °C + 273.15.
 
@@ -23,7 +23,7 @@ Values that look like a unit slip (for example 200 % oxygen, or a negative press
 Table in `engine/src/quantity.ts` (copy of `TO_KPA`, `CONVERSIONS`, `BOUNDS` of `validation/run_all.py`; a test compares them):
 
 - `TO_KPA` (line 88): kpa 1.0, pa 0.001, atm 101.325, bar 100.0, mbar 0.1, psi 6.894757, psia 6.894757, mmhg 0.1333224, torr 0.1333224.
-- `TO_FRACTION` (line 99): '' and '1' and 'mole fraction' and 'fraction' 1.0; '%', 'percent', '% by vol', '% by volume', 'percent by volume', 'vol%', 'vol %' 0.01. Aliases: 'mol%', 'mol %', 'mole%', 'mole %', 'vol. %' as %; 'per cent', 'mol percent', 'mole percent', 'por ciento', 'porciento' as percent. A trailing "O2", "oxygen", "of oxygen", "de oxígeno" is ignored.
+- `TO_FRACTION` (line 99): '' and '1' and 'mole fraction' and 'fraction' 1.0; '%', 'percent', '% by vol', '% by volume', 'percent by volume', 'vol%', 'vol %' 0.01. Aliases: 'mol%', 'mol %', 'mole%', 'mole %', 'vol. %' as %; 'per cent', 'mol percent', 'mole percent', additional percent aliases. A trailing "O2", "oxygen", "of oxygen" is ignored.
 - `TO_CM_S` (line 112): cm/s 1.0, mm/s 0.1, m/s 100.0.
 - `TO_MM` (line 113): mm 1.0, cm 10.0, um and µm and micron(s) 0.001, in 25.4, m 1000.0.
 - `TO_K_OFFSET` (line 123): k 0, c and °c and degc 273.15 ("degrees C", "Celsius" also).
