@@ -102,14 +102,14 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       <section className="card" aria-labelledby="pl-chart">
         <h2 id="pl-chart">The Moon Base band</h2>
         <p data-help="planner-coverage" className="lede">
-          <strong>{pct(data.coverage.fraction)} of the band is covered by PSI measurements.</strong> ({data.coverage.covered} of {data.coverage.total} grid cells, partial gravity {data.band.gravityLevel} g.){" "}
+          <strong>{pct(data.coverage.fraction)} of the band lies inside the region spanned by PSI test points.</strong> ({data.coverage.covered} of {data.coverage.total} grid cells, partial gravity {data.band.gravityLevel} g.){" "}
           <span data-help="planner-erl-badge" className="chip" title={data.erl.atCentre.reason}>
             ERL {data.erl.atCentre.level} · {data.erl.atCentre.name}
           </span>{" "}
           <AskTars q={askQ} />
         </p>
         <p data-help="planner-honesty" className="honesty">
-          Covered means there are measurements at that condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+          Covered means the condition lies inside the region spanned by measured PSI test points: it is interpolated between tests, not necessarily a test run at that exact condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
         <div className="pl-controls" role="group" aria-label="Layers">
           <label className="small">

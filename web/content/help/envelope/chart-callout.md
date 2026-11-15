@@ -17,4 +17,4 @@ How to use it: Read it for a one-glance result.
 
 Example: "Inside the measured envelope".
 
-What it does not do: "Inside" means a PSI test covered it in this regime; it does not mean safe.
+What it does not do: "Inside" means it lies within the region spanned by PSI test points in this regime (interpolated, not necessarily tested at that exact point); it does not mean safe.

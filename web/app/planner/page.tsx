@@ -5,7 +5,7 @@ import "../navigator.css";
 
 export const metadata: Metadata = {
   title: "Mission Planner · PYRION Ω",
-  description: "How much of the Moon Base oxygen-pressure band the PSI measurements cover, what planned experiments would add, and how many tests the band needs. Evidence coverage, not a prediction or a safety assessment.",
+  description: "How much of the Moon Base oxygen-pressure band lies inside the region spanned by PSI test points, what planned experiments would add, and how many tests the band needs. Evidence coverage, not a prediction or a safety assessment.",
 };
 
 export default async function PlannerPage() {

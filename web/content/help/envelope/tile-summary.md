@@ -17,4 +17,4 @@ How to use it: Read it to see how much evidence PSI holds for that scenario.
 
 Example: "4 applicable (3 gas fuel, 1 liquid fuel)".
 
-What it does not do: Applicable means a PSI test covered the oxygen and pressure in the same regime; it does not mean the condition is safe.
+What it does not do: Applicable means the oxygen and pressure lie within the region spanned by PSI test points in the same regime (interpolated, not necessarily tested at that exact point); it does not mean the condition is safe.
