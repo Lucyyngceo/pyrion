@@ -1,5 +1,6 @@
 "use client";
 
+import { PSI_PAGE, accessionOfPath } from "@/lib/psi-links";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import Fm2Panel from "./Fm2Panel";
 import { citeSource } from "@/lib/cite";
@@ -113,7 +114,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           <q>such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability can be examined at Earth&apos;s gravity
           through equivalence of flame stretch rates</q>{" "}
           (<a data-help="bridge-source-link" href="https://ntrs.nasa.gov/citations/20000004509" target="_blank" rel="noreferrer">NTRS 20000004509</a>, <em>Combustion and
-          Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the setting of the FM2 centrifuge, FM2 being Flammability of Materials on the Moon, NTRS 20260001966, p. 13) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
+          Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the lunar-g setting of NASA's ground-test centrifuge, shown on p. 13 of the FM2 science presentation, NTRS 20260001966: “Upward Spread Lunar-g = 0.165 gE”; FM2, Flammability of Materials on the Moon, is a planned experiment, not a centrifuge) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
           All round to the quoted fractions.</span> This page uses that idea to point at the PSI tests whose stretch rate is closest. It
           does not change any verdict, and nothing here is a prediction of flame behavior on the Moon.
         </p>
@@ -514,12 +515,12 @@ function Receipt({
         <ul className="small">
           {h.inputRecords.map((r) => (
             <li key={r.location}>
-              <code className="path">{r.file}</code>, {r.location}. {r.note}
+              <code className="path">{r.file}</code>{accessionOfPath(r.file) && (<> (<a data-help="bridge-source-link" href={PSI_PAGE(accessionOfPath(r.file)!)} target="_blank" rel="noreferrer">PSI page</a>)</>)}, {r.location}. {r.note}
             </li>
           ))}
           {gravitySource && (
             <li>
-              Gravity regime (microgravity): <code className="path">{gravitySource.file}</code>, {gravitySource.location}, {gravitySource.status}: <q>{gravitySource.quote}</q>
+              Gravity regime (microgravity): <code className="path">{gravitySource.file}</code>{accessionOfPath(gravitySource.file) && (<> (<a data-help="bridge-source-link" href={PSI_PAGE(accessionOfPath(gravitySource.file)!)} target="_blank" rel="noreferrer">PSI page</a>)</>)}, {gravitySource.location}, {gravitySource.status}: <q>{gravitySource.quote}</q>
             </li>
           )}
           {extras && Object.keys(extras).length > 0 && (

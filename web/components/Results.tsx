@@ -3,6 +3,7 @@
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
 import AskTars from "./AskTars";
+import { PSI_PAGE } from "@/lib/psi-links";
 import { EXTRAPOLATION_LEVEL_NOTE, verdictLabel, type ExtrapolationLevel } from "@/lib/engine";
 import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
@@ -114,6 +115,10 @@ function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; cit
                     ) : (
                       <span>{c.accession}</span>
                     )}
+                    {" · "}
+                    <a data-help="result-source-doi" href={PSI_PAGE(c.accession)} target="_blank" rel="noreferrer">
+                      PSI page
+                    </a>
                     {" · "}
                     <code className="path">{c.source_file}</code>
                     {" · "}
@@ -240,6 +245,14 @@ function ResultRow({
     >
       <header className="result-head">
         <VerdictBadge verdict={iv.verdict} level={iv.extrapolationLevel} />
+        {ctx.dataset.lenses?.[iv.accession] && (
+          <span data-help="result-lens-chips" className="lens-chips" title="From the Flame in Freefall challenge text and the PSI record; each tag carries a verbatim quote (data/derived/lenses.json). Context only: it does not change the verdict.">
+            {ctx.dataset.lenses[iv.accession].legs.map((l) => (
+              <span key={l} className="chip small">{l}</span>
+            ))}
+            {ctx.dataset.lenses[iv.accession].tier && <span className="chip small">relevance: {ctx.dataset.lenses[iv.accession].tier}</span>}
+          </span>
+        )}
         <AskTars q={`Explain the verdict for ${iv.accession} ${inv?.acronym ?? ""} at my current condition: ${pv.sentence}`} label="Ask TARS" />
         <div className="result-id">
           <span className="acc">{iv.accession}</span>

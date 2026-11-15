@@ -127,11 +127,28 @@ async function loadEmbedding(): Promise<Dataset["embedding"]> {
   }
 }
 
+/** Chips only (never the quotes): the safety legs an investigation has a tagged quote for, and its relevance tier. Defensive: a missing or odd file gives nothing. */
+async function loadLenses(): Promise<Dataset["lenses"]> {
+  const t = await readText(path.join(DATA_DIR, "derived", "lenses.json"));
+  if (!t) return undefined;
+  try {
+    const j = JSON.parse(t) as { investigations?: { accession?: unknown; legs?: Record<string, unknown[]>; strength?: { value?: unknown } }[] };
+    const out: NonNullable<Dataset["lenses"]> = {};
+    for (const i of j.investigations ?? []) {
+      if (typeof i.accession !== "string") continue;
+      out[i.accession] = { legs: Object.entries(i.legs ?? {}).filter(([, v]) => Array.isArray(v) && v.length > 0).map(([k]) => k), tier: typeof i.strength?.value === "string" ? i.strength.value : null };
+    }
+    return Object.keys(out).length > 0 ? out : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function loadDataset(): Promise<Dataset> {
   const [investigations, files] = await Promise.all([loadInvestigations(), readConditionFiles(path.join(DATA_DIR, "conditions"))]);
   const real = stats(files);
   if (real.stats.records > 0) {
-    return { mode: "psi", files, investigations, sourceFiles: await loadSourceFiles(real.sources), embedding: await loadEmbedding(), stats: real.stats };
+    return { mode: "psi", files, investigations, sourceFiles: await loadSourceFiles(real.sources), embedding: await loadEmbedding(), lenses: await loadLenses(), stats: real.stats };
   }
   const fixtures = await readConditionFiles(FIXTURE_DIR);
   return {

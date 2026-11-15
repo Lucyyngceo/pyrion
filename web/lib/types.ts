@@ -37,5 +37,7 @@ export interface Dataset {
    * Optional precomputed embedding search (data/derived/text_similarity.json), read defensively. Shape: { model: {name, license}, rankings: { [presetId]: [{ accession, cosine }] } }; class B, never evidence. Absent when the file is missing or malformed.
    */
   embedding?: { model: string; license: string; rankings: Record<string, { accession: string; score: number }[]> };
+  /** Safety-leg and relevance-tier chips per investigation, from data/derived/lenses.json (each tag carries a verbatim quote there). Absent when the file is missing. */
+  lenses?: Record<string, { legs: string[]; tier: string | null }>;
   stats: { records: number; verified: number; flagged: number; rejected: number; accessions: number };
 }

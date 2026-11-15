@@ -26,4 +26,4 @@ The reason for "stated by the experimenter": PYRION does not know what material 
 
 Sentences: "Gravity level: to be stated by the experimenter; the levels in use are 0.16 g (lunar) and 0.38 g (Mars)." / "Flow velocity: to be stated by the experimenter. Recorded for the comparable investigations: PSI-9802 5 cm/s." (recorded ranges from the comparable investigations' records, 3 significant figures).
 
-The 0.165 g figure of the FM2 centrifuge (NTRS 20260001966, PDF p. 13) is the engine's named Moon gravity; the 0.16 g presentation figure is shown here because it is what the lunar-gravity literature quotes.
+The 0.165 g figure of NASA's ground-test centrifuge (a ground analog, quoted on PDF p. 13 of the FM2 science presentation, NTRS 20260001966: "Upward Spread Lunar-g = 0.165 gE"; FM2 itself is a planned experiment, not a centrifuge) is the engine's named Moon gravity; the 0.16 g presentation figure is shown here because it is what the lunar-gravity literature quotes.
