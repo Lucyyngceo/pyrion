@@ -188,3 +188,27 @@ test("an explanatory question must end with an expert block and a NASA quote: on
   assert.deepEqual(r.kept.map((b) => b.layer).sort(), ["expert", "nasa"]);
   assert.ok(s.seen[0].some((m) => m.role === "tool" && m.tool_call_id === "pre-search"), "the library was searched before the first model turn");
 });
+
+import { detectLang, languageInstruction, labelsFor } from "../lib/tars/lang.ts";
+
+test("language: Spanish questions are detected by code, the model is told to answer in Spanish, labels follow", async () => {
+  assert.equal(detectLang("¿Qué materiales arden más fácil a 34% de oxígeno y 8,2 psia en la Luna?"), "es");
+  assert.equal(detectLang("Cuál es la presión parcial de oxígeno"), "es");
+  assert.equal(detectLang("What is the oxygen partial pressure at 34% and 8.2 psia?"), "en");
+  assert.equal(detectLang("PSI-26 BASS"), "en");
+  assert.match(languageInstruction("es"), /Spanish/);
+  assert.match(languageInstruction("es"), /verbatim/);
+  assert.equal(languageInstruction("en"), "");
+  assert.equal(labelsFor("es").nasa, "NASA lo dijo");
+  const s = script([() => ({ content: JSON.stringify([{ layer: "expert", text: "Hola." }]) })]);
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "¿Por qué la llama es redonda sin gravedad?" });
+  assert.equal(r.lang, "es");
+  assert.match(String(s.seen[0][0].content), /Write every explanation in Spanish/);
+});
+
+test("the target is set whenever the message carries a complete condition, even if the model never calls set_condition", async () => {
+  const s = script([() => ({ content: JSON.stringify([{ layer: "expert", text: "A short note." }]) })]);
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "What about 34% oxygen at 8.2 psia in microgravity?" });
+  assert.ok(r.target);
+  assert.equal(r.target?.continuous.o2_mole_fraction, 0.34);
+});

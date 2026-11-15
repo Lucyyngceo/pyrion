@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { highlight } from "@/lib/tars/bridge";
 import { resolveMode } from "@/lib/tars/answer";
+import { labelsFor, type Lang } from "@/lib/tars/lang";
 import { useTars, type ExpertResult, type Msg } from "./TarsProvider";
 
 /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text is never inserted as HTML. */
@@ -72,6 +73,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
   const { mode, showOnEnvelope } = useTars();
   const adv = resolveMode(mode, msg.route) === "advanced";
   const r: ExpertResult = msg.result;
+  const L10n = labelsFor(r.lang as Lang | undefined);
   return (
     <div className="tars-answer tars-expert">
       {r.steps.some((x) => x.tool === "what_if_experiment") && (
@@ -85,7 +87,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
         return (
           <section key={i} data-help={L.help} className={`tars-layer ${L.cls}`}>
             <h4>
-              <span aria-hidden="true">{L.icon}</span> {L.name} <span className="tars-sub">{b.label}</span>
+              <span aria-hidden="true">{L.icon}</span> {L10n[b.layer]} <span className="tars-sub">{b.layer === "expert" ? L10n.expertSub : b.layer === "nasa" ? L10n.nasaSub : L10n.engineSub}</span>
             </h4>
             <Md text={b.text} />
             {b.citations.map((c, ci) => (
@@ -126,7 +128,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
         {r.actions.map((a, i) =>
           a.type === "show" ? (
             <button data-help="tars-show-on-envelope" key={i} type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
-              Show on the envelope
+              {L10n.showOnEnvelope}
             </button>
           ) : (
             <button data-help="tars-show-me" key={i} type="button" className="tars-btn" onClick={() => highlight(a.selector)}>
@@ -137,7 +139,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
       </div>
       {r.model && (
         <p className="small muted tars-by">
-          Answered by {r.model.name}
+          {L10n.answeredBy} {r.model.name}
           {r.model.fellBackFrom ? ` (${r.model.fellBackFrom} was not available)` : ""} · {r.model.provider === "nim" ? "NVIDIA NIM" : "OpenRouter"}
         </p>
       )}

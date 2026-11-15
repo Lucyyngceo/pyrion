@@ -22,6 +22,7 @@ export interface ExpertResult {
   flagged: number;
   actions: ({ type: "show"; target: unknown } | { type: "highlight"; selector: string; label: string })[];
   target: unknown;
+  lang?: string;
   steps: { tool: string; label: string }[];
   model: { model: string; name: string; provider: string; fellBackFrom: string | null } | null;
 }

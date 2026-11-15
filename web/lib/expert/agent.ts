@@ -7,6 +7,7 @@
 import { evaluate, evidenceMap, experimentsNeeded, parseQuantity, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
 import { axisLabel, valueLabel, verdictLabel, levelSentence } from "../../../engine/src/labels.ts";
 import { readByCode } from "../ask-core.ts";
+import { detectLang, languageInstruction } from "../tars/lang.ts";
 import { searchTopics, MIN_SCORE, type Topic } from "../tars/help.ts";
 import { CALCULATOR_SPECS, runCalculator, type ToolResult } from "./calculators.ts";
 import { checkAnswer, quoteFound, type Corpus, type CheckResult } from "./claims.ts";
@@ -441,6 +442,8 @@ export interface AgentResult extends CheckResult {
   actions: Action[];
   target: Target | null;
   rounds: number;
+  /** The language of the visitor's message, for the labels of the answer. */
+  lang: string;
 }
 
 export async function runAgent(
@@ -449,7 +452,13 @@ export async function runAgent(
 ): Promise<AgentResult> {
   const s = newState(input.lastTarget ?? null);
   const ui = input.ui ?? {};
-  const system = `${SYSTEM_PROMPT}\n\nPage context (from the visitor's browser): ${cap(JSON.stringify(ui), 1500)}\nPrevious target: ${s.target ? JSON.stringify(targetSummary(s.target)) : "none"}`;
+  const lang = detectLang(input.message);
+  // A complete condition in the message is the target, whether or not the model calls set_condition.
+  if (!s.target) {
+    const r = readByCode(input.message);
+    if (r.kind === "code") s.target = r.parsed.target;
+  }
+  const system = `${SYSTEM_PROMPT}${languageInstruction(lang) ? `\n\n${languageInstruction(lang)}` : ""}\n\nPage context (from the visitor's browser): ${cap(JSON.stringify(ui), 1500)}\nPrevious target: ${s.target ? JSON.stringify(targetSummary(s.target)) : "none"}`;
   const messages: ChatMsg[] = [{ role: "system", content: system }, ...(input.history ?? []).slice(-8).map((h) => ({ role: h.role, content: cap(h.text, 1200) }) as ChatMsg), { role: "user", content: input.message }];
   // For explanations the NASA library is searched first, so the model sees the passages and a verified quote is always possible.
   const explain = isExplanatory(input.message);
@@ -523,5 +532,5 @@ export async function runAgent(
   }
   // Raw codes never reach the reader, whatever the layer.
   checked = { ...checked, kept: checked.kept.map((k) => ({ ...k, text: plainify(k.text) })) };
-  return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1 };
+  return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1, lang };
 }
