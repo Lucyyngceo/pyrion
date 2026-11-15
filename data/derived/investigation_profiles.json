@@ -7962,7 +7962,7 @@
       }
     ],
     "test_count": 2,
-    "value_count": 11,
+    "value_count": 13,
     "variables": [
       {
         "classification": "distinct values as recorded",
@@ -8006,6 +8006,20 @@
           "SIBAL Fabric"
         ],
         "variable": "material"
+      },
+      {
+        "classification": "observed constant",
+        "distinct_count": 1,
+        "max": null,
+        "min": null,
+        "source": "data/conditions/PSI-100.csv",
+        "test_count": 2,
+        "unit": "1",
+        "value_count": 2,
+        "values": [
+          "0.21..0.212"
+        ],
+        "variable": "o2_mole_fraction"
       }
     ]
   },

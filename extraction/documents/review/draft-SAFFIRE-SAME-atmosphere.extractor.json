@@ -1,0 +1,116 @@
+{
+  "accession": "PSI-98;PSI-99;PSI-100;PSI-101;PSI-102",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "date": "2026-11-15",
+  "scope": "Variables pressure (total pressure of the atmosphere the experiment ran in) and o2_mole_fraction (ambient O2) only. PSI-98 and PSI-99 O2 already come from their own experimental tables and are not repeated here.",
+  "sources_read": [
+    "psi-data/PSI-98/_investigation/PSI-98.json",
+    "psi-data/PSI-99/_investigation/PSI-99.json",
+    "psi-data/PSI-100/_investigation/PSI-100.json",
+    "psi-data/PSI-101/_investigation/PSI-101.json",
+    "psi-data/PSI-102/_investigation/PSI-102.json",
+    "psi-data/PSI-98/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf",
+    "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I Image Directory Nomenclature.pdf",
+    "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II Readme.docx",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II_Image_Directory_Nomenclature_v3.0.pdf",
+    "psi-data/PSI-100/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf",
+    "psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-III Image Directory Nomenclature_v3.0.pdf",
+    "psi-data/PSI-101/Reports/PSI-101_Reports_SAME-R_Final Report.pdf",
+    "psi-data/PSI-101/Science Documents/PSI-101_Science Documents_SAME_Baseline Concept Description Document_001 Rev A.pdf",
+    "psi-data/PSI-101/Science Documents/PSI-101_Science Documents_SAME_Operations Manual_007.pdf",
+    "psi-data/PSI-101/Reference Data/PSI-101_Reference Data_SAME_Software Requirement Document_004 Rev D.pdf",
+    "psi-data/PSI-101/Experimental table/PSI-101_Experimental table_SAME-R.csv",
+    "psi-data/PSI-101/Engineering Documents/ (all, via text index)",
+    "psi-data/PSI-102/Reports/PSI-102_Reports_SAME_Final Science Report.pdf",
+    "psi-data/PSI-102/Engineering Documents/PSI-102_Engineering Documents_SAME Verification Plan and Engineering Requirements Document (VPRED)_January 2007.pdf",
+    "psi-data/PSI-102/Engineering Documents/ and Reference Data/ (all, via text index)",
+    "nasa/ntrs-20180005168/20180005168.pdf"
+  ],
+  "records": [
+    {
+      "id": "R501",
+      "acc": "PSI-100",
+      "test_id": "S1",
+      "variable": "o2_mole_fraction",
+      "value": "",
+      "value_original": "21.2 to 21.0",
+      "unit_original": "%O2",
+      "numbers": ["21.2", "21.0"],
+      "kind": "range",
+      "source_file": "nasa/ntrs-20180005168/20180005168.pdf",
+      "source_location": "page=30",
+      "quote": "Table 1.  Summary of Samples, Test Conditions, and Selected Results [...] Δ %O2 i [...] III-1 Cotton-Fiberglass 40.6 cm 0.37 mm 94 cm 25 cm/s Concurrent 21.2 to 21.0",
+      "confidence": "derived",
+      "derivation": "O2 reading across the Saffire-III concurrent burn as tabulated (start to end: 21.2 then 21.0); it is a range over the test, not a set point. Mapping: NTRS row III-1 is 'Concurrent'; the PSI-100 table (psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv, row=1) lists S1 with Direction 'Concurrent', so III-1 -> S1 by flow direction. Caution for the auditor: the two tables do not agree on flow speed (NTRS III-1 '25 cm/s', PSI-100 S1 '30 cm/s'), so the mapping rests on direction only. The column header is 'Δ %O2' with footnote 'i' whose text is not in the indexed pages; the values themselves read as absolute O2 percent (cf. the PSI-98 table, which lists the same Saffire-I burn I-1 as 'Percent O2' '21.5 - 21.7', and PSI-99 table note row=12: 'Note 1 Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS.').",
+      "flags": ["UNIT_AMBIGUOUS", "RANGE_NOT_POINT", "SHARED_LINEAGE"],
+      "flag_notes": "UNIT_AMBIGUOUS: column header is a change symbol (Δ %O2) while the cells look like absolute percentages. SHARED_LINEAGE: the same table and the same flight hardware design cover Saffire-I, -II and -III (PSI-98, PSI-99, PSI-100)."
+    },
+    {
+      "id": "R502",
+      "acc": "PSI-100",
+      "test_id": "S2",
+      "variable": "o2_mole_fraction",
+      "value": "",
+      "value_original": "21.2 to 21.0",
+      "unit_original": "%O2",
+      "numbers": ["21.2", "21.0"],
+      "kind": "range",
+      "source_file": "nasa/ntrs-20180005168/20180005168.pdf",
+      "source_location": "page=30",
+      "quote": "Table 1.  Summary of Samples, Test Conditions, and Selected Results [...] Δ %O2 i [...] III-2 Cotton-Fiberglass 40.6 cm 0.37 mm ~ 10 cm 25 cm/s Opposed 21.2 to 21.0",
+      "confidence": "derived",
+      "derivation": "O2 reading across the Saffire-III opposed burn as tabulated (start to end: 21.2 then 21.0); a range over the test, not a set point. Mapping: NTRS row III-2 is 'Opposed'; the PSI-100 table (psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv, row=2) lists S2 with Direction 'Opposed', so III-2 -> S2 by flow direction. Caution: NTRS gives '25 cm/s' and '~ 10 cm' length for III-2, PSI-100 gives '30 cm/s' and '94 cm' for S2; the mapping rests on direction only. Header 'Δ %O2' with unavailable footnote 'i' (see R501).",
+      "flags": ["UNIT_AMBIGUOUS", "RANGE_NOT_POINT", "SHARED_LINEAGE"],
+      "flag_notes": "Same as R501."
+    }
+  ],
+  "not_found": [
+    {
+      "acc": "PSI-98",
+      "variable": "pressure",
+      "looked_in": "PSI-98.json all text sections (approach only says 'solid state sensors were used to measure pressure, CO2 and O2 mole faction' — names a sensor, gives no value); SAFFIRE-I Operations.pdf page 1 (no pressure statement); SAFFIRE-I and SAFFIRE-III Readme.docx all paragraphs; SAFFIRE-I Image Directory Nomenclature.pdf; PSI-98 experimental table (no pressure column); SAFFIRE Objectives, Development and Status.pdf pages 1-6 (Table 2 on page 3 lists 'Pressure solid-state sensor in avionics bay', no value); NTRS 20180005168 all indexed pages 1-8, 10-20, 23-26, 30-31 (no psia/kPa/atm/'cabin air' statement for Saffire-I; page 25 says only 'burning in air at 20 cm/s', which is not a pressure). Searched for '14.7', 'psia', '1 atm', '101.3', 'kPa', 'cabin air', 'normal pressure', 'atmospheric pressure'. Pages 9, 21, 22, 27-29 of the NTRS PDF have no extractable text (image-only) and could not be read: unverified."
+    },
+    {
+      "acc": "PSI-99",
+      "variable": "pressure",
+      "looked_in": "PSI-99.json all text sections (sensor named, no value); SAFFIRE-II Readme.docx all paragraphs; SAFFIRE-II Image Directory Nomenclature v3.0.pdf; PSI-99 experimental table incl. notes rows 11-15 (no pressure); SAFFIRE Objectives, Development and Status.pdf pages 1-6; NTRS 20180005168 indexed pages (no Saffire-II atmosphere pressure). Same search terms as PSI-98."
+    },
+    {
+      "acc": "PSI-100",
+      "variable": "pressure",
+      "looked_in": "PSI-100.json all text sections (sensor named, no value); SAFFIRE-III Operations.pdf page 1; SAFFIRE-I and SAFFIRE-III Readme.docx; SAFFIRE-III Image Directory Nomenclature v3.0.pdf; SAFFIRE-III MergeResult xlsx (file lists only); PSI-100 experimental table (no pressure column); SAFFIRE Objectives, Development and Status.pdf pages 1-6; NTRS 20180005168 indexed pages incl. Table 1 pages 30-31 (no pressure column). Same search terms as PSI-98."
+    },
+    {
+      "acc": "PSI-100",
+      "variable": "o2_mole_fraction",
+      "looked_in": "Note only (not a gap): besides R501/R502, the SAFFIRE Objectives, Development and Status.pdf pages 2-3 says the Saffire-II materials 'will burn in normal gravity just above and below 21% O2 by volume, i.e., the expected concentration of O2 when Cygnus unberths from ISS.' Not proposed for PSI-100: it is a pre-flight expectation written for the Saffire-II sample selection and does not name Saffire-III."
+    },
+    {
+      "acc": "PSI-101",
+      "variable": "pressure",
+      "looked_in": "PSI-101.json all text sections; SAME-R Final Report.pdf all indexed pages (only N2 regulator/orifice pressures, page with 'isolated the SAME hardware from high pressure during the drum purging'); SAME Baseline Concept Description Document 001 Rev A (only hose '+/- 15 psig', MDP '200 psid', '20 psig', and 'the MSG is under a negative pressure' — hardware/containment, excluded by rule); SAME Operations Manual 007 (drive-side '13.2 psia' piston fill pressure and 'These depend somewhat on atmospheric pressure and should be adjusted for the ISS environment' — no value; excluded); Software Requirement Document 004 Rev D ('The DACU shall measure and store the ambient air pressure of the work volume' — requirement, no value; '21 psig' GN2 and '19 psia' vacuum shut-off limits — excluded); SAME-R experimental table (no pressure column); Engineering Documents (drawings, schematics, EIRD, wire report) via text index. Analyzed Data xlsx (not in the assigned source list) only show GN2/vacuum/sample-side hardware pressures in PSIA. Search terms: '14.7', 'psia', '1 atm', 'one atmosphere', '101.3', 'kPa', 'cabin air', 'cabin atmosphere', 'ISS atmosphere', 'ambient pressure', 'normal pressure', 'atmospheric pressure'."
+    },
+    {
+      "acc": "PSI-101",
+      "variable": "o2_mole_fraction",
+      "looked_in": "Same documents as PSI-101 pressure; searched '21%', '21 %', '20.9', 'oxygen', 'O2', 'ppO2', 'air'. Only generic mentions (e.g. Final Report: 'failure of oxygen generation systems can have significant consequences'; 'partially oxidized species resulting from the reaction with oxygen'). No statement of the O2 of the MSG work volume or ISS cabin during the SAME-R tests."
+    },
+    {
+      "acc": "PSI-102",
+      "variable": "pressure",
+      "looked_in": "PSI-102.json all text sections; SAME Final Science Report.pdf all indexed pages (no atmosphere pressure); SAME VPRED January 2007 (requirements only: 'The pressure transducer used to measure ambient pressure in the work volume shall measure the pressure range of 0.08 MPa to 0.13 MPa' — sensor range, excluded; '0 to 104.8 kPa (0 to 15.2 psia)' pressure-transition safety requirement — excluded; VES/VRS MDP '276 kPa (40 psia)', nitrogen '70 psia', '517 to 931 kPa', MDP '1,379 kPa (200 psia)' — excluded; 'air (21% oxygen, 79% nitrogen) at one atmosphere pressure (14.7 psia)' is a generic MSG IIRD humidity-envelope reference, does not name SAME tests — excluded per rule 1); SAME EIRD, Crew Interface Description, Software Description/Requirement Documents, Baseline Concept Description Doc, Operations Manual 007, Ignitor Wire Characterization Report, drawings and schematics via text index; PSI-102 experimental table. Same search terms as PSI-101."
+    },
+    {
+      "acc": "PSI-102",
+      "variable": "o2_mole_fraction",
+      "looked_in": "Same documents as PSI-102 pressure; searched '21%', '21 %', '20.9', 'oxygen', 'O2', 'ppO2', 'cabin air'. VPRED mentions an 'Oxygen sensor, provided by the investigation' and 'fresh cabin air can be sucked into the WV' (procedural requirements, no value) and the generic '21% oxygen' humidity-envelope sentence (excluded, not about the SAME tests). Final Science Report: only generic 'oxygen generation systems' text. No O2 value for the SAME test atmosphere."
+    }
+  ],
+  "lineage": "Saffire-I/-II/-III (PSI-98/99/100) share one hardware design and one results table: 'The premise for the design of the flight experiment was that practically all of the hardware would be identical in the three units except possibly for the sample material(s) to be burned.' (SAFFIRE Objectives, Development and Status.pdf, page=2). SAME-R (PSI-101) reflew SAME (PSI-102) hardware: 'SAME-R utilized the SAME hardware used on-orbit.' (psi-data/PSI-101/_investigation/PSI-101.json, section=approach); several SAME engineering documents are filed under both accessions."
+}
