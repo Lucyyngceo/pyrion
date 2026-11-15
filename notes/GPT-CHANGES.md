@@ -43,3 +43,26 @@
 - List adds oxygen, pressure, flow, gravity, relevance/leg chips and checkbox selection for comparison. Compare supports picking via the list; `web/lib/investigations/display.ts` uses the engine's `KPA_PER_PSI` for pressure display, three significant figures and oxygen one decimal percent; source values are retained in data. Bookkeeping headers are excluded in `tools/build_profiles.py`; instrument-related sentences are quoted verbatim from each investigation JSON `approach` where found. PSI receipts link to the public investigation URL pattern sourced from `data/manifest/web_check_2026-11-14.csv` line 1.
 - Validation: `python tools/build_outcomes_extra.py` independently checked 3295 cells (including 2900 reduced-sheet cells) and produced 33 F-to-G formula-linked pairs. `python tools/build_profiles.py` and `python tools/build_materials.py` regenerate their outputs. `npm --prefix web test` passed 198 tests and `npm --prefix web run build` passed. A simultaneous unrelated build temporarily held the Next.js build lock; it completed without intervention. `web/test/investigations-same.test.ts` checks local IDs, source locations, pair cells, and raw material preservation. No Git commands run.
 - Limitations: the raw `?-g` header cannot be repaired from this CSV alone; classification is a PYRION naming convention and must not be read as a chemical identification for unmatched strings. PSI-101 sub-run grouping is grounded in the supplied direction and is not generalized to other accession naming conventions. User-interface visual contrast was not independently measured.
+
+## GPT Round 7 — investigations
+
+Changes made:
+- `web/components/investigations/InvestigationList.tsx`: reformatted the existing list and controls without changing their behavior.
+- `tools/build_profiles.py`: selects two or three complete verbatim sentences from PSI objective, approach, or description fields, checks each against its original JSON field, and omits summaries with fewer than two sentences.
+- `data/derived/investigation_profiles.json`: rebuilt profiles with source-field-labelled summary quotes (23 investigations have summaries).
+- `web/app/investigations/[id]/page.tsx`: displays the source-field-labelled quotes.
+- `web/app/investigations/compare/page.tsx`: adds the requested comparison links, supports up to six IDs for ACME, retains case-insensitive manual input, and removes the local-file citation.
+- `web/app/investigations/page.tsx`: adds challenge-sourced hardware families and the E-FIELD analog quotation.
+- `web/content/help/investigations/investigation-presets.md`: help for comparison links.
+- `web/content/help/investigations/investigation-families.md`: help for the challenge source link.
+- `notes/GPT-CHANGES.md`: this log.
+
+Checks run:
+- `python tools/build_profiles.py` — passed; 24 profiles, 9,498 condition rows.
+- Checked generated summary quotes for the requested prohibited words — none found; 23 summaries.
+- `npm test` in `web/` — passed, 198 tests.
+- `npm run build` in `web/` — passed.
+
+Needs someone else:
+- The build reported that visitor isolation is off in its production environment; see `docs/DEPLOY.md` and configure `PYRION_TRUST_PROXY` and `PYRION_PROXY_SECRET` as appropriate for deployment. This is outside the assigned paths.
+- The existing comparison help topic still describes two or three IDs; the page now accepts up to six. That existing help file is outside the permitted new-help-only scope.

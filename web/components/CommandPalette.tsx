@@ -24,19 +24,24 @@ export default function CommandPalette() {
   const cmds = useMemo<Cmd[]>(() => {
     const go = (href: string) => () => router.push(href);
     const preset = (id: string) => () => {
-      if (path === "/envelope") window.dispatchEvent(new CustomEvent("pyrion:preset", { detail: id }));
-      else router.push(`/envelope?preset=${id}`);
+      if (path === "/") window.dispatchEvent(new CustomEvent("pyrion:preset", { detail: id }));
+      else router.push(`/?preset=${id}`);
     };
     const scroll = (id: string) => () => {
-      if (path !== "/envelope") router.push(`/envelope#${id}`);
+      if (path !== "/") router.push(`/#${id}`);
       else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
     return [
       ...PRESET_VIEWS.map((v) => ({ id: `p-${v.preset.id}`, group: "Target preset", label: v.short, hint: v.summary, run: preset(v.preset.id) })),
       { id: "s-env", group: "Section", label: "Evidence envelope", run: scroll("envelope-h") },
       { id: "s-res", group: "Section", label: "Verdicts, one row per investigation", run: scroll("results-h") },
-      { id: "s-tvp", group: "Section", label: "Text similarity vs physics", run: scroll("tvp-h") },
+      { id: "s-tvp", group: "Section", label: "Text similarity vs condition similarity", run: scroll("tvp-h") },
+      { id: "g-landing", group: "Page", label: "Home: what PYRION is", hint: "/", run: go("/") },
       { id: "g-home", group: "Page", label: "Envelope", hint: "/envelope", run: go("/envelope") },
+      { id: "g-lenses", group: "Page", label: "Safety lenses: prevention, detection, suppression", hint: "/lenses", run: go("/lenses") },
+      { id: "g-more", group: "Page", label: "Fire-safety equipment & Earth", hint: "/more", run: go("/more") },
+      { id: "g-planner", group: "Page", label: "Mission Planner: the Moon Base band", hint: "/planner", run: go("/planner") },
+      { id: "g-inv", group: "Page", label: "Investigations: the 24 PSI studies", hint: "/investigations", run: go("/investigations") },
       { id: "g-bridge", group: "Page", label: "Bridge: transfer hypothesis (not evidence)", hint: "/bridge", run: go("/bridge") },
       { id: "g-method", group: "Page", label: "Method: how PYRION decides", hint: "/method", run: go("/method") },
       { id: "g-why", group: "Page", label: "Why this exists: a note from the author", hint: "/why", run: go("/why") },

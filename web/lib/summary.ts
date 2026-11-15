@@ -2,7 +2,7 @@
 
 import type { Evaluation, Target, TargetLocation, Verdict } from "./engine";
 import { targetRegimeName } from "./layers";
-import { valueLabel } from "./units";
+import { kPa, pctO2, valueLabel } from "./units";
 
 export type Tone = "inside" | "outside" | "unknown";
 
@@ -23,13 +23,23 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
   const regimeStated = Object.keys(target.regime).length > 0;
 
   if (counts.APPLICABLE > 0) {
+    // Inside a hull usually means between tests: say whether a measured test sits at this exact condition.
+    const near = locations
+      .filter((l) => l.sameRegime === true && l.insideHull === true && l.nearestTest)
+      .map((l) => l.nearestTest as NonNullable<TargetLocation["nearestTest"]>)
+      .sort((x, y) => Number(y.coincides) - Number(x.coincides))[0];
+    const exactNote = near
+      ? near.coincides
+        ? ` A measured test sits at this condition (within the 0.5 % tolerance): ${near.accession} test ${near.test_id}, ${pctO2(near.o2_mole_fraction)} O₂, ${kPa(near.pressure)}.`
+        : ` This exact condition lies between tests; no extracted PSI test was run at it. Nearest measured test: ${near.accession} test ${near.test_id}, ${pctO2(near.o2_mole_fraction)} O₂, ${kPa(near.pressure)}.`
+      : "";
     return {
       tone: "inside",
       headline: "Inside the measured envelope",
       sub: `${plural(counts.APPLICABLE, "investigation")} applicable`,
-      detail: regimeStated
+      detail: (regimeStated
         ? `${plural(counts.APPLICABLE, "investigation")} measured ${regime} around this O₂ and pressure.`
-        : `${plural(counts.APPLICABLE, "investigation")} measured tests around this O₂ and pressure (regime left open).`,
+        : `${plural(counts.APPLICABLE, "investigation")} measured tests around this O₂ and pressure (regime left open).`) + exactNote,
       counts,
     };
   }

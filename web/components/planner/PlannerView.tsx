@@ -22,7 +22,7 @@ const KPA_PER_PSI = 6.894757;
 const pct = (x: number) => `${Math.round(x * 1000) / 10} %`;
 const W = 640;
 const H = 380;
-const M = { l: 56, r: 16, t: 14, b: 44 };
+const M = { l: 124, r: 16, t: 14, b: 44 };
 const X0 = 0.24;
 const X1 = 0.36;
 const Y0 = 52;
@@ -96,20 +96,29 @@ export default function PlannerView({ data }: { data: PlannerData }) {
   return (
     <>
       <p data-help="planner-label" className="tars-label" role="note">
-        {data.label}. Evidence coverage, not a prediction or a safety assessment.
+        {data.label}.
       </p>
 
       <section className="card" aria-labelledby="pl-chart">
-        <h2 id="pl-chart">The Moon Base band</h2>
+        <h2 id="pl-chart">The Moon Base band (built by PYRION from NASA atmospheres)</h2>
         <p data-help="planner-coverage" className="lede">
-          <strong>{pct(data.coverage.fraction)} of the band is covered by PSI measurements.</strong> ({data.coverage.covered} of {data.coverage.total} grid cells, partial gravity {data.band.gravityLevel} g.){" "}
+          <strong>{pct(data.coverage.fraction)} of the band lies inside the region spanned by PSI test points.</strong> ({data.coverage.covered} of {data.coverage.total} grid cells, partial gravity {data.band.gravityLevel} g.){" "}
           <span data-help="planner-erl-badge" className="chip" title={data.erl.atCentre.reason}>
             ERL {data.erl.atCentre.level} · {data.erl.atCentre.name}
           </span>{" "}
           <AskTars q={askQ} />
         </p>
+        {data.coverage.fraction === 0 && (
+          <p data-help="planner-zero-expected" className="small">
+            The 0 % is expected, not a finding: this page counts only tests run at the band&apos;s gravity, and NASA&apos;s
+            challenge statement says there is currently no partial-gravity combustion data in PSI, so 0 % follows by
+            construction. What this page adds is below: what FM2 as planned would measure, which corners of the band
+            stay unmeasured, and the nearest PSI evidence, which is in microgravity or normal gravity (open the{" "}
+            <a data-help="planner-zero-expected" href="/envelope?preset=challenge-lunar-base">Envelope with the Moon Base condition</a>).
+          </p>
+        )}
         <p data-help="planner-honesty" className="honesty">
-          Covered means there are measurements at that condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+          Covered means the condition lies between measured PSI test points (inside the outline around them, within the 0.5 % tolerance). No test was necessarily run at that exact condition, other axes are checked one at a time so that exact combination may never have been tested, and PYRION computes no value there. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
         <div className="pl-controls" role="group" aria-label="Layers">
           <label className="small">
@@ -202,8 +211,10 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       </section>
 
       <section className="card" aria-labelledby="pl-min">
-        <h2 id="pl-min">Minimum test set</h2>
+        <h2 id="pl-min">Minimum test points (PYRION&apos;s geometric convention)</h2>
         <p data-help="planner-min-set" className="small">
+          The fewest test points whose outline covers the band under PYRION&apos;s convention: not a test programme. It holds for
+          one material, flow velocity and sample thickness at a time; repeats and flammability thresholds are not included.{" "}
           {data.minimumTest.points.length} points (the corners of the band). {data.minimumTest.fm2Contributes.length} are already contributed by FM2 as planned; {data.minimumTest.missing.length} are missing{data.minimumTest.missing.length > 0 ? `: ${data.minimumTest.missing.map((m) => `${Math.round(m.o2_mole_fraction * 1000) / 10} % at ${Math.round((m.pressure_kpa / KPA_PER_PSI) * 10) / 10} psia`).join("; ")}` : ""}.
         </p>
         <div className="tars-cmptable">

@@ -29,4 +29,4 @@ In plain words: the program prefers to throw away a true value it cannot prove t
 
 ## For engineers
 
-- These are the rules added to the validator after the independent audit of 14 November: numbers as written, `value_original` inside the quote, and trace against the original text layer. Still open: checking that the quote is on the cited page.
+- These are the rules added to the validator after the audit by a separate AI reviewer agent on 14 November: numbers as written, `value_original` inside the quote, and trace against the original text layer. Still open: checking that the quote is on the cited page.

@@ -1,272 +1,285 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { loadFacts } from "@/lib/facts";
-import { loadPlanner } from "@/lib/planner/data";
 import "./landing.css";
 
 export const metadata: Metadata = {
-  title: "PYRION Ω · Which NASA combustion tests apply to your cabin",
-  description: "Which NASA combustion tests apply to your cabin condition, and where the measured evidence ends. NASA Space Apps 2026, Flame in Freefall.",
+  title: "PYRION Ω · NASA fire experiments, and where the tested evidence ends",
+  description:
+    "Find the NASA fire experiments relevant to your habitat — and see where the tested evidence ends. NASA Space Apps 2026, Flame in Freefall.",
 };
 
-const pct = (x: number) => `${Math.round(x * 1000) / 10} %`;
 const CHALLENGE = "https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/";
+const PSI = (acc: string) => `https://psi.nasa.gov/physci/repo/data/investigations/${acc}`;
 const MOON = "/envelope?preset=challenge-lunar-base";
+const ISS = "/envelope?preset=iss-cabin-air";
+
+/** Verbatim sentences from PSI investigation records (field named), checked by test against the PSI JSON. */
+const NASA_SAYS = [
+  {
+    acc: "PSI-99",
+    name: "Saffire-II",
+    field: "researchImpacts",
+    text: "Results determine microgravity flammability limits for several spacecraft materials",
+    why: "Which cabin materials keep burning in microgravity, and at what conditions.",
+  },
+  {
+    acc: "PSI-26",
+    name: "BASS",
+    field: "researchImpacts",
+    text: "Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques",
+    why: "How an inert gas puts out flames over solid materials: suppression research.",
+  },
+  {
+    acc: "PSI-69",
+    name: "FLEX",
+    field: "approach",
+    text: "A primary objective of the experiments is to determine the Limiting Oxygen Index (LOI) as a function of ambient pressure",
+    why: "How much oxygen a flame needs, and how that changes with cabin pressure.",
+  },
+] as const;
+
+const SECTIONS = [
+  { id: "about", label: "About" },
+  { id: "found", label: "What NASA found" },
+  { id: "edge", label: "The lunar edge" },
+  { id: "how", label: "How it works" },
+  { id: "users", label: "Who it's for" },
+  { id: "faq", label: "FAQ" },
+];
+
+const DEEPER = [
+  ["/investigations", "Investigations", "Every PSI study: summary in NASA's words, tests, hardware families, one-click comparisons."],
+  ["/lenses", "Safety lenses", "Prevention, detection and suppression: each tag backed by a quote."],
+  ["/more", "Equipment & Earth", "Detection, suppression and prevention research, and uses on Earth."],
+  ["/tars", "TARS SI", "Ask in your own words; answers in labelled layers: engine, NASA quoted, and its own reasoning."],
+  ["/data", "Data", "The extracted dataset, with the source of every row, ready to download."],
+  ["/proof", "Proof", "The validator report and the scripted judge battery, read from the repository."],
+] as const;
 
 export default async function Landing() {
-  const [facts, planner] = await Promise.all([loadFacts(), loadPlanner()]);
-  const fm2 = planner.experiments.find((e) => e.id === "fm2");
-  const fm2Psia = fm2 && fm2.points.length > 0 ? Math.round((fm2.points[0].pressure_kpa / 6.894757) * 10) / 10 : null;
+  const facts = await loadFacts();
 
   return (
-    <main className="page landing">
-      {/* 1 · First screen: the problem, the answer, two buttons. */}
-      <section className="ld-hero" aria-labelledby="ld-h">
-        <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team NDMLM</p>
-        <h1 id="ld-h" className="ld-title">
-          Which NASA combustion tests apply to your cabin condition, and where the measured evidence ends.
-        </h1>
-        <p className="ld-problem">
-          <strong>The problem.</strong> NASA&apos;s planned Moon Base air has more oxygen at lower pressure than Earth, and
-          lunar gravity. Flammability depends strongly on oxygen and gravity, yet the NASA combustion data in PSI is hard to
-          find, compare and interpret.
-        </p>
-        <p className="ld-answer">
-          <strong>The answer.</strong> PYRION compares your condition with every extracted NASA test in PSI, by rules, and
-          shows which tests apply, the source of each one, and where the measurements stop.
-        </p>
-        <div className="ld-cta">
-          <Link data-help="landing-start" href={MOON} className="ld-btn ld-btn-primary">
-            Start: Moon Base
+    <div className="landing-root">
+      <header className="ld-bar">
+        <div className="ld-bar-inner">
+          <Link data-help="nav-home" href="/" className="ld-brand">
+            PYRION <span className="omega">Ω</span>
           </Link>
-          <Link data-help="landing-explore" href="/envelope" className="ld-btn">
-            Explore the dashboard
+          <nav aria-label="On this page" className="ld-anchors">
+            {SECTIONS.map((s) => (
+              <a key={s.id} data-help="landing-nav" href={`#${s.id}`}>
+                {s.label}
+              </a>
+            ))}
+          </nav>
+          <Link data-help="landing-explore" href="/envelope" className="ld-btn ld-btn-primary ld-bar-cta">
+            Explore the evidence →
           </Link>
         </div>
-        <p className="ld-facts small muted">
-          {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} PSI combustion investigations.
-        </p>
-      </section>
+      </header>
 
-      {/* 2 · The finding, with its definition next to the number. */}
-      <section className="ld-section ld-finding" aria-labelledby="ld-finding-h">
-        <h2 id="ld-finding-h">The finding</h2>
-        <div className="ld-finding-grid">
-          <div className="ld-big">
-            <span className="ld-num">{pct(planner.coverage.fraction)}</span>
-            <p>
-              PSI covers {pct(planner.coverage.fraction)} of the Moon Base design band ({planner.coverage.covered} of{" "}
-              {planner.coverage.total} grid cells, lunar gravity). <em>&ldquo;Covered&rdquo; means inside the region spanned by measured test points (interpolated between tests, not necessarily a test at that exact condition), not that fire behaves the same there.</em>
-            </p>
-          </div>
-          <div className="ld-finding-text">
-            <p>
-              NASA&apos;s Moon Base condition (30 % O₂ or more at 10.2 psi or less, lunar gravity) has no test in PSI in that
-              gravity regime. NASA states it in the challenge resources: &ldquo;there is currently no partial-gravity
-              combustion data available in PSI&rdquo; (
-              <a data-help="landing-source" href={CHALLENGE} target="_blank" rel="noreferrer">
-                challenge statement
-              </a>
-              ).
-            </p>
-            {fm2Psia !== null && (
-              <p>
-                FM2 as planned measures a single line at {fm2Psia} psia ({pct(planner.layers.fm2.fraction)} of the band); the
-                challenge&apos;s 10.2 psi condition stays unmeasured.
-              </p>
-            )}
-            <Link data-help="landing-planner" href="/planner" className="ld-link">
-              Open the Mission Planner →
+      <main className="page landing">
+        <section className="ld-hero" aria-labelledby="ld-h">
+          <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team NDMLM</p>
+          <h1 id="ld-h" className="ld-title">
+            Find the NASA fire experiments relevant to your habitat — and see where the tested evidence ends.
+          </h1>
+          <p className="ld-answer">
+            PYRION reads NASA&apos;s 24 combustion investigations in PSI. Set a cabin condition and it shows which tests come close,
+            what NASA set out to learn there, and the source of every value.
+          </p>
+          <div className="ld-cta">
+            <Link data-help="landing-start" href={ISS} className="ld-btn ld-btn-primary">
+              Try it: ISS cabin air
+            </Link>
+            <Link data-help="landing-start" href={MOON} className="ld-btn">
+              Try it: the Moon Base condition
+            </Link>
+            <Link data-help="landing-planner" href="/planner" className="ld-btn">
+              Plan lunar tests
             </Link>
           </div>
-        </div>
-      </section>
+          <p className="ld-facts small muted">{facts.sentence}</p>
+        </section>
 
-      {/* 3 · Why this matters. */}
-      <section className="ld-section" aria-labelledby="ld-why-h">
-        <h2 id="ld-why-h">Why this matters</h2>
-        <div className="ld-grid3">
-          <article className="ld-card">
-            <h3>Fire in a spacecraft is close</h3>
-            <p>
-              &ldquo;[If] you want to get somebody&apos;s attention really quick, make the fire alarm go off in your spacecraft
-              when you&apos;re still about 80,000 miles from home.&rdquo; Artemis II commander, quoted in the challenge statement.
-            </p>
-          </article>
-          <article className="ld-card">
-            <h3>Flames change without gravity</h3>
-            <p>
-              Without buoyancy, &ldquo;a candle flame becomes a ghostly blue sphere reliant on diffusion for its oxygen&rdquo;
-              (challenge statement). Results from one gravity level do not carry over by default.
-            </p>
-          </article>
-          <article className="ld-card">
-            <h3>The Moon Base air is different</h3>
-            <p>
-              The challenge statement expects increased oxygen and reduced pressure in the planned Moon Base and rovers.
-              Flammability is highly dependent on oxygen concentration.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      {/* 4 · How it works, with the rule visible. */}
-      <section className="ld-section" aria-labelledby="ld-how-h">
-        <h2 id="ld-how-h">How it works</h2>
-        <ol className="ld-steps">
-          <li>
-            <span className="ld-step-n">1</span>
-            <h3>Pick a condition</h3>
-            <p>Choose a scenario such as the Moon Base, set oxygen, pressure and gravity, or ask in plain English.</p>
-          </li>
-          <li>
-            <span className="ld-step-n">2</span>
-            <h3>The engine compares</h3>
-            <p>A deterministic engine compares it with every extracted NASA test, field by field.</p>
-          </li>
-          <li>
-            <span className="ld-step-n">3</span>
-            <h3>You get a verdict with its receipt</h3>
-            <p>Each verdict comes with its DOI, the nearest evidence, and what experiment would close the gap.</p>
-          </li>
-        </ol>
-        <p className="ld-rule">The verdict comes from code, not from AI.</p>
-      </section>
-
-      {/* 5 · What makes it different. */}
-      <section className="ld-section" aria-labelledby="ld-diff-h">
-        <h2 id="ld-diff-h">What makes it different</h2>
-        <div className="ld-grid3">
-          <article className="ld-card">
-            <h3>Verdicts by rules</h3>
-            <p>The applicability verdict is computed by code. A language model can read your question and explain, never decide.</p>
-          </article>
-          <article className="ld-card">
-            <h3>Every value located</h3>
-            <p>Every extracted value carries its file and location in the NASA source, checked by code.</p>
-          </article>
-          <article className="ld-card">
-            <h3>It shows where evidence ends</h3>
-            <p>When PSI has no test for a condition, it says so, and marks it insufficient evidence instead of guessing.</p>
-          </article>
-        </div>
-      </section>
-
-      {/* 6 · Who it is for. */}
-      <section className="ld-section" aria-labelledby="ld-who-h">
-        <h2 id="ld-who-h">Who it is for</h2>
-        <div className="ld-grid3">
-          <article className="ld-card">
-            <h3>Fire-safety engineers</h3>
-            <p>Which tests apply to a cabin atmosphere, with the source of each value.</p>
-          </article>
-          <article className="ld-card">
-            <h3>Mission planners</h3>
-            <p>How much of a design band PSI measures, and which planned tests would add to it.</p>
-          </article>
-          <article className="ld-card">
-            <h3>Researchers and students</h3>
-            <p>Comparable investigations side by side, with the conditions quoted from NASA.</p>
-          </article>
-        </div>
-      </section>
-
-      {/* 7 · The AI assistant. */}
-      <section className="ld-section ld-tars" aria-labelledby="ld-tars-h">
-        <h2 id="ld-tars-h">The AI assistant (TARS SI)</h2>
-        <p>
-          An AI assistant that answers in three labelled layers: what the engine computed, what NASA wrote (quoted and checked),
-          and its own reasoning, marked as such.
-        </p>
-        <Link data-help="landing-tars" href="/tars" className="ld-link">
-          Ask TARS SI →
-        </Link>
-      </section>
-
-      {/* 8 · On Earth, quoted only. */}
-      <section className="ld-section" aria-labelledby="ld-earth-h">
-        <h2 id="ld-earth-h">On Earth</h2>
-        <blockquote className="ld-quote">
-          &ldquo;Fine-water-mist extinguishers developed for use on the ISS have practical applications here on Earth, and NASA
-          technology has similarly led to improvements in terrestrial smoke detection and firefighter gear, including protective
-          clothing and air tanks.&rdquo;
-          <cite>Flame in Freefall challenge statement, NASA Space Apps 2026</cite>
-        </blockquote>
-        <Link data-help="landing-card" href="/more" className="ld-link">
-          Earth applications as stated in PSI records →
-        </Link>
-      </section>
-
-      {/* 9 · Go deeper: the pages that left the main menu. */}
-      <section className="ld-section" aria-labelledby="ld-deeper-h">
-        <h2 id="ld-deeper-h">Go deeper</h2>
-        <div className="ld-grid3 ld-links">
-          <Link data-help="landing-card" href="/method" className="ld-card ld-card-link">
-            <h3>Method</h3>
-            <p>How the engine decides whether a NASA test applies to a target condition.</p>
-          </Link>
-          <Link data-help="landing-card" href="/proof" className="ld-card ld-card-link">
-            <h3>Proof</h3>
-            <p>One screen of evidence of rigor, every number read from a repository file at build time.</p>
-          </Link>
-          <Link data-help="landing-card" href="/data" className="ld-card ld-card-link">
-            <h3>Data</h3>
-            <p>Lineage and coverage: where each value comes from and how code checks it.</p>
-          </Link>
-          <Link data-help="landing-card" href="/bridge" className="ld-card ld-card-link">
-            <h3>Bridge</h3>
-            <p>A labelled hypothesis relating microgravity tests to other gravity levels. Not evidence.</p>
-          </Link>
-          <Link data-help="landing-card" href="/lenses" className="ld-card ld-card-link">
-            <h3>Lenses and timeline</h3>
-            <p>Investigations by safety leg and phenomenon, each tag with a verbatim quote.</p>
-          </Link>
-          <Link data-help="landing-card" href="/help" className="ld-card ld-card-link">
-            <h3>Help</h3>
-            <p>Every control and term on the site, explained.</p>
-          </Link>
-        </div>
-      </section>
-
-      {/* 10 · FAQ, all visible. */}
-      <section className="ld-section" aria-labelledby="ld-faq-h">
-        <h2 id="ld-faq-h">Questions</h2>
-        <dl className="ld-faq">
-          <div>
-            <dt>Does PYRION say a cabin is safe?</dt>
-            <dd>No. It reports evidence coverage: which measured tests apply to a condition. It is not a safety assessment.</dd>
+        <section id="about" className="ld-section" aria-labelledby="ld-about-h">
+          <p className="ld-kicker">Why this matters</p>
+          <h2 id="ld-about-h">More oxygen, lower pressure, a new gravity</h2>
+          <div className="ld-grid3">
+            <div className="ld-card">
+              <h3>Richer air on the Moon</h3>
+              <p>
+                NASA expects the Moon Base and pressurized rovers at an oxygen concentration &ldquo;30% or greater, with a
+                corresponding pressure of 10.2 psi or less&rdquo;, &ldquo;making materials much more flammable&rdquo;.
+              </p>
+              <p className="ld-src small">
+                <a data-help="landing-source" href={CHALLENGE}>NASA Space Apps 2026 challenge statement</a>
+              </p>
+            </div>
+            <div className="ld-card">
+              <h3>Data that is hard to use</h3>
+              <p>
+                NASA publishes its microgravity fire experiments in PSI, but the challenge notes the data &ldquo;can be hard to
+                find, harder to compare, and harder yet to interpret&rdquo;.
+              </p>
+              <p className="ld-src small">
+                <a data-help="landing-source" href={CHALLENGE}>NASA Space Apps 2026 challenge statement</a>
+              </p>
+            </div>
+            <div className="ld-card">
+              <h3>A gravity no PSI test has reached</h3>
+              <p>
+                &ldquo;There is currently no partial-gravity combustion data available in PSI.&rdquo; Microgravity and
+                normal-gravity results could bound what happens in between.
+              </p>
+              <p className="ld-src small">
+                <a data-help="landing-source" href={CHALLENGE}>NASA Space Apps 2026 challenge statement</a>
+              </p>
+            </div>
           </div>
-          <div>
-            <dt>Where does the AI come in?</dt>
-            <dd>It reads plain-English questions and explains results. The verdict itself is computed by the engine.</dd>
-          </div>
-          <div>
-            <dt>What if a value cannot be checked?</dt>
-            <dd>The record is marked insufficient evidence and shown as such, never filled in.</dd>
-          </div>
-          <div>
-            <dt>Is this a NASA product?</dt>
-            <dd>No. It is a hackathon project that uses public NASA data.</dd>
-          </div>
-        </dl>
-      </section>
+        </section>
 
-      {/* 11 · Sources. */}
-      <section className="ld-section" aria-labelledby="ld-src-h">
-        <h2 id="ld-src-h">Sources</h2>
-        <p>
-          NASA Physical Sciences Informatics (PSI): {facts.investigationsTotal} combustion investigations, each listed with its
-          DOI on the{" "}
-          <Link data-help="landing-card" href="/investigations">
-            Investigations
-          </Link>{" "}
-          page. Challenge statement:{" "}
-          <a data-help="landing-source" href={CHALLENGE} target="_blank" rel="noreferrer">
-            Flame in Freefall
-          </a>
-          .
-        </p>
-      </section>
-    </main>
+        <section id="found" className="ld-section" aria-labelledby="ld-found-h">
+          <p className="ld-kicker">In NASA&apos;s words</p>
+          <h2 id="ld-found-h">What NASA set out to learn, linked to the tests behind it</h2>
+          <div className="ld-grid3">
+            {NASA_SAYS.map((q) => (
+              <div key={q.acc} className="ld-card">
+                <h3>{q.name}</h3>
+                <blockquote className="ld-quote">&ldquo;{q.text}&rdquo;</blockquote>
+                <p className="ld-src small">
+                  <a data-help="landing-source" href={PSI(q.acc)}>
+                    PSI record {q.acc}, field &ldquo;{q.field}&rdquo;
+                  </a>
+                </p>
+                <p>{q.why}</p>
+                <p>
+                  <Link data-help="landing-card" href={`/investigations/${q.acc}`} className="ld-link">
+                    Open {q.name}: tests, conditions, DOI →
+                  </Link>
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="edge" className="ld-section ld-finding" aria-labelledby="ld-edge-h">
+          <p className="ld-kicker">Where to test next</p>
+          <h2 id="ld-edge-h">The lunar edge of the evidence</h2>
+          <div className="ld-finding-grid">
+            <div className="ld-big">
+              <p>
+                <strong>NASA&apos;s planned FM2 lunar experiment</strong> burns one fabric at several oxygen levels, nominally at{" "}
+                <strong>8.2 psia</strong> — below the challenge&apos;s <strong>10.2 psi</strong> upper bound.
+              </p>
+              <p className="ld-src small">Planned, not in PSI. Source: NTRS 20260001966, cited on the Mission Planner.</p>
+            </div>
+            <div className="ld-finding-text">
+              <p>
+                PYRION draws the Moon Base atmospheres on the oxygen-pressure plane, places the PSI tests and the planned FM2 points,
+                and shows which parts of that region no planned test reaches. That is where new lunar-gravity tests would add the
+                most evidence.
+              </p>
+              <p>Evidence for research and test planning — not a safety assessment, and not a prediction of how fire behaves on the Moon.</p>
+              <Link data-help="landing-planner" href="/planner" className="ld-link">
+                Open the Mission Planner →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="how" className="ld-section" aria-labelledby="ld-how-h">
+          <p className="ld-kicker">How it works</p>
+          <h2 id="ld-how-h">Three steps, one rule</h2>
+          <ol className="ld-steps">
+            <li>
+              <h3>1 · Set a condition</h3>
+              <p>Pick a cabin preset (ISS air, the Moon Base condition, NASA exploration atmospheres) or set oxygen, pressure, gravity and fuel yourself.</p>
+            </li>
+            <li>
+              <h3>2 · Compare with NASA&apos;s tests</h3>
+              <p>
+                A fixed-rule engine compares it with the tests extracted from PSI. Gravity, fuel phase and diluent are barriers; oxygen
+                and pressure are compared with the region the tests span.
+              </p>
+            </li>
+            <li>
+              <h3>3 · Read the verdict and its receipt</h3>
+              <p>Each investigation: applicable, extrapolation, insufficient evidence, or another regime — with the quote, the file location and the DOI.</p>
+            </li>
+          </ol>
+          <p className="ld-rule">
+            <strong>The rule:</strong> the same condition always gives the same verdict, from NASA&apos;s own records. AI helps read your
+            question and explain the result; it never decides.{" "}
+            <Link data-help="landing-card" href="/method" className="ld-link">
+              Method →
+            </Link>
+          </p>
+        </section>
+
+        <section id="users" className="ld-section" aria-labelledby="ld-users-h">
+          <p className="ld-kicker">Our users</p>
+          <h2 id="ld-users-h">Who it&apos;s for</h2>
+          <div className="ld-grid3">
+            <div className="ld-card">
+              <h3>Fire-safety researchers</h3>
+              <p>See which PSI tests are comparable to a condition, and where a new experiment would add evidence.</p>
+            </div>
+            <div className="ld-card">
+              <h3>Habitat and spacecraft engineers</h3>
+              <p>Find the NASA evidence behind a cabin atmosphere, with receipts you can cite.</p>
+            </div>
+            <div className="ld-card">
+              <h3>Professors and students</h3>
+              <p>The 24 PSI combustion investigations in one place: objectives, tests, variables, hardware, publications.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="ld-section" aria-labelledby="ld-more-h">
+          <p className="ld-kicker">Go deeper</p>
+          <h2 id="ld-more-h">Everything else in PYRION</h2>
+          <div className="ld-grid3">
+            {DEEPER.map(([href, title, text]) => (
+              <Link key={href} data-help="landing-card" href={href} className="ld-card ld-card-link">
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="faq" className="ld-section" aria-labelledby="ld-faq-h">
+          <p className="ld-kicker">Questions</p>
+          <h2 id="ld-faq-h">Common questions</h2>
+          <dl className="ld-faq">
+            <dt>Is this a safety assessment?</dt>
+            <dd>No. It shows which NASA tests are comparable to a condition and where the tested evidence ends. It never calls a condition safe.</dd>
+            <dt>Where does the data come from?</dt>
+            <dd>
+              NASA Physical Sciences Informatics (PSI): the 24 combustion investigations, each cited with its DOI. Every value used as
+              evidence is located by code in its NASA file.{" "}
+              <Link data-help="landing-card" href="/data">
+                Data →
+              </Link>
+            </dd>
+            <dt>Does the AI decide the verdict?</dt>
+            <dd>No. Fixed rules decide. The AI reads questions and explains; numbers come from code and NASA quotes are checked on their page.</dd>
+            <dt>What does &ldquo;applicable&rdquo; mean?</dt>
+            <dd>
+              The condition lies between measured test points in the same regime (within a 0.5 % tolerance). No test was necessarily run
+              at that exact condition, and PYRION computes no value there.
+            </dd>
+            <dt>Why the Moon?</dt>
+            <dd>
+              NASA&apos;s challenge asks about habitats including bases on the Moon and Mars. PSI holds no partial-gravity combustion
+              data, so for those gravities PYRION shows the nearest evidence in other regimes and where new tests would add it.
+            </dd>
+          </dl>
+        </section>
+      </main>
+    </div>
   );
 }

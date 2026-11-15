@@ -46,9 +46,9 @@ export interface LensesFile {
   investigations: LensInvestigation[];
 }
 
-/** "PSI JSON PSI-26, key objective" or "Challenge statement, line 22". */
+/** "PSI record PSI-26, field "objective"" or "NASA Space Apps 2026 challenge statement" (the line number stays in lenses.json for the tests only). */
 export function sourceLabel(s: LensSource): string {
-  return s.kind === "psi" ? `PSI record ${s.file.split("/").pop()?.replace(".json", "")}, field "${s.key}"` : `NASA challenge statement, line ${s.line} of the copy`;
+  return s.kind === "psi" ? `PSI record ${s.file.split("/").pop()?.replace(".json", "")}, field "${s.key}"` : "NASA Space Apps 2026 challenge statement";
 }
 
 /** The text shown when a lens cell is hovered or focused: every quote with its source. */

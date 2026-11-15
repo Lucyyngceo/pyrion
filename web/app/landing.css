@@ -52,3 +52,20 @@
   .ld-grid3, .ld-steps, .ld-finding-grid, .ld-faq { grid-template-columns: minmax(0, 1fr); }
   .ld-btn { flex: 1 1 100%; justify-content: center; }
 }
+
+/* Landing top bar (in-page sections + call to action), in place of the site nav on "/". */
+.landing-root { width: 100%; }
+.ld-bar { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg, #04050a) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+.ld-bar-inner { max-width: 1180px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 20px; }
+.ld-brand { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.ld-anchors { display: flex; gap: 18px; margin-left: auto; flex-wrap: wrap; }
+.ld-anchors a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+.ld-anchors a:hover, .ld-anchors a:focus-visible { color: var(--neon); }
+.ld-bar-cta { min-height: 40px; padding: 0 16px; white-space: nowrap; }
+.ld-src { margin-top: 8px; }
+.ld-src a { color: var(--ink-2); }
+.ld-section { scroll-margin-top: 70px; }
+@media (max-width: 860px) {
+  .ld-anchors { display: none; }
+  .ld-bar-cta { margin-left: auto; }
+}

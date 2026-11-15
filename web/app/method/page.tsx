@@ -71,11 +71,11 @@ export default function MethodPage() {
           <strong>Continuous axes</strong> are compared only inside what was measured: ambient O₂ mole fraction and pressure, and,
           where the extracted records carry them, burner O₂, flow velocity, sample thickness, initial droplet diameter and
           ambient temperature. Only O₂ and pressure have a joint check: the engine builds the convex hull of each
-          investigation&apos;s (O₂, pressure) test points, and a target inside it is covered by measurements while a target outside it
-          would need extrapolation. The other axes are checked one at a time against their measured range.
+          investigation&apos;s (O₂, pressure) test points, and a target inside it lies between measured test points (no test was necessarily run at that exact
+          condition, and no value is computed there), while a target outside it would need extrapolation. The other axes are checked one at a time against their measured range.
         </p>
         <p data-help="method-coverage-honesty" className="honesty">
-          Covered means there are measurements at that condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+          Covered means the condition lies between measured PSI test points (inside the outline around them, within the 0.5 % tolerance). No test was necessarily run at that exact condition, other axes are checked one at a time so that exact combination may never have been tested, and PYRION computes no value there. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
       </div>
 
@@ -116,8 +116,10 @@ export default function MethodPage() {
         <h2 data-help="method-ranking">Ranking</h2>
         <p>
           Within a regime, investigations are ordered by the normalized distance from the target to the nearest measured
-          point. Across a regime barrier there is no ranking. The same records and the same target always give the same
-          verdicts and the same order.
+          point. The order is condition similarity on the axes you set, not scientific relevance or importance for fire
+          safety. Equal distances are ordered by PSI accession number. Across a regime barrier there is no ranking: the
+          evidence is not directly applicable. For the gravity regime in particular, the challenge statement notes that
+          microgravity and normal-gravity results could bound what occurs at intermediate gravity levels. The same records and the same target always give the same verdicts and the same order.
         </p>
 
         <h2 data-help="method-receipt">The receipt</h2>

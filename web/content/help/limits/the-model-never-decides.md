@@ -13,7 +13,7 @@ A language model is used for two jobs only: understanding what you typed and wor
 - **Verdicts** come from the engine's rules. Swap the model and the verdict, and the fingerprint, do not change.
 - **Units and numbers** come from code. When a model must quote a number (an oxygen partial pressure, a conversion), it has to call a calculator, and the number it writes must be the one the calculator returned. In a benchmark of three models on expert questions, all three put at least one wrong number in; that is why this rule exists.
 - **Quotes from NASA** are checked by code: the quote must be on the page of the document the model cites, with the numbers exactly as written (1.5 is never accepted for 15). If the quote is not there, the whole statement is dropped and not shown.
-- **General expert knowledge** is allowed, but it is always labelled "TARS expert knowledge — not verified against a source", and any number in it that does not come from a calculator or a verified quote is replaced by "[number removed: not from a source]".
+- **General background knowledge** is allowed, but it is always labelled "TARS own reasoning — not verified against a source", and any number in it that does not come from a calculator or a verified quote is replaced by "[number removed: not from a source]".
 
 A model can still misunderstand a question. That is why the extractor reads the question first by code, shows you what it understood, and lets you correct it before anything is computed.
 

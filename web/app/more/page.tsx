@@ -4,10 +4,25 @@ import { NASA_STD_6001B } from "../../../engine/src/experiments.ts";
 import { loadConditionRecords, loadLenses } from "@/lib/lenses/data";
 import { earthSentences, oxygenCeiling, pct, round, suitPartialPressure } from "@/lib/lenses/model";
 import { loadProfiles } from "@/lib/lenses/profiles";
+import { CHALLENGE_URL, EQUIPMENT_CARDS, EQUIPMENT_INTRO, equipmentSourceLabel, lensFilterHref, type EquipmentQuote } from "@/lib/lenses/equipment";
+
+/** One verbatim quote with its source named after it. */
+function Quote({ q }: { q: EquipmentQuote }) {
+  return (
+    <blockquote>
+      &ldquo;{q.text}&rdquo;{" "}
+      <small className="muted">
+        ({equipmentSourceLabel(q.source)}
+        {q.excerpt ? ", part of a sentence" : ""})
+      </small>
+    </blockquote>
+  );
+}
 
 export const metadata: Metadata = {
   title: "More · PYRION Ω",
-  description: "Earth applications as stated in PSI records, the spacesuit atmosphere (outside PSI) and why rockets are out of scope.",
+  description:
+    "Fire detection, suppression and prevention research in PSI, Earth applications as stated in PSI records and the challenge statement, the spacesuit atmosphere (outside PSI) and why rockets are out of scope.",
 };
 
 export default function MorePage() {
@@ -24,9 +39,50 @@ export default function MorePage() {
   return (
     <main className="page lenses more">
       <header className="hero">
-        <h1>More: Earth, spacesuits and rockets</h1>
-        <p className="lede">Three short notes. Each one says where its words and numbers come from.</p>
+        <h1>More: fire-safety equipment, Earth, spacesuits and rockets</h1>
+        <p className="lede">
+          This page shows which PSI combustion investigations relate to fire detection, suppression and prevention, what their PSI records and NASA&apos;s challenge
+          statement say about uses on Earth, and what lies outside PSI (spacesuits, rockets). Every sentence in quotation marks is copied word for word, with its source named.
+        </p>
       </header>
+
+      <section className="card" aria-labelledby="more-equipment-h">
+        <div className="card-head">
+          <h2 id="more-equipment-h">Fire-safety equipment &amp; Earth</h2>
+          <p className="muted">
+            &ldquo;{EQUIPMENT_INTRO.text}&rdquo; ({equipmentSourceLabel(EQUIPMENT_INTRO.source)},{" "}
+            <a data-help="more-equipment-link" href={CHALLENGE_URL}>
+              challenge page
+            </a>
+            ). Below, one card per leg: only quotes, each from a PSI record field or from the challenge statement.
+          </p>
+        </div>
+        <div className="more-equip">
+          {EQUIPMENT_CARDS.map((c) => (
+            <article key={c.leg} className="more-equip-card" aria-labelledby={`more-equip-${c.leg}`}>
+              <h3 id={`more-equip-${c.leg}`}>{c.title}</h3>
+              {c.quotes.map((q, k) => (
+                <Quote key={k} q={q} />
+              ))}
+              <p className="more-equip-links">
+                Investigations:{" "}
+                {c.investigations.map((id, k) => (
+                  <span key={id}>
+                    {k > 0 ? " · " : ""}
+                    <a data-help="more-equipment-link" href={`/investigations/${id}`}>
+                      {lenses.investigations.find((i) => i.accession === id)?.acronym || id}
+                    </a>
+                  </span>
+                ))}
+                <br />
+                <a data-help="more-equipment-link" href={lensFilterHref(c.leg)}>
+                  Every investigation tagged {c.leg} in the lens matrix
+                </a>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="card">
         <div className="card-head">

@@ -9,7 +9,7 @@ page: planner
 link: /planner
 highlight: [data-help="planner-coverage"]
 ---
-What it is: One sentence with the share of the band covered by PSI measurements.
+What it is: One sentence with the share of the band inside the region spanned by PSI test points.
 
 What it shows: The covered share of grid cells, and the ERL badge.
 

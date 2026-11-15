@@ -539,6 +539,16 @@
         "title": "Effects of structure and hydrodynamics on the sooting behavior of spherical microgravity diffusion flames"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Obtain soot-inception limits of quasi-steady normal and inverse spherical diffusion flames as functions of flow rate, Zst, amount of inert (N2 or CO2), and pressure for C2H4 and CH4 flames."
+      },
+      {
+        "field": "approach",
+        "text": "Perform spherical diffusion flame tests in drop towers and aboard the International Space Station."
+      }
+    ],
     "test_count": 327,
     "value_count": 2165,
     "variables": [
@@ -1662,6 +1672,16 @@
         "title": "Theoretical analysis and predictions of burning in microgravity using a burning emulator"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The BRE flight program seeks to establish the burning conditions in a quiescent microgravity ambient in terms of material properties."
+      },
+      {
+        "field": "approach",
+        "text": "To accomplish the above objectives, flight experiments are proposed."
+      }
+    ],
     "test_count": 18,
     "value_count": 101,
     "variables": [
@@ -2049,6 +2069,16 @@
         "doi_url": "https://doi.org/10.1016/j.proci.2006.08.109",
         "status": "published",
         "title": "Computational and experimental study of a forced, time-dependent, methane–air coflow diffusion flame"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "A) Characterize the behavior of weak coflow diffusion flames of methane and ethylene, as a function of velocity and fuel dilution, through measurement of flame shape, lift-off heights, temperatures and extinction limits."
+      },
+      {
+        "field": "approach",
+        "text": "ACME CLD Flame project goals include the generation of improved computational models with improved soot sub-models that are effective for both dilute flames and sooting flames that vary from low to high soot loading levels."
       }
     ],
     "test_count": 6,
@@ -2455,6 +2485,16 @@
         "doi_url": "https://doi.org/10.1016/j.combustflame.2022.112443",
         "status": "published",
         "title": "Electric-field effects on methane coflow flames aboard the international space station (ISS): ACME E-FIELD flames"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The objective of this investigation is to better understand the relationship between electric field voltage and chemi-ion current, analyze the dynamic response of flames to electric field changes, evaluate soot formation, and characterize stabilized near-limit lifted flames."
+      },
+      {
+        "field": "approach",
+        "text": "The E-FIELD flames experiment investigates how electric fields influence the behavior of laminar diffusion flames in microgravity."
       }
     ],
     "test_count": 20,
@@ -3028,6 +3068,16 @@
         "title": "Combustion Science: A Researcher&#x27;s Guide to International Space Station"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Measure and characterize the transient structure (such as temperature and species distribution) of diffusion flames established at initially non-steady, spherical flame structures for mixtures of different H2/CH4/diluent ratios   (soot-free) and different C2H4/diluent ratios (sooty), for different flow rates."
+      },
+      {
+        "field": "approach",
+        "text": "A series of experiments is proposed in which mixtures of various gaseous fuels and diluents will be issued into an oxidizing environment through a spherical porous burner and ignited to obtain, nominally, a spherical, one-dimensional stabilized flame."
+      }
+    ],
     "test_count": 18,
     "value_count": 61,
     "variables": [
@@ -3438,19 +3488,30 @@
         "title": "Burning and Suppression of Solids – II Fire Safety Investigation for the Microgravity Science Glovebox"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "BASS-II results contribute to the combustion computational models used in the design of fire detection and suppression systems in microgravity and on Earth."
+      },
+      {
+        "field": "approach",
+        "text": "To summarize, BASS-II's approach, microgravity combustion tests were performed aboard the International Space Station."
+      }
+    ],
     "test_count": 129,
-    "value_count": 732,
+    "value_count": 884,
     "variables": [
       {
-        "classification": "observed constant",
-        "distinct_count": 1,
+        "classification": "distinct values as recorded",
+        "distinct_count": 2,
         "max": null,
         "min": null,
         "source": "data/conditions/PSI-25.csv",
-        "test_count": 17,
+        "test_count": 99,
         "unit": "",
-        "value_count": 17,
+        "value_count": 169,
         "values": [
+          "concurrent",
           "opposed"
         ],
         "variable": "flow_configuration"
@@ -3931,6 +3992,16 @@
         "title": "Opposed-Flow Flame Spread in a Narrow Channel Apparatus over Thin PMMA Sheets"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": ") Begin to bridge the gap between the normal gravity NASA-STD-6001 Test#1 method, ground-based microgravity tests, and actual material flammability in microgravity."
+      },
+      {
+        "field": "approach",
+        "text": "The experiment was conducted aboard the International Space Station (ISS) inside the Microgravity Glove Box (MSG)."
+      }
+    ],
     "test_count": 116,
     "value_count": 379,
     "variables": [
@@ -4320,6 +4391,16 @@
         "title": "Low Temperature n-Dodecane Droplet Combustion Experiments Aboard the International Space Station"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "2) Analyze the effects of helium dilution on cool flame behavior."
+      },
+      {
+        "field": "approach",
+        "text": "The Combustion Integrated Rack (CIR) contains the Multi-User Droplet Combustion Apparatus (MDCA) which facilitates the controlled combustion of fuel droplets."
+      }
+    ],
     "test_count": 79,
     "value_count": 346,
     "variables": [
@@ -4548,6 +4629,16 @@
         "title": "Detection of Smoke from Microgravity Fires"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The focus of DAFT / DAFT-2 was to mitigate the risk for the Smoke Aerosol Measurement Experiment (SAME)."
+      },
+      {
+        "field": "approach",
+        "text": "1) Modification of Instrumentation: TSI P-Trak was modified for use in microgravity by redesigning the condenser tube to use capillary forces for recycling isopropyl alcohol and removing the mercury switch responsible for detecting instrument orientation."
+      }
+    ],
     "test_count": 0,
     "value_count": 0,
     "variables": []
@@ -4672,6 +4763,16 @@
         "doi_url": "https://doi.org/10.1080/00102202.2022.2041621",
         "status": "published",
         "title": "A Combined Experimental and Computational Study of Soot Formation in Normal and Microgravity Conditions (2022)"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "This ground investigation  sought to increase understanding of the issues that control the large discrepancy between soot formation in 1g and in 0g flames."
+      },
+      {
+        "field": "approach",
+        "text": "The approach  was to combine image processing, experimental diagnostics, and detailed soot modeling."
       }
     ],
     "test_count": 0,
@@ -4825,6 +4926,16 @@
         "doi_url": "https://doi.org/10.1016/j.combustflame.2021.111395",
         "status": "published",
         "title": "Two-color pyrometry based flame to fuel surface radiative heat flux diagnostic using flamelets"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The objective of this research was to develop and validate new flamelet generated manifold (FGM) modeling techniques for concurrent flame spread in microgravity."
+      },
+      {
+        "field": "approach",
+        "text": "The approach combined high-resolution computational modeling with experimental validation to study concurrent flame spread in microgravity."
       }
     ],
     "test_count": 0,
@@ -5414,6 +5525,16 @@
         "doi_url": "https://doi.org/10.2478/gsr-2014-0007",
         "status": "published",
         "title": "Interpretation of Backlit Droplet Images from ISS Droplet Combustion Experiments"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The primary goal of the FLEX-2 flight experiments is to extend the results of FLEX-1 to fuels and environmental conditions that mimic real combustor conditions, as well as, provide benchmark experimental data on bi-component droplet combustion over a wide range of initial conditions in order to validate numerical simulations and to develop new theoretical models."
+      },
+      {
+        "field": "approach",
+        "text": "4 mole fraction with the diluent gas making up the balance."
       }
     ],
     "test_count": 8,
@@ -6184,6 +6305,16 @@
         "doi_url": "",
         "status": "published",
         "title": "Detailed results from the flame extinugishment experiment (FLEX) - March 2009 to December 2011"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The FLEX (Flame Extinguishment Experiment) investigation aims to map the flammability limits of liquid fuels in microgravity environments, measure the effectiveness of various gaseous fire suppressants such as CO2, He, and SF6, and develop reliable predictive models for combustion limits under reduced gravity conditions."
+      },
+      {
+        "field": "approach",
+        "text": "The FLEX experiments involve igniting and observing the burning behavior of relatively large droplets."
       }
     ],
     "test_count": 274,
@@ -7191,6 +7322,16 @@
         "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire)"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "gravity material flammability screening test."
+      },
+      {
+        "field": "approach",
+        "text": "The Saffire-1 experiments was performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS."
+      }
+    ],
     "test_count": 2,
     "value_count": 15,
     "variables": [
@@ -7520,6 +7661,16 @@
         "title": "Evaluation of gas and particle sensors for detecting spacecraft-relevant fire emissions"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The objectives of SAFFIRE-II are to determine how rapidly a large scale fire grows in low-gravity and to investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test."
+      },
+      {
+        "field": "approach",
+        "text": "The Saffire-II experiment was performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS."
+      }
+    ],
     "test_count": 9,
     "value_count": 50,
     "variables": [
@@ -7800,6 +7951,16 @@
         "title": "Operation and Development Status of the Spacecraft Fire Experiments (Saffire), 46th International Conference on Environmental Systems (ICES), July 2016"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "(1) determine how rapidly a large scale fire grows in low-gravity and (2) investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test."
+      },
+      {
+        "field": "approach",
+        "text": "The Saffire-III experiments were performed on the Orbital Science’s Cygnus resupply vehicle after it deberthed from the ISS."
+      }
+    ],
     "test_count": 2,
     "value_count": 11,
     "variables": [
@@ -8063,6 +8224,16 @@
         "doi_url": "https://doi.org/10.1016/j.firesaf.2018.04.004",
         "status": "published",
         "title": "Evaluation of spacecraft smoke detector performance in the low-gravity environment"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Similar to the original SAME investigation, the primary objective of the SAME-R investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity and to relate the droplet size distribution to the smoke generation and smoke transport conditions in the experiment."
+      },
+      {
+        "field": "approach",
+        "text": "SAME-R utilized the SAME hardware used on-orbit."
       }
     ],
     "test_count": 66,
@@ -8391,6 +8562,16 @@
         "title": "AN OVERVIEW OF THE MICROGRAVITY SCIENCE GLOVEBOX (MSG) FACILITY, AND THE GRAVITY-DEPENDENT PHENOMENARESEARCH PERFORMED IN THE MSG ON THE INTERNATIONAL SPACE STATION (ISS)"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "One of the major goals of this investigation was to quantify the sizes that the liquid smoke particulate achieves in low gravity and to relate the droplet size distribution to the smoke generation and smoke transport conditions in the experiment."
+      },
+      {
+        "field": "approach",
+        "text": "The crew installed the near field hardware in the Glovebox, attached the Far Field Box to the Glovebox, and positioned the video cameras."
+      }
+    ],
     "test_count": 8,
     "value_count": 28,
     "variables": [
@@ -8612,6 +8793,16 @@
         "doi_url": "https://doi.org/10.1016/j.combustflame.2016.02.012",
         "status": "published",
         "title": "Analysis of CH* concentration and flame heat release rate in laminar coflow diffusion flames under microgravity and normal gravity"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Objective: The objective of this investigation is to better understand the structure and stability of laminar diffusion flames in microgravity."
+      },
+      {
+        "field": "approach",
+        "text": "The SLICE apparatus consisted of a fan-driven flow duct, exchangeable burner tubes, and integrated sensors to measure flow rates and temperature."
       }
     ],
     "test_count": 11,
@@ -8884,6 +9075,16 @@
         "title": "Laminar smoke points of coflowing flames in microgravity"
       }
     ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The objective of SPICE is to better understand the complex process of combustion by observing flames in a microgravity environment aboard the International Space Station (ISS) and analogous ground experiments."
+      },
+      {
+        "field": "approach",
+        "text": "The experimental setup in the microgravity science glovebox consisted of an apparatus with a flow duct with integrated nozzles, cameras, and fuel delivery systems."
+      }
+    ],
     "test_count": 151,
     "value_count": 913,
     "variables": [
@@ -9094,6 +9295,16 @@
       }
     ],
     "publications": [],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "The objective of this investigation was to use numerical simulation to explore the influence of gravity on pyrolysis smoke growth from a fundamental perspective."
+      },
+      {
+        "field": "approach",
+        "text": "The formation and growth of dibutyl-phthalate (DBP) particles in Earth gravity and microgravity environments was simulated."
+      }
+    ],
     "test_count": 0,
     "value_count": 0,
     "variables": []
@@ -9299,6 +9510,16 @@
         "doi_url": "https://doi.org/10.1016/j.pecs.2019.100787",
         "status": "published",
         "title": "Dynamics of cool flames (2019)"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Focusing on both small and large droplets, the work mapped stability windows for ignition, sustained oscillation, transitions to hot ignition and warm-flame behavior, and extinction under microgravity."
+      },
+      {
+        "field": "approach",
+        "text": "OpenFOAM was used to develop a 3-D CFD model of n-alkane droplet cool flames in microgravity, coupling variable-density Navier–Stokes flow with low-temperature combustion chemistry, coupled heat and mass transfer, and radiation."
       }
     ],
     "test_count": 0,
@@ -9547,6 +9768,7 @@
         "title": "Transient interactions between a premixed double flame and a vortex"
       }
     ],
+    "summary_quotes": [],
     "test_count": 0,
     "value_count": 0,
     "variables": []
@@ -9845,6 +10067,16 @@
         "doi_url": "https://doi.org/10.1016/j.combustflame.2023.112852",
         "status": "published",
         "title": "Cool diffusion flames in a stably stratified stagnation flow"
+      }
+    ],
+    "summary_quotes": [
+      {
+        "field": "objective",
+        "text": "Plan and support flight testing on the International Space Station (ISS)."
+      },
+      {
+        "field": "approach",
+        "text": "Perform spherical diffusion flame tests aboard the International Space Station."
       }
     ],
     "test_count": 333,

@@ -66,3 +66,34 @@ Work was developed on a copy on the box and only the files below were copied int
 - PSI-60 keeps: phenomenon smoke (objective: "identify key physical and chemical processes influencing smoke point development"); strength indirect (challenge line 58).
 - Counts now: prevention 13, detection 5, suppression 4; ignition 4, spread 6, extinction 13, smoke 5; strength direct 9, fundamental 4, indirect 11; 93 verified rows.
 - Test: `lenses-data.test.ts` asserts PSI-60 has no detection or suppression leg and is indirect.
+
+### Round 7 — fire-safety equipment on /more, leg filter on /lenses, README draft (2026-11-15)
+No git command was run. Files were edited on the box and copied in place; all are UTF-8 without BOM, LF like the originals.
+
+Files touched (list recorded before editing; checked by timestamp afterwards):
+- `web/lib/lenses/equipment.ts` (new): the three cards (detection, suppression, prevention) as data. Every quote carries its source: a PSI record and field (PSI-102 and PSI-101 researchImpacts, PSI-69 objective, PSI-26 researchImpacts, PSI-25 and PSI-98 objective) or "NASA Space Apps 2026 challenge statement", with a link to https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/. Six whole challenge sentences are kept in `CHALLENGE_SENTENCES`; the two Earth quotes are marked "part of a sentence". Also `lensFilterHref`, `parseLeg`, `LENS_LEGS`.
+- `web/app/more/page.tsx` (edit): plain-English opening sentence; new top section "Fire-safety equipment & Earth" with the intro quote and the three cards; each card links to `/investigations/<id>` (SAME PSI-102, SAME-R PSI-101; FLEX PSI-69; BASS PSI-26, BASS-II PSI-25, Saffire-I/II/III PSI-98/99/100) and to `/lenses?leg=<leg>`. Earth, Spacesuit and Rockets sections unchanged.
+- `web/app/lenses/page.tsx` (edit): plain-English opening sentence (old lede kept, muted); `?leg=prevention|detection|suppression` filter (links "all" and one per leg with counts, `aria-current`), status line when filtered; the matrix shows only rows with a quote for that leg.
+- `web/lib/lenses/model.ts` (edit): `sourceLabel` now shows challenge sources as "NASA Space Apps 2026 challenge statement" instead of "NASA challenge statement, line N of the copy" (no local file shown). `source.line` stays in the data for the existing test.
+- `web/app/lenses/lenses.css` (edit): styles for the filter and the cards.
+- `web/content/help/more/more-equipment-link.md` (new, folder new) and `web/content/help/lenses/lenses-leg-filter.md` (new): topics for the two new `data-help` ids, five labelled parts each.
+- `web/test/more-equipment.test.ts` (new, 10 tests): three cards with the expected investigations; every quote names its source; challenge quotes are whole challenge sentences or marked as part of one; challenge sentences word for word in the challenge copy (skipped when absent); PSI quotes word for word in `investigation_profiles.json` and in the PSI JSON (when present); linked ids exist in the manifest and have a profile; filter links and `parseLeg`; no "reto-oficial" or "of the copy" in the pages/model; the /more and /lenses pages carry the new `data-help` ids; no banned words (safe, validated, first, proves, discovery, NASA-approved, no data exists, bare "expert") in the new text and quotes.
+- `notes/GROK-CHANGES.md` (this section).
+- Outside the repo: `C:\Users\emc2l\pyrion-ops\drafts\README-top.md` (new, folder new): draft top of README (what/for whom, Try it with 4 pyrion.us links, Run locally, Features). README.md not edited.
+
+Checks (on Luis's PC, `C:\Users\emc2l\pyrion\web`, 2026-11-15 ~02:17 Costa Rica time):
+- `npm run build`: passed (exit 0); `/lenses` dynamic (ƒ), `/more` static.
+- `npm test`: 208 tests, 208 pass, 0 fail, 0 skipped.
+- `npm run typecheck`: passed (exit 0). It rewrote `web/tsconfig.tsbuildinfo` (generated, `*.tsbuildinfo` is in `.gitignore`).
+- Timestamp check against the baseline taken at 02:13:32: besides the files above, only files edited by others changed (`web/components/planner/PlannerView.tsx`, `web/content/help/planner/page-planner.md`, `planner-min-set.md`, new `planner-zero-expected.md` at 02:13:40; `web/content/help/investigations/investigation-compare.md` at 02:14:08), all before my first write (02:16:49).
+
+Skipped:
+- FLEX burn-time card (task 2): `web/lib/expert/calculators.ts` exports no FLEX function (only o2PartialPressure, convertPressure, convertTemperature, compareAtmospheres, gravityValue, CALCULATORS, runCalculator, PSI_FACTORS), so nothing was added and no FLEX label test exists. The required label would be "a fit to the cited data, not a prediction outside its range".
+
+### Needs someone else (Round 7)
+- FLEX burn-time: export a function from `web/lib/expert/calculators.ts` (the fit is in `data/derived/flex_model.json` / `models/flex_model.py` and is reached only through `web/lib/copilot-tools.ts:97`). Then the /more card can import it with the label above.
+- Nav: `/lenses` and `/more` are still missing from `web/components/SiteNav.tsx` and `web/components/CommandPalette.tsx`.
+- `web/app/investigations/compare/page.tsx:8` cites `reto-oficial.md`; it should cite "NASA Space Apps 2026 challenge statement".
+- `data/derived/lenses.json` challenge `source.file` strings say "copy of …" (not displayed any more); `tools/build_lenses.py` could write "NASA Space Apps 2026 challenge statement" when the existing test no longer needs `source.line`.
+- `web/test/lenses-data.test.ts` reads the challenge copy from `../Pyrion NASA/.claude/.../reto-oficial.md` (outside the repo); a copy inside the repo would let it run everywhere.
+- README: docs/ has no install or dev command (only the production command in `docs/DEPLOY.md:44`); the draft copies `cd web` / `npm install` / `npm run dev` / `npm run build` / `npm start` from `web/README.md`. Node version differs: `web/README.md` says 20.9 or newer, `docs/DEPLOY.md:3` says Node 24.

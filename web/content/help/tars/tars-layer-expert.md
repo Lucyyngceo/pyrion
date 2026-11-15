@@ -3,7 +3,7 @@ id: tars-layer-expert
 chapter: tars
 order: 340
 dataHelp: tars-layer-expert
-title: Expert layer
+title: Own-reasoning layer
 keywords: expert layer, tars layer expert, tars
 page: tars
 link: /tars

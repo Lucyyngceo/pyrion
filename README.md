@@ -2,20 +2,76 @@
 
 **NASA Space Apps Challenge 2026** · Challenge: *Flame in Freefall: SI-Powered Fire Safety Insights from Microgravity Combustion Data* · Team **NDMLM** · Local event: San José, Costa Rica
 
-> **Status:** under construction during the hackathon (November 14–15, 2026).
+> Built during the NASA Space Apps Challenge hackathon, November 14–15, 2026.
+
+PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
+It plots every extracted PSI test point as an evidence envelope (O₂ against pressure) and gives a deterministic verdict on whether a target condition lies inside the region spanned by tested points.
+Every test point is cited to its PSI investigation (DOI and license on the Data page), and the verdict says when a condition lies outside what PSI tested.
+It is for spacecraft and habitat fire-safety engineers, students and researchers who need to know what PSI already tested and what it did not.
+No API key and no language model are needed for the envelope and the verdict: the engine is pure TypeScript and runs in the browser.
+
+## Try it
+
+- [Envelope with the Moon Base preset](https://pyrion.us/envelope?preset=challenge-lunar-base)
+- [Mission Planner](https://pyrion.us/planner)
+- [Investigations](https://pyrion.us/investigations)
+- [TARS SI](https://pyrion.us/tars)
+
+## Run locally
+
+Requires Node.js 20.9 or newer (`web/README.md`); the public instance runs Node 24 (`docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000>. Production build:
+
+```bash
+npm run build
+npm start
+```
+
+Tests and type check (scripts in `web/package.json`):
+
+```bash
+npm test
+npm run typecheck
+```
+
+The public instance behind nginx, as in `docs/DEPLOY.md`:
+
+```bash
+PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
+```
+
+## Features
+
+- **Evidence envelope** (`/`): every extracted PSI test point, O₂ mole fraction against pressure, with a deterministic applicability verdict for a target condition and presets such as the Moon Base band.
+- **Mission Planner** (`/planner`): how much of the Moon Base oxygen-pressure band lies inside the region spanned by PSI test points, what FM2 as planned would add, and the fewest test points that would span the band under a stated geometric convention (not a test programme). Evidence coverage, not a prediction.
+- **Investigations** (`/investigations`): one sheet per PSI combustion investigation, a side-by-side comparison (`/investigations/compare`) and a materials view (`/investigations/materials`).
+- **Lenses** (`/lenses`): PSI investigations by safety leg (prevention, detection, suppression) and phenomenon, each tag with a verbatim quote, a filter by leg, and the evidence timeline.
+- **More** (`/more`): fire-safety equipment and Earth uses, quoted from PSI records and the NASA Space Apps 2026 challenge statement, plus spacesuits and rockets as out of PSI scope.
+- **TARS SI** (`/tars`): an AI assistant that answers in labelled layers: what the engine computed, what NASA wrote (quote checked on its page) and its own reasoning (not verified); it runs in structured mode when no API key is set (`web/.env.example`).
+- **Bridge** (`/bridge`): a labelled hypothesis relating microgravity tests to other gravity levels through flame stretch rate. Not evidence.
+- **Method, Data and Proof** (`/method`, `/data`, `/proof`): how a verdict is decided, what was extracted from each investigation (DOI and license), and the repository numbers read at build time.
+- **Help** (`/help`): every control on the site has a help topic.
+
 
 ## What it is
 
 PYRION is being built to rank NASA combustion experiments by how physically applicable they are to a target condition (gravity level, oxygen concentration, pressure, fuel type) and to show where the measured evidence ends.
 
-Inside the measured range of a variable it can interpolate. Across a change of physical regime, such as microgravity versus partial gravity, it does not interpolate. It reports the gap instead.
+A condition between tested values counts as comparable, although no test was necessarily run at that exact point and PYRION computes no value there. Across a change of physical regime, such as microgravity versus partial gravity, nothing counts as comparable. It reports the gap instead.
 
 The applicability verdict is computed by a deterministic engine. A language model is used only to parse inputs and to narrate results. It never decides the verdict.
 
 ## Data
 
 Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>: the 24 investigations in the Combustion Science research area.
-Each investigation is cited with its DOI and its license in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
+Each investigation is cited with its DOI and the license its PSI record states (the PSI-10 record states none) in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
 How the data are selected, downloaded and checked: [`data/README.md`](data/README.md).
 
 ## Provenance
@@ -36,16 +92,16 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 
 | Tool | Models | Used for |
 |---|---|---|
-| Claude Code (Anthropic) | Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2 | Writing the engine, the web app, the validators and tests; extracting condition values from NASA documents (with a verbatim quote and location for every value, then checked by code); independent reviews and audits; documentation. Several Claude Code sessions ran in parallel, each on one part (engine, app, extraction), coordinated by one session. |
+| Claude Code (Anthropic) | Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2 | Writing the engine, the web app, the validators and tests; extracting condition values from NASA documents (with a verbatim quote and location for every value, then checked by code); reviews and audits by separate AI reviewer agents; documentation. Several Claude Code sessions ran in parallel, each on one part (engine, app, extraction), coordinated by one session. |
 | Claude Code on a second computer | Claude models | The interface redesign, merged through pull request #1. |
-| GPT (OpenAI) | GPT-6.1 Terra | The Investigations pages, the compare and materials views, and the unified downloadable dataset (built from a written brief by the coordinating Claude session, reviewed by an independent audit before commit). Log: `notes/GPT-CHANGES.md`. |
+| GPT (OpenAI) | GPT-6.1 Terra | The Investigations pages, the compare and materials views, and the unified downloadable dataset (built from a written brief by the coordinating Claude session, reviewed by a separate AI reviewer agent before commit). Log: `notes/GPT-CHANGES.md`. |
 | Grok (xAI) | Grok | The safety/phenomenon lenses (each tag with a quote verified by script), the evidence timeline and the More page; also planning notes and adversarial questions in a private working repository. Log: `notes/GROK-CHANGES.md`. |
 
 **Models that run inside the app (run time).** All of them have open weights with a license checked on the model's own page; the page names the model that answered every question.
 
 | Role | Model | License | Provider |
 |---|---|---|---|
-| TARS SI brain (expert chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
+| TARS SI brain (chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
 | Fallback | Qwen3.8-27B | Apache-2.0 | OpenRouter |
 | Free fallback | NVIDIA Nemotron 3 Ultra; Gemma 4 31B | OpenMDW-1.1 (per NVIDIA NGC); Apache-2.0 | NVIDIA NIM |
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |

@@ -77,7 +77,7 @@ describe('gapReport (fixtures)', () => {
     assert.match(r.html, /^<!doctype html>/);
     assert.ok(r.html.includes('@media print'));
     assert.ok(r.html.includes(r.fingerprint));
-    assert.ok(r.html.includes("<h2>Minimum test set (under PYRION's convention)</h2>"));
+    assert.ok(r.html.includes("<h2>Minimum test points (PYRION's geometric convention)</h2>"));
     assert.equal((r.html.match(/<ul>/g) ?? []).length, (r.html.match(/<\/ul>/g) ?? []).length);
   });
 

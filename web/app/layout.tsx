@@ -16,7 +16,7 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 export const metadata: Metadata = {
   title: "PYRION Ω · The evidence envelope",
   description:
-    "Ranks NASA PSI combustion investigations by physical applicability to a target condition and shows where the measured evidence ends.",
+    "Orders NASA PSI combustion investigations by how close their tested conditions are to a target condition, and shows where the tested evidence ends.",
 };
 
 export const viewport: Viewport = {
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p>
               PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,
               released under CC0-1.0 except PSI-10, whose license is not stated on PSI. Code: Apache-2.0. Built with the help of
-              AI tools (Claude Code); see the repository README. Status symbols after the Astro Space UX Design System, ©
+              AI tools (Claude Code, GPT and Grok); see the repository README for the full declaration. Status symbols after the Astro Space UX Design System, ©
               2024 Rocket Communications, Inc.
             </p>
             <p className="footer-links">

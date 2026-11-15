@@ -9,7 +9,7 @@ page: planner
 link: /planner
 highlight: [data-help="planner-chart"]
 ---
-What it is: The plot of the Moon Base band.
+What it is: The plot of the Moon Base band. PYRION builds it from two NASA exploration atmospheres and two closing corners of its own convention; it is not a NASA design band.
 
 What it shows: The band outline, vertices, covered cells, and layers. Click to add a hypothetical point; drag to move it.
 

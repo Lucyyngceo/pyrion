@@ -258,7 +258,7 @@ function ResultRow({
           <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
         </div>
-        {cluster?.rank != null && <span className="rank">nearest #{cluster.rank}</span>}
+        {cluster?.rank != null && <span className="rank" title="Order by condition similarity on the axes you set, not relevance">nearest by condition #{cluster.rank}</span>}
       </header>
       {iv.blockers && iv.blockers.length > 0 ? (
         <ul className="blockers">
@@ -383,6 +383,12 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
           Each card says in one sentence where your condition stands, then shows the reasons and the sources. Every verdict is computed by
           the PYRION engine ({evaluation.engine.name} {evaluation.engine.version}): deterministic rules, no language model.
         </p>
+        {evaluation.target.regime.fuel_phase === undefined && evaluation.counts.investigations.APPLICABLE + evaluation.counts.investigations.EXTRAPOLATION > 0 && (
+          <p data-help="results-fuel-open" className="small honesty">
+            Fuel phase is left open, so droplet and gas-flame studies are compared alongside solid materials. For cabin materials
+            (fabrics, plastics), set the fuel phase to solid in the condition panel.
+          </p>
+        )}
       </div>
 
       <div className="group">
@@ -409,7 +415,8 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
           </h3>
           <p className="muted small">
             A regime barrier is not a low score. Gravity regime, fuel phase and diluent change the physics, so no distance is
-            defined across them.
+            defined across them: not directly applicable. For the gravity regime in particular, microgravity and
+            normal-gravity results could bound what occurs at intermediate gravity (challenge statement).
           </p>
           {showBarrier && barrier.map(row)}
         </div>

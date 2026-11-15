@@ -262,6 +262,11 @@ code,
   opacity: 0.45;
   text-decoration: line-through;
 }
+/* TARS skill buttons open a panel: "not pressed" means closed, not disabled, so never strike them out. */
+.tars-skills .chip[aria-pressed="false"] {
+  opacity: 1;
+  text-decoration: none;
+}
 .chip-match {
   border-color: var(--border-strong);
   color: var(--ink);

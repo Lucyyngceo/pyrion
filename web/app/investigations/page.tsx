@@ -3,4 +3,73 @@ import path from "node:path";
 import "@/app/investigations/investigations.css";
 import { profiles } from "@/lib/investigations/data";
 import InvestigationList from "@/components/investigations/InvestigationList";
-export default async function InvestigationsPage() { let legs:Record<string,string[]>={}; let strengths:Record<string,string>={}; try { const lens=JSON.parse(await fs.readFile(path.join(process.cwd(),"..","data","derived","lenses.json"),"utf8")) as {investigations:{accession:string;legs:Record<string,unknown[]>;strength:{value:string}}[]}; legs=Object.fromEntries(lens.investigations.map(i=>[i.accession,Object.entries(i.legs).filter(([,quotes])=>quotes.length>0).map(([name])=>name)])); strengths=Object.fromEntries(lens.investigations.map(i=>[i.accession,i.strength.value])); } catch(error) { if((error as NodeJS.ErrnoException).code!=="ENOENT") throw error; } return <main className="page investigations"><header className="hero"><h1>Investigations</h1></header><p>Browse the PSI investigations and their extracted conditions.</p><InvestigationList profiles={profiles} legs={legs} strengths={strengths}/><p><a data-help="investigation-navigation" href="/investigations/materials">Materials and oxygen</a> · <a data-help="investigation-navigation" href="/investigations/compare">Compare investigations</a> · <a data-help="investigation-navigation" href="/download">Download data</a></p></main>; }
+
+type LensesFile = {
+  investigations: { accession: string; legs: Record<string, unknown[]>; strength: { value: string } }[];
+};
+
+export default async function InvestigationsPage() {
+  let legs: Record<string, string[]> = {};
+  let strengths: Record<string, string> = {};
+  try {
+    const file = path.join(process.cwd(), "..", "data", "derived", "lenses.json");
+    const lens = JSON.parse(await fs.readFile(file, "utf8")) as LensesFile;
+    legs = Object.fromEntries(
+      lens.investigations.map((i) => [
+        i.accession,
+        Object.entries(i.legs)
+          .filter(([, quotes]) => quotes.length > 0)
+          .map(([name]) => name),
+      ]),
+    );
+    strengths = Object.fromEntries(lens.investigations.map((i) => [i.accession, i.strength.value]));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+
+  return (
+    <main className="page investigations">
+      <header className="hero">
+        <h1>Investigations</h1>
+      </header>
+      <p>Browse the PSI investigations and their extracted conditions.</p>
+
+      <section>
+        <h2>Hardware families</h2>
+        <p>
+          Hardware families as listed in the NASA Space Apps 2026 &apos;Flame in Freefall&apos; challenge statement:{" "}
+          <a data-help="investigation-families" href="https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/">
+            challenge statement
+          </a>
+          .
+        </p>
+        <ul>
+          <li>ACME: modular ACME hardware in the Combustion Integrated Rack (CIR).</li>
+          <li>FLEX, FLEX-2 and CFI: droplet experiments in the Multi-user Droplet Combustion Apparatus (MDCA) in the CIR.</li>
+          <li>BASS, BASS-II, SPICE and SLICE: Microgravity Science Glovebox (MSG), using the modular fan-driven flow duct built for SPICE.</li>
+        </ul>
+        <p>
+          E-FIELD Flames: partial gravity &ldquo;was mimicked in ACME&apos;s Electric-Field Effects on Laminar Diffusion Flames (E-FIELD
+          Flames) experiment through the effect of the electric field on the ions that naturally occur in flames.&rdquo; An analog, not
+          partial-gravity data.
+        </p>
+      </section>
+
+      <InvestigationList profiles={profiles} legs={legs} strengths={strengths} />
+
+      <p>
+        <a data-help="investigation-navigation" href="/investigations/materials">
+          Materials and oxygen
+        </a>{" "}
+        ·{" "}
+        <a data-help="investigation-navigation" href="/investigations/compare">
+          Compare investigations
+        </a>{" "}
+        ·{" "}
+        <a data-help="investigation-navigation" href="/download">
+          Download data
+        </a>
+      </p>
+    </main>
+  );
+}

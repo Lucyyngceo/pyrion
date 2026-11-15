@@ -56,3 +56,12 @@
   .lens-pt { transition: none; }
 }
 .lens-timeline.reduced .lens-pt { transition: none; }
+
+/* Round 7: leg filter on /lenses and the equipment cards on /more. */
+.lens-filter { font-size: 13px; margin: 0 0 8px; }
+.lens-filter a[aria-current="true"] { font-weight: 700; text-decoration: none; color: #62eaff; }
+.more-equip { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.more-equip-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.more-equip-card h3 { font-size: 15px; margin: 0 0 6px; }
+.more-equip-card blockquote { margin: 6px 0; padding: 2px 0 2px 10px; border-left: 3px solid #416170; font-size: 13.5px; }
+.more-equip-links { margin: 8px 0 0; font-size: 13px; }

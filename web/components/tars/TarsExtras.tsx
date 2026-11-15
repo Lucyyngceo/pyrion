@@ -70,7 +70,7 @@ export function Md({ text }: { text: string }) {
 const LAYER = {
   engine: { icon: "🔒", name: "Engine", cls: "tars-l-engine", help: "tars-layer-engine" },
   nasa: { icon: "📄", name: "NASA said it", cls: "tars-l-nasa", help: "tars-layer-nasa" },
-  expert: { icon: "🧠", name: "TARS expert knowledge", cls: "tars-l-expert", help: "tars-layer-expert" },
+  expert: { icon: "🧠", name: "TARS own reasoning", cls: "tars-l-expert", help: "tars-layer-expert" },
 } as const;
 
 export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> }) {
@@ -325,7 +325,7 @@ function ThreeModels({ question, target, lang }: { question: string; target: unk
   );
 }
 
-const LAYER_NAME = { engine: "Engine", nasa: "NASA", expert: "Expert" } as const;
+const LAYER_NAME = { engine: "Engine", nasa: "NASA", expert: "Own reasoning" } as const;
 
 /** The second opinion of a model of another family: agree, object (with the reason and a verified quote), or unavailable. It never changes the answer. */
 function SecondOpinion({ s, blocks, es }: { s: SkepticView; blocks: ("engine" | "nasa" | "expert")[]; es: boolean }) {
