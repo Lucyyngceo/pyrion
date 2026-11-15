@@ -35,7 +35,7 @@ export default async function InvestigationsPage() {
       <header className="hero">
         <h1>Investigations</h1>
       </header>
-      <p>Browse the PSI investigations and their extracted conditions.</p>
+      <p>Browse the combustion investigations in NASA&apos;s Physical Sciences Informatics (PSI) database and their extracted conditions.</p>
 
       <section>
         <h2>Hardware families</h2>

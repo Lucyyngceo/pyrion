@@ -3,6 +3,7 @@ import { parseConditionCsv } from "@/lib/engine";
 import CountUp from "@/components/CountUp";
 import EvidenceStatus from "@/components/EvidenceStatus";
 import { loadDataset, loadLineage } from "@/lib/data";
+import { loadFacts } from "@/lib/facts";
 
 export const metadata: Metadata = {
   title: "Data · PYRION Ω",
@@ -62,7 +63,7 @@ export default async function DataPage() {
           <h1 data-help="page-data">The data behind the envelope</h1>
           <p className="lede">
             Every condition value PYRION uses comes from a NASA Physical Sciences Informatics (PSI) combustion investigation,
-            with the file and location it was read from. This page shows what was extracted from each one.
+            with the file and location it was read from. This page shows what was extracted from each one. {(await loadFacts()).sentence}.
           </p>
         </div>
         <div className="hero-actions">

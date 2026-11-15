@@ -18,7 +18,7 @@ function HullDiagram() {
     <svg viewBox="0 0 560 250" width="100%" role="img" aria-labelledby="hd-t hd-d" className="method-svg">
       <title id="hd-t">Schematic of a measured envelope</title>
       <desc id="hd-d">
-        Measured points of one regime, their convex hull, one target inside (applicable) and one outside (extrapolation), and
+        Measured points of one regime, their convex hull, one target inside the tested range and one outside it, and
         a second regime drawn dashed: not comparable.
       </desc>
       <rect x="0.5" y="0.5" width="559" height="249" rx="10" fill="none" stroke="var(--border)" />
@@ -35,13 +35,13 @@ function HullDiagram() {
         <circle r="3" fill="var(--ink)" />
       </g>
       <line x1="225" y1="132" x2="250" y2="40" stroke="var(--ink)" strokeWidth="1" />
-      <text x="254" y="38" className="m-lbl">APPLICABLE</text>
+      <text x="254" y="38" className="m-lbl">Inside the tested range</text>
 
       <g transform="translate(375,210)">
         <circle r="10" fill="none" stroke="var(--ink)" strokeWidth="2" strokeDasharray="3 3" />
         <circle r="3" fill="var(--ink)" />
       </g>
-      <text x="392" y="214" className="m-lbl">EXTRAPOLATION</text>
+      <text x="360" y="214" textAnchor="end" className="m-lbl">Outside the tested range</text>
 
       <text x="280" y="242" textAnchor="middle" className="m-axis">O₂ mole fraction →</text>
       <text x="14" y="125" className="m-axis" transform="rotate(-90 14 125)" textAnchor="middle">pressure →</text>
@@ -55,7 +55,7 @@ export default function MethodPage() {
       <header className="hero">
         <h1 data-help="page-method">How PYRION decides</h1>
         <p className="lede">
-          A deterministic rule set, not a model. Given a target condition, each NASA PSI combustion investigation gets one of
+          A deterministic rule set, not a model. Given a target condition, each combustion investigation in NASA&apos;s Physical Sciences Informatics (PSI) database gets one of
           four verdicts, and every input to that verdict is a value you can trace to a file.
         </p>
       </header>
@@ -95,19 +95,19 @@ export default function MethodPage() {
           </thead>
           <tbody>
             <tr>
-              <td><span className="badge v-app"><StatusSymbol level="normal" /> APPLICABLE</span></td>
+              <td><span className="badge v-app"><StatusSymbol level="normal" /> Inside the tested range</span> <code className="small muted">APPLICABLE</code></td>
               <td>Same regime, and the target is inside the measured envelope.</td>
             </tr>
             <tr>
-              <td><span className="badge v-ext"><StatusSymbol level="caution" /> EXTRAPOLATION</span></td>
+              <td><span className="badge v-ext"><StatusSymbol level="caution" /> Outside the tested range</span> <code className="small muted">EXTRAPOLATION</code></td>
               <td>Same regime, but the target is outside the measured envelope.</td>
             </tr>
             <tr>
-              <td><span className="badge v-ins"><StatusSymbol level="standby" /> INSUFFICIENT_EVIDENCE</span></td>
+              <td><span className="badge v-ins"><StatusSymbol level="standby" /> Insufficient evidence</span> <code className="small muted">INSUFFICIENT_EVIDENCE</code></td>
               <td>The extracted records do not state enough (a regime axis, or O₂ / pressure) to compare. PYRION does not guess.</td>
             </tr>
             <tr>
-              <td><span className="badge v-bar"><StatusSymbol level="off" /> REGIME_BARRIER</span></td>
+              <td><span className="badge v-bar"><StatusSymbol level="off" /> Not comparable</span> <code className="small muted">REGIME_BARRIER</code></td>
               <td>Different physical regime: not comparable. Not a low score.</td>
             </tr>
           </tbody>

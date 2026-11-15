@@ -99,7 +99,7 @@ export default async function Example() {
         <p className="ld-kicker">Worked examples · computed by the engine on the server, no AI</p>
         <h1 id="ex-h" className="ld-title">Two questions, answered step by step, with NASA&apos;s sources</h1>
         <p className="ld-answer">
-          This page runs two complete questions through PYRION — the Moon Base, then ISS cabin air — and prints every step, so it can be checked without clicking anything.
+          Using NASA&apos;s Physical Sciences Informatics (PSI) database, this page runs two complete questions through PYRION — the Moon Base, then ISS cabin air — and prints every step, so it can be checked without clicking anything.
           Both are live on the{" "}
           <Link data-help="example-link" href="/envelope?preset=challenge-lunar-base">
             dashboard

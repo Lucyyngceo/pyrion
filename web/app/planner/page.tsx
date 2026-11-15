@@ -16,6 +16,7 @@ export default async function PlannerPage() {
         <h1 data-help="page-planner" className="h1-small">
           Mission Planner <span className="muted small">evidence coverage of the Moon Base band</span>
         </h1>
+        <p className="small muted">Test points from NASA&apos;s Physical Sciences Informatics (PSI) database; planned tests are marked as planned, not in PSI.</p>
       </header>
       <PlannerView data={JSON.parse(JSON.stringify(data))} />
     </main>

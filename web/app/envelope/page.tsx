@@ -24,7 +24,7 @@ export default async function Page() {
           <h1 data-help="page-envelope" className="h1-small">The evidence envelope</h1>
           {!synthetic && (
             <p data-help="header-status-line" className="hero-status small muted">
-              {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} PSI combustion investigations · {located} · <a data-help="header-details-link" href="/data">details</a>
+              {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} combustion investigations in NASA&apos;s Physical Sciences Informatics (PSI) database · {located} · <a data-help="header-details-link" href="/data">details</a>
             </p>
           )}
         </div>
