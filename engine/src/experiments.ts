@@ -4,19 +4,19 @@
 
 import { parseCsv } from './csv.ts';
 import { buildCorpus } from './evidence.ts';
-import { humanValue, levelSentence, plural, valueLabel } from './labels.ts';
+import { axisLabel, humanValue, levelSentence, plural, valueLabel } from './labels.ts';
 import { bestLevel, type ExtrapolationLevel } from './levels.ts';
-import { KPA_PER_PSI } from './presets.ts';
+import { KPA_PER_PSI, SOURCES } from './presets.ts';
 import { AXIS_UNITS, type ConditionRecord, type ContinuousAxis, type EngineOptions, type Evaluation, type Target, type Verdict } from './types.ts';
 import { evaluate } from './verdict.ts';
 
-export const EXPERIMENT_LABEL = 'PYRION proposal (a testable plan, not a NASA plan)';
+export const EXPERIMENT_LABEL = 'What would close this gap — PYRION proposal (a testable plan, not a NASA plan)';
 
 /** PYRION design convention, not a NASA design: the oxygen offsets (points of oxygen) and pressure fractions of the test matrix. */
 export const TEST_MATRIX_O2_OFFSETS_POINTS: readonly number[] = [-8, -4, 0, 4, 8];
 export const TEST_MATRIX_PRESSURE_FRACTIONS: readonly number[] = [-0.15, 0, 0.15];
 export const TEST_MATRIX_NOTE =
-  'PYRION design convention, not a NASA design: the target point plus oxygen steps of ±4 and ±8 points and pressure steps of ±15 %, so that results form an envelope and not a single point.';
+  "The target point plus oxygen steps of ±4 points (the size of the steps in FM2's own plan: 25, 29, 33 and 37 %, NTRS 20260001966, PDF p. 10) and ±8 points (a coarse bracket), and pressure steps of ±15 % (a PYRION design convention, not a NASA design), so that results form an envelope and not a single point. Points whose oxygen partial pressure exceeds the target's are margin points.";
 
 export interface PlannedSource {
   id: string;
@@ -30,7 +30,12 @@ export interface PlannedSource {
   /** Verbatim from the source. */
   quote: string;
   supports: string;
+  /** LUCI sources: what kind of gravity it was. */
+  qualifier?: string;
 }
+
+/** Every statement about LUCI carries this: it was a rotating vehicle, not true low gravity. */
+export const LUCI_QUALIFIER = 'simulated partial gravity (rotating vehicle)';
 
 const FM2_PAGE = 'crawl-combustion-science-flammability-of-materials-on-the-moon-fm2-ecc5990d/page.html';
 const LPSC = 'ntrs-20260001966/Ferkul-Lunar and Planetary Science Conf 2026 v2.pdf';
@@ -62,7 +67,7 @@ export const PLANNED_SOURCES: readonly PlannedSource[] = [
     page: 10,
     slide: 9,
     quote: 'Fabric sheets (Synergy Pro "Navy") mounted between thin metal frames',
-    supports: 'FM2 burns a fabric (a solid fuel); the quoted passage names no other fuel.',
+    supports: 'FM2 plans to burn one fabric (Synergy Pro "Navy"); the quoted passage names no other fuel, so FM2 is not stated to cover solids in general.',
   },
   {
     id: 'fm2-limit',
@@ -71,23 +76,61 @@ export const PLANNED_SOURCES: readonly PlannedSource[] = [
     page: 5,
     slide: 4,
     quote: 'Test a material with an expected Lunar LOC of 24-26% and an expected oxygen consumption of 0.08 mol fraction',
-    supports: 'FM2 aims at a limiting oxygen concentration (LOC) of one material, expected at 24 to 26 %.',
+    supports: 'FM2 aims at the limiting oxygen concentration (LOC) of one material, expected at 24 to 26 %.',
   },
   {
     id: 'luci-conditions',
-    name: 'LUCI (Lunar gravity centrifuge flight), NTRS 20250010653',
+    name: 'LUCI (Blue Origin New Shepard flight), NTRS 20250010653',
     file: LUCI,
     page: 12,
     quote: 'Two samples are burned simultaneously in air at normal pressure: Cotton-fiberglass composite fabric sheet and a 4-mm diameter rod of acrylic plastic (polymethyl methacrylate).',
-    supports: 'LUCI burned a cotton-fiberglass fabric and a 4-mm acrylic rod in air at "normal pressure", in simulated lunar gravity; the source gives no pressure figure in this passage.',
+    supports: `LUCI burned a cotton-fiberglass fabric and a 4-mm acrylic rod in air at "normal pressure", in ${LUCI_QUALIFIER}; the source gives no pressure figure in this passage.`,
+    qualifier: LUCI_QUALIFIER,
+  },
+  {
+    id: 'luci-rotation',
+    name: 'LUCI vehicle rotation, NTRS 20250010653',
+    file: LUCI,
+    page: 12,
+    quote: 'A steady vehicle rotation of 11 RPM is established, with an effective radius of rotation of 1.22 m at the experiment location.',
+    supports: `The gravity of LUCI came from rotation of the vehicle: ${LUCI_QUALIFIER}.`,
+    qualifier: LUCI_QUALIFIER,
+  },
+  {
+    id: 'luci-coriolis',
+    name: 'LUCI Coriolis effect, NTRS 20250010653',
+    file: LUCI,
+    page: 17,
+    quote: 'The one on the right demonstrates how the Coriolis force pulls the flame away from the axis of the fuel, which is aligned with the direction of the centrifugal acceleration.',
+    supports: `The rotating vehicle adds a Coriolis force that bends the flame: ${LUCI_QUALIFIER}, not the same as low gravity on the Moon.`,
+    qualifier: LUCI_QUALIFIER,
+  },
+  {
+    id: 'luci-gravity-drop',
+    name: 'LUCI gravity history, NTRS 20250010653',
+    file: LUCI,
+    page: 43,
+    quote: 'Flame spread rate increases linearly from 0 to ~.6 mm/s (before gravity starts dropping at t = 125s)',
+    supports: `In one LUCI burn the gravity level dropped at 125 s: ${LUCI_QUALIFIER}.`,
+    qualifier: LUCI_QUALIFIER,
+  },
+  {
+    id: 'luci-followon',
+    name: 'LUCI follow-on objectives, NTRS 20250010653',
+    file: LUCI,
+    page: 18,
+    quote: 'Potential Follow-on Objectives',
+    supports: 'The heading of the slide that lists the data below: NASA lists them as potential follow-on objectives.',
+    qualifier: LUCI_QUALIFIER,
   },
   {
     id: 'luci-data',
-    name: 'LUCI / FM2 expected data, NTRS 20250010653',
+    name: 'LUCI follow-on data, NTRS 20250010653',
     file: LUCI,
     page: 18,
     quote: 'Flammability limits (%O2) for a subset of materials in Lunar-g Measurements of the flame spread rate over materials in exploration atmospheres',
-    supports: 'The stated data products: oxygen flammability limits at lunar gravity and flame spread rate in exploration atmospheres.',
+    supports: 'Listed by NASA as potential follow-on data, not results: oxygen flammability limits at lunar gravity and flame spread rate in exploration atmospheres.',
+    qualifier: LUCI_QUALIFIER,
   },
 ];
 
@@ -115,7 +158,58 @@ export interface MatrixPoint {
   o2_mole_fraction?: number;
   pressure_kpa?: number;
   isTarget: boolean;
+  /** True when the oxygen partial pressure (oxygen × pressure) of this point exceeds the target's: a margin point. */
+  marginPoint?: true;
 }
+
+/** A first-order axis listed for the experimenter but not gridded (to keep the count small). */
+export interface ListedAxis {
+  axis: 'gravity_level' | 'flow_velocity' | 'sample_thickness';
+  label: string;
+  /** Always the experimenter: the engine does not choose these values. */
+  statedBy: 'experimenter';
+  sentence: string;
+  /** gravity level: the levels in use, each with its source. */
+  options?: { value: number; unit: string; source: string; quote?: string }[];
+}
+
+/** What material flammability testing measures, each with a verbatim quote from a document in the repository. */
+export interface TestingMeasure {
+  measure: string;
+  quote: string;
+  file: string;
+  page: number;
+  slide?: number;
+  /** LUCI passages carry the gravity qualifier. */
+  qualifier?: string;
+}
+
+export const NASA_STD_6001B = {
+  title: 'NASA-STD-6001B, Flammability, Offgassing, and Compatibility Requirements and Test Procedures',
+  approved: '08-26-2011',
+  file: 'nasa-std-6001b/nasa-std-6001b.pdf',
+  url: 'https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf',
+  doi: null,
+  note: 'A historical copy on standards.nasa.gov. No DOI.',
+} as const;
+
+/** Verified in the repository files, not recalled from memory. */
+export const TESTING_MEASURES: readonly TestingMeasure[] = [
+  { measure: 'Maximum oxygen concentration', quote: 'Maximum Oxygen Concentration: The maximum oxygen concentration at which at least five specimens pass the acceptance criteria of this test.', file: NASA_STD_6001B.file, page: 30 },
+  { measure: 'Burn length', quote: 'The burn length, i.e., the linear distance of consumed specimen, shall be measured and recorded in the test report.', file: NASA_STD_6001B.file, page: 29 },
+  { measure: 'Limiting oxygen and extinction', quote: 'As the burns progress, the oxygen concentration drops, enabling a limiting value for extinction to be defined.', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 12, qualifier: LUCI_QUALIFIER },
+  { measure: 'Upward and downward flame spread', quote: 'Oxygen limits for upward and downward spread at partial-g will be compared to 1-g values.', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 3, qualifier: LUCI_QUALIFIER },
+  { measure: 'Flame spread rate', quote: 'Measurements of flame spread rate and output of other diagnostics, including g-level vs. time for the two samples', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 13, qualifier: LUCI_QUALIFIER },
+  { measure: 'Flame length and width', quote: 'Flame length is not completely constant; flame shrinks more than partial-g burn. Flame width decreases suddenly at ~24 seconds', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 24, qualifier: LUCI_QUALIFIER },
+  { measure: 'Oxygen, pressure and gravity level over time', quote: 'Sensors: Chamber oxygen concentration, pressure, temperature, and centrifugal acceleration.', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 5, qualifier: LUCI_QUALIFIER },
+];
+
+/** Why solids come first: what these documents test, quoted. */
+export const SOLIDS_RATIONALE_SOURCES: readonly TestingMeasure[] = [
+  { measure: 'NASA-STD-6001B Test 1 burns solid specimens', quote: 'Five test specimens, each with dimensions of 30 cm by 6.5 cm (12 in by 2.5 in) and tested one at a time, shall be mounted vertically in a test stand.', file: NASA_STD_6001B.file, page: 28 },
+  { measure: 'FM2 plans a solid fabric', quote: 'Fabric sheets (Synergy Pro "Navy") mounted between thin metal frames', file: 'ntrs-20260001966/Ferkul-Lunar and Planetary Science Conf 2026 v2.pdf', page: 10, slide: 9 },
+  { measure: 'LUCI burned a solid fabric and a solid rod', quote: 'Two samples are burned simultaneously in air at normal pressure: Cotton-fiberglass composite fabric sheet and a 4-mm diameter rod of acrylic plastic (polymethyl methacrylate).', file: 'ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf', page: 12, qualifier: LUCI_QUALIFIER },
+];
 
 export interface PhaseCoverage {
   fuel_phase: 'solid' | 'liquid' | 'gas';
@@ -148,6 +242,8 @@ export interface MeasuredVariable {
 
 export interface CoverageStatement {
   source: string;
+  /** What the statement is about: FM2 plans one fabric, so coverage is for that material only. */
+  material: string;
   covered: MatrixPoint[];
   sentence: string;
 }
@@ -167,7 +263,11 @@ export interface ExperimentsNeeded {
   zeroCoveragePhases: string[];
   testMatrix: { note: string; gravity: { regime?: string; level?: number }; points: MatrixPoint[]; pointCount: number; sentence: string };
   configuration: { prioritized: 'solid'; comparable: ComparableInvestigation[]; sentence: string };
-  measurements: { recorded: MeasuredVariable[]; /** What FM2 / LUCI are stated to produce, quoted from the sources. */ plannedDataProducts: PlannedSource[]; sentence: string };
+  measurements: { recorded: MeasuredVariable[]; /** What flammability testing measures, quoted. */ testingMeasures: readonly TestingMeasure[]; standard: typeof NASA_STD_6001B; /** Listed by NASA as potential follow-on data, not results. */ plannedDataProducts: PlannedSource[]; sentence: string };
+  /** First-order axes listed for the experimenter, not gridded. */
+  additionalAxes: ListedAxis[];
+  /** "Solids first: ..." with the documents it rests on. */
+  solidsRationale: { sentence: string; sources: readonly TestingMeasure[] };
   plannedCoverage: { sources: readonly PlannedSource[]; statements: CoverageStatement[] };
   remainingGap: { points: MatrixPoint[]; sentence: string };
   priority: PriorityItem[];
@@ -181,13 +281,16 @@ function matrixPoints(target: Target): MatrixPoint[] {
   const o2s = o2 === undefined ? [undefined] : TEST_MATRIX_O2_OFFSETS_POINTS.map((d) => Number((o2 + d / 100).toFixed(6))).filter((x) => x > 0 && x <= 1);
   const ps = p === undefined ? [undefined] : TEST_MATRIX_PRESSURE_FRACTIONS.map((f) => Number((p * (1 + f)).toPrecision(8))).filter((x) => x > 0);
   const pts: MatrixPoint[] = [];
+  const targetPp = o2 !== undefined && p !== undefined ? o2 * p : undefined;
   for (const pv of ps) {
     for (const ov of o2s) {
       if (ov === undefined && pv === undefined) continue;
+      const margin = targetPp !== undefined && ov !== undefined && pv !== undefined && ov * pv > targetPp * (1 + 1e-9);
       pts.push({
         ...(ov !== undefined ? { o2_mole_fraction: ov } : {}),
         ...(pv !== undefined ? { pressure_kpa: pv } : {}),
         isTarget: (ov === undefined || ov === o2) && (pv === undefined || pv === Number((p as number).toPrecision(8))),
+        ...(margin ? { marginPoint: true as const } : {}),
       });
     }
   }
@@ -218,6 +321,9 @@ const OUTCOME_LABELS: Readonly<Record<string, string>> = {
 function unitText(u: string): string {
   return u === '' || u === '1' ? '' : u;
 }
+
+/** Listed by NASA as potential follow-on data, not results. */
+const FOLLOW_ON_SENTENCE = `NASA lists oxygen flammability limits (% O2) and flame spread rate as potential follow-on data, not results (LUCI, ${LUCI_QUALIFIER}).`;
 
 export function experimentsNeeded(
   records: readonly ConditionRecord[],
@@ -339,29 +445,32 @@ export function experimentsNeeded(
     });
   const measurementSentence =
     recorded.length === 0
-      ? 'The extracted records of these investigations carry no outcome variable yet, so there is nothing to copy. NASA states that FM2 and LUCI produce oxygen flammability limits (% O2) and flame spread rate.'
-      : `What PSI records for these investigations: ${recorded.map((m) => `${m.label}${m.unit ? ` (${m.unit})` : ''}`).join(', ')}. NASA states that FM2 and LUCI produce oxygen flammability limits (% O2) and flame spread rate.`;
+      ? `The extracted records of these investigations carry no outcome variable yet, so there is nothing to copy. ${FOLLOW_ON_SENTENCE}`
+      : `What PSI records for these investigations: ${recorded.map((m) => `${m.label}${m.unit ? ` (${m.unit})` : ''}`).join(', ')}. ${FOLLOW_ON_SENTENCE}`;
 
   // ---- what NASA's planned experiments are stated to cover ----
   const statements: CoverageStatement[] = [];
   const fm2Covered = points.filter((p) => coveredByFm2(p, regime));
+  const FM2_PLAN = 'FM2 plans four burns of one fabric (Synergy Pro "Navy") at 8.2 psia ± 0.3 psi with 37, 33, 29 and 25 % oxygen';
   statements.push({
     source: 'FM2',
+    material: 'Synergy Pro "Navy" fabric',
     covered: fm2Covered,
     sentence:
       regime === 'partial_gravity'
         ? fm2Covered.length > 0
-          ? `FM2 is stated to start at 8.2 psia ± 0.3 psi with 37, 33, 29 and 25 % oxygen; ${fm2Covered.length} of the ${points.length} test points fall on those conditions.`
-          : `FM2 is stated to start at 8.2 psia ± 0.3 psi with 37, 33, 29 and 25 % oxygen; none of the ${points.length} test points falls on those conditions.`
-        : 'FM2 and LUCI are stated to work at lunar gravity; this target is not at lunar gravity, so they are not stated to cover it.',
+          ? `${FM2_PLAN}; ${fm2Covered.length} of the ${points.length} test points fall on those conditions, for that one fabric only.`
+          : `${FM2_PLAN}; none of the ${points.length} test points falls on those conditions.`
+        : `${FM2_PLAN}, on the Moon; this target is not at partial gravity, so FM2 is not stated to cover it.`,
   });
   statements.push({
     source: 'LUCI',
+    material: 'cotton-fiberglass fabric and 4-mm acrylic rod',
     covered: [],
     sentence:
       regime === 'partial_gravity'
-        ? 'LUCI is stated to have burned samples "in air at normal pressure" in simulated lunar gravity; the source gives no oxygen or pressure figures for that passage, so whether a test point is covered is not stated by the source.'
-        : 'LUCI is stated to have worked in simulated lunar gravity only.',
+        ? `LUCI burned a cotton-fiberglass fabric and a 4-mm acrylic rod "in air at normal pressure" in ${LUCI_QUALIFIER}; the source gives no oxygen or pressure figures for that passage, so whether a test point is covered is not stated by the source.`
+        : `LUCI worked in ${LUCI_QUALIFIER} only, so it is not stated to cover this target.`,
   });
   const remaining = points.filter((p) => !fm2Covered.includes(p));
   const remainingSentence =
@@ -370,6 +479,36 @@ export function experimentsNeeded(
       : regime === 'partial_gravity'
         ? `${remaining.length} of ${points.length} test points are not stated to be covered by FM2; for LUCI, coverage is not stated by the source.`
         : `All ${points.length} test points remain: no planned experiment in the downloaded sources is stated to cover this gravity regime.`;
+
+  // ---- first-order axes listed for the experimenter (not gridded) ----
+  const additionalAxes: ListedAxis[] = [];
+  if (regime === 'partial_gravity') {
+    additionalAxes.push({
+      axis: 'gravity_level',
+      label: axisLabel('gravity_level'),
+      statedBy: 'experimenter',
+      sentence: 'Gravity level: to be stated by the experimenter; the levels in use are 0.16 g (lunar) and 0.38 g (Mars).',
+      options: [
+        { value: 0.16, unit: 'g', source: `${SOURCES.lunarGravity.identifier}, ${SOURCES.lunarGravity.locator}`, quote: SOURCES.lunarGravity.quote },
+        { value: 0.38, unit: 'g', source: `${SOURCES.marsGravity.title}, ${SOURCES.marsGravity.url}`, quote: SOURCES.marsGravity.quote },
+      ],
+    });
+  }
+  const recordedRange = (axis: 'flow_velocity' | 'sample_thickness') => {
+    const rs = comparable.map((c) => [c.accession, c[axis]] as const).filter((x): x is readonly [string, { min: number; max: number; unit: string }] => x[1] !== undefined);
+    return rs.length === 0 ? '' : ` Recorded for the comparable investigations: ${rs.map(([a, r]) => `${a} ${humanValue(axis, r.min, 3).replace(/ \(.*$/, '')}${r.max === r.min ? '' : ` to ${humanValue(axis, r.max, 3)}`}`).join('; ')}.`;
+  };
+  if (regime === 'microgravity') {
+    additionalAxes.push({ axis: 'flow_velocity', label: axisLabel('flow_velocity'), statedBy: 'experimenter', sentence: `Flow velocity: to be stated by the experimenter.${recordedRange('flow_velocity')}` });
+  }
+  additionalAxes.push({ axis: 'sample_thickness', label: axisLabel('sample_thickness'), statedBy: 'experimenter', sentence: `Sample thickness: to be stated by the experimenter.${recordedRange('sample_thickness')}` });
+
+  // ---- why solids come first ----
+  const solidAccessions = new Set(corpus.clusters.filter((c) => c.regime.some((s) => s.axis === 'fuel_phase' && s.state === 'known' && s.values[0] === 'solid')).map((c) => c.accession));
+  const solidsRationale = {
+    sentence: `Solids first: NASA-STD-6001B Test 1, FM2 and LUCI all burn solid specimens (quoted below), and PSI records a solid fuel for ${solidAccessions.size} ${plural(solidAccessions.size, 'investigation', 'investigations')}; solids are the gap that matters for cabin fires.`,
+    sources: SOLIDS_RATIONALE_SOURCES,
+  };
 
   // ---- priority ----
   const items: (PriorityItem & { _o: number })[] = [];
@@ -421,9 +560,14 @@ export function experimentsNeeded(
       sentence: matrixSentence,
     },
     configuration: { prioritized: 'solid', comparable, sentence: configSentence },
-    measurements: { recorded, plannedDataProducts: PLANNED_SOURCES.filter((p) => p.id === 'luci-data'), sentence: measurementSentence },
+    measurements: { recorded, testingMeasures: TESTING_MEASURES, standard: NASA_STD_6001B, plannedDataProducts: PLANNED_SOURCES.filter((p) => p.id === 'luci-data'), sentence: measurementSentence },
+    additionalAxes,
+    solidsRationale,
     plannedCoverage: { sources: PLANNED_SOURCES, statements },
     remainingGap: { points: remaining, sentence: remainingSentence },
     priority,
   };
 }
+
+/** The result is titled by EXPERIMENT_LABEL: "What would close this gap". */
+export const whatWouldCloseThisGap = experimentsNeeded;

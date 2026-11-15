@@ -1,10 +1,15 @@
 // experimentsNeeded (NAVIGATOR N10). Inline records are SYNTHETIC; real records and the FM2 page are used when present.
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
 import {
   EXPERIMENT_LABEL,
+  LUCI_QUALIFIER,
+  NASA_STD_6001B,
+  SOLIDS_RATIONALE_SOURCES,
+  TESTING_MEASURES,
   PLANNED_SOURCES,
   TEST_MATRIX_O2_OFFSETS_POINTS,
   TEST_MATRIX_PRESSURE_FRACTIONS,
@@ -44,6 +49,8 @@ const sentencesOf = (e: ExperimentsNeeded): string[] => [
   ...e.plannedCoverage.statements.map((s) => s.sentence),
   e.remainingGap.sentence,
   ...e.priority.map((p) => p.sentence),
+  e.solidsRationale.sentence,
+  ...e.additionalAxes.map((a) => a.sentence),
 ];
 
 describe('experimentsNeeded: Moon Base (partial gravity untested)', () => {
@@ -53,7 +60,8 @@ describe('experimentsNeeded: Moon Base (partial gravity untested)', () => {
   it('the gap is the untested regime', () => {
     assert.equal(e.gap.kind, 'regime_untested');
     assert.match(e.gap.sentence, /^No PSI test was run in partial gravity; the investigations state only microgravity\.$/);
-    assert.equal(e.label, 'PYRION proposal (a testable plan, not a NASA plan)');
+    assert.equal(e.label, 'What would close this gap — PYRION proposal (a testable plan, not a NASA plan)');
+    assert.ok(!/experiments needed/i.test(e.label));
     assert.equal(e.label, EXPERIMENT_LABEL);
   });
   it('the matrix is the target plus the stated bracketing grid, at partial gravity', () => {
@@ -223,5 +231,103 @@ describe('experimentsNeeded on the real records', () => {
     assert.equal(e.testMatrix.gravity.regime, 'partial_gravity');
     assert.equal(e.remainingGap.points.length, e.testMatrix.pointCount);
     if (Object.keys(catalog).length > 0) for (const c of e.configuration.comparable) assert.match(c.doi ?? '', /^10\.\d+\//);
+  });
+});
+
+describe('experimentsNeeded: audit wording and sources', () => {
+  const recs = synthetic();
+  const moon: Target = { regime: { gravity_regime: 'partial_gravity' }, continuous: { o2_mole_fraction: 0.3, pressure: 70.33 }, informational: { gravity_level: 0.165 } };
+  const e = experimentsNeeded(recs, moon, { catalog: CATALOG });
+
+  it('LUCI data is "listed by NASA as potential follow-on data, not results", with the slide heading as its own source', () => {
+    const data = e.plannedCoverage.sources.find((s) => s.id === 'luci-data')!;
+    assert.match(data.supports, /^Listed by NASA as potential follow-on data, not results/);
+    const head = e.plannedCoverage.sources.find((s) => s.id === 'luci-followon')!;
+    assert.equal(head.quote, 'Potential Follow-on Objectives');
+    assert.equal(head.page, 18);
+    assert.match(e.measurements.sentence, /potential follow-on data, not results/);
+  });
+  it('every LUCI source and statement carries "simulated partial gravity (rotating vehicle)"; rotation, Coriolis and the gravity drop are quoted', () => {
+    assert.equal(LUCI_QUALIFIER, 'simulated partial gravity (rotating vehicle)');
+    const luci = e.plannedCoverage.sources.filter((s) => s.file.includes('20250010653'));
+    assert.ok(luci.length >= 6);
+    for (const s of luci) assert.equal(s.qualifier, LUCI_QUALIFIER, s.id);
+    for (const id of ['luci-rotation', 'luci-coriolis', 'luci-gravity-drop']) assert.ok(luci.some((s) => s.id === id), id);
+    assert.equal(luci.find((s) => s.id === 'luci-coriolis')!.page, 17);
+    assert.equal(luci.find((s) => s.id === 'luci-gravity-drop')!.page, 43);
+    for (const t of TESTING_MEASURES.filter((m) => m.file.includes('20250010653'))) assert.equal(t.qualifier, LUCI_QUALIFIER);
+    const micro: Target = { regime: { gravity_regime: 'microgravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 } };
+    for (const regimeTarget of [moon, micro]) {
+      const st = experimentsNeeded(recs, regimeTarget).plannedCoverage.statements.find((s) => s.source === 'LUCI')!;
+      assert.ok(st.sentence.includes(LUCI_QUALIFIER), st.sentence);
+      assert.ok(!/simulated lunar gravity/.test(st.sentence));
+    }
+  });
+  it('FM2 coverage is planned and per material: "four burns of one fabric (Synergy Pro Navy) at 8.2 psia", never "covers solids"', () => {
+    const st = e.plannedCoverage.statements.find((s) => s.source === 'FM2')!;
+    assert.match(st.sentence, /^FM2 plans four burns of one fabric \(Synergy Pro "Navy"\) at 8\.2 psia ± 0\.3 psi with 37, 33, 29 and 25 % oxygen/);
+    assert.equal(st.material, 'Synergy Pro "Navy" fabric');
+    for (const s of sentencesOf(e)) assert.ok(!/covers? solids/i.test(s), s);
+    assert.match(e.plannedCoverage.sources.find((s) => s.id === 'fm2-fuel')!.supports, /not stated to cover solids in general/);
+  });
+  it("the ±4-point step is justified by FM2's own steps; the note says ±8 is a coarse bracket and what a margin point is", () => {
+    assert.match(e.testMatrix.note, /±4 points \(the size of the steps in FM2's own plan: 25, 29, 33 and 37 %, NTRS 20260001966, PDF p\. 10\)/);
+    assert.match(e.testMatrix.note, /±8 points \(a coarse bracket\)/);
+    assert.match(e.testMatrix.note, /margin points/);
+  });
+  it("margin points are exactly those whose oxygen partial pressure exceeds the target's", () => {
+    const pp = (p: { o2_mole_fraction?: number; pressure_kpa?: number }) => (p.o2_mole_fraction as number) * (p.pressure_kpa as number);
+    const target = e.testMatrix.points.find((p) => p.isTarget)!;
+    for (const p of e.testMatrix.points) assert.equal(p.marginPoint === true, pp(p) > pp(target) * (1 + 1e-9), JSON.stringify(p));
+    assert.ok(e.testMatrix.points.some((p) => p.marginPoint) && e.testMatrix.points.some((p) => !p.marginPoint));
+    assert.equal(target.marginPoint, undefined);
+  });
+  it('first-order axes are listed, not gridded: gravity level (0.16 and 0.38 g with sources) for partial gravity, flow for microgravity, thickness always', () => {
+    const axes = Object.fromEntries(e.additionalAxes.map((a) => [a.axis, a]));
+    assert.ok(axes.gravity_level && axes.sample_thickness && !axes.flow_velocity);
+    assert.deepEqual(axes.gravity_level.options?.map((o) => o.value), [0.16, 0.38]);
+    assert.ok(axes.gravity_level.options?.every((o) => o.source.length > 10 && (o.quote ?? '').length > 5));
+    assert.match(axes.gravity_level.options?.[1].source ?? '', /nssdc\.gsfc\.nasa\.gov/);
+    for (const a of e.additionalAxes) {
+      assert.equal(a.statedBy, 'experimenter');
+      assert.match(a.sentence, /to be stated by the experimenter/);
+    }
+    assert.equal(e.testMatrix.pointCount, 15, 'listing the axes does not change the count');
+    const micro = experimentsNeeded(recs, { regime: { gravity_regime: 'microgravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 } }, { catalog: CATALOG });
+    const m = Object.fromEntries(micro.additionalAxes.map((a) => [a.axis, a]));
+    assert.ok(m.flow_velocity && m.sample_thickness && !m.gravity_level);
+    assert.match(m.flow_velocity.sentence, /Recorded for the comparable investigations: PSI-9802 5 cm\/s\./);
+  });
+  it('what flammability testing measures: each item quoted with file and page; NASA-STD-6001B with its URL and "no DOI"', () => {
+    const names = e.measurements.testingMeasures.map((m) => m.measure);
+    for (const n of ['Maximum oxygen concentration', 'Burn length', 'Limiting oxygen and extinction', 'Upward and downward flame spread', 'Flame spread rate', 'Flame length and width', 'Oxygen, pressure and gravity level over time']) assert.ok(names.includes(n), n);
+    for (const m of e.measurements.testingMeasures) assert.ok(m.quote.length > 20 && m.page > 0 && m.file.length > 5);
+    assert.equal(e.measurements.standard.doi, null);
+    assert.match(e.measurements.standard.note, /No DOI/);
+    assert.equal(e.measurements.standard.url, 'https://standards.nasa.gov/sites/default/files/standards/NASA/B-w/CHANGE-2/2/Historical/nasa-std-6001b.pdf');
+    assert.equal(NASA_STD_6001B.approved, '08-26-2011');
+  });
+  it('"Solids first" rests on documents it quotes (NASA-STD-6001B Test 1, FM2, LUCI)', () => {
+    assert.match(e.solidsRationale.sentence, /^Solids first: NASA-STD-6001B Test 1, FM2 and LUCI all burn solid specimens \(quoted below\), and PSI records a solid fuel for 1 investigation; solids are the gap that matters for cabin fires\.$/);
+    assert.equal(e.solidsRationale.sources, SOLIDS_RATIONALE_SOURCES);
+    assert.deepEqual(e.solidsRationale.sources.map((s) => s.page), [28, 10, 12]);
+  });
+
+  // The strongest check: every quote is found, on the stated page, in the PDF itself (needs pdftotext and data/raw).
+  const raw = join(import.meta.dirname, '..', '..', 'data', 'raw', 'nasa');
+  const have = spawnSync('pdftotext', ['-v']).error === undefined && existsSync(raw);
+  const norm = (s: string) => s.replace(/[^A-Za-z0-9%]/g, '');
+  const pdfPage = (file: string, page: number) => spawnSync('pdftotext', ['-f', String(page), '-l', String(page), '-layout', join(raw, file), '-'], { encoding: 'utf8' }).stdout ?? '';
+  it('every PDF quote appears on its stated page (skipped without pdftotext or data/raw)', () => {
+    if (!have) return;
+    const all = [
+      ...PLANNED_SOURCES.filter((s) => s.file.endsWith('.pdf')).map((s) => ({ id: s.id, file: s.file, page: s.page as number, quote: s.quote })),
+      ...TESTING_MEASURES.map((m) => ({ id: m.measure, file: m.file, page: m.page, quote: m.quote })),
+      ...SOLIDS_RATIONALE_SOURCES.map((m) => ({ id: m.measure, file: m.file, page: m.page, quote: m.quote })),
+    ];
+    for (const q of all) {
+      if (!existsSync(join(raw, q.file))) continue;
+      assert.ok(norm(pdfPage(q.file, q.page)).includes(norm(q.quote)), `${q.id}: quote not found on PDF page ${q.page} of ${q.file}`);
+    }
   });
 });
