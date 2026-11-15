@@ -1,12 +1,11 @@
-# Validation report — 2026-11-15T03:51:11Z
+# Validation report — 2026-11-15T04:42:57Z
 
-Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 · text_files_scanned: 61 · units_identity_no_unit_in_source: 207 · units_rechecked: 3250
+Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 · text_files_scanned: 86 · units_identity_no_unit_in_source: 207 · units_rechecked: 3251
 
-**BLOCKER 0 · MAJOR 1 · MINOR 132**
+**BLOCKER 0 · MAJOR 0 · MINOR 132**
 
 | severity | check | where | what |
 |---|---|---|---|
-| MAJOR | units | `data/conditions/PSI-22.csv:31` | cannot recompute o2_mole_fraction: no known conversion 'on a volume basis' -> '1' |
 | MINOR | consistency | `PSI-68 test Decane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Ethanol (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Heptane (50%) IsoOctane (50%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
@@ -15,7 +14,7 @@ Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 �
 | MINOR | consistency | `PSI-68 test Propanol (80%) Glycerol (20%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Propanol (95%) Glycerol (5%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test n-Octane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
-| MINOR | language | `engine/README.md:246` | 'safe' in: Extrapolation levels (the verdict does not change): `ClusterVerdict.extrapolationLevel` and `InvestigationVerdict.extrap |
+| MINOR | language | `web/components/tars/TarsExtras.tsx:8` | 'safe' in: /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text |
 | MINOR | language | `web/lib/llm/safety.ts:40` | 'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s |
 | MINOR | language | `web/lib/llm/safety.ts:58` | 'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */ |
 | MINOR | units | `data/conditions/PSI-26.csv:123` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |

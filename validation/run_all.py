@@ -51,7 +51,9 @@ TO_KPA = {"kpa": 1.0, "pa": 0.001, "atm": 101.325, "bar": 100.0, "mbar": 0.1, "p
 CONVERSIONS = {
     "kPa": TO_KPA,
     "1": {"": 1.0, "1": 1.0, "mole fraction": 1.0, "fraction": 1.0, "%": 0.01, "percent": 0.01,
-          "% by vol": 0.01, "% by volume": 0.01, "percent by volume": 0.01, "vol%": 0.01, "vol %": 0.01},
+          "% by vol": 0.01, "% by volume": 0.01, "percent by volume": 0.01, "vol%": 0.01, "vol %": 0.01,
+          # "21/79 oxygen/nitrogen mixture (on a volume basis)": parts of a ratio summing to 100, by volume (PSI-22).
+          "on a volume basis": 0.01},
     "cm/s": {"cm/s": 1.0, "mm/s": 0.1, "m/s": 100.0},
     "mm": {"mm": 1.0, "cm": 10.0, "um": 0.001, "µm": 0.001, "micron": 0.001, "microns": 0.001, "in": 25.4, "m": 1000.0},
     "K": {"k": 1.0, "c": lambda v: v + 273.15, "°c": lambda v: v + 273.15, "degc": lambda v: v + 273.15},
@@ -423,7 +425,11 @@ def check_language(rep):
             if "lang-ok" in line:  # explicit, reviewed exception on that line
                 continue
             for pattern, sev in BANNED:
-                if re.search(pattern, line, re.I):
+                m = re.search(pattern, line, re.I)
+                # A banned phrase quoted in order to forbid it ('never say "no data exists"') is not a claim.
+                if m and re.search(r"\b(?:never|do not|don't|must not|not)\b[^.]{0,40}" + re.escape(m.group(0)), line, re.I):
+                    continue
+                if m:
                     rep.add(sev, "language", f"{f.relative_to(ROOT).as_posix()}:{n}", f"'{re.search(pattern, line, re.I).group(0)}' in: {line.strip()[:120]}")
         rep.stats["text_files_scanned"] += 1
 
