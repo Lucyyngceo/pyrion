@@ -47,11 +47,17 @@ def rows(path):
     return list(csv.DictReader(lines))
 
 
-def verify_checksums():
-    """Every `ok` row of every checksums file: present, same bytes, same SHA-256."""
+def snapshot_manifests():
+    """The committed checksum rows, read BEFORE any download: fetch.py rewrites these files with the hashes
+    of what it just downloaded, so verifying against them afterwards could never find a mismatch."""
+    return {f.name: rows(f) for f in sorted(MANIFEST.glob("checksums_P*.csv"))}
+
+
+def verify_checksums(snapshot):
+    """Every `ok` row of the committed manifests: present, same bytes, same SHA-256."""
     seen, ok, missing, mismatch = set(), 0, [], []
-    for f in sorted(MANIFEST.glob("checksums_P*.csv")):
-        for r in rows(f):
+    for name in sorted(snapshot):
+        for r in snapshot[name]:
             if r.get("status") != "ok" or not r.get("path") or r["path"] in seen:
                 continue
             seen.add(r["path"])
@@ -79,12 +85,15 @@ def main():
     ap.add_argument("--no-validate", action="store_true", help="skip validation/run_all.py")
     args = ap.parse_args()
     failed = []
+    snapshot = snapshot_manifests()
 
     for p in args.fetch:
         if run([sys.executable, "-I", "pipeline/fetch.py", "--priority", p]) != 0:
             failed.append(f"fetch {p}")
 
-    total, ok, missing, mismatch = verify_checksums()
+    if args.fetch:
+        print("note: pipeline/fetch.py rewrote data/manifest/checksums_*.csv; the check below uses the committed copies read before the download (git diff shows any change).")
+    total, ok, missing, mismatch = verify_checksums(snapshot)
     print(f"\nchecksums: {ok} of {total} files verified (size and SHA-256), {len(missing)} missing, {len(mismatch)} mismatched")
     for m in mismatch:
         print(f"  MISMATCH {m}")
