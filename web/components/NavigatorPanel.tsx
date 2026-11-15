@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AskTars from "./AskTars";
 import { GROUND_INVENTORY_URL, GROUND_NOTE, levelPhrase } from "@/lib/plain";
 import type { ExtrapolationLevel } from "@/lib/engine";
 import { memo } from "react";
@@ -66,6 +67,7 @@ function RouteItem({ r, inv, level, onHover, onOpen, button, onApply }: { r: Rou
           {button}
         </button>
       </div>
+      <AskTars q={`Explain this route for ${r.accession} ${inv?.acronym ?? ""}: ${full}`} label="Ask TARS" />
       <p data-help="route-sentence" className="where-text route-text" tabIndex={0} title={full}>
         {full}
       </p>

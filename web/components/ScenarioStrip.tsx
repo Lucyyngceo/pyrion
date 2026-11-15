@@ -7,6 +7,7 @@ import { fuelSplit, type ScenarioFacts } from "@/lib/scenarios";
 import type { EnvelopeStatus } from "@/lib/summary";
 import type { Investigation } from "@/lib/types";
 import { fmt, kpaToPsi, valueLabel } from "@/lib/units";
+import AskTars from "./AskTars";
 import type { TargetState } from "@/lib/preset-apply";
 
 export const FM2_URL = "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/combustion-science/flammability-of-materials-on-the-moon-fm2/";
@@ -92,6 +93,7 @@ function Tile({
   onPick,
   children,
   hover,
+  ask,
   className = "",
 }: {
   active: boolean;
@@ -101,6 +103,7 @@ function Tile({
   onPick: () => void;
   children: React.ReactNode;
   hover?: string;
+  ask?: string;
   className?: string;
 }) {
   return (
@@ -111,6 +114,7 @@ function Tile({
         <span data-help="tile-condition" className="tile-cond">{cond}</span>
       </button>
       <div className="tile-body">{children}</div>
+      {ask && <AskTars q={ask} />}
     </div>
   );
 }
@@ -143,12 +147,12 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
 
   return (
     <section data-help="tile-strip" className="scenario-strip" aria-label="Scenarios">
-      <Tile active={preset === TILE_PRESETS.iss} title="ISS cabin air" cond={cIss ? cond(cIss) : ""} hover={cIss?.sources} onPick={() => onPick(TILE_PRESETS.iss)}>
+      <Tile ask={`Explain the scenario "ISS cabin air" (${cIss ? `${cIss.o2}, ${cIss.pressure}, ${cIss.gravity}` : ""}): ${summary(iss)}. ${iss ? solidLine(iss.facts, name) : ""}`} active={preset === TILE_PRESETS.iss} title="ISS cabin air" cond={cIss ? cond(cIss) : ""} hover={cIss?.sources} onPick={() => onPick(TILE_PRESETS.iss)}>
         <p data-help="tile-summary" className="tile-head">{summary(iss)}</p>
         {iss && <p data-help="tile-line" className="tile-line">{solidLine(iss.facts, name)}</p>}
       </Tile>
 
-      <Tile active={preset === TILE_PRESETS.lunar} title="NASA's Moon Base" subtitle="as stated in the Flame in Freefall challenge: 30 % O₂ or more at 10.2 psi or less" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
+      <Tile ask={`Explain the scenario "NASA's Moon Base" (${cLunar ? `${cLunar.o2}, ${cLunar.pressure}, ${cLunar.gravity}` : ""}): ${summary(lunar)}. Why does PSI hold no test for it?`} active={preset === TILE_PRESETS.lunar} title="NASA's Moon Base" subtitle="as stated in the Flame in Freefall challenge: 30 % O₂ or more at 10.2 psi or less" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
         <p data-help="tile-summary" className="tile-head" title={`From the challenge statement (${SOURCES.challenge.url}). It is NASA's text, not our extraction.`}>
           NASA: “{CHALLENGE_QUOTE}”.
         </p>
@@ -169,6 +173,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
       </Tile>
 
       <Tile
+        ask={`Explain the scenario "NASA exploration atmosphere" (${cNesc ? `${cNesc.o2}, ${cNesc.pressure}, ${cNesc.gravity}` : ""}): ${summary(nesc)}.`}
         active={preset === TILE_PRESETS.nesc || preset === TILE_PRESETS.nescA}
         title="NASA exploration atmosphere"
         subtitle={cNesc?.ntrs ? `proposed for lunar habitats (${cNesc.ntrs})` : "proposed for lunar habitats"}
@@ -191,7 +196,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
         </p>
       </Tile>
 
-      <Tile active={!isTile} className="tile-mine" title="Your condition" cond={myCond} onPick={onCustom} hover="The controls on the left. Every number is computed by the engine for exactly these values.">
+      <Tile ask={`Explain my current condition (${myCond}): ${summary(mine)}.`} active={!isTile} className="tile-mine" title="Your condition" cond={myCond} onPick={onCustom} hover="The controls on the left. Every number is computed by the engine for exactly these values.">
         <p data-help="tile-summary" className="tile-head">{summary(mine)}</p>
         {mine && <p data-help="tile-line" className="tile-line">{solidLine(mine.facts, name)}</p>}
         {mine && mine.facts.applicable === 0 && <GapButton onClick={() => onGap("mine")} />}

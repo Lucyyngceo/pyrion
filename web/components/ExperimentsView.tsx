@@ -1,5 +1,6 @@
 "use client";
 
+import AskTars from "./AskTars";
 import { EXPERIMENT_LABEL, type ExperimentsNeeded } from "@/lib/engine";
 import { fmt, kpaToPsi } from "@/lib/units";
 
@@ -13,13 +14,13 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       <p data-help="gap-label" className="tars-label">{EXPERIMENT_LABEL}</p>
 
       <section data-help="gap-section-gap" className="tars-block">
-        <h4>The gap</h4>
+        <h4>The gap</h4><AskTars q="Explain the gap in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <p>{ex.gap.sentence}</p>
         {detailed && ex.gap.detail.length > 0 && <p className="small muted">{ex.gap.detail.join(" ")}</p>}
       </section>
 
       <section data-help="gap-section-matrix" className="tars-block">
-        <h4>Test matrix ({ex.testMatrix.pointCount} points)</h4>
+        <h4>Test matrix ({ex.testMatrix.pointCount} points)</h4><AskTars q="Explain the test matrix in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <p>{ex.testMatrix.sentence}</p>
         {ex.testMatrix.points.length > 0 && (
           <div className="table-scroll">
@@ -49,7 +50,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
 
       {ex.additionalAxes.length > 0 && (
         <section data-help="gap-section-axes" className="tars-block">
-          <h4>Other axes to set</h4>
+          <h4>Other axes to set</h4><AskTars q="Explain the other axes to set in the plan of what would close this gap, for this condition." label="Ask TARS" />
           <ul className="small">
             {ex.additionalAxes.map((a) => (
               <li key={a.axis}>
@@ -67,7 +68,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       )}
 
       <section data-help="gap-section-measurements" className="tars-block">
-        <h4>Measurements</h4>
+        <h4>Measurements</h4><AskTars q="Explain the measurements in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <p>{ex.measurements.sentence}</p>
         <ul className="small">
           {ex.measurements.testingMeasures.map((m) => (
@@ -87,7 +88,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       </section>
 
       <section data-help="gap-section-solids" className="tars-block">
-        <h4>Solids first</h4>
+        <h4>Solids first</h4><AskTars q="Explain why solids come first in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <p>{ex.solidsRationale.sentence}</p>
         <ul className="small">
           {ex.solidsRationale.sources.map((s) => (
@@ -100,7 +101,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       </section>
 
       <section data-help="gap-section-planned" className="tars-block">
-        <h4>What NASA&apos;s planned experiments cover</h4>
+        <h4>What NASA&apos;s planned experiments cover</h4><AskTars q="Explain what NASA's planned experiments cover in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <ul className="small">
           {ex.plannedCoverage.sources.map((s) => (
             <li key={s.id} title={where(s.file, s.page)}>
@@ -117,12 +118,12 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       </section>
 
       <section data-help="gap-section-remaining" className="tars-block">
-        <h4>Remaining gap</h4>
+        <h4>Remaining gap</h4><AskTars q="Explain the remaining gap in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <p>{ex.remainingGap.sentence}</p>
       </section>
 
       <section data-help="gap-section-priority" className="tars-block">
-        <h4>Priority</h4>
+        <h4>Priority</h4><AskTars q="Explain the priority list in the plan of what would close this gap, for this condition." label="Ask TARS" />
         <ol>
           {ex.priority.map((p) => (
             <li key={p.rank}>{p.sentence}</li>

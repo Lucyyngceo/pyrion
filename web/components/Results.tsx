@@ -2,6 +2,7 @@
 
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
+import AskTars from "./AskTars";
 import { EXTRAPOLATION_LEVEL_NOTE, verdictLabel, type ExtrapolationLevel } from "@/lib/engine";
 import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
@@ -239,6 +240,7 @@ function ResultRow({
     >
       <header className="result-head">
         <VerdictBadge verdict={iv.verdict} level={iv.extrapolationLevel} />
+        <AskTars q={`Explain the verdict for ${iv.accession} ${inv?.acronym ?? ""} at my current condition: ${pv.sentence}`} label="Ask TARS" />
         <div className="result-id">
           <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
@@ -250,6 +252,7 @@ function ResultRow({
           {iv.blockers.map((b, i) => (
             <li key={i} className={b.action?.kind === "switch_regime" ? "blocker blocker-regime" : "blocker"}>
               <span>{b.sentence}</span>
+              <AskTars q={`Why is ${iv.accession} ${inv?.acronym ?? ""} not comparable here? ${b.sentence}`} label="Ask TARS" />
               {b.action && (
                 <button data-help="result-blocker-action" type="button" className={`take-btn${b.action.kind === "switch_regime" ? " take-regime" : ""}`} onClick={() => onAction(b.action!, iv.accession)}>
                   {b.action.kind === "switch_regime" ? `Another regime: ${b.action.sentence}` : b.action.sentence}
