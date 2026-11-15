@@ -105,3 +105,30 @@ To avoid an endless audit loop, these items are closed by targeted tests, not by
 | N6 | quoted model text is truncated and labelled "model text (not used)"; the overclaiming sentence is removed | confirmed |
 
 Tests: web 57/57, engine 153/153. **Phase 1 is closed: no open BLOCKER or MAJOR.**
+
+## Round 4 (deep audit, two independent reviewers at high effort) — November 14, 2026
+
+Two separate agents reviewed the layer in parallel, neither of them an author of the code: (A) security and spend, (B) metrology, science and public text. Every finding was reproduced before it was assigned. Fixes: engine `7e63c18`, `5977c0e`; app `dc1fab5`, `2ab94fe`, `8effbe7`; deployment guide `d1d59f4`; sources `9fb241d`.
+
+### Findings and closure
+| Finding | Severity | Check after the fix |
+|---|---|---|
+| A numeric gravity ("0 g", "1e-4 g") put `gravity_level` on a continuous axis no record carries, so every investigation became INSUFFICIENT_EVIDENCE (18/18), against 3 APPLICABLE / 2 EXTRAPOLATION / 13 for "microgravity" | BLOCKER | the level now only selects the regime and is shown as information; "microgravity", "0 g" and "1e-4 g" all give 3 / 2 / 13 |
+| The context check was a blocklist: 33 of 42 crafted sentences passed (wrong trends, "acceptable for crews", "PSI-26 proves…", a number tied to the wrong quantity, invented names) | MAJOR | replaced by an allowlist: a sentence is kept only if it uses the target's own numbers, units and words; 46 of 46 wrong sentences dropped, the 4 correct ones kept; the UI and method page describe the check as it is |
+| Model-inferred regime axes (e.g. "solid" fuel for "candle") entered the target and changed verdicts: the same physical question gave 0 / 7 / 11 or 0 / 5 / 13 | MAJOR (found in live testing after the reviews) | unstated axes become suggestions the user may apply; both candle questions now give 3 / 2 / 13 live |
+| Oxygen partial pressure ("ppO2 21 kPa") accepted as total pressure | MAJOR | refused from the question text before any model call, with a plain message |
+| Gravity near 1 g fell into the wrong regime (0.998 g partial; 1.003 g and 1.5 g silently open) | MAJOR | a stated PYRION normal-gravity band (0.9–1.1 g); above it an explicit "not covered by this dataset" reason |
+| Mars gravity: 0.38 g on one page, 1/3 g on another | MAJOR | 0.38 g everywhere, cited to the NASA GSFC NSSDC Mars Fact Sheet ("Surface gravity (mean) 3.73 / 9.82 = 0.380", updated 19 May 2025) |
+| Gravity aliases ("Earth", "zero-g", "ISS", "sea level"…), unsourced habitat window, PDF-index page cites | MINOR | aliases added; the window labelled a PYRION plausibility window; cites read "PDF p. N (slide M)" |
+| One model's 403 took the whole paid provider down | MINOR | probe: the healthy model still answers |
+| Health endpoint: 100 parallel GETs → 200 authenticated calls; too much detail public | MINOR | probe: 2 calls; production shows only mode and the model in use |
+| A 429 retry could pass the daily cap (cap 5 → 8 paid calls) | MINOR | probe: exactly 5 |
+| A truncated budget file reset the cap | MINOR | probe: the paid provider closes until the next UTC day |
+| No request body limit (200 MB accepted) | MINOR | probe: 413, no memory growth; nginx `client_max_body_size 16k` documented |
+| Forged `X-Real-IP` trusted if Node were reachable directly | MINOR | a proxy secret header is required; probe: 60 forged requests → 60 × 429 |
+| A unit-less model value could take another quantity's number | MINOR | probe: dropped |
+| Parse step allowed 2000 output tokens on the paid provider | MINOR | 400 on the paid provider, 2000 only on NIM |
+
+Found solid by both reviewers: no key in git history, the client bundle, responses, errors or logs; no XSS or SSRF; no ReDoS; conversion factors correct (psi, atm, mmHg, torr, bar, K); gauge pressure and mass-based oxygen refused; every cited NTRS quote matches its PDF page.
+
+Live tests after a clean restart: the lunar question, both candle questions, the oxygen-partial-pressure question, the harmful question and narration all behave as above, and the server log shows no errors. Tests: web 59/59, engine 166/166. **Phase 1 is closed: no open BLOCKER or MAJOR.**
