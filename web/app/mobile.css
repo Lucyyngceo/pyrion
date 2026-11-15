@@ -86,7 +86,7 @@
 /* /envelope on phones: the selected condition, its result and the route to its evidence come first;
    the record counts and the MCP panel follow, collapsed (nothing removed). */
 .hero-status-m { display: none; }
-.tile-evidence { display: block; margin-top: 8px; font-size: 14px; }
+.tile-evidence { display: block; margin-top: 8px; font-size: 14px; position: relative; z-index: 1; } /* above the tile-pick overlay (::after, inset 0) */
 @media (max-width: 760px) {
   .envelope-page { display: flex; flex-direction: column; }
   .envelope-page > * { order: 3; }
