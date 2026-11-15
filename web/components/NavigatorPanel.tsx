@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { levelPhrase } from "@/lib/plain";
 import type { ExtrapolationLevel } from "@/lib/engine";
 import { memo } from "react";
@@ -36,27 +37,38 @@ const switchLabel = (r: Route) => {
   return to.length ? to.join(" · ") : "that regime";
 };
 
+const CHIP_LEVEL: Record<ExtrapolationLevel, string> = {
+  combination: "untested combination",
+  just_outside: "just outside",
+  outside: "outside",
+  far_outside: "far outside",
+};
+
 function RouteItem({ r, inv, level, onHover, onOpen, button, onApply }: { r: Route; inv: Investigation | undefined; level?: ExtrapolationLevel; onHover: (a: string | null) => void; onOpen: (a: string) => void; button: string; onApply: () => void }) {
+  const regime = r.kind === "different_regime";
+  const full = `${level ? `Extrapolation — ${levelPhrase(level)}. ` : ""}${r.sentence}`;
   return (
-    <li onPointerEnter={() => onHover(r.accession)} onPointerLeave={() => onHover(null)}>
-      <div className="where-head">
-        <StatusSymbol level={r.kind === "different_regime" ? "off" : "caution"} size={11} />
-        <button type="button" className="linklike where-name" onClick={() => onOpen(r.accession)}>
-          {r.accession} {inv?.acronym}
+    <li className="route" onPointerEnter={() => onHover(r.accession)} onPointerLeave={() => onHover(null)}>
+      <div className="route-head">
+        <StatusSymbol level={regime ? "off" : "caution"} size={10} />
+        <button type="button" className="linklike where-name" onClick={() => onOpen(r.accession)} title={inv?.title}>
+          {r.accession} · {inv?.acronym}
         </button>
         {inv?.doi && (
           <a className="small" href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
             doi
           </a>
         )}
+        <span className={`route-chip${regime ? " chip-regime" : ""}`} title={regime ? "Different regime: not comparable" : level ? `Extrapolation — ${levelPhrase(level)}` : "Insufficient evidence: values left open"}>
+          {regime ? "Other regime" : level ? CHIP_LEVEL[level] : "Insufficient"}
+        </span>
+        <button type="button" className={`take-btn take-inline${regime ? " take-regime" : ""}`} onClick={onApply}>
+          {button}
+        </button>
       </div>
-      <p className="where-text">
-        {level && <strong className="where-level">Extrapolation — {levelPhrase(level)}. </strong>}
-        {r.sentence}
+      <p className="where-text route-text" tabIndex={0} title={full}>
+        {full}
       </p>
-      <button type="button" className={`take-btn${r.kind === "different_regime" ? " take-regime" : ""}`} onClick={onApply}>
-        {button}
-      </button>
     </li>
   );
 }
@@ -70,6 +82,14 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
     .map((i) => ({ iv: i, c: clusters.get(`${i.accession}|${i.decidingCluster}`) as ClusterVerdict | undefined }))
     .toSorted((a, b) => (a.iv.verdict === b.iv.verdict ? 0 : a.iv.verdict === "APPLICABLE" ? -1 : 1) || (a.c?.rank ?? 1e9) - (b.c?.rank ?? 1e9));
   const SHOWN = 5;
+  const [more, setMore] = useState<Record<string, boolean>>({});
+  const upto = (key: string, n: number) => (more[key] ? n : SHOWN);
+  const moreBtn = (key: string, n: number) =>
+    n > SHOWN && (
+      <button type="button" className="linklike small more-btn" aria-expanded={!!more[key]} onClick={() => setMore((m) => ({ ...m, [key]: !m[key] }))}>
+        {more[key] ? "Show fewer" : `+ ${n - SHOWN} more`}
+      </button>
+    );
   // Extrapolating investigations, and how far outside the tested data each is (never a pass: a distance only).
   const levelOf = new Map<string, ExtrapolationLevel>();
   const levelCounts: Partial<Record<ExtrapolationLevel, number>> = {};
@@ -154,11 +174,11 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <h3 className="where-sub">How to reach more evidence</h3>
                 <p className="muted small">The smallest change that makes each investigation comparable. Nearest first.</p>
                 <ul className="where-list">
-                  {steps.slice(0, SHOWN).map((r) => (
+                  {steps.slice(0, upto("steps", steps.length)).map((r) => (
                     <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} level={levelOf.get(r.accession)} onHover={onHover} onOpen={onOpen} button="Take me there" onApply={() => onApplyRoute(r.target, r.accession)} />
                   ))}
                 </ul>
-                {steps.length > SHOWN && <p className="muted small">and {steps.length - SHOWN} more.</p>}
+                {moreBtn("steps", steps.length)}
               </>
             )}
             {other.length > 0 && (
@@ -166,18 +186,18 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <h3 className="where-sub where-sub-regime">Tested only in another regime ({other.length})</h3>
                 <p className="muted small">A different regime is not a small step: it changes the physics. Switching moves your condition to that regime.</p>
                 <ul className="where-list where-list-regime">
-                  {other.slice(0, SHOWN).map((r) => (
+                  {other.slice(0, upto("other", other.length)).map((r) => (
                     <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button={`Switch to ${switchLabel(r)}`} onApply={() => onApplyRoute(r.target, r.accession)} />
                   ))}
                 </ul>
-                {other.length > SHOWN && <p className="muted small">and {other.length - SHOWN} more.</p>}
+                {moreBtn("other", other.length)}
               </>
             )}
             {routes.unreachable.length > 0 && (
               <>
                 <h3 className="where-sub">No route found ({routes.unreachable.length})</h3>
                 <ul className="where-unreach small">
-                  {routes.unreachable.slice(0, SHOWN).map((u) => (
+                  {routes.unreachable.slice(0, upto("unreach", routes.unreachable.length)).map((u) => (
                     <li key={u.accession}>
                       {u.reason.startsWith(u.accession) ? (
                         <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
@@ -194,7 +214,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                     </li>
                   ))}
                 </ul>
-                {routes.unreachable.length > SHOWN && <p className="muted small">and {routes.unreachable.length - SHOWN} more.</p>}
+                {moreBtn("unreach", routes.unreachable.length)}
               </>
             )}
             {routes.notes.map((n) => (

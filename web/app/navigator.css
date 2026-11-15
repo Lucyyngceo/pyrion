@@ -262,3 +262,38 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .scenario-note summary { cursor: pointer; }
 @media (max-width: 1100px) { .scenario-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .scenario-strip { grid-template-columns: 1fr; } }
+
+/* ---------- the right column scrolls by itself, so the three columns end together ---------- */
+:root { --nav-h: 56px; }
+@media (min-width: 1100px) {
+  .nav-left, .nav-right {
+    position: sticky;
+    top: calc(var(--nav-h) + 8px);
+    max-height: calc(100vh - var(--nav-h) - 16px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon) transparent;
+    padding-right: 4px;
+  }
+  .nav-left::-webkit-scrollbar, .nav-right::-webkit-scrollbar { width: 8px; }
+  .nav-left::-webkit-scrollbar-thumb, .nav-right::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 4px; opacity: 0.7; }
+  .nav-left::-webkit-scrollbar-track, .nav-right::-webkit-scrollbar-track { background: rgba(0, 240, 255, 0.08); }
+  /* a fade at the bottom edge: there is more below */
+  .nav-left::after, .nav-right::after { content: ""; position: sticky; bottom: 0; display: block; height: 28px; margin-top: -44px; background: linear-gradient(to bottom, transparent, var(--page)); pointer-events: none; }
+}
+
+/* compact route cards */
+.where-list li.route { padding: 6px 8px; }
+.route-head { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; }
+.route-head .where-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
+.route-head .small { flex: none; }
+.route-chip { flex: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; padding: 1px 6px; border: 1px solid var(--st-caution, #fab219); color: var(--ink-2); }
+.route-chip.chip-regime { border-color: var(--st-off, #898781); border-style: dashed; }
+.take-inline { margin: 0 0 0 auto; flex: none; padding: 2px 8px; font-size: 11.5px; }
+.route-text { margin: 3px 0 0; font-size: 12.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor: help; }
+.route-text:focus-visible { -webkit-line-clamp: unset; display: block; }
+.where-list { gap: 6px; }
+.more-btn { margin: 4px 0 0; }
+.nav-left, .nav-right { grid-template-columns: minmax(0, 1fr); }
+.nav-right .card, .where-list, .where-list li { min-width: 0; }
