@@ -8,7 +8,7 @@
 import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorId } from "@/lib/llm";
 import { openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
-import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, parseTargetReply, questionHasOxygenPartialPressure, renderVerdicts, shapeTarget } from "@/lib/ask-core";
+import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, parseTargetReply, readByCode, questionHasOxygenPartialPressure, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
 import { checkContext, type ContextTarget } from "@/lib/context-check";
 import { modelText } from "@/lib/narration-check";
@@ -106,13 +106,25 @@ export async function POST(req: Request) {
       const safety = await checkContent(q, providers(), undefined, undefined, deadline);
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
       if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState, safety_detail: safety.detail }, 422);
+      // Deterministic first: code reads the question when it can; an issue is returned in plain words, with no model call.
+      const code = readByCode(q);
+      if (code.kind === "issue") return json({ error: code.message, safety: safetyState, safety_detail: safety.detail, read_by: "code" }, 422);
+      if (code.kind === "code") {
+        return json({
+          meta: { provider: "code", model: null, latency_ms: 0, fell_back_from: null, open_weights: null, read_by: "code" },
+          promptVersion: PROMPT_VERSION,
+          safety: safetyState,
+          safety_detail: safety.detail,
+          parsed: code.parsed,
+        });
+      }
       // Reasoning models on the fallback provider need room to think before the JSON.
       const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 400, maxTokensByProvider: { nim: 2000 }, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
       let parsed;
       try {
-        parsed = parseTargetReply(cleanModelText(reply), q);
+        parsed = parseTargetReply(cleanModelText(reply), q, code.extracted);
       } catch (e) {
         if (e instanceof PlainError) return json({ error: e.message, safety: safetyState, meta: metaOf(c.meta) }, 422);
         return json({ error: `The question could not be turned into a valid target. ${modelText(e instanceof Error ? e.message : "invalid reply")}`, safety: safetyState, ...metaOf(c.meta) }, 422);

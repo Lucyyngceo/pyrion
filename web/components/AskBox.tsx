@@ -12,7 +12,8 @@ const EXAMPLES = [
 
 interface Meta {
   provider: string;
-  model: string;
+  model: string | null;
+  read_by?: string;
   latency_ms: number;
   fell_back_from: string | null;
   open_weights: { license: string; source: string } | null;
@@ -60,6 +61,7 @@ function describe(p: ParsedTarget): string {
 /** "qwen/qwen3.8-27b · open weights · Apache-2.0 (source) via openrouter, 392 ms". Only what the server reports. */
 function Who({ m }: { m: Meta | null }) {
   if (!m) return <code>no model</code>;
+  if (m.read_by === "code" || m.model === null) return <>Read by code (no model needed)</>;
   return (
     <>
       <code>{m.model}</code>
@@ -118,7 +120,7 @@ export default function AskBox({ onTarget }: Props) {
     const target = { ...r.parsed.target, regime: { ...r.parsed.target.regime, [axis]: value } };
     const parsed: ParsedTarget = { ...r.parsed, target, suggestions: r.parsed.suggestions.filter((x) => x.axis !== axis), unstated: r.parsed.unstated.filter((u) => u !== axis) };
     onTarget(parsed);
-    const { n, error } = await narrate(r.parseMeta.model, target);
+    const { n, error } = await narrate(r.parseMeta.model ?? "", target);
     setRuns((all) =>
       all.map((x, i) =>
         i !== index

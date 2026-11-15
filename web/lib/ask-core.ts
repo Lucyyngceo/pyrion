@@ -1,7 +1,7 @@
 // Pure helpers of "Ask PYRION": reading the model's target, and building what the narrator may see.
 // Relative .ts imports on purpose, so the unit tests can run them under `node --test`.
 
-import { REGIME_VALUES, targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
+import { REGIME_VALUES, extractQuantities, targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
 import { BANNED_PATTERNS, modelText } from "./narration-check.ts";
 import { cleanModelText } from "./llm/clean.ts";
 
@@ -152,7 +152,7 @@ export function keepAssumption(a: string, question: string): boolean {
  * Read the model's reply (quantities as written) and let the engine convert and validate them.
  * The model never outputs a converted number. Throws a readable Error when the reply cannot become a target.
  */
-export function parseTargetReply(reply: string, question: string): ParsedTarget {
+export function parseTargetReply(reply: string, question: string, extracted?: ExtractedValues): ParsedTarget {
   let raw: unknown;
   try {
     raw = extractJson(reply);
@@ -196,6 +196,19 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
       }
     }
     input[k] = v;
+  }
+  // Where the extractor read a quantity from the question, its value wins over the model's, with a warning if they differ.
+  if (extracted) {
+    for (const k of QUANTITY_KEYS) {
+      const e = extracted[k];
+      if (e === undefined) continue;
+      if (input[k] !== undefined && input[k].replace(/\s+/g, "").toLowerCase() !== e.replace(/\s+/g, "").toLowerCase()) {
+        dropped.push(`The model read ${k.replaceAll("_", " ")} differently from the code (${modelText(input[k], 40)}); the value read by code, "${e}", was used.`);
+      }
+      input[k] = e;
+      const at = unstated.indexOf(k === "o2" ? "o2_mole_fraction" : k);
+      if (at >= 0) unstated.splice(at, 1);
+    }
   }
   const r = targetFromQuantities(input as TargetQuantities);
   if (!r.ok) throw new Error(r.errors.map((e) => `${e.field}: ${e.message}`).join("; "));
@@ -330,4 +343,32 @@ export function shapeTarget(x: unknown): { ok: true; target: Target } | { ok: fa
     return { ok: false, error: e instanceof Error ? e.message : "invalid target" };
   }
   return { ok: true, target };
+}
+
+export type ExtractedValues = Partial<Record<(typeof QUANTITY_KEYS)[number], string>>;
+
+export type CodeRead = { kind: "code"; parsed: ParsedTarget } | { kind: "issue"; message: string } | { kind: "model"; extracted: ExtractedValues };
+
+/**
+ * Deterministic first: if the extractor finds at least one quantity, leaves nothing over and raises no issue, the target is
+ * built from the question by code and no model is called. An issue (gauge pressure, an oxygen partial pressure, two values for
+ * one quantity, ambiguous gravity) is returned as its plain message. Otherwise the model reads the question, with the
+ * extractor's values taking precedence.
+ */
+export function readByCode(question: string): CodeRead {
+  const ext = extractQuantities(question);
+  const values: ExtractedValues = {};
+  for (const k of QUANTITY_KEYS) if (typeof ext[k] === "string" && ext[k] !== "") values[k] = ext[k] as string;
+  if (ext.issues.length > 0) return { kind: "issue", message: ext.issues.map((i) => i.message).join(" ") };
+  if (Object.keys(values).length === 0 || ext.leftover.length > 0) return { kind: "model", extracted: values };
+  const r = targetFromQuantities(values as TargetQuantities);
+  if (!r.ok) return { kind: "issue", message: r.errors.map((e) => e.message).join(" ") };
+  const unstated = [...REGIME_KEYS, "o2_mole_fraction", "pressure", "flow_velocity", "sample_thickness", "ambient_temperature"].filter((k) => {
+    if ((REGIME_KEYS as readonly string[]).includes(k)) return r.target.regime[k as keyof typeof r.target.regime] === undefined;
+    return r.target.continuous[k as keyof typeof r.target.continuous] === undefined;
+  });
+  return {
+    kind: "code",
+    parsed: { target: r.target, assumptions: [], unstated, suggestions: [], conversions: r.conversions.map((c) => c.display), warnings: r.conversions.flatMap((c) => [...c.notes, ...c.warnings]) },
+  };
 }

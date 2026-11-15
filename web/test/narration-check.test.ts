@@ -168,3 +168,28 @@ test("A4: the parse prompt asks to copy quantities as written in any language an
   const es = parseTargetReply(reply({ pressure: "8,2 psia", o2: "34 %" }), "¿Qué arde a 34 % de oxígeno y 8,2 psia en la Luna?");
   assert.ok(es.warnings.every((w) => !/not in the question/.test(w)));
 });
+
+test("deterministic first: the code reads plain questions with no model, repeatably; issues and free-form go elsewhere", async () => {
+  const { readByCode } = await import("../lib/ask-core.ts");
+  const q = "Would solid fuel burn differently in a lunar base at 30% oxygen and 10.2 psi?";
+  const a = readByCode(q);
+  assert.equal(a.kind, "code");
+  if (a.kind !== "code") return;
+  assert.ok(Math.abs((a.parsed.target.continuous.pressure ?? 0) - 70.33) < 0.05);
+  assert.equal(a.parsed.target.continuous.o2_mole_fraction, 0.3);
+  assert.deepEqual(a.parsed.suggestions, []);
+  for (let i = 0; i < 5; i++) assert.deepEqual(readByCode(q), a); // identical on every call
+  // an issue is answered in plain words, no model
+  const gauge = readByCode("A cabin at 10 psig and 21 % oxygen");
+  assert.equal(gauge.kind, "issue");
+  assert.equal(readByCode("An oxygen partial pressure of 21 kPa").kind, "issue");
+  // free-form with numbers it cannot assign goes to the model
+  assert.equal(readByCode("how does a lunar base with a third of air's oxygen and 2 hours of burn behave").kind, "model");
+  assert.equal(readByCode("What is the capital of France?").kind, "model");
+});
+
+test("when the model and the extractor both give a quantity and differ, the extractor wins with a warning", () => {
+  const r = parseTargetReply(reply({ o2: "21 %", pressure: "101 kPa" }), "air at 21% oxygen and 1 atm", { o2: "21%", pressure: "1 atm" });
+  assert.equal(Math.round(r.target.continuous.pressure ?? 0), 101);
+  assert.match(r.warnings.join(" "), /differently from the code|not in the question/);
+});
