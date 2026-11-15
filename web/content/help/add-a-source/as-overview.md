@@ -9,7 +9,7 @@ page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md
 ---
-“Add a source” is the feature that lets a visitor bring one new NASA document into PYRION and see exactly how every scenario changes. Its rule is that no value gets in unless code can find it in the source, the same rule that holds for the 10042 records already in the app.
+“Add a source” is the feature that lets a visitor bring one new NASA document into PYRION and see exactly how every scenario changes. Its rule is that no value gets in unless code can find it in the source, the same rule that holds for the 10077 records already in the app.
 
 In plain words: an AI may read the document and propose values, but it cannot make a value count. A program checks each proposed value against the document, and anything it cannot find is rejected with the reason shown.
 

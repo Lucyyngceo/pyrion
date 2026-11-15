@@ -11,7 +11,7 @@ sources: doi:10.60555/4qc4-de67, psi-data/PSI-25/_investigation/PSI-25.json sect
 ---
 PSI-25 BASS-II is a NASA microgravity investigation in the PSI (Physical Sciences Informatics) archive: “Burning and Suppression of Solids - II”. Release 31-Dec-2022, version 4. DOI [10.60555/4qc4-de67](https://doi.org/10.60555/4qc4-de67). License: CC0-1.0.
 
-In plain words: this page says what PSI-25 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 707 of its 834 records are usable as evidence.
+In plain words: this page says what PSI-25 looked at, what conditions PYRION could read from it (with the place in NASA's files where each one is written), and what it could not read. 732 of its 869 records are usable as evidence.
 
 ## What it studied
 PSI objective (quoted, section `objective`):
@@ -34,7 +34,7 @@ As recorded by PSI: flight program: International Space Station (ISS); hardware:
 fuel phase: solid (257); diluent: N2 (1); flow configuration: opposed (17); material (49 distinct): 2 cm SIBAL (17), 1/4" clear rod (15), 1/4" black rod (12), 1 cm SIBAL (8), 3/8" black rod (7), 1 cm wide 200 micron thick PMMA (5), 3/8" clear rod (5), 1/2" clear PMMA rod (4).
 
 ## What was extracted
-834 condition records in `data/conditions/PSI-25.csv`: 707 usable, 127 marked `insufficient_evidence`. They cover 130 distinct tests (plus 5 records that apply to every test of the investigation).
+869 condition records in `data/conditions/PSI-25.csv`: 732 usable, 137 marked `insufficient_evidence`. They cover 130 distinct tests (plus 5 records that apply to every test of the investigation).
 
 | Variable | Usable records | Insufficient |
 |---|---|---|
@@ -42,25 +42,27 @@ fuel phase: solid (257); diluent: N2 (1); flow configuration: opposed (17); mate
 | fuel phase | 257 | 0 |
 | diluent | 1 | 0 |
 | ambient O2 (mole fraction) | 130 | 0 |
-| pressure (kPa) | 1 | 0 |
+| pressure (kPa) | 28 | 8 |
 | flow velocity (cm/s) | 0 | 126 |
 | sample thickness (mm) | 41 | 1 |
 | material | 129 | 0 |
 | flow configuration | 17 | 0 |
 | platform | 2 | 0 |
-| outcomes (measured results) | 127 | 0 |
+| outcomes (measured results) | 125 | 2 |
 
 Measured ranges over the usable records:
 - ambient O2 (mole fraction): 0.136 to 0.222 (that is 13.6 to 22.2 % by volume, arithmetic on the stored fraction)
-- pressure (kPa): 101 to 101
+- pressure (kPa): 101 to 101.325
 - sample thickness (mm): 0.1 to 5
 
 ## What could not be extracted, and why
 Records kept as `insufficient_evidence` carry their reason in the `note` field. The most common ones:
 
 - `flow_velocity` (125): display reading series during the test, not a test condition
+- `pressure` (4): Figure 2.20 caption text (section 2.3.7, printed page 41), not a value read from the image. NOMINAL condition: one set of conditions is written for all four panels. test_id: the caption writes 'B03'; [...]
+- `pressure` (4): MEASURED (monitored) total pressure, section 2.3.5 'Microgravity and Normal-Gravity Experiments', in the paragraph describing the BASS-II opposed-flow duct in the ISS (preceding sentences on the same page describe the O2 sensor [...]
+- `outcome:o2_mole_fraction_after_test` (2): as written in PSI
 - `sample_thickness` (1): the description states two different thicknesses: 3 mm thick, 2 cm thick
-- `flow_velocity` (1): Capability claim from the PSI record ('could impose'), not tested speeds; contradicted by Summary Report page=12 (max ~55 cm/s without restrictors, ~35 cm/s with two), page=72 (Olson 0-55 cm/s) and page=104 Table 7.1 (T17 '6 to [...]
 
 Table cells that hold no readable number (listed in `extraction/skipped_cells.csv`):
 - column `Calibrated final O2 % by vol`: 2 cells (cell marks 'no value')
@@ -70,13 +72,13 @@ Ground (1 g) data check: `partial` in the ground-test inventory (see the article
 Published papers listed for this investigation: 17 (see `data/manifest/publications.csv`).
 
 ## For engineers
-- `method`: 552 `table` records (read by code from a PSI table; the quote is the column header) and 282 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
+- `method`: 552 `table` records (read by code from a PSI table; the quote is the column header) and 317 `document` records (verbatim sentence with its page or section). `verified` status: 0 (no person has compared records with the source yet).
 - Source files used (path under `data/raw/`):
   - `psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv` (552 records)
   - `psi-data/PSI-25/_investigation/PSI-25.json` (133 records)
   - `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf` (128 records)
+  - `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf` (39 records)
   - `psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx` (17 records)
-  - `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf` (4 records)
 - Every value is located in its source by code; see the articles on how values are located and on validation severities.
 - Investigation record: `data/raw/psi-data/PSI-25/_investigation/PSI-25.json` (the text fields quoted above).
 - Accession `PSI-25`; DOI `10.60555/4qc4-de67`; PSI version 4; files in version 695, files selected for PYRION 10.
