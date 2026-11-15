@@ -61,6 +61,9 @@ export default async function DataPage() {
           </p>
         </div>
         <div className="hero-actions">
+          <a data-help="data-proof-link" href="/proof" className="chip">
+            Proof: how PYRION is checked
+          </a>
           <AddSource />
         </div>
       </header>

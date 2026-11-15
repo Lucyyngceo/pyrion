@@ -44,6 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               2024 Rocket Communications, Inc.
             </p>
             <p>
+              <a data-help="footer-proof" href="/proof">
+                Proof
+              </a>{" "}
+              ·{" "}
               <a data-help="footer-psi" href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
                 psi.nasa.gov
               </a>{" "}

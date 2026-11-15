@@ -34,6 +34,7 @@ export function pageOf(id: string): string {
   if (id.startsWith("method") || id === "page-method") return "/method";
   if (id.startsWith("why") || id === "page-why") return "/why";
   if (id.startsWith("help-reader")) return "/help";
+  if (id.startsWith("proof-") || id === "page-proof" || id === "data-proof-link") return id === "data-proof-link" ? "/data" : "/proof";
   if (id === "page-tars" || starts(id, "tars-history", "tars-conversation", "tars-new", "tars-rename", "tars-delete", "tars-input", "tars-send", "tars-log")) return "/tars";
   if (id.startsWith("tars-") && !["tars-bubble", "tars-close", "tars-panel"].includes(id)) return "/tars";
   return "/";
