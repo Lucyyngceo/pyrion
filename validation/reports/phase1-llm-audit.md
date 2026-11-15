@@ -60,3 +60,36 @@ Fixes: engine `9adbf6d`, `fd25896`; app `619f729`, `813250c`, `a457ae1`. Live te
 Found during round 2 and fixed: the per-call candidate cap could exhaust all three primary models on a provider-wide error (401/402) without reaching the fallback; the cap is now per provider and a provider-wide error skips the provider for 5 minutes.
 
 Open notes, not defects: the fallback takes about 16 s (inside the 25 s deadline); in production `PYRION_TRUST_PROXY=1` must be set behind nginx, otherwise all visitors share one hourly bucket; "open weights" stays off until each model's license is checked.
+
+## Round 3 (full re-audit after the open notes were resolved) — November 14, 2026
+
+The three open notes were resolved in `ead8212` (app) and `docs/DEPLOY.md`:
+- **Fallback speed.** NIM models marked `thinking: false` get `chat_template_kwargs: {enable_thinking: false}`. Measured on the parse prompt, nemotron-3-ultra goes from 16 s to 2.7 s in total and still copies quantities as written. mistral-large-4 timed out at 40 s and was removed.
+- **Open weights.** Each model is labelled only from a table checked against its model page (license plus source link). The models used are Qwen3.8-27B (Apache-2.0), Kimi-K2.6 (Modified MIT), gemma-4-31b-it (Apache-2.0) and Nemotron 3 Ultra (OpenMDW-1.1 per the NVIDIA NGC catalog). Models whose license could not be confirmed were removed from the lists. Safety-check models carry no label.
+- **Visitor isolation.** In production without `PYRION_TRUST_PROXY=1`, an error is logged and `GET /api/llm/health` reports `visitor_isolation: false`. `docs/DEPLOY.md` covers the rest: nginx overwrites `X-Real-IP` and Node is bound to 127.0.0.1.
+
+The live tests ran after a clean restart.
+
+| Test | Result |
+|---|---|
+| OpenRouter key deliberately invalid (twice) | NIM nemotron-3-ultra answers in 2.7 s; it copies "21%" and "1 atm" |
+| Lunar habitat at 34 % O2 and 8.2 psia | partial gravity 0.165 g (with the preset note); 8.2 psia → 56.54 kPa by the engine |
+| "lunar base at 30% oxygen" | pressure stays `unstated` |
+| "PMMA rod at 1e-4 g, 21% oxygen and 1 atm" | microgravity with the convention note; the inferred fuel phase is labelled as inferred |
+| Harmful question | 422, content check `flagged` |
+| Forged engine output sent to narrate | 400 "target has unknown fields" |
+| Client asks for an unconfigured model | ignored; default model, labelled Apache-2.0 with source |
+| Narration of the lunar target | code-written verdicts (18 investigations: 3 insufficient evidence, 15 regime barrier); model context passes the check |
+| Server log | no errors |
+
+An independent read-only review (separate agent) ran next. It found web 49/49 and engine 153/153 tests passing, no BLOCKERs, and no regressions from `ead8212`. Of the 16 earlier findings, 12 are fully fixed and 4 partly fixed; the remaining gaps are the new items below.
+
+### New findings (assigned to the app)
+- **MAJOR N1.** The narration check accepts verdict claims that have no id, negated verdicts ("isn't applicable") and unknown units. Before the fix, the model's context could contradict the verdicts that code wrote.
+- **MAJOR N2.** The narrate step had no per-visitor limit, so a script could loop it.
+- **MINOR N3.** "Copy as written" checked numbers but not their units or which quantity they belong to.
+- **MINOR N4.** The content check sat outside the 25 s deadline and ignored client aborts.
+- **MINOR N5.** The "same SHA-256 under N models" line ignored failed runs.
+- **MINOR N6.** One UI sentence overclaimed that all model text is checked, while some raw model text appears in warnings.
+
+To avoid an endless audit loop, these items will be closed by targeted tests rather than another full review.
