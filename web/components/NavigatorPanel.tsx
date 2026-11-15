@@ -24,7 +24,7 @@ interface Props {
   /** The engine's routes to evidence for the current target. */
   routes: RouteSet | null;
   /** Move the condition to a route's target (sliders and selects follow). */
-  onApplyRoute: (target: Target) => void;
+  onApplyRoute: (target: Target, accession: string) => void;
 }
 
 const doiUrl = (d: string) => `https://doi.org/${d}`;
@@ -141,7 +141,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <p className="muted small">The smallest change that makes each investigation comparable. Nearest first.</p>
                 <ul className="where-list">
                   {steps.slice(0, SHOWN).map((r) => (
-                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button="Take me there" onApply={() => onApplyRoute(r.target)} />
+                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button="Take me there" onApply={() => onApplyRoute(r.target, r.accession)} />
                   ))}
                 </ul>
                 {steps.length > SHOWN && <p className="muted small">and {steps.length - SHOWN} more.</p>}
@@ -153,7 +153,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <p className="muted small">A different regime is not a small step: it changes the physics. Switching moves your condition to that regime.</p>
                 <ul className="where-list where-list-regime">
                   {other.slice(0, SHOWN).map((r) => (
-                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button={`Switch to ${switchLabel(r)}`} onApply={() => onApplyRoute(r.target)} />
+                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button={`Switch to ${switchLabel(r)}`} onApply={() => onApplyRoute(r.target, r.accession)} />
                   ))}
                 </ul>
                 {other.length > SHOWN && <p className="muted small">and {other.length - SHOWN} more.</p>}

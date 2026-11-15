@@ -2,7 +2,7 @@
 
 import Term from "./Term";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import type { EnvelopePoint, RegimeEnvelope } from "@/lib/engine";
+import type { EnvelopePoint, EvidenceMap, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
 import StatusSymbol, { TONE_STATUS } from "./StatusSymbol";
@@ -36,6 +36,10 @@ interface Props {
   onTargetPick?: (o2: number, pressure: number) => void;
   /** Regime axes the target leaves open: the engine does not compare them. */
   openAxes: string[];
+  /** The engine's evidence map for the selected regime: shaded under the chart. */
+  evidence?: EvidenceMap | null;
+  /** Changes with the regime selection: a new map fades in over 300 ms. */
+  evidenceKey?: string;
 }
 
 const M = { top: 22, right: 34, bottom: 54, left: 66 };
@@ -130,7 +134,7 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail, evidence, evidenceKey }: Props) {
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const [loupe, setLoupe] = useState(false);
@@ -200,6 +204,51 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     const pr = domain.y1 - fy * (domain.y1 - domain.y0);
     onTargetPick?.(Math.round(o2 * 1000) / 1000, Math.round(pr * 10) / 10);
   };
+
+  // The evidence map as one image: brighter cyan = more investigations apply; faint violet = only extrapolation.
+  const mapImage = useMemo(() => {
+    if (!evidence || typeof document === "undefined" || evidence.cells.length === 0) return null;
+    const nx = evidence.o2Values.length;
+    const ny = evidence.pressureValues.length;
+    const c = document.createElement("canvas");
+    c.width = nx;
+    c.height = ny;
+    const g = c.getContext("2d");
+    if (!g) return null;
+    const max = Math.max(1, evidence.maxApplicable);
+    for (let i = 0; i < ny; i++) {
+      for (let j = 0; j < nx; j++) {
+        const cell = evidence.cells[i * nx + j];
+        if (cell.applicable.length > 0) g.fillStyle = `rgba(0, 240, 255, ${0.18 + 0.62 * (cell.applicable.length / max)})`;
+        else if (cell.extrapolation.length > 0) g.fillStyle = "rgba(185, 139, 255, 0.13)";
+        else continue;
+        g.fillRect(j, ny - 1 - i, 1, 1);
+      }
+    }
+    return c.toDataURL();
+  }, [evidence]);
+  const mapBox = (() => {
+    if (!evidence || evidence.o2Values.length < 2 || evidence.pressureValues.length < 2) return null;
+    const o = evidence.o2Values;
+    const p = evidence.pressureValues;
+    const dx = (o[o.length - 1] - o[0]) / (o.length - 1) / 2;
+    const dp = (p[p.length - 1] - p[0]) / (p.length - 1) / 2;
+    const x = sx(o[0] - dx);
+    const y = sy(p[p.length - 1] + dp);
+    return { x, y, w: sx(o[o.length - 1] + dx) - x, h: sy(p[0] - dp) - y };
+  })();
+  // What is under the cursor: the cell, and which investigations apply there.
+  const cellUnder = (() => {
+    if (!evidence || !cursor || evidence.o2Values.length < 2) return null;
+    const o2 = domain.x0 + (cursor.x / iw) * (domain.x1 - domain.x0);
+    const pr = domain.y1 - (cursor.y / ih) * (domain.y1 - domain.y0);
+    const o = evidence.o2Values;
+    const p = evidence.pressureValues;
+    const j = Math.round(((o2 - o[0]) / (o[o.length - 1] - o[0])) * (o.length - 1));
+    const i = Math.round(((pr - p[0]) / (p[p.length - 1] - p[0])) * (p.length - 1));
+    if (j < 0 || j >= o.length || i < 0 || i >= p.length) return null;
+    return evidence.cells[i * o.length + j];
+  })();
 
   const tx = sx(target.o2);
   const ty = sy(target.pressure);
@@ -345,6 +394,21 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               </g>
             )}
 
+            {mapImage && mapBox && (
+              <image
+                key={evidenceKey}
+                className="emap-img"
+                href={mapImage}
+                x={mapBox.x}
+                y={mapBox.y}
+                width={mapBox.w}
+                height={mapBox.h}
+                preserveAspectRatio="none"
+                pointerEvents="none"
+                clipPath="url(#plot-clip)"
+                aria-hidden="true"
+              />
+            )}
             {onTargetPick && (
               <rect
                 x={0}
@@ -653,6 +717,23 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </div>
         </div>
 
+        {cellUnder && cursor && !hover && (
+          <div className="map-tip" role="status" style={{ left: Math.min(M.left + cursor.x + 14, width - 250), top: Math.max(4, M.top + cursor.y - 10) }}>
+            {cellUnder.applicable.length > 0 ? (
+              <>
+                <strong>
+                  {cellUnder.applicable.length} investigation{cellUnder.applicable.length === 1 ? "" : "s"} apply here:
+                </strong>{" "}
+                {cellUnder.applicable.slice(0, 4).join(", ")}
+                {cellUnder.applicable.length > 4 ? ` and ${cellUnder.applicable.length - 4} more` : ""}
+              </>
+            ) : cellUnder.extrapolation.length > 0 ? (
+              <>No investigation applies here; {cellUnder.extrapolation.length} would need extrapolation.</>
+            ) : (
+              <>No investigation of this regime covers this point.</>
+            )}
+          </div>
+        )}
         {hover && (
           <div
             className="tooltip"
@@ -696,6 +777,12 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           <p className="muted small">
             {offScale} plotted point{offScale === 1 ? " is" : "s are"} outside the pressure range shown ({fmt(domain.y0, 0)}–{fmt(domain.y1, 0)} kPa).
             Hulls are still computed from every point.
+          </p>
+        )}
+        {mapImage && (
+          <p className="small emap-legend">
+            <i className="emap-ramp" aria-hidden="true" /> Shading: brighter = more NASA investigations apply here (same regime as your condition, inside what they tested).{" "}
+            <i className="emap-extra" aria-hidden="true" /> Faint violet: same regime, but only by extrapolation. Dark: no investigation of this regime covers the point. Hover the chart to see which.
           </p>
         )}
         <p className="muted small">

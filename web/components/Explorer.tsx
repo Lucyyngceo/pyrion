@@ -16,6 +16,8 @@ import {
   parseConditionCsv,
   HABITAT_WINDOWS,
   routesToEvidence,
+  evidenceMap,
+  type EvidenceMap,
   type ConditionRecord,
   type Evaluation,
   type Target,
@@ -146,6 +148,29 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   const view = PRESET_VIEWS.find((v) => v.preset.id === deferred.presetId);
 
+  // N2/N5: the evidence map for the selected regime. Recomputed only when the regime (or the records) change, never on a slider drag,
+  // and off the main task so a heavy map cannot freeze the page; the previous map stays on screen meanwhile.
+  const regimeKey = JSON.stringify(target.regime);
+  const [emap, setEmap] = useState<{ map: EvidenceMap; key: string } | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const run = () => {
+      if (cancelled) return;
+      try {
+        const map = evidenceMap(records, JSON.parse(regimeKey), { o2: [0.1, 0.5, 60], pressure: [20, 320, 80] }, options);
+        if (!cancelled) setEmap({ map, key: regimeKey });
+      } catch (e) {
+        console.warn("[pyrion] evidence map unavailable", e);
+      }
+    };
+    // A short timer lets the verdict render first; the previous map stays on screen until this one is ready.
+    const id = window.setTimeout(run, 60);
+    return () => {
+      cancelled = true;
+      clearTimeout(id);
+    };
+  }, [records, regimeKey, options]);
+
   // N1: the engine's routes to evidence, recomputed whenever the target changes.
   const routes = useMemo(() => {
     try {
@@ -257,6 +282,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               onPointSelect={setOpenAccession}
               onTargetPick={(o2, pressure) => setState((s) => ({ ...s, presetId: null, o2, pressure }))}
               openAxes={result.evaluation?.openRegimeAxes ?? []}
+              evidence={emap?.map ?? null}
+              evidenceKey={emap?.key}
             />
           ) : (
             <p className="banner">The engine rejected this target: {result.error}</p>
@@ -277,7 +304,15 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
               onClearPin={() => setPinned(null)}
               routes={routes}
-              onApplyRoute={(t) =>
+              onApplyRoute={(t, accession) => {
+                // The marker travels (the chart animates the move; reduced motion makes it instant), the controls follow, and the
+                // verdict and the investigation's card glow softly.
+                for (const el of [document.querySelector(".nav-verdict"), document.getElementById(`res-${accession}`)]) {
+                  el?.classList.remove("glow");
+                  void (el as HTMLElement | null)?.offsetWidth;
+                  el?.classList.add("glow");
+                  window.setTimeout(() => el?.classList.remove("glow"), 1600);
+                }
                 setState((st) => ({
                   presetId: null,
                   regime: { ...t.regime },
@@ -285,8 +320,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
                   pressure: t.continuous.pressure ?? st.pressure,
                   gravityLevel: t.informational?.gravity_level,
                   gravityNotCovered: t.informational?.gravity_not_covered,
-                }))
-              }
+                }));
+              }}
               onHover={setHighlight}
               onOpen={(a) => {
                 setOpenAccession(a);

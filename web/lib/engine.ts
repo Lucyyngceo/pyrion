@@ -21,6 +21,7 @@ export {
   validateTarget,
   HABITAT_WINDOWS,
   routesToEvidence,
+  evidenceMap,
   // transfer hypothesis (docs/TRANSFER.md) and FM2 instrument balance
   DENSITY_FACTOR_PMMA_AIR,
   FM2_SOURCES,
@@ -59,6 +60,7 @@ export type {
   Verdict,
   Route,
   RouteSet,
+  EvidenceMap,
   Band,
   Fm2Balance,
   Fm2Inputs,
