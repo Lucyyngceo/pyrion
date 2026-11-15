@@ -5,12 +5,16 @@ import { useState } from "react";
 const URL_MCP = "https://pyrion.us/api/mcp";
 const CLAUDE_CODE = `claude mcp add --transport http pyrion ${URL_MCP}`;
 const TOOLS = [
-  ["evaluate_target", "verdicts for a condition, with DOI"],
+  ["evaluate_target", "verdicts for any condition: ISS, Moon, Mars, Earth, with DOI"],
+  ["compare_conditions", "up to 8 atmospheres side by side, ranked by evidence"],
+  ["evidence_gaps", "what PSI would need to state for a test to apply"],
+  ["moon_base_test_plan", "Mission Planner: FM2 coverage and missing test points"],
+  ["get_investigation", "one PSI investigation: variables, tests, DOI"],
   ["find_evidence", "extracted test records"],
   ["get_receipt", "the NASA source of one value"],
   ["search_nasa_library", "passages from NASA documents"],
   ["list_investigations", "the 24 PSI investigations"],
-  ["list_presets", "ISS air, Moon Base, NASA atmospheres"],
+  ["list_presets", "ISS air, Moon Base, NASA atmospheres (Moon and Mars)"],
 ];
 
 function Copy({ text, id }: { text: string; id: string }) {

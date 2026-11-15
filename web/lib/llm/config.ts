@@ -76,7 +76,10 @@ export const MODEL_INFO: Readonly<Record<string, ModelInfo>> = {
   },
   "qwen/qwen3.8-27b": { name: "Qwen3.8 27B", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
   "moonshotai/kimi-k2.6": { open_weights: true, license: "Modified MIT", source: "https://huggingface.co/moonshotai/Kimi-K2.6", checked: "2026-11-14" },
-  "google/gemma-4-31b-it": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
+  "google/gemma-4-31b-it": { name: "Gemma 4 31B", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
+  "openai/gpt-oss-120b": { name: "gpt-oss-120b", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/openai/gpt-oss-120b", checked: "2026-11-15", reasoning: "required" },
+  "mistralai/mistral-small-3.2-24b-instruct": { name: "Mistral Small 3.2", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506", checked: "2026-11-15" },
+  "meta-llama/llama-4-maverick": { name: "Llama 4 Maverick", open_weights: true, license: "Llama 4 Community License", source: "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct", checked: "2026-11-15" },
   "nvidia/nemotron-3-ultra-550b-a55b": {
     name: "Nemotron 3 Ultra",
     thinking: false,

@@ -32,7 +32,7 @@ No API key and no language model are needed for the envelope and the verdict: th
 
 ## Use PYRION from an AI assistant (MCP)
 
-PYRION is also a Model Context Protocol server at `https://pyrion.us/api/mcp` (Streamable HTTP, JSON-RPC over POST; no account, no key). It exposes the same deterministic code the site runs, read-only, with no language model on our side: `evaluate_target` (verdicts for a condition, with DOI), `find_evidence`, `get_receipt`, `search_nasa_library`, `list_investigations`, `list_presets`, plus `transfer_hypothesis`, `fm2_balance`, `text_search`, `flex_model` and `suggest_experiments`. Source: `web/app/api/mcp/route.ts`.
+PYRION is also a Model Context Protocol server at `https://pyrion.us/api/mcp` (Streamable HTTP, JSON-RPC over POST; no account, no key). It exposes the same deterministic code the site runs, read-only, with no language model on our side: `evaluate_target` (verdicts for any condition, ISS, Moon, Mars or Earth, with DOI), `compare_conditions`, `evidence_gaps`, `moon_base_test_plan`, `get_investigation`, `find_evidence`, `get_receipt`, `search_nasa_library`, `list_investigations`, `list_presets`, plus `transfer_hypothesis`, `fm2_balance`, `text_search`, `flex_model` and `suggest_experiments`. Source: `web/app/api/mcp/route.ts`.
 
 ```bash
 claude mcp add --transport http pyrion https://pyrion.us/api/mcp

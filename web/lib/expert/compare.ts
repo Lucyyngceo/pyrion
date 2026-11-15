@@ -64,7 +64,7 @@ export const RANKING_RULE =
 const SOLID_ORDER: Record<string, number> = { APPLICABLE: 2, EXTRAPOLATION: 1 };
 const label = (v: string) => v.toLowerCase().replace(/_/g, " ");
 
-function toTarget(input: ConditionInput): { name: string; source: string; target?: Target; gravity: { regime: string | null; level: number | null }; error?: string } {
+export function toTarget(input: ConditionInput): { name: string; source: string; target?: Target; gravity: { regime: string | null; level: number | null }; error?: string } {
   if (typeof input === "string") {
     const preset = PRESETS.find((p) => p.id === input);
     if (!preset) return { name: input, source: "preset", gravity: { regime: null, level: null }, error: `"${input}" is not a preset id (${PRESETS.map((p) => p.id).join(", ")}).` };
