@@ -204,3 +204,17 @@ for every cluster with that message as the reason, never a silently open axis. M
 Earth gravity, normal gravity, `1 g Earth`, micro-gravity, zero-g, zero gravity, weightlessness, ISS (microgravity),
 `sea level` (101.325 kPa), `kPa abs`, `psia (absolute)`, `mol%`, `per cent`. The O2 and pressure plausibility windows
 (`HABITAT_WINDOWS`) are PYRION windows, not NASA values, and the warnings say so.
+
+Measurement tolerance (judge battery): every inside-the-envelope test, per axis and in the (O2, pressure) hull,
+counts a target as inside when it is within ±0.5 % of its own value of the measured range or hull
+(`MEASUREMENT_TOLERANCE_REL`; PYRION convention, not a NASA value; `MEASUREMENT_TOLERANCE_NOTE`). 0.5 % is the worst-case
+rounding of a three-significant-digit value and sits inside typical pressure-transducer accuracy (0.25–1 % of
+reading), so "101.3 kPa", "14.7 psia" and "760 mmHg" count as the tested 1 atm while 110 kPa does not. When the
+tolerance is what made the target count as inside, the reason says so ("within the 0.5 % measurement tolerance of
+the tested 101.325 kPa") and `AxisCheck.viaTolerance` / `HullCheck.viaTolerance` is true. The chart geometry in
+`locateTarget` (context only, not a verdict) is unchanged and still uses the exact hull.
+
+More words: freefall / free fall / free-fall / weightless / in orbit / orbital / micro-g / µg (microgravity); Spanish
+Luna, Marte, marciano/a, microgravedad, ingravidez, caída libre, gravedad cero, Tierra, gravedad normal/terrestre,
+nivel del mar, presión normal, por ciento. A decimal comma followed by one or two digits ("8,2 psia") is a decimal;
+"101,325" (three digits or several commas) is refused: write 101.325 or 101325.

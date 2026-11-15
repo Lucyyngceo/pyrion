@@ -80,6 +80,45 @@ export function hullContains(p: Vec2, hull: readonly Vec2[]): boolean {
   return true;
 }
 
+/**
+ * Does the hull (point, segment or polygon) touch the axis-aligned box centred on c with half-widths
+ * hx, hy (normalized units)? Used for the measurement tolerance: the target counts as inside when some
+ * point of the hull lies within the tolerance box around it.
+ */
+export function hullNearBox(hull: readonly Vec2[], c: Vec2, hx: number, hy: number): boolean {
+  if (hull.length === 0) return false;
+  const x0 = c.x - hx - EPS;
+  const x1 = c.x + hx + EPS;
+  const y0 = c.y - hy - EPS;
+  const y1 = c.y + hy + EPS;
+  if (hull.some((p) => p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1)) return true;
+  if (hull.length >= 3 && hullContains(c, hull)) return true;
+  const n = hull.length === 1 ? 0 : hull.length === 2 ? 1 : hull.length;
+  for (let i = 0; i < n; i += 1) {
+    const a = hull[i];
+    const b = hull[(i + 1) % hull.length];
+    // Liang–Barsky: does the segment a→b meet the box?
+    let t0 = 0;
+    let t1 = 1;
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const clip = (p: number, q: number): boolean => {
+      if (p === 0) return q >= 0;
+      const r = q / p;
+      if (p < 0) {
+        if (r > t1) return false;
+        if (r > t0) t0 = r;
+      } else {
+        if (r < t0) return false;
+        if (r < t1) t1 = r;
+      }
+      return true;
+    };
+    if (clip(-dx, a.x - x0) && clip(dx, x1 - a.x) && clip(-dy, a.y - y0) && clip(dy, y1 - a.y) && t0 <= t1) return true;
+  }
+  return false;
+}
+
 /** 0 when p is inside the hull, otherwise the distance to its boundary. */
 export function distanceToHull(p: Vec2, hull: readonly Vec2[]): number {
   if (hull.length === 0) return Infinity;

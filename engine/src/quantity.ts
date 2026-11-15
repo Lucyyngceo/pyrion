@@ -149,8 +149,17 @@ function readNumber(text: string, variable: string): { n: number; unit: string }
   if (/\d\s*(?:-|–|to)\s*\d/i.test(s.replace(/^[+-]/, '')) && !/e[+-]\d/i.test(s)) {
     return fail('range_not_supported', variable, text, `"${text}" looks like a range; give one value`);
   }
-  if (/\d,\d/.test(s)) return fail('ambiguous_decimal_separator', variable, text, `"${text}" has a comma between digits: decimal comma or thousands separator? Write it with a point and no separators`);
-  const m = NUM_UNIT.exec(s);
+  let t = s;
+  if (/\d,\d/.test(t)) {
+    // "8,2" and "1,5": a comma followed by one or two digits is a decimal comma. "101,325" (three digits,
+    // or several commas) could be a decimal or a thousands separator: refused.
+    const dec = /^([+-]?\d+),(\d{1,2})(?![\d,])/.exec(t);
+    if (!dec || /\d,\d/.test(t.slice(dec[0].length))) {
+      return fail('ambiguous_decimal_separator', variable, text, `"${text}" has a comma between digits that could be a decimal comma or a thousands separator; write 101.325 (decimal point) or 101325 (no separator)`);
+    }
+    t = `${dec[1]}.${dec[2]}${t.slice(dec[0].length)}`;
+  }
+  const m = NUM_UNIT.exec(t);
   if (!m) return fail('not_a_number', variable, text, `"${text}" does not start with a number`);
   const n = Number(m[1]);
   if (!Number.isFinite(n)) return fail('not_a_number', variable, text, `"${text}": not a finite number`);
@@ -222,11 +231,11 @@ function viaTable(
 
 // ---- per variable ----
 
-const NORMAL_PRESSURE = /^(?:the\s+)?(?:(?:normal|standard|sea[- ]level)(?:\s+(?:air|atmospheric))?\s+pressure|sea[- ]level|standard\s+atmosphere|one\s+atmosphere)$/i;
+const NORMAL_PRESSURE = /^(?:the\s+)?(?:(?:normal|standard|sea[- ]level)(?:\s+(?:air|atmospheric))?\s+pressure|sea[- ]level|standard\s+atmosphere|one\s+atmosphere|nivel\s+del\s+mar|presion\s+(?:normal|estandar))$/i;
 const ATM_WORDS = /^(?:atmospheres?|standard atmospheres?)$/i;
 
 function pressure(original: string): QuantityResult {
-  if (NORMAL_PRESSURE.test(original.trim())) {
+  if (NORMAL_PRESSURE.test(original.normalize('NFD').replace(/[̀-ͯ]/g, '').trim())) {
     return bounded({
       ok: true,
       variable: 'pressure',
@@ -269,7 +278,7 @@ function o2Inner(original: string): QuantityResult {
   const rn = readNumber(original.replace(/₂/g, '2'), 'o2_mole_fraction');
   if ('ok' in rn) return { ...rn, original };
   // "34% O2", "34 % oxygen", "34 vol% of oxygen": the trailing gas name is ignored (the variable is already oxygen).
-  const stripped = rn.unit.replace(/\s*(?:of\s+)?(?:oxygen|o2)\s*$/i, '').trim();
+  const stripped = rn.unit.replace(/\s*(?:(?:of|de)\s+)?(?:oxygen|o2|ox[ií]geno)\s*$/i, '').trim();
   const r = { n: rn.n, unit: stripped };
   const stripNote = stripped !== rn.unit ? [`trailing "${rn.unit.slice(stripped.length).trim()}" ignored: the value is the oxygen mole fraction`] : [];
   const out0 = o2Units(original, r);
@@ -285,6 +294,8 @@ const O2_UNIT_ALIASES: Readonly<Record<string, string>> = {
   'mol percent': 'percent',
   'mole percent': 'percent',
   'vol. %': '%',
+  'por ciento': 'percent',
+  porciento: 'percent',
 };
 
 function o2Units(original: string, r: { n: number; unit: string }): QuantityResult {
@@ -398,11 +409,47 @@ const GRAVITY_NAMES: Readonly<Record<string, GravityTargetId | 'microgravity'>> 
   'zero-gravity': 'microgravity',
   weightlessness: 'microgravity',
   iss: 'microgravity',
+  // freefall words (the challenge is "Flame in Freefall")
+  freefall: 'microgravity',
+  'free fall': 'microgravity',
+  'free-fall': 'microgravity',
+  'in freefall': 'microgravity',
+  'in free fall': 'microgravity',
+  'in free-fall': 'microgravity',
+  weightless: 'microgravity',
+  'in orbit': 'microgravity',
+  orbital: 'microgravity',
+  'micro-g': 'microgravity',
+  microg: 'microgravity',
+  µg: 'microgravity',
+  ug: 'microgravity',
+  // Spanish (accents are stripped before the lookup)
+  luna: 'moon',
+  'gravedad lunar': 'moon',
+  marte: 'mars',
+  marciano: 'mars',
+  marciana: 'mars',
+  'gravedad marciana': 'mars',
+  'gravedad de marte': 'mars',
+  microgravedad: 'microgravity',
+  ingravidez: 'microgravity',
+  'caida libre': 'microgravity',
+  'gravedad cero': 'microgravity',
+  tierra: 'earth',
+  'gravedad normal': 'earth',
+  'gravedad terrestre': 'earth',
+  'gravedad de la tierra': 'earth',
 };
 
 function gravity(original: string): QuantityResult {
   const text = original.normalize('NFC').trim();
-  const name = text.toLowerCase().replace(/^the\s+/, '').replace(/\s+/g, ' ');
+  const name = text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/μ/g, 'µ')
+    .replace(/^(?:the|la|el)\s+/, '')
+    .replace(/\s+/g, ' ');
   if (text === '') return fail('empty', 'gravity_level', original, 'empty text: nothing to convert');
   if (Object.hasOwn(GRAVITY_NAMES, name)) {
     const id = GRAVITY_NAMES[name];

@@ -157,6 +157,18 @@ export interface Reason {
   citations: Citation[];
 }
 
+/**
+ * Measurement tolerance used by every inside-the-envelope test, on every continuous axis: a target counts
+ * as inside a measured range or hull when it is within ±0.5 % of its own value of it.
+ * PYRION convention, not a NASA value. Why 0.5 %: it is the worst-case rounding of a three-significant-digit
+ * value (1.00 → ±0.5 %) and sits inside the usual accuracy of pressure transducers (0.25–1 % of reading),
+ * so "101.3 kPa", "14.7 psia" and "760 mmHg" all count as the tested 1 atm, while a real gap
+ * (110 kPa against 101.325) does not. Without it a zero-width envelope (all records at exactly 1 atm)
+ * would turn the same physical pressure into APPLICABLE or EXTRAPOLATION by the digits typed.
+ */
+export const MEASUREMENT_TOLERANCE_REL = 0.005;
+export const MEASUREMENT_TOLERANCE_NOTE = `PYRION convention, not a NASA value: a target within ±${MEASUREMENT_TOLERANCE_REL * 100} % of its own value of a measured range or hull counts as inside it (rounding of typed values and typical instrument accuracy).`;
+
 export interface AxisCheck {
   axis: ContinuousAxis;
   unit: string;
@@ -170,6 +182,8 @@ export interface AxisCheck {
   gapNormalized: number | null;
   minCitations: Citation[];
   maxCitations: Citation[];
+  /** Present (true) only when the target counts as inside because of the measurement tolerance. */
+  viaTolerance?: true;
 }
 
 export interface PlanePoint {
@@ -184,6 +198,8 @@ export interface HullCheck {
   /** Normalized distance from the target to the hull. 0 when inside. */
   distanceNormalized: number;
   pointCount: number;
+  /** Present (true) only when the target counts as inside because of the measurement tolerance. */
+  viaTolerance?: true;
 }
 
 export interface RegimeState {

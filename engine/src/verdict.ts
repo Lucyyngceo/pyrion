@@ -10,12 +10,14 @@ import {
   type Cluster,
   type TestEvidence,
 } from './evidence.ts';
-import { convexHull, distanceToHull, hullContains, type Vec2 } from './geometry.ts';
+import { convexHull, distanceToHull, hullContains, hullNearBox, type Vec2 } from './geometry.ts';
 import {
   AXIS_UNITS,
   CONTINUOUS_AXES,
   ENGINE_NAME,
   ENGINE_VERSION,
+  MEASUREMENT_TOLERANCE_NOTE,
+  MEASUREMENT_TOLERANCE_REL,
   REGIME_AXES,
   REGIME_VALUES,
   type AxisCheck,
@@ -179,7 +181,16 @@ function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAx
     const minRecs = pool.flatMap((t) => recordsAt(t, axis, min));
     const maxRecs = pool.flatMap((t) => recordsAt(t, axis, max));
     usedRecords.push(...pool.flatMap((t) => t.continuous[axis].records));
-    const status = tv < min ? 'below' : tv > max ? 'above' : 'inside';
+    const tol = MEASUREMENT_TOLERANCE_REL * Math.abs(tv);
+    let status: 'below' | 'above' | 'inside' = tv < min ? 'below' : tv > max ? 'above' : 'inside';
+    let tolBound: number | null = null;
+    if (status === 'below' && min - tv <= tol) {
+      status = 'inside';
+      tolBound = min;
+    } else if (status === 'above' && tv - max <= tol) {
+      status = 'inside';
+      tolBound = max;
+    }
     const gap = status === 'below' ? min - tv : status === 'above' ? tv - max : 0;
     axisChecks.push({
       axis,
@@ -192,10 +203,15 @@ function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAx
       gapNormalized: gap / scale,
       minCitations: citationsOf(minRecs),
       maxCitations: citationsOf(maxRecs),
+      ...(tolBound !== null ? { viaTolerance: true as const } : {}),
     });
     const range = `measured ${fmt(min)} to ${fmt(max)}${unitSuffix(axis)}`;
     if (status === 'inside') {
-      reasons.push(reason('inside_range', axisContext, axis, `${axis}: target ${fmt(tv)}${unitSuffix(axis)} is inside the ${range}.`, citationsOf([...minRecs, ...maxRecs])));
+      const msg =
+        tolBound !== null
+          ? `${axis}: target ${fmt(tv)}${unitSuffix(axis)} is within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the tested ${fmt(tolBound)}${unitSuffix(axis)} (${range}). ${MEASUREMENT_TOLERANCE_NOTE}`
+          : `${axis}: target ${fmt(tv)}${unitSuffix(axis)} is inside the ${range}.`;
+      reasons.push(reason('inside_range', axisContext, axis, msg, citationsOf([...minRecs, ...maxRecs])));
     } else {
       outside = true;
       const bound = status === 'below' ? minRecs : maxRecs;
@@ -263,7 +279,16 @@ function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAx
     } else {
       const hv = convexHull(pts.map((p) => p.v));
       const tv: Vec2 = { x: (target.continuous.o2_mole_fraction as number) / so, y: (target.continuous.pressure as number) / sp };
-      const inside = hullContains(tv, hv);
+      const exactInside = hullContains(tv, hv);
+      const tolInside =
+        !exactInside &&
+        hullNearBox(
+          hv,
+          tv,
+          (MEASUREMENT_TOLERANCE_REL * Math.abs(target.continuous.o2_mole_fraction as number)) / so,
+          (MEASUREMENT_TOLERANCE_REL * Math.abs(target.continuous.pressure as number)) / sp,
+        );
+      const inside = exactInside || tolInside;
       const dist = inside ? 0 : distanceToHull(tv, hv);
       const vertexRecs: ConditionRecord[] = [];
       for (const v of hv) {
@@ -276,9 +301,13 @@ function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAx
         inside,
         distanceNormalized: dist,
         pointCount: pts.length,
+        ...(tolInside ? { viaTolerance: true as const } : {}),
       };
       if (inside) {
-        reasons.push(reason('inside_hull', decided, 'o2_mole_fraction+pressure', `(O2, pressure) is inside the convex hull of ${pts.length} measured point(s).`, citationsOf(vertexRecs)));
+        const msg = tolInside
+          ? `(O2, pressure) is within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the convex hull of ${pts.length} measured point(s). ${MEASUREMENT_TOLERANCE_NOTE}`
+          : `(O2, pressure) is inside the convex hull of ${pts.length} measured point(s).`;
+        reasons.push(reason('inside_hull', decided, 'o2_mole_fraction+pressure', msg, citationsOf(vertexRecs)));
       } else {
         outsideHull = true;
         reasons.push(
