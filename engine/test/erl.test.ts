@@ -58,12 +58,12 @@ describe('erlFor on the synthetic fixtures', () => {
     assert.match(e.reason, /No PSI test in partial gravity anywhere/);
   });
 
-  it('tested only in another regime is ERL 1', () => {
+  it('comparable only in another regime is ERL 1', () => {
     const t: Target = { regime: { gravity_regime: 'normal_gravity', fuel_phase: 'liquid' }, continuous: { o2_mole_fraction: 0.22, pressure: 90 } };
     assert.equal(evaluate(records, t).counts.investigations.REGIME_BARRIER, 7);
     const e = erlFor(records, t);
     assert.equal(e.level, 1);
-    assert.equal(e.name, 'tested only in another regime');
+    assert.equal(e.name, 'comparable only in another regime');
     assert.match(e.reason, /another regime/);
   });
 

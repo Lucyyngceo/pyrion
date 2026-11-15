@@ -77,7 +77,7 @@ describe('gapReport (fixtures)', () => {
     assert.match(r.html, /^<!doctype html>/);
     assert.ok(r.html.includes('@media print'));
     assert.ok(r.html.includes(r.fingerprint));
-    assert.ok(r.html.includes('<h2>Minimum test set</h2>'));
+    assert.ok(r.html.includes("<h2>Minimum test set (under PYRION's convention)</h2>"));
     assert.equal((r.html.match(/<ul>/g) ?? []).length, (r.html.match(/<\/ul>/g) ?? []).length);
   });
 
@@ -89,7 +89,7 @@ describe('gapReport (fixtures)', () => {
   });
 
   it('never claims safety or prediction in its own words', () => {
-    const body = r.markdown.replace(PLANNER_LABEL, '').replace(ERL_NOTE, '');
+    const body = r.markdown.replace(PLANNER_LABEL, '').replace(ERL_NOTE, '').replace(/it would not by itself show that the band is safe/, '');
     assert.doesNotMatch(body, /\b(is safe|are safe|will burn|will not burn|validated by NASA|first in the world)\b/i);
   });
 });

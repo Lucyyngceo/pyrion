@@ -111,7 +111,7 @@ function blockersOf(accession: string, best: ClusterVerdict, all: ClusterVerdict
         code: 'REGIME_NOT_TESTED',
         axis,
         testedValues: tested,
-        sentence: `${accession} was tested only in ${tested.map(valueLabel).join(' and ')}, not in ${want ? valueLabel(want) : 'the regime you set'} (${label}).`,
+        sentence: `${accession} has comparable oxygen and pressure records only in ${tested.map(valueLabel).join(' and ')}, not in ${want ? valueLabel(want) : 'the regime you set'} (${label}); its tests in other regimes do not record comparable values.`,
         ...(tested.length > 0
           ? { action: { kind: 'switch_regime' as const, axis, to: tested[0], sentence: `Switch ${label} to ${valueLabel(tested[0])}: another regime, not a small step.` } }
           : {}),

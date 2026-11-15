@@ -165,8 +165,8 @@ export function threePartAnswer(
       count: accs.length,
       accessions: accs,
       sentence: easy
-        ? `${cap1(countWord(accs.length))} ${plural(accs.length, 'experiment was', 'experiments were')} run with a different ${axisLabel(axis)}, so ${plural(accs.length, 'it', 'they')} cannot be compared.`
-        : `${accs.length} ${plural(accs.length, 'investigation', 'investigations')} in ${archive} ${plural(accs.length, 'was', 'were')} tested only in a different ${axisLabel(axis)} (${tested.map(valueLabel).join(', ')}).`,
+        ? `${cap1(countWord(accs.length))} ${plural(accs.length, 'experiment has', 'experiments have')} comparable records only for a different ${axisLabel(axis)}, so ${plural(accs.length, 'it', 'they')} cannot be compared.`
+        : `${accs.length} ${plural(accs.length, 'investigation', 'investigations')} in ${archive} ${plural(accs.length, 'has', 'have')} comparable oxygen and pressure records only in a different ${axisLabel(axis)} (${tested.map(valueLabel).join(', ')}).`,
     });
   }
   for (const level of EXTRAPOLATION_LEVEL_ORDER) {

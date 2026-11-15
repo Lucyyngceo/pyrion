@@ -55,7 +55,7 @@ describe('blockers: fixed codes, plain sentence, action', () => {
     const b = blockersOf(ev, 'PSI-9402');
     assert.equal(b[0].code, 'REGIME_NOT_TESTED');
     assert.deepEqual(b[0].testedValues, ['gas']);
-    assert.equal(b[0].sentence, 'PSI-9402 was tested only in gaseous fuel, not in solid fuel (fuel phase).');
+    assert.equal(b[0].sentence, 'PSI-9402 has comparable oxygen and pressure records only in gaseous fuel, not in solid fuel (fuel phase); its tests in other regimes do not record comparable values.');
     assert.equal(b[0].action?.kind, 'switch_regime');
     assert.equal(b[0].action?.to, 'gas');
     assert.match(b[0].action?.sentence ?? '', /another regime, not a small step/);

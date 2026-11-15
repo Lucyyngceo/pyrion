@@ -455,8 +455,12 @@ export interface MinimumTestSet {
   rule: string;
 }
 
+export const MINIMUM_TEST_SET_CONVENTION =
+  "This is a minimum under PYRION's convention that the region between measured tests counts as covered, separately for each material, flow velocity and sample thickness. Flammability limits are thresholds and need not behave monotonically (a U-shaped boundary of the oxygen limit against flow velocity is described in the microgravity literature, Olson and T'ien; that attribution is not cited from this repository's sources), so covering the corners does not show that everything between them behaves like the tests; it only makes the band comparable under that convention.";
+
 export const MINIMUM_TEST_SET_RULE =
-  'The smallest set of test points whose region (hull plus the 0.5 % tolerance) covers the band is the set of vertices of the band polygon, deduplicated: for a convex band, the hull of the vertices is the band itself, and no smaller set has that hull. It assumes one test per vertex, at the band gravity, for the stated fuel phase (and material), and that a test inside its own region counts like a measured point; it says nothing about how many repeats a test needs.';
+  'The smallest set of test points whose region (hull plus the 0.5 % tolerance) covers the band is the set of vertices of the band polygon, deduplicated: for a convex band, the hull of the vertices is the band itself, and no smaller set has that hull. It assumes one test per vertex, at the band gravity, for the stated fuel phase (and material), and that a test inside its own region counts like a measured point; it says nothing about how many repeats a test needs. ' +
+  MINIMUM_TEST_SET_CONVENTION;
 
 export function minimumTestSet(records: readonly ConditionRecord[], band: DesignBand, opts: { fuelPhase?: FuelPhase; material?: string; extraRecords?: readonly ConditionRecord[] } & EngineOptions = {}): MinimumTestSet {
   const { fuelPhase, material, extraRecords = [], ...engineOptions } = opts;

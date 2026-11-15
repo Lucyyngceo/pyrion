@@ -138,7 +138,7 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
           axis,
           from: 'above 1 g (not covered)',
           to: st.values[0],
-          sentence: `Switch the gravity regime to ${valueLabel(st.values[0])}: ${acc} was tested only in ${valueLabel(st.values[0])}, and no regime covers the gravity you gave. This is another regime, not a small step.`,
+          sentence: `Switch the gravity regime to ${valueLabel(st.values[0])}: ${acc} has comparable oxygen and pressure records only in ${valueLabel(st.values[0])}, and no regime covers the gravity you gave. This is another regime, not a small step.`,
           citations: citationsOf(recordsOfRegime(cluster, axis)),
         });
         switched = true;
@@ -174,7 +174,7 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
         axis,
         from: t,
         to: st.values[0],
-        sentence: `Switch ${axisLabel(axis)} from ${valueLabel(t)} to ${valueLabel(st.values[0])}: ${acc} was tested only in ${valueLabel(st.values[0])}. This is another regime, not a small step.`,
+        sentence: `Switch ${axisLabel(axis)} from ${valueLabel(t)} to ${valueLabel(st.values[0])}: ${acc} has comparable oxygen and pressure records only in ${valueLabel(st.values[0])}. This is another regime, not a small step.`,
         citations: citationsOf(recordsOfRegime(cluster, axis)),
       });
       switched = true;

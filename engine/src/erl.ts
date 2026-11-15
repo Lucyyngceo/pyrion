@@ -16,7 +16,7 @@ export const ERL_SCALE: readonly { level: ErlLevel; name: string; means: string 
   { level: 4, name: 'measured', means: 'PSI measured this condition: at least one investigation is comparable (APPLICABLE).' },
   { level: 3, name: 'near extrapolation', means: 'Not measured, but just outside tested data, or each setting was tested only separately (extrapolation: just outside or combination).' },
   { level: 2, name: 'far extrapolation', means: 'Not measured and well outside tested data (extrapolation: outside or far outside).' },
-  { level: 1, name: 'tested only in another regime', means: 'Only tested in another gravity regime, fuel phase or atmosphere type (regime barrier).' },
+  { level: 1, name: 'comparable only in another regime', means: 'Comparable oxygen and pressure records exist only in another gravity regime, fuel phase or atmosphere type (regime barrier).' },
   { level: 0, name: 'no test', means: 'No PSI test in that gravity regime anywhere, or the extracted records cannot be compared with it.' },
 ];
 
@@ -75,7 +75,7 @@ export function erlFor(records: readonly ConditionRecord[], target: Target, opti
       level === 4
         ? `${n} investigation${n === 1 ? ' is' : 's are'} comparable (measured).`
         : level === 1
-          ? `${n} investigation${n === 1 ? ' was' : 's were'} tested only in another regime.`
+          ? `${n} investigation${n === 1 ? ' has' : 's have'} comparable records only in another regime.`
           : `The nearest evidence is an extrapolation (${(ex ?? '').replace(/_/g, ' ')}); ${n} investigation${n === 1 ? '' : 's'} at this level.`;
   }
   return { level, name: nameOf(level), perInvestigation: per, reason, note: ERL_NOTE };
