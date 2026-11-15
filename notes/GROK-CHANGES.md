@@ -6,19 +6,19 @@ Work was developed on a copy on the box and only the files below were copied int
 
 ### Item 1 — Safety and phenomenon lenses
 - Files: `tools/build_lenses.py` (new), `data/derived/lenses.json` (generated).
-- How it works: a hand-written TABLE of (accession, axis, tag, source, quote), 95 rows. The script fails (exit 1) if a quote is not word for word in its source field (only runs of whitespace are read as one space, because the PSI JSON breaks lines inside sentences), if a quote lacks a keyword of its tag (PYRION convention, listed in the file and in `lenses.json` → `rules.keywords`), if an accession is not in `data/manifest/investigations.csv`, or if an investigation has no strength row. `python tools/build_lenses.py --selftest` alters one quote and checks the script rejects it.
+- How it works: a hand-written TABLE of (accession, axis, tag, source, quote), 93 rows. The script fails (exit 1) if a quote is not word for word in its source field (only runs of whitespace are read as one space, because the PSI JSON breaks lines inside sentences), if a quote lacks a keyword of its tag (PYRION convention, listed in the file and in `lenses.json` → `rules.keywords`), if an accession is not in `data/manifest/investigations.csv`, or if an investigation has no strength row. `python tools/build_lenses.py --selftest` alters one quote and checks the script rejects it.
 - Sources: `data/raw/psi-data/<PSI-n>/_investigation/<PSI-n>.json`, fields title / objective / approach / hypothesis / researchImpacts (every quote, field and accession is in `lenses.json`); challenge copy `C:\Users\emc2l\Pyrion NASA\.claude\skills\pyrion-flame\references\reto-oficial.md` (copied from https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/), lines 22, 24, 38, 40, 56, 57, 58, 66, 69, 70, 73.
 - Audit rules checked against the sources:
   - BASS (PSI-26) suppression: CONFIRMED. Objective: "Assess the effectiveness of an inert, gaseous extinguishing agent (similar to that used on ISS) in putting out flames over different materials, geometries, preheating, and flow."; researchImpacts: "Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques."
   - FLEX (PSI-69) suppression: objective "measure the effectiveness of various gaseous fire suppressants such as CO2, He, and SF6"; challenge line 24 "Suppression was studied in the Flame Extinguishment Experiment (FLEX) through dilution of the chamber atmosphere with carbon dioxide and helium, both of which suppress fire."
   - SAME (PSI-102), SAME-R (PSI-101), DAFT (PSI-47) detection: researchImpacts quotes plus challenge lines 24 and 56.
   - SAFFIRE-I/-II/-III (PSI-98/99/100) prevention: objective "investigate the low-g flammability limits compared to those obtained in NASA’s normal gravity material flammability screening test."; detection is shown as CONTEXT, not a tag: researchImpacts "Instruments on an unmanned cargo vessel measure oxygen, carbon dioxide, heat, pressure and flame growth".
-  - Extinction limits count as prevention, never as suppression by themselves. PSI-21, PSI-25 and PSI-60 were re-checked against Claude's rule (keep only if the quoted sentence is about suppressing or extinguishing fire). All three KEPT:
+  - Extinction limits count as prevention, never as suppression by themselves. PSI-21, PSI-25 and PSI-60 were re-checked against Claude's rule (keep only if the quoted sentence is about suppressing or extinguishing fire). PSI-21 and PSI-25 KEPT:
     - PSI-21 researchImpacts: "an understanding of those factors that affect flame extinction in diffusion flames is critical in the suppression of fires".
     - PSI-25 (BASS-II) title: "Burning and Suppression of Solids" (title field "Burning and Suppression of Solids - II"); objective: "BASS-II results contribute to the combustion computational models used in the design of fire detection and suppression systems in microgravity and on Earth."; researchImpacts: "BASS-II helps engineers select the safest materials and improve firefighting methods on future space missions."
-    - PSI-60 researchImpacts: "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions." (judgement: "suppression" here is fire-suppression technology; the study itself measured smoke points, not suppression.)
+    - PSI-60: suppression DROPPED (see Round 4).
     - BASS (PSI-26) also gets its own name as a quote: title "Burning and Suppression of Solids".
-- Counts (computed by the script): prevention 13, detection 6, suppression 5; ignition 4, spread 6, extinction 13, smoke 5; strength direct 9, fundamental 4, indirect 11. SLICE (PSI-106) has no leg or phenomenon tag: no quote in its four fields supports one.
+- Counts (computed by the script): prevention 13, detection 5, suppression 4; ignition 4, spread 6, extinction 13, smoke 5; strength direct 9, fundamental 4, indirect 11. SLICE (PSI-106) has no leg or phenomenon tag: no quote in its four fields supports one.
 - Not tagged for lack of a quote (judgement, not the keyword guard): PSI-20 ignition (its approach says "Ignition limit tests are not proposed for microgravity"); PSI-47 smoke (DAFT measured dust aerosols, not smoke); PSI-115 prevention ("prevent fires" refers to better detection devices); soot (PSI-10, 21, 106) is not tagged as smoke.
 
 ### Item 2 — Oxygen-ceiling bar + materials index: SKIPPED (already shown by GPT)
@@ -44,7 +44,7 @@ Work was developed on a copy on the box and only the files below were copied int
 - On the box: `npm --prefix web run build` passed. `npm --prefix web test`: all 13 lenses tests pass; the only failure from my files is help coverage (3 ids, see below). With the three staged topics placed in `web/content/help/lenses/`, the full suite passed 192/192 on the box before GPT's latest files were pulled.
 
 ### Needs Claude
-- Help topics: Claude moves `web/lib/lenses/help-topics/*.md` to `web/content/help/lenses/` (agreed); until then help coverage fails on 3 ids.
+- Help topics: moved by Claude to `web/content/help/lenses/` (commit c18a189); new help topics go there directly.
 - Nav: Claude adds Lenses and More under "More ▾" (agreed); SiteNav not touched.
 - GPT can read `data/derived/lenses.json` for its safety-leg filter: `investigations[].legs.{prevention,detection,suppression}` (non-empty list = tagged).
 
@@ -55,7 +55,14 @@ Work was developed on a copy on the box and only the files below were copied int
 
 ### Round 3 — Claude's answers applied (2026-11-15)
 - DAFT (PSI-47) strength: direct → indirect (Claude). Quote, verified by the script on challenge line 56: "One of the instruments used for smoke detection in the SAME and SAME-R studies was instead used to detect dust in the Dust and Aerosol Measurement Feasibility Test (DAFT and DAFT-2) studies." Keyword list for "indirect" gains "was instead used to detect dust"; `rules.strength` states the exception.
-- Suppression re-check: PSI-21, PSI-25, PSI-60 all kept (quotes above); BASS-II and BASS name quotes added from the PSI `title` field (the script now accepts `title` as a source field and verifies it word for word).
+- Suppression re-check: PSI-21, PSI-25 kept (quotes above), PSI-60 later dropped (Round 4); BASS-II and BASS name quotes added from the PSI `title` field (the script now accepts `title` as a source field and verifies it word for word).
 - Timeline: axis label "year as listed by PSI (end date)"; `build_timeline.py` adds `date_note` when two PSI records list the same start and end dates (only SAFFIRE-I PSI-98 and SAME PSI-102); `/lenses` lists every investigation's start/end dates as written with that note.
 - Tests: `lenses-data.test.ts` checks DAFT = indirect with the dust sentence, the two title quotes, the SAFFIRE-I note and the axis label.
 - Not touched: help topics location, SiteNav, GPT's files.
+
+### Round 4 — PSI-60 (2026-11-15)
+- PSI-60 (Computational and Experimental Analysis of SPICE Data Sets, ground): suppression tag DROPPED (Claude): "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions." is a research-impact aspiration, not a suppression test; the study measured smoke points.
+- Detection tag also DROPPED: its only quote was that same sentence, and no other sentence in title / objective / approach / hypothesis / researchImpacts supports detection.
+- PSI-60 keeps: phenomenon smoke (objective: "identify key physical and chemical processes influencing smoke point development"); strength indirect (challenge line 58).
+- Counts now: prevention 13, detection 5, suppression 4; ignition 4, spread 6, extinction 13, smoke 5; strength direct 9, fundamental 4, indirect 11; 93 verified rows.
+- Test: `lenses-data.test.ts` asserts PSI-60 has no detection or suppression leg and is indirect.

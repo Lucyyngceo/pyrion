@@ -76,6 +76,10 @@ test("audit rules: BASS suppression, FLEX suppression, SAME/SAME-R/DAFT detectio
   assert.match(by["PSI-47"].strength.quote, /was instead used to detect dust/);
   // BASS and BASS-II carry their own name as a suppression quote
   for (const a of ["PSI-25", "PSI-26"]) assert.ok(by[a].legs.suppression.some((e) => e.source.key === "title" && e.quote === "Burning and Suppression of Solids"), a);
+  // PSI-60 (SPICE data, ground): aspiration sentence does not count as a detection or suppression test
+  assert.deepEqual(by["PSI-60"].legs.detection, []);
+  assert.deepEqual(by["PSI-60"].legs.suppression, []);
+  assert.equal(by["PSI-60"].strength.value, "indirect");
   // extinction limits alone never make a suppression tag
   for (const i of lenses.investigations) for (const e of i.legs.suppression) assert.ok(!/^[^]*extinction limit[^]*$/i.test(e.quote) || /suppress|extinguishing agent|firefighting/i.test(e.quote), i.accession);
 });

@@ -84,9 +84,9 @@
   "counts": {
     "investigations": 24,
     "legs": {
-      "detection": 6,
+      "detection": 5,
       "prevention": 13,
-      "suppression": 5
+      "suppression": 4
     },
     "phenomena": {
       "extinction": 13,
@@ -99,7 +99,7 @@
       "fundamental": 4,
       "indirect": 11
     },
-    "tag_rows": 95
+    "tag_rows": 93
   },
   "generated_by": "tools/build_lenses.py",
   "investigations": [
@@ -648,27 +648,9 @@
       "context": [],
       "doi": "10.60555/mzjm-yv57",
       "legs": {
-        "detection": [
-          {
-            "quote": "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions.",
-            "source": {
-              "file": "data/raw/psi-data/PSI-60/_investigation/PSI-60.json",
-              "key": "researchImpacts",
-              "kind": "psi"
-            }
-          }
-        ],
+        "detection": [],
         "prevention": [],
-        "suppression": [
-          {
-            "quote": "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions.",
-            "source": {
-              "file": "data/raw/psi-data/PSI-60/_investigation/PSI-60.json",
-              "key": "researchImpacts",
-              "kind": "psi"
-            }
-          }
-        ]
+        "suppression": []
       },
       "phenomena": {
         "extinction": [],

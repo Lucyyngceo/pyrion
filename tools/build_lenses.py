@@ -131,8 +131,8 @@ TABLE: list[tuple[str, str, str, str, str]] = [
     ("PSI-47", "leg", "detection", L56, Q_L56),
     ("PSI-47", "strength", "indirect", L56, Q_L56),
     # PSI-60 SPICE data, ground
-    ("PSI-60", "leg", "detection", "researchImpacts", "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions."),
-    ("PSI-60", "leg", "suppression", "researchImpacts", "For space applications, the results support safer fire detection, suppression, and cleaner combustion technologies critical for long-duration missions."),
+    # No detection or suppression leg (Claude, 2026-11-15): the only candidate sentence, "the results support safer fire
+    # detection, suppression, and cleaner combustion technologies", is a research-impact aspiration; the study measured smoke points.
     ("PSI-60", "phenomenon", "smoke", "objective", "identify key physical and chemical processes influencing smoke point development"),
     ("PSI-60", "strength", "indirect", L58, Q_L58),
     # PSI-62 BASS flame-spread modelling, ground
