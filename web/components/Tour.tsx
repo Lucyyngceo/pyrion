@@ -9,13 +9,6 @@ const STEPS = [
   { sel: ".take-btn", fallback: ".nav-evidence", title: "3 · Take me there", text: "One click moves your condition to the nearest place the evidence covers. A different regime is never a small step: that button says so." },
 ] as const;
 
-const seen = () => {
-  try {
-    return window.localStorage.getItem(KEY) === "done";
-  } catch {
-    return false;
-  }
-};
 const remember = () => {
   try {
     window.localStorage.setItem(KEY, "done");
@@ -24,7 +17,7 @@ const remember = () => {
   }
 };
 
-/** First-visit tour with three coach marks. Skippable (Esc or Skip), remembered, and restartable from "Take the tour". */
+/** Opt-in tour with three coach marks, started from the Guide entry of the help menu. Skippable (Esc or Skip). */
 export default function Tour() {
   const [step, setStep] = useState<number | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
@@ -35,12 +28,6 @@ export default function Tour() {
     setStep(null);
   }, []);
 
-  // First visit: wait for the page to settle so the routes exist.
-  useEffect(() => {
-    if (seen()) return;
-    const t = window.setTimeout(() => setStep(0), 1800);
-    return () => clearTimeout(t);
-  }, []);
   useEffect(() => {
     const on = () => setStep(0);
     window.addEventListener("pyrion:tour", on);
