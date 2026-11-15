@@ -2,7 +2,7 @@
 
 import { useId } from "react";
 import { HABITAT_WINDOWS, REGIME_AXES, REGIME_VALUES, type RegimeAxis } from "@/lib/engine";
-import { PRESET_VIEWS, sourcesOf, type PresetView } from "@/lib/presets";
+import { PRESET_VIEWS, sourcesOf } from "@/lib/presets";
 import { axisLabel, fmt, kpaToPsi, valueLabel } from "@/lib/units";
 
 export type { TargetState } from "@/lib/preset-apply";
@@ -14,73 +14,35 @@ interface PanelProps {
   onChange: (s: TargetState) => void;
 }
 
-/** Where the preset sits on the O2 x pressure plane (16-40 % O2, 40-110 kPa), as a tiny map. */
-function PresetGlyph({ o2, pressure }: { o2?: number; pressure?: number }) {
-  if (o2 === undefined || pressure === undefined) return null;
-  const x = 4 + ((Math.min(0.4, Math.max(0.16, o2)) - 0.16) / 0.24) * 36;
-  const y = 28 - ((Math.min(110, Math.max(40, pressure)) - 40) / 70) * 24;
+/** Under the strip: what the chosen scenario's source says, and what it leaves open. */
+export function ScenarioNote({ state }: { state: TargetState }) {
+  const preset = PRESET_VIEWS.find((v) => v.preset.id === state.presetId)?.preset;
+  if (!preset) return null;
   return (
-    <svg className="preset-glyph" width="44" height="32" viewBox="0 0 44 32" aria-hidden="true">
-      <rect x="0.5" y="0.5" width="43" height="31" rx="5" />
-      <line x1={x} x2={x} y1="3" y2="29" />
-      <line x1="3" x2="41" y1={y} y2={y} />
-      <circle cx={x} cy={y} r="3.2" />
-    </svg>
-  );
-}
-
-import { applyPreset } from "@/lib/preset-apply";
-
-/** Left column, top: big NASA presets, each with its source line. */
-export function PresetsPanel({ state, onChange }: PanelProps) {
-  const id = useId();
-  const view = PRESET_VIEWS.find((v) => v.preset.id === state.presetId);
-  const preset = view?.preset;
-  return (
-    <section className="card nav-presets" aria-labelledby={`${id}-h`}>
-      <h2 id={`${id}-h`} className="panel-title">
-        Start from a NASA condition
-      </h2>
-      <div className="presets" role="radiogroup" aria-label="NASA conditions">
-        {PRESET_VIEWS.map((v) => (
-          <button key={v.preset.id} type="button" role="radio" aria-checked={v.preset.id === state.presetId} className="preset" onClick={() => onChange(applyPreset(state, v))}>
-            <PresetGlyph o2={v.preset.continuous.o2_mole_fraction?.value} pressure={v.preset.continuous.pressure?.value} />
-            <span className="preset-label">{v.short}</span>
-            <span className="preset-summary">{v.summary}</span>
-            <span className="preset-source">{sourcesOf(v.preset)[0]?.identifier.split(" (")[0] ?? ""}</span>
-          </button>
+    <details className="scenario-note">
+      <summary>About this scenario: sources and limits</summary>
+      <p className="preset-desc">{preset.description}</p>
+      <p className="cite">
+        Sources:{" "}
+        {sourcesOf(preset).map((src, i) => (
+          <span key={`${src.id}|${src.quote}`}>
+            {i > 0 && "; "}
+            <a href={src.url} target="_blank" rel="noreferrer" title={`${src.quote} (${src.locator})`}>
+              {src.identifier.split(" (")[0]}
+            </a>
+            <span className="muted">, {src.locator.split(",")[0]}</span>
+          </span>
         ))}
-      </div>
-      <div className="source-note">
-        {preset ? (
-          <>
-            <p className="preset-desc">{preset.description}</p>
-            <p className="cite">
-              Sources:{" "}
-              {sourcesOf(preset).map((src, i) => (
-                <span key={`${src.id}|${src.quote}`}>
-                  {i > 0 && "; "}
-                  <a href={src.url} target="_blank" rel="noreferrer" title={`${src.quote} (${src.locator})`}>
-                    {src.identifier.split(" (")[0]}
-                  </a>
-                  <span className="muted">, {src.locator.split(",")[0]}</span>
-                </span>
-              ))}
-              . Hover a link for the quoted sentence.
-            </p>
-            {preset.limits.length > 0 && (
-              <ul className="limits">
-                {preset.limits.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
-            )}
-          </>
-        ) : (
-          <p className="preset-desc">Custom condition: values set below.</p>
-        )}
-      </div>
-    </section>
+        . Hover a link for the quoted sentence.
+      </p>
+      {preset.limits.length > 0 && (
+        <ul className="limits">
+          {preset.limits.map((l) => (
+            <li key={l}>{l}</li>
+          ))}
+        </ul>
+      )}
+    </details>
   );
 }
 

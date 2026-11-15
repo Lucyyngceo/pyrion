@@ -232,3 +232,33 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .emap-lc { background-image: repeating-linear-gradient(135deg, transparent 0 3px, rgba(255, 255, 255, 0.6) 3px 4px); }
 .badge-level { font-weight: 500; }
 .where-level { color: var(--ink); }
+
+/* ---------- scenario strip ---------- */
+.hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.h1-small { font-size: clamp(18px, 1.6vw, 22px) !important; margin: 2px 0 2px !important; letter-spacing: 0.03em; }
+.help-btn { flex: none; width: 30px; height: 30px; border-radius: 50%; font: inherit; font-weight: 700; color: var(--neon); background: transparent; border: 1px solid var(--border-strong); cursor: pointer; }
+.help-btn:hover { background: var(--neon); color: #001014; }
+.ask { padding: 6px 10px !important; margin: 4px 0 8px; }
+.ask .ask-form input { padding: 6px 10px; }
+.ask .ask-form button { padding: 0 14px; }
+.scenario-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0 0 8px; }
+.tile { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; min-width: 0; border: 1px solid var(--border); background: rgba(0, 240, 255, 0.03); }
+.tile:hover { border-color: var(--border-strong); }
+.tile-on { border-color: var(--neon); box-shadow: inset 0 0 0 1px var(--neon), 0 0 14px rgba(0, 240, 255, 0.18); }
+.tile-mine.tile-on { background: rgba(0, 240, 255, 0.08); }
+.tile-pick { all: unset; display: flex; flex-direction: column; gap: 2px; cursor: pointer; }
+.tile-pick::after { content: ""; position: absolute; inset: 0; }
+.tile-pick:focus-visible::after { outline: 2px solid var(--neon); outline-offset: 2px; }
+.tile-title { font-weight: 700; font-size: 14px; color: var(--ink); }
+.tile-cond { font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--ink-2); }
+.tile-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile-body p { margin: 0; }
+.tile-head { font-weight: 600; font-size: 13.5px; line-height: 1.35; }
+.tile-line { font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.tile-quote { font-style: italic; }
+.tile-quote a, .tile-alt button { position: relative; z-index: 1; font-style: normal; }
+.tile-status { color: var(--ink); }
+.scenario-note { margin: 0 0 8px; font-size: 13px; color: var(--ink-2); }
+.scenario-note summary { cursor: pointer; }
+@media (max-width: 1100px) { .scenario-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .scenario-strip { grid-template-columns: 1fr; } }

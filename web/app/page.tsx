@@ -1,5 +1,5 @@
 import Explorer from "@/components/Explorer";
-import Lede from "@/components/Lede";
+import TourButton from "@/components/TourButton";
 import { loadDataset, loadLineage } from "@/lib/data";
 import "./navigator.css";
 
@@ -10,23 +10,22 @@ export default async function Page() {
   const s = dataset.stats;
   const usable = s.records - s.flagged;
   const synthetic = dataset.mode === "synthetic";
-  // One status line; the full breakdown is on /data.
+  // One small status line; the full breakdown is on /data.
   const located =
     traced === null ? "every value carries its file and location in the NASA source" : traced >= usable ? "every value located by code in the NASA source" : `${traced.toLocaleString("en-US")} of ${usable.toLocaleString("en-US")} values located by code in the NASA source`;
 
   return (
     <main className="page">
-      <header className="hero hero-compact">
-        <h1>
-          PYRION Ω <span className="h1-dash">—</span> The Evidence Envelope
-        </h1>
-        <Lede investigations={dataset.investigations.length} />
-        {!synthetic && (
-          <p className="hero-status small muted">
-            {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} investigations · {located} ·{" "}
-            <a href="/data">details</a>
-          </p>
-        )}
+      <header className="hero hero-compact hero-row">
+        <div>
+          <h1 className="h1-small">The evidence envelope</h1>
+          {!synthetic && (
+            <p className="hero-status small muted">
+              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} investigations · {located} · <a href="/data">details</a>
+            </p>
+          )}
+        </div>
+        <TourButton />
       </header>
 
       {synthetic && (

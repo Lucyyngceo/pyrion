@@ -164,6 +164,14 @@ export default function AskBox({ onTarget }: Props) {
     }
   }
 
+  // Rotating example placeholders: they stop while the visitor types.
+  const [exIdx, setExIdx] = useState(0);
+  useEffect(() => {
+    if (q) return;
+    const t = window.setInterval(() => setExIdx((i) => (i + 1) % EXAMPLES.length), 4500);
+    return () => window.clearInterval(t);
+  }, [q]);
+
   const submit = (text: string) => {
     const question = text.trim();
     if (!question || busy || !cfg?.enabled) return;
@@ -176,15 +184,9 @@ export default function AskBox({ onTarget }: Props) {
 
   return (
     <section className="card ask" aria-labelledby="ask-h">
-      <div className="card-head">
-        <h2 id="ask-h">Ask PYRION</h2>
-        <p className="muted small">
-          The language model translates your question. <strong>The engine decides</strong>: the verdicts are written by code. The model may
-          add a short description of your target; a code check keeps only sentences that use the target&apos;s own numbers and words, and drops
-          anything else.
-        </p>
-      </div>
-
+      <h2 id="ask-h" className="sr-only">
+        Ask PYRION
+      </h2>
       {cfg && !cfg.enabled ? (
         <p className="ask-off" role="status">
           Plain-English questions are off on this server. Pick a NASA condition below: every verdict works without them.
@@ -201,18 +203,20 @@ export default function AskBox({ onTarget }: Props) {
             <label className="sr-only" htmlFor="ask-q">
               Ask about a condition
             </label>
-            <input id="ask-q" type="text" maxLength={500} value={q} placeholder="Ask about a condition…" onChange={(e) => setQ(e.target.value)} disabled={!cfg?.enabled} />
+            <input
+              id="ask-q"
+              type="text"
+              maxLength={500}
+              value={q}
+              placeholder={`Ask: ${EXAMPLES[exIdx]}`}
+              title="The language model only translates your question. The engine decides: the verdicts are written by code, and a code check keeps only sentences that use your target's own numbers and words."
+              onChange={(e) => setQ(e.target.value)}
+              disabled={!cfg?.enabled}
+            />
             <button type="submit" disabled={busy || !q.trim() || !cfg?.enabled}>
               {busy ? "Working…" : "Ask"}
             </button>
           </form>
-          <div className="ask-ex">
-            {EXAMPLES.map((x) => (
-              <button key={x} type="button" className="linklike small" onClick={() => setQ(x)}>
-                {x}
-              </button>
-            ))}
-          </div>
         </>
       )}
 

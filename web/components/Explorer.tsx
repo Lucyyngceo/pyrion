@@ -8,7 +8,10 @@ import type { ParsedTarget } from "@/lib/ask-core";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
-import { ControlsPanel, PresetsPanel, applyPreset, type TargetState } from "./TargetPanel";
+import { ControlsPanel, ScenarioNote, applyPreset, type TargetState } from "./TargetPanel";
+import ScenarioStrip, { type Computed } from "./ScenarioStrip";
+import { scenarioFacts } from "@/lib/scenarios";
+import { toTarget } from "@/lib/preset-apply";
 import NavigatorPanel from "./NavigatorPanel";
 import {
   buildEnvelopes,
@@ -39,17 +42,6 @@ const SEED: DomainSeed = {
   o2: PRESET_VIEWS.flatMap((v) => (v.preset.continuous.o2_mole_fraction ? [v.preset.continuous.o2_mole_fraction.value] : [])),
   pressure: PRESET_VIEWS.flatMap((v) => (v.preset.continuous.pressure ? [v.preset.continuous.pressure.value] : [])),
 };
-
-function toTarget(s: TargetState): Target {
-  const regime: Target["regime"] = {};
-  for (const [k, v] of Object.entries(s.regime)) if (v) regime[k as keyof Target["regime"]] = v;
-  const continuous: Target["continuous"] = { o2_mole_fraction: s.o2, pressure: s.pressure };
-  // A gravity level is informational in the engine's target: shown, never compared.
-  const informational: NonNullable<Target["informational"]> = {};
-  if (s.regime.gravity_regime === "partial_gravity" && s.gravityLevel !== undefined && Number.isFinite(s.gravityLevel)) informational.gravity_level = s.gravityLevel;
-  if (s.gravityNotCovered) informational.gravity_not_covered = s.gravityNotCovered;
-  return Object.keys(informational).length > 0 ? { regime, continuous, informational } : { regime, continuous };
-}
 
 export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [state, setState] = useState<TargetState>(INITIAL);
@@ -326,6 +318,34 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
 
+  // Scenario tiles: every number is the engine's evaluate() on the real records (other axes open as the preset leaves them).
+  const tiles = useMemo(() => {
+    const run = (st: TargetState): Computed | null => {
+      try {
+        const t = toTarget(st);
+        const evaluation = evaluate(records, t, options);
+        return { evaluation, facts: scenarioFacts(evaluation), status: envelopeStatus(evaluation, locateTarget(t, envelopeSet), t) };
+      } catch {
+        return null;
+      }
+    };
+    const stateOf = (id: string) => {
+      const v = PRESET_VIEWS.find((p) => p.preset.id === id);
+      return v ? applyPreset(INITIAL, v) : null;
+    };
+    const iss = stateOf("iss-cabin-air");
+    const lunar = stateOf("challenge-lunar-base");
+    const nesc = stateOf("nesc-8.2psia-34o2-lunar");
+    return {
+      iss: iss ? run(iss) : null,
+      lunar: lunar ? run(lunar) : null,
+      nesc: nesc ? run(nesc) : null,
+      // The same atmosphere with microgravity swapped in: what the tested regime would say.
+      nescMicro: nesc ? run({ ...nesc, regime: { ...nesc.regime, gravity_regime: "microgravity" }, gravityLevel: undefined }) : null,
+    };
+  }, [records, options, envelopeSet]);
+  const mine: Computed | null = result.evaluation && status ? { evaluation: result.evaluation, facts: scenarioFacts(result.evaluation), status } : null;
+
   // "Ask PYRION": the question was translated into a target by a model and checked by code.
   // Axes the question left open stay open; O2 and pressure it did not state keep their current value.
   const applyAsked = (p: ParsedTarget) =>
@@ -341,12 +361,25 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   return (
     <>
       <AskBox onTarget={applyAsked} />
-      <p className="tour-link small">
-        <button type="button" className="linklike" onClick={() => window.dispatchEvent(new Event("pyrion:tour"))}>
-          Take the 3-step tour
-        </button>
-      </p>
       <Tour />
+      <ScenarioStrip
+        state={state}
+        iss={tiles.iss}
+        lunar={tiles.lunar}
+        nesc={tiles.nesc}
+        nescMicro={tiles.nescMicro}
+        mine={mine}
+        investigations={dataset.investigations}
+        onPick={(id) => {
+          const v = PRESET_VIEWS.find((p) => p.preset.id === id);
+          if (v) setState((st) => applyPreset(st, v));
+        }}
+        onCustom={() => {
+          setState((st) => ({ ...st, presetId: null }));
+          document.querySelector(".nav-left")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        }}
+      />
+      <ScenarioNote state={state} />
 
       <div
         className="nav-grid"
@@ -355,7 +388,6 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
         onPointerLeave={() => (overBench.current = false)}
       >
         <div className="nav-left">
-          <PresetsPanel state={state} onChange={setState} />
           <ControlsPanel state={state} onChange={setState} />
         </div>
 
