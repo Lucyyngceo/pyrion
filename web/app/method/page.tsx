@@ -117,9 +117,9 @@ export default function MethodPage() {
         <p>
           Within a regime, investigations are ordered by the normalized distance from the target to the nearest measured
           point. The order is condition similarity on the axes you set, not scientific relevance or importance for fire
-          safety. Across a regime barrier there is no ranking. A barrier means not directly applicable, not irrelevant: the
-          challenge statement notes that microgravity and normal-gravity results could bound what occurs at intermediate
-          gravity levels. The same records and the same target always give the same verdicts and the same order.
+          safety. Equal distances are ordered by PSI accession number. Across a regime barrier there is no ranking: the
+          evidence is not directly applicable. For the gravity regime in particular, the challenge statement notes that
+          microgravity and normal-gravity results could bound what occurs at intermediate gravity levels. The same records and the same target always give the same verdicts and the same order.
         </p>
 
         <h2 data-help="method-receipt">The receipt</h2>

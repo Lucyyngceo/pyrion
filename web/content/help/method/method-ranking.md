@@ -17,4 +17,4 @@ How to use it: Read it.
 
 Example: See why nearest comes first.
 
-What it does not do: Rank is not quality or relevance. A regime barrier means not directly applicable, not irrelevant: microgravity and normal-gravity results can bound intermediate gravity (challenge statement).
+What it does not do: Rank is not quality or relevance. Equal distances are ordered by PSI accession number. A regime barrier means not directly applicable; for gravity in particular, microgravity and normal-gravity results could bound intermediate gravity (challenge statement).

@@ -409,8 +409,8 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
           </h3>
           <p className="muted small">
             A regime barrier is not a low score. Gravity regime, fuel phase and diluent change the physics, so no distance is
-            defined across them. Not directly applicable does not mean irrelevant: microgravity and normal-gravity results
-            can bound what occurs at intermediate gravity (challenge statement).
+            defined across them: not directly applicable. For the gravity regime in particular, microgravity and
+            normal-gravity results could bound what occurs at intermediate gravity (challenge statement).
           </p>
           {showBarrier && barrier.map(row)}
         </div>
