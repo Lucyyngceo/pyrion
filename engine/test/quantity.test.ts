@@ -180,13 +180,13 @@ describe('gravity', () => {
     assert.equal(q.source.document?.page, 13);
     assert.equal(q.source.document?.quote, 'Lunar-g = 0.165 gE');
   });
-  it('"mars" is 0.38 g, cited to NTRS 20010074003 PDF p. 2, with the note that the passage does not name Mars', () => {
+  it('"mars" is 0.38 g, cited to the NSSDC Mars Fact Sheet row (NTRS 20010074003 only as a combustion-study level)', () => {
     const q = ok('mars', 'gravity_level');
     assert.equal(q.value, 0.38);
-    assert.equal(q.source.document?.file, 'ntrs-20010074003/20010074003.pdf');
-    assert.equal(q.source.document?.page, 2);
-    assert.match(q.source.document?.quote ?? '', /0\.1, 0\.16, and 0\.38 g\/gearth/);
-    assert.ok(q.notes.some((n) => n.includes('without naming Mars')));
+    assert.equal(q.source.document?.url, 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html');
+    assert.equal(q.source.document?.quote, 'Surface gravity (mean) (m/s2) 3.73 9.82 0.380');
+    assert.ok(q.notes.some((n) => n.includes('Mars Fact Sheet') && n.includes('19 May 2025') && n.includes('also one of the partial-gravity levels')));
+    assert.ok(!q.notes.some((n) => n.includes('without naming Mars')));
   });
   it('"microgravity" sets the regime and asserts no level', () => {
     const q = ok('microgravity', 'gravity_level');

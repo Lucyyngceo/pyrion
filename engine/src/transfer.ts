@@ -39,6 +39,14 @@ export interface TransferTest {
   inputRecords: { file: string; location: string; note: string }[];
 }
 
+/** Not the source of the Mars value: only shows that 0.38 g is one of the levels used in NASA combustion studies. */
+export const PARTIAL_GRAVITY_LEVELS_NOTE: SourceCitation = {
+  file: 'ntrs-20010074003/20010074003.pdf',
+  page: 2,
+  quote: 'partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth',
+  supports: '0.38 g is one of the partial-gravity levels used in NASA combustion studies (KC-135). This passage does not name Mars and is not the source of the Mars value.',
+};
+
 export type GravityTargetId = 'moon' | 'mars' | 'earth';
 
 export interface GravityTarget {
@@ -69,10 +77,12 @@ export const GRAVITY_TARGETS: Record<GravityTargetId, GravityTarget> = {
     level: 0.38,
     regime: 'partial_gravity',
     source: {
-      file: 'ntrs-20010074003/20010074003.pdf',
-      page: 2,
-      quote: 'partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth',
-      supports: 'the 0.38 g/gearth level flown on KC-135 (PDF p. 2). The passage lists the level without naming Mars: taking 0.38 g as the Mars level is a PYRION choice (the other value in the library, 1/3 g, NTRS 20000004509 PDF p. 3, is a rounded one).',
+      file: 'web:nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html',
+      page: 1,
+      url: 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html',
+      locator: 'row "Surface gravity (mean) (m/s2)": Mars 3.73 | Earth 9.82 | ratio 0.380 (page last updated 19 May 2025)',
+      quote: 'Surface gravity (mean) (m/s2) 3.73 9.82 0.380',
+      supports: 'Mars mean surface gravity as a ratio to Earth: 0.380 g (NASA GSFC NSSDC, Mars Fact Sheet, columns Mars | Earth | Ratio). Not the 1/3 g rounding of NTRS 20000004509.',
     },
   },
   earth: {

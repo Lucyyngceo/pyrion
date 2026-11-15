@@ -5,7 +5,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
 import { canonicalJson, evaluate, presetTarget } from '../src/index.ts';
-import { GRAVITY_TARGETS, TRANSFER_LIMITS, transferHypotheses, transferTestsFromFlowSteps, withGravity, type TransferTest } from '../src/transfer.ts';
+import { SOURCES } from '../src/presets.ts';
+import { GRAVITY_TARGETS, PARTIAL_GRAVITY_LEVELS_NOTE, TRANSFER_LIMITS, transferHypotheses, transferTestsFromFlowSteps, withGravity, type TransferTest } from '../src/transfer.ts';
 import { fixtureRecords } from './helpers.ts';
 
 // SYNTHETIC rod tests, accession PSI-9101 (does not exist in PSI). R = 3.175 mm = 0.3175 cm.
@@ -115,11 +116,18 @@ describe('TRANSFER_HYPOTHESIS', () => {
     assert.deepEqual(transferHypotheses(moon, ts).hypotheses.map((h) => h.test_id), ['T1', 'T2', 'T10']);
   });
 
-  it('Mars is 0.38 g, cited to NTRS 20010074003 PDF p. 2 (the passage lists the level without naming Mars)', () => {
+  it('Mars is 0.38 g, cited to the NASA GSFC NSSDC Mars Fact Sheet row; NTRS 20010074003 is not its source', () => {
     const m = GRAVITY_TARGETS.mars;
     assert.equal(m.level, 0.38);
-    assert.ok('quote' in m.source && m.source.quote.includes('0.38 g/gearth') && m.source.page === 2 && m.source.file.startsWith('ntrs-20010074003'));
-    assert.ok('supports' in m.source && m.source.supports.includes('without naming Mars'));
+    assert.ok('quote' in m.source);
+    if ('quote' in m.source) {
+      assert.equal(m.source.url, 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html');
+      assert.equal(m.source.quote, 'Surface gravity (mean) (m/s2) 3.73 9.82 0.380');
+      assert.ok(m.source.locator?.includes('19 May 2025'));
+      assert.ok(!m.source.file.includes('20010074003'));
+    }
+    assert.ok(PARTIAL_GRAVITY_LEVELS_NOTE.supports.includes('not the source of the Mars value'));
+    assert.equal(SOURCES.marsGravity.url, 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html');
   });
 });
 

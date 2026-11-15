@@ -37,7 +37,7 @@ The source gives no single factor. It gives T* = 865 to 990 K (p. 11) and a labo
 
 For a PSI microgravity test with a **curved sample of known radius** and a known forced flow: its stretch rate `a` (with `g = 0`, `a = a_f`).
 
-For a target gravity level (Moon 0.165 g, Mars 0.38 g, Earth 1 g; the Mars value is cited to NTRS 20010074003, PDF p. 2, which lists "0.1, 0.16, and 0.38 g/gearth" without naming Mars, so it is a PYRION choice. Source 1 below prints "Mars (1/3 g)", a rounded value that the engine no longer uses. No sealed prediction uses a Mars level) and the same sample radius: the buoyant stretch `a_b(g)`, as a band if the density factor is a range.
+For a target gravity level (Moon 0.165 g, Mars 0.38 g, Earth 1 g; the Mars value is cited to NASA GSFC NSSDC, Mars Fact Sheet, https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html (last updated 19 May 2025), row "Surface gravity (mean) (m/s2) | 3.73 | 9.82 | 0.380" (Mars | Earth | ratio); NTRS 20010074003, PDF p. 2, lists 0.38 g among the partial-gravity levels of NASA combustion studies but does not name Mars and is not the source of the value. Source 1 below prints "Mars (1/3 g)", a rounded value that the engine no longer uses. No sealed prediction uses a Mars level) and the same sample radius: the buoyant stretch `a_b(g)`, as a band if the density factor is a range.
 
 A PSI test is a **transfer analog** of the target when its stretch rate falls inside the target's stretch band, **and** every other regime axis and continuous axis would otherwise be comparable (same material class, fuel phase, diluent; O2 and pressure handled as today).
 

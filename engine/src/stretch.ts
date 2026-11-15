@@ -19,6 +19,10 @@ export interface SourceCitation {
   quote: string;
   /** What the quote supports, in plain words. */
   supports: string;
+  /** Web pages only: the address (file is then a "web:" label and page is 1, the single page). */
+  url?: string;
+  /** Web pages only: where on the page the quote is. */
+  locator?: string;
 }
 
 export interface StretchResult {

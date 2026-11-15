@@ -45,7 +45,7 @@ export interface QuantitySource {
   /** Where the factor comes from. */
   table: string;
   /** Gravity names only: the document that gives the level. */
-  document?: { file: string; page: number; quote: string };
+  document?: { file: string; page: number; quote: string; url?: string; locator?: string };
 }
 
 export interface Quantity {
@@ -431,9 +431,9 @@ function gravity(original: string): QuantityResult {
       original,
       unit_original: '',
       factor_or_formula: `name "${name}" → ${g.label}`,
-      source: { table: 'engine/src/transfer.ts GRAVITY_TARGETS', ...(('quote' in g.source) ? { document: { file: g.source.file, page: g.source.page, quote: g.source.quote } } : {}) },
+      source: { table: 'engine/src/transfer.ts GRAVITY_TARGETS', ...(('quote' in g.source) ? { document: { file: g.source.file, page: g.source.page, quote: g.source.quote, ...(g.source.url ? { url: g.source.url } : {}), ...(g.source.locator ? { locator: g.source.locator } : {}) } } : {}) },
       gravity_regime: g.regime,
-      notes: id === 'mars' ? ['0.38 g is a PYRION choice for Mars: NTRS 20010074003 PDF p. 2 lists "0.1, 0.16, and 0.38 g/gearth" without naming Mars.'] : id === 'earth' ? [NORMAL_GRAVITY_CONVENTION_NOTE] : id === 'moon' ? ['The engine presets use 0.16 g (NTRS 20210020446 p. 3); 0.165 g is the FM2 level (NTRS 20260001966, PDF p. 13 (slide 12)).'] : [],
+      notes: id === 'mars' ? ['Mars 0.38 g: NASA GSFC NSSDC Mars Fact Sheet, row "Surface gravity (mean) (m/s2) | 3.73 | 9.82 | 0.380" (Mars | Earth | ratio), page last updated 19 May 2025. 0.38 g is also one of the partial-gravity levels used in NASA combustion studies (NTRS 20010074003, PDF p. 2).'] : id === 'earth' ? [NORMAL_GRAVITY_CONVENTION_NOTE] : id === 'moon' ? ['The engine presets use 0.16 g (NTRS 20210020446 p. 3); 0.165 g is the FM2 level (NTRS 20260001966, PDF p. 13 (slide 12)).'] : [],
     };
     const b = bounded(q);
     return b.ok ? { ...b, display: `${text} → ${sig(g.level)} g (${g.label})` } : b;

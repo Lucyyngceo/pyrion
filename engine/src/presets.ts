@@ -39,6 +39,15 @@ export interface Preset {
 }
 
 export const SOURCES = {
+  marsGravity: {
+    id: 'nssdc-mars-fact-sheet',
+    title: 'Mars Fact Sheet',
+    publisher: 'NASA Goddard Space Flight Center, National Space Science Data Coordinated Archive (NSSDC)',
+    identifier: 'nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html',
+    url: 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html',
+    locator: 'row "Surface gravity (mean) (m/s2)" (page last updated 19 May 2025)',
+    quote: 'Surface gravity (mean) (m/s2) 3.73 9.82 0.380',
+  },
   challenge: {
     id: 'space-apps-2026-flame-in-freefall',
     title: 'Flame in Freefall: SI-Powered Fire Safety Insights from Microgravity Combustion Data (challenge statement)',

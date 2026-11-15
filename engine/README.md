@@ -130,7 +130,7 @@ These are separate from the verdict. They never change `evaluate()` and never pr
 - A test is used only if a source states its gravity regime as microgravity. `data/derived/bass2_flow_steps.csv` has no such column and the condition records of PSI-25 state none yet, so the tests from `transferTestsFromFlowSteps(csv, { gravityRegime })` are excluded until the caller passes a regime it can cite.
 - The table does not say how a rod sits in the flow. `rodFormula` (`rod_tip` by default, or `cylinder`) is an explicit choice and is repeated in each result.
 - The flow of a BASS-II test is a series of display readings (response time about one minute). The test's stretch is the band from its lowest to its highest reading.
-- The Mars level is 0.38 g, cited to NTRS 20010074003, PDF p. 2: "partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth". That passage lists the level without naming Mars, so using 0.38 g as the Mars level is a PYRION choice, and every result says so. NTRS 20000004509 (PDF p. 3) prints "Mars (1/3 g)", a rounded value; it is no longer used.
+- The Mars level is 0.38 g, cited to NASA GSFC NSSDC, "Mars Fact Sheet" (https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html, last updated 19 May 2025), row "Surface gravity (mean) (m/s2)": Mars 3.73, Earth 9.82, ratio 0.380 (`SOURCES.marsGravity`). NTRS 20010074003 (PDF p. 2, "partial-gravity environments of 0.1, 0.16, and 0.38 g/gearth") is cited only as "0.38 g is one of the partial-gravity levels used in NASA combustion studies", never as the source of the Mars value. NTRS 20000004509 (PDF p. 3) prints "Mars (1/3 g)", a rounded value; it is no longer used.
 - NTRS 20260001966 is cited by PDF page, with the printed slide number beside it ("PDF p. 17 (slide 16)"): the slide number is the PDF page minus one.
 
 **`src/fm2.ts`: FM2 chamber balance.** `fm2Balance(inputs)` and `fm2FinalO2(inputs, fuelMassG)`: ideal gas, fixed temperature, total moles constant (the mole change from products is ignored), O2 demand per gram of fuel as an input. Inputs are `Sourced` values (value, unit, source); `fm2Chamber` fixes the published volume (14.4 L, p. 6) and pressure (8.2 psia, p. 10). The chamber temperature is **not** in the source and is a required input. The limit L is a hypothesis supplied by the caller. Assumptions and formulas are returned as data. Check case (NTRS 20260001966, p. 26): PMMA, 34 % O2, 8.2 psia, up to 1.2 g burned, with 1.9176 g O2 per g of PMMA (C5H8O2, derived, not from NASA) gives a final O2 of 12.7 % at 290 K, 12.3 % at 295 K and 12.0 % at 300 K, against NASA's 13 % to 21 %. 1.2 g is the most the source says was burned, so these are the lowest values the model gives, about one percentage point under NASA's lower bound.
@@ -178,7 +178,7 @@ this file with that one. (`psi` there is 6.894757; the engine's `KPA_PER_PSI` ha
 - oxygen: `34 %`, `34%`, `34 vol%`, `0.34`, `34` → fraction. Bare number > 1 is percent, ≤ 1 is a fraction; the rule
   applied is returned in `rule`. A written unit wins (`0.34 %` is 0.0034, with a note).
 - flow: cm/s, mm/s, m/s → cm/s. thickness: mm, cm, µm, in → mm. temperature: K, °C → K.
-- gravity: `0.165 g`, `1/6 g`, `lunar` (0.165 g, NTRS 20260001966 PDF p. 13 (slide 12)), `mars` (0.38 g, NTRS 20010074003 PDF p. 2),
+- gravity: `0.165 g`, `1/6 g`, `lunar` (0.165 g, NTRS 20260001966 PDF p. 13 (slide 12)), `mars` (0.38 g, NASA NSSDC Mars Fact Sheet),
   `microgravity` (sets the regime, asserts no level).
 
 `targetFromQuantities({ gravity, o2, pressure, ...})` returns a validated `Target` and the list of conversions
