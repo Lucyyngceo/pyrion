@@ -13,7 +13,7 @@
 2. **[The worked example](https://pyrion.us/example)** — two full questions printed step by step, computed by the engine on the server, no AI.
 3. **[Proof](https://pyrion.us/proof)** — the validator report and the scripted judge battery, read from this repository.
 
-Tests run on every push (badge above; `cd engine && npm test`, `cd web && npm test`): 441 engine tests pass; of 211 web tests, 206 pass and 5 are **skipped** because they read NASA source files that are not in the repository, in CI as in a clean clone (counts measured on 15 November 2026 with Node 26; CI runs Node 24). The skipped ones have not passed; "Reproduce the source checks" below runs them.
+Tests run on every push (badge above; `cd engine && npm test`, `cd web && npm test`): 441 engine tests pass; of 227 web tests, 222 pass and 5 are **skipped** because they read NASA source files that are not in the repository, in CI as in a clean clone (counts measured on 15 November 2026 with Node 26; CI runs Node 24). The skipped ones have not passed; "Reproduce the source checks" below runs them.
 **Where the AI ends:** the verdict is computed by fixed rules in `engine/` and is the same for the same condition. A language model only reads a question into a condition and narrates the result; it never decides a verdict, and every NASA quote it shows is checked against its page. With no API key the envelope, the verdicts and the worked example all work.
 
 PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
@@ -225,67 +225,7 @@ Rights, as far as they are established (not guessed):
 | OpenTimestamps | timestamp seals | LGPL-3.0 |
 | OpenRouter, NVIDIA NIM | access to the run-time models listed above | service terms of each provider |
 | Remotion, Playwright, FFmpeg, faster-whisper | building the demo video | Remotion License (free for individuals), Apache-2.0, LGPL-2.1-or-later, MIT |
-| ElevenLabs | eleven_v4 text-to-speech, with a voice cloned from the team member's own voice | The demo video's voiceover. Declared on the video's end card and in the submission. |
-| faster-whisper (SYSTRAN) | Whisper small.en | Word timestamps of the voiceover, to place captions and cuts in the demo video. |
-
-**Models that run inside the app (run time).** All of them have open weights with a license checked on the model's own page; the page names the model that answered every question.
-
-| Role | Model | License | Provider |
-|---|---|---|---|
-| TARS SI brain (chat, reading questions) | NVIDIA Nemotron 3 Ultra 550B | OpenMDW-1.1 (per NVIDIA NGC) | OpenRouter, with the free NVIDIA NIM endpoint as fallback |
-| Fallback, models a visitor can pick, and the "Ask 3 models" panel | Gemma 4 31B (Google); Mistral Small 3.2 24B (Mistral AI) | Apache-2.0; Apache-2.0 | OpenRouter (Gemma also on NVIDIA NIM) |
-| Second-opinion reviewers of TARS answers (always a different family from the one that answered) | Nemotron 3 Ultra, Gemma 4 31B, Mistral Small 3.2, gpt-oss-120b (OpenAI) | as above; gpt-oss-120b Apache-2.0 | OpenRouter / NVIDIA NIM |
-| Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
-| Text-similarity baseline (the "text vs physics" comparison), computed offline once; the site reads the stored rankings, no model runs at request time | BAAI bge-small-en-v1.5 | MIT | offline, local (fastembed) |
-
-**It keeps working without credits.** TARS tries Nemotron 3 Ultra on OpenRouter first. If the OpenRouter credit runs out, the daily cap (`PYRION_DAILY_REQUEST_CAP`) is reached, or the provider fails, the same Nemotron 3 Ultra answers from NVIDIA's free NIM endpoint, then Gemma 4 31B, with no action from the visitor. If no model is reachable at all, every verdict, the Envelope, the Planner, the MCP server and the structured TARS answers still work, because they are code, not a model.
-
-**No run-time model comes from a China-owned company** (NASA Space Apps terms). Earlier during the event TARS used GLM-5.3, Qwen3.8-27B and Kimi K2.6 through OpenRouter; they were replaced on 15 November 2026 after a model trial (`validation/model_trial/`).
-
-**What the AI does not do.** No model decides a verdict: the applicability engine is plain TypeScript rules over the extracted records, and it gives the same verdict with any model or with none. Models never convert units or do arithmetic (code does), every NASA quote a model shows is checked by code against the page it cites, and any number in the model's own reasoning that does not come from a source or a calculation is removed before it is shown. Without any model key the site works in structured mode.
-
-**What was checked by code and by AI reviewers.** Every extracted value was located by code in its NASA source file (table cell at its row and column, or quote found word for word with its numbers as written). Reviews of the data and the engine were run by separate AI reviewer agents; they are not NASA review or expert validation.
-
-## TARS library
-
-The library TARS reads: the page-by-page text of the NASA documents downloaded under `data/raw/` (PSI reports, presentations, readmes and investigation records; NTRS papers and presentations; NASA-STD-6001B; JSC 29353D; NASA web pages). It is the only text TARS answers from, so every claim can be checked by code against the page it came from.
-
-- **The text comes from code, not from a model.** PDF pages come from PyMuPDF `page.get_text()` (the call the validator uses), DOCX/PPTX/XLSX from their XML, web pages from the standard-library HTML parser, tables from the `csv` module. Nothing is OCR'd, summarised or rewritten; pages with no text layer are skipped and listed.
-- **Rebuild** (about 70 s, deterministic: the same files give the same `pages.jsonl` hash):
-
-  ```bash
-  python -I tools/build_corpus.py
-  python -I tools/build_corpus.py --search "limiting oxygen concentration BASS-II"
-  ```
-
-- **Output** in `web/.data/corpus/` (git-ignored, regenerable from `data/raw/`): `pages.jsonl` (one line per page with document, accession or NTRS id, 1-based PDF page, printed page when detectable, citation URL, DOI, SHA-256 of the file), `chunks.jsonl` (~320-word chunks with 50-word overlap, each pointing to its pages), `bm25.json` (a BM25 index, no model needed), `no_text_pages.json`, `skipped.json`, `corpus_manifest.json`.
-- **Not read:** binary formats (`.xls`, `.doc`, `.ppt`), `.zip`, `.dat`, images and video, files identical to another by SHA-256, and one PDF that PyMuPDF cannot open (listed in `skipped.json`). Tables are included as header plus the first rows only; the numbers used by the engine live in `data/conditions/`. DOCX has no pages, so its pseudo-pages are blocks of paragraphs (`paragraph=a-b`).
-
-## Images
-
-Photographs on the home page come from NASA: representative images in the PSI investigation records (`web/public/media/psi/CREDITS.json`) and the NASA Image and Video Library (`web/public/media/nasa/CREDITS.json` and `web/public/media/warp/CREDITS.json`), each credited where shown. No NASA logo is used, and no NASA endorsement is implied. No image on the site or in the demo video is AI-generated.
-
-Rights, as far as they are established (not guessed):
-
-| Images | Source | Rights |
-|---|---|---|
-| PSI-22, PSI-25, PSI-159 representative images | PSI investigation records | the investigation's PSI license is CC0-1.0 (`data/manifest/investigations.csv`) |
-| **PSI-10 representative images** (`acme-flame-design-in-space`, `cir-on-iss`, `acme-hardware`) | PSI-10 record | **unresolved**: PSI states no license for PSI-10; used with NASA credit as a NASA work, pending a stated license |
-| NASA Image and Video Library images (`media/nasa/`, `media/warp/`) | images.nasa.gov, NASA id in each credit | NASA media usage guidelines (generally not copyrighted in the U.S.; some items credit a partner, e.g. NASA/GSFC/Arizona State University); not an SPDX license |
-
-## Third-party software, fonts and services
-
-| What | Used for | License |
-|---|---|---|
-| Next.js 16, React 19 | web app | MIT |
-| Chakra Petch, IBM Plex Sans, IBM Plex Mono (Google Fonts, via next/font) | typography | SIL Open Font License 1.1 |
-| PyMuPDF | reading NASA PDFs | AGPL-3.0 (used as a tool, not shipped in the app) |
-| openpyxl | reading NASA spreadsheets (validator, extraction, corpus tools) | MIT |
-| fastembed + BAAI bge-small-en-v1.5 | text-similarity baseline | Apache-2.0 / MIT |
-| OpenTimestamps | timestamp seals | LGPL-3.0 |
-| OpenRouter, NVIDIA NIM | access to the run-time models listed above | service terms of each provider |
-| Remotion, Playwright, FFmpeg, faster-whisper | building the demo video | Remotion License (free for individuals), Apache-2.0, LGPL-2.1+, MIT |
-| ElevenLabs | demo-video voiceover, an AI voice cloned from the team member's own voice | ElevenLabs terms |
+| ElevenLabs | demo-video voiceover, an AI voice cloned from the team member's own voice | ElevenLabs terms of service |
 
 ## License
 
