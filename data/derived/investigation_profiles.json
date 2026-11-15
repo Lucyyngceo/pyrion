@@ -3499,18 +3499,19 @@
       }
     ],
     "test_count": 129,
-    "value_count": 732,
+    "value_count": 884,
     "variables": [
       {
-        "classification": "observed constant",
-        "distinct_count": 1,
+        "classification": "distinct values as recorded",
+        "distinct_count": 2,
         "max": null,
         "min": null,
         "source": "data/conditions/PSI-25.csv",
-        "test_count": 17,
+        "test_count": 99,
         "unit": "",
-        "value_count": 17,
+        "value_count": 169,
         "values": [
+          "concurrent",
           "opposed"
         ],
         "variable": "flow_configuration"

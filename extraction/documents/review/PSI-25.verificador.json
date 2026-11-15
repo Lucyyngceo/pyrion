@@ -109,6 +109,129 @@
    "id": "R304",
    "verdict": "REJECT",
    "reason": "One unidentified test among eight candidates; the stated 20.7 % O2 excludes three of them; adds nothing beyond R301/R302."
+  },
+  {
+   "id": "R401",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R402",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R403",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R404",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R405",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R406",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R407",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R408",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R409",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R410",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R411",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R412",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R413",
+   "verdict": "MODIFY",
+   "reason": "Series-level sentence cannot be 'direct' per test: Table A.5 contradicts or is silent for some ids.",
+   "corrected": {
+    "confidence": "ambiguous",
+    "derivation": "Series-level ReadMe sentence (PI description), not a per-test statement. Table A.5 marks O1 and O2 '?' and labels 11 rows 'Stagnation'; O20..O22 have no Table A.5 row. Per-test direct support exists only for the 'Concurrent' rows (R415, R416)."
+   }
+  },
+  {
+   "id": "R414",
+   "verdict": "MODIFY",
+   "reason": "Series-level sentence cannot be 'direct' per test: Table A.5 contradicts or is silent for some ids.",
+   "corrected": {
+    "confidence": "ambiguous",
+    "derivation": "Chapter-level abstract with no test list; ids taken from the PSI-table Olson series. Not per-test: Table A.5 marks O1 and O2 '?' and has no rows for O20..O22."
+   }
+  },
+  {
+   "id": "R415",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R416",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R417",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R418",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R419",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R420",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R421",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R422",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R423",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
   }
  ],
  "missed": [
@@ -130,5 +253,15 @@
   "missed": [],
   "could_not_check": "SRD PDF could not be opened (no pressure found on its pages 1-16 by the earlier extraction); no slide or figure image seen; membership of 'the tests reported' on page 46 cannot be determined; T10, T11 and T7 collide with BASS labels (PSI-26): join on accession and GMT day.",
   "transcription": "Verdicts condensed by the build session from the verificador's final message."
+ },
+ "addendum_flowconfig": {
+  "date": "2026-11-15",
+  "verified_by": "verificador agent (Claude Opus 5.5), separate run",
+  "transcription": "Verdicts condensed by the build session. R413 and R414 MODIFY (series-level sentences: confidence ambiguous).",
+  "missed": [
+   "Summary Report page=74 'This stagnation geometry was selected for this work to study material flammability in microgravity. Concurrent-flow flame spread tests burned an axisymmetric cylindrical PMMA rod ...' (chapter-level support that stagnation = concurrent for Olson)",
+   "page=60 'The postburn rod samples in Figure 4.5 preserve bubble layers for the opposed flow and for concurrent flow (Olson tests).'"
+  ],
+  "could_not_check": "The verificador saw no page image; the build session checked Table A.3 (page 114) visually: P16 and P19 read Concurrent, other P rows Opposed, and the column that holds the direction words is titled 'Sample distance' in the original. Olson O1, O2 read '?' in Table A.5 and O20-O22 have no row; whether the Olson chapter includes the 2016 tests cannot be told."
  }
 }
