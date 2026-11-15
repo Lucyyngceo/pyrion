@@ -8,6 +8,7 @@ import type { EnvelopeStatus } from "@/lib/summary";
 import StatusSymbol, { TONE_STATUS } from "./StatusSymbol";
 import { levelPhrase } from "@/lib/plain";
 import { ATM_KPA, axisLabel, fmt, kPa, kpaToPsi, pctO2, psia } from "@/lib/units";
+import { NEVER_COMPARED } from "@/lib/engine";
 
 export type LayerState = "match" | "open" | "dim";
 
@@ -1246,6 +1247,9 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             {openAxes.length === 1 ? "it" : "them"} in the target panel to compare.
           </p>
         )}
+        <p data-help="not-compared-note" className="small muted">
+          A verdict compares recorded conditions; it does not mean a test was run at this exact condition. Not compared: {NEVER_COMPARED.join("; ")}.
+        </p>
         {offScale > 0 && (
           <p className="muted small">
             {offScale} plotted point{offScale === 1 ? " is" : "s are"} outside the pressure range shown ({fmt(domain.y0, 0)}–{fmt(domain.y1, 0)} kPa).

@@ -96,11 +96,11 @@ export default function MethodPage() {
           <tbody>
             <tr>
               <td><span className="badge v-app"><StatusSymbol level="normal" /> Inside the tested range</span> <code className="small muted">APPLICABLE</code></td>
-              <td>Same regime, and the target is inside the measured envelope.</td>
+              <td>Same regime, and the target lies inside the region spanned by the tested oxygen-pressure points (within PYRION's numerical tolerance). It does not mean a test was run at that exact condition, and material, geometry, flow configuration and ignition source are not compared.</td>
             </tr>
             <tr>
               <td><span className="badge v-ext"><StatusSymbol level="caution" /> Outside the tested range</span> <code className="small muted">EXTRAPOLATION</code></td>
-              <td>Same regime, but the target is outside the measured envelope.</td>
+              <td>Same regime, but the target lies outside the region spanned by the tested points. The same variables are not compared.</td>
             </tr>
             <tr>
               <td><span className="badge v-ins"><StatusSymbol level="standby" /> Insufficient evidence</span> <code className="small muted">INSUFFICIENT_EVIDENCE</code></td>

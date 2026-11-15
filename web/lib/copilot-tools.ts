@@ -7,6 +7,7 @@ import {
   PMMA_STOICH,
   TRANSFER_LIMITS,
   canonicalJson,
+  comparisonScope,
   evaluate,
   fm2Balance,
   fm2Chamber,
@@ -243,7 +244,7 @@ export async function runTool(ctx: ToolContext, name: string, args: Record<strin
       const evaluation = evaluate(ctx.records, t.target);
       const { input } = buildNarrationInput(evaluation, ctx.investigations, t.target, 6);
       return {
-        result: { ...input, conversions: t.conversions.map((c) => c.display), notes: t.conversions.flatMap((c) => c.notes), warnings: t.conversions.flatMap((c) => c.warnings) },
+        result: { ...input, comparison_scope: comparisonScope(t.target), conversions: t.conversions.map((c) => c.display), notes: t.conversions.flatMap((c) => c.notes), warnings: t.conversions.flatMap((c) => c.warnings) },
         engineHash: await ctx.sha256(canonicalJson(evaluation)),
         target: t.target,
       };

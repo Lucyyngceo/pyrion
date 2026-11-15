@@ -52,6 +52,10 @@ Things we did not know at the start and only found near the deadline, kept here 
 8. **The help encyclopedia drifts.** Removing the Ask bar and the Add a source button left help topics and TARS "take me there" targets pointing at nothing. A coverage test catches missing help ids; topics about removed elements still needed a manual pass.
 9. **Say what it does before what it found.** The first landing headline led with the Moon Base finding and confused readers. It now says what PYRION does, and the finding sits right below.
 
+## What a verdict means, and what it does not
+
+"Inside the tested range" (the engine's APPLICABLE) says the condition lies within the oxygen-pressure ranges, and any other axes the question states, of recorded tests of one investigation. It is a comparison of recorded conditions. It is not a finding that a test was run at that exact condition, and the engine has no axis for **material or fuel composition within a phase, sample geometry and orientation, flow direction and configuration, or ignition source**, so these are never compared. Every result lists them (`comparison_scope` in the MCP output; a note under the dashboard chart). Gravity regime, fuel phase, diluent and flame type are hard barriers: crossing one is "not comparable", never a distance. The 0.5 % tolerance is a PYRION numerical convention, not an experimental uncertainty.
+
 ## Run locally
 
 Requires Node.js 24 or newer (the engine runs its TypeScript directly; the public instance runs Node 24, `docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).

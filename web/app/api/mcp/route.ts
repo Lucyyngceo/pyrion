@@ -198,7 +198,7 @@ const RESOURCES: { uri: string; name: string; title: string; description: string
     title: "The four verdicts",
     description: "What each verdict means and how to say it.",
     text:
-      "APPLICABLE: the condition lies inside the region of measured test points (within tolerance); no test was necessarily run at that exact point. " +
+      "APPLICABLE (shown as 'inside the tested range'): the condition lies inside the region spanned by recorded test points (within a numerical tolerance); no test was necessarily run at that exact point, and material, geometry, flow configuration and ignition source are not compared (see comparison_scope in evaluate_target). " +
       "EXTRAPOLATION: just outside the tested data; the level says how far. INSUFFICIENT_EVIDENCE: the records do not state a value needed to compare (a real answer; see evidence_gaps). " +
       "REGIME_BARRIER: different gravity, fuel or atmosphere; not comparable. None of these is a safety statement.",
   },

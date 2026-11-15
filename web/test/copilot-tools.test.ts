@@ -85,3 +85,12 @@ test("flex_model takes strings with units, converted by the engine", () => {
   assert.equal(validateArgs("flex_model", { fuel: "heptane", d0: "0.5 mm", o2: "21 %", pressure: "1 atm" }).ok, true);
   assert.equal(validateArgs("flex_model", { fuel: "heptane", o2: 0.21 }).ok, false);
 });
+
+test("evaluate_target says what the verdict compared and what it never compares", async () => {
+  const out = await runTool(ctx, "evaluate_target", { gravity: "microgravity", fuel_phase: "solid", o2: "21 %", pressure: "8.2 psia" });
+  const s = (out.result as { comparison_scope: { compared: string[]; notCompared: string[]; note: string } }).comparison_scope;
+  assert.ok(s.compared.includes("oxygen") && s.compared.includes("pressure") && s.compared.includes("fuel phase"));
+  assert.ok(s.notCompared.includes("diluent gas (left open)"), "an axis the question left open is listed");
+  for (const v of ["flow direction and configuration", "sample geometry and orientation", "ignition source"]) assert.ok(s.notCompared.includes(v), v);
+  assert.match(s.note, /not a finding that a test was run at this exact condition/);
+});
