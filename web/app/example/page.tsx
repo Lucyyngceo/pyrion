@@ -45,6 +45,8 @@ export default async function Example() {
   const doi = (acc: string) => investigations.find((i) => i.accession === acc)?.doi ?? "";
   // One row per investigation: its best cluster (ranked first, then insufficient, then another regime).
   const all: ClusterVerdict[] = [...evaluation.ranked, ...evaluation.unranked].filter((v, i, a) => a.findIndex((x) => x.accession === v.accession) === i);
+  const comparable = all.filter((v) => v.verdict !== "REGIME_BARRIER");
+  const barrier = all.filter((v) => v.verdict === "REGIME_BARRIER");
   const top = evaluation.ranked[0] ?? null;
   const decisive = top ? top.reasons.filter((r) => !r.informational) : [];
   const cites = top ? decisive.flatMap((r) => r.citations).filter((c, i, a) => a.findIndex((x) => x.test_id === c.test_id && x.variable === c.variable) === i).slice(0, 4) : [];
@@ -189,6 +191,16 @@ export default async function Example() {
           {c.APPLICABLE} inside the tested range · {c.EXTRAPOLATION} outside the tested range · {c.INSUFFICIENT_EVIDENCE} insufficient evidence ·{" "}
           {c.REGIME_BARRIER} not comparable (different gravity, fuel or atmosphere). Ordered by how close their tested conditions are (not by importance).
         </p>
+        {c.APPLICABLE === 0 && (
+          <p>
+            <strong>Why 0 inside:</strong> the closest tests were run at slightly different oxygen (first rows below), and{" "}
+            {c.INSUFFICIENT_EVIDENCE} investigations lack an oxygen or pressure value in PSI, so under PYRION&apos;s rule (0.5 %
+            tolerance) none counts as inside. That is a gap in the evidence, not a statement about the ISS.{" "}
+            <a data-help="example-link" href="#ex-gaps">
+              See the evidence gaps: which missing values would put it inside →
+            </a>
+          </p>
+        )}
         <div className="tars-cmptable">
           <table>
             <thead>
@@ -200,7 +212,7 @@ export default async function Example() {
               </tr>
             </thead>
             <tbody>
-              {all.map((v) => (
+              {comparable.map((v) => (
                 <tr key={`${v.accession}|${v.clusterKey}`}>
                   <td>{v.rank ?? "—"}</td>
                   <td>
@@ -217,6 +229,23 @@ export default async function Example() {
             </tbody>
           </table>
         </div>
+        {barrier.length > 0 && (
+          <details className="ex-collapsed">
+            <summary data-help="example-link">
+              {barrier.length} not comparable (different gravity, fuel or atmosphere) — show them
+            </summary>
+            <ul className="small">
+              {barrier.map((v) => (
+                <li key={`${v.accession}|${v.clusterKey}`}>
+                  <Link data-help="example-link" href={`/investigations/${v.accession}`}>
+                    {v.accession} {name(v.accession)}
+                  </Link>
+                  : {v.reasons.find((r) => !r.informational)?.message ?? v.reasons[0]?.message ?? ""}
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
       </section>
 
       {top && (
