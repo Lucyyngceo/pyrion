@@ -13,6 +13,7 @@ import {
   numbersIn,
   parseCorpusJsonl,
   quoteFound,
+  scrubNumbers,
   type AnswerBlock,
   type CheckContext,
 } from "../lib/expert/claims.ts";
@@ -201,4 +202,25 @@ test("real corpus: the FM2 chamber quote is verified on its page and fails one p
   assert.equal(citationProblem({ doc_id: doc.doc_id, page: doc.page, quote }, real), null);
   assert.equal(citationProblem({ doc_id: doc.doc_id, page: doc.page - 1, quote }, real), "quote_not_found");
   assert.equal(citationProblem({ doc_id: doc.doc_id, page: doc.page, quote: "Test 1: 82 psia (+/- 0.3 psi), 37% O2 , balance nitrogen" }, real), "numbers_not_found");
+});
+
+test("engine blocks carry provenance: arithmetic is recognised as computed by code", () => {
+  const calc = runCalculator("o2PartialPressure", { o2: "34 %", pressure: "8.2 psia" });
+  assert.ok(calc.ok);
+  // Calculator result registered in ctx.tools (the full ToolResult) ...
+  const a = checkAnswer([{ layer: "engine", text: "Oxygen partial pressure = 34 % x 56.54 kPa (8.2 psia) = 19.22 kPa (2.788 psia).", toolRefs: ["pp"] }], { corpus, engine: { pp: { numbers: calc.numbers, display: calc.display } }, tools: { pp: calc } });
+  assert.equal(a.kept.length, 1);
+  assert.match(a.kept[0].provenance[0], /computed by code/);
+  assert.match(a.kept[0].provenance[0], /19\.22 kPa \(2\.788 psia\)/);
+  // ... or only as the engine dictionary entry the agent writes ({display, value, unit, also, numbers}), and for plain engine outputs.
+  const b = checkAnswer([{ layer: "engine", text: "Oxygen partial pressure = 34 % x 56.54 kPa (8.2 psia) = 19.22 kPa (2.788 psia).", toolRefs: ["t1"] }], { corpus, engine: { t1: { display: calc.display, value: calc.value, unit: calc.unit, also: calc.also, numbers: calc.numbers } } });
+  assert.match(b.kept[0].provenance[0], /computed by code \(calculator result "t1"\)/);
+  const c = checkAnswer([{ layer: "engine", text: "Cabin at 30 %.", toolRefs: ["answer"] }], ctx);
+  assert.match(c.kept[0].provenance[0], /computed by code \(PYRION engine\)/);
+});
+
+test("scrubNumbers replaces what is not from a source and keeps what is", () => {
+  const r = scrubNumbers("It is 8.2 psia, not 9 psia.", [8.2]);
+  assert.equal(r.text, `It is 8.2 psia, not ${NUMBER_REMOVED} psia.`);
+  assert.deepEqual(r.removed, ["9"]);
 });

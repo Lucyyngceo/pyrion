@@ -40,6 +40,8 @@ export interface CorpusPage {
   url?: string;
   file_url?: string;
   title?: string;
+  doi?: string;
+  ntrs_id?: string;
 }
 
 export interface Corpus {
@@ -66,6 +68,8 @@ export const MIN_QUOTE_CHARS = 15;
 export interface VerifiedCitation extends Citation {
   title?: string;
   url?: string;
+  doi?: string;
+  ntrs_id?: string;
 }
 
 export interface KeptBlock {
@@ -248,6 +252,40 @@ function idsOf(value: unknown, out: Set<string> = new Set()): Set<string> {
 
 const toolFacts = (r: ToolResult): number[] => (r.ok ? [...r.numbers, ...factsOf(r.display), ...Object.values(r.also).map((m) => m.value)] : []);
 
+/**
+ * The "computed by code" line of a reference: a calculator result says what it computed and by which table; an engine output
+ * (verdicts, routes, plans) is the engine's own, computed by code as well. Every engine block therefore carries a line that
+ * says so, and arithmetic is recognised as computed by code.
+ */
+export function provenanceFor(ref: string, ctx: CheckContext): string {
+  const tool = ctx.tools?.[ref];
+  if (tool && tool.ok) return `${tool.display} — ${tool.provenance}`;
+  const out = ctx.engine?.[ref] as Record<string, unknown> | undefined;
+  if (out && typeof out === "object") {
+    const prov = out.provenance;
+    const disp = out.display;
+    if (typeof prov === "string") return typeof disp === "string" ? `${disp} — ${prov}` : prov;
+    if (typeof disp === "string" && "unit" in out && "numbers" in out) return `${disp} — computed by code (calculator result "${ref}")`;
+  }
+  return `engine output "${ref}" — computed by code (PYRION engine)`;
+}
+
+/**
+ * Replace every number of `text` that is neither among `facts` nor written in `quoteTokens`. For sentences that are not
+ * answer blocks (an objection's reason, a claim's note): the same rule as for an expert block.
+ */
+export function scrubNumbers(text: string, facts: readonly number[], quoteTokens: ReadonlySet<string> = new Set()): { text: string; removed: string[] } {
+  const bad = numberTokens(text).filter((t) => !numberAllowed(t.token, facts, quoteTokens));
+  let out = text;
+  for (const t of [...bad].sort((a, b) => b.index - a.index)) out = out.slice(0, t.index) + NUMBER_REMOVED + out.slice(t.end);
+  return { text: out, removed: bad.map((t) => t.token) };
+}
+
+/** Every number in a piece of text, as numbers (the facts a later sentence may restate). */
+export function numberFacts(text: string): number[] {
+  return factsOf(text);
+}
+
 // ---------- the check ----------
 
 export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
@@ -277,7 +315,7 @@ export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
       }
       const page = ctx.corpus.get(c.doc_id, c.page) as CorpusPage;
       const url = page.url ?? page.file_url;
-      good.push({ doc_id: c.doc_id, page: c.page, quote: c.quote, ...(page.title ? { title: page.title } : {}), ...(url ? { url } : {}) });
+      good.push({ doc_id: c.doc_id, page: c.page, quote: c.quote, ...(page.title ? { title: page.title } : {}), ...(url ? { url } : {}), ...(page.doi ? { doi: page.doi } : {}), ...(page.ntrs_id ? { ntrs_id: page.ntrs_id } : {}) });
     }
     verifiedOf.set(index, good);
   });
@@ -327,7 +365,7 @@ export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
         report.dropped.push({ index, layer, reason: "id_not_in_engine_output", detail: badId });
         return;
       }
-      kept.push({ layer, text: b.text, label: ENGINE_LABEL, citations: [], provenance: refs.map((r) => `engine output "${r}"`), flagged: false });
+      kept.push({ layer, text: b.text, label: ENGINE_LABEL, citations: [], provenance: refs.map((r) => provenanceFor(r, ctx)), flagged: false });
       return;
     }
 
@@ -341,7 +379,7 @@ export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
     }
     const facts = [...tools.flatMap((t) => (t ? toolFacts(t) : [])), ...engineOut.flatMap((o) => (o === undefined ? [] : factsOf(o)))];
     const { text, flagged } = replaceUntraced(b.text, index, layer, facts, answerQuoteTokens, report);
-    const provenance = tools.flatMap((t) => (t && t.ok ? [`${(t as ToolOk).display} — ${(t as ToolOk).provenance}`] : []));
+    const provenance = refs.flatMap((r, i) => (tools[i] !== undefined ? (tools[i] && tools[i]!.ok ? [provenanceFor(r, ctx)] : []) : [provenanceFor(r, ctx)]));
     kept.push({ layer, text, label: EXPERT_LABEL, citations: [], provenance, flagged });
   });
 
