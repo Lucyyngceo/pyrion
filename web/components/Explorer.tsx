@@ -440,7 +440,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
                   evaluation={result.evaluation}
                   investigations={dataset.investigations}
                   status={status}
-                  targetLabel={view ? view.short : "custom condition"}
+                  targetLabel={view ? view.short : "your condition"}
                   counts={counts}
                   pinned={pinned && pinnedStatus ? { label: pinned.label, headline: pinnedStatus.headline, tone: pinnedStatus.tone } : null}
                   onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
@@ -471,7 +471,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               evaluation={result.evaluation}
               investigations={dataset.investigations}
               status={status}
-              targetLabel={view ? view.short : "custom condition"}
+              targetLabel={view ? view.short : "your condition"}
               counts={counts}
               pinned={pinned && pinnedStatus ? { label: pinned.label, headline: pinnedStatus.headline, tone: pinnedStatus.tone } : null}
               onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}

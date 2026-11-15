@@ -29,3 +29,14 @@ for (const [name, state] of [["ISS cabin air", iss], ["Lunar habitat (challenge)
     assert.deepEqual(failures, [], `${failures.length} of ${set.routes.length} routes do not end APPLICABLE`);
   });
 }
+
+test("a route leaves the preset (headline 'your condition'), and clicking the preset again re-applies it exactly", () => {
+  const issPreset = { preset: { id: "iss-cabin-air", regime: { gravity_regime: { value: "microgravity" } }, continuous: { o2_mole_fraction: { value: 0.21 }, pressure: { value: 14.7 * KPA_PER_PSI } } } } as unknown as Parameters<typeof applyPreset>[1];
+  const start = applyPreset(blank, issPreset);
+  assert.equal(start.presetId, "iss-cabin-air");
+  const set = routesToEvidence(records, toTarget(start));
+  const moved = stateFromTarget(set.routes[0].target as Target, start);
+  assert.equal(moved.presetId, null, "applying a route means the visitor is no longer on the preset");
+  const again = applyPreset(moved, issPreset);
+  assert.deepEqual(again, { ...start }, "clicking the preset tile always re-applies it");
+});
