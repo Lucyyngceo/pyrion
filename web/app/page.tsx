@@ -39,6 +39,14 @@ const NASA_SAYS = [
   },
 ] as const;
 
+/** Representative images from the PSI investigation records (credits in public/media/psi/CREDITS.json). */
+const FLAMES = [
+  { src: "/media/psi/acme-flame-design-in-space.webp", acc: "PSI-10", name: "ACME Flame Design", cap: "A flame aboard the ISS" },
+  { src: "/media/psi/e-field-flames-blue.webp", acc: "PSI-22", name: "E-FIELD Flames", cap: "A flame shaped by an electric field" },
+  { src: "/media/psi/cfi-g-cool-flames.webp", acc: "PSI-159", name: "CFI-G", cap: "A spherical flame on a porous burner" },
+  { src: "/media/psi/bass-ii-flame-testing.webp", acc: "PSI-25", name: "BASS-II", cap: "A flame over a solid sample" },
+] as const;
+
 const SECTIONS = [
   { id: "about", label: "About" },
   { id: "found", label: "What NASA found" },
@@ -75,13 +83,14 @@ export default async function Landing() {
             ))}
           </nav>
           <Link data-help="landing-explore" href="/envelope" className="ld-btn ld-btn-primary ld-bar-cta">
-            Explore the evidence →
+            Explore the dashboard →
           </Link>
         </div>
       </header>
 
       <main className="page landing">
-        <section className="ld-hero" aria-labelledby="ld-h">
+        <section className="ld-hero ld-hero-split" aria-labelledby="ld-h">
+          <div className="ld-hero-text">
           <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team NDMLM</p>
           <h1 id="ld-h" className="ld-title">
             Find the NASA fire experiments relevant to your habitat — and see where the tested evidence ends.
@@ -102,6 +111,37 @@ export default async function Landing() {
             </Link>
           </div>
           <p className="ld-facts small muted">{facts.sentence}</p>
+          </div>
+          <figure className="ld-hero-fig">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/media/psi/acme-flame-design-in-space.webp" alt="A flame burning aboard the International Space Station, ACME Flame Design" width={1094} height={804} />
+            <figcaption className="small muted">
+              A flame aboard the ISS. NASA PSI,{" "}
+              <a data-help="landing-source" href={PSI("PSI-10")}>
+                PSI-10
+              </a>{" "}
+              representative image.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section className="ld-section ld-flames" aria-labelledby="ld-flames-h">
+          <p className="ld-kicker">Real flames, real data</p>
+          <h2 id="ld-flames-h">Fire without gravity, from NASA&apos;s own records</h2>
+          <div className="ld-flame-strip">
+            {FLAMES.map((f) => (
+              <figure key={f.src} className="ld-flame">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={f.src} alt={`${f.cap}, ${f.name}`} loading="lazy" />
+                <figcaption className="small">
+                  <strong>{f.name}</strong> · {f.cap}.{" "}
+                  <a data-help="landing-source" href={PSI(f.acc)}>
+                    NASA PSI {f.acc}
+                  </a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section id="about" className="ld-section" aria-labelledby="ld-about-h">

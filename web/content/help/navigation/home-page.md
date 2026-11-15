@@ -11,7 +11,7 @@ highlight: [data-help="landing-start"]
 ---
 What it is: The first page: the question PYRION answers, the main finding and links to every part of the site.
 
-What it shows: A top bar with the page sections and an Explore the evidence button; the one-line purpose; two try-it buttons (ISS cabin air, the Moon Base condition); why it matters, quoted from NASA's challenge; what NASA set out to learn, quoted from PSI records; the lunar edge (FM2 as planned); how it works; who it is for; links to every part of the site; and common questions.
+What it shows: A top bar with the page sections and an Explore the dashboard button; the one-line purpose; two try-it buttons (ISS cabin air, the Moon Base condition); why it matters, quoted from NASA's challenge; what NASA set out to learn, quoted from PSI records; the lunar edge (FM2 as planned); how it works; who it is for; links to every part of the site; and common questions.
 
 How to use it: Click "Start: Moon Base" to open the Envelope with the Moon Base condition, or "Explore the dashboard" to open it empty.
 

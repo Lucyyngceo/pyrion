@@ -1,0 +1,83 @@
+{
+ "note": "Representative images downloaded from each PSI investigation record; resized to WebP. PSI lists these investigations under CC0-1.0 except PSI-10, whose license PSI does not state.",
+ "images": [
+  {
+   "file": "media/psi/acme-flame-design-in-space.webp",
+   "alt": "A flame from the ACME Flame Design experiment aboard the ISS",
+   "accession": "PSI-10",
+   "source_file": "Representative Image(s)/PSI-10_Representative Image(s)_Flame Design_In Space flame.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+   "credit": "NASA, Physical Sciences Informatics, PSI-10 (representative image)",
+   "size": [
+    1094,
+    804
+   ],
+   "bytes": 30406
+  },
+  {
+   "file": "media/psi/e-field-flames-blue.webp",
+   "alt": "A flame in the E-FIELD Flames experiment",
+   "accession": "PSI-22",
+   "source_file": "Representative Image(s)/PSI-22_Representative Image(s)_E-Field Flames blue.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-22",
+   "credit": "NASA, Physical Sciences Informatics, PSI-22 (representative image)",
+   "size": [
+    564,
+    564
+   ],
+   "bytes": 4466
+  },
+  {
+   "file": "media/psi/cfi-g-cool-flames.webp",
+   "alt": "Spherical cool flames on porous burners, CFI-G",
+   "accession": "PSI-159",
+   "source_file": "Representative Image(s)/PSI-159_Representative Image(s)_CFI-G_Observation of non-premixed quasi-steady spherical cool flames on porous burners.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-159",
+   "credit": "NASA, Physical Sciences Informatics, PSI-159 (representative image)",
+   "size": [
+    364,
+    364
+   ],
+   "bytes": 4220
+  },
+  {
+   "file": "media/psi/bass-ii-flame-testing.webp",
+   "alt": "BASS-II flame testing",
+   "accession": "PSI-25",
+   "source_file": "Representative Image(s)/PSI-25_Representative Image(s)_BASS-II_flame testing.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+   "credit": "NASA, Physical Sciences Informatics, PSI-25 (representative image)",
+   "size": [
+    1200,
+    797
+   ],
+   "bytes": 11784
+  },
+  {
+   "file": "media/psi/cir-on-iss.webp",
+   "alt": "The Combustion Integrated Rack aboard the ISS",
+   "accession": "PSI-10",
+   "source_file": "Representative Image(s)/PSI-10_Representative Image(s)_CIR support on ISS.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+   "credit": "NASA, Physical Sciences Informatics, PSI-10 (representative image)",
+   "size": [
+    600,
+    400
+   ],
+   "bytes": 29518
+  },
+  {
+   "file": "media/psi/acme-hardware.webp",
+   "alt": "ACME Flame Design hardware",
+   "accession": "PSI-10",
+   "source_file": "Representative Image(s)/PSI-10_Representative Image(s)_ACME Flame Design Hardware.jpg",
+   "source": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-10",
+   "credit": "NASA, Physical Sciences Informatics, PSI-10 (representative image)",
+   "size": [
+    1200,
+    800
+   ],
+   "bytes": 44298
+  }
+ ]
+}
