@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import Fm2Panel from "./Fm2Panel";
+import { citeSource } from "@/lib/cite";
 import {
   DENSITY_FACTOR_PMMA_AIR,
   GRAVITY_TARGETS,
@@ -102,14 +103,17 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           Why this page exists
         </h2>
         <p>
+          <strong>Stretch rate</strong> (per second) is how hard the surrounding gas flow pulls on a flame. Weak airflow in orbit and
+          weak buoyancy on the Moon can stretch a flame by similar amounts. That is the bridge between them.
+        </p>
+        <p>
           In PYRION, gravity is a <strong>regime barrier</strong>: a microgravity test and a lunar-gravity target are not
           comparable, and the verdict says so. NASA&apos;s own literature relates gravity levels through the{" "}
           <strong>flame stretch rate</strong>. Olson &amp; T&apos;ien write that the effect of partial gravity{" "}
           <q>such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability can be examined at Earth&apos;s gravity
           through equivalence of flame stretch rates</q>{" "}
           (<a href="https://ntrs.nasa.gov/citations/20000004509" target="_blank" rel="noreferrer">NTRS 20000004509</a>, <em>Combustion and
-          Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the FM2
-          centrifuge setting, NTRS 20260001966) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
+          Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the setting of the FM2 centrifuge, FM2 being Flammability of Materials on the Moon, NTRS 20260001966, p. 13) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
           All round to the quoted fractions.</span> This page uses that idea to point at the PSI tests whose stretch rate is closest. It
           does not change any verdict, and nothing here is a prediction of flame behavior on the Moon.
         </p>
@@ -151,7 +155,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         <p className="muted small">
           {stopTarget ? (
             <>
-              Gravity level {fmt(stopTarget.level, 3)} g. {"file" in stopTarget.source ? <>Source: <q>{stopTarget.source.quote}</q> ({stopTarget.source.file.split("/")[0]}, p. {stopTarget.source.page}).</> : stopTarget.source.note}
+              Gravity level {fmt(stopTarget.level, 3)} g. {"file" in stopTarget.source ? <>Source: <q>{stopTarget.source.quote}</q> ({citeSource(stopTarget.source.file)}, p. {stopTarget.source.page}).</> : stopTarget.source.note}
             </>
           ) : (
             "Microgravity: PSI tests are directly comparable here, so there is nothing to transfer."
@@ -163,7 +167,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         <div className="card-head">
           <h2 id="map-h">Stretch map</h2>
           <p className="muted small">
-            Stretch rate (s⁻¹, log scale) against ambient O₂. Solid lines: the forced stretch of PSI BASS-II PMMA rod tests, from
+            Stretch rate (s⁻¹, log scale) against ambient O₂. Solid lines: the forced stretch of PSI tests from BASS-II (Burning and Suppression of Solids II, a flame experiment on the International Space Station) on PMMA (acrylic plastic) rods, from
             each test&apos;s flow readings and rod radius. Hatched magenta band: the <em>hypothesised</em> buoyant stretch at the
             selected gravity, one band per rod radius.
           </p>
@@ -183,7 +187,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           The PSI table itself labels these rods only &quot;clear rod&quot; and &quot;black rod&quot;. NASA states what they are: <q>Microgravity experiments burning cast PMMA
           cylindrical rods in axial flow have been conducted aboard the International Space Station</q> <q>as part of the BASS-II experiment</q> (
           <a href="https://ntrs.nasa.gov/citations/20150008961" target="_blank" rel="noreferrer">NTRS 20150008961</a>, Olson &amp; Ferkul, p. 1). So the PMMA-in-air
-          density factor applies (T* 865–990 K, Olson &amp; T&apos;ien), and axial flow is why the rod-tip formula is the default. The table does not say how each individual rod sat in the flow, so the formula stays a choice, shown with every result.
+          density factor applies (T*, the flame temperature at the limit, 865–990 K, Olson &amp; T&apos;ien), and axial flow is why the rod-tip formula is the default. The table does not say how each individual rod sat in the flow, so the formula stays a choice, shown with every result.
         </p>
 
         {!csv && <p className="banner">data/derived/bass2_flow_steps.csv was not found, so no stretch map can be drawn.</p>}
@@ -296,6 +300,25 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
       </section>
 
       <Fm2Panel />
+
+      <section className="card br-card" aria-labelledby="sealed-h">
+        <div className="card-head">
+          <h2 id="sealed-h">Sealed before FM2 flies</h2>
+        </div>
+        <p>
+          PYRION wrote down what it will and will not say about FM2 before any result is public. The fingerprint (SHA-256) of that
+          text was stamped with OpenTimestamps, which anchors it in the Bitcoin blockchain, so anyone can check later that the
+          text was not changed after the results came out. Read the statements in the{" "}
+          <a href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/README.md" target="_blank" rel="noreferrer">
+            predictions README
+          </a>{" "}
+          and the proof file{" "}
+          <a href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/SHA256SUMS.ots" target="_blank" rel="noreferrer">
+            SHA256SUMS.ots
+          </a>{" "}
+          on GitHub.
+        </p>
+      </section>
     </>
   );
 }
@@ -522,7 +545,7 @@ function Receipt({
         <ul className="small">
           {(rel ? rel.sources : h.testStretch.sources).map((s) => (
             <li key={s.file + s.page + s.quote}>
-              {s.file.split("/")[0]}, p. {s.page}: <q>{s.quote}</q> <span className="muted">({s.supports})</span>
+              {citeSource(s.file)}, p. {s.page}: <q>{s.quote}</q> <span className="muted">({s.supports})</span>
             </li>
           ))}
         </ul>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
+import { citeSource } from "@/lib/cite";
 import { FM2_SOURCES, PMMA_STOICH, fm2Balance, fm2Chamber, fm2FinalO2, type Fm2Balance, type SourceCitation } from "@/lib/engine";
 import { fmt } from "@/lib/units";
 
@@ -24,7 +25,7 @@ function balance(startPct: number, limitPct: number, tK: number): Fm2Balance {
 function Cite({ s }: { s: SourceCitation }) {
   return (
     <span className="muted">
-      {s.file.split("/")[0]}, p. {s.page}: <q>{s.quote}</q>
+      {citeSource(s.file)}, p. {s.page}: <q>{s.quote}</q>
     </span>
   );
 }
@@ -64,7 +65,7 @@ export default function Fm2Panel() {
         <h2 id="fm2-h">FM2 instrument balance</h2>
         <p className="muted small">
           <strong>Closed-chamber mass balance, not a flame model.</strong> How much oxygen a burn can use before the chamber
-          reaches a hypothesised limiting oxygen. It does not say where the limit is.
+          reaches a hypothesised limiting oxygen concentration (LOC, the lowest oxygen level at which a flame still spreads). It does not say where the limit is.
         </p>
       </div>
 
@@ -84,7 +85,7 @@ export default function Fm2Panel() {
             <li>
               <strong>Fuel for the PMMA rows: {fmt(PMMA_STOICH.value, 4)} g O₂ per g</strong>{" "}
               <span className="muted">derived by PYRION from C₅H₈O₂, not stated by NASA.</span>{" "}
-              <strong>FM2&apos;s planned sample is a fabric (Synergy Pro &quot;Navy&quot;; ntrs-20260001966, p. 10)</strong> whose composition PSI does not hold, so the PMMA
+              <strong>FM2&apos;s planned sample is a fabric (Synergy Pro &quot;Navy&quot;; NTRS 20260001966, p. 10)</strong> whose composition PSI does not hold, so the PMMA
               columns illustrate the oxygen balance; the <em>O₂ consumable</em> column is the material-independent result.
             </li>
           </ul>
