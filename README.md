@@ -4,6 +4,18 @@
 
 > Built during the NASA Space Apps Challenge hackathon, November 14–15, 2026.
 
+[![tests](https://github.com/Lucyyngceo/pyrion/actions/workflows/tests.yml/badge.svg)](https://github.com/Lucyyngceo/pyrion/actions/workflows/tests.yml)
+[![validate](https://github.com/Lucyyngceo/pyrion/actions/workflows/validate.yml/badge.svg)](https://github.com/Lucyyngceo/pyrion/actions/workflows/validate.yml)
+
+## Judge in 3 minutes
+
+1. **[The Moon Base on the dashboard](https://pyrion.us/envelope?preset=challenge-lunar-base)** — NASA's Moon Base condition against every PSI test, with a receipt (file, row or page, DOI) for each value.
+2. **[The worked example](https://pyrion.us/example)** — two full questions printed step by step, computed by the engine on the server, no AI.
+3. **[Proof](https://pyrion.us/proof)** — the validator report and the scripted judge battery, read from this repository.
+
+436 engine tests + 208 web tests pass on every push (badge above; `cd engine && npm test`, `cd web && npm test`).
+**Where the AI ends:** the verdict is computed by fixed rules in `engine/` and is the same for the same condition. A language model only reads a question into a condition and narrates the result; it never decides a verdict, and every NASA quote it shows is checked against its page. With no API key the envelope, the verdicts and the worked example all work.
+
 PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
 It plots every extracted PSI test point as an evidence envelope (O₂ against pressure) and gives a deterministic verdict on whether a target condition lies inside the region spanned by tested points.
 Every test point is cited to its PSI investigation (DOI and license on the Data page), and the verdict says when a condition lies outside what PSI tested.
