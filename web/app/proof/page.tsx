@@ -79,8 +79,8 @@ export default async function ProofPage() {
       </section>
 
       <section className="card br-card" aria-labelledby="pf-audits">
-        <h2 id="pf-audits">Independent audits</h2>
-        <p>Separate reviewers, who did not write the code, attacked the language-model layer in rounds. Each round lists what they found and how it was closed. Sections of the audit report:</p>
+        <h2 id="pf-audits">Reviews by separate AI reviewer agents</h2>
+        <p>Separate AI reviewer agents, run apart from the sessions that wrote the code, attacked the language-model layer in rounds. They are not NASA review or expert validation. Each round lists what they found and how it was closed. Sections of the audit report:</p>
         {p.audits.length > 0 ? (
           <ul>
             {p.audits.map((a) => (
@@ -112,7 +112,7 @@ export default async function ProofPage() {
         {p.sealed ? (
           <>
             <p>
-              Before FM2 flew, PYRION wrote down what it will and will not say about it and recorded the fingerprint (SHA-256) of that text.{" "}
+              Before FM2 has flown (it is a planned experiment), PYRION wrote down what it will and will not say about it and recorded the fingerprint (SHA-256) of that text.{" "}
               {p.sealed.height !== null ? (
                 <>
                   The fingerprint is anchored in the Bitcoin blockchain at <strong>block {n(p.sealed.height)}</strong>, read from the proof file itself.

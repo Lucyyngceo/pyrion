@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p>
               PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,
               released under CC0-1.0 except PSI-10, whose license is not stated on PSI. Code: Apache-2.0. Built with the help of
-              AI tools (Claude Code); see the repository README. Status symbols after the Astro Space UX Design System, ©
+              AI tools (Claude Code, GPT and Grok); see the repository README for the full declaration. Status symbols after the Astro Space UX Design System, ©
               2024 Rocket Communications, Inc.
             </p>
             <p>
