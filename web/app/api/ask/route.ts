@@ -113,6 +113,8 @@ export async function POST(req: Request) {
       // Deterministic first: code reads the question when it can; an issue is returned in plain words, with no model call.
       const code = readByCode(q);
       if (code.kind === "issue") return json({ error: code.message, safety: safetyState, safety_detail: safety.detail, read_by: "code" }, 422);
+      // Neither content filter answered: only the code reader may run; no model sees the question.
+      if (!safety.checked && code.kind !== "code") return json({ error: "The content check is unavailable right now, so only the engine can answer. Pick a NASA condition below or set oxygen and pressure in the controls; every verdict works without questions.", safety: safetyState, safety_detail: safety.detail, read_by: "code" }, 503);
       if (code.kind === "code") {
         return json({
           meta: { provider: "code", model: null, latency_ms: 0, fell_back_from: null, open_weights: null, read_by: "code" },

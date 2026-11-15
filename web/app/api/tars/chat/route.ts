@@ -65,7 +65,8 @@ export async function POST(req: Request) {
       budget().recordSafety();
       try {
         const safety = await checkContent(message, providers(), undefined, undefined, AbortSignal.any([deadline, AbortSignal.timeout(15_000)]));
-        if (safety.unresolved) screened = false;
+        // Both content filters failed or could not finish: answer by code only (engine, help topics, NASA passages), no free narration.
+        if (safety.unresolved || !safety.checked) screened = false;
         else if (safety.flagged) return Response.json({ error: "TARS cannot help with that question. Ask about combustion, fire safety in space, NASA documents or this site." }, { status: 422 });
       } catch (e) {
         if (e instanceof RateLimited) throw e;

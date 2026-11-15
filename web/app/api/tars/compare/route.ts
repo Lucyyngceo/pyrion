@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     // One content check for the question; one visitor count per model asked.
     budget().recordSafety();
     const safety = await checkContent(message, ps, undefined, undefined, deadline);
-    if (safety.unresolved) return json({ error: "The content check could not finish right now. Please try again in a moment." }, 503);
+    if (safety.unresolved || !safety.checked) return json({ error: "The content check could not finish right now, so no model can answer. Try again in a moment; the engine verdicts work without it." }, 503);
     if (safety.flagged) return json({ error: "TARS cannot help with that question. Ask about combustion, fire safety in space, NASA documents or this site." }, 422);
     for (let i = 0; i < models.length; i++) budget().visitor(visitor);
   } catch (e) {

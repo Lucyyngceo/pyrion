@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     if (providers().length > 0) {
       budget().recordSafety();
       const safety = await checkContent(text, providers(), undefined, undefined, deadline);
-      if (safety.unresolved) return json({ error: "The content check could not finish right now. Please try again in a moment." }, 503);
+      if (safety.unresolved || !safety.checked) return json({ error: "The content check could not finish right now, so no model can answer. Try again in a moment; the engine verdicts work without it." }, 503);
       if (safety.flagged) return json({ error: "TARS cannot check that text. Paste text about combustion, fire safety in space or NASA documents." }, 422);
     }
   } catch (e) {
