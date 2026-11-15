@@ -110,8 +110,9 @@ export default function PlannerView({ data }: { data: PlannerData }) {
         </p>
         {data.coverage.fraction === 0 && (
           <p data-help="planner-zero-expected" className="small">
-            The 0 % is expected, not a finding: NASA&apos;s challenge statement says there is currently no partial-gravity
-            combustion data in PSI. What this page adds is below: what FM2 as planned would measure, which corners of the band
+            The 0 % is expected, not a finding: this page counts only tests run at the band&apos;s gravity, and NASA&apos;s
+            challenge statement says there is currently no partial-gravity combustion data in PSI, so 0 % follows by
+            construction. What this page adds is below: what FM2 as planned would measure, which corners of the band
             stay unmeasured, and the nearest PSI evidence, which is in microgravity or normal gravity (open the{" "}
             <a data-help="planner-zero-expected" href="/?preset=challenge-lunar-base">Envelope with the Moon Base condition</a>).
           </p>
@@ -212,8 +213,8 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       <section className="card" aria-labelledby="pl-min">
         <h2 id="pl-min">Minimum test points (PYRION&apos;s geometric convention)</h2>
         <p data-help="planner-min-set" className="small">
-          The fewest test points whose outline covers the band under PYRION&apos;s convention: not a test programme. Materials,
-          flow velocity, sample thickness, repeats and flammability thresholds are not included.{" "}
+          The fewest test points whose outline covers the band under PYRION&apos;s convention: not a test programme. It holds for
+          one material, flow velocity and sample thickness at a time; repeats and flammability thresholds are not included.{" "}
           {data.minimumTest.points.length} points (the corners of the band). {data.minimumTest.fm2Contributes.length} are already contributed by FM2 as planned; {data.minimumTest.missing.length} are missing{data.minimumTest.missing.length > 0 ? `: ${data.minimumTest.missing.map((m) => `${Math.round(m.o2_mole_fraction * 1000) / 10} % at ${Math.round((m.pressure_kpa / KPA_PER_PSI) * 10) / 10} psia`).join("; ")}` : ""}.
         </p>
         <div className="tars-cmptable">

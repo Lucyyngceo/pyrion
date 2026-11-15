@@ -11,7 +11,7 @@ highlight: [data-help="planner-zero-expected"]
 ---
 What it is: A note shown when none of the Moon Base band lies inside a PSI test region.
 
-What it shows: That 0 % follows from NASA's own statement in the challenge that there is currently no partial-gravity combustion data in PSI, so it is expected, not a finding.
+What it shows: That 0 % follows by construction: the page counts only tests run at the band's gravity, and NASA's challenge statement says there is currently no partial-gravity combustion data in PSI. It is expected, not a finding.
 
 How to use it: Read on to what FM2 as planned would measure, which corners stay unmeasured, and the nearest PSI evidence in the Envelope.
 

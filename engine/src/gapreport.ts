@@ -168,7 +168,7 @@ function toMarkdown(d: GapReportData, fingerprint: string): string {
   L.push(`- FM2 as planned (${g.fm2.tests} tests, one fabric, solid fuel): ${g.fm2.cellsGained} more cells covered (${pct(g.fm2.gainFraction)} of the grid). Shape: **${g.fm2Shape}** — ${g.fm2Shape === 'line' ? 'all four tests are at one pressure (8.2 psia), so FM2 covers a LINE of the band, not an area; the share of the band area inside the hull of its test points is ' + pct(g.fm2.hullAreaFraction) + '.' : 'it spans an area.'}`);
   L.push(`- FM2 with both ends of its stated ± 0.3 psi (optimistic what-if, not a plan): ${g.fm2WithToleranceBounds.cellsGained} cells (${pct(g.fm2WithToleranceBounds.gainFraction)} of the grid); hull area inside the band ${pct(g.fm2WithToleranceBounds.hullAreaFraction)}.`);
   L.push(`- LUCI: ${g.luci.placeable ? 'placed' : 'cannot be placed'}. ${g.luci.note}`, '');
-  L.push("## Minimum test set (under PYRION's convention)", '');
+  L.push("## Minimum test points (PYRION's geometric convention)", '');
   L.push(d.minimumTestSet.rule, '');
   for (const p of d.minimumTestSet.points) L.push(`- ${Math.round(p.o2_mole_fraction * 10000) / 100} % O2, ${psia(p.pressure_kpa)} psia (${p.vertex}) — ${p.coveredBy.length ? 'already covered by ' + p.coveredBy.join(' and ') : 'missing'}`);
   L.push('', `Missing: ${d.minimumTestSet.missing.length} of ${d.minimumTestSet.points.length} points. FM2 contributes ${d.minimumTestSet.fm2Contributes.length} (those on its own line of tests). Testing the missing points would make the band comparable under the convention above; it would not by itself show that the band is safe or that the region between tests behaves like them.`, '');
