@@ -1,0 +1,98 @@
+{
+  "accession": "PSI-25",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "date": "2026-11-15",
+  "scope": "pressure of the ISS/MSG flight (microgravity) tests only",
+  "sources_read": [
+    "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+    "psi-data/PSI-25/_investigation/PSI-25.json",
+    "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
+    "psi-data/PSI-25/Engineering Documents/PSI-25_Engineering Documents_BASS-II_Ops.docx",
+    "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
+  ],
+  "records": [
+    {
+      "id": "R301",
+      "test_id": "B3, B4, B11, B13",
+      "variable": "pressure",
+      "value": "",
+      "value_original": "1 atm",
+      "unit_original": "atm",
+      "numbers": ["1"],
+      "kind": "point",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=49",
+      "quote": "PMMA (NASA) in 0g on International Space Station, 2-cm sample with 10.x cm in 20.7 percent O2 and 79 percent N2 at 1 atm. (a) Burning and Suppression of Solids—II (BASS–II) B03 sample; 100 µm thick. (b) BASS–II B11; 200 µm thick. (c) BASS–II B4; 300 µm thick. (d) BASS–II B13; 400 µm thick.",
+      "confidence": "ambiguous",
+      "derivation": "Figure 2.20 caption text (section 2.3.7, printed page 41), not a value read from the image. NOMINAL condition: one set of conditions is written for all four panels. test_id: the caption writes 'B03'; the PSI table writes 'B3' (row 3, '100 micron film   2 cm wide', thickness matches the caption's 100 µm). B11, B4, B13 are written as in the table and their table thicknesses (0.2 mm, 300 micron, 0.4 mm) match the caption. Caution on how generic the caption is: it gives 20.7 percent O2 for all four, while the PSI table 'Calibrated initial O2 % by vol' is 22.2 for B3 and B4 and 21 for B11 and B13. DISCREPANCY with R302 (measured total pressure 99.2 to 99.5 kPa stated on page 46 for 'the tests reported' in the same section): both are proposed, none chosen.",
+      "flags": ["DISCREPANCY"]
+    },
+    {
+      "id": "R302",
+      "test_id": "B3, B4, B11, B13",
+      "variable": "pressure",
+      "value": "",
+      "value_original": "99.2 to 99.5 kPa",
+      "unit_original": "kPa",
+      "numbers": ["99.2", "99.5"],
+      "kind": "range",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=46",
+      "quote": "The total pressure is also monitored, which varied from 99.2 to 99.5 kPa in the tests reported.",
+      "confidence": "ambiguous",
+      "derivation": "MEASURED (monitored) total pressure, section 2.3.5 'Microgravity and Normal-Gravity Experiments', in the paragraph describing the BASS-II opposed-flow duct in the ISS (preceding sentences on the same page describe the O2 sensor and the hot wire anemometer; next sentence: 'Experiments were conducted in the Microgravity Science Glovebox of ISS by two crew members.'). Scope is ambiguous: 'the tests reported' is not listed. The only flight tests identified by number in section 2.3 are B03 (=B3 in the PSI table), B11, B4 and B13 (Figure 2.20 caption, page 49); Figure 2.19 (page 48) also shows a microgravity 100-µm test at 3 cm/s without a test number. Not applied to the 1-g downward tests, which the same page gives separately as 'pressure 101 kPa' (already record R204 in PSI-25.extractor.json). DISCREPANCY with R301 (nominal '1 atm' in the Fig. 2.20 caption for the same four tests).",
+      "flags": ["DISCREPANCY", "RANGE_NOT_POINT"]
+    },
+    {
+      "id": "R303",
+      "test_id": "T1, T2, T4, T5, T6, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28a, T28b, T29",
+      "variable": "pressure",
+      "value": "",
+      "value_original": "1 atm",
+      "unit_original": "atm",
+      "numbers": ["1"],
+      "kind": "point",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=102",
+      "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+      "confidence": "direct",
+      "derivation": "Section 7.1.3 'Experimental' (printed page 94) of the T'ien SIBAL cotton-fiberglass fabric chapter; same paragraph block opens with 'All tests were conducted in a small flow duct (shown in Figure 7.1) within the MSG aboard the ISS.' (page 102). Nominal value; no measured pressure is given for these tests. test_id: section 7.1.4 (page 103) says 'A total of 27 tests were carried out for the fabric samples in BASS–II [...] These are listed in Table 7.1.' Table 7.1 (page 104) writes ids as 'GMT<day>-T<n>' (e.g. 'GMT45-T1', 'GMT216-T28a'); the PSI table writes 'T1', 'T28a'. The GMT day of each row matches the PSI table GMT column (e.g. T1 45, T5 100, T9 175, T11 178, T19 190, T25 216) and the O2 column matches the table 'Calibrated initial O2' (e.g. T1 18.5, T4 18.7, T13 17.5, T24 18.2); 27 BASS-II rows, matching the stated total. EXCLUDED: the four rows labelled 'BASS' at the bottom of Table 7.1 (GMT96-T8, GMT96-T7, GMT131-T10, GMT222-T11) are BASS (PSI-26) tests that reuse T numbers; and PSI table tests T3 and T7 ('4 cm spherical section') are not in Table 7.1, so not covered. Side note, not pressure: Table 7.1 gives width 2.2 cm for T24 while the PSI table material says '1 cm SIBAL   top side ign'; the mapping relies on GMT day + T number.",
+      "flags": ["SHARED_LINEAGE"]
+    },
+    {
+      "id": "R304",
+      "test_id": "B1, B3, B6, B9, B15, B16, B19, B20",
+      "variable": "pressure",
+      "value": "",
+      "value_original": "1 atm",
+      "unit_original": "atm",
+      "numbers": ["1"],
+      "kind": "point",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=30",
+      "quote": "A typical color image of the top view 10 s after ignition is shown in Figure 2.7(a) for flame spread over 100-µm-thick PMMA sheet for the ambient conditions of 20.7 percent O2, 1 atm, and an opposed-flow velocity of 2.5 cm/s.",
+      "confidence": "ambiguous",
+      "derivation": "Section 2.2.4 'Data Analysis' (printed page 22); section 2.2 reports 'flame spread over thin sheets of polymethylmethacrylate (PMMA) performed in the International Space Station (ISS)' (page 28). The sentence covers ONE test only, whose number is not given. The test_id list is the set of candidates: every PSI-table B test with a 100-µm (0.1 mm) 2-cm film. It must not be read as a pressure for all eight tests. Nominal value. Not flagged DISCREPANCY because the test is unidentified, but the same report gives a measured 99.2 to 99.5 kPa for the opposed-flow tests of section 2.3 (R302).",
+      "flags": []
+    }
+  ],
+  "not_found": [
+    {
+      "variable": "pressure (calculation inputs, not test conditions)",
+      "looked_in": "Summary Report page=19: 'Using the ideal gas law, the free volume of the MSG V = 250,000 cc, ideal gas constant R = 82.05 cc∙atm/gmol K, pressure P = 1 atm, the change of O2 percent volume, and temperature T = 300 K, the gmol of O2 consumed is calculated as' (input of an O2-consumption calculation). Page=14: 'The model assumes the work volume is at constant pressure and temperature and constant volume.' (CSTR dilution-model assumption, no value). Page=11: nomenclature 'P pressure' and 'R gas constant; 82.05 cc∙atm/gmol∙K'. None proposed."
+    },
+    {
+      "variable": "pressure (Table 2.1 title)",
+      "looked_in": "Summary Report page=36: 'TABLE 2.1.—COMPARISON OF EXTINCTION VELOCITY Vg,cr FOR THIN POLYMETHYLMETHACRYLATE AT 1 atm' with Experiment, Computation and Theory columns at 21 and 16 percent O2. The experimental entries are not attributed to any test number (and no PSI-table B test has 16 percent initial O2), so no test scope can be assigned. Not proposed; flagged here for the auditor."
+    },
+    {
+      "variable": "pressure (Olson O, Fernandez-Pello P, Miller M, Ferkul F series; B tests other than R301/R302/R304; T3, T7)",
+      "looked_in": "Summary Report full-text search for 'pressure', 'kPa', 'atm', 'torr', 'psi', 'cabin', 'ambient pressure', 'total pressure' (all hits reviewed; Appendix A test matrices, pages 111 onward, have no pressure column); PSI table CSV header has no pressure column."
+    },
+    {
+      "variable": "pressure (other PSI-25 sources)",
+      "looked_in": "Record text (section=hypothesis names pressure only as a condition held identical in the microgravity vs normal-gravity comparison, '(pressure, O2', no value); ReadMe dump paragraphs (no hit); Ops docx paragraph=2 'adding GN2 to the WV to reduce the O2 partial pressure' (no value). SRD PDF could NOT be re-opened in this run (page rendering unavailable, no text dump); the earlier PSI-25 extraction (PSI-25.extractor.json, not_found) reports SRD pages 1-16 with no pressure."
+    }
+  ],
+  "lineage": "Table 7.1 and the sentence of R303 pool BASS-II and BASS (PSI-26) fabric tests in the same flow duct within the MSG; BASS rows reuse T numbers ('GMT96-T8', 'GMT96-T7', 'GMT131-T10', 'GMT222-T11', labelled 'BASS') and are excluded here. The Summary Report pools several PIs (Bhattacharjee section 2, T'ien section 7.1)."
+}

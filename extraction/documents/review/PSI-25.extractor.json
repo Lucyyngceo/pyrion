@@ -1,292 +1,359 @@
 {
-  "accession": "PSI-25",
+ "accession": "PSI-25",
+ "extracted_by": "extractor agent (Claude Opus 5.5)",
+ "date": "2026-11-14",
+ "sources_read": [
+  "psi-data/PSI-25/_investigation/PSI-25.json",
+  "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
+  "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+  "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
+ ],
+ "records": [
+  {
+   "id": "R1",
+   "test_id": "*",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=approach",
+   "quote": "To summarize, BASS-II's approach, microgravity combustion tests were performed aboard the International Space Station.",
+   "confidence": "direct",
+   "derivation": "",
+   "flags": []
+  },
+  {
+   "id": "R2",
+   "test_id": "*",
+   "variable": "fuel_phase",
+   "value": "solid",
+   "value_original": "solid fuels",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=objective",
+   "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
+   "confidence": "direct",
+   "derivation": "Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).",
+   "flags": []
+  },
+  {
+   "id": "R3",
+   "test_id": "*",
+   "variable": "fuel_phase",
+   "value": "solid",
+   "value_original": "Solid fuel",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+   "source_location": "page=1",
+   "quote": "Solid fuel ignition uses a Kanthal hot wire.",
+   "confidence": "direct",
+   "derivation": "Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.",
+   "flags": []
+  },
+  {
+   "id": "R4",
+   "test_id": "*",
+   "variable": "platform",
+   "value": "International Space Station (ISS)",
+   "value_original": "International Space Station (ISS)",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=flightProgram",
+   "quote": "International Space Station (ISS)",
+   "confidence": "direct",
+   "derivation": "",
+   "flags": []
+  },
+  {
+   "id": "R5",
+   "test_id": "*",
+   "variable": "platform",
+   "value": "Microgravity Science Glovebox (MSG)",
+   "value_original": "Microgravity Science Glovebox (MSG)",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=experimentHardware",
+   "quote": "Microgravity Science Glovebox (MSG)",
+   "confidence": "direct",
+   "derivation": "The record approach adds: 'The wind tunnel was installed in the Microgravity Science Glovebox which supplied power, imaging, and a level of containment.'",
+   "flags": []
+  },
+  {
+   "id": "R6",
+   "test_id": "*",
+   "variable": "diluent",
+   "value": "N2",
+   "value_original": "nitrogen",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=approach",
+   "quote": "Main variables are airflow speed and oxygen concentration (oxygen varied below 21% by adding nitrogen).",
+   "confidence": "direct",
+   "derivation": "Nitrogen is the gas added to the ambient to lower O2. Same in the record objective: 'Ambient oxygen concentration (via working volume nitrogen vitiation)', and SRD page=1: 'GN2 is used to vitiate the MSG working volume to desired O2levels.' (text layer as extracted). Tests left in unvitiated ambient air also have N2 as balance (air: oxygen balanced mainly by nitrogen).",
+   "flags": []
+  },
+  {
+   "id": "R7",
+   "test_id": "O1..",
+   "variable": "flow_configuration",
+   "value": "concurrent",
+   "value_original": "concurrent",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
+   "source_location": "paragraph=8",
+   "quote": "Sandra Olson burned three sizes of pmma rods (mostly clear), igniting the upstream end for a stagnation flame / concurrent flow geometry.",
+   "confidence": "direct",
+   "derivation": "test_id: ReadMe paragraph=15 'Test number:   Initial of PI name followed by test number from the initial matrix.'; PSI table PI column 'Olson' carries O1..O22 (with a/b repeats). Corroboration, SRD page=12 Olson matrix note: 'ignite at a consistent concurrent flow, then reduce to low flows and measure spread, repeat until extinguished.' Caution, same page: 'in the event of a non-ignition of the rod at low O2, an opposed ignition will be attempted, followed by an ambient air opposed or concurrent test at TBD flow(s).', so individual O tests may deviate.",
+   "flags": []
+  },
+  {
+   "id": "R8",
+   "test_id": "P1..",
+   "variable": "flow_configuration",
+   "value": "opposed",
+   "value_original": "opposed",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
+   "source_location": "paragraph=9",
+   "quote": "Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.",
+   "confidence": "direct",
+   "derivation": "test_id: PSI table PI column 'Fernandez-Pello' carries P1..P25 (prefix P, not F; F is Ferkul). Corroboration read from the SRD page=16 matrix image (no text layer): 'ignite at a consistent OPPOSED flow, then reduce to low flows and measure spread, repeat until extinguished.'",
+   "flags": []
+  },
+  {
+   "id": "R9",
+   "test_id": "M1..",
+   "variable": "flow_configuration",
+   "value": "opposed",
+   "value_original": "opposed",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
+   "source_location": "page=15",
+   "quote": "priority order test matrix per PI: Miller [...] Priority Sample # width (cm) thickness (mm) backing flow velocity (cm/s) Direction oxygen % # sides to burn Notes 1 15 2 5 mica 10 (ramp down) opposed 21 one need mica out the back",
+   "confidence": "ambiguous",
+   "derivation": "Only the slide title is in the PDF text layer; the table is an image and the header plus first row were transcribed from it. The Direction column reads 'opposed' in all 20 rows. It is the pre-flight priority matrix, and no source maps its rows (Priority / Sample #) to the flown M test numbers. ReadMe paragraph=7 ('Fletcher Miller burned various thickness and widths of thick pmma slabs (one sided and two sided burns).') states no flow configuration. ReadMe publication titles (paragraphs 54, 59: '... Intermediate Thickness PMMA Sheets ... in Microgravity Opposed Flow') point the same way but are titles only. test_id: PSI table PI column 'Miller' carries M1..M20.",
+   "flags": [
+    "FROM_FIGURE"
+   ]
+  },
+  {
+   "id": "R10",
+   "test_id": "*",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "up to 40 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "40"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
+   "source_location": "section=approach",
+   "quote": "Fuel samples were mounted inside a small wind tunnel which could impose airflow speeds up to 40 cm/s.",
+   "confidence": "ambiguous",
+   "derivation": "Capability of the wind tunnel ('could impose'), not a statement of the speeds actually tested; only the upper bound is written, no lower bound. Caution: the PSI table 'Air display' column (not extracted) has readings above 40 in some tests, e.g. T17 '6   53' and T21 '11   max(47)', so 40 cm/s should not be treated as a verified bound on tested flows. The wind tunnel is the BASS hardware launched for SPICE (see lineage).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R201",
+   "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+   "ground_series": true,
+   "variable": "gravity_regime",
+   "value": "normal_gravity",
+   "value_original": "1g",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=49",
+   "quote": "PMMA (NASA and Astra) in 1g at San Diego State University",
+   "confidence": "direct",
+   "derivation": "Figure 2.20 caption: the 1g counterpart of the BASS-II microgravity tests; the text calls them the downward experiments in a normal-gravity environment (pages 44, 46). Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+   "flags": [
+    "GROUND_1G_TESTS"
+   ]
+  },
+  {
+   "id": "R202",
+   "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+   "ground_series": true,
+   "variable": "fuel_phase",
+   "value": "solid",
+   "value_original": "sheets",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=51",
+   "quote": "flame spread over thin sheets of polymethylmethacrylate (PMMA) in the quiescent downward configuration",
+   "confidence": "derived",
+   "derivation": "PMMA sheets are a solid fuel; the sentence names the downward configuration. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+   "flags": [
+    "GROUND_1G_TESTS"
+   ]
+  },
+  {
+   "id": "R203",
+   "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+   "ground_series": true,
+   "variable": "o2_mole_fraction",
+   "value": "",
+   "value_original": "21",
+   "unit_original": "percent",
+   "numbers": [
+    "21"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=46",
+   "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
+   "confidence": "direct",
+   "derivation": "O2 level stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+   "flags": [
+    "GROUND_1G_TESTS"
+   ]
+  },
+  {
+   "id": "R204",
+   "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+   "ground_series": true,
+   "variable": "pressure",
+   "value": "",
+   "value_original": "101",
+   "unit_original": "kPa",
+   "numbers": [
+    "101"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=46",
+   "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
+   "confidence": "direct",
+   "derivation": "Pressure stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+   "flags": [
+    "GROUND_1G_TESTS"
+   ]
+  },
+  {
+   "id": "R301",
+   "test_id": "B3, B4, B11, B13",
+   "variable": "pressure",
+   "value": "",
+   "value_original": "1 atm",
+   "unit_original": "atm",
+   "numbers": [
+    "1"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=49",
+   "quote": "PMMA (NASA) in 0g on International Space Station, 2-cm sample with 10.x cm in 20.7 percent O2 and 79 percent N2 at 1 atm. (a) Burning and Suppression of Solids—II (BASS–II) B03 sample; 100 µm thick. (b) BASS–II B11; 200 µm thick. (c) BASS–II B4; 300 µm thick. (d) BASS–II B13; 400 µm thick.",
+   "confidence": "ambiguous",
+   "derivation": "Figure 2.20 caption text (section 2.3.7, printed page 41), not a value read from the image. NOMINAL condition: one set of conditions is written for all four panels. test_id: the caption writes 'B03'; the PSI table writes 'B3' (row 3, '100 micron film   2 cm wide', thickness matches the caption's 100 µm). B11, B4, B13 are written as in the table and their table thicknesses (0.2 mm, 300 micron, 0.4 mm) match the caption. Caution on how generic the caption is: it gives 20.7 percent O2 for all four, while the PSI table 'Calibrated initial O2 % by vol' is 22.2 for B3 and B4 and 21 for B11 and B13. DISCREPANCY with R302 (measured total pressure 99.2 to 99.5 kPa stated on page 46 for 'the tests reported' in the same section): both are proposed, none chosen.",
+   "flags": [
+    "DISCREPANCY"
+   ]
+  },
+  {
+   "id": "R302",
+   "test_id": "B3, B4, B11, B13",
+   "variable": "pressure",
+   "value": "",
+   "value_original": "99.2 to 99.5 kPa",
+   "unit_original": "kPa",
+   "numbers": [
+    "99.2",
+    "99.5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=46",
+   "quote": "The total pressure is also monitored, which varied from 99.2 to 99.5 kPa in the tests reported.",
+   "confidence": "ambiguous",
+   "derivation": "MEASURED (monitored) total pressure, section 2.3.5 'Microgravity and Normal-Gravity Experiments', in the paragraph describing the BASS-II opposed-flow duct in the ISS (preceding sentences on the same page describe the O2 sensor and the hot wire anemometer; next sentence: 'Experiments were conducted in the Microgravity Science Glovebox of ISS by two crew members.'). Scope is ambiguous: 'the tests reported' is not listed. The only flight tests identified by number in section 2.3 are B03 (=B3 in the PSI table), B11, B4 and B13 (Figure 2.20 caption, page 49); Figure 2.19 (page 48) also shows a microgravity 100-µm test at 3 cm/s without a test number. Not applied to the 1-g downward tests, which the same page gives separately as 'pressure 101 kPa' (already record R204 in PSI-25.extractor.json). DISCREPANCY with R301 (nominal '1 atm' in the Fig. 2.20 caption for the same four tests). test_id is a lower bound: the reported set also includes unnumbered 100-um tests spanning ~40 to ~1 cm/s (verificador).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R303",
+   "test_id": "T1, T2, T4, T5, T6, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28a, T28b, T29",
+   "variable": "pressure",
+   "value": "",
+   "value_original": "1 atm",
+   "unit_original": "atm",
+   "numbers": [
+    "1"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=102",
+   "quote": "The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.",
+   "confidence": "direct",
+   "derivation": "Section 7.1.3 'Experimental' (printed page 94) of the T'ien SIBAL cotton-fiberglass fabric chapter; same paragraph block opens with 'All tests were conducted in a small flow duct (shown in Figure 7.1) within the MSG aboard the ISS.' (page 102). Nominal value; no measured pressure is given for these tests. test_id: section 7.1.4 (page 103) says 'A total of 27 tests were carried out for the fabric samples in BASS–II [...] These are listed in Table 7.1.' Table 7.1 (page 104) writes ids as 'GMT<day>-T<n>' (e.g. 'GMT45-T1', 'GMT216-T28a'); the PSI table writes 'T1', 'T28a'. The GMT day of each row matches the PSI table GMT column (e.g. T1 45, T5 100, T9 175, T11 178, T19 190, T25 216) and the O2 column matches the table 'Calibrated initial O2' (e.g. T1 18.5, T4 18.7, T13 17.5, T24 18.2); 27 BASS-II rows, matching the stated total. EXCLUDED: the four rows labelled 'BASS' at the bottom of Table 7.1 (GMT96-T8, GMT96-T7, GMT131-T10, GMT222-T11) are BASS (PSI-26) tests that reuse T numbers; and PSI table tests T3 and T7 ('4 cm spherical section') are not in Table 7.1, so not covered. Side note, not pressure: Table 7.1 gives width 2.2 cm for T24 while the PSI table material says '1 cm SIBAL   top side ign'; the mapping relies on GMT day + T number.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  }
+ ],
+ "not_found": [
+  {
+   "variable": "pressure",
+   "looked_in": "Record text, all sections (hypothesis names pressure only as a condition held identical in the microgravity vs normal-gravity comparison, '(pressure, O2 concentration, temperature, etc.)', no value); ReadMe paragraphs 1-86 (no pressure); SRD pages 1-16 (no pressure). The Summary Report PDF (psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf) could NOT be opened: it exceeds the 20 MB reader limit and page rendering (pdftoppm) is not installed, and its text streams are compressed. It is the most likely place for a pressure statement and remains unread."
+  },
+  {
+   "variable": "flow_configuration (Bhattacharjee series, B1..B22)",
+   "looked_in": "ReadMe paragraph 5 ('Subrata Bhattacharjee burned various thickness of very thin pmma films.') states no configuration; SRD page 13 pre-flight matrix gives flows '0 mm/s', '20 mm/s', '50 mm/s' with no direction. Only ReadMe publication titles (paragraphs 37, 51, 52, 57) mention opposed-flow flame spread; they are titles, not statements about these tests. Investigation-wide, the record approach says 'Flame appearance, flame growth, and spread rates were determined in both the opposed and concurrent flow.', which does not assign a configuration to any test series."
+  },
+  {
+   "variable": "flow_configuration (T'ien series, T1..T29)",
+   "looked_in": "ReadMe paragraph 10 states materials only. SRD page 14 pre-flight matrix (table image) mixes '2 cm, concurrent SIBAL' rows, '2 cm, opposed SIBAL' rows (priority 17 and 18), '1 cm SIBAL' rows without direction and a 'pmma sphere section' ignition test; no source maps those rows to flown T numbers, and the mapping is visibly not one-to-one (PSI table T7 is '4 cm spherical section' while matrix priority 7 is '2 cm, concurrent SIBAL'). ReadMe paragraph 38 title ('Concurrent flame growth, spread, and quenching over composite fabric samples in low speed purely forced flow in microgravity') is a publication title only."
+  },
+  {
+   "variable": "flow_configuration (Ferkul series, F1..F4)",
+   "looked_in": "ReadMe paragraph 6 ('Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.') states no configuration; the SRD has no Ferkul matrix (pages 12-16 cover Olson, Bhattacharjee, T'ien, Miller, Fernandez-Pello)."
+  },
+  {
+   "variable": "flow_velocity (tested range for the whole experiment)",
+   "looked_in": "Record text gives only the wind-tunnel capability (R10). ReadMe paragraphs 18-20 describe flow restrictors and the 'Air display' reading without a range; SRD pages 12-16 give per-PI planned flows only (not extracted, as instructed). Summary Report PDF unread (see pressure)."
+  },
+  {
+   "variable": "gravity_regime = normal_gravity",
+   "looked_in": "No 1-g test of this dataset is described in the record, ReadMe or SRD. The record objective and hypothesis refer to the normal-gravity NASA-STD-6001 Test #1 method as a comparison, and ReadMe publication titles (e.g. paragraph 56 '... under 1g and μg Conditions', paragraph 46 Narrow Channel Apparatus 'In Normal Gravity') refer to the PIs' ground work outside the PSI test table, with no test ids. No normal_gravity record proposed."
+  },
+  {
+   "variable": "fuel_phase for test F4 (candle)",
+   "looked_in": "ReadMe paragraph 6 says only 'a candle'; the PSI table material is 'Japan Wax candle'. No sentence in the record, ReadMe or SRD states the phase of the candle fuel. R2/R3 use test_id '*' on the strength of 'solid fuels' / 'Solid fuel'; the auditor may want to exclude F4."
+  }
+ ],
+ "lineage": "BASS-II reused the on-orbit BASS hardware originally launched for SPICE: 'BASS-II will utilize the on orbit BASS hardware launched originally for SPICE on STS-126.' (SRD page=9); 'The acquisition rate of 4 Hz can not be changed from SPICE/BASS.' and 'The measurement accuracy of ±10% was met by the SPICE hardware prior to its launch.' (SRD page=1); video field of view and D300s still-image requirements are the same as BASS (SRD page=1). The Ferkul F tests close out BASS-I: 'Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.' (ReadMe paragraph=6). SIBAL and NOMEX samples are 'Previously Flown Design' (SRD page=4) without naming the earlier flight. The ReadMe publication list is shared: 'BASS and BASS-II Publications and Presentations' (paragraph=33). SLICE is not mentioned in any source read, and the term 'flow duct' does not appear (the record calls it 'a small wind tunnel' installed in the MSG; ReadMe paragraph=20 says 'flow speed measured in the duct').",
+ "addendum_ground": "R201-R204: 1 g ground series, added 2026-11-14 at the coordinating session's request (Luis approved); audited by a separate verificador run.",
+ "addendum_pressure": {
+  "date": "2026-11-15",
   "extracted_by": "extractor agent (Claude Opus 5.5)",
-  "date": "2026-11-14",
-  "sources_read": [
-    "psi-data/PSI-25/_investigation/PSI-25.json",
-    "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
-    "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
-    "psi-data/PSI-25/Experimental table/PSI-25_Experimental table_BASS-II.csv"
-  ],
-  "records": [
-    {
-      "id": "R1",
-      "test_id": "*",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=approach",
-      "quote": "To summarize, BASS-II's approach, microgravity combustion tests were performed aboard the International Space Station.",
-      "confidence": "direct",
-      "derivation": "",
-      "flags": []
-    },
-    {
-      "id": "R2",
-      "test_id": "*",
-      "variable": "fuel_phase",
-      "value": "solid",
-      "value_original": "solid fuels",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=objective",
-      "quote": "Study the ignition, flame growth, flame spread, and extinction limits for solid fuels burning in low-velocity forced flows in microgravity.",
-      "confidence": "direct",
-      "derivation": "Objective 1) of the record; names the phase. Caution: test F4 is a 'Japan Wax candle' (PSI table material column); no source sentence states the phase of the candle fuel (see not_found).",
-      "flags": []
-    },
-    {
-      "id": "R3",
-      "test_id": "*",
-      "variable": "fuel_phase",
-      "value": "solid",
-      "value_original": "Solid fuel",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
-      "source_location": "page=1",
-      "quote": "Solid fuel ignition uses a Kanthal hot wire.",
-      "confidence": "direct",
-      "derivation": "Pre-flight science requirements slide (dated 4/14/2010), 'General Requirements' bullet; corroborates R2.",
-      "flags": []
-    },
-    {
-      "id": "R4",
-      "test_id": "*",
-      "variable": "platform",
-      "value": "International Space Station (ISS)",
-      "value_original": "International Space Station (ISS)",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=flightProgram",
-      "quote": "International Space Station (ISS)",
-      "confidence": "direct",
-      "derivation": "",
-      "flags": []
-    },
-    {
-      "id": "R5",
-      "test_id": "*",
-      "variable": "platform",
-      "value": "Microgravity Science Glovebox (MSG)",
-      "value_original": "Microgravity Science Glovebox (MSG)",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=experimentHardware",
-      "quote": "Microgravity Science Glovebox (MSG)",
-      "confidence": "direct",
-      "derivation": "The record approach adds: 'The wind tunnel was installed in the Microgravity Science Glovebox which supplied power, imaging, and a level of containment.'",
-      "flags": []
-    },
-    {
-      "id": "R6",
-      "test_id": "*",
-      "variable": "diluent",
-      "value": "N2",
-      "value_original": "nitrogen",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=approach",
-      "quote": "Main variables are airflow speed and oxygen concentration (oxygen varied below 21% by adding nitrogen).",
-      "confidence": "direct",
-      "derivation": "Nitrogen is the gas added to the ambient to lower O2. Same in the record objective: 'Ambient oxygen concentration (via working volume nitrogen vitiation)', and SRD page=1: 'GN2 is used to vitiate the MSG working volume to desired O2levels.' (text layer as extracted). Tests left in unvitiated ambient air also have N2 as balance (air: oxygen balanced mainly by nitrogen).",
-      "flags": []
-    },
-    {
-      "id": "R7",
-      "test_id": "O1..",
-      "variable": "flow_configuration",
-      "value": "concurrent",
-      "value_original": "concurrent",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
-      "source_location": "paragraph=8",
-      "quote": "Sandra Olson burned three sizes of pmma rods (mostly clear), igniting the upstream end for a stagnation flame / concurrent flow geometry.",
-      "confidence": "direct",
-      "derivation": "test_id: ReadMe paragraph=15 'Test number:   Initial of PI name followed by test number from the initial matrix.'; PSI table PI column 'Olson' carries O1..O22 (with a/b repeats). Corroboration, SRD page=12 Olson matrix note: 'ignite at a consistent concurrent flow, then reduce to low flows and measure spread, repeat until extinguished.' Caution, same page: 'in the event of a non-ignition of the rod at low O2, an opposed ignition will be attempted, followed by an ambient air opposed or concurrent test at TBD flow(s).', so individual O tests may deviate.",
-      "flags": []
-    },
-    {
-      "id": "R8",
-      "test_id": "P1..",
-      "variable": "flow_configuration",
-      "value": "opposed",
-      "value_original": "opposed",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_ReadMe.docx",
-      "source_location": "paragraph=9",
-      "quote": "Carlos Fernandez-Pello burned three sizes of pmma rods (mostly black), igniting the downstream end for an opposed flow flame spread geometry.",
-      "confidence": "direct",
-      "derivation": "test_id: PSI table PI column 'Fernandez-Pello' carries P1..P25 (prefix P, not F; F is Ferkul). Corroboration read from the SRD page=16 matrix image (no text layer): 'ignite at a consistent OPPOSED flow, then reduce to low flows and measure spread, repeat until extinguished.'",
-      "flags": []
-    },
-    {
-      "id": "R9",
-      "test_id": "M1..",
-      "variable": "flow_configuration",
-      "value": "opposed",
-      "value_original": "opposed",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Science Documents/PSI-25_Science Documents_BASS-II_SRD.pdf",
-      "source_location": "page=15",
-      "quote": "priority order test matrix per PI: Miller [...] Priority Sample # width (cm) thickness (mm) backing flow velocity (cm/s) Direction oxygen % # sides to burn Notes 1 15 2 5 mica 10 (ramp down) opposed 21 one need mica out the back",
-      "confidence": "ambiguous",
-      "derivation": "Only the slide title is in the PDF text layer; the table is an image and the header plus first row were transcribed from it. The Direction column reads 'opposed' in all 20 rows. It is the pre-flight priority matrix, and no source maps its rows (Priority / Sample #) to the flown M test numbers. ReadMe paragraph=7 ('Fletcher Miller burned various thickness and widths of thick pmma slabs (one sided and two sided burns).') states no flow configuration. ReadMe publication titles (paragraphs 54, 59: '... Intermediate Thickness PMMA Sheets ... in Microgravity Opposed Flow') point the same way but are titles only. test_id: PSI table PI column 'Miller' carries M1..M20.",
-      "flags": [
-        "FROM_FIGURE"
-      ]
-    },
-    {
-      "id": "R10",
-      "test_id": "*",
-      "variable": "flow_velocity",
-      "value": "",
-      "value_original": "up to 40 cm/s",
-      "unit_original": "cm/s",
-      "numbers": [
-        "40"
-      ],
-      "kind": "range",
-      "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
-      "source_location": "section=approach",
-      "quote": "Fuel samples were mounted inside a small wind tunnel which could impose airflow speeds up to 40 cm/s.",
-      "confidence": "ambiguous",
-      "derivation": "Capability of the wind tunnel ('could impose'), not a statement of the speeds actually tested; only the upper bound is written, no lower bound. Caution: the PSI table 'Air display' column (not extracted) has readings above 40 in some tests, e.g. T17 '6   53' and T21 '11   max(47)', so 40 cm/s should not be treated as a verified bound on tested flows. The wind tunnel is the BASS hardware launched for SPICE (see lineage).",
-      "flags": [
-        "RANGE_NOT_POINT",
-        "SHARED_LINEAGE"
-      ]
-    },
-    {
-      "id": "R201",
-      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
-      "ground_series": true,
-      "variable": "gravity_regime",
-      "value": "normal_gravity",
-      "value_original": "1g",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
-      "source_location": "page=49",
-      "quote": "PMMA (NASA and Astra) in 1g at San Diego State University",
-      "confidence": "direct",
-      "derivation": "Figure 2.20 caption: the 1g counterpart of the BASS-II microgravity tests; the text calls them the downward experiments in a normal-gravity environment (pages 44, 46). Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
-      "flags": [
-        "GROUND_1G_TESTS"
-      ]
-    },
-    {
-      "id": "R202",
-      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
-      "ground_series": true,
-      "variable": "fuel_phase",
-      "value": "solid",
-      "value_original": "sheets",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
-      "source_location": "page=51",
-      "quote": "flame spread over thin sheets of polymethylmethacrylate (PMMA) in the quiescent downward configuration",
-      "confidence": "derived",
-      "derivation": "PMMA sheets are a solid fuel; the sentence names the downward configuration. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
-      "flags": [
-        "GROUND_1G_TESTS"
-      ]
-    },
-    {
-      "id": "R203",
-      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
-      "ground_series": true,
-      "variable": "o2_mole_fraction",
-      "value": "",
-      "value_original": "21",
-      "unit_original": "percent",
-      "numbers": [
-        "21"
-      ],
-      "kind": "point",
-      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
-      "source_location": "page=46",
-      "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
-      "confidence": "direct",
-      "derivation": "O2 level stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
-      "flags": [
-        "GROUND_1G_TESTS"
-      ]
-    },
-    {
-      "id": "R204",
-      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
-      "ground_series": true,
-      "variable": "pressure",
-      "value": "",
-      "value_original": "101",
-      "unit_original": "kPa",
-      "numbers": [
-        "101"
-      ],
-      "kind": "point",
-      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
-      "source_location": "page=46",
-      "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
-      "confidence": "direct",
-      "derivation": "Pressure stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
-      "flags": [
-        "GROUND_1G_TESTS"
-      ]
-    }
-  ],
-  "not_found": [
-    {
-      "variable": "pressure",
-      "looked_in": "Record text, all sections (hypothesis names pressure only as a condition held identical in the microgravity vs normal-gravity comparison, '(pressure, O2 concentration, temperature, etc.)', no value); ReadMe paragraphs 1-86 (no pressure); SRD pages 1-16 (no pressure). The Summary Report PDF (psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf) could NOT be opened: it exceeds the 20 MB reader limit and page rendering (pdftoppm) is not installed, and its text streams are compressed. It is the most likely place for a pressure statement and remains unread."
-    },
-    {
-      "variable": "flow_configuration (Bhattacharjee series, B1..B22)",
-      "looked_in": "ReadMe paragraph 5 ('Subrata Bhattacharjee burned various thickness of very thin pmma films.') states no configuration; SRD page 13 pre-flight matrix gives flows '0 mm/s', '20 mm/s', '50 mm/s' with no direction. Only ReadMe publication titles (paragraphs 37, 51, 52, 57) mention opposed-flow flame spread; they are titles, not statements about these tests. Investigation-wide, the record approach says 'Flame appearance, flame growth, and spread rates were determined in both the opposed and concurrent flow.', which does not assign a configuration to any test series."
-    },
-    {
-      "variable": "flow_configuration (T'ien series, T1..T29)",
-      "looked_in": "ReadMe paragraph 10 states materials only. SRD page 14 pre-flight matrix (table image) mixes '2 cm, concurrent SIBAL' rows, '2 cm, opposed SIBAL' rows (priority 17 and 18), '1 cm SIBAL' rows without direction and a 'pmma sphere section' ignition test; no source maps those rows to flown T numbers, and the mapping is visibly not one-to-one (PSI table T7 is '4 cm spherical section' while matrix priority 7 is '2 cm, concurrent SIBAL'). ReadMe paragraph 38 title ('Concurrent flame growth, spread, and quenching over composite fabric samples in low speed purely forced flow in microgravity') is a publication title only."
-    },
-    {
-      "variable": "flow_configuration (Ferkul series, F1..F4)",
-      "looked_in": "ReadMe paragraph 6 ('Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.') states no configuration; the SRD has no Ferkul matrix (pages 12-16 cover Olson, Bhattacharjee, T'ien, Miller, Fernandez-Pello)."
-    },
-    {
-      "variable": "flow_velocity (tested range for the whole experiment)",
-      "looked_in": "Record text gives only the wind-tunnel capability (R10). ReadMe paragraphs 18-20 describe flow restrictors and the 'Air display' reading without a range; SRD pages 12-16 give per-PI planned flows only (not extracted, as instructed). Summary Report PDF unread (see pressure)."
-    },
-    {
-      "variable": "gravity_regime = normal_gravity",
-      "looked_in": "No 1-g test of this dataset is described in the record, ReadMe or SRD. The record objective and hypothesis refer to the normal-gravity NASA-STD-6001 Test #1 method as a comparison, and ReadMe publication titles (e.g. paragraph 56 '... under 1g and μg Conditions', paragraph 46 Narrow Channel Apparatus 'In Normal Gravity') refer to the PIs' ground work outside the PSI test table, with no test ids. No normal_gravity record proposed."
-    },
-    {
-      "variable": "fuel_phase for test F4 (candle)",
-      "looked_in": "ReadMe paragraph 6 says only 'a candle'; the PSI table material is 'Japan Wax candle'. No sentence in the record, ReadMe or SRD states the phase of the candle fuel. R2/R3 use test_id '*' on the strength of 'solid fuels' / 'Solid fuel'; the auditor may want to exclude F4."
-    }
-  ],
-  "lineage": "BASS-II reused the on-orbit BASS hardware originally launched for SPICE: 'BASS-II will utilize the on orbit BASS hardware launched originally for SPICE on STS-126.' (SRD page=9); 'The acquisition rate of 4 Hz can not be changed from SPICE/BASS.' and 'The measurement accuracy of ±10% was met by the SPICE hardware prior to its launch.' (SRD page=1); video field of view and D300s still-image requirements are the same as BASS (SRD page=1). The Ferkul F tests close out BASS-I: 'Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.' (ReadMe paragraph=6). SIBAL and NOMEX samples are 'Previously Flown Design' (SRD page=4) without naming the earlier flight. The ReadMe publication list is shared: 'BASS and BASS-II Publications and Presentations' (paragraph=33). SLICE is not mentioned in any source read, and the term 'flow duct' does not appear (the record calls it 'a small wind tunnel' installed in the MSG; ReadMe paragraph=20 says 'flow speed measured in the duct').",
-  "addendum_ground": "R201-R204: 1 g ground series, added 2026-11-14 at the coordinating session's request (Luis approved); audited by a separate verificador run."
+  "note": "R301-R304 proposed in draft-PSI-25-pressure.extractor.json (kept as draft); R304 rejected by the verificador and not merged. not_found: [{\"variable\": \"pressure (calculation inputs, not test conditions)\", \"looked_in\": \"Summary Report page=19: 'Using the ideal gas law, the free volume of the MSG V = 250,000 cc, ideal gas constant R = 82.05 cc∙atm/gmol K, pressure P = 1 atm, the change of O2 percent volume, and temperature T = 300 K, the gmol of O2 consumed is calculated as' (input of an O2-consumption calculation). Page=14: 'The model assumes the work volume is at constant pressure and temperature and constant volume.' (CSTR dilution-model assumption, no value). Page=11: nomenclature 'P pressure' and 'R gas constant; 82.05 cc∙atm/gmol∙K'. None proposed.\"}, {\"variable\": \"pressure (Table 2.1 title)\", \"looked_in\": \"Summary Report page=36: 'TABLE 2.1.—COMPARISON OF EXTINCTION VELOCITY Vg,cr FOR THIN POLYMETHYLMETHACRYLATE AT 1 atm' with Experiment, Computation and Theory columns at 21 and 16 percent O2. The experimental entries are not attributed to any test number (and no PSI-table B test has 16 percent initial O2), so no test scope can be assigned. Not proposed; flagged here for the auditor.\"}, {\"variable\": \"pressure (Olson O, Fernandez-Pello P, Miller M, Ferkul F series; B tests other than R301/R302/R304; T3, T7)\", \"looked_in\": \"Summary Report full-text search for 'pressure', 'kPa', 'atm', 'torr', 'psi', 'cabin', 'ambient pressure', 'total pressure' (all hits reviewed; Appendix A test matrices, pages 111 onward, have no pressure column); PSI table CSV header has no pressure column.\"}, {\"variable\": \"pressure (other PSI-25 sources)\", \"looked_in\": \"Record text (section=hypothesis names pressure only as a condition held identical in the microgravity vs normal-gravity comparison, '(pressure, O2', no value); ReadMe dump paragraphs (no hit); Ops docx paragraph=2 'adding GN2 to the WV to reduce the O2 partial pressure' (no value). SRD PDF could NOT be re-opened in this run (page rendering unavailable, no text dump); the earlier PSI-25 extraction (PSI-25.extractor.json, not_found) reports SRD pages 1-16 with no pressure.\"}]"
+ }
 }

@@ -838,6 +838,7 @@ For each record below, open the file at the location given and check that the qu
 
 ## PSI-25 BASS-II
 
+- *Table reading:* BASS-II `outcome:o2_mole_fraction_after_test` above the test's initial O2 by more than the sensor resolution (0.1 % O2, Summary Report page 14) is `insufficient_evidence`, kept as written: P22b (39.1 %, initial 20.0 %) and T28b (40.4 %, initial 20.7 %) cannot follow from a burn in a sealed volume diluted with N2.
 - *Table reading:* BASS-II "Air display" is `insufficient_evidence` in every row: the cell is a series of display readings taken during the test (e.g. "5 2 0 11 2 11 2 0"), not a fixed flow condition, and its cm/s unit comes only from the BASS-II ReadMe (paragraph 20: "flow speed measured in the duct in cm/s on the video display"). Same rule as "Fan display", which is not converted at all (ReadMe: "instantaneous fan voltagex10").
 - *Table reading:* BASS-II `sample_thickness` is parsed from the material description ("100 micron", "1 mm thick", "0.2 mm PMMA film", "4 mm 1 sided"). Rod diameters (e.g. 1/4") and sample widths are not thicknesses and give no record. A description stating two different thicknesses is `insufficient_evidence`.
 
@@ -960,6 +961,36 @@ For each record below, open the file at the location given and check that the qu
 - As written: `101` (kPa)
 - Applies to: 1 tests: `1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)`
 - Note: confidence direct (Pressure stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.); flags: GROUND_1G_TESTS; R204 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (insufficient_evidence)
+
+> PMMA (NASA) in 0g on International Space Station, 2-cm sample with 10.x cm in 20.7 percent O2 and 79 percent N2 at 1 atm. (a) Burning and Suppression of Solids—II (BASS–II) B03 sample; 100 µm thick. (b) BASS–II B11; 200 µm thick. (c) BASS–II B4; 300 µm thick. (d) BASS–II B13; 400 µm thick.
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=49`
+- As written: `1` (atm)
+- Applies to: 4 tests: `B3`, `B4`, `B11`, `B13`
+- Note: confidence ambiguous (Figure 2.20 caption text (section 2.3.7, printed page 41), not a value read from the image. NOMINAL condition: one set of conditions is written for all four panels. test_id: the caption writes 'B03'; the PSI table writes 'B3' (row 3, '100 micron film   2 cm wide', thickness matches the caption's 100 µm). B11, B4, B13 are written as in the table and their table thicknesses (0.2 mm, 300 micron, 0.4 mm) match the caption. Caution on how generic the caption is: it gives 20.7 percent O2 for all four, while the PSI table 'Calibrated initial O2 % by vol' is 22.2 for B3 and B4 and 21 for B11 and B13. DISCREPANCY with R302 (measured total pressure 99.2 to 99.5 kPa stated on page 46 for 'the tests reported' in the same section): both are proposed, none chosen.); flags: DISCREPANCY; atm x 101.325; R301 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 99.2..99.5 kPa  (insufficient_evidence)
+
+> The total pressure is also monitored, which varied from 99.2 to 99.5 kPa in the tests reported.
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=46`
+- As written: `99.2 to 99.5 kPa` (kPa)
+- Applies to: 4 tests: `B3`, `B4`, `B11`, `B13`
+- Note: confidence ambiguous (MEASURED (monitored) total pressure, section 2.3.5 'Microgravity and Normal-Gravity Experiments', in the paragraph describing the BASS-II opposed-flow duct in the ISS (preceding sentences on the same page describe the O2 sensor and the hot wire anemometer; next sentence: 'Experiments were conducted in the Microgravity Science Glovebox of ISS by two crew members.'). Scope is ambiguous: 'the tests reported' is not listed. The only flight tests identified by number in section 2.3 are B03 (=B3 in the PSI table), B11, B4 and B13 (Figure 2.20 caption, page 49); Figure 2.19 (page 48) also shows a microgravity 100-µm test at 3 cm/s without a test number. Not applied to the 1-g downward tests, which the same page gives separately as 'pressure 101 kPa' (already record R204 in PSI-25.extractor.json). DISCREPANCY with R301 (nominal '1 atm' in the Fig. 2.20 caption for the same four tests). test_id is a lower bound: the reported set also includes unnumbered 100-um tests spanning ~40 to ~1 cm/s (verificador).); flags: DISCREPANCY, RANGE_NOT_POINT; range stated in the source; R302 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101.325 kPa  (extracted)
+
+> The tests were conducted in ambient O2 molar fraction of 16 to 21 percent. Ambient pressure was 1 atm.
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=102`
+- As written: `1` (atm)
+- Applies to: 27 tests: `T1`, `T2`, `T4`, `T5`, `T6`, `T9`, `T10`, `T11`, `T12`, `T13`, `T14`, `T15`, `T16`, `T17`, `T18` ...
+- Note: confidence direct (Section 7.1.3 'Experimental' (printed page 94) of the T'ien SIBAL cotton-fiberglass fabric chapter; same paragraph block opens with 'All tests were conducted in a small flow duct (shown in Figure 7.1) within the MSG aboard the ISS.' (page 102). Nominal value; no measured pressure is given for these tests. test_id: section 7.1.4 (page 103) says 'A total of 27 tests were carried out for the fabric samples in BASS–II [...] These are listed in Table 7.1.' Table 7.1 (page 104) writes ids as 'GMT<day>-T<n>' (e.g. 'GMT45-T1', 'GMT216-T28a'); the PSI table writes 'T1', 'T28a'. The GMT day of each row matches the PSI table GMT column (e.g. T1 45, T5 100, T9 175, T11 178, T19 190, T25 216) and the O2 column matches the table 'Calibrated initial O2' (e.g. T1 18.5, T4 18.7, T13 17.5, T24 18.2); 27 BASS-II rows, matching the stated total. EXCLUDED: the four rows labelled 'BASS' at the bottom of Table 7.1 (GMT96-T8, GMT96-T7, GMT131-T10, GMT222-T11) are BASS (PSI-26) tests that reuse T numbers; and PSI table tests T3 and T7 ('4 cm spherical section') are not in Table 7.1, so not covered. Side note, not pressure: Table 7.1 gives width 2.2 cm for T24 while the PSI table material says '1 cm SIBAL   top side ign'; the mapping relies on GMT day + T number.); flags: SHARED_LINEAGE; atm x 101.325; R303 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-26 BASS
 

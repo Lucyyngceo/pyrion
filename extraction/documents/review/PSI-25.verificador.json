@@ -1,107 +1,134 @@
 {
-  "accession": "PSI-25",
-  "verified_by": "verificador agent (Claude Opus 5.5)",
-  "date": "2026-11-14",
-  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
-  "verdicts": [
-    {
-      "id": "R1",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=approach; says the tests were performed in microgravity; Summary Report pages 63 and 49 support it; 1-g and drop-tower data in the report carry no PSI test ids."
-    },
-    {
-      "id": "R2",
-      "verdict": "MODIFY",
-      "reason": "Objective sentence; '*' would cover F4, a BASS-I wax candle whose phase no source states.",
-      "corrected": {
-        "test_id": "* except F4"
-      }
-    },
-    {
-      "id": "R3",
-      "verdict": "MODIFY",
-      "reason": "Pre-flight requirement; the candle F4 was not in this plan.",
-      "corrected": {
-        "test_id": "* except F4"
-      }
-    },
-    {
-      "id": "R4",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=flightProgram; platform only."
-    },
-    {
-      "id": "R5",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=experimentHardware; the shared hardware is the flow duct, not the MSG itself."
-    },
-    {
-      "id": "R6",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=approach; nitrogen confirmed by Summary Report pages 11 and 45. Do not reuse its 'below 21%' for O2 (initial O2 reached 22.2%)."
-    },
-    {
-      "id": "R7",
-      "verdict": "KEEP",
-      "reason": "Verbatim at ReadMe paragraph 8; Summary Report page 72 and Table A.5 confirm concurrent/stagnation, none opposed."
-    },
-    {
-      "id": "R8",
-      "verdict": "MODIFY",
-      "reason": "Summary Report Table A.3 labels P16 and P19 'Concurrent'.",
-      "corrected": {
-        "test_id": "P1..P25 except P16, P19",
-        "derivation": "PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending)."
-      }
-    },
-    {
-      "id": "R9",
-      "verdict": "KEEP",
-      "reason": "Pre-flight plan read from a figure: ambiguous + FROM_FIGURE correct; a post-flight statement exists (Summary Report page 64)."
-    },
-    {
-      "id": "R10",
-      "verdict": "MODIFY",
-      "reason": "The 40 cm/s capability is contradicted by the Summary Report (~55 cm/s maximum; tests up to 53 cm/s).",
-      "corrected": {
-        "derivation": "Capability claim from the PSI record ('could impose'), not tested speeds; contradicted by Summary Report page=12 (max ~55 cm/s without restrictors, ~35 cm/s with two), page=72 (Olson 0-55 cm/s) and page=104 Table 7.1 (T17 '6 to 53', T21 '11 to 47'); never use 40 cm/s as an envelope bound."
-      }
-    },
-    {
-      "id": "R201",
-      "verdict": "MODIFY",
-      "reason": "Quote verbatim at page 49 (caption); 1-g ground series confirmed; derivation page pointers corrected; other 1-g data in the report are not this series.",
-      "corrected": {
-        "derivation": "Figure 2.20 caption (page 49): 'PMMA (NASA and Astra) in 1g at San Diego State University'. Sec. 2.3.5 is titled 'Microgravity and Normal-Gravity Experiments' (page 45); page 48 calls these 'the normal-gravity experiments'; page 23 calls them 'ground data from the San Diego State University (SDSU) flame stabilizer'. Condition stated once for the series; per-thickness values exist only in plots and are not invented. Stated discrepancy, not averaged: Fig. 2.20 caption (page 49) gives 20.7 percent O2 and 79 percent N2 at 1 atm; text on page 46 gives 101 kPa and 21 percent O2. Other 1-g data in the report (Fig. 2.15 forced-flow tunnel Ref. 18; Fernandez-Pello and Williams and Ref. 23 data in Fig. 2.22; SDSU Flame Tunnel; Ch. 4 rods) are NOT part of this series."
-      }
-    },
-    {
-      "id": "R202",
-      "verdict": "KEEP",
-      "reason": "Verbatim on page 51; PMMA sheets are solid."
-    },
-    {
-      "id": "R203",
-      "verdict": "KEEP",
-      "reason": "Verbatim on page 46; 21 vs 20.7 percent conflict stated, not averaged; nominal value."
-    },
-    {
-      "id": "R204",
-      "verdict": "KEEP",
-      "reason": "Verbatim on page 46; 101 kPa nominal, agrees with 1 atm within rounding; not the measured flight 99.2-99.5 kPa."
-    }
-  ],
-  "missed": [
-    "Pressure: Summary Report page 46 'The total pressure is also monitored, which varied from 99.2 to 99.5 kPa in the tests reported.' (B tests of one paper); page 102 'Ambient pressure was 1 atm.' (T tests, nominal). Not ingested: proposed by the verificador, not audited by a second pass.",
-    "Flow configuration per series: B opposed (page 29), M opposed (page 64), T SIBAL concurrent (page 102), T3/T7 stagnation, F1-F3 concurrent, F4 disputed (text opposed vs table stagnation), P16/P19 concurrent.",
-    "Flow ranges per PI (Olson 0-55 cm/s, Miller 3-20 cm/s, T'ien 1-53 cm/s); hardware maximum ~55 cm/s (page 12).",
-    "O2 varied from ~21% down to ~14% (page 14); 13.6 to 22.2% for the O series (page 72).",
-    "Lineage: the flow duct was built for gas-jet flame studies (SPICE) and adapted for BASS (page 12); BASS and BASS-II tests are pooled in T'ien's section with colliding test ids.",
-    "126 BASS-II tests per page 11 vs 129 PSI rows: O20-O22 (2016) are not confirmed as BASS-II.",
-    "The report contains 1-g ground and 5.18-s drop-tower data with no PSI test ids.",
-    "Other 1-g data in the Summary Report that are NOT this series and were not extracted: Fig. 2.15 vertical combustion tunnel (Ref. 18), Fernandez-Pello and Williams literature data and the Ref. 23 sample (Fig. 2.22), the SDSU vertical Flame Tunnel (page 23), 1-g PMMA rods of Chapter 4 (pages 57-58)."
-  ],
-  "could_not_check": "Summary Report read only through a text dump (over 20 MB); Appendix A column alignment not visually confirmed; figures not read; O20-O22 membership unconfirmed; pressure measured 99.2-99.5 kPa vs nominal 1 atm unresolved; SRD tables are images checked visually.",
-  "review_level": "segregated internal check by a language model; not expert or NASA review",
-  "addendum_ground": "R201-R204 (1 g ground series) audited in a separate verificador run on 2026-11-14; verdicts and corrections transcribed by the build session."
+ "accession": "PSI-25",
+ "verified_by": "verificador agent (Claude Opus 5.5)",
+ "date": "2026-11-14",
+ "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+ "verdicts": [
+  {
+   "id": "R1",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=approach; says the tests were performed in microgravity; Summary Report pages 63 and 49 support it; 1-g and drop-tower data in the report carry no PSI test ids."
+  },
+  {
+   "id": "R2",
+   "verdict": "MODIFY",
+   "reason": "Objective sentence; '*' would cover F4, a BASS-I wax candle whose phase no source states.",
+   "corrected": {
+    "test_id": "* except F4"
+   }
+  },
+  {
+   "id": "R3",
+   "verdict": "MODIFY",
+   "reason": "Pre-flight requirement; the candle F4 was not in this plan.",
+   "corrected": {
+    "test_id": "* except F4"
+   }
+  },
+  {
+   "id": "R4",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=flightProgram; platform only."
+  },
+  {
+   "id": "R5",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=experimentHardware; the shared hardware is the flow duct, not the MSG itself."
+  },
+  {
+   "id": "R6",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=approach; nitrogen confirmed by Summary Report pages 11 and 45. Do not reuse its 'below 21%' for O2 (initial O2 reached 22.2%)."
+  },
+  {
+   "id": "R7",
+   "verdict": "KEEP",
+   "reason": "Verbatim at ReadMe paragraph 8; Summary Report page 72 and Table A.5 confirm concurrent/stagnation, none opposed."
+  },
+  {
+   "id": "R8",
+   "verdict": "MODIFY",
+   "reason": "Summary Report Table A.3 labels P16 and P19 'Concurrent'.",
+   "corrected": {
+    "test_id": "P1..P25 except P16, P19",
+    "derivation": "PI-level ReadMe statement; Summary Report Table A.3 page=114 labels P16 and P19 'Concurrent', all other P rows 'Opposed' (configuration words sit under the column the text layer heads 'Sample distance'; visual check pending)."
+   }
+  },
+  {
+   "id": "R9",
+   "verdict": "KEEP",
+   "reason": "Pre-flight plan read from a figure: ambiguous + FROM_FIGURE correct; a post-flight statement exists (Summary Report page 64)."
+  },
+  {
+   "id": "R10",
+   "verdict": "MODIFY",
+   "reason": "The 40 cm/s capability is contradicted by the Summary Report (~55 cm/s maximum; tests up to 53 cm/s).",
+   "corrected": {
+    "derivation": "Capability claim from the PSI record ('could impose'), not tested speeds; contradicted by Summary Report page=12 (max ~55 cm/s without restrictors, ~35 cm/s with two), page=72 (Olson 0-55 cm/s) and page=104 Table 7.1 (T17 '6 to 53', T21 '11 to 47'); never use 40 cm/s as an envelope bound."
+   }
+  },
+  {
+   "id": "R201",
+   "verdict": "MODIFY",
+   "reason": "Quote verbatim at page 49 (caption); 1-g ground series confirmed; derivation page pointers corrected; other 1-g data in the report are not this series.",
+   "corrected": {
+    "derivation": "Figure 2.20 caption (page 49): 'PMMA (NASA and Astra) in 1g at San Diego State University'. Sec. 2.3.5 is titled 'Microgravity and Normal-Gravity Experiments' (page 45); page 48 calls these 'the normal-gravity experiments'; page 23 calls them 'ground data from the San Diego State University (SDSU) flame stabilizer'. Condition stated once for the series; per-thickness values exist only in plots and are not invented. Stated discrepancy, not averaged: Fig. 2.20 caption (page 49) gives 20.7 percent O2 and 79 percent N2 at 1 atm; text on page 46 gives 101 kPa and 21 percent O2. Other 1-g data in the report (Fig. 2.15 forced-flow tunnel Ref. 18; Fernandez-Pello and Williams and Ref. 23 data in Fig. 2.22; SDSU Flame Tunnel; Ch. 4 rods) are NOT part of this series."
+   }
+  },
+  {
+   "id": "R202",
+   "verdict": "KEEP",
+   "reason": "Verbatim on page 51; PMMA sheets are solid."
+  },
+  {
+   "id": "R203",
+   "verdict": "KEEP",
+   "reason": "Verbatim on page 46; 21 vs 20.7 percent conflict stated, not averaged; nominal value."
+  },
+  {
+   "id": "R204",
+   "verdict": "KEEP",
+   "reason": "Verbatim on page 46; 101 kPa nominal, agrees with 1 atm within rounding; not the measured flight 99.2-99.5 kPa."
+  },
+  {
+   "id": "R301",
+   "verdict": "KEEP",
+   "reason": "Fig. 2.20 caption (page 49) names B03, B11, B4, B13 for ISS panels; nominal template text (20.7 % O2 differs from the table); confidence stays ambiguous."
+  },
+  {
+   "id": "R302",
+   "verdict": "KEEP",
+   "reason": "Verbatim on page 46; 'the tests reported' is never listed, the four tests are a lower bound; ambiguous, range not split per test."
+  },
+  {
+   "id": "R303",
+   "verdict": "KEEP",
+   "reason": "Verbatim on page 102 (section 7.1.3); all 27 ids checked against Table 7.1 (page 104) by GMT day and O2; T3 and T7 and the BASS-labelled rows excluded; nominal value; no contradiction found."
+  },
+  {
+   "id": "R304",
+   "verdict": "REJECT",
+   "reason": "One unidentified test among eight candidates; the stated 20.7 % O2 excludes three of them; adds nothing beyond R301/R302."
+  }
+ ],
+ "missed": [
+  "Pressure: Summary Report page 46 'The total pressure is also monitored, which varied from 99.2 to 99.5 kPa in the tests reported.' (B tests of one paper); page 102 'Ambient pressure was 1 atm.' (T tests, nominal). Not ingested: proposed by the verificador, not audited by a second pass.",
+  "Flow configuration per series: B opposed (page 29), M opposed (page 64), T SIBAL concurrent (page 102), T3/T7 stagnation, F1-F3 concurrent, F4 disputed (text opposed vs table stagnation), P16/P19 concurrent.",
+  "Flow ranges per PI (Olson 0-55 cm/s, Miller 3-20 cm/s, T'ien 1-53 cm/s); hardware maximum ~55 cm/s (page 12).",
+  "O2 varied from ~21% down to ~14% (page 14); 13.6 to 22.2% for the O series (page 72).",
+  "Lineage: the flow duct was built for gas-jet flame studies (SPICE) and adapted for BASS (page 12); BASS and BASS-II tests are pooled in T'ien's section with colliding test ids.",
+  "126 BASS-II tests per page 11 vs 129 PSI rows: O20-O22 (2016) are not confirmed as BASS-II.",
+  "The report contains 1-g ground and 5.18-s drop-tower data with no PSI test ids.",
+  "Other 1-g data in the Summary Report that are NOT this series and were not extracted: Fig. 2.15 vertical combustion tunnel (Ref. 18), Fernandez-Pello and Williams literature data and the Ref. 23 sample (Fig. 2.22), the SDSU vertical Flame Tunnel (page 23), 1-g PMMA rods of Chapter 4 (pages 57-58)."
+ ],
+ "could_not_check": "Summary Report read only through a text dump (over 20 MB); Appendix A column alignment not visually confirmed; figures not read; O20-O22 membership unconfirmed; pressure measured 99.2-99.5 kPa vs nominal 1 atm unresolved; SRD tables are images checked visually.",
+ "review_level": "segregated internal check by a language model; not expert or NASA review",
+ "addendum_ground": "R201-R204 (1 g ground series) audited in a separate verificador run on 2026-11-14; verdicts and corrections transcribed by the build session.",
+ "addendum_pressure": {
+  "date": "2026-11-15",
+  "verified_by": "verificador agent (Claude Opus 5.5), separate run",
+  "missed": [],
+  "could_not_check": "SRD PDF could not be opened (no pressure found on its pages 1-16 by the earlier extraction); no slide or figure image seen; membership of 'the tests reported' on page 46 cannot be determined; T10, T11 and T7 collide with BASS labels (PSI-26): join on accession and GMT day.",
+  "transcription": "Verdicts condensed by the build session from the verificador's final message."
+ }
 }
