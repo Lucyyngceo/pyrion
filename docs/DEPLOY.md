@@ -69,7 +69,7 @@ A fresh `git clone` builds and passes its tests as is (`cd web && npm ci && npm 
    rsync -a web/.data/corpus/ <server>:<app>/web/.data/corpus/
    ```
 
-   Without it the site still works; TARS cannot quote NASA pages and says so.
+   Without it the site still works and the chat answers without the NASA layer (no quoted NASA pages); the server log says "NASA library not available".
 2. **The keys** in `web/.env.local` (see Secrets), and the two proxy variables above.
 
 Then:
