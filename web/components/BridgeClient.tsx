@@ -308,7 +308,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         </div>
         <p>
           PYRION wrote down what it will and will not say about FM2 before any result is public. The fingerprint (SHA-256) of that
-          text was stamped with OpenTimestamps, which anchors it in the Bitcoin blockchain, so anyone can check later that the
+          text has a public timestamp (OpenTimestamps; technical details on the Proof page), so anyone can check later that the
           text was not changed after the results came out. Read the statements in the{" "}
           <a data-help="bridge-sealed-readme" href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/README.md" target="_blank" rel="noreferrer">
             predictions README
