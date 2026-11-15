@@ -1,5 +1,6 @@
 "use client";
 
+import { BriefMe, ClaimChecker } from "./TarsSkills";
 import { useEffect, useRef, useState } from "react";
 import type { ExperimentsNeeded } from "@/lib/engine";
 import ExperimentsView from "../ExperimentsView";
@@ -141,6 +142,7 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
   const { mode, setMode, messages, busy, status, send, skill } = useTars();
   const [text, setText] = useState("");
   const [historyOpen, setShowHistory] = useState(false);
+  const [panel, setPanel] = useState<null | "claim" | "brief">(null);
   // On the TARS tab the conversation list is always a left sidebar; in the panel it opens with the History button.
   const showHistory = sidebar || historyOpen;
   const input = useRef<HTMLInputElement>(null);
@@ -176,8 +178,16 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
           <button data-help="tars-skill-gap" type="button" className="chip" disabled={busy} onClick={() => void skill("close-gap")}>
             What would close this gap
           </button>
+          <button data-help="tars-skill-claim" type="button" className="chip" aria-pressed={panel === "claim"} onClick={() => setPanel(panel === "claim" ? null : "claim")}>
+            Check a claim
+          </button>
+          <button data-help="tars-skill-brief" type="button" className="chip" aria-pressed={panel === "brief"} onClick={() => setPanel(panel === "brief" ? null : "brief")}>
+            Brief me
+          </button>
         </div>
       </div>
+      {panel === "claim" && <ClaimChecker onClose={() => setPanel(null)} />}
+      {panel === "brief" && <BriefMe onClose={() => setPanel(null)} />}
       <p data-help="tars-honesty" className="tars-honesty small muted">{HONESTY}</p>
 
       <div data-help="tars-log" className="tars-log" role="log" aria-live="polite">

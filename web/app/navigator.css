@@ -448,3 +448,15 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 .tars-second { padding: 5px 10px; border: 1px dashed var(--border-strong); font-size: 13px; }
 .tars-second ul { margin: 4px 0 0; padding-left: 18px; }
 .tars-second-object { border-color: var(--warn); }
+
+.tars-skillpanel { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; margin: 6px 0; border: 1px solid var(--border-strong); max-height: 55vh; overflow: auto; }
+.tars-skillpanel textarea { font: inherit; width: 100%; resize: vertical; }
+.tars-skillhead { display: flex; justify-content: space-between; align-items: center; }
+.tars-claims table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tars-claims th, .tars-claims td { text-align: left; vertical-align: top; padding: 4px 6px; border-top: 1px solid var(--border-strong); }
+.tars-badge { display: inline-block; padding: 0 6px; border: 1px solid currentColor; font-size: 12px; white-space: nowrap; }
+.tars-badge-ok { color: var(--ok, #2fbf71); }
+.tars-badge-none { color: var(--muted, #9aa); }
+.tars-badge-bad, .tars-badge-over { color: var(--warn, #ff8a3d); }
+.tars-brief-actions { display: flex; gap: 6px; }
+.tars-brief-frame { width: 100%; height: 320px; border: 1px solid var(--border-strong); background: #fff; }
