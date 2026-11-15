@@ -6,7 +6,7 @@ order: 6
 dataHelp: home-tools-line
 keywords: mission planner, investigations, tars si, tools, links
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="home-tools-line"]
 ---
 What it is: One line of links under the scenario tiles.

@@ -6,7 +6,7 @@ dataHelp: pin-compare
 title: Pin to compare
 keywords: pin to compare, pin compare, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="pin-compare"]
 ---
 What it is: A button on the verdict panel.

@@ -6,7 +6,7 @@ dataHelp: ground-note
 title: Ground tests note
 keywords: ground tests note, ground note, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ground-note"]
 ---
 What it is: A sentence under the headline when gravity is normal (1 g).

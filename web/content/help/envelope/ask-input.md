@@ -6,7 +6,7 @@ order: 5
 dataHelp: ask-input
 keywords: ask tars, question bar, ask
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ask-input"]
 ---
 What it is: The text box of the Ask TARS SI bar.

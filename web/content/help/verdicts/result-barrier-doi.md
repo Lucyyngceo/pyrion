@@ -6,7 +6,7 @@ dataHelp: result-barrier-doi
 title: Different-regime DOI link
 keywords: different-regime doi link, result barrier doi, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-barrier-doi"]
 ---
 What it is: A link in that group.

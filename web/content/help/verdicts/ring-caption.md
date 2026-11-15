@@ -6,7 +6,7 @@ dataHelp: ring-caption
 title: Ring caption
 keywords: ring caption, ring caption, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ring-caption"]
 ---
 What it is: The small line under the ring.

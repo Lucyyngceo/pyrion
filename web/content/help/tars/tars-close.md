@@ -6,7 +6,7 @@ dataHelp: tars-close
 title: Close TARS
 keywords: close tars, tars close, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="tars-close"]
 ---
 What it is: The cross in the panel header.

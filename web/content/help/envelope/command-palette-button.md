@@ -6,7 +6,7 @@ dataHelp: command-palette-button
 title: Command palette button (Ctrl K)
 keywords: command palette button (ctrl k), command palette button, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="command-palette-button"]
 ---
 What it is: The small Ctrl K key hint at the bottom right of every page.

@@ -207,10 +207,10 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
   );
   const showOnEnvelope = useCallback(
     (p: Pending) => {
-      if (path === "/") deliver(p);
+      if (path === "/envelope") deliver(p);
       else {
         storePending(p);
-        router.push("/");
+        router.push("/envelope");
       }
     },
     [path, router],

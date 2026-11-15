@@ -6,7 +6,7 @@ dataHelp: chart-table-receipt
 title: Table row receipt link
 keywords: table row receipt link, chart table receipt, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-table-receipt"]
 ---
 What it is: A link in the data table.

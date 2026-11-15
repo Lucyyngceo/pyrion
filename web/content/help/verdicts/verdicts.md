@@ -4,7 +4,7 @@ chapter: verdicts
 order: 5
 title: What the four verdicts mean
 keywords: verdict, applicable, extrapolation, insufficient evidence, not comparable, regime barrier, badge, result
-link: /
+link: /envelope
 highlight: .vring
 ---
 Each investigation gets one verdict for your condition.

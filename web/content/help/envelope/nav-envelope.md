@@ -6,7 +6,7 @@ dataHelp: nav-envelope
 title: Envelope tab
 keywords: envelope tab, nav envelope, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-envelope"]
 ---
 What it is: The home page of PYRION: scenario tiles, the evidence chart, the controls and the verdict.

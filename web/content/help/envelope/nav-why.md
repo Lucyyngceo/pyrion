@@ -6,7 +6,7 @@ dataHelp: nav-why
 title: Why tab
 keywords: why tab, nav why, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-why"]
 ---
 What it is: The page about why PYRION exists and who helped.

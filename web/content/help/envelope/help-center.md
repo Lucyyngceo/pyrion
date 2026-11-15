@@ -6,7 +6,7 @@ dataHelp: help-center
 title: Help center dialog
 keywords: help center dialog, help center, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-center"]
 ---
 What it is: A dialog with a search box and a list of topics by page.

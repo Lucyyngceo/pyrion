@@ -6,7 +6,7 @@ dataHelp: no-route-item
 title: No route found item
 keywords: no route found item, no route item, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="no-route-item"]
 ---
 What it is: An investigation in the last group.

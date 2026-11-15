@@ -6,7 +6,7 @@ dataHelp: tile-strip
 title: Scenario tiles
 keywords: scenario tiles, tile strip, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-strip"]
 ---
 What it is: The row of four tiles under the Ask box.

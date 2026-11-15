@@ -4,7 +4,7 @@ title: The precision exam
 chapter: add-a-source
 order: 160
 keywords: exam, precision, golden set, luci, negative controls, counts, coverage, accepted, invented values, judge battery
-link: /
+link: /envelope
 page: global
 dataHelp:
 sources: pyrion-ops/FASE-3-ADD-SOURCE.md, data/external/ntrs-20250010653/README.md

@@ -6,7 +6,7 @@ dataHelp: result-barrier-toggle
 title: Show or hide different-regime cards
 keywords: show or hide different-regime cards, result barrier toggle, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-barrier-toggle"]
 ---
 What it is: A link above the lowest group of cards.

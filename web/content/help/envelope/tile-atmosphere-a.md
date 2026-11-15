@@ -6,7 +6,7 @@ dataHelp: tile-atmosphere-a
 title: Atmosphere A link
 keywords: atmosphere a link, tile atmosphere a, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-atmosphere-a"]
 ---
 What it is: A small link in the exploration atmosphere tile.

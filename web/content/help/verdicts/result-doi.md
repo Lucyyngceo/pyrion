@@ -6,7 +6,7 @@ dataHelp: result-doi
 title: Card DOI (citation line)
 keywords: card doi (citation line), result doi, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-doi"]
 ---
 What it is: A link in the card.

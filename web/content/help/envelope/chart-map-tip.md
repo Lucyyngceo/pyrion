@@ -6,7 +6,7 @@ dataHelp: chart-map-tip
 title: Map readout
 keywords: map readout, chart map tip, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-map-tip"]
 ---
 What it is: A small box that follows the cursor.

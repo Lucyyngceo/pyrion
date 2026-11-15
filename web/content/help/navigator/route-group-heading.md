@@ -6,7 +6,7 @@ dataHelp: route-group-heading
 title: Route group heading
 keywords: route group heading, route group heading, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-group-heading"]
 ---
 What it is: The uppercase heading of each group.

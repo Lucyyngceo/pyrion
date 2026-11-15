@@ -6,7 +6,7 @@ dataHelp: route-sentence
 title: Route sentence
 keywords: route sentence, route sentence, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-sentence"]
 ---
 What it is: The two-line text of a route.

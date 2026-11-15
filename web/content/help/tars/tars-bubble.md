@@ -6,7 +6,7 @@ dataHelp: tars-bubble
 title: TARS bubble
 keywords: tars bubble, tars bubble, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="tars-bubble"]
 ---
 What it is: The round button at the bottom right of every page.

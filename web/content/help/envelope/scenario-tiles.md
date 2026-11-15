@@ -4,7 +4,7 @@ chapter: envelope
 order: 15
 title: The four scenario tiles
 keywords: tiles, scenario, iss, moon base, exploration atmosphere, your condition, presets, preset
-link: /
+link: /envelope
 highlight: .scenario-strip
 ---
 The strip at the top of the Envelope page has four tiles. Click one to load it into the dashboard.

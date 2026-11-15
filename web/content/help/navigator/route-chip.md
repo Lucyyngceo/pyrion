@@ -6,7 +6,7 @@ dataHelp: route-chip
 title: Route level chip
 keywords: route level chip, route chip, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-chip"]
 ---
 What it is: A small outlined label on a route line.

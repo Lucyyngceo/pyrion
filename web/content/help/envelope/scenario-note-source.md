@@ -6,7 +6,7 @@ dataHelp: scenario-note-source
 title: Scenario source link
 keywords: scenario source link, scenario note source, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="scenario-note-source"]
 ---
 What it is: A link in the scenario note.

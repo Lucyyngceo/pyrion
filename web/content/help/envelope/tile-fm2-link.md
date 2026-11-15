@@ -6,7 +6,7 @@ dataHelp: tile-fm2-link
 title: NASA FM2 page link
 keywords: nasa fm2 page link, tile fm2 link, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-fm2-link"]
 ---
 What it is: A link inside the Moon Base tile.

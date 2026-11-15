@@ -6,7 +6,7 @@ dataHelp: gap-standard-link
 title: NASA-STD-6001B link
 keywords: nasa-std-6001b link, gap standard link, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-standard-link"]
 ---
 What it is: A link in Measurements.

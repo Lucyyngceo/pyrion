@@ -6,7 +6,7 @@ dataHelp: verdict-headline
 title: Headline
 keywords: headline, verdict headline, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="verdict-headline"]
 ---
 What it is: The large coloured sentence.

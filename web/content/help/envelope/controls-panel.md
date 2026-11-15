@@ -6,7 +6,7 @@ dataHelp: controls-panel
 title: Your condition controls
 keywords: your condition controls, controls panel, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="controls-panel"]
 ---
 What it is: The left column of controls.

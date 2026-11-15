@@ -6,7 +6,7 @@ dataHelp: help-menu
 title: Help menu (?)
 keywords: help menu (?), help menu, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-menu"]
 ---
 What it is: The round question mark at the top right.

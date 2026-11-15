@@ -6,7 +6,7 @@ dataHelp: status-bar
 title: Status bar at the page foot
 keywords: status bar at the page foot, status bar, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="status-bar"]
 ---
 What it is: The row of small status cells above the footer.

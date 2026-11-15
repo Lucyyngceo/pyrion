@@ -6,7 +6,7 @@ dataHelp: gap-section-remaining
 title: Remaining gap
 keywords: remaining gap, gap section remaining, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-remaining"]
 ---
 What it is: What is left after FM2's stated plan.

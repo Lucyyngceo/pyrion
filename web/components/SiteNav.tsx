@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 /** The main sections, in order of importance. */
 const MAIN = [
-  { href: "/", label: "Envelope", help: "nav-envelope" },
+  { href: "/envelope", label: "Envelope", help: "nav-envelope" },
   { href: "/planner", label: "Planner", help: "nav-planner" },
   { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
   { href: "/investigations", label: "Investigations", help: "nav-investigations" },
@@ -54,6 +54,8 @@ export default function SiteNav() {
   }, []);
 
   const moreActive = MORE.some((l) => path === l.href || path.startsWith(`${l.href}/`));
+  // The home page has its own top bar (sections + Explore the evidence).
+  if (path === "/") return null;
   return (
     <nav ref={root} className={`sitenav${menu ? " nav-open" : ""}`} aria-label="Sections">
       <div className="sitenav-inner">

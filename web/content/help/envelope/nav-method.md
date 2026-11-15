@@ -6,7 +6,7 @@ dataHelp: nav-method
 title: Method tab
 keywords: method tab, nav method, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-method"]
 ---
 What it is: The page that explains how PYRION decides: axes, the four verdicts, ranking, the receipt, the checks and the role of the language model.

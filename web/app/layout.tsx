@@ -43,18 +43,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               AI tools (Claude Code, GPT and Grok); see the repository README for the full declaration. Status symbols after the Astro Space UX Design System, ©
               2024 Rocket Communications, Inc.
             </p>
-            <p>
-              <a data-help="footer-proof" href="/proof">
-                Proof
-              </a>{" "}
-              ·{" "}
-              <a data-help="footer-psi" href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
-                psi.nasa.gov
-              </a>{" "}
-              ·{" "}
-              <a data-help="footer-github" href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">
-                github.com/Lucyyngceo/pyrion
-              </a>
+            <p className="footer-links">
+              <a data-help="footer-why" href="/why">Why PYRION exists</a> ·{" "}
+              <a data-help="footer-proof" href="/proof">Proof</a> ·{" "}
+              <a data-help="footer-method" href="/method">Method</a> ·{" "}
+              <a data-help="footer-data" href="/data">Data</a> ·{" "}
+              <a data-help="footer-bridge" href="/bridge">Bridge</a> ·{" "}
+              <a data-help="footer-lenses" href="/lenses">Lenses</a> ·{" "}
+              <a data-help="footer-more" href="/more">On Earth</a> ·{" "}
+              <a data-help="footer-help" href="/help">Help</a> ·{" "}
+              <a data-help="footer-psi" href="https://psi.nasa.gov" target="_blank" rel="noreferrer">psi.nasa.gov</a> ·{" "}
+              <a data-help="footer-github" href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">github.com/Lucyyngceo/pyrion</a>
             </p>
           </footer>
         </div>

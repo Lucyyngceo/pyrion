@@ -6,7 +6,7 @@ dataHelp: tile-pick
 title: Tile title (loads the scenario)
 keywords: tile title (loads the scenario), tile pick, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-pick"]
 ---
 What it is: The title and condition of a tile, which is also the button that loads it.

@@ -6,7 +6,7 @@ order: 996
 dataHelp: nav-more
 keywords: more menu, navigation, menu
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-more"]
 ---
 What it is: A button of the top bar that opens the less frequent pages.

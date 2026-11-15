@@ -6,7 +6,7 @@ dataHelp: gap-section-matrix
 title: Test matrix
 keywords: test matrix, gap section matrix, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-matrix"]
 ---
 What it is: A table of proposed test points.

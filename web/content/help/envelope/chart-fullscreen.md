@@ -6,7 +6,7 @@ dataHelp: chart-fullscreen
 title: Full screen button
 keywords: full screen button, chart fullscreen, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-fullscreen"]
 ---
 What it is: A button that opens the chart over the whole window.

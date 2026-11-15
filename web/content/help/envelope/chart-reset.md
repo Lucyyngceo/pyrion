@@ -6,7 +6,7 @@ dataHelp: chart-reset
 title: Reset the view
 keywords: reset the view, chart reset, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-reset"]
 ---
 What it is: A button.

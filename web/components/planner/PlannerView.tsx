@@ -114,7 +114,7 @@ export default function PlannerView({ data }: { data: PlannerData }) {
             challenge statement says there is currently no partial-gravity combustion data in PSI, so 0 % follows by
             construction. What this page adds is below: what FM2 as planned would measure, which corners of the band
             stay unmeasured, and the nearest PSI evidence, which is in microgravity or normal gravity (open the{" "}
-            <a data-help="planner-zero-expected" href="/?preset=challenge-lunar-base">Envelope with the Moon Base condition</a>).
+            <a data-help="planner-zero-expected" href="/envelope?preset=challenge-lunar-base">Envelope with the Moon Base condition</a>).
           </p>
         )}
         <p data-help="planner-honesty" className="honesty">

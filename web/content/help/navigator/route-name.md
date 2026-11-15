@@ -6,7 +6,7 @@ dataHelp: route-name
 title: Route investigation name
 keywords: route investigation name, route name, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="route-name"]
 ---
 What it is: The name at the start of a route line.

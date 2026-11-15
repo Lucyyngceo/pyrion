@@ -6,7 +6,7 @@ dataHelp: footer-note
 title: Footer note
 keywords: footer note, footer note, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="footer-note"]
 ---
 What it is: The text at the very bottom of every page.

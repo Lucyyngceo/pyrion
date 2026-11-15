@@ -4,7 +4,7 @@ chapter: envelope
 order: 5
 title: The Envelope page and its chart
 keywords: envelope, chart, map, plot, hull, oxygen, pressure, regime, shaded
-link: /
+link: /envelope
 highlight: .chart-card
 ---
 The Envelope page is the home page. The chart plots oxygen (% by volume) against pressure (kPa). Each shaded outline is the envelope of one regime: the oxygen and pressure range that PSI tested for one combination of gravity, fuel phase, diluent and flame type.

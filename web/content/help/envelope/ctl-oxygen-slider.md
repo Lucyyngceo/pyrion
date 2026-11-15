@@ -6,7 +6,7 @@ dataHelp: ctl-oxygen-slider
 title: Oxygen slider
 keywords: oxygen slider, ctl oxygen slider, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ctl-oxygen-slider"]
 ---
 What it is: A slider for oxygen.

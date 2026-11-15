@@ -6,7 +6,7 @@ dataHelp: help-center-search
 title: Help search box
 keywords: help search box, help center search, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-center-search"]
 ---
 What it is: The search field of the Help center.

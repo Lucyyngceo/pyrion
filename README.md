@@ -12,7 +12,7 @@ No API key and no language model are needed for the envelope and the verdict: th
 
 ## Try it
 
-- [Envelope with the Moon Base preset](https://pyrion.us/?preset=challenge-lunar-base)
+- [Envelope with the Moon Base preset](https://pyrion.us/envelope?preset=challenge-lunar-base)
 - [Mission Planner](https://pyrion.us/planner)
 - [Investigations](https://pyrion.us/investigations)
 - [TARS SI](https://pyrion.us/tars)
@@ -125,6 +125,10 @@ The library TARS reads: the page-by-page text of the NASA documents downloaded u
 
 - **Output** in `web/.data/corpus/` (git-ignored, regenerable from `data/raw/`): `pages.jsonl` (one line per page with document, accession or NTRS id, 1-based PDF page, printed page when detectable, citation URL, DOI, SHA-256 of the file), `chunks.jsonl` (~320-word chunks with 50-word overlap, each pointing to its pages), `bm25.json` (a BM25 index, no model needed), `no_text_pages.json`, `skipped.json`, `corpus_manifest.json`.
 - **Not read:** binary formats (`.xls`, `.doc`, `.ppt`), `.zip`, `.dat`, images and video, files identical to another by SHA-256, and one PDF that PyMuPDF cannot open (listed in `skipped.json`). Tables are included as header plus the first rows only; the numbers used by the engine live in `data/conditions/`. DOCX has no pages, so its pseudo-pages are blocks of paragraphs (`paragraph=a-b`).
+
+## Images
+
+Photographs on the home page come from NASA: representative images in the PSI investigation records (`web/public/media/psi/CREDITS.json`) and the NASA Image and Video Library (`web/public/media/nasa/CREDITS.json`), each credited where shown. No NASA logo is used.
 
 ## License
 

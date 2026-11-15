@@ -6,7 +6,7 @@ dataHelp: add-source-button
 title: + Add a source button
 keywords: + add a source button, add source button, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-button"]
 ---
 What it is: The button next to the page title.

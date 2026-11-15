@@ -6,7 +6,7 @@ dataHelp: nav-data
 title: Data tab
 keywords: data tab, nav data, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-data"]
 ---
 What it is: The page about the data behind the envelope: where each value comes from and how many were extracted per investigation.

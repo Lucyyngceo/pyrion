@@ -6,7 +6,7 @@ dataHelp: chart-view-all
 title: All pressures
 keywords: all pressures, chart view all, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-view-all"]
 ---
 What it is: A view toggle.

@@ -6,7 +6,7 @@ dataHelp: nav-code
 title: Code link
 keywords: code link, nav code, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-code"]
 ---
 What it is: A link to the public GitHub repository of the project.

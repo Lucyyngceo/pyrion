@@ -6,7 +6,7 @@ dataHelp: help-mode
 title: Help mode banner
 keywords: help mode banner, help mode, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-mode"]
 ---
 What it is: A banner while Help mode is on.

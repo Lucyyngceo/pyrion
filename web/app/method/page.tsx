@@ -147,7 +147,7 @@ export default function MethodPage() {
         </p>
 
         <p>
-          <Link data-help="method-back" href="/">Back to the envelope</Link> · <Link data-help="method-data" href="/data">See the data coverage</Link>
+          <Link data-help="method-back" href="/envelope">Back to the envelope</Link> · <Link data-help="method-data" href="/data">See the data coverage</Link>
         </p>
       </div>
     </main>

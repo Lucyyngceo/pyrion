@@ -6,7 +6,7 @@ dataHelp: chart-axes
 title: Chart axes and ruler
 keywords: chart axes and ruler, chart axes, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-axes"]
 ---
 What it is: The frame of the chart.

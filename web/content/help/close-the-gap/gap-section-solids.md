@@ -6,7 +6,7 @@ dataHelp: gap-section-solids
 title: Solids first
 keywords: solids first, gap section solids, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-solids"]
 ---
 What it is: Why the proposal puts solid fuels first.

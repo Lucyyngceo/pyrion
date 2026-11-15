@@ -6,7 +6,7 @@ dataHelp: chart-caption
 title: Chart caption
 keywords: chart caption, chart caption, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-caption"]
 ---
 What it is: The text under the chart.

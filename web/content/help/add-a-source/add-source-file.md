@@ -6,7 +6,7 @@ dataHelp: add-source-file
 title: Upload a table
 keywords: upload a table, add source file, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-file"]
 ---
 What it is: A file picker.

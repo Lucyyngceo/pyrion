@@ -6,7 +6,7 @@ dataHelp: help-center-ask-tars
 title: Ask TARS about this
 keywords: ask tars about this, help center ask tars, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-center-ask-tars"]
 ---
 What it is: A button under a topic.

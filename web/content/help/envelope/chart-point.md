@@ -6,7 +6,7 @@ dataHelp: chart-point
 title: One measured point
 keywords: one measured point, chart point, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-point"]
 ---
 What it is: A single mark (hover target).

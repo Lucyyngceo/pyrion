@@ -6,7 +6,7 @@ dataHelp: tour-next
 title: Tour next or done
 keywords: tour next or done, tour next, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="tour-next"]
 ---
 What it is: A button.

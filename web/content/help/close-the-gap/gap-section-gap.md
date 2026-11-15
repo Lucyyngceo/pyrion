@@ -6,7 +6,7 @@ dataHelp: gap-section-gap
 title: The gap
 keywords: the gap, gap section gap, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-gap"]
 ---
 What it is: The first section.

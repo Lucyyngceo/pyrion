@@ -6,7 +6,7 @@ dataHelp: header-details-link
 title: Details link in the header
 keywords: details link in the header, header details link, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="header-details-link"]
 ---
 What it is: A link beside the status line.

@@ -6,7 +6,7 @@ dataHelp: nav-tars
 title: TARS SI tab
 keywords: tars tab, nav tars, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="nav-tars"]
 ---
 What it is: The full-width page of the TARS chat (the Traceable Applicability Reasoning System).

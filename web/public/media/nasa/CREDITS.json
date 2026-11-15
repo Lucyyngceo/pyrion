@@ -1,0 +1,19 @@
+{
+ "note": "From NASA Image and Video Library (images.nasa.gov); NASA imagery is generally not copyrighted. No NASA logos used.",
+ "images": [
+  {
+   "file": "media/nasa/lunar-south-pole.webp",
+   "nasa_id": "PIA13523",
+   "title": "The Lunar South Pole",
+   "credit": "NASA/GSFC/Arizona State University",
+   "source": "https://images.nasa.gov/details/PIA13523"
+  },
+  {
+   "file": "media/nasa/iss-2000.webp",
+   "nasa_id": "s97e5104",
+   "title": "View of the ISS during Endeavour's flyaround after undocking",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/s97e5104"
+  }
+ ]
+}

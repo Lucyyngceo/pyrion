@@ -6,7 +6,7 @@ dataHelp: tile-title
 title: Tile title
 keywords: tile title, tile title, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-title"]
 ---
 What it is: The name of the scenario.

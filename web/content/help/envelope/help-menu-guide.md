@@ -6,7 +6,7 @@ dataHelp: help-menu-guide
 title: Guide (tour, beta)
 keywords: guide (tour, beta), help menu guide, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-menu-guide"]
 ---
 What it is: A menu item.

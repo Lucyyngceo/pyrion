@@ -6,7 +6,7 @@ dataHelp: chart-target
 title: Target marker
 keywords: target marker, chart target, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-target"]
 ---
 What it is: The ringed marker with ticks.

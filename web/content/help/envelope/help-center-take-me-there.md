@@ -6,7 +6,7 @@ dataHelp: help-center-take-me-there
 title: Take me there (Help center)
 keywords: take me there (help center), help center take me there, global
 page: global
-link: /
+link: /envelope
 highlight: [data-help="help-center-take-me-there"]
 ---
 What it is: A button under a topic.

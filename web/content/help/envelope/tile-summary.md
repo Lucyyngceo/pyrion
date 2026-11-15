@@ -6,7 +6,7 @@ dataHelp: tile-summary
 title: Tile verdict summary
 keywords: tile verdict summary, tile summary, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="tile-summary"]
 ---
 What it is: The bold line on a tile.

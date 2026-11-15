@@ -6,7 +6,7 @@ dataHelp: add-source-dialog
 title: Add NASA evidence dialog
 keywords: add nasa evidence dialog, add source dialog, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="add-source-dialog"]
 ---
 What it is: The dialog that opens from + Add a source.

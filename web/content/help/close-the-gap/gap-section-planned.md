@@ -6,7 +6,7 @@ dataHelp: gap-section-planned
 title: What NASA's planned experiments cover
 keywords: what nasa's planned experiments cover, gap section planned, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="gap-section-planned"]
 ---
 What it is: FM2 and LUCI and what their sources state.

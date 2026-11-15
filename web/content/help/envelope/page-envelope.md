@@ -6,7 +6,7 @@ dataHelp: page-envelope
 title: Envelope page overview
 keywords: envelope page overview, page envelope, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="page-envelope"]
 ---
 What it is: The home page: choose a condition, see where NASA's tests stand relative to it, and read the verdicts.

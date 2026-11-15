@@ -6,7 +6,7 @@ dataHelp: scenario-note-summary
 title: About this scenario
 keywords: about this scenario, scenario note summary, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="scenario-note-summary"]
 ---
 What it is: A collapsible note under the tiles.

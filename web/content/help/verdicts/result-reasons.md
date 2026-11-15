@@ -6,7 +6,7 @@ dataHelp: result-reasons
 title: Reasons list
 keywords: reasons list, result reasons, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-reasons"]
 ---
 What it is: The list under a card.

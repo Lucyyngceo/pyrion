@@ -6,7 +6,7 @@ dataHelp: result-ref
 title: Receipt reference [n]
 keywords: receipt reference [n], result ref, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="result-ref"]
 ---
 What it is: A small numbered button in a reason.

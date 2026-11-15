@@ -6,7 +6,7 @@ dataHelp: chart-layer-regime-not-stated
 title: Regime not stated chip
 keywords: regime not stated chip, chart layer regime not stated, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="chart-layer-regime-not-stated"]
 ---
 What it is: A chip for tests whose regime is not fully stated.

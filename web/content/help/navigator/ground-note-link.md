@@ -6,7 +6,7 @@ dataHelp: ground-note-link
 title: Ground tests inventory link
 keywords: ground tests inventory link, ground note link, envelope
 page: envelope
-link: /
+link: /envelope
 highlight: [data-help="ground-note-link"]
 ---
 What it is: A link in the ground note.
