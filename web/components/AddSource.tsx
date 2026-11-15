@@ -75,10 +75,10 @@ export default function AddSource() {
           <p className="small muted">Added evidence is shown as external, only in your view, and can be switched off or exported.</p>
 
           <div className="as-actions">
-            <button data-help="add-source-submit" type="submit" disabled>
-              Add this source
-            </button>
-            <span className="small muted">Processing arrives in the next build.</span>
+            <a data-help="add-source-submit" href="/data" className="chip">
+              See how every value is checked
+            </a>
+            <span className="small muted">Today this dialog checks your input; it does not process the source.</span>
           </div>
         </form>
       </dialog>

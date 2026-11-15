@@ -1,4 +1,4 @@
-import Explorer from "@/components/Explorer";
+import ExplorerLoader from "@/components/ExplorerLoader";
 import AddSource from "@/components/AddSource";
 import HelpMenu from "@/components/HelpMenu";
 import { loadDataset, loadLineage } from "@/lib/data";
@@ -41,7 +41,7 @@ export default async function Page() {
         </div>
       )}
 
-      <Explorer dataset={dataset} />
+      <ExplorerLoader dataset={{ ...dataset, files: dataset.files.map((f) => ({ ...f, text: "" })) }} />
     </main>
   );
 }
