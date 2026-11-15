@@ -420,7 +420,11 @@ def check_language(rep):
     files = [ROOT / p for p in PUBLIC_TEXT if (ROOT / p).exists()]
     for g in PUBLIC_GLOBS:
         files += [p for p in ROOT.glob(g) if "node_modules" not in p.parts]
+    # Detectors that list the banned phrases in order to catch them are not public claims.
+    detectors = {ROOT / "web" / "lib" / "expert" / "claim.ts"}
     for f in files:
+        if f in detectors:
+            continue
         for n, line in enumerate(f.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
             if "lang-ok" in line:  # explicit, reviewed exception on that line
                 continue

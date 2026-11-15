@@ -1,8 +1,8 @@
-# Validation report — 2026-11-15T04:42:57Z
+# Validation report — 2026-11-15T07:28:13Z
 
-Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 · text_files_scanned: 86 · units_identity_no_unit_in_source: 207 · units_rechecked: 3251
+Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 · text_files_scanned: 125 · units_identity_no_unit_in_source: 207 · units_rechecked: 3251
 
-**BLOCKER 0 · MAJOR 0 · MINOR 132**
+**BLOCKER 0 · MAJOR 0 · MINOR 134**
 
 | severity | check | where | what |
 |---|---|---|---|
@@ -14,7 +14,9 @@ Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 �
 | MINOR | consistency | `PSI-68 test Propanol (80%) Glycerol (20%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Propanol (95%) Glycerol (5%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test n-Octane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
-| MINOR | language | `web/components/tars/TarsExtras.tsx:8` | 'safe' in: /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text |
+| MINOR | language | `web/components/tars/TarsExtras.tsx:13` | 'safe' in: /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text |
+| MINOR | language | `web/components/tars/TarsSkills.tsx:108` | 'safe' in: <textarea id="tars-claim-text" data-help="tars-claim-input" rows={4} maxLength={3000} value={text} onChange={(e) => setT |
+| MINOR | language | `web/components/tars/TarsSkills.tsx:14` | 'safe' in: overclaim: "The wording claims more than evidence can: safe, validated, first, proves…", |
 | MINOR | language | `web/lib/llm/safety.ts:40` | 'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s |
 | MINOR | language | `web/lib/llm/safety.ts:58` | 'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */ |
 | MINOR | units | `data/conditions/PSI-26.csv:123` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
