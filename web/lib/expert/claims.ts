@@ -15,6 +15,7 @@
 // around it stays readable, and a withheld figure can never be mistaken for a fact. A sentence-level warning would
 // leave the untraced figure on screen, one glance away from being believed.
 
+import { transportMisconception } from "./science.ts";
 import type { ToolOk, ToolResult } from "./calculators.ts";
 
 export type Layer = "engine" | "nasa" | "expert";
@@ -330,6 +331,13 @@ export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
     }
     const layer = b.layer;
     const refs = Array.isArray(b.toolRefs) ? b.toolRefs.filter((r): r is string => typeof r === "string") : [];
+
+    // Science regression guard (SYSTEM_PROMPT rule 7): a block that states a transport misconception is never shown.
+    const wrong = transportMisconception(b.text);
+    if (wrong) {
+      report.dropped.push({ index, layer, reason: "science_misconception", detail: `${wrong.kind}: "${wrong.sentence.slice(0, 120)}"` });
+      return;
+    }
 
     if (layer === "nasa") {
       const bad = nasaBad.get(index);
