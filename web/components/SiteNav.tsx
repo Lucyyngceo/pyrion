@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const LINKS = [
   { href: "/", label: "Envelope", help: "nav-envelope" },
-  { href: "/tars", label: "TARS", help: "nav-tars" },
+  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
   { href: "/bridge", label: "Bridge", help: "nav-bridge" },
   { href: "/method", label: "Method", help: "nav-method" },
   { href: "/data", label: "Data", help: "nav-data" },
@@ -29,7 +29,8 @@ export default function SiteNav() {
         <ul>
           {LINKS.map((l) => (
             <li key={l.href}>
-              <Link data-help={l.help} href={l.href} aria-current={path === l.href ? "page" : undefined}>
+              <Link data-help={l.help} href={l.href} className={l.ai ? "nav-ai" : undefined} aria-current={path === l.href ? "page" : undefined}>
+                {l.ai && <span aria-hidden="true">✦ </span>}
                 {l.label}
               </Link>
             </li>
