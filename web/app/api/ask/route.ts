@@ -133,6 +133,10 @@ export async function POST(req: Request) {
         if (e instanceof PlainError) return json({ error: e.message, safety: safetyState, meta: metaOf(c.meta) }, 422);
         return json({ error: `The question could not be turned into a valid target. ${modelText(e instanceof Error ? e.message : "invalid reply")}`, safety: safetyState, ...metaOf(c.meta) }, 422);
       }
+      // A gravity word that could not be read (e.g. a typo) is never dropped in silence: ask for it instead of leaving gravity open.
+      if (!parsed.target.regime.gravity_regime && /\bgra?v\w*|\bmicro-?g\w*/i.test(q)) {
+        return json({ error: "The gravity in the question could not be read. Write it as microgravity, lunar gravity, Mars gravity or 1 g, or a number in g.", safety: safetyState, ...metaOf(c.meta) }, 422);
+      }
       return json({ meta: metaOf(c.meta), promptVersion: PROMPT_VERSION, safety: safetyState, safety_detail: safety.detail, parsed });
     }
 

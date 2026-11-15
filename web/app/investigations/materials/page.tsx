@@ -3,6 +3,9 @@ import SaffireCompare from "@/components/investigations/SaffireCompare";
 import "@/app/investigations/investigations.css";
 import fs from "node:fs/promises";
 import path from "node:path";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Materials and oxygen · PYRION Ω", description: "Materials tested in the PSI combustion investigations and the highest ambient oxygen tested per fuel phase." };
 type Row={accession:string;test_id:string;value:string;unit:string;variable:string;source_file:string;source_location:string;quote:string;status:string};
 type Entry={accession:string;test_id:string;material_source:Row;conditions:Row[]};
 type Materials={materials:{name:string;families:string[];geometry:string[];tests:Entry[];ranges:{variable:string;unit:string;min:number;max:number;min_source:Row;max_source:Row}[]}[];ambient_ceilings:Record<string,[Row,Row,Row[]][]>;burner_ceiling:[Row][];excluded_ambient:Row[]};

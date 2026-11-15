@@ -6,6 +6,13 @@ import TestLoader from "@/components/investigations/TestLoader";
 import "@/app/investigations/investigations.css";
 import { notFound } from "next/navigation";
 import { profiles } from "@/lib/investigations/data";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const p = profiles.find((x) => x.accession.toLowerCase() === id.toLowerCase());
+  return { title: p ? `${p.accession} ${p.acronym ?? ""} · PYRION Ω`.replace("  ", " ") : "Investigation · PYRION Ω" };
+}
 export function generateStaticParams() { return profiles.map(p=>({id:p.accession})); }
 export default async function Investigation({params,searchParams}:{params:Promise<{id:string}>;searchParams:Promise<{test?:string}>}) { const {id}=await params;const p=profiles.find(x=>x.accession===id);if(!p) notFound();
  const {test} = await searchParams;

@@ -3,6 +3,9 @@ import path from "node:path";
 import "@/app/investigations/investigations.css";
 import { profiles } from "@/lib/investigations/data";
 import InvestigationList from "@/components/investigations/InvestigationList";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Investigations · PYRION Ω", description: "The 24 NASA PSI combustion investigations: summaries in NASA's words, tests, variables, hardware families and one-click comparisons." };
 
 type LensesFile = {
   investigations: { accession: string; legs: Record<string, unknown[]>; strength: { value: string } }[];

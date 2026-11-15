@@ -1,6 +1,9 @@
 import {displayRange} from "@/lib/investigations/display";
 import "@/app/investigations/investigations.css";
 import {profiles} from "@/lib/investigations/data";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Compare investigations · PYRION Ω", description: "Side-by-side comparison of PSI combustion investigations: conditions, hardware, tests and what differs." };
 export default async function Compare({searchParams}:{searchParams:Promise<{ids?:string}>}) {
  const {ids=""}=await searchParams;const selected=[...new Set(ids.split(",").map(id=>id.trim().toUpperCase()).filter(Boolean))].slice(0,6).map(id=>profiles.find(p=>p.accession===id)).filter(p=>p!==undefined);
  const axes=[...new Set(selected.flatMap(p=>p.variables.map(v=>`${v.variable}|${v.unit}`)))].sort();
