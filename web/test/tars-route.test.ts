@@ -64,3 +64,19 @@ test("the engine's facts are identical in Easy and Advanced; the mode only choos
   assert.equal(resolveMode("auto", "support"), "easy");
   assert.ok(pair.advanced.known.length > 0 && pair.advanced.unknown.length >= 0 && pair.advanced.next.length > 0, "known and next are present");
 });
+
+import { suggestNext } from "../lib/tars/suggest.ts";
+
+test("suggested next questions come from templates and the state of the answer", () => {
+  const s = suggestNext({ tools: ["set_condition", "evaluate_condition"], hasTarget: true, hasNasa: false });
+  assert.equal(s.length, 3);
+  assert.ok(s.some((x) => "action" in x && x.action === "show"));
+  assert.ok(s.every((x) => x.label.length > 0));
+  // a tool that already ran is not suggested again
+  const t = suggestNext({ tools: ["what_would_close_the_gap", "run_calculator"], hasTarget: true, hasNasa: false });
+  assert.ok(!t.some((x) => x.id === "gap" || x.id === "iss"));
+  // Spanish labels
+  assert.match(suggestNext({ tools: [], hasTarget: true, hasNasa: false, lang: "es" })[0].label, /brecha/);
+  // no condition: only a plain-words follow-up
+  assert.deepEqual(suggestNext({ tools: [], hasTarget: false, hasNasa: false }).map((x) => x.id), ["simple"]);
+});

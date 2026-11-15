@@ -5,6 +5,7 @@ import { highlight } from "@/lib/tars/bridge";
 import { resolveMode } from "@/lib/tars/answer";
 import { labelsFor, type Lang } from "@/lib/tars/lang";
 import { CitationQuote } from "./CitationPreview";
+import { suggestNext } from "@/lib/tars/suggest";
 import { useTars, type ExpertResult, type Msg } from "./TarsProvider";
 
 /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text is never inserted as HTML. */
@@ -125,6 +126,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           ),
         )}
       </div>
+      <NextQuestions result={r} />
       {r.model && (
         <p className="small muted tars-by">
           {L10n.answeredBy} {r.model.name}
@@ -206,5 +208,27 @@ export function History() {
       )}
       <p className="small muted">Conversations stay in this browser. Nothing is sent to a server for storage.</p>
     </nav>
+  );
+}
+
+/** Up to three follow-ups, from templates and the state of the answer. */
+function NextQuestions({ result }: { result: ExpertResult }) {
+  const { send, showOnEnvelope, busy } = useTars();
+  const items = suggestNext({ tools: result.steps.map((x) => x.tool), hasTarget: !!result.target, hasNasa: result.blocks.some((b) => b.layer === "nasa"), lang: result.lang });
+  if (items.length === 0) return null;
+  return (
+    <div className="tars-next" data-help="tars-next-questions" role="group" aria-label="Suggested next questions">
+      {items.map((x) =>
+        "action" in x ? (
+          <button key={x.id} data-help="tars-next-questions" type="button" className="chip" disabled={busy} onClick={() => showOnEnvelope({ target: result.target })}>
+            {x.label}
+          </button>
+        ) : (
+          <button key={x.id} data-help="tars-next-questions" type="button" className="chip" disabled={busy} onClick={() => void send(x.question)}>
+            {x.label}
+          </button>
+        ),
+      )}
+    </div>
   );
 }
