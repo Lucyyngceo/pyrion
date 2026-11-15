@@ -11,7 +11,7 @@ highlight: [data-help="nav-more"]
 ---
 What it is: A button of the top bar that opens the less frequent pages.
 
-What it shows: A list: Safety lenses, Equipment & Earth, Bridge, Method, Data, Proof, Help, Why and Code.
+What it shows: A list: Data, Proof, Method, Bridge, Help, Why and Code.
 
 How to use it: Click it, then choose a page. Escape closes it.
 

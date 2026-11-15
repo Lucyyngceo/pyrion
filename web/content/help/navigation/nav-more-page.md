@@ -1,6 +1,6 @@
 ---
 id: nav-more-page
-title: Equipment & Earth (in More)
+title: Earth & equipment (top bar)
 chapter: envelope
 order: 991
 dataHelp: nav-more-page
@@ -9,11 +9,11 @@ page: global
 link: /more
 highlight: [data-help="nav-more-page"]
 ---
-What it is: The Equipment & Earth entry of the More menu.
+What it is: The Earth & equipment entry of the top bar.
 
 What it shows: Fire-safety equipment research in PSI (detection, suppression, prevention), Earth applications as stated by PSI and the challenge, the spacesuit atmosphere and why rockets are out of scope.
 
-How to use it: Open More, then Equipment & Earth.
+How to use it: Click Earth & equipment in the top bar.
 
 Example: Read the suppression card: FLEX and fine-water-mist extinguishers.
 

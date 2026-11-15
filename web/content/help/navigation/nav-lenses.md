@@ -1,6 +1,6 @@
 ---
 id: nav-lenses
-title: Safety lenses (in More)
+title: Safety (top bar)
 chapter: envelope
 order: 990
 dataHelp: nav-lenses
@@ -9,11 +9,11 @@ page: global
 link: /lenses
 highlight: [data-help="nav-lenses"]
 ---
-What it is: The Safety lenses entry of the More menu.
+What it is: The Safety entry of the top bar: the safety lenses page.
 
 What it shows: Which PSI investigations speak to fire prevention, detection or suppression, each tag backed by a word-for-word quote.
 
-How to use it: Open More, then Safety lenses.
+How to use it: Click Safety in the top bar.
 
 Example: Filter by suppression to see the investigations with a suppression quote.
 

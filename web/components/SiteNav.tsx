@@ -6,20 +6,21 @@ import { useEffect, useRef, useState } from "react";
 
 /** The main sections, in order of importance. */
 const MAIN = [
+  { href: "/example", label: "Example", help: "nav-example" },
   { href: "/envelope", label: "Envelope", help: "nav-envelope" },
   { href: "/planner", label: "Planner", help: "nav-planner" },
-  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
   { href: "/investigations", label: "Investigations", help: "nav-investigations" },
+  { href: "/lenses", label: "Safety", help: "nav-lenses" },
+  { href: "/more", label: "Earth & equipment", help: "nav-more-page" },
+  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
 ];
 
 /** Behind the "More" menu, in order of importance. */
 const MORE = [
-  { href: "/lenses", label: "Safety lenses", help: "nav-lenses" },
-  { href: "/more", label: "Equipment & Earth", help: "nav-more-page" },
-  { href: "/bridge", label: "Bridge", help: "nav-bridge" },
-  { href: "/method", label: "Method", help: "nav-method" },
   { href: "/data", label: "Data", help: "nav-data" },
   { href: "/proof", label: "Proof", help: "nav-proof" },
+  { href: "/method", label: "Method", help: "nav-method" },
+  { href: "/bridge", label: "Bridge", help: "nav-bridge" },
   { href: "/help", label: "Help", help: "nav-help" },
   { href: "/why", label: "Why", help: "nav-why" },
 ];
