@@ -1405,3 +1405,10 @@ input[type="range"] {
 .tools-line { margin: 4px 0 10px; color: var(--ink-2); }
 .tools-line a { color: var(--ink-2); }
 .tools-line a:hover { color: var(--neon); }
+
+/* TARS page picker: hover outline while picking, and the reference chip. */
+body.tars-picking, body.tars-picking * { cursor: crosshair !important; }
+.tars-pick-hover { outline: 2px solid var(--neon, #00f0ff) !important; outline-offset: 2px; }
+.tars-pick { min-width: 40px; }
+.tars-pick.is-on { background: var(--neon, #00f0ff); color: #04050a; }
+.tars-ref { flex-basis: 100%; margin: 0 0 6px; border-left: 3px solid var(--neon, #00f0ff); padding-left: 8px; }

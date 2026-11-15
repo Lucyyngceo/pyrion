@@ -2,6 +2,7 @@
 
 import { BriefMe, ClaimChecker, CompareAtmospheres } from "./TarsSkills";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import type { ExperimentsNeeded } from "@/lib/engine";
 import ExperimentsView from "../ExperimentsView";
 import { resolveMode, viewFor, type Mode } from "@/lib/tars/answer";
@@ -147,6 +148,61 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
   const showHistory = sidebar || historyOpen;
   const input = useRef<HTMLInputElement>(null);
   const end = useRef<HTMLDivElement>(null);
+  const path = usePathname();
+  // Picker: click anything on the page to send its visible text along with the question, as a reference.
+  const [picking, setPicking] = useState(false);
+  const [ref, setRef] = useState<{ text: string; label: string } | null>(null);
+  const canPick = !sidebar && path !== "/tars";
+  useEffect(() => {
+    if (!picking) return;
+    let hovered: HTMLElement | null = null;
+    const unmark = () => {
+      if (hovered) hovered.classList.remove("tars-pick-hover");
+      hovered = null;
+    };
+    const target = (e: Event) => {
+      const el = e.target instanceof HTMLElement ? e.target : null;
+      if (!el || el.closest("#tars-panel, .tars-bubble")) return null;
+      return (el.closest("[data-help]") as HTMLElement | null) ?? el;
+    };
+    const over = (e: MouseEvent) => {
+      const el = target(e);
+      if (el === hovered) return;
+      unmark();
+      if (el) {
+        hovered = el;
+        el.classList.add("tars-pick-hover");
+      }
+    };
+    const click = (e: MouseEvent) => {
+      const el = target(e);
+      if (!el) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const raw = (el.innerText || el.getAttribute("aria-label") || el.getAttribute("alt") || "").replace(/\s+/g, " ").trim();
+      if (raw) setRef({ text: raw.length > 280 ? `${raw.slice(0, 279)}…` : raw, label: el.getAttribute("data-help") ?? el.tagName.toLowerCase() });
+      unmark();
+      setPicking(false);
+      input.current?.focus();
+    };
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        unmark();
+        setPicking(false);
+      }
+    };
+    document.addEventListener("mouseover", over, true);
+    document.addEventListener("click", click, true);
+    document.addEventListener("keydown", esc, true);
+    document.body.classList.add("tars-picking");
+    return () => {
+      unmark();
+      document.removeEventListener("mouseover", over, true);
+      document.removeEventListener("click", click, true);
+      document.removeEventListener("keydown", esc, true);
+      document.body.classList.remove("tars-picking");
+    };
+  }, [picking]);
   useEffect(() => {
     if (autoFocus) input.current?.focus();
   }, [autoFocus]);
@@ -226,15 +282,39 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
         className="tars-form"
         onSubmit={(e) => {
           e.preventDefault();
-          const t = text;
+          const t = ref && text.trim() ? `${text.trim()}
+
+Reference from this page (${path}): "${ref.text}"` : text;
           setText("");
+          setRef(null);
           void send(t);
         }}
       >
+        {ref && (
+          <p data-help="tars-pick" className="tars-ref small">
+            <span className="muted">Reference:</span> &ldquo;{ref.text.length > 120 ? `${ref.text.slice(0, 119)}…` : ref.text}&rdquo;{" "}
+            <button data-help="tars-pick" type="button" className="linklike" aria-label="Remove the reference" onClick={() => setRef(null)}>
+              ×
+            </button>
+          </p>
+        )}
         <label className="sr-only" htmlFor="tars-q">
           Message to TARS
         </label>
         <input data-help="tars-input" id="tars-q" ref={input} type="text" maxLength={300} value={text} onChange={(e) => setText(e.target.value)} placeholder="Ask TARS…" autoComplete="off" />
+        {canPick && (
+          <button
+            data-help="tars-pick"
+            type="button"
+            className={`tars-pick${picking ? " is-on" : ""}`}
+            aria-pressed={picking}
+            title={picking ? "Click anything on the page to use it as a reference (Esc cancels)" : "Pick something on the page as a reference"}
+            aria-label="Pick something on the page as a reference"
+            onClick={() => setPicking((p) => !p)}
+          >
+            ◎
+          </button>
+        )}
         <button data-help="tars-send" type="submit" disabled={busy || !text.trim()}>
           Send
         </button>
