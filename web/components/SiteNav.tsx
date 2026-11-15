@@ -7,17 +7,17 @@ import { useEffect, useRef, useState } from "react";
 /** The main sections, in order of importance. */
 const MAIN = [
   { href: "/example", label: "Example", help: "nav-example" },
-  { href: "/envelope", label: "Envelope", help: "nav-envelope" },
-  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
-  { href: "/planner", label: "Planner", help: "nav-planner" },
+  { href: "/envelope", label: "Dashboard", help: "nav-envelope" },
+  { href: "/planner", label: "Mission Planner", help: "nav-planner" },
   { href: "/example#ex-gaps", label: "Evidence gaps", help: "nav-gaps" },
   { href: "/investigations", label: "Investigations", help: "nav-investigations" },
-  { href: "/lenses", label: "Safety", help: "nav-lenses" },
-  { href: "/more", label: "Earth & equipment", help: "nav-more-page" },
+  { href: "/tars", label: "Ask TARS", help: "nav-tars", ai: true },
 ];
 
 /** Behind the "More" menu, in order of importance. */
 const MORE = [
+  { href: "/lenses", label: "Safety", help: "nav-lenses" },
+  { href: "/more", label: "Earth & equipment", help: "nav-more-page" },
   { href: "/data", label: "Data", help: "nav-data" },
   { href: "/proof", label: "Proof", help: "nav-proof" },
   { href: "/method", label: "Method", help: "nav-method" },

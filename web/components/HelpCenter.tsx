@@ -13,7 +13,7 @@ interface HelpTopic extends Topic {
 
 const PAGES: { id: string; label: string }[] = [
   { id: "all", label: "All" },
-  { id: "envelope", label: "Envelope" },
+  { id: "envelope", label: "Dashboard" },
   { id: "bridge", label: "Bridge" },
   { id: "data", label: "Data" },
   { id: "method", label: "Method" },
