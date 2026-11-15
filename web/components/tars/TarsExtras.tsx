@@ -4,6 +4,7 @@ import { useState } from "react";
 import { highlight } from "@/lib/tars/bridge";
 import { resolveMode } from "@/lib/tars/answer";
 import { labelsFor, type Lang } from "@/lib/tars/lang";
+import { CitationQuote } from "./CitationPreview";
 import { useTars, type ExpertResult, type Msg } from "./TarsProvider";
 
 /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text is never inserted as HTML. */
@@ -91,20 +92,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
             </h4>
             <Md text={b.text} />
             {b.citations.map((c, ci) => (
-              <blockquote key={ci} className="tars-quote" title={`${c.doc_id}, p. ${c.page}`}>
-                “{c.quote}”
-                <footer className="small muted">
-                  {c.title ?? c.doc_id}, p. {c.page}
-                  {c.url && (
-                    <>
-                      {" · "}
-                      <a data-help="tars-document-link" href={c.url} target="_blank" rel="noreferrer">
-                        open the document
-                      </a>
-                    </>
-                  )}
-                </footer>
-              </blockquote>
+              <CitationQuote key={ci} doc_id={c.doc_id} page={c.page} quote={c.quote} title={c.title} url={c.url} />
             ))}
             {adv && b.provenance.length > 0 && (
               <ul className="small muted">
