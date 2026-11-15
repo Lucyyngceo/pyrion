@@ -81,8 +81,12 @@ test("the engine layer cannot restate a number the engine did not give", async (
     (m) => ({ content: JSON.stringify([{ layer: "engine", text: "Exactly 77 investigations are applicable.", toolRefs: [toolOut(m, 1).ref] }]) }),
   ]);
   const r = await runAgent({ ...s.env, chat: s.chat }, { message: "21% at 14.7 psia" });
-  assert.equal(r.kept.length, 0);
+  // The model's block with the invented number is withheld; code adds the engine's own verdict counts instead.
   assert.equal(r.report.dropped[0].reason, "number_not_in_engine_output");
+  assert.equal(r.kept.length, 1);
+  assert.equal(r.kept[0].layer, "engine");
+  assert.doesNotMatch(r.kept[0].text, /77/);
+  assert.ok(r.engineCounts && Object.keys(r.engineCounts).length > 0);
 });
 
 test("UI-context question: describe_ui returns the page context and the help topic, and a highlight action is offered", async () => {
@@ -185,7 +189,7 @@ test("an explanatory question must end with an expert block and a NASA quote: on
   const r = await runAgent({ ...s.env, chat: s.chat }, { message: "What would happen if we burned a PMMA sheet at 34% oxygen and 8.2 psia on the Moon?" });
   assert.match(asks[0], /no expert block/);
   assert.match(asks[0], /no nasa block/);
-  assert.deepEqual(r.kept.map((b) => b.layer).sort(), ["expert", "nasa"]);
+  assert.deepEqual(r.kept.map((b) => b.layer).sort(), ["engine", "expert", "nasa"]);
   assert.ok(s.seen[0].some((m) => m.role === "tool" && m.tool_call_id === "pre-search"), "the library was searched before the first model turn");
 });
 
@@ -211,4 +215,19 @@ test("the target is set whenever the message carries a complete condition, even 
   const r = await runAgent({ ...s.env, chat: s.chat }, { message: "What about 34% oxygen at 8.2 psia in microgravity?" });
   assert.ok(r.target);
   assert.equal(r.target?.continuous.o2_mole_fraction, 0.34);
+});
+
+test("a stated condition always gets an engine block with the engine's counts, injected by code when the model omits it", async () => {
+  const s = script([() => ({ content: JSON.stringify([{ layer: "expert", text: "It depends on the regime." }]) })]);
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "34 % O2 at 8.2 psia on the Moon" });
+  const eng = r.kept.find((b) => b.layer === "engine");
+  assert.ok(eng, "engine block present");
+  assert.match(eng!.provenance.join(" "), /computed by code/);
+  assert.ok(r.engineCounts);
+});
+
+test("a Spanish what-if runs the hypothetical experiment by code, like its English twin", async () => {
+  const s = script([() => ({ content: JSON.stringify([{ layer: "expert", text: "Es una hipótesis." }]) })]);
+  const es = await runAgent({ ...s.env, chat: s.chat }, { message: "Si quemáramos PMMA al 30 % y 10,2 psia en gravedad lunar, ¿qué pasaría?" });
+  assert.ok(es.steps.some((x) => x.tool === "what_if_experiment"), "what_if_experiment ran");
 });

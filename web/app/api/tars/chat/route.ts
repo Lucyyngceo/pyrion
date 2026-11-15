@@ -9,7 +9,9 @@ import { loadLibrary } from "@/lib/expert/library";
 import { runAgent, type AssistantMsg, type HistoryTurn, type UiContext } from "@/lib/expert/agent";
 import { allModels, displayName } from "@/lib/llm/config";
 import { reviewSecondOpinion } from "@/lib/expert/skeptic";
-import { modelFamily, type AskModel } from "@/lib/expert/model";
+import { makeAskModel } from "@/lib/tars/ask-model";
+import { runWorkflow, workflowOf } from "@/lib/tars/workflows";
+import type { BriefTurn } from "@/lib/expert/brief";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +26,7 @@ export async function POST(req: Request) {
   const cookie: Record<string, string> = setCookie ? { "Set-Cookie": setCookie } : {};
   const raw = await req.text();
   if (raw.length > MAX_BODY) return Response.json({ error: "the request is too large" }, { status: 413 });
-  let body: { message?: unknown; history?: unknown; lastTarget?: unknown; ui?: unknown; skeptic?: unknown };
+  let body: { message?: unknown; history?: unknown; lastTarget?: unknown; ui?: unknown; skeptic?: unknown; turns?: unknown };
   try {
     body = JSON.parse(raw);
   } catch {
@@ -36,8 +38,9 @@ export async function POST(req: Request) {
 
   const history: HistoryTurn[] = Array.isArray(body.history)
     ? body.history.flatMap((h) => {
-        const x = h as { role?: unknown; text?: unknown };
-        return (x.role === "user" || x.role === "assistant") && typeof x.text === "string" ? [{ role: x.role, text: x.text.slice(0, 1500) } as HistoryTurn] : [];
+        const x = h as { role?: unknown; text?: unknown; content?: unknown };
+        const t = typeof x.text === "string" ? x.text : typeof x.content === "string" ? x.content : null;
+        return (x.role === "user" || x.role === "assistant") && t !== null ? [{ role: x.role, text: t.slice(0, 1500) } as HistoryTurn] : [];
       }).slice(-8)
     : [];
   const shaped = body.lastTarget ? shapeTarget(body.lastTarget) : null;
@@ -83,26 +86,23 @@ export async function POST(req: Request) {
           { message, history, lastTarget, ui },
         );
         if (result.report.dropped.length || result.report.flaggedNumbers.length) console.warn("[pyrion] expert answer check:", JSON.stringify(result.report));
+        // A typed workflow request ("Check this: …", "Make an evidence brief…", "Compare … with …", "second opinion") gives the same
+        // result fields as the panel buttons, in this same final event.
+        const workflow = workflowOf(message, ui as { workflow?: unknown });
+        const clientTurns: BriefTurn[] = Array.isArray(body.turns)
+          ? (body.turns as Record<string, unknown>[]).slice(0, 20).flatMap((t) => (typeof t?.question === "string" && Array.isArray(t.kept) ? [{ question: t.question.slice(0, 600), kept: t.kept, target: ((x) => (x && x.ok ? x.target : null))(t.target ? shapeTarget(t.target) : null), model: (t.model as BriefTurn["model"]) ?? null, skeptic: (t.skeptic as BriefTurn["skeptic"]) ?? null } as BriefTurn] : []))
+          : [];
+        if (workflow) send({ type: "status", text: "Running the requested workflow…" });
+        const extras = workflow
+          ? await runWorkflow(workflow, { message, history, ui: ui as { conditions?: unknown }, kept: result.kept, target: result.target, model: used ? { model: (used as { model: string }).model, name: (used as { name: string }).name } : null, records, investigations, library, askModel: makeAskModel(visitor), available: allModels(providers()), turns: clientTurns })
+          : {};
         const tShaped = result.target ? shapeTarget(result.target) : null;
         const fingerprint = tShaped && tShaped.ok ? (await evaluateOnServer(tShaped.target)).sha256 : null;
-        send({ type: "result", fingerprint, blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, lang: result.lang, steps: result.steps, model: used });
+        send({ type: "result", fingerprint, ...extras, blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, lang: result.lang, steps: result.steps, model: used });
         // Second opinion: a model of a different family reviews the checked answer; it never changes it. Sent after the answer, so the answer is not delayed.
-        if (body.skeptic === true && result.kept.length > 0 && used) {
+        if (body.skeptic === true && workflow !== "second_opinion" && result.kept.length > 0 && used) {
           send({ type: "status", text: "Asking for a second opinion…" });
-          const askModel: AskModel = async (req) => {
-            let last: unknown = null;
-            for (const m of req.prefer) {
-              if (req.avoidFamilies.includes(modelFamily(m))) continue;
-              try {
-                const c = await askLlm({ messages: req.messages, model: m, pin: true, effort: "low", maxTokens: 1500, maxTokensByProvider: { openrouter: 1500, nim: 1500 }, deadlineMs: 45_000 }, visitor);
-                const text = c.json?.choices?.[0]?.message?.content;
-                if (typeof text === "string") return { text, model: c.meta.model, name: displayName(c.meta.model), provider: c.meta.provider };
-              } catch (e) {
-                last = e;
-              }
-            }
-            throw last instanceof Error ? last : new Error("no reviewing model answered");
-          };
+          const askModel = makeAskModel(visitor);
           try {
             const sk = await reviewSecondOpinion(message, result.kept, { corpus: library?.corpus ?? { get: () => undefined, hasDocument: () => false }, askModel, answeredBy: (used as { model: string }).model, available: allModels(providers()) });
             send({ type: "skeptic", skeptic: sk });

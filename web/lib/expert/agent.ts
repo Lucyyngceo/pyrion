@@ -4,13 +4,14 @@
 // The model never decides a verdict and never does arithmetic: verdicts come from engine tools, numbers from calculators or
 // verified quotes. Its final answer is a list of layered blocks; checkAnswer keeps only what survives.
 
-import { evaluate, evidenceMap, experimentsNeeded, parseQuantity, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
+import { ENGINE_NAME, ENGINE_VERSION, evaluate, evidenceMap, experimentsNeeded, parseQuantity, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
 import { axisLabel, valueLabel, verdictLabel, levelSentence } from "../../../engine/src/labels.ts";
 import { readByCode } from "../ask-core.ts";
 import { detectLang, languageInstruction } from "../tars/lang.ts";
 import { searchTopics, MIN_SCORE, type Topic } from "../tars/help.ts";
 import { CALCULATOR_SPECS, runCalculator, type ToolResult } from "./calculators.ts";
-import { checkAnswer, quoteFound, type Corpus, type CheckResult } from "./claims.ts";
+import { checkAnswer, quoteFound, ENGINE_LABEL, type Corpus, type CheckResult, type KeptBlock } from "./claims.ts";
+import { ensureTarget } from "./condition.ts";
 
 export interface Inv {
   accession: string;
@@ -211,7 +212,20 @@ export function plainify(text: string): string {
 
 /** A "what would happen / why / explain" question must end with an explanation, not only with engine facts. */
 export function isExplanatory(message: string): boolean {
-  return /\b(what (would|will|could) (happen|occur)|what happens|why\b|how (does|do|would|come|can)|explain|what is the physics|what to expect|what.?s going on)\b/i.test(message);
+  return /\b(what (would|will|could) (happen|occur)|what happens|why\b|how (does|do|would|come|can)|explain|what is the physics|what to expect|what.?s going on)\b/i.test(message) || /(?<![\p{L}])(qué (pasaría|pasa|ocurriría|ocurre|sucedería|esperar)|por qué|cómo (funciona|sería|puede|podría|se)|explic\p{L}*)(?![\p{L}])/iu.test(message);
+}
+
+/** A "what if we burned / ran / tested …" question, in English or Spanish. The language never changes which tools run. */
+export function isWhatIf(message: string): boolean {
+  return /\b(what if|what would happen if|if we (burn|burned|ran|run|test|tested|light|lit|were to))\b/i.test(message) || /(?<![\p{L}])(si (quemáramos|quemamos|probáramos|probamos|hiciéramos|hacemos|encendiéramos|corriéramos|ejecutáramos)|qué pasaría si|y si (quemamos|probamos|hacemos))(?![\p{L}])/iu.test(message);
+}
+
+/** The fuel phase a message names (by word, never guessed): null when it names none. */
+export function fuelPhaseOf(message: string): "solid" | "liquid" | "gas" | null {
+  if (/\b(pmma|plexiglas|polymethyl|cellulose|paper|foam|fabric|nomex|teflon|silicone|polyethylene|sample|rod|slab|solid|sólido|solido|papel|espuma|tela)\b/i.test(message)) return "solid";
+  if (/\b(heptane|ethanol|methanol|decane|droplet|droplets|liquid|líquido|liquido|gota|gotas)\b/i.test(message)) return "liquid";
+  if (/\b(methane|propane|ethylene|hydrogen|gas|gaseous|gaseoso|metano|propano)\b/i.test(message)) return "gas";
+  return null;
 }
 
 function targetSummary(t: Target) {
@@ -444,6 +458,10 @@ export interface AgentResult extends CheckResult {
   rounds: number;
   /** The language of the visitor's message, for the labels of the answer. */
   lang: string;
+  /** The engine's verdict counts at the target (codes), when a condition was evaluated. */
+  engineCounts?: Record<string, number>;
+  /** Problems found reading the condition (gauge pressure, a number that is not a pressure…), in plain words. */
+  conditionIssues?: string[];
 }
 
 export async function runAgent(
@@ -454,15 +472,29 @@ export async function runAgent(
   const ui = input.ui ?? {};
   const lang = detectLang(input.message);
   // A complete condition in the message is the target, whether or not the model calls set_condition.
-  if (!s.target) {
-    const r = readByCode(input.message);
-    if (r.kind === "code") s.target = r.parsed.target;
-  }
+  // ensureTarget reads the message by code (a follow-up merges into the last target) before the model runs.
+  const cond = ensureTarget(s, input.message);
+  const conditionStated = cond.source === "question" || cond.source === "follow_up";
   const system = `${SYSTEM_PROMPT}${languageInstruction(lang) ? `\n\n${languageInstruction(lang)}` : ""}\n\nPage context (from the visitor's browser): ${cap(JSON.stringify(ui), 1500)}\nPrevious target: ${s.target ? JSON.stringify(targetSummary(s.target)) : "none"}`;
   const messages: ChatMsg[] = [{ role: "system", content: system }, ...(input.history ?? []).slice(-8).map((h) => ({ role: h.role, content: cap(h.text, 1200) }) as ChatMsg), { role: "user", content: input.message }];
   // For explanations the NASA library is searched first, so the model sees the passages and a verified quote is always possible.
   const explain = isExplanatory(input.message);
   let passagesFound = false;
+  // "What if we burned X at this condition?": the hypothetical experiment runs by code, in any language, so the model only explains it.
+  // In a what-if, a lone percentage the extractor left over ("al 30 % y 10,2 psia") is the oxygen level.
+  if (isWhatIf(input.message) && s.target && s.target.continuous.o2_mole_fraction === undefined && cond.leftover.length === 1) {
+    const m = /^(\d+(?:[.,]\d+)?)\s*%$/.exec(cond.leftover[0].trim());
+    if (m) s.target = { ...s.target, continuous: { ...s.target.continuous, o2_mole_fraction: Number(m[1].replace(",", ".")) / 100 } };
+  }
+  if (isWhatIf(input.message) && s.target && s.target.continuous.o2_mole_fraction !== undefined && s.target.continuous.pressure !== undefined) {
+    const phase = fuelPhaseOf(input.message) ?? (s.target.regime.fuel_phase as "solid" | "liquid" | "gas" | undefined) ?? null;
+    if (phase) {
+      const args = { label: cap(input.message, 100), gravity_regime: String(s.target.regime.gravity_regime ?? "partial_gravity"), fuel_phase: phase, o2: `${Number((s.target.continuous.o2_mole_fraction * 100).toPrecision(4))} %`, pressure: `${Number(s.target.continuous.pressure.toPrecision(6))} kPa` };
+      const out = await executeTool("what_if_experiment", args, env, s, ui);
+      messages.push({ role: "assistant", content: null, tool_calls: [{ id: "pre-whatif", type: "function", function: { name: "what_if_experiment", arguments: JSON.stringify(args) } }] });
+      messages.push({ role: "tool", tool_call_id: "pre-whatif", content: JSON.stringify(out) });
+    }
+  }
   if (explain && env.library) {
     const out = await executeTool("search_nasa_library", { query: input.message, top: 5 }, env, s, ui);
     passagesFound = Array.isArray(out.passages) && out.passages.length > 0;
@@ -532,5 +564,19 @@ export async function runAgent(
   }
   // Raw codes never reach the reader, whatever the layer.
   checked = { ...checked, kept: checked.kept.map((k) => ({ ...k, text: plainify(k.text) })) };
-  return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1, lang };
+  // Whenever a condition was stated (or changed) the answer carries the engine's verdict counts: if the model left them out, code adds them.
+  const evaluated = conditionStated || s.steps.some((x) => x.tool === "set_condition" || x.tool === "evaluate_condition");
+  let engineCounts: Record<string, number> | undefined;
+  if (s.target && evaluated && Object.keys(env.records).length > 0) {
+    const ev = evaluate(env.records, s.target);
+    engineCounts = Object.fromEntries(Object.entries(ev.counts.investigations)) as Record<string, number>;
+    if (!checked.kept.some((k) => k.layer === "engine")) {
+      const parts = Object.entries(ev.counts.investigations).filter(([, v]) => v > 0).map(([k, v]) => `${verdictLabel(k as never)}: ${v}`);
+      const total = Object.values(ev.counts.investigations).reduce((a, b) => a + b, 0);
+      const lead = lang === "es" ? `El motor evalúa ${total} investigaciones en esta condición` : `The engine evaluates ${total} investigations at this condition`;
+      const block: KeptBlock = { layer: "engine", text: `${lead} (${cond.conversions.length ? `${cond.conversions.join("; ")}; ` : ""}verdict counts): ${parts.join("; ")}.`, label: ENGINE_LABEL, citations: [], provenance: [`computed by code (${ENGINE_NAME} ${ENGINE_VERSION}): evaluate() over the extracted records for this condition`], flagged: false };
+      checked = { ...checked, kept: [block, ...checked.kept] };
+    }
+  }
+  return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1, lang, ...(engineCounts ? { engineCounts } : {}), ...(cond.issues.length ? { conditionIssues: cond.issues } : {}) };
 }
