@@ -109,6 +109,9 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 | Claude Code on a second computer | Claude models | The interface redesign, merged through pull request #1. |
 | GPT (OpenAI) | GPT-6.1 Terra | The Investigations pages, the compare and materials views, and the unified downloadable dataset (built from a written brief by the coordinating Claude session, reviewed by a separate AI reviewer agent before commit). Log: `notes/GPT-CHANGES.md`. |
 | Grok (xAI) | Grok | The safety/phenomenon lenses (each tag with a quote verified by script), the evidence timeline and the More page; also planning notes and adversarial questions in a private working repository. Log: `notes/GROK-CHANGES.md`. |
+| GPT (OpenAI, ChatGPT) | GPT | Outside review only: the team pasted written prompts into ChatGPT so it could act as skeptical judges of the site, the repository, the submission text and the video script. Its comments were read by the team; it wrote no code in this repository. |
+| ElevenLabs | eleven_v4 text-to-speech, with a voice cloned from the team member's own voice | The demo video's voiceover. Declared on the video's end card and in the submission. |
+| faster-whisper (SYSTRAN) | Whisper small.en | Word timestamps of the voiceover, to place captions and cuts in the demo video. |
 
 **Models that run inside the app (run time).** All of them have open weights with a license checked on the model's own page; the page names the model that answered every question.
 
@@ -116,7 +119,8 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 |---|---|---|---|
 | TARS SI brain (chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
 | Fallback | Qwen3.8-27B | Apache-2.0 | OpenRouter |
-| Free fallback | NVIDIA Nemotron 3 Ultra; Gemma 4 31B | OpenMDW-1.1 (per NVIDIA NGC); Apache-2.0 | NVIDIA NIM |
+| Model a visitor can pick in TARS; one of the second-opinion reviewers | Kimi K2.6 (Moonshot AI) | Modified MIT | OpenRouter |
+| Free fallback; Nemotron 3 Ultra is also the first second-opinion reviewer of TARS answers | NVIDIA Nemotron 3 Ultra; Gemma 4 31B | OpenMDW-1.1 (per NVIDIA NGC); Apache-2.0 | NVIDIA NIM |
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
 | Text-similarity baseline (the "text vs physics" comparison) | BAAI bge-small-en-v1.5 | MIT | local (fastembed) |
 
