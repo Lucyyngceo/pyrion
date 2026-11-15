@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { evaluateOnServer } from "@/lib/server-eval";
+import { evaluateOnServer, serverData } from "@/lib/server-eval";
 import { ISS_PRESET } from "@/lib/presets";
-import { KPA_PER_PSI, PRESETS, levelSentence, verdictLabel, type ClusterVerdict, type Target } from "@/lib/engine";
+import { KPA_PER_PSI, PRESETS, evaluate, levelSentence, verdictLabel, type ClusterVerdict, type ConditionRecord, type Target } from "@/lib/engine";
 import { loadPlanner } from "@/lib/planner/data";
 import { profiles } from "@/lib/investigations/data";
 import "../landing.css";
@@ -50,6 +50,43 @@ export default async function Example() {
   const profile = top ? (profiles as unknown as { accession: string; summary_quotes?: Quote[] }[]).find((x) => x.accession === top.accession) : undefined;
   const words = profile?.summary_quotes ?? [];
   const c = evaluation.counts.investigations;
+
+  // What-if (PYRION assumption, never evidence): the Saffire flights have measured oxygen but no pressure in the
+  // NASA sources found. In memory only, for this section: add 1 atm for each Saffire test that has oxygen and no pressure.
+  const ASSUMED_KPA = 101.325;
+  const { records } = await serverData();
+  const SAFFIRE = ["PSI-98", "PSI-99", "PSI-100"];
+  const hypo: ConditionRecord[] = [];
+  for (const acc of SAFFIRE) {
+    const mine = records.filter((r) => r.accession === acc && r.status !== "insufficient_evidence");
+    const withO2 = new Set(mine.filter((r) => r.variable === "o2_mole_fraction").map((r) => r.test_id));
+    const withP = new Set(mine.filter((r) => r.variable === "pressure").map((r) => r.test_id));
+    for (const t of withO2) {
+      if (withP.has(t)) continue;
+      hypo.push({
+        accession: acc,
+        test_id: t,
+        variable: "pressure",
+        value: String(ASSUMED_KPA),
+        unit: "kPa",
+        value_original: "1",
+        unit_original: "atm",
+        method: "document",
+        source_file: "PYRION assumption (not a NASA source)",
+        source_location: "not stated in the downloaded NASA sources",
+        quote: "",
+        status: "extracted",
+        note: "ASSUMPTION, not evidence: cabin pressure taken as 1 atm because no NASA source found states it for this flight.",
+        origin: { file: "what-if", line: 0 },
+      });
+    }
+  }
+  const whatIf = evaluate([...records, ...hypo], target);
+  const verdictFor = (ev: typeof evaluation, acc: string) => {
+    const v = [...ev.ranked, ...ev.unranked].find((x) => x.accession === acc);
+    return v ? `${verdictLabel(v.verdict)}${v.extrapolationLevel ? ` (${v.extrapolationLevel.replaceAll("_", " ")})` : ""}` : "—";
+  };
+  const reasonFor = (ev: typeof evaluation, acc: string) => [...ev.ranked, ...ev.unranked].find((x) => x.accession === acc)?.reasons.find((r) => !r.informational)?.message ?? "";
 
   return (
     <main className="page landing">
@@ -232,6 +269,47 @@ export default async function Example() {
           ))}
         </section>
       )}
+
+      <section className="ld-section ld-whatif" aria-labelledby="ex-wi">
+        <p className="ld-kicker">What if · a PYRION assumption, not evidence</p>
+        <h2 id="ex-wi">If the Saffire flights were at 1 atm, how would they compare?</h2>
+        <p>
+          The Saffire experiments burned large samples aboard Cygnus spacecraft, and their oxygen is recorded, but no NASA source we
+          downloaded states the cabin pressure. Here, and only here, PYRION assumes <strong>1 atm (101.3 kPa)</strong> for the{" "}
+          {hypo.length} Saffire tests that have oxygen and no pressure, and runs the same engine again. Nothing on the rest of the site
+          uses this assumption, and it never counts as evidence. A NASA statement of the cabin pressure would replace it.
+        </p>
+        <div className="tars-cmptable">
+          <table>
+            <thead>
+              <tr>
+                <th>Investigation</th>
+                <th>With NASA&apos;s records only</th>
+                <th>If the cabin was at 1 atm (assumption)</th>
+                <th>Why, in one line (assumption case)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SAFFIRE.map((acc) => (
+                <tr key={acc}>
+                  <td>
+                    <Link data-help="example-link" href={`/investigations/${acc}`}>
+                      {acc} {name(acc)}
+                    </Link>
+                  </td>
+                  <td>{verdictFor(evaluation, acc)}</td>
+                  <td>{verdictFor(whatIf, acc)}</td>
+                  <td className="small">{reasonFor(whatIf, acc)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="small muted">
+          Why it matters: if a NASA document confirms the pressure, these large-scale cabin-material tests would join BASS and BASS-II
+          as the closest evidence for ISS cabin air. Finding that statement, or measuring it in a future flight, is a concrete next step.
+        </p>
+      </section>
 
       <section className="ld-section" aria-labelledby="ex-5">
         <h2 id="ex-5">5 · The limits, and what to do next</h2>

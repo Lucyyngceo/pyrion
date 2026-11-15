@@ -86,3 +86,6 @@
 .ld-card-img { width: calc(100% + 40px); margin: -18px -20px 12px; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
 .ld-edge-fig { margin: 14px 0 0; }
 .ld-edge-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--border); }
+
+/* What-if section: visibly different from evidence. */
+.ld-whatif { border-left: 4px dashed var(--neon-2, #ff2bd6); padding-left: 16px; }
