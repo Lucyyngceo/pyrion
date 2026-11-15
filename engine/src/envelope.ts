@@ -167,6 +167,12 @@ export interface TargetLocation {
    * edge with the "within 0.5 % measurement tolerance" note.
    */
   viaTolerance?: true;
+  /**
+   * The measured test point nearest to the target in this envelope (normalized O2-pressure distance), and
+   * whether the target coincides with it within the measurement tolerance on both axes. Inside a hull a
+   * target usually lies between tests: no test was necessarily run at that exact condition.
+   */
+  nearestTest?: { accession: string; test_id: string; o2_mole_fraction: number; pressure: number; coincides: boolean };
   /** The same, against the hull of each investigation in this envelope. */
   investigations: { accession: string; pointCount: number; insideHull: boolean | null; hullDistance: number | null; viaTolerance?: true }[];
 }
@@ -214,9 +220,24 @@ export function locateTarget(target: Target, envelopes: EnvelopeSet): TargetLoca
       has && r.o2_mole_fraction && r.pressure
         ? within(o2 as number, r.o2_mole_fraction[0], r.o2_mole_fraction[1]) && within(p as number, r.pressure[0], r.pressure[1])
         : null;
+    let nearestTest: TargetLocation['nearestTest'];
+    if (tv) {
+      let best = Infinity;
+      for (const q of env.points) {
+        const d = Math.hypot(q.o2_mole_fraction / so - tv.x, q.pressure / sp - tv.y);
+        if (d < best) {
+          best = d;
+          const coincides =
+            Math.abs(q.o2_mole_fraction - (o2 as number)) <= MEASUREMENT_TOLERANCE_REL * Math.abs(o2 as number) &&
+            Math.abs(q.pressure - (p as number)) <= MEASUREMENT_TOLERANCE_REL * Math.abs(p as number);
+          nearestTest = { accession: q.accession, test_id: q.test_id, o2_mole_fraction: q.o2_mole_fraction, pressure: q.pressure, coincides };
+        }
+      }
+    }
     return {
       key: env.key,
       regimeComplete: env.regimeComplete,
+      ...(nearestTest ? { nearestTest } : {}),
       sameRegime,
       pointCount: env.points.length,
       insideRanges: rangesTol,
