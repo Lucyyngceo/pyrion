@@ -87,6 +87,24 @@ export default async function Example() {
   const whatIf = evaluate([...records, ...hypo], target);
   const gaps = await evidenceGaps(target);
   const useful = gaps.filter((g) => g.reachable);
+  const csvCell = (x: string) => (/[",\n]/.test(x) ? `"${x.replaceAll('"', '""')}"` : x);
+  const gapsCsv = [
+    ["accession", "axis_not_stated", "partial", "tests", "test_ids", "range_low", "range_high", "range_unit", "result_then", "rule"].join(","),
+    ...gaps.map((g) =>
+      [
+        g.accession,
+        g.axis,
+        g.partial ? "yes" : "no",
+        String(g.tests.length),
+        g.tests.join(" "),
+        g.range ? String(g.range[0]) : "",
+        g.range ? String(g.range[1]) : "",
+        g.axis === "pressure" ? "kPa" : "mole fraction",
+        g.reachable ? verdictLabel(g.reachable) : "no value would",
+        "PYRION rule, 0.5 % tolerance; candidate values in memory only, never evidence",
+      ].map(csvCell).join(","),
+    ),
+  ].join("\n");
   const fmt = (axis: string, x: number) => (axis === "pressure" ? `${Math.round(x * 10) / 10} kPa (${psia(x)} psia)` : pct(x));
   const missingCorners = planner.minimumTest.missing;
   const verdictFor = (ev: typeof evaluation, acc: string) => {
@@ -362,7 +380,7 @@ export default async function Example() {
                 <th>Investigation</th>
                 <th>Not stated in PSI</th>
                 <th>Tests</th>
-                <th>Would become comparable if PSI stated</th>
+                <th>Would become comparable if PSI stated (under PYRION&apos;s rule, 0.5 % tolerance)</th>
                 <th>Result then</th>
               </tr>
             </thead>
@@ -374,7 +392,16 @@ export default async function Example() {
                       {g.accession} {name(g.accession)}
                     </Link>
                   </td>
-                  <td>{g.axis === "pressure" ? "pressure" : "oxygen"}</td>
+                  <td>
+                    {g.axis === "pressure" ? "pressure" : "oxygen"}
+                    {g.partial && (
+                      <span className="small muted">
+                        {" "}
+                        (partial: the investigation has data, these tests lack {g.axis === "pressure" ? "pressure" : "oxygen"}
+                        {g.otherValues ? `; stated ${g.axis === "pressure" ? "oxygen" : "pressure"} ${g.otherValues[0] === g.otherValues[1] ? fmt(g.axis === "pressure" ? "o2_mole_fraction" : "pressure", g.otherValues[0]) : `${fmt(g.axis === "pressure" ? "o2_mole_fraction" : "pressure", g.otherValues[0])} to ${fmt(g.axis === "pressure" ? "o2_mole_fraction" : "pressure", g.otherValues[1])}`}` : ""})
+                      </span>
+                    )}
+                  </td>
                   <td>{g.tests.length}</td>
                   <td>{g.range ? (g.range[0] === g.range[1] ? fmt(g.axis, g.range[0]) : `${fmt(g.axis, g.range[0])} to ${fmt(g.axis, g.range[1])}`) : "no value would (see why)"}</td>
                   <td className="small">
@@ -405,7 +432,10 @@ export default async function Example() {
         )}
         <p className="ld-src small">
           &ldquo;Comparable&rdquo; means inside or just outside the tested range under PYRION&apos;s stated rule (0.5 % tolerance); it does not
-          predict how a flame behaves.
+          predict how a flame behaves.{" "}
+          <a data-help="example-link" download="pyrion-evidence-gaps-iss.csv" href={`data:text/csv;charset=utf-8,${encodeURIComponent(gapsCsv)}`}>
+            Download this table as CSV
+          </a>
         </p>
       </section>
 

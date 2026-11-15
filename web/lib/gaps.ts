@@ -19,6 +19,10 @@ export interface DataGap {
   reachableLevel?: string;
   /** Why it would still not be inside, when it would only be just outside (the engine's own sentence). */
   reason: string;
+  /** True when the investigation already has comparable data and only some of its tests lack this value (a partial gap). */
+  partial?: boolean;
+  /** The other plane axis of the listed tests as stated in PSI (engine units), so a reader sees which tests these are. */
+  otherValues?: [number, number];
 }
 
 const GRID: Record<GapAxis, { from: number; to: number; step: number }> = {
@@ -68,10 +72,13 @@ async function computeGaps(target: Target): Promise<DataGap[]> {
   const base = evaluate(records, target);
   const gaps: DataGap[] = [];
   for (const iv of base.investigations) {
-    if (iv.verdict !== "INSUFFICIENT_EVIDENCE") continue;
-    const blocked = (iv.blockers ?? []).filter((b) => (b.code === "NO_USABLE_VALUE" || b.code === "AXIS_NOT_RECORDED") && (b.axis === "o2_mole_fraction" || b.axis === "pressure"));
-    for (const b of blocked) {
-      const axis = b.axis as GapAxis;
+    const partial = iv.verdict === "EXTRAPOLATION";
+    if (iv.verdict !== "INSUFFICIENT_EVIDENCE" && !partial) continue;
+    // Insufficient: the blocking axes. Partial: both plane axes, for tests that state one and not the other.
+    const axes: GapAxis[] = partial
+      ? ["o2_mole_fraction", "pressure"]
+      : (iv.blockers ?? []).filter((b) => (b.code === "NO_USABLE_VALUE" || b.code === "AXIS_NOT_RECORDED") && (b.axis === "o2_mole_fraction" || b.axis === "pressure")).map((b) => b.axis as GapAxis);
+    for (const axis of axes) {
       const other: GapAxis = axis === "pressure" ? "o2_mole_fraction" : "pressure";
       const mine = records.filter((r) => r.accession === iv.accession);
       const has = (a: GapAxis) => new Set(mine.filter((r) => usable(r) && r.variable === a).map((r) => r.test_id));
@@ -79,6 +86,7 @@ async function computeGaps(target: Target): Promise<DataGap[]> {
       const withThis = has(axis);
       const tests = [...withOther].filter((t) => !withThis.has(t)).sort();
       if (tests.length === 0) {
+        if (partial) continue;
         gaps.push({ accession: iv.accession, axis, tests: [], range: null, reachable: null, reason: `No test of this investigation states ${other === "pressure" ? "pressure" : "oxygen"} either, so one value alone would not place it.` });
         continue;
       }
@@ -93,6 +101,8 @@ async function computeGaps(target: Target): Promise<DataGap[]> {
         const ev = evaluate([...mine, ...tests.map((t) => hypo(iv.accession, t, axis, val))], target);
         const r = ev.investigations.find((x) => x.accession === iv.accession);
         if (!r || (r.verdict !== "APPLICABLE" && !(r.verdict === "EXTRAPOLATION" && r.extrapolationLevel === "just_outside"))) continue;
+        // A partial gap matters only when stating the value would put the investigation inside the tested range.
+        if (partial && r.verdict !== "APPLICABLE") continue;
         if (best === null || RANK[r.verdict] < RANK[best]) {
           best = r.verdict;
           bestLevel = r.extrapolationLevel;
@@ -106,7 +116,19 @@ async function computeGaps(target: Target): Promise<DataGap[]> {
           hi = Math.max(hi, val);
         }
       }
-      gaps.push({ accession: iv.accession, axis, tests, range: best ? [lo, hi] : null, reachable: best, ...(bestLevel ? { reachableLevel: bestLevel } : {}), reason });
+      if (partial && best === null) continue;
+      const ov = mine.filter((r) => usable(r) && r.variable === other && tests.includes(r.test_id)).map((r) => Number(r.value)).filter(Number.isFinite);
+      gaps.push({
+        accession: iv.accession,
+        axis,
+        tests,
+        range: best ? [lo, hi] : null,
+        reachable: best,
+        ...(bestLevel ? { reachableLevel: bestLevel } : {}),
+        reason,
+        ...(partial ? { partial: true } : {}),
+        ...(ov.length ? { otherValues: [Math.min(...ov), Math.max(...ov)] as [number, number] } : {}),
+      });
     }
   }
   return gaps.sort((a, b) => (a.reachable ? RANK[a.reachable] : 9) - (b.reachable ? RANK[b.reachable] : 9) || b.tests.length - a.tests.length || a.accession.localeCompare(b.accession, "en", { numeric: true }));
