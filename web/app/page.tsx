@@ -56,7 +56,7 @@ export default async function Landing() {
             <span className="ld-num">{pct(planner.coverage.fraction)}</span>
             <p>
               PSI covers {pct(planner.coverage.fraction)} of the Moon Base design band ({planner.coverage.covered} of{" "}
-              {planner.coverage.total} grid cells, lunar gravity). <em>&ldquo;Covered&rdquo; means a measured test at that condition, not that fire behaves the same there.</em>
+              {planner.coverage.total} grid cells, lunar gravity). <em>&ldquo;Covered&rdquo; means inside the region spanned by measured test points (interpolated between tests, not necessarily a test at that exact condition), not that fire behaves the same there.</em>
             </p>
           </div>
           <div className="ld-finding-text">
