@@ -60,6 +60,7 @@ export type {
   Verdict,
   Route,
   RouteSet,
+  Blocker,
   EvidenceMap,
   Band,
   Fm2Balance,

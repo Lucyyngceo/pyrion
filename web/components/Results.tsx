@@ -2,7 +2,7 @@
 
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
-import type { Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
+import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
 import type { Dataset, Investigation } from "@/lib/types";
 import { axisLabel, readable, valueLabel } from "@/lib/units";
@@ -149,6 +149,7 @@ function ResultRow({
   open,
   onOpenChange,
   onHover,
+  onAction,
 }: {
   iv: InvestigationVerdict;
   cluster: ClusterVerdict | undefined;
@@ -157,6 +158,7 @@ function ResultRow({
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onHover: (accession: string | null) => void;
+  onAction: (action: NonNullable<Blocker["action"]>, accession: string) => void;
 }) {
   const rowRef = useRef<HTMLElement>(null);
   const synthetic = ctx.dataset.mode === "synthetic";
@@ -232,7 +234,22 @@ function ResultRow({
         </div>
         {cluster?.rank != null && <span className="rank">nearest #{cluster.rank}</span>}
       </header>
-      <p className="result-plain">{pv.sentence}</p>
+      {iv.blockers && iv.blockers.length > 0 ? (
+        <ul className="blockers">
+          {iv.blockers.map((b, i) => (
+            <li key={i} className={b.action?.kind === "switch_regime" ? "blocker blocker-regime" : "blocker"}>
+              <span>{b.sentence}</span>
+              {b.action && (
+                <button type="button" className={`take-btn${b.action.kind === "switch_regime" ? " take-regime" : ""}`} onClick={() => onAction(b.action!, iv.accession)}>
+                  {b.action.kind === "switch_regime" ? `Another regime: ${b.action.sentence}` : b.action.sentence}
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="result-plain">{pv.sentence}</p>
+      )}
       {inv && <p className="result-title">{inv.title}</p>}
       <div className="result-cite">
         {synthetic ? (
@@ -299,9 +316,10 @@ interface Props {
   openAccession: string | null;
   onOpenAccession: (a: string | null) => void;
   onHover: (a: string | null) => void;
+  onAction: (action: NonNullable<Blocker["action"]>, accession: string) => void;
 }
 
-function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, onHover }: Props) {
+function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, onHover, onAction }: Props) {
   const [showBarrier, setShowBarrier] = useState(true);
   const ctx: Ctx = { dataset, lookup };
   const invs = new Map(dataset.investigations.map((i) => [i.accession, i]));
@@ -328,6 +346,7 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
       open={openAccession === iv.accession}
       onOpenChange={(o) => onOpenAccession(o ? iv.accession : openAccession === iv.accession ? null : openAccession)}
       onHover={onHover}
+      onAction={onAction}
     />
   );
 

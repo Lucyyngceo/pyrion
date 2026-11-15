@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Term from "./Term";
+import Tour from "./Tour";
 import AskBox from "./AskBox";
 import type { ParsedTarget } from "@/lib/ask-core";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
@@ -17,6 +18,7 @@ import {
   HABITAT_WINDOWS,
   routesToEvidence,
   evidenceMap,
+  type Blocker,
   type EvidenceMap,
   type ConditionRecord,
   type Evaluation,
@@ -171,6 +173,38 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
     };
   }, [records, regimeKey, options]);
 
+  // The marker travels (the chart animates the move; reduced motion makes it instant), the controls follow, and the verdict and
+  // the investigation's card glow softly. Used by route buttons and by the blockers' action buttons.
+  const glow = (accession: string) => {
+    for (const el of [document.querySelector(".nav-verdict"), document.getElementById(`res-${accession}`)]) {
+      el?.classList.remove("glow");
+      void (el as HTMLElement | null)?.offsetWidth;
+      el?.classList.add("glow");
+      window.setTimeout(() => el?.classList.remove("glow"), 1600);
+    }
+  };
+  const applyRoute = (t: Target, accession: string) => {
+    glow(accession);
+    setState((st) => ({
+      presetId: null,
+      regime: { ...t.regime },
+      o2: t.continuous.o2_mole_fraction ?? st.o2,
+      pressure: t.continuous.pressure ?? st.pressure,
+      gravityLevel: t.informational?.gravity_level,
+      gravityNotCovered: t.informational?.gravity_not_covered,
+    }));
+  };
+  /** A blocker's action: leave an axis open, or switch the regime (always shown as another regime, never a small step). */
+  const applyAction = (action: NonNullable<Blocker["action"]>, accession: string) => {
+    glow(accession);
+    setState((st) => {
+      const regime = { ...st.regime } as Record<string, string | undefined>;
+      if (action.kind === "leave_open") delete regime[action.axis];
+      else if (action.to !== undefined) regime[action.axis] = action.to;
+      return { ...st, presetId: null, regime: regime as TargetState["regime"], gravityNotCovered: undefined };
+    });
+  };
+
   // N1: the engine's routes to evidence, recomputed whenever the target changes.
   const routes = useMemo(() => {
     try {
@@ -247,6 +281,12 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   return (
     <>
       <AskBox onTarget={applyAsked} />
+      <p className="tour-link small">
+        <button type="button" className="linklike" onClick={() => window.dispatchEvent(new Event("pyrion:tour"))}>
+          Take the 3-step tour
+        </button>
+      </p>
+      <Tour />
 
       <div
         className="nav-grid"
@@ -304,24 +344,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
               onClearPin={() => setPinned(null)}
               routes={routes}
-              onApplyRoute={(t, accession) => {
-                // The marker travels (the chart animates the move; reduced motion makes it instant), the controls follow, and the
-                // verdict and the investigation's card glow softly.
-                for (const el of [document.querySelector(".nav-verdict"), document.getElementById(`res-${accession}`)]) {
-                  el?.classList.remove("glow");
-                  void (el as HTMLElement | null)?.offsetWidth;
-                  el?.classList.add("glow");
-                  window.setTimeout(() => el?.classList.remove("glow"), 1600);
-                }
-                setState((st) => ({
-                  presetId: null,
-                  regime: { ...t.regime },
-                  o2: t.continuous.o2_mole_fraction ?? st.o2,
-                  pressure: t.continuous.pressure ?? st.pressure,
-                  gravityLevel: t.informational?.gravity_level,
-                  gravityNotCovered: t.informational?.gravity_not_covered,
-                }));
-              }}
+              onApplyRoute={(t, accession) => applyRoute(t, accession)}
               onHover={setHighlight}
               onOpen={(a) => {
                 setOpenAccession(a);
@@ -349,6 +372,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           openAccession={openAccession}
           onOpenAccession={setOpenAccession}
           onHover={setHighlight}
+          onAction={applyAction}
         />
       )}
 
