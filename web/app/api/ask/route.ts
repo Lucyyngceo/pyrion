@@ -105,6 +105,7 @@ export async function POST(req: Request) {
       budget().recordSafety();
       const safety = await checkContent(q, providers(), undefined, undefined, deadline);
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
+      if (safety.unresolved) return json({ error: "The content check could not finish right now. Please try again in a moment, or pick a NASA condition below — every verdict works without questions.", safety: "unavailable", safety_detail: safety.detail }, 503);
       if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState, safety_detail: safety.detail }, 422);
       // Deterministic first: code reads the question when it can; an issue is returned in plain words, with no model call.
       const code = readByCode(q);

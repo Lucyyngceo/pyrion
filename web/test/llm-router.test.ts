@@ -137,8 +137,10 @@ test("A1: content safety policy, every branch (first guard, then the second only
   assert.deepEqual((await run("unsafe", "safe")).r, { flagged: false, checked: true, detail: "second_cleared" });
   // both flag: refused
   assert.deepEqual((await run("unsafe", "unsafe")).r, { flagged: true, checked: true, detail: "both_flagged" });
-  // first flags, second cannot answer: refused (fail closed once something flagged)
-  assert.deepEqual((await run("unsafe", "down")).r, { flagged: true, checked: true, detail: "second_unavailable_after_flag" });
+  // first flags, second cannot answer even after a retry: not refused as harmful; the caller says "could not finish" (503)
+  const stuck = await run("unsafe", "down");
+  assert.deepEqual(stuck.r, { flagged: false, checked: true, unresolved: true, detail: "second_unavailable_after_flag" });
+  assert.equal(stuck.calls, 3, "first guard once, second guard twice");
   // first cannot answer: the second decides alone
   assert.deepEqual((await run("down", "safe")).r, { flagged: false, checked: true, detail: "first_unavailable_second_safe" });
   assert.deepEqual((await run("down", "unsafe")).r, { flagged: true, checked: true, detail: "first_unavailable_second_flagged" });
@@ -381,4 +383,31 @@ test("m4: a damaged budget file closes the primary provider; writes go through a
   const b = createBudget({ perVisitorPerHour: 5, perVisitorPrimaryPerHour: 5, dailyCap: 300, store });
   assert.equal(b.primaryAllowed(), false); // fails closed, not "0 used"
   assert.match(logs.join(" "), /damaged/);
+});
+
+test("A1b: a second guard that times out once is retried; twice is 'unresolved', never 'harmful'", async () => {
+  const mk = (secondFails: number, secondSays: "safe" | "unsafe") => {
+    let secondCalls = 0;
+    const f = (async (_u: string, init: RequestInit) => {
+      const model = JSON.parse(String(init.body)).model as string;
+      if (model.startsWith("nvidia/")) return new Response(JSON.stringify({ choices: [{ message: { content: "unsafe" } }] }), { status: 200 });
+      secondCalls++;
+      if (secondCalls <= secondFails) throw new DOMException("The operation was aborted due to timeout", "TimeoutError");
+      return new Response(JSON.stringify({ choices: [{ message: { content: secondSays } }] }), { status: 200 });
+    }) as unknown as typeof fetch;
+    return { f, calls: () => secondCalls };
+  };
+  const q = "¿Qué materiales arden más fácil a 34% de oxígeno y 8,2 psia en la Luna?";
+  // one timeout, then the retry clears it: the benign question is answered
+  const a = mk(1, "safe");
+  assert.deepEqual(await checkContent(q, providers, a.f, () => {}), { flagged: false, checked: true, detail: "second_cleared" });
+  assert.equal(a.calls(), 2);
+  // one timeout, then the retry confirms: a truly harmful question is still refused
+  const b = mk(1, "unsafe");
+  assert.deepEqual(await checkContent("harmful", providers, b.f, () => {}), { flagged: true, checked: true, detail: "both_flagged" });
+  // two timeouts: unresolved, not flagged
+  const c = mk(2, "safe");
+  const r = await checkContent(q, providers, c.f, () => {});
+  assert.equal(r.flagged, false);
+  assert.equal(r.unresolved, true);
 });
