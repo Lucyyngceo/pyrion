@@ -1,6 +1,6 @@
-# Validation report — 2026-11-15T08:39:28Z
+# Validation report — 2026-11-15T09:00:13Z
 
-Records: 10077 · trace check: ran · cells_traced: 8529 · quotes_traced: 969 · text_files_scanned: 132 · units_identity_no_unit_in_source: 207 · units_rechecked: 3278
+Records: 10303 · trace check: ran · cells_traced: 8529 · quotes_traced: 1121 · text_files_scanned: 132 · units_identity_no_unit_in_source: 207 · units_rechecked: 3278
 
 **BLOCKER 0 · MAJOR 0 · MINOR 134**
 
