@@ -182,7 +182,11 @@ def load(table_ids_by_acc: dict[str, list[str]]):
             if r["variable"] == "diluent" and re.search(r"stream:\s*burner", r.get("derivation", ""), re.I):
                 st["burner_stream_diluent"] += 1  # schema `diluent` is the ambient inert gas
                 continue
-            ids = resolve_test_ids(str(r.get("test_id", "")), table_ids_by_acc.get(acc, []))
+            if r.get("ground_series"):
+                # ground (1 g) tests are not rows of a PSI table: the test id is a descriptor of the stated series
+                ids = [t.strip() for t in str(r.get("test_id", "")).split(";") if t.strip()]
+            else:
+                ids = resolve_test_ids(str(r.get("test_id", "")), table_ids_by_acc.get(acc, []))
             if ids is None:
                 st["outside_psi_tables"] += 1
                 continue

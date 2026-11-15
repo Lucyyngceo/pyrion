@@ -394,6 +394,46 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: 1 tests: `2020-Dec-5`
 - Note: confidence direct (Figure caption text (not read from the plot). Test 20279B4: day 20279 = 5 Oct. 2020 per Table 1 (p.24) and Appendix F (p.139), but the matching CSV row (100% CH4; 25; 34; 40; 21 flames) is dated 2020-Dec-5, so it is joined to that row. One test of that day. Same caption as 'Figure 28.' on p.130.); psia x 6.894757; rounded to 6 significant digits; R26 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
+### gravity_regime = normal_gravity  (extracted)
+
+> The data measured in 1-g and discussed in [55] is added to the plot for comparison between micro- and normal gravity burning.
+
+- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Dissertation-PD-revised_.pdf`
+- Location: `page=104`
+- As written: `1-g`
+- Applies to: 4 tests: `1-g BRE series (Auth [55], ground burner), heat of combustion 43.7 kJ/g (dissertation Fig. 5.4 legend, 1-g table row 1)`, `1-g BRE series (Auth [55]), heat of combustion 35 kJ/g (Fig. 5.4 legend, 1-g row 2)`, `1-g BRE series (Auth [55]), heat of combustion 26.2 kJ/g (Fig. 5.4 legend, 1-g row 3)`, `1-g BRE series (Auth [55]), heat of combustion 17.5 kJ/g (Fig. 5.4 legend, 1-g row 4)`
+- Note: confidence direct (Dissertation page 104 (printed 101): the 1-g data of Fig. 5.4 come from [55] (Auth, M.Sc. thesis on the BRE in 1g; reference list, page 169). Legend rows are heat-of-combustion conditions, not single points; the 1-g trendline spans fuel mixture mass flux 2.1 to 30.6 g/m2s (page 104). The SRD Table 3 normal-gravity runs are NOT used.); flags: GROUND_1G_TESTS; R201 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = gas  (extracted)
+
+> The results of Auth [55,56] who used the BRE in 1-g are added to Figures 3.12 and 3.13. The 1-g results for propane-nitrogen mixtures have the opposite behavior with heats of gasification decreasing with heat of combustion for the same mass flux.
+
+- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Dissertation-PD-revised_.pdf`
+- Location: `page=50`
+- As written: `propane-nitrogen mixtures`
+- Applies to: 4 tests: `1-g BRE series (Auth [55], ground burner), heat of combustion 43.7 kJ/g (dissertation Fig. 5.4 legend, 1-g table row 1)`, `1-g BRE series (Auth [55]), heat of combustion 35 kJ/g (Fig. 5.4 legend, 1-g row 2)`, `1-g BRE series (Auth [55]), heat of combustion 26.2 kJ/g (Fig. 5.4 legend, 1-g row 3)`, `1-g BRE series (Auth [55]), heat of combustion 17.5 kJ/g (Fig. 5.4 legend, 1-g row 4)`
+- Note: confidence derived (The 1-g BRE of Auth [55,56] burned propane-nitrogen gas mixtures through a porous burner (page 50); the BRE is a gas burner emulating condensed fuels (page 21), not a material sample.); flags: GROUND_1G_TESTS; R202 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.21 1  (extracted)
+
+> 1-g ∆ℎ4 kJ/g XO2 p (bar) 43.7 0.21 1 35 0.21 1 26.2 0.21 1 17.5 0.21 1
+
+- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Dissertation-PD-revised_.pdf`
+- Location: `page=105`
+- As written: `0.21`
+- Applies to: 4 tests: `1-g BRE series (Auth [55], ground burner), heat of combustion 43.7 kJ/g (dissertation Fig. 5.4 legend, 1-g table row 1)`, `1-g BRE series (Auth [55]), heat of combustion 35 kJ/g (Fig. 5.4 legend, 1-g row 2)`, `1-g BRE series (Auth [55]), heat of combustion 26.2 kJ/g (Fig. 5.4 legend, 1-g row 3)`, `1-g BRE series (Auth [55]), heat of combustion 17.5 kJ/g (Fig. 5.4 legend, 1-g row 4)`
+- Note: confidence derived (Fig. 5.4 legend, 1-g table (columns: heat of combustion dh kJ/g, XO2, p bar), rows 43.7, 35, 26.2 and 17.5 kJ/g; printed in the figure legend, not in running text; the 0-g table that follows is not used. The dissertation uses bar and atm interchangeably for nominal pressures (pages 21, 106); kept as written, not converted by hand. The 1-g data come from Auth's M.Sc. thesis [55], not in the PSI files; the legend rows are conditions, not single points. The SRD Table 3 runs are NOT used. XO2 = 0.21 in each row; consistent with page 106 'normal gravity with 21% oxygen'.); flags: GROUND_1G_TESTS; R203 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### pressure = 100 kPa  (extracted)
+
+> 1-g ∆ℎ4 kJ/g XO2 p (bar) 43.7 0.21 1 35 0.21 1 26.2 0.21 1 17.5 0.21 1
+
+- File: `psi-data/PSI-20/Reports/PSI-20_Reports_Dissertation-PD-revised_.pdf`
+- Location: `page=105`
+- As written: `1` (bar)
+- Applies to: 4 tests: `1-g BRE series (Auth [55], ground burner), heat of combustion 43.7 kJ/g (dissertation Fig. 5.4 legend, 1-g table row 1)`, `1-g BRE series (Auth [55]), heat of combustion 35 kJ/g (Fig. 5.4 legend, 1-g row 2)`, `1-g BRE series (Auth [55]), heat of combustion 26.2 kJ/g (Fig. 5.4 legend, 1-g row 3)`, `1-g BRE series (Auth [55]), heat of combustion 17.5 kJ/g (Fig. 5.4 legend, 1-g row 4)`
+- Note: confidence derived (Fig. 5.4 legend, 1-g table (columns: heat of combustion dh kJ/g, XO2, p bar), rows 43.7, 35, 26.2 and 17.5 kJ/g; printed in the figure legend, not in running text; the 0-g table that follows is not used. The dissertation uses bar and atm interchangeably for nominal pressures (pages 21, 106); kept as written, not converted by hand. The 1-g data come from Auth's M.Sc. thesis [55], not in the PSI files; the legend rows are conditions, not single points. The SRD Table 3 runs are NOT used. p = 1 bar in each row.); flags: GROUND_1G_TESTS; bar x 100; R204 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
 ## PSI-21 ACME CLD Flame
 
 - *Table reading:* CLD "Fuel Bottle" shows a spreadsheet fill series ("40% CH4", "40% CH5", "40% CH6" ... "100% C2H11"). Only CH4 and C2H4, the fuels named by the "Test Type" column, are taken as stated; every other formula (including C2H6 inside an ethylene series) is `insufficient_evidence`.
@@ -880,6 +920,46 @@ For each record below, open the file at the location given and check that the qu
 - As written: `up to 40 cm/s` (cm/s)
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (Capability claim from the PSI record ('could impose'), not tested speeds; contradicted by Summary Report page=12 (max ~55 cm/s without restrictors, ~35 cm/s with two), page=72 (Olson 0-55 cm/s) and page=104 Table 7.1 (T17 '6 to 53', T21 '11 to 47'); never use 40 cm/s as an envelope bound.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; R10 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### gravity_regime = normal_gravity  (extracted)
+
+> PMMA (NASA and Astra) in 1g at San Diego State University
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=49`
+- As written: `1g`
+- Applies to: 1 tests: `1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)`
+- Note: confidence direct (Figure 2.20 caption (page 49): 'PMMA (NASA and Astra) in 1g at San Diego State University'. Sec. 2.3.5 is titled 'Microgravity and Normal-Gravity Experiments' (page 45); page 48 calls these 'the normal-gravity experiments'; page 23 calls them 'ground data from the San Diego State University (SDSU) flame stabilizer'. Condition stated once for the series; per-thickness values exist only in plots and are not invented. Stated discrepancy, not averaged: Fig. 2.20 caption (page 49) gives 20.7 percent O2 and 79 percent N2 at 1 atm; text on page 46 gives 101 kPa and 21 percent O2. Other 1-g data in the report (Fig. 2.15 forced-flow tunnel Ref. 18; Fernandez-Pello and Williams and Ref. 23 data in Fig. 2.22; SDSU Flame Tunnel; Ch. 4 rods) are NOT part of this series.); flags: GROUND_1G_TESTS; R201 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### fuel_phase = solid  (extracted)
+
+> flame spread over thin sheets of polymethylmethacrylate (PMMA) in the quiescent downward configuration
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=51`
+- As written: `sheets`
+- Applies to: 1 tests: `1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)`
+- Note: confidence derived (PMMA sheets are a solid fuel; the sentence names the downward configuration. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.); flags: GROUND_1G_TESTS; R202 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### o2_mole_fraction = 0.21 1  (extracted)
+
+> The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=46`
+- As written: `21` (percent)
+- Applies to: 1 tests: `1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)`
+- Note: confidence direct (O2 level stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.); flags: GROUND_1G_TESTS; percent x 0.01; R203 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### pressure = 101 kPa  (extracted)
+
+> The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=46`
+- As written: `101` (kPa)
+- Applies to: 1 tests: `1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)`
+- Note: confidence direct (Pressure stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.); flags: GROUND_1G_TESTS; R204 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-26 BASS
 

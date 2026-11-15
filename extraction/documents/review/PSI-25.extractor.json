@@ -151,7 +151,9 @@
       "quote": "priority order test matrix per PI: Miller [...] Priority Sample # width (cm) thickness (mm) backing flow velocity (cm/s) Direction oxygen % # sides to burn Notes 1 15 2 5 mica 10 (ramp down) opposed 21 one need mica out the back",
       "confidence": "ambiguous",
       "derivation": "Only the slide title is in the PDF text layer; the table is an image and the header plus first row were transcribed from it. The Direction column reads 'opposed' in all 20 rows. It is the pre-flight priority matrix, and no source maps its rows (Priority / Sample #) to the flown M test numbers. ReadMe paragraph=7 ('Fletcher Miller burned various thickness and widths of thick pmma slabs (one sided and two sided burns).') states no flow configuration. ReadMe publication titles (paragraphs 54, 59: '... Intermediate Thickness PMMA Sheets ... in Microgravity Opposed Flow') point the same way but are titles only. test_id: PSI table PI column 'Miller' carries M1..M20.",
-      "flags": ["FROM_FIGURE"]
+      "flags": [
+        "FROM_FIGURE"
+      ]
     },
     {
       "id": "R10",
@@ -160,14 +162,99 @@
       "value": "",
       "value_original": "up to 40 cm/s",
       "unit_original": "cm/s",
-      "numbers": ["40"],
+      "numbers": [
+        "40"
+      ],
       "kind": "range",
       "source_file": "psi-data/PSI-25/_investigation/PSI-25.json",
       "source_location": "section=approach",
       "quote": "Fuel samples were mounted inside a small wind tunnel which could impose airflow speeds up to 40 cm/s.",
       "confidence": "ambiguous",
       "derivation": "Capability of the wind tunnel ('could impose'), not a statement of the speeds actually tested; only the upper bound is written, no lower bound. Caution: the PSI table 'Air display' column (not extracted) has readings above 40 in some tests, e.g. T17 '6   53' and T21 '11   max(47)', so 40 cm/s should not be treated as a verified bound on tested flows. The wind tunnel is the BASS hardware launched for SPICE (see lineage).",
-      "flags": ["RANGE_NOT_POINT", "SHARED_LINEAGE"]
+      "flags": [
+        "RANGE_NOT_POINT",
+        "SHARED_LINEAGE"
+      ]
+    },
+    {
+      "id": "R201",
+      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+      "ground_series": true,
+      "variable": "gravity_regime",
+      "value": "normal_gravity",
+      "value_original": "1g",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=49",
+      "quote": "PMMA (NASA and Astra) in 1g at San Diego State University",
+      "confidence": "direct",
+      "derivation": "Figure 2.20 caption: the 1g counterpart of the BASS-II microgravity tests; the text calls them the downward experiments in a normal-gravity environment (pages 44, 46). Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+      "flags": [
+        "GROUND_1G_TESTS"
+      ]
+    },
+    {
+      "id": "R202",
+      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+      "ground_series": true,
+      "variable": "fuel_phase",
+      "value": "solid",
+      "value_original": "sheets",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=51",
+      "quote": "flame spread over thin sheets of polymethylmethacrylate (PMMA) in the quiescent downward configuration",
+      "confidence": "derived",
+      "derivation": "PMMA sheets are a solid fuel; the sentence names the downward configuration. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+      "flags": [
+        "GROUND_1G_TESTS"
+      ]
+    },
+    {
+      "id": "R203",
+      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+      "ground_series": true,
+      "variable": "o2_mole_fraction",
+      "value": "",
+      "value_original": "21",
+      "unit_original": "percent",
+      "numbers": [
+        "21"
+      ],
+      "kind": "point",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=46",
+      "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
+      "confidence": "direct",
+      "derivation": "O2 level stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+      "flags": [
+        "GROUND_1G_TESTS"
+      ]
+    },
+    {
+      "id": "R204",
+      "test_id": "1-g downward PMMA sheet series (SDSU Flame Stabilizer, Summary Report section 2.3.5, condition stated once for the series)",
+      "ground_series": true,
+      "variable": "pressure",
+      "value": "",
+      "value_original": "101",
+      "unit_original": "kPa",
+      "numbers": [
+        "101"
+      ],
+      "kind": "point",
+      "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "page=46",
+      "quote": "The downward experiments were performed in the atmospheric condition (pressure 101 kPa, O2 level 21 percent).",
+      "confidence": "direct",
+      "derivation": "Pressure stated in the text of section 2.3.5. Condition stated once for the series; the sample-by-thickness values exist only in plots and no per-thickness test is invented. Stated discrepancy, not averaged: the Fig. 2.20 caption (pdf page 49) gives the SDSU 1g tests in 20.7 percent O2 and 79 percent N2 at 1 atm, while the text on page 46 says 101 kPa and 21 percent O2.",
+      "flags": [
+        "GROUND_1G_TESTS"
+      ]
     }
   ],
   "not_found": [
@@ -200,5 +287,6 @@
       "looked_in": "ReadMe paragraph 6 says only 'a candle'; the PSI table material is 'Japan Wax candle'. No sentence in the record, ReadMe or SRD states the phase of the candle fuel. R2/R3 use test_id '*' on the strength of 'solid fuels' / 'Solid fuel'; the auditor may want to exclude F4."
     }
   ],
-  "lineage": "BASS-II reused the on-orbit BASS hardware originally launched for SPICE: 'BASS-II will utilize the on orbit BASS hardware launched originally for SPICE on STS-126.' (SRD page=9); 'The acquisition rate of 4 Hz can not be changed from SPICE/BASS.' and 'The measurement accuracy of ±10% was met by the SPICE hardware prior to its launch.' (SRD page=1); video field of view and D300s still-image requirements are the same as BASS (SRD page=1). The Ferkul F tests close out BASS-I: 'Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.' (ReadMe paragraph=6). SIBAL and NOMEX samples are 'Previously Flown Design' (SRD page=4) without naming the earlier flight. The ReadMe publication list is shared: 'BASS and BASS-II Publications and Presentations' (paragraph=33). SLICE is not mentioned in any source read, and the term 'flow duct' does not appear (the record calls it 'a small wind tunnel' installed in the MSG; ReadMe paragraph=20 says 'flow speed measured in the duct')."
+  "lineage": "BASS-II reused the on-orbit BASS hardware originally launched for SPICE: 'BASS-II will utilize the on orbit BASS hardware launched originally for SPICE on STS-126.' (SRD page=9); 'The acquisition rate of 4 Hz can not be changed from SPICE/BASS.' and 'The measurement accuracy of ±10% was met by the SPICE hardware prior to its launch.' (SRD page=1); video field of view and D300s still-image requirements are the same as BASS (SRD page=1). The Ferkul F tests close out BASS-I: 'Paul Ferkul burned Nomex III and a candle to round out the BASS-I testing.' (ReadMe paragraph=6). SIBAL and NOMEX samples are 'Previously Flown Design' (SRD page=4) without naming the earlier flight. The ReadMe publication list is shared: 'BASS and BASS-II Publications and Presentations' (paragraph=33). SLICE is not mentioned in any source read, and the term 'flow duct' does not appear (the record calls it 'a small wind tunnel' installed in the MSG; ReadMe paragraph=20 says 'flow speed measured in the duct').",
+  "addendum_ground": "R201-R204: 1 g ground series, added 2026-11-14 at the coordinating session's request (Luis approved); audited by a separate verificador run."
 }

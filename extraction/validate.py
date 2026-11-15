@@ -40,7 +40,7 @@ RANGE_RE = re.compile(rf"^({NUM})\.\.({NUM})$")
 TABLE_LOC_RE = re.compile(r"^(?:sheet=([^;]+);)?row=(\d+)((?:;column=.+?)+)$")
 DOC_LOC_RE = re.compile(r"^(page|section|paragraph|sheet|row|slide)=.+")
 GRAVITY_WORDS = re.compile(
-    r"micro-?\s?gravity|low[- ]gravity|low-g|reduced[- ]gravity|normal[- ]gravity|1-g\b|"
+    r"micro-?\s?gravity|low[- ]gravity|low-g|reduced[- ]gravity|normal[- ]gravity|\b1-?g\b|"
     r"\b0-g\b|weightless|free[- ]fall|zero[- ]gravity|\bg-level|lunar gravity|partial[- ]gravity",
     re.IGNORECASE)
 NONNEGATIVE = {"pressure", "flow_velocity", "sample_thickness", "droplet_diameter_initial",
