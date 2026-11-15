@@ -285,3 +285,13 @@ test("visitor isolation reports whether our proxy is trusted", () => {
   assert.equal(visitorIsolation(), true);
   delete process.env.PYRION_TRUST_PROXY;
 });
+
+test("N4: the content check stops with the caller's signal and never exceeds its own total time", async () => {
+  const hang = ((_u: string, init: RequestInit) => new Promise((_r, rej) => (init.signal as AbortSignal).addEventListener("abort", () => rej(new DOMException("a", "AbortError"))))) as unknown as typeof fetch;
+  const ac = new AbortController();
+  const t0 = Date.now();
+  const p = checkContent("x", providers, hang, () => {}, ac.signal);
+  setTimeout(() => ac.abort(), 30);
+  assert.deepEqual(await p, { flagged: false, checked: false });
+  assert.ok(Date.now() - t0 < 1000);
+});

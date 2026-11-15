@@ -1,5 +1,5 @@
 // Provider router: one function, complete(). Order: the requested model, the primary list, the fallback list.
-// Limits per call: a total deadline, at most 3 candidates, at most one retry across the whole run (cap re-checked
+// Limits per call: a total deadline, at most 2 models per provider (6 in all by default), at most one retry across the run (cap re-checked
 // before it, backoff on 429). An empty or unusable answer is a failure, not a success: the next model is tried.
 
 import { cleanModelText } from "./clean.ts";

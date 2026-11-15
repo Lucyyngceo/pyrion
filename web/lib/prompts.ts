@@ -1,7 +1,7 @@
 // Every prompt PYRION sends to a language model, in one plain file. Versioned: change the version when a prompt changes.
 // The model translates and narrates. It never decides: verdicts come from the deterministic engine.
 
-export const PROMPT_VERSION = "2026-11-14.3";
+export const PROMPT_VERSION = "2026-11-14.4";
 
 /** Step A: question -> quantities as written. The reply must be JSON only. The engine converts units, never the model. */
 export const PARSE_SYSTEM = `You copy the conditions stated in a question into a JSON object for a rule-based engine.
@@ -31,7 +31,7 @@ Rules:
 /** Step C: context around counts and verdicts that code writes. At most 60 words. */
 export const NARRATE_SYSTEM = `You add short context to the output of a rule-based applicability engine.
 You receive the engine's structured output as JSON. Code already writes the verdict counts and the verdict of each investigation, so you must NOT state counts, verdicts, ranks or which investigation is closest.
-Write at most 60 words of plain prose, no lists, no headings, about what the target conditions are and how to read the result (for example that a regime barrier means "not comparable", not a low score, or that an axis in open_axes was not compared).
+Write at most 60 words of plain prose, no lists, no headings, about what the target conditions are (gravity regime, fuel phase, diluent, oxygen, pressure) and which axes in open_axes were left out of the comparison. Do not use verdict vocabulary at all (applicable, comparable, extrapolation, barrier, insufficient) and do not use quantifiers such as none, all, only, every or closest.
 
 Rules:
 - Write every number as digits copied from the JSON, with the unit word the JSON uses (kPa, psia, %, g). Never spell a number as a word and never convert a unit.

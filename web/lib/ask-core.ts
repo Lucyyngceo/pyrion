@@ -2,7 +2,7 @@
 // Relative .ts imports on purpose, so the unit tests can run them under `node --test`.
 
 import { targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
-import { BANNED_PATTERNS, factsFromText, type Fact, type Facts, type Verdict } from "./narration-check.ts";
+import { BANNED_PATTERNS, factsFromText, modelText, type Fact, type Facts, type Verdict } from "./narration-check.ts";
 import { cleanModelText } from "./llm/clean.ts";
 
 const KPA_PER_PSI = 6.894757293168361;
@@ -49,17 +49,39 @@ const STATES: Record<string, RegExp> = {
 };
 const norm = (s: string) => s.normalize("NFKC").toLowerCase();
 
+const UNIT_ALIAS: Record<string, string> = { psia: "psi", percent: "%", celsius: "c", degc: "c", "°c": "c", kilopascals: "kpa", kilopascal: "kpa", atmosphere: "atm", atmospheres: "atm" };
+const TOKEN = /(\d+(?:\.\d+)?)\s*(%|°\s?c|[a-z]+(?:\/[a-z]+)?)?/g;
+
+/** Numbers of a text with the unit written beside each (aliases folded: psia = psi, percent = %). */
+function tokensOf(text: string): { value: number; unit: string }[] {
+  return [...text.matchAll(TOKEN)].map((m) => {
+    const u = (m[2] ?? "").replace(/\s+/g, "").toLowerCase();
+    // A trailing word that is not a unit (for example "oxygen") is not treated as one.
+    const unit = UNIT_ALIAS[u] ?? (/^(%|psi|kpa|pa|atm|bar|mbar|torr|mmhg|g|mm|cm|m|um|in|k|c|cm\/s|mm\/s|m\/s)$/.test(u) ? u : "");
+    return { value: Number(m[1]), unit };
+  });
+}
+
 /**
  * "Copy as written": a quantity the model returned is accepted only if its numbers (or, for names such as "lunar",
  * its words) are present in the question. A converted or invented value is not.
  */
-export function supportedByQuestion(value: string, question: string): boolean {
+export function supportedByQuestion(value: string, question: string, used: Set<number> = new Set()): boolean {
   const q = norm(question);
   const v = norm(value);
-  const nums = v.match(NUMS);
-  if (nums) {
-    const inQuestion = new Set((q.match(NUMS) ?? []).map(Number));
-    return nums.every((n) => inQuestion.has(Number(n)));
+  const nums = tokensOf(v);
+  if (nums.length > 0) {
+    // Each number, with the unit the model wrote beside it, must be in the question, and a number in the question
+    // may feed only one quantity (`used` holds the positions already taken).
+    const inQuestion = tokensOf(q);
+    const taken: number[] = [];
+    for (const n of nums) {
+      const at = inQuestion.findIndex((t, i) => !used.has(i) && !taken.includes(i) && t.value === n.value && (n.unit === "" || t.unit === n.unit));
+      if (at < 0) return false;
+      taken.push(at);
+    }
+    taken.forEach((i) => used.add(i));
+    return true;
   }
   return v
     .split(/[^a-z]+/)
@@ -91,6 +113,7 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
   const input: Record<string, string> = {};
   const unstated: string[] = [];
   const dropped: string[] = [];
+  const used = new Set<number>();
   for (const k of [...QUANTITY_KEYS, ...REGIME_KEYS]) {
     const v = o[k];
     if (v === null || v === undefined || v === "") {
@@ -98,9 +121,9 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
       continue;
     }
     if (typeof v !== "string") throw new Error(`${k} must be text as written in the question, or null`);
-    if ((QUANTITY_KEYS as readonly string[]).includes(k) && !supportedByQuestion(v, question)) {
+    if ((QUANTITY_KEYS as readonly string[]).includes(k) && !supportedByQuestion(v, question, used)) {
       unstated.push(k === "o2" ? "o2_mole_fraction" : k);
-      dropped.push(`The model returned "${v}" for ${k.replaceAll("_", " ")}, which is not in the question. It was ignored.`);
+      dropped.push(`The model returned a value for ${k.replaceAll("_", " ")} that is not in the question (${modelText(v)}). It was ignored.`);
       continue;
     }
     input[k] = v;

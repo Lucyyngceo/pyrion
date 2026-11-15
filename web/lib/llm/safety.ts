@@ -17,17 +17,29 @@ export function readVerdict(content: string): boolean {
   return /\bunsafe\b/i.test(content);
 }
 
-export async function checkContent(text: string, providers: Provider[], f: typeof fetch = fetch, log: (m: string) => void = console.warn): Promise<SafetyResult> {
+/** Whole time the content check may take, however many models it tries. */
+export const SAFETY_TOTAL_MS = 8000;
+
+export async function checkContent(
+  text: string,
+  providers: Provider[],
+  f: typeof fetch = fetch,
+  log: (m: string) => void = console.warn,
+  /** The caller's signal (the request's, combined with its deadline): a client that leaves or a deadline that passes stops the check. */
+  signal?: AbortSignal,
+): Promise<SafetyResult> {
   const nim = providers.find((p) => p.id === "nim");
   if (!nim) return { flagged: false, checked: false };
   const models = process.env.PYRION_SAFETY_MODEL ? [process.env.PYRION_SAFETY_MODEL, ...SAFETY_MODELS] : SAFETY_MODELS;
+  const total = AbortSignal.any([AbortSignal.timeout(SAFETY_TOTAL_MS), ...(signal ? [signal] : [])]);
   for (const model of models) {
+    if (total.aborted) break;
     try {
       const res = await f(`${nim.base}/chat/completions`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${nim.key}` },
         body: JSON.stringify({ model, messages: [{ role: "user", content: text }], temperature: 0, max_tokens: 60 }),
-        signal: AbortSignal.timeout(6000),
+        signal: AbortSignal.any([total, AbortSignal.timeout(6000)]),
         cache: "no-store",
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

@@ -142,15 +142,16 @@ export default function AskBox({ onTarget }: Props) {
     void run(question, model, true);
   };
   const hashes = new Set(runs.map((r) => r.hash).filter(Boolean));
-  const same = runs.length > 1 && hashes.size === 1;
+  // "Same" only if every run produced a hash and they are all equal: a failed run is not agreement.
+  const same = runs.length > 1 && runs.every((r) => r.hash) && hashes.size === 1;
 
   return (
     <section className="card ask" aria-labelledby="ask-h">
       <div className="card-head">
         <h2 id="ask-h">Ask PYRION</h2>
         <p className="muted small">
-          The language model translates your question and adds context. <strong>The engine decides</strong>: counts and verdicts are
-          written by code from the engine&apos;s output, and everything the model writes is checked by code before it is shown.
+          The language model translates your question and adds context. <strong>The engine decides</strong>: the verdicts are written by
+          code. The model&apos;s context is shown only if a code check binds every number, unit, id and verdict to the engine output.
         </p>
       </div>
 
@@ -234,7 +235,7 @@ export default function AskBox({ onTarget }: Props) {
             <p className="small muted">The model's context is unavailable right now. The verdicts above are unaffected.</p>
           ) : r.failures.length > 0 ? (
             <div className="small ask-withheld">
-              <strong>Context withheld: failed the consistency check.</strong>
+              <strong>Context withheld: failed the consistency check.</strong> <span className="muted">Quoted model text below is not used.</span>
               <ul>
                 {r.failures.map((f) => (
                   <li key={f}>{f}</li>

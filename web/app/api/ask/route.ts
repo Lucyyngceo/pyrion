@@ -10,7 +10,7 @@ import { openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { buildNarrationInput, parseTargetReply, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
-import { checkNarration } from "@/lib/narration-check";
+import { checkNarration, modelText } from "@/lib/narration-check";
 import { evaluateOnServer } from "@/lib/server-eval";
 
 export const dynamic = "force-dynamic";
@@ -54,7 +54,10 @@ export async function POST(req: Request) {
   // Visitors may choose only the models PYRION_CLIENT_MODELS allows; anything else uses the default.
   const model = typeof body.model === "string" && selectableModels().includes(body.model) ? body.model : undefined;
   const visitor = visitorId(req);
-  const common = { model, signal: req.signal, deadlineMs: DEADLINE_MS };
+  // One deadline for the whole step, started now: the content check and the model calls share it.
+  const started = Date.now();
+  const deadline = AbortSignal.any([req.signal, AbortSignal.timeout(DEADLINE_MS)]);
+  const remaining = () => Math.max(1000, DEADLINE_MS - (Date.now() - started));
 
   try {
     if (body.step === "parse") {
@@ -63,18 +66,18 @@ export async function POST(req: Request) {
       // The rate limit comes first: a visitor over the limit costs nothing, not even a safety call.
       budget().visitor(visitor);
       budget().recordSafety();
-      const safety = await checkContent(q, providers());
+      const safety = await checkContent(q, providers(), undefined, undefined, deadline);
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
       if (safety.flagged) return json({ error: "PYRION cannot help with that question. Ask about a combustion condition instead.", safety: safetyState }, 422);
       // Reasoning models on the fallback provider need room to think before the JSON.
-      const c = await askLlm({ ...common, maxTokens: 2000, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
+      const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 2000, validate: parsesAsObject, messages: [{ role: "system", content: PARSE_SYSTEM }, { role: "user", content: q }] }, visitor);
       const reply = c.json?.choices?.[0]?.message?.content;
       if (typeof reply !== "string") return json({ error: "the model returned no text" }, 502);
       let parsed;
       try {
         parsed = parseTargetReply(cleanModelText(reply), q);
       } catch (e) {
-        return json({ error: `The question could not be turned into a valid target: ${e instanceof Error ? e.message : "invalid reply"}`, safety: safetyState, ...metaOf(c.meta) }, 422);
+        return json({ error: `The question could not be turned into a valid target. ${modelText(e instanceof Error ? e.message : "invalid reply")}`, safety: safetyState, ...metaOf(c.meta) }, 422);
       }
       return json({ meta: metaOf(c.meta), promptVersion: PROMPT_VERSION, safety: safetyState, parsed });
     }
@@ -83,6 +86,8 @@ export async function POST(req: Request) {
       // Shape and engine validation happen before any paid call; the client's target is the only thing trusted from it.
       const shaped = shapeTarget(body.target);
       if (!shaped.ok) return json({ error: shaped.error }, 400);
+      // Same limit as the parse step, counted before the engine runs or any model is called.
+      budget().visitor(visitor);
       const { evaluation, investigations, sha256 } = await evaluateOnServer(shaped.target);
       const { input, facts } = buildNarrationInput(evaluation, investigations, shaped.target);
       // Counts and verdicts are written by code. The model adds context only.
@@ -91,7 +96,7 @@ export async function POST(req: Request) {
       let check: { ok: boolean; failures: string[] } = { ok: true, failures: [] };
       let meta = null;
       try {
-        const c = await askLlm({ ...common, maxTokens: 1200, validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify(input) }] }, visitor);
+        const c = await askLlm({ model, signal: req.signal, deadlineMs: remaining(), maxTokens: 1200, validate: (t) => t.length > 0, messages: [{ role: "system", content: NARRATE_SYSTEM }, { role: "user", content: JSON.stringify(input) }] }, visitor);
         meta = metaOf(c.meta);
         const text = c.json?.choices?.[0]?.message?.content;
         if (typeof text === "string") {
