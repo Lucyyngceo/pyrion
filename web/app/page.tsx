@@ -106,7 +106,7 @@ export default async function Landing() {
           <p className="ld-answer">
             Enter a cabin atmosphere (oxygen, pressure, gravity). PYRION checks it against NASA&apos;s combustion experiments in the
             Physical Sciences Informatics (PSI) database and shows which tests apply, with NASA&apos;s source and DOI, and where no
-            test exists yet. Fixed rules give the verdict; the AI assistant, TARS, reads your question and explains the result.
+            test exists in PSI yet. Fixed rules give the verdict; the AI assistant, TARS, reads your question and explains the result.
           </p>
           <div className="ld-cta">
             <Link data-help="landing-start" href={MOON} className="ld-btn ld-btn-primary">
@@ -178,7 +178,7 @@ export default async function Landing() {
 
         <section className="ld-section ld-flames" aria-labelledby="ld-flames-h">
           <p className="ld-kicker">Real flames, real data</p>
-          <h2 id="ld-flames-h">Fire without gravity, from NASA&apos;s own records</h2>
+          <h2 id="ld-flames-h">Fire without gravity, from NASA PSI records</h2>
           <div className="ld-flame-strip">
             {FLAMES.map((f) => (
               <figure key={f.src} className="ld-flame">
