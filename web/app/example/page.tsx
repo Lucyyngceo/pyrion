@@ -45,7 +45,10 @@ export default async function Example() {
   const doi = (acc: string) => investigations.find((i) => i.accession === acc)?.doi ?? "";
   // One row per investigation: its best cluster (ranked first, then insufficient, then another regime).
   const all: ClusterVerdict[] = [...evaluation.ranked, ...evaluation.unranked].filter((v, i, a) => a.findIndex((x) => x.accession === v.accession) === i);
-  const comparable = all.filter((v) => v.verdict !== "REGIME_BARRIER");
+  // Smoke-detection investigations (SAME line) measure smoke particles, not a flame; shown in their own section.
+  const DETECTION = ["PSI-47", "PSI-102", "PSI-101"];
+  const detectionQuotes = DETECTION.map((acc) => ({ acc, q: (profiles as unknown as { accession: string; doi?: string; summary_quotes?: Quote[] }[]).find((x) => x.accession === acc) }));
+  const comparable = all.filter((v) => v.verdict !== "REGIME_BARRIER" && !DETECTION.includes(v.accession));
   const barrier = all.filter((v) => v.verdict === "REGIME_BARRIER");
   const top = evaluation.ranked[0] ?? null;
   const decisive = top ? top.reasons.filter((r) => !r.informational) : [];
@@ -93,7 +96,7 @@ export default async function Example() {
     }
   }
   const whatIf = evaluate([...records, ...hypo], target);
-  const gaps = await evidenceGaps(target);
+  const gaps = (await evidenceGaps(target)).filter((g) => !DETECTION.includes(g.accession));
   const useful = gaps.filter((g) => g.reachable);
   const csvCell = (x: string) => (/[",\n]/.test(x) ? `"${x.replaceAll('"', '""')}"` : x);
   const gapsCsv = [
@@ -272,6 +275,33 @@ export default async function Example() {
             </ul>
           </details>
         )}
+      </section>
+
+      <section className="ld-section" aria-labelledby="ex-det">
+        <h2 id="ex-det">Detection, not a flame comparison: SAME and SAME-R</h2>
+        <p>
+          SAME and SAME-R are left out of the flame comparison above: they record smoke particles, not oxygen and pressure at a flame,
+          so the engine marks them insufficient evidence for a fire condition. With DAFT, which prepared them, they are a line of
+          smoke-detection work of their own, in NASA&apos;s words:
+        </p>
+        <ol className="ld-steps-list">
+          {detectionQuotes.map(({ acc, q }) => {
+            const first = q?.summary_quotes?.find((x) => x.field === "objective") ?? q?.summary_quotes?.[0];
+            return (
+              <li key={acc}>
+                <Link data-help="example-link" href={`/investigations/${acc}`}>
+                  {acc} {name(acc)}
+                </Link>
+                {first ? (
+                  <>
+                    : &ldquo;{first.text}&rdquo; <span className="ld-src small">(PSI record, field &ldquo;{first.field}&rdquo;{doi(acc) ? `, DOI ${doi(acc)}` : ""})</span>
+                  </>
+                ) : null}
+              </li>
+            );
+          })}
+        </ol>
+        <p className="small muted">Order: DAFT tested the instrument first, then SAME flew, then SAME-R reflew the SAME hardware (quotes above).</p>
       </section>
 
       {top && (
