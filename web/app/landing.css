@@ -83,3 +83,6 @@
   .ld-hero-split { grid-template-columns: 1fr; }
   .ld-flame-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+.ld-card-img { width: calc(100% + 40px); margin: -18px -20px 12px; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.ld-edge-fig { margin: 14px 0 0; }
+.ld-edge-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--border); }

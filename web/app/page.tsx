@@ -159,6 +159,14 @@ export default async function Landing() {
               </p>
             </div>
             <div className="ld-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ld-card-img" src="/media/nasa/iss-2000.webp" alt="The International Space Station over Earth" loading="lazy" />
+              <p className="ld-src small muted">
+                ISS, 2000. Image:{" "}
+                <a data-help="landing-source" href="https://images.nasa.gov/details/s97e5104">
+                  NASA
+                </a>
+              </p>
               <h3>Data that is hard to use</h3>
               <p>
                 NASA publishes its microgravity fire experiments in PSI, but the challenge notes the data &ldquo;can be hard to
@@ -215,6 +223,16 @@ export default async function Landing() {
                 <strong>8.2 psia</strong> — below the challenge&apos;s <strong>10.2 psi</strong> upper bound.
               </p>
               <p className="ld-src small">Planned, not in PSI. Source: NTRS 20260001966, cited on the Mission Planner.</p>
+              <figure className="ld-edge-fig">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/media/nasa/lunar-south-pole.webp" alt="Mosaic of the lunar south pole from the Lunar Reconnaissance Orbiter" loading="lazy" />
+                <figcaption className="small muted">
+                  The lunar south pole. Image:{" "}
+                  <a data-help="landing-source" href="https://images.nasa.gov/details/PIA13523">
+                    NASA/GSFC/Arizona State University
+                  </a>
+                </figcaption>
+              </figure>
             </div>
             <div className="ld-finding-text">
               <p>
