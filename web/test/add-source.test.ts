@@ -1,20 +1,36 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NASA_ONLY_SENTENCE, checkSourceFile, checkSourceUrl } from "../lib/add-source.ts";
+import { NASA_ONLY_SENTENCE, checkNtrsInput, checkSourceFile } from "../lib/add-source.ts";
 
-test("only https links on NASA hosts are accepted", () => {
-  for (const ok of ["https://ntrs.nasa.gov/citations/20250010653", "https://www.nasa.gov/glenn/x/", "https://psi.nasa.gov/", "https://nasa.gov/a"]) assert.deepEqual(checkSourceUrl(ok), { ok: true }, ok);
-  for (const bad of ["http://ntrs.nasa.gov/x", "https://evil.com/ntrs.nasa.gov", "https://nasa.gov.evil.com/", "https://notnasa.gov/", "https://user:pw@ntrs.nasa.gov/", "ftp://nasa.gov/x", "https://doi.org/10.1/x"]) {
-    const r = checkSourceUrl(bad);
+test("an NTRS number is digits only; a pasted ntrs.nasa.gov link yields only its digits", () => {
+  assert.deepEqual(checkNtrsInput("20250010653"), { ok: true, id: "20250010653" });
+  assert.deepEqual(checkNtrsInput("  20250010653 "), { ok: true, id: "20250010653" });
+  assert.deepEqual(checkNtrsInput("https://ntrs.nasa.gov/citations/20250010653"), { ok: true, id: "20250010653" });
+  assert.deepEqual(checkNtrsInput("https://ntrs.nasa.gov/api/citations/20260001966/downloads/x.pdf"), { ok: true, id: "20260001966" });
+  for (const bad of [
+    "http://ntrs.nasa.gov/citations/20250010653",
+    "https://evil.com/citations/20250010653",
+    "https://ntrs.nasa.gov.evil.com/citations/20250010653",
+    "https://user:pw@ntrs.nasa.gov/citations/20250010653",
+    "https://www.nasa.gov/glenn/x/",
+    "https://doi.org/10.1/x",
+    "https://ntrs.nasa.gov/search?q=1",
+    "2025001065x",
+    "123",
+    "20250010653; rm -rf",
+    "file:///etc/passwd",
+  ]) {
+    const r = checkNtrsInput(bad);
     assert.equal(r.ok, false, bad);
   }
-  const r = checkSourceUrl("https://example.com/");
+  const r = checkNtrsInput("https://example.com/");
   assert.equal(r.ok === false && r.reason, NASA_ONLY_SENTENCE);
 });
 
-test("files: pdf, csv or xlsx, at most 20 MB", () => {
-  assert.equal(checkSourceFile({ name: "a.PDF", size: 1000 }).ok, true);
+test("files: csv or xlsx, at most 20 MB", () => {
+  assert.equal(checkSourceFile({ name: "a.CSV", size: 1000 }).ok, true);
   assert.equal(checkSourceFile({ name: "a.xlsx", size: 1000 }).ok, true);
+  assert.equal(checkSourceFile({ name: "a.pdf", size: 1000 }).ok, false);
   assert.equal(checkSourceFile({ name: "a.exe", size: 1000 }).ok, false);
   assert.equal(checkSourceFile({ name: "a.csv", size: 21 * 1024 * 1024 }).ok, false);
   assert.equal(checkSourceFile({ name: "a.csv", size: 0 }).ok, false);
