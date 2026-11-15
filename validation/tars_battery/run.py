@@ -396,8 +396,129 @@ def run_checks(q: dict, status: int, events: list[dict], err: str | None, corpus
             problems.append("a number was removed by the code check")
         check("arithmetic", not problems, "; ".join(problems) or f"{a} found; run_calculator was called; nothing removed")
 
-    outcome = "pass" if all(c["ok"] for c in checks.values()) else "fail"
+    workflow_checks(exp, result, blocks, corpus, check, checks)
+
+    failing = [c for c in checks.values() if not c["ok"] and not c.get("pending")]
+    outcome = "fail" if failing else ("inconclusive" if any(c.get("pending") for c in checks.values()) else "pass")
     return outcome, checks, result
+
+
+# ------------------------------------------------------------------ the workflows (second opinion, claim check, brief, compare)
+
+CLAIM_CLASSES = ("supported in PSI", "not supported in PSI", "contradicted", "overclaim")
+FAMILIES = ("nemotron", "glm", "qwen", "kimi", "gemma")
+
+
+def model_family(model_id: str | None) -> str:
+    m = (model_id or "").lower()
+    for f in FAMILIES:
+        if f in m:
+            return f
+    return m.split("/")[0] if m else "unknown"
+
+
+def workflow_checks(exp: dict, result: dict, blocks: list[dict], corpus: Corpus, check, checks: dict) -> None:
+    """Checks for the four workflow fields of the result. A field the app has not wired yet is 'inconclusive', never a pass."""
+
+    def pending(name: str, field: str) -> None:
+        check(name, False, f"result.{field} is absent (not wired yet)")
+        checks[name]["pending"] = True
+
+    if exp.get("skeptic"):
+        sk = result.get("skeptic")
+        if sk is None:
+            pending("skeptic_shown", "skeptic")
+        else:
+            problems = []
+            if sk.get("verdict") not in ("agree", "object", "unavailable"):
+                problems.append(f"verdict {sk.get('verdict')!r}")
+            for i, o in enumerate(sk.get("objections") or []):
+                bi = o.get("blockIndex")
+                if not isinstance(bi, int) or isinstance(bi, bool) or not 0 <= bi < len(blocks):
+                    problems.append(f"objection {i} does not point to a block ({bi!r})")
+                if o.get("citation"):
+                    p = citation_problem(o["citation"], corpus)
+                    if p:
+                        problems.append(f"objection {i} citation: {p}")
+            if sk.get("verdict") == "object" and not sk.get("objections"):
+                problems.append("verdict object without objections")
+            answered = (result.get("model") or {}).get("model")
+            reviewer = (sk.get("model") or {}).get("model")
+            if sk.get("verdict") != "unavailable" and reviewer and model_family(reviewer) == model_family(answered):
+                problems.append(f"the reviewer ({reviewer}) is the same family as the answering model ({answered})")
+            if sk.get("verdict") != "unavailable" and not reviewer:
+                problems.append("a second opinion is shown without naming its model")
+            check("skeptic_shown", not problems, "; ".join(problems) or f"second opinion: {sk.get('verdict')} by {reviewer}, {len(sk.get('objections') or [])} objection(s), each on a block")
+
+    if exp.get("claim_classes") is not None:
+        cc = result.get("claimCheck")
+        if cc is None:
+            pending("claim_classes", "claimCheck")
+        else:
+            claims = cc.get("claims") or []
+            problems = []
+            for i, c in enumerate(claims):
+                cls = c.get("class")
+                if cls not in CLAIM_CLASSES:
+                    problems.append(f"claim {i}: class {cls!r}")
+                    continue
+                if cls in ("supported in PSI", "contradicted") and not (c.get("citations") or c.get("engineRefs")):
+                    problems.append(f"claim {i} is {cls} without a citation or engine reference")
+                for ct in c.get("citations") or []:
+                    p = citation_problem(ct, corpus)
+                    if p:
+                        problems.append(f"claim {i} citation: {p}")
+                if cls == "overclaim" and not c.get("overclaimPatterns"):
+                    problems.append(f"claim {i} is an overclaim without a matched pattern")
+            for needle, want in (exp.get("claim_classes") or {}).items():
+                hit = [c for c in claims if needle.lower() in (c.get("text") or "").lower()]
+                if not hit:
+                    problems.append(f"no claim contains {needle!r}")
+                elif not any(c.get("class") == want for c in hit):
+                    problems.append(f"{needle!r}: class is {hit[0].get('class')!r}, expected {want!r}")
+            check("claim_classes", not problems, "; ".join(problems) or f"{len(claims)} claim(s), every class carries its evidence; expected classes found")
+
+    if exp.get("brief"):
+        br = result.get("brief")
+        if br is None:
+            pending("brief_citations", "brief")
+        else:
+            md = br.get("markdown") or ""
+            problems = [f"missing section {s!r}" for s in ("## Bibliography", "## How to verify", "## Models used", "## What would close this gap", "Date:") if s not in md]
+            if not br.get("html"):
+                problems.append("no print-ready HTML")
+            cites = [c for b in blocks if b.get("layer") == "nasa" for c in b.get("citations", [])]
+            for c in cites:
+                if c.get("doc_id") not in md or f"PDF p. {c.get('page')}" not in md:
+                    problems.append(f"{c.get('doc_id')} p.{c.get('page')} is not in the brief")
+            if cites and not re.search(r"https?://|doi\.org", md):
+                problems.append("NASA citations without a URL or DOI")
+            if "not verified against a source" not in md and any(b.get("layer") == "expert" for b in blocks):
+                problems.append("expert reasoning is not labelled")
+            check("brief_citations", not problems, "; ".join(problems) or f"{len(cites)} citation(s) with references, required sections present")
+
+    if exp.get("comparison"):
+        cp = result.get("comparison")
+        if cp is None:
+            pending("compare_numbers", "comparison")
+        else:
+            rows = [r for r in cp.get("rows") or [] if r.get("ok")]
+            problems = []
+            if not rows:
+                problems.append("no computed rows")
+            for r in rows:
+                o2, tk = r.get("o2_percent"), r.get("total_kpa")
+                if o2 is None or tk is None or r.get("pO2_kpa") is None:
+                    problems.append(f"{r.get('name')}: a number is missing")
+                    continue
+                want_kpa = o2 / 100 * tk
+                if abs(r["pO2_kpa"] - want_kpa) > 0.005 * want_kpa:
+                    problems.append(f"{r.get('name')}: pO2 {r['pO2_kpa']} kPa, o2 x total gives {want_kpa:.4g}")
+                if abs(r.get("pO2_psia", 0) - r["pO2_kpa"] / 6.894757293168361) > 0.005 * r["pO2_kpa"] / 6.894757293168361:
+                    problems.append(f"{r.get('name')}: pO2 in psia does not match kPa")
+            if cp.get("ranking") and "safer or better" not in (cp.get("rule") or ""):
+                problems.append("the ranking is shown without its rule")
+            check("compare_numbers", not problems, "; ".join(problems) or f"{len(rows)} row(s): oxygen partial pressure = oxygen fraction x total pressure, kPa and psia agree")
 
 
 # ------------------------------------------------------------------ selftest (no server)
@@ -461,6 +582,35 @@ def selftest() -> int:
     expect("pressure dropped", run_checks(fu, 200, res([expert("Fine.")], target=lost), None, corpus)[0], "fail")
     other = {"regime": {"gravity_regime": "microgravity"}, "continuous": now["continuous"]}
     expect("regime changed", run_checks(fu, 200, res([expert("Fine.")], target=other), None, corpus)[0], "fail")
+
+    print("workflows")
+    plain = [expert("Flames need fuel, oxygen and heat.")]
+    w_sk = {"id": "f1", "text": "x", "expect": {"skeptic": True}}
+    def with_field(field, value, model="z-ai/glm-5.3"):
+        r = res(plain, model={"name": "Test model", "model": model, "provider": "test", "fellBackFrom": None})
+        r[0][field] = value
+        return r
+    expect("skeptic field not wired yet", run_checks(w_sk, 200, res(plain), None, corpus)[0], "inconclusive")
+    expect("skeptic: objection on a block, other family", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "object", "objections": [{"blockIndex": 0, "reason": "vague"}], "model": {"model": "nvidia/nemotron-3-ultra-550b-a55b"}}), None, corpus)[0], "pass")
+    expect("skeptic: objection with no block", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "object", "objections": [{"reason": "vague"}], "model": {"model": "nvidia/nemotron-3-ultra-550b-a55b"}}), None, corpus)[0], "fail")
+    expect("skeptic: same family as the answer", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "agree", "objections": [], "model": {"model": "z-ai/glm-5.2"}}), None, corpus)[0], "fail")
+    expect("skeptic: unavailable is allowed", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "unavailable", "objections": [], "model": None}), None, corpus)[0], "pass")
+    w_cc = {"id": "f2", "text": "x", "expect": {"claim_classes": {"are safe": "overclaim"}}}
+    expect("claim check not wired yet", run_checks(w_cc, 200, res(plain), None, corpus)[0], "inconclusive")
+    good_cc = {"claims": [{"text": "Lunar atmospheres are safe.", "class": "overclaim", "citations": [], "engineRefs": [], "overclaimPatterns": ["safe"]}]}
+    expect("claim classes as expected", run_checks(w_cc, 200, with_field("claimCheck", good_cc), None, corpus)[0], "pass")
+    expect("claim class wrong", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI"})]}), None, corpus)[0], "fail")
+    expect("supported without evidence", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI", "overclaimPatterns": []})]}), None, corpus)[0], "fail")
+    w_br = {"id": "f4", "text": "x", "expect": {"brief": True}}
+    brief_ok = {"markdown": "# Evidence brief\nDate: 2026-11-15\n## What would close this gap\n## Models used\n## Bibliography\n## How to verify\n", "html": "<!doctype html>"}
+    expect("brief not wired yet", run_checks(w_br, 200, res(plain), None, corpus)[0], "inconclusive")
+    expect("brief with its sections", run_checks(w_br, 200, with_field("brief", brief_ok), None, corpus)[0], "pass")
+    expect("brief without bibliography", run_checks(w_br, 200, with_field("brief", {"markdown": "# Evidence brief", "html": "<p>"}), None, corpus)[0], "fail")
+    w_cp = {"id": "f5", "text": "x", "expect": {"comparison": True}}
+    row_ok = {"ok": True, "name": "A", "o2_percent": 21, "total_kpa": 101.325, "pO2_kpa": 21.28, "pO2_psia": 3.086}
+    expect("comparison not wired yet", run_checks(w_cp, 200, res(plain), None, corpus)[0], "inconclusive")
+    expect("comparison numbers agree", run_checks(w_cp, 200, with_field("comparison", {"rows": [row_ok], "ranking": [], "rule": ""}), None, corpus)[0], "pass")
+    expect("comparison number differs from o2 x total", run_checks(w_cp, 200, with_field("comparison", {"rows": [dict(row_ok, pO2_kpa=25.0, pO2_psia=3.626)], "ranking": [], "rule": ""}), None, corpus)[0], "fail")
 
     print("NASA quotes against the corpus")
     if corpus.load():
