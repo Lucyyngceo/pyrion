@@ -92,4 +92,16 @@ An independent read-only review (separate agent) ran next. It found web 49/49 an
 - **MINOR N5.** The "same SHA-256 under N models" line ignored failed runs.
 - **MINOR N6.** One UI sentence overclaimed that all model text is checked, while some raw model text appears in warnings.
 
-To avoid an endless audit loop, these items will be closed by targeted tests rather than another full review.
+To avoid an endless audit loop, these items are closed by targeted tests, not by another full review.
+
+### Closure (fixes in `72d73e8`)
+| Item | Check | Result |
+|---|---|---|
+| N1 | 13 attack sentences against `checkNarration`: the reviewer's 9 plus 4 new ones (claims with no id, negations, "can be extrapolated" against a regime barrier, wrong units), and 4 legitimate sentences | 13 rejected, 4 accepted |
+| N2 | the narrate step repeated live against the server | 10 calls on the paid provider, then the free fallback, then 429 at the per-visitor limit |
+| N3 | unit test: the unit must match the one written in the question; one number feeds one quantity | pass |
+| N4 | code: one deadline per step, started before the content check, combined with the request's abort signal | confirmed (`route.ts:57-73`, `safety.ts:34`) |
+| N5 | code: `same` requires every run to have a hash | confirmed (`AskBox.tsx:146`) |
+| N6 | quoted model text is truncated and labelled "model text (not used)"; the overclaiming sentence is removed | confirmed |
+
+Tests: web 57/57, engine 153/153. **Phase 1 is closed: no open BLOCKER or MAJOR.**
