@@ -49,8 +49,21 @@ function hypo(acc: string, test: string, axis: GapAxis, v: number): ConditionRec
 
 const RANK: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
 
-/** The gaps for one habitat target, best (most reachable) first. */
-export async function evidenceGaps(target: Target): Promise<DataGap[]> {
+// The records do not change while the server runs, so each target is computed once.
+const memo = new Map<string, Promise<DataGap[]>>();
+
+/** The gaps for one habitat target, best (most reachable) first. Memoized per target. */
+export function evidenceGaps(target: Target): Promise<DataGap[]> {
+  const key = JSON.stringify(target);
+  let p = memo.get(key);
+  if (!p) {
+    p = computeGaps(target);
+    memo.set(key, p);
+  }
+  return p;
+}
+
+async function computeGaps(target: Target): Promise<DataGap[]> {
   const { records } = await serverData();
   const base = evaluate(records, target);
   const gaps: DataGap[] = [];
