@@ -31,7 +31,7 @@ import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
 
 const INITIAL: TargetState = applyPreset(
-  { presetId: null, regime: { fuel_phase: "liquid", diluent: "N2" }, o2: 0.21, pressure: 101.325 },
+  { presetId: null, regime: {}, o2: 0.21, pressure: 101.325 },
   PRESET_VIEWS[0],
 );
 

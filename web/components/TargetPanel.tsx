@@ -5,15 +5,9 @@ import { HABITAT_WINDOWS, REGIME_AXES, REGIME_VALUES, type RegimeAxis } from "@/
 import { PRESET_VIEWS, sourcesOf, type PresetView } from "@/lib/presets";
 import { axisLabel, fmt, kpaToPsi, valueLabel } from "@/lib/units";
 
-export interface TargetState {
-  presetId: string | null;
-  regime: Partial<Record<RegimeAxis, string>>;
-  o2: number;
-  pressure: number;
-  gravityLevel?: number;
-  /** The engine's note when a stated gravity has no regime in this dataset (for example above 1 g). */
-  gravityNotCovered?: string;
-}
+export type { TargetState } from "@/lib/preset-apply";
+export { applyPreset } from "@/lib/preset-apply";
+import type { TargetState } from "@/lib/preset-apply";
 
 interface PanelProps {
   state: TargetState;
@@ -35,18 +29,7 @@ function PresetGlyph({ o2, pressure }: { o2?: number; pressure?: number }) {
   );
 }
 
-export function applyPreset(state: TargetState, view: PresetView): TargetState {
-  const p = view.preset;
-  const regime: TargetState["regime"] = { ...state.regime };
-  for (const [axis, v] of Object.entries(p.regime)) if (v) regime[axis as RegimeAxis] = v.value;
-  return {
-    presetId: p.id,
-    regime,
-    o2: p.continuous.o2_mole_fraction?.value ?? state.o2,
-    pressure: p.continuous.pressure?.value ?? state.pressure,
-    gravityLevel: p.continuous.gravity_level?.value,
-  };
-}
+import { applyPreset } from "@/lib/preset-apply";
 
 /** Left column, top: big NASA presets, each with its source line. */
 export function PresetsPanel({ state, onChange }: PanelProps) {

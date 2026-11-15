@@ -193,3 +193,15 @@ test("when the model and the extractor both give a quantity and differ, the extr
   assert.equal(Math.round(r.target.continuous.pressure ?? 0), 101);
   assert.match(r.warnings.join(" "), /differently from the code|not in the question/);
 });
+
+test("a preset defines the whole target: axes its source does not state become not stated", async () => {
+  const { applyPreset } = await import("../lib/preset-apply.ts");
+  const view = (id: string, regime: Record<string, { value: string }>) => ({ preset: { id, regime, continuous: { o2_mole_fraction: { value: 0.21 }, pressure: { value: 101.3 } } } }) as never;
+  const iss = view("iss", {});
+  const lunar = view("lunar", { gravity_regime: { value: "partial_gravity" } });
+  const withChoices = { presetId: null, regime: { fuel_phase: "liquid", diluent: "N2" }, o2: 0.3, pressure: 70 } as never;
+  const a = applyPreset(withChoices, iss);
+  assert.deepEqual(a.regime, {});
+  const b = applyPreset({ ...a, regime: { fuel_phase: "gas", flame_type: "normal" } }, lunar);
+  assert.deepEqual(Object.keys(b.regime), ["gravity_regime"]);
+});
