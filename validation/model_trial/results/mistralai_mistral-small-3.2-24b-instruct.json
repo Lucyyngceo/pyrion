@@ -1,0 +1,95 @@
+{
+ "base": "http://localhost:3031",
+ "label": "mistralai_mistral-small-3.2-24b-instruct",
+ "results": {
+  "gap": {
+   "status": 200,
+   "seconds": 9.3,
+   "ok": true,
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 2,
+   "flagged": 3,
+   "decides": 0,
+   "steps": 3,
+   "chars": 1103
+  },
+  "compare": {
+   "status": 200,
+   "seconds": 21.9,
+   "ok": true,
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "engine",
+    "engine",
+    "expert",
+    "nasa",
+    "nasa",
+    "nasa"
+   ],
+   "quotes": 3,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 4,
+   "chars": 4435
+  },
+  "quote": {
+   "status": 200,
+   "seconds": 5.0,
+   "ok": true,
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "fallback": false,
+   "layers": [
+    "nasa"
+   ],
+   "quotes": 1,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 3,
+   "chars": 906
+  },
+  "plan": {
+   "status": 200,
+   "seconds": 12.0,
+   "ok": true,
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 3,
+   "flagged": 6,
+   "decides": 0,
+   "steps": 6,
+   "chars": 1078
+  },
+  "trap": {
+   "status": 200,
+   "seconds": 2.1,
+   "ok": true,
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 560
+  }
+ }
+}

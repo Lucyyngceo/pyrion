@@ -1,0 +1,96 @@
+{
+ "base": "http://localhost:3031",
+ "label": "openai_gpt-oss-120b",
+ "results": {
+  "gap": {
+   "status": 200,
+   "seconds": 2.7,
+   "ok": false,
+   "model": null,
+   "fallback": true,
+   "layers": [
+    "nasa",
+    "nasa",
+    "nasa"
+   ],
+   "quotes": 3,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 2280
+  },
+  "compare": {
+   "status": 200,
+   "seconds": 1.0,
+   "ok": false,
+   "model": null,
+   "fallback": true,
+   "layers": [
+    "nasa",
+    "nasa",
+    "nasa"
+   ],
+   "quotes": 3,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 2805
+  },
+  "quote": {
+   "status": 200,
+   "seconds": 0.9,
+   "ok": false,
+   "model": null,
+   "fallback": true,
+   "layers": [],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 0
+  },
+  "plan": {
+   "status": 200,
+   "seconds": 3.2,
+   "ok": false,
+   "model": null,
+   "fallback": true,
+   "layers": [
+    "engine",
+    "engine",
+    "engine",
+    "engine",
+    "engine"
+   ],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 2705
+  },
+  "trap": {
+   "status": 200,
+   "seconds": 3.2,
+   "ok": false,
+   "model": null,
+   "fallback": true,
+   "layers": [
+    "engine",
+    "engine",
+    "engine",
+    "engine",
+    "engine"
+   ],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 0,
+   "chars": 2705
+  }
+ }
+}

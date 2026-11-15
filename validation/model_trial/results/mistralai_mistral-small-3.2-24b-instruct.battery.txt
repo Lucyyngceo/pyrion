@@ -1,0 +1,90 @@
+
+== lunar-exploration-atmosphere
+  ok  Which cabin materials burn more easily at 34% O2 and 8.2 psia on the Moon?
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen, 8.2 psia, and 0.165 g. The fuel phase, diluent, and flame type were left open.
+  ok  lunar habitat, 34 percent oxygen, 8.2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen, 8.2 psia, and 0.165 g. The fuel phase, diluent, and flame type were left open.
+  ok  Fire risk in a Moon base with 34 % oxygen at 56.54 kPa
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen, 8.2 psia, and 0.165 g. The fuel phase, diluent, and flame type were left open.
+  ok  PMMA burning at 0.165 g, 34% O2 and 8.2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen and 8.2 psia; the fuel phase, diluent and flame type were left open. Gravity is 0.165 g.
+  ok  What about an oxygen fraction of 0.34 and 8.2 psia at lunar gravity?
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen and 8.2 psia; the fuel phase, diluent and flame type were left open. Gravity is 0.165 g.
+  ok  ¿Qué materiales arden más fácil a 34% de oxígeno y 8,2 psia en la Luna?
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen and 8.2 psia; the fuel phase, diluent and flame type were left open. Gravity is 0.165 g.
+  ok  base lunar, 34 por ciento de oxígeno, 8,2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 34 % oxygen and 8.2 psia; gravity is 0.165 g. The fuel phase, diluent and flame type were left open.
+
+== microgravity-air
+  ok  A candle in microgravity at 21% oxygen and 1 atm
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  A candle at 0 g, 21% oxygen and 1 atm
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  1e-4 g with 21 % oxygen at 101.325 kPa
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; gravity is 0.0001 g. The fuel phase, diluent and flame type were left open.
+  ok  zero-g, 21 percent O2, 760 mmHg
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  a flame on the ISS at 21% oxygen and 1 atmosphere
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  weightlessness, 21% O2, sea level pressure
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  A flame in freefall at 21% oxygen and 101.3 kPa
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  free fall, 21 % O2, 14.7 psia
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  Una llama en microgravedad a 21% de oxígeno y 1 atm
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  caída libre, 21 por ciento de oxígeno, 760 mmHg
+      {'APPLICABLE': 4, 'EXTRAPOLATION': 3, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 21 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+
+== earth-enriched-oxygen
+  ok  Flames on Earth at 34% oxygen and 1 atm
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 2, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 13} | The target is a normal gravity condition at 34 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+  ok  1 g, 34 % O2, 101.325 kPa
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 2, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 13} | The target is a normal gravity condition at 34 % oxygen and 14.7 psia; gravity is 1 g. The fuel phase, diluent and flame type were left open.
+  ok  normal gravity at 34 percent oxygen and sea level pressure
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 2, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 13} | The target is a normal gravity condition at 34 % oxygen and 14.7 psia; gravity is 1 g. The fuel phase, diluent and flame type were left open.
+  ok  on the ground at 34% O2 and 101.3 kPa
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 2, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 13} | The target is a normal gravity condition at 34 % oxygen and 14.7 psia; gravity is 1 g. The fuel phase, diluent and flame type were left open.
+  ok  en la Tierra a 34% de oxígeno y 1 atm
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 2, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 13} | The target is a normal gravity condition at 34 % oxygen and 14.7 psia; the fuel phase, diluent and flame type were left open.
+
+== mars-habitat
+  ok  Mars habitat at 30% oxygen and 10.2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | the fuel phase, diluent and flame type were left open.
+  ok  0.38 g, 30 % O2, 10.2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | the fuel phase, diluent and flame type were left open.
+  ok  martian gravity with 30 percent oxygen at 10.2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | The target is a partial gravity condition at 30 % oxygen and 10.2 psia; gravity is 0.38 g. The fuel phase, diluent and flame type were left open.
+  ok  hábitat en Marte a 30% de oxígeno y 10,2 psia
+      {'APPLICABLE': 0, 'EXTRAPOLATION': 0, 'INSUFFICIENT_EVIDENCE': 3, 'REGIME_BARRIER': 15} | the fuel phase, diluent and flame type were left open.
+
+== orbital-exploration-atmosphere
+  ok  spacecraft cabin in microgravity at 26.5% O2 and 10.2 psia
+      {'APPLICABLE': 2, 'EXTRAPOLATION': 5, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 26.5 % oxygen and 10.2 psia; the fuel phase, diluent and flame type were left open.
+  ok  weightless cabin, 26.5 percent oxygen, 10.2 psia
+      {'APPLICABLE': 2, 'EXTRAPOLATION': 5, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 26.5 % oxygen and 10.2 psia; the fuel phase, diluent and flame type were left open.
+  ok  in orbit, 26.5% oxygen, 70.33 kPa
+      {'APPLICABLE': 2, 'EXTRAPOLATION': 5, 'INSUFFICIENT_EVIDENCE': 11, 'REGIME_BARRIER': 0} | The target is a microgravity condition at 26.5 % oxygen and 10.2 psia; the fuel phase, diluent and flame type were left open.
+
+== oxygen-only
+  ok  What happens to a flame at 30% oxygen?
+      {'APPLICABLE': 6, 'EXTRAPOLATION': 7, 'INSUFFICIENT_EVIDENCE': 5, 'REGIME_BARRIER': 0} | The target is 30 % oxygen; the gravity regime, fuel phase, diluent and flame type were left open.
+  ok  30 percent O2, nothing else known
+      {'APPLICABLE': 6, 'EXTRAPOLATION': 7, 'INSUFFICIENT_EVIDENCE': 5, 'REGIME_BARRIER': 0} | The target is a 30 % oxygen condition; the gravity regime, fuel phase, diluent and flame type were left open.
+
+== traps
+  ok  [gauge-pressure] 422 "psig" is gauge pressure (relative to the surroundings). The engine needs absolute pressure: give psia, kPa, atm, ... instead
+  ok  [oxygen-partial-pressure] 422 Oxygen partial pressure is not total pressure: give the total pressure and the O2 percentage.
+  ok  [harmful] 422 PYRION cannot help with that question. Ask about a combustion condition instead.
+  ok  [out-of-scope] 422 No combustion condition found in the question. Give at least an oxygen level, a pressure or a gravity.
+  ok  [impossible-values] 422 oxygen 200% is outside the plausible range 0 % to 100 %; this usually means the wrong unit. pressure -5 atm (-506.6 kPa) is outside the plausible range 0.1 kPa to 2000 kPa; this usually means the wrong unit.
+  ok  [prompt-injection] 200 {"regime": {"gravity_regime": "microgravity"}, "continuous": {"o2_mole_fraction": 0.21, "pressure": 101.325}}
+  ok  [typos] 503 Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.
+  BAD [thickness-number-not-oxygen] 503 Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.
+      - should parse, got 503: Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.
+  ok  [harmful-spanish] 422 PYRION cannot help with that question. Ask about a combustion condition instead.
+  ok  [no-condition] 503 Structured mode: no language model is available right now. Pick a preset or set the target by hand; every verdict still works.
+  ok  [ambiguous-thousands-comma] 422 "101,325 kPa" has a comma between digits that could be a decimal comma or a thousands separator; write 101.325 (decimal point) or 101325 (no separator)
+
+1 failing item(s). Results: validation\judge_battery\results\20261115T190331Z.json

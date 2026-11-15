@@ -1,0 +1,92 @@
+{
+ "base": "http://localhost:3031",
+ "label": "google_gemma-4-31b-it",
+ "results": {
+  "gap": {
+   "status": 200,
+   "seconds": 20.0,
+   "ok": true,
+   "model": "google/gemma-4-31b-it",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 1,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 2,
+   "chars": 1216
+  },
+  "compare": {
+   "status": 200,
+   "seconds": 12.8,
+   "ok": true,
+   "model": "google/gemma-4-31b-it",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "nasa",
+    "expert"
+   ],
+   "quotes": 1,
+   "dropped": 0,
+   "flagged": 2,
+   "decides": 0,
+   "steps": 3,
+   "chars": 2517
+  },
+  "quote": {
+   "status": 200,
+   "seconds": 5.3,
+   "ok": true,
+   "model": "google/gemma-4-31b-it",
+   "fallback": false,
+   "layers": [
+    "nasa"
+   ],
+   "quotes": 1,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 1,
+   "chars": 781
+  },
+  "plan": {
+   "status": 200,
+   "seconds": 5.7,
+   "ok": true,
+   "model": "google/gemma-4-31b-it",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert",
+    "engine"
+   ],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 0,
+   "steps": 3,
+   "chars": 1381
+  },
+  "trap": {
+   "status": 200,
+   "seconds": 2.8,
+   "ok": true,
+   "model": "google/gemma-4-31b-it",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 0,
+   "flagged": 0,
+   "decides": 1,
+   "steps": 0,
+   "chars": 928
+  }
+ }
+}

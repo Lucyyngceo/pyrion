@@ -1,0 +1,95 @@
+{
+ "base": "http://localhost:3031",
+ "label": "nvidia_nemotron-3-ultra-openrouter",
+ "results": {
+  "gap": {
+   "status": 200,
+   "seconds": 16.4,
+   "ok": true,
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "nasa",
+    "expert"
+   ],
+   "quotes": 1,
+   "dropped": 1,
+   "flagged": 3,
+   "decides": 0,
+   "steps": 6,
+   "chars": 2403
+  },
+  "compare": {
+   "status": 200,
+   "seconds": 24.9,
+   "ok": true,
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 2,
+   "flagged": 6,
+   "decides": 0,
+   "steps": 6,
+   "chars": 3479
+  },
+  "quote": {
+   "status": 200,
+   "seconds": 14.5,
+   "ok": true,
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "fallback": false,
+   "layers": [
+    "nasa",
+    "nasa",
+    "expert"
+   ],
+   "quotes": 2,
+   "dropped": 0,
+   "flagged": 2,
+   "decides": 0,
+   "steps": 5,
+   "chars": 5722
+  },
+  "plan": {
+   "status": 200,
+   "seconds": 14.6,
+   "ok": true,
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "expert"
+   ],
+   "quotes": 0,
+   "dropped": 2,
+   "flagged": 3,
+   "decides": 0,
+   "steps": 5,
+   "chars": 1272
+  },
+  "trap": {
+   "status": 200,
+   "seconds": 14.9,
+   "ok": true,
+   "model": "nvidia/nemotron-3-ultra-550b-a55b",
+   "fallback": false,
+   "layers": [
+    "engine",
+    "nasa",
+    "expert"
+   ],
+   "quotes": 1,
+   "dropped": 2,
+   "flagged": 9,
+   "decides": 0,
+   "steps": 5,
+   "chars": 2786
+  }
+ }
+}
