@@ -11,7 +11,7 @@ highlight: [data-help="verdict-headline"]
 ---
 What it is: The large coloured sentence.
 
-What it shows: One of: Inside the measured envelope, Outside the measured envelope, Undetermined, or No PSI test in this gravity regime.
+What it shows: One of: Inside the tested range, Outside the tested range, Undetermined, or No PSI test in this gravity regime.
 
 How to use it: Read it first.
 

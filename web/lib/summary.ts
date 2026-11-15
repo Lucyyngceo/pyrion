@@ -35,7 +35,7 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
       : "";
     return {
       tone: "inside",
-      headline: "Inside the measured envelope",
+      headline: "Inside the tested range",
       sub: `${plural(counts.APPLICABLE, "investigation")} applicable`,
       detail: (regimeStated
         ? `${plural(counts.APPLICABLE, "investigation")} measured ${regime} around this O₂ and pressure.`
@@ -63,7 +63,7 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
   if (counts.EXTRAPOLATION > 0) {
     return {
       tone: "outside",
-      headline: "Outside the measured envelope",
+      headline: "Outside the tested range",
       sub: "Same regime, other O₂ and pressure",
       detail: `${regimeStated ? `${regime} was measured` : "Tests were measured"}, but not at this O₂ and pressure: ${countVerb(counts.EXTRAPOLATION, "investigation", "needs", "need")} extrapolation.`,
       counts,
@@ -87,7 +87,7 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
   ].filter(Boolean);
   return {
     tone: "outside",
-    headline: "Outside the measured envelope",
+    headline: "Outside the tested range",
     sub: counts.REGIME_BARRIER > 0 && counts.INSUFFICIENT_EVIDENCE === 0 ? "No measured test in this regime" : "No comparable measured test",
     detail: `No extracted PSI test in ${regime} covers this O₂ and pressure.${parts.length ? ` ${parts.join("; ")}.` : ""}`,
     counts,

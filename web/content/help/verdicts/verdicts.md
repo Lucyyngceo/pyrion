@@ -15,4 +15,4 @@ Extrapolation: same regime, but your condition lies outside the measured range. 
 
 Insufficient evidence: the extracted records do not state enough to compare. PYRION does not guess.
 
-Not comparable (different regime): gravity, fuel phase, diluent or flame type differ. This is a barrier, not a worse match, so no distance is computed across it.
+Not comparable: different gravity, fuel or atmosphere: gravity, fuel phase, diluent or flame type differ. This is a barrier, not a worse match, so no distance is computed across it.

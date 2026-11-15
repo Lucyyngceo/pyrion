@@ -13,7 +13,7 @@ Every investigation in PSI gets exactly one of four verdicts for your condition.
 - **Applicable.** Your condition lies inside what the investigation tested, in every respect you stated. Its results are directly comparable.
 - **Extrapolation.** Everything is comparable in kind (same regime), but your numbers fall outside the tested region. The verdict also says *how far outside* (see "Extrapolation and its four levels").
 - **Insufficient evidence.** The investigation's records do not say enough to place your condition: something you asked about was not recorded, or cannot be used. This is not a "no"; it is "not enough is stated in the extracted records".
-- **Not comparable (different regime).** You set a regime (gravity, fuel phase, diluent, flame type) that differs from the one the investigation was tested in. No distance is defined across a regime: it is a different situation, not a long distance.
+- **Not comparable: different gravity, fuel or atmosphere.** You set a regime (gravity, fuel phase, diluent, flame type) that differs from the one the investigation was tested in. No distance is defined across a regime: it is a different situation, not a long distance.
 
 When several verdicts exist inside one investigation (for different regimes it was tested in), the best one is the investigation's verdict. The order is Applicable, then Extrapolation, then Insufficient evidence, then Not comparable.
 
@@ -21,7 +21,7 @@ Two honest limits are built into the wording: PYRION says "in PSI" and never "no
 
 ## For engineers
 
-`type Verdict = 'APPLICABLE' | 'EXTRAPOLATION' | 'INSUFFICIENT_EVIDENCE' | 'REGIME_BARRIER'` (`engine/src/types.ts`). Order constant: `VERDICT_ORDER` (`engine/src/verdict.ts:42`). Display names: `VERDICT_LABELS` in `engine/src/labels.ts` (Applicable / Extrapolation / Insufficient evidence / Not comparable (different regime)).
+`type Verdict = 'APPLICABLE' | 'EXTRAPOLATION' | 'INSUFFICIENT_EVIDENCE' | 'REGIME_BARRIER'` (`engine/src/types.ts`). Order constant: `VERDICT_ORDER` (`engine/src/verdict.ts:42`). Display names: `VERDICT_LABELS` in `engine/src/labels.ts` (Applicable / Extrapolation / Insufficient evidence / Not comparable: different gravity, fuel or atmosphere).
 
 Decision order inside `judgeCluster` (`verdict.ts:149`, "4. Verdict"):
 

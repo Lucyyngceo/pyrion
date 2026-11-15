@@ -42,13 +42,13 @@ test("the engine decides a claim about an investigation: the claimed verdict is 
   const ok = await one("PSI-9801 is applicable at 21 % oxygen and 1 atm in microgravity.");
   assert.equal(ok.class, "supported in PSI");
   assert.equal(ok.engineRefs[0].accession, "PSI-9801");
-  assert.equal(ok.engineRefs[0].engineVerdict, "Applicable");
+  assert.equal(ok.engineRefs[0].engineVerdict, "Inside the tested range");
   assert.match(ok.engineRefs[0].fingerprint, /^[0-9a-f]{64}$/);
   assert.equal(ok.engineRefs[0].doi, "10.0000/s1");
   const bad = await one("PSI-9801 is applicable at 34 % oxygen and 8.2 psia on the Moon.");
   assert.equal(bad.class, "contradicted");
-  assert.equal(bad.engineRefs[0].engineVerdict, "Not comparable (different regime)");
-  assert.match(bad.reason, /The engine gives Not comparable \(different regime\) for PSI-9801 at that condition, not Applicable\./);
+  assert.equal(bad.engineRefs[0].engineVerdict, "Not comparable: different gravity, fuel or atmosphere");
+  assert.match(bad.reason, /The engine gives Not comparable: different gravity, fuel or atmosphere for PSI-9801 at that condition, not Inside the tested range\./);
 });
 
 test("an investigation that is not in the records, or a claim without a condition, is not supported (never 'false')", async () => {

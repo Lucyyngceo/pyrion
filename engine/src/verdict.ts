@@ -188,7 +188,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
           'regime_barrier',
           false,
           axis,
-          `${cap(axisLabel(axis))}: you set ${valueLabel(t)}, the evidence is ${state.values.map(valueLabel).join(' / ')}. Not comparable (different regime): no distance is defined across it.`,
+          `${cap(axisLabel(axis))}: you set ${valueLabel(t)}, the evidence is ${state.values.map(valueLabel).join(' / ')}. Not comparable: a different gravity, fuel or atmosphere changes how fire behaves, so no distance is defined across it.`,
           citationsOf(recs),
         ),
       );

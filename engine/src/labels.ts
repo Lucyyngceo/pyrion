@@ -43,10 +43,10 @@ import { AXIS_UNITS, type ContinuousAxis, type Verdict } from './types.ts';
 
 /** The verdict names a reader sees. */
 export const VERDICT_LABELS: Readonly<Record<Verdict, string>> = {
-  APPLICABLE: 'Applicable',
-  EXTRAPOLATION: 'Extrapolation',
+  APPLICABLE: 'Inside the tested range',
+  EXTRAPOLATION: 'Outside the tested range',
   INSUFFICIENT_EVIDENCE: 'Insufficient evidence',
-  REGIME_BARRIER: 'Not comparable (different regime)',
+  REGIME_BARRIER: 'Not comparable: different gravity, fuel or atmosphere',
 };
 export const verdictLabel = (v: Verdict): string => VERDICT_LABELS[v];
 

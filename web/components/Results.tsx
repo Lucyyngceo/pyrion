@@ -13,10 +13,10 @@ import { axisWord, levelPhrase, plainVerdict } from "@/lib/plain";
 import Term from "./Term";
 
 const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string; label: string }> = {
-  APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app", label: verdictLabel("APPLICABLE") },
-  EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext", label: verdictLabel("EXTRAPOLATION") },
+  APPLICABLE: { icon: "✓", plain: "inside the tested range", cls: "v-app", label: verdictLabel("APPLICABLE") },
+  EXTRAPOLATION: { icon: "↗", plain: "outside the tested range", cls: "v-ext", label: verdictLabel("EXTRAPOLATION") },
   INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins", label: verdictLabel("INSUFFICIENT_EVIDENCE") },
-  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar", label: verdictLabel("REGIME_BARRIER") },
+  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different gravity, fuel or atmosphere", cls: "v-bar", label: verdictLabel("REGIME_BARRIER") },
 };
 const ORDER: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
 

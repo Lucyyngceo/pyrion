@@ -84,7 +84,7 @@ export default async function Example() {
   const whatIf = evaluate([...records, ...hypo], target);
   const verdictFor = (ev: typeof evaluation, acc: string) => {
     const v = [...ev.ranked, ...ev.unranked].find((x) => x.accession === acc);
-    return v ? `${verdictLabel(v.verdict)}${v.extrapolationLevel ? ` (${v.extrapolationLevel.replaceAll("_", " ")})` : ""}` : "—";
+    return v ? (v.extrapolationLevel ? levelSentence(v.extrapolationLevel) : verdictLabel(v.verdict)) : "—";
   };
   const reasonFor = (ev: typeof evaluation, acc: string) => [...ev.ranked, ...ev.unranked].find((x) => x.accession === acc)?.reasons.find((r) => !r.informational)?.message ?? "";
 
@@ -178,8 +178,8 @@ export default async function Example() {
       <section className="ld-section" aria-labelledby="ex-2">
         <h2 id="ex-2">2 · The verdict for each PSI investigation</h2>
         <p>
-          {c.APPLICABLE} applicable · {c.EXTRAPOLATION} extrapolation · {c.INSUFFICIENT_EVIDENCE} insufficient evidence · {c.REGIME_BARRIER} another
-          regime. Ordered by how close their tested conditions are (not by importance).
+          {c.APPLICABLE} inside the tested range · {c.EXTRAPOLATION} outside the tested range · {c.INSUFFICIENT_EVIDENCE} insufficient evidence ·{" "}
+          {c.REGIME_BARRIER} not comparable (different gravity, fuel or atmosphere). Ordered by how close their tested conditions are (not by importance).
         </p>
         <div className="tars-cmptable">
           <table>
@@ -201,8 +201,7 @@ export default async function Example() {
                     </Link>
                   </td>
                   <td>
-                    {verdictLabel(v.verdict)}
-                    {v.extrapolationLevel ? ` (${v.extrapolationLevel.replaceAll("_", " ")})` : ""}
+                    {v.extrapolationLevel ? levelSentence(v.extrapolationLevel) : verdictLabel(v.verdict)}
                   </td>
                   <td className="small">{v.reasons.find((r) => !r.informational)?.message ?? v.reasons[0]?.message ?? ""}</td>
                 </tr>

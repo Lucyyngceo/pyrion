@@ -15,6 +15,6 @@ What it shows: "Result for ..." the headline and its detail, a compare button an
 
 How to use it: Read it first after changing a condition.
 
-Example: Look for "Inside the measured envelope".
+Example: Look for "Inside the tested range".
 
 What it does not do: It summarizes PSI coverage; it is not a safety rating.

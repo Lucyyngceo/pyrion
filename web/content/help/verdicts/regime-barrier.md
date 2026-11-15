@@ -8,7 +8,7 @@ dataHelp: [verdict-headline, result-barrier-toggle, result-barrier-doi]
 sources: ["engine/src/verdict.ts"]
 ---
 
-Four things in your question are **regimes**, not numbers: the gravity regime (microgravity, partial gravity, normal gravity), the fuel phase (solid, liquid, gas), the diluent gas (nitrogen, helium, carbon dioxide, argon, mixed) and the flame type (normal, inverse). If you set one of them and an investigation was tested in a different one, the verdict is **Not comparable (different regime)**.
+Four things in your question are **regimes**, not numbers: the gravity regime (microgravity, partial gravity, normal gravity), the fuel phase (solid, liquid, gas), the diluent gas (nitrogen, helium, carbon dioxide, argon, mixed) and the flame type (normal, inverse). If you set one of them and an investigation was tested in a different one, the verdict is **Not comparable: different gravity, fuel or atmosphere**.
 
 The key idea is that **infinity is not a big number**. A flame in microgravity burns without buoyancy; a flame on the Moon has a small but real buoyancy; the two are not near each other on a scale, they are different situations. So PYRION does not compute a distance across a regime, never ranks such an investigation, and never presents the switch as a small step. Its distance is "not defined", and the rest of the numbers are shown only as context.
 
@@ -24,7 +24,7 @@ In `judgeCluster`, section "1. Regime axes: barriers, never distances": for each
 
 - `t === undefined`: not compared; reason `target_regime_unstated` (informational);
 - cluster state `missing`: `regimeUnknown`;
-- `!state.values.includes(t)`: `barrier = true`, reason `regime_barrier` ("<Axis>: you set X, the evidence is Y. Not comparable (different regime): no distance is defined across it.");
+- `!state.values.includes(t)`: `barrier = true`, reason `regime_barrier` ("<Axis>: you set X, the evidence is Y. Not comparable: different gravity, fuel or atmosphere: no distance is defined across it.");
 - cluster state `conflicting`: `regimeUnknown`;
 - else `regime_match`.
 

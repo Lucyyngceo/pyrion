@@ -15,6 +15,6 @@ What it shows: The scenario name and the headline: inside or outside the measure
 
 How to use it: Read it for a one-glance result.
 
-Example: "Inside the measured envelope".
+Example: "Inside the tested range".
 
 What it does not do: "Inside" means it lies within the region spanned by PSI test points in this regime (between tests, not necessarily tested at that exact point); it does not mean safe.
