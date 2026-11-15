@@ -28,7 +28,7 @@ import {
   type RegimeAxis,
   type Target,
 } from './types.ts';
-import { axisLabel, valueLabel } from './labels.ts';
+import { axisLabel, valueLabel, verdictLabel } from './labels.ts';
 import { canonicalTarget, judgeCluster, validateTarget } from './verdict.ts';
 
 // ---------- plain-language labels (shared with the reason codes) ----------
@@ -310,7 +310,7 @@ function planCluster(cluster: Cluster, original: Target, scales: Map<ContinuousA
   const finalTarget = canonicalTarget(T);
   const verdict = judgeCluster(cluster, finalTarget, scales).verdict;
   if (verdict !== 'APPLICABLE') {
-    return { route: null, why: `${acc}: no change of the kinds this tool offers makes it comparable (the engine says ${verdict}).` };
+    return { route: null, why: `${acc}: no change of the kinds this tool offers makes it comparable (the engine's answer is: ${verdictLabel(verdict)}).` };
   }
 
   const distance = Math.sqrt(moved.reduce((s, m) => s + (((m.to - m.from) / (scales.get(m.axis) as AxisScale).scale) ** 2), 0));

@@ -72,8 +72,8 @@ describe('E1: measurement tolerance on a zero-width envelope', () => {
   it('the reason says the tolerance is what made it count as inside, and names the convention', () => {
     const c = verdictFor('PSI-9201', '101.3 kPa');
     const msgs = c.reasons.map((r) => r.message).join('\n');
-    assert.match(msgs, /within the 0\.5 % measurement tolerance of the tested 101\.325 kPa/);
-    assert.match(msgs, /within the 0\.5 % measurement tolerance of the convex hull/);
+    assert.match(msgs, /within the 0\.5 % measurement tolerance of the tested 101\.3 kPa/);
+    assert.match(msgs, /within the 0\.5 % measurement tolerance of the region covered by/);
     assert.ok(msgs.includes(MEASUREMENT_TOLERANCE_NOTE));
     assert.match(MEASUREMENT_TOLERANCE_NOTE, /PYRION convention, not a NASA value/);
     assert.equal(c.axes.find((a) => a.axis === 'pressure')?.viaTolerance, true);

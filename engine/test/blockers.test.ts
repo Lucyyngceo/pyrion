@@ -142,8 +142,8 @@ describe('plural agreement in summary sentences', () => {
     const ev = evaluate(build(extra), { regime: { gravity_regime: 'microgravity' }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 } });
     return [...ev.ranked, ...ev.unranked].flatMap((c) => c.reasons.map((r) => r.message)).find((m) => /lack/.test(m)) as string;
   };
-  it('1 test lacks ... so it is not part; 2 tests lack ... so they are not part', () => {
-    assert.match(message(1), /1 of 2 test lacks a usable value for pressure, so it is not part of this envelope/);
+  it('1 of N tests lacks ... so it is not part; 2 of N tests lack ... so they are not part', () => {
+    assert.match(message(1), /1 of 2 tests lacks a usable value for pressure, so it is not part of this envelope/);
     assert.match(message(2), /2 of 3 tests lack a usable value for pressure, so they are not part of this envelope/);
   });
   it('no "(s)" placeholders remain in engine reason text', () => {

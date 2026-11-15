@@ -153,7 +153,10 @@ export interface Reason {
   /** True when the reason is context only and did not decide the verdict. */
   informational: boolean;
   axis: string | null;
+  /** One plain sentence for a reader: no internal names, no raw precision. */
   message: string;
+  /** Figures for people who want them (normalized distances, test-id lists); never needed to read the sentence. */
+  technicalNote?: string;
   citations: Citation[];
 }
 
@@ -167,7 +170,7 @@ export interface Reason {
  * would turn the same physical pressure into APPLICABLE or EXTRAPOLATION by the digits typed.
  */
 export const MEASUREMENT_TOLERANCE_REL = 0.005;
-export const MEASUREMENT_TOLERANCE_NOTE = `PYRION convention, not a NASA value: a target within ±${MEASUREMENT_TOLERANCE_REL * 100} % of its own value of a measured range or hull counts as inside it (rounding of typed values and typical instrument accuracy).`;
+export const MEASUREMENT_TOLERANCE_NOTE = `PYRION convention, not a NASA value: a target within ±${MEASUREMENT_TOLERANCE_REL * 100} % of its own value of a measured range or tested region counts as inside it (rounding of typed values and typical instrument accuracy).`;
 
 export interface AxisCheck {
   axis: ContinuousAxis;
@@ -266,6 +269,11 @@ export interface Evaluation {
   target: Target;
   /** Regime axes the target leaves open. They are not compared; every verdict says so. */
   openRegimeAxes: RegimeAxis[];
+  /**
+   * Present when the target states a gravity regime in which no investigation was tested at all:
+   * "No PSI test in this gravity regime". testedValues are the gravity regimes the investigations do state.
+   */
+  regimeUntested?: { axis: 'gravity_regime'; value: string; testedValues: string[] };
   options: Required<EngineOptions>;
   normalization: AxisScale[];
   counts: {

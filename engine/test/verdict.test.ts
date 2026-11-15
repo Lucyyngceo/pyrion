@@ -147,7 +147,7 @@ describe('EXTRAPOLATION', () => {
     const r = c.reasons.find((x) => x.code === 'outside_range');
     assert.equal(r?.axis, 'o2_mole_fraction');
     assert.equal(r?.informational, false);
-    assert.match(r?.message ?? '', /above the measured 0\.17 to 0\.3, by 0\.15/);
+    assert.match(r?.message ?? '', /Oxygen: your 45 % is above the tested 17 % to 30 % \(15 points higher\)\./);
     assert.equal(c.axes.find((a) => a.axis === 'pressure')?.status, 'inside');
   });
 
@@ -215,7 +215,7 @@ describe('regime axes the target leaves open', () => {
         ['flame_type', true],
       ],
     );
-    assert.match(open[0].message, /left open by the target, so not compared \(evidence is N2\)/);
+    assert.match(open[0].message, /left open, so not compared \(the evidence is nitrogen\)/);
   });
 
   it('a stated flame type that differs is a barrier', () => {
@@ -240,7 +240,7 @@ describe('status = insufficient_evidence never counts as evidence', () => {
     const c = onlyCluster(evaluate(records, micro(0.45, 101.3)), 'PSI-9001');
     assert.equal(c.verdict, 'EXTRAPOLATION');
     assert.equal(c.axes.find((a) => a.axis === 'o2_mole_fraction')?.max, 0.3);
-    assert.ok(c.reasons.some((r) => r.code === 'incomplete_tests' && r.message.includes('T5')));
+    assert.ok(c.reasons.some((r) => r.code === 'incomplete_tests' && (r.technicalNote ?? '').includes('T5')));
     const flagged = c.reasons.find((r) => r.code === 'flagged_records_ignored');
     assert.ok(flagged?.citations.some((x) => x.test_id === 'T5' && x.status === 'insufficient_evidence'));
   });
