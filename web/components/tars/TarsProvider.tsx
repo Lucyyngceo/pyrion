@@ -46,6 +46,10 @@ export interface ExpertResult {
   model: { model: string; name: string; provider: string; fellBackFrom: string | null } | null;
 }
 
+/** Shown when the visitor's model limit is reached: a saved exchange, labelled as saved, and what still works by code. */
+const RATE_LIMIT_EXAMPLE =
+  "Saved example (not live): Q “21 % oxygen at 14.7 psia, microgravity” → the engine reads it by code and lists, for each PSI investigation, inside the tested range, outside it, insufficient evidence or not comparable, with the NASA file and DOI behind each value. Until the limit resets, type a condition like that one (oxygen in %, pressure with its unit, gravity) and the engine answers with no model; the full worked answer is on the Example page (/example).";
+
 export type Msg =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "tars"; kind: "error" | "note"; text: string }
@@ -306,6 +310,12 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       if (!res.ok) {
         const d = (await res.json().catch(() => ({}))) as { error?: string };
         add({ role: "tars", kind: "error", text: d.error ?? `The request failed (HTTP ${res.status}).` });
+        if (res.status === 429) {
+          // Over the hourly limit: the engine still answers anything code can read, and a saved example shows a full answer.
+          const c = readByCode(t);
+          if (c.kind === "code") await answerFor(c.parsed.target, "Read by code (the language model limit is reached)", t, route);
+          else add({ role: "tars", kind: "note", text: RATE_LIMIT_EXAMPLE });
+        }
         return true;
       }
       const reader = res.body.getReader();
@@ -330,7 +340,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       }
       return true;
     },
-    [add, messages, patchMsg, path],
+    [add, answerFor, messages, patchMsg, path],
   );
 
   const send = useCallback(
