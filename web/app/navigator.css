@@ -365,3 +365,13 @@ dialog.add-source::backdrop { background: rgba(0, 0, 0, 0.7); }
 .tars-form button:disabled { opacity: 0.45; cursor: default; }
 .tars-highlight { outline: 3px solid var(--neon) !important; outline-offset: 4px; box-shadow: 0 0 24px var(--neon) !important; transition: none; }
 @media (max-width: 640px) { .tars-panel { right: 0; bottom: 0; width: 100vw; height: 80vh; } .tars-bubble-name { display: none; } .tars-bubble { padding: 8px; } }
+
+.gap-btn { position: relative; z-index: 1; align-self: flex-start; font: inherit; font-size: 12px; font-weight: 600; padding: 3px 10px; color: var(--neon); background: transparent; border: 1px solid var(--neon); cursor: pointer; margin-top: 2px; }
+.gap-btn:hover { background: var(--neon); color: #001014; }
+dialog.gap-dialog { width: min(820px, calc(100vw - 24px)); }
+.tars-matrix { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tars-matrix th, .tars-matrix td { padding: 2px 8px; border-bottom: 1px solid var(--border); text-align: left; }
+.tars-matrix .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tars-matrix .mx-target { background: rgba(0, 240, 255, 0.12); font-weight: 600; }
+.tars-matrix .mx-margin { color: var(--ink-2); font-style: italic; }
+.tars-opt { color: var(--ink-2); cursor: help; }

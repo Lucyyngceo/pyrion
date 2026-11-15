@@ -10,6 +10,7 @@ import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart
 import Results, { citationKey } from "./Results";
 import { ControlsPanel, ScenarioNote, applyPreset, type TargetState } from "./TargetPanel";
 import ScenarioStrip, { type Computed } from "./ScenarioStrip";
+import GapDialog from "./GapDialog";
 import { scenarioFacts } from "@/lib/scenarios";
 import { stateFromTarget, toTarget, withRegimeAxis } from "@/lib/preset-apply";
 import { setCurrentTarget } from "@/lib/tars/bridge";
@@ -55,6 +56,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   const benchRef = useRef<HTMLDivElement>(null);
   const viewKeys = useRef(false);
+  const [gap, setGap] = useState<{ title: string; target: Target } | null>(null);
   const cardRef = useRef<HTMLElement>(null);
   const [fs, setFs] = useState(false);
   const fsRef = useRef(false);
@@ -399,12 +401,19 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           const v = PRESET_VIEWS.find((p) => p.preset.id === id);
           if (v) setState((st) => applyPreset(st, v));
         }}
+        onGap={(which) => {
+          const id = which === "lunar" ? "challenge-lunar-base" : "nesc-8.2psia-34o2-lunar";
+          const v = PRESET_VIEWS.find((p) => p.preset.id === id);
+          if (which === "mine") setGap({ title: "your condition", target });
+          else if (v) setGap({ title: v.short, target: toTarget(applyPreset(INITIAL, v)) });
+        }}
         onCustom={() => {
           setState((st) => ({ ...st, presetId: null }));
           document.querySelector(".nav-left")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
         }}
       />
       <ScenarioNote state={state} />
+      {gap && <GapDialog title={gap.title} target={gap.target} onClose={() => setGap(null)} />}
 
       <div
         className="nav-grid"

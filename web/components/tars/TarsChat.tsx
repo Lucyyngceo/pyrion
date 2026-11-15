@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { EXPERIMENT_LABEL, type ExperimentsNeeded } from "@/lib/engine";
-import { citeSource } from "@/lib/cite";
+import type { ExperimentsNeeded } from "@/lib/engine";
+import ExperimentsView from "../ExperimentsView";
 import { resolveMode, viewFor, type Fact, type Mode, type ThreePart } from "@/lib/tars/answer";
 import { useTars, type HelpAnswer, type Msg } from "./TarsProvider";
 
@@ -79,66 +79,12 @@ function Experiments({ msg }: { msg: Extract<Msg, { kind: "experiments" }> }) {
   const { mode, showOnEnvelope } = useTars();
   const adv = resolveMode(mode, msg.route) === "advanced";
   return (
-    <div className="tars-answer tars-exp">
-      <p className="tars-label">{EXPERIMENT_LABEL}</p>
-      <section className="tars-block">
-        <h4>The gap</h4>
-        <p>{ex.gap.sentence}</p>
-        {adv && ex.gap.detail.length > 0 && <p className="small muted">{ex.gap.detail.join(" ")}</p>}
-      </section>
-      <section className="tars-block">
-        <h4>Test matrix ({ex.testMatrix.pointCount} points)</h4>
-        <p>{ex.testMatrix.sentence}</p>
-        {adv && <p className="small muted">{ex.testMatrix.note}</p>}
-      </section>
-      <section className="tars-block">
-        <h4>Solids first</h4>
-        <p>{ex.solidsRationale.sentence}</p>
-        {adv && (
-          <ul className="small">
-            {ex.solidsRationale.sources.map((s) => (
-              <li key={s.measure}>
-                {s.measure} ({citeSource(s.file)}, p. {s.page}): “{s.quote}”{s.qualifier ? ` [${s.qualifier}]` : ""}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-      <section className="tars-block">
-        <h4>What FM2 and LUCI plan or did</h4>
-        <ul className="small">
-          {ex.plannedCoverage.sources.map((s) => (
-            <li key={s.id}>
-              <strong>{s.name}</strong>
-              {s.qualifier ? ` [${s.qualifier}]` : ""}: “{s.quote}” {s.page ? `(p. ${s.page})` : ""}
-            </li>
-          ))}
-        </ul>
-        {ex.plannedCoverage.statements.map((s) => (
-          <p key={s.source} className="small">
-            {s.sentence}
-          </p>
-        ))}
-      </section>
-      <section className="tars-block">
-        <h4>Remaining gap</h4>
-        <p>{ex.remainingGap.sentence}</p>
-      </section>
-      <section className="tars-block">
-        <h4>Priority</h4>
-        <ol>
-          {ex.priority.map((p) => (
-            <li key={p.rank}>{p.sentence}</li>
-          ))}
-        </ol>
-      </section>
-      <p className="tars-fp small muted">
-        Engine fingerprint (SHA-256): <code>{adv ? msg.fingerprint : `${msg.fingerprint.slice(0, 16)}…`}</code>
-      </p>
+    <>
+      <ExperimentsView ex={ex} fingerprint={adv ? msg.fingerprint : `${msg.fingerprint.slice(0, 16)}…`} detailed={adv} />
       <button type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: ex.target })}>
         Show on the envelope
       </button>
-    </div>
+    </>
   );
 }
 

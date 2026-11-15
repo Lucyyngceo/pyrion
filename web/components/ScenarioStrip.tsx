@@ -33,6 +33,8 @@ interface Props {
   investigations: Investigation[];
   onPick: (presetId: string) => void;
   onCustom: () => void;
+  /** Open "What would close this gap" for a tile. */
+  onGap: (which: "lunar" | "nesc" | "mine") => void;
 }
 
 const TILE_PRESETS = { iss: "iss-cabin-air", lunar: "challenge-lunar-base", nesc: "nesc-8.2psia-34o2-lunar", nescA: "nesc-10.2psia-26.5o2-lunar" } as const;
@@ -74,6 +76,14 @@ function solidLine(f: ScenarioFacts, name: (accession: string) => string): strin
 
 const nameFor = (investigations: Investigation[]) => (accession: string) => investigations.find((i) => i.accession === accession)?.acronym || accession;
 
+function GapButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" className="gap-btn" onClick={onClick}>
+      What would close this gap
+    </button>
+  );
+}
+
 function Tile({
   active,
   title,
@@ -105,7 +115,7 @@ function Tile({
   );
 }
 
-export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, withData, mine, investigations, onPick, onCustom }: Props) {
+export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, withData, mine, investigations, onPick, onCustom, onGap }: Props) {
   const name = nameFor(investigations);
     const preset = state.presetId;
   const isTile = preset === TILE_PRESETS.iss || preset === TILE_PRESETS.lunar || preset === TILE_PRESETS.nesc || preset === TILE_PRESETS.nescA;
@@ -155,6 +165,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
           </a>
         </p>
         {lunar && <p className="tile-line tile-status">{summary(lunar)}</p>}
+        <GapButton onClick={() => onGap("lunar")} />
       </Tile>
 
       <Tile
@@ -172,6 +183,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
             {solidLine(nescMicro.facts, name)}
           </p>
         )}
+        <GapButton onClick={() => onGap("nesc")} />
         <p className="tile-line tile-alt">
           <button type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.nescA)}>
             Or atmosphere A: {cNescA ? `${cNescA.o2} · ${cNescA.pressure}` : ""}
@@ -182,6 +194,7 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
       <Tile active={!isTile} className="tile-mine" title="Your condition" cond={myCond} onPick={onCustom} hover="The controls on the left. Every number is computed by the engine for exactly these values.">
         <p className="tile-head">{summary(mine)}</p>
         {mine && <p className="tile-line">{solidLine(mine.facts, name)}</p>}
+        {mine && mine.facts.applicable === 0 && <GapButton onClick={() => onGap("mine")} />}
       </Tile>
     </section>
   );
