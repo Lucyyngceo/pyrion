@@ -14,3 +14,5 @@ export * from './extract.ts';
 export * from './navigator.ts';
 export * from './levels.ts';
 export * from './experiments.ts';
+export * from './answer.ts';
+export { sha256Hex } from './sha256.ts';
