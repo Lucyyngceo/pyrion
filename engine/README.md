@@ -212,9 +212,10 @@ rounding of a three-significant-digit value and sits inside typical pressure-tra
 reading), so "101.3 kPa", "14.7 psia" and "760 mmHg" count as the tested 1 atm while 110 kPa does not. When the
 tolerance is what made the target count as inside, the reason says so ("within the 0.5 % measurement tolerance of
 the tested 101.325 kPa") and `AxisCheck.viaTolerance` / `HullCheck.viaTolerance` is true. The chart geometry in
-`locateTarget` (context only, not a verdict) is unchanged and still uses the exact hull.
+`locateTarget` (chart geometry) uses the same tolerance, so a chart marker is never outside a hull the verdict calls inside; when the tolerance is what put it inside, `TargetLocation.viaTolerance` (and the per-investigation flag) is true and `hullDistance` is 0: draw the marker on the edge with the "within 0.5 % tolerance" note.
 
 More words: freefall / free fall / free-fall / weightless / in orbit / orbital / micro-g / µg (microgravity); Spanish
 Luna, Marte, marciano/a, microgravedad, ingravidez, caída libre, gravedad cero, Tierra, gravedad normal/terrestre,
-nivel del mar, presión normal, por ciento. A decimal comma followed by one or two digits ("8,2 psia") is a decimal;
-"101,325" (three digits or several commas) is refused: write 101.325 or 101325.
+nivel del mar, presión normal, por ciento. A comma after a leading 0 ("0,165 g", "0,5 atm") is always a decimal comma; after a nonzero integer part one, two
+or four-plus digits are a decimal ("8,2 psia"), while exactly three digits ("101,325", "1,000") or several commas
+are refused: write 101.325 or 101325.

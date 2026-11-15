@@ -151,10 +151,12 @@ function readNumber(text: string, variable: string): { n: number; unit: string }
   }
   let t = s;
   if (/\d,\d/.test(t)) {
-    // "8,2" and "1,5": a comma followed by one or two digits is a decimal comma. "101,325" (three digits,
-    // or several commas) could be a decimal or a thousands separator: refused.
-    const dec = /^([+-]?\d+),(\d{1,2})(?![\d,])/.exec(t);
-    if (!dec || /\d,\d/.test(t.slice(dec[0].length))) {
+    // A comma after a leading 0 ("0,165", "0,5") is a decimal comma: no thousands group starts with 0.
+    // After a nonzero integer part: "8,2", "1,5" (one or two digits) are decimals; exactly three digits
+    // ("101,325", "1,000") could be a thousands separator and are refused, and so are several commas.
+    const dec = /^([+-]?\d+),(\d+)(?![\d,])/.exec(t);
+    const zeroLead = dec !== null && /^[+-]?0+$/.test(dec[1]);
+    if (!dec || /\d,\d/.test(t.slice(dec[0].length)) || (!zeroLead && dec[2].length === 3)) {
       return fail('ambiguous_decimal_separator', variable, text, `"${text}" has a comma between digits that could be a decimal comma or a thousands separator; write 101.325 (decimal point) or 101325 (no separator)`);
     }
     t = `${dec[1]}.${dec[2]}${t.slice(dec[0].length)}`;

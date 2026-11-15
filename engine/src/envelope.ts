@@ -2,10 +2,11 @@
 // per regime combination. The same points and the same hull rule the verdict uses.
 
 import { buildCorpus, citationsOf, compareAccession, compareNatural, recordsAt, regimeKey, testPoints } from './evidence.ts';
-import { convexHull, distanceToHull, hullContains, type Vec2 } from './geometry.ts';
+import { convexHull, distanceToHull, hullContains, hullNearBox, type Vec2 } from './geometry.ts';
 import {
   ENGINE_NAME,
   ENGINE_VERSION,
+  MEASUREMENT_TOLERANCE_REL,
   REGIME_AXES,
   type AxisScale,
   type Citation,
@@ -160,8 +161,14 @@ export interface TargetLocation {
   insideHull: boolean | null;
   /** Normalized distance from the target to this hull; 0 inside, null without points. */
   hullDistance: number | null;
+  /**
+   * Present (true) only when the target counts as inside the hull (or the ranges) because of the
+   * measurement tolerance (MEASUREMENT_TOLERANCE_REL, the same one evaluate() uses). Draw the marker on the
+   * edge with the "within 0.5 % measurement tolerance" note.
+   */
+  viaTolerance?: true;
   /** The same, against the hull of each investigation in this envelope. */
-  investigations: { accession: string; pointCount: number; insideHull: boolean | null; hullDistance: number | null }[];
+  investigations: { accession: string; pointCount: number; insideHull: boolean | null; hullDistance: number | null; viaTolerance?: true }[];
 }
 
 /**
@@ -190,28 +197,43 @@ export function locateTarget(target: Target, envelopes: EnvelopeSet): TargetLoca
     const tv: Vec2 | null = has ? { x: (o2 as number) / so, y: (p as number) / sp } : null;
     const hv = env.hull.map((q) => ({ x: q.o2_mole_fraction / so, y: q.pressure / sp }));
     const r = env.ranges;
+    // The same tolerance box as evaluate(): ±MEASUREMENT_TOLERANCE_REL of the target's own value, per axis.
+    const hx = o2 !== undefined ? (MEASUREMENT_TOLERANCE_REL * Math.abs(o2)) / so : 0;
+    const hy = p !== undefined ? (MEASUREMENT_TOLERANCE_REL * Math.abs(p)) / sp : 0;
+    const exact = tv ? hullContains(tv, hv) : null;
+    const viaTol = tv !== null && hv.length > 0 && !exact && hullNearBox(hv, tv, hx, hy);
+    const within = (v: number, lo: number, hi: number) => {
+      const tol = MEASUREMENT_TOLERANCE_REL * Math.abs(v);
+      return v >= lo - tol && v <= hi + tol;
+    };
+    const rangesExact =
+      has && r.o2_mole_fraction && r.pressure
+        ? (o2 as number) >= r.o2_mole_fraction[0] && (o2 as number) <= r.o2_mole_fraction[1] && (p as number) >= r.pressure[0] && (p as number) <= r.pressure[1]
+        : null;
+    const rangesTol =
+      has && r.o2_mole_fraction && r.pressure
+        ? within(o2 as number, r.o2_mole_fraction[0], r.o2_mole_fraction[1]) && within(p as number, r.pressure[0], r.pressure[1])
+        : null;
     return {
       key: env.key,
       regimeComplete: env.regimeComplete,
       sameRegime,
       pointCount: env.points.length,
-      insideRanges:
-        has && r.o2_mole_fraction && r.pressure
-          ? (o2 as number) >= r.o2_mole_fraction[0] &&
-            (o2 as number) <= r.o2_mole_fraction[1] &&
-            (p as number) >= r.pressure[0] &&
-            (p as number) <= r.pressure[1]
-          : null,
-      insideHull: tv ? hullContains(tv, hv) : null,
-      hullDistance: tv ? distanceToHull(tv, hv) : null,
+      insideRanges: rangesTol,
+      insideHull: tv ? exact || viaTol : null,
+      hullDistance: tv ? (viaTol ? 0 : distanceToHull(tv, hv)) : null,
+      ...(viaTol || (rangesTol && !rangesExact) ? { viaTolerance: true as const } : {}),
       investigations: env.investigations.map((inv) => {
         const ih = inv.hull.map((q) => ({ x: q.o2_mole_fraction / so, y: q.pressure / sp }));
         const ok = tv !== null && ih.length > 0;
+        const ex = ok ? hullContains(tv as Vec2, ih) : null;
+        const vt = ok && !ex && hullNearBox(ih, tv as Vec2, hx, hy);
         return {
           accession: inv.accession,
           pointCount: inv.pointCount,
-          insideHull: ok ? hullContains(tv as Vec2, ih) : null,
-          hullDistance: ok ? distanceToHull(tv as Vec2, ih) : null,
+          insideHull: ok ? ex || vt : null,
+          hullDistance: ok ? (vt ? 0 : distanceToHull(tv as Vec2, ih)) : null,
+          ...(vt ? { viaTolerance: true as const } : {}),
         };
       }),
     };

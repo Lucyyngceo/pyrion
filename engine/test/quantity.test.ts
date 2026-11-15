@@ -125,7 +125,7 @@ describe('oxygen', () => {
     assert.equal((err('150 %', 'o2_mole_fraction') as { code: string }).code, 'percent_out_of_range');
     assert.equal((err('-5', 'o2_mole_fraction') as { code: string }).code, 'percent_out_of_range');
     assert.equal((err('30-34 %', 'o2_mole_fraction') as { code: string }).code, 'range_not_supported');
-    assert.equal((err('0,340', 'o2_mole_fraction') as { code: string }).code, 'ambiguous_decimal_separator');
+    assert.equal((err('1,340', 'o2_mole_fraction') as { code: string }).code, 'ambiguous_decimal_separator');
     assert.equal((err('about a third', 'o2_mole_fraction') as { code: string }).code, 'not_a_number');
     assert.equal((err('34 ppm', 'o2_mole_fraction') as { code: string }).code, 'unknown_unit');
   });

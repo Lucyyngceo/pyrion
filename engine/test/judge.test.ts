@@ -3,6 +3,8 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
+  buildEnvelopes,
+  locateTarget,
   MEASUREMENT_TOLERANCE_NOTE,
   MEASUREMENT_TOLERANCE_REL,
   MICROGRAVITY_CONVENTION_NOTE,
@@ -130,8 +132,21 @@ describe('E2: gravity words a judge will type', () => {
     assert.ok(Math.abs(q('0,34', 'o2_mole_fraction').value - 0.34) < 1e-12);
     assert.ok(Math.abs(q('0,17 g', 'gravity_level').value - 0.17) < 1e-12);
   });
+  it('a comma after a leading 0 is always decimal: "0,165 g", "0,38 g", "0,5 atm", "0,1234 atm"', () => {
+    assert.ok(Math.abs(q('0,165 g', 'gravity_level').value - 0.165) < 1e-12);
+    assert.ok(Math.abs(q('0,38 g', 'gravity_level').value - 0.38) < 1e-12);
+    assert.ok(Math.abs(q('0,5 atm', 'pressure').value - 50.6625) < 1e-9);
+    assert.ok(Math.abs(q('0,340', 'o2_mole_fraction').value - 0.34) < 1e-12);
+    assert.ok(Math.abs(q('1,5000 atm', 'pressure').value - 151.9875) < 1e-9); // four digits cannot be a thousands group
+  });
+  it('a nonzero integer part with a comma and exactly three digits is still refused: "1,000", "101,325", "8,200 psia"', () => {
+    for (const [t, v] of [['1,000 atm', 'pressure'], ['101,325 kPa', 'pressure'], ['8,200 psia', 'pressure'], ['1,340', 'o2_mole_fraction']] as const) {
+      const e = parseQuantity(t, v);
+      assert.ok(!e.ok && e.code === 'ambiguous_decimal_separator', t);
+    }
+  });
   it('"101,325" and other three-digit or repeated commas are refused with the advice to write 101.325 or 101325', () => {
-    for (const t of ['101,325 kPa', '101,325', '1,000,000 Pa', '1,5000 atm']) {
+    for (const t of ['101,325 kPa', '101,325', '1,000 Pa', '1,000,000 Pa']) {
       const e = parseQuantity(t, 'pressure');
       assert.ok(!e.ok, t);
       assert.equal(!e.ok && e.code, 'ambiguous_decimal_separator');
@@ -142,6 +157,45 @@ describe('E2: gravity words a judge will type', () => {
     for (const t of ['la luna llena', 'gravity', 'free fall of 3 m', 'marte rojo']) {
       const e = parseQuantity(t, 'gravity_level');
       assert.ok(!e.ok, t);
+    }
+  });
+});
+
+describe('locateTarget uses the same measurement tolerance as the verdict', () => {
+  const place = (pressure: string) => {
+    const t = targetFromQuantities({ gravity: 'microgravity', o2: '21 %', pressure });
+    assert.ok(t.ok);
+    const recs = records();
+    const ev = evaluate(recs, t.target);
+    const loc = locateTarget(t.target, buildEnvelopes(recs));
+    return { ev, loc };
+  };
+  it('101.3 kPa: inside for evaluate() and for locateTarget(), flagged viaTolerance, on the edge (distance 0)', () => {
+    const { ev, loc } = place('101.3 kPa');
+    const v = [...ev.ranked, ...ev.unranked].filter((c) => c.accession.startsWith('PSI-92'));
+    assert.ok(v.every((c) => c.verdict === 'APPLICABLE'));
+    assert.equal(loc.length, 1);
+    assert.equal(loc[0].insideHull, true);
+    assert.equal(loc[0].insideRanges, true);
+    assert.equal(loc[0].viaTolerance, true);
+    assert.equal(loc[0].hullDistance, 0);
+    assert.ok(loc[0].investigations.every((i) => i.insideHull === true && i.viaTolerance === true));
+  });
+  it('an exact 101.325 kPa is inside without the flag; 110 kPa is outside for both', () => {
+    const a = place('101.325 kPa').loc[0];
+    assert.equal(a.insideHull, true);
+    assert.equal(a.viaTolerance, undefined);
+    const b = place('110 kPa');
+    assert.equal(b.loc[0].insideHull, false);
+    assert.equal(b.loc[0].insideRanges, false);
+    assert.ok((b.loc[0].hullDistance as number) > 0);
+    assert.ok([...b.ev.ranked, ...b.ev.unranked].filter((c) => c.accession.startsWith('PSI-92')).every((c) => c.verdict === 'EXTRAPOLATION'));
+  });
+  it('for every spelling of 1 atm, the verdict and the chart agree', () => {
+    for (const p of ['101.3 kPa', '101.33 kPa', '760 mmHg', '14.7 psia', '1 atm', '110 kPa', '120 kPa', '100 kPa']) {
+      const { ev, loc } = place(p);
+      const verdictInside = [...ev.ranked, ...ev.unranked].filter((c) => c.accession.startsWith('PSI-92')).every((c) => c.verdict === 'APPLICABLE');
+      assert.equal(loc[0].insideHull, verdictInside, p);
     }
   });
 });
