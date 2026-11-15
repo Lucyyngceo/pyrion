@@ -22,7 +22,7 @@ const KPA_PER_PSI = 6.894757;
 const pct = (x: number) => `${Math.round(x * 1000) / 10} %`;
 const W = 640;
 const H = 380;
-const M = { l: 56, r: 16, t: 14, b: 44 };
+const M = { l: 124, r: 16, t: 14, b: 44 };
 const X0 = 0.24;
 const X1 = 0.36;
 const Y0 = 52;
@@ -96,7 +96,7 @@ export default function PlannerView({ data }: { data: PlannerData }) {
   return (
     <>
       <p data-help="planner-label" className="tars-label" role="note">
-        {data.label}. Evidence coverage, not a prediction or a safety assessment.
+        {data.label}.
       </p>
 
       <section className="card" aria-labelledby="pl-chart">
