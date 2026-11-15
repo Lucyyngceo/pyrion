@@ -31,6 +31,7 @@ export type QuantityErrorCode =
   | 'percent_out_of_range'
   | 'out_of_range'
   | 'regime_conflict'
+  | 'ambiguous_gravity'
   | 'invalid_target';
 
 export interface QuantityError {
@@ -443,6 +444,76 @@ const GRAVITY_NAMES: Readonly<Record<string, GravityTargetId | 'microgravity'>> 
   'gravedad de la tierra': 'earth',
 };
 
+export type GravityClass = 'moon' | 'mars' | 'earth' | 'microgravity';
+
+/** Keywords (accent-free, lower case) that name a gravity, matched as whole words or phrases anywhere in a text. */
+export const GRAVITY_KEYWORDS: Readonly<Record<GravityClass, readonly string[]>> = {
+  moon: ['moon', 'lunar', 'luna'],
+  mars: ['mars', 'martian', 'marte', 'marciano', 'marciana', 'marcianos', 'marcianas'],
+  earth: ['earth', 'ground', 'terrestrial', 'tierra', 'terrestre', 'normal gravity', 'gravedad normal'],
+  microgravity: [
+    'microgravity', 'microgravedad', 'freefall', 'free fall', 'free-fall', 'weightless', 'weightlessness',
+    'orbit', 'orbital', 'iss', 'ingravidez', 'caida libre', 'gravedad cero', 'zero-g', 'zero g', 'zero gravity',
+    'zero-gravity', 'micro-g', 'microg', 'µg', 'ug',
+  ],
+};
+const CANONICAL_NAME: Readonly<Record<GravityClass, string>> = { moon: 'lunar', mars: 'mars', earth: 'earth', microgravity: 'microgravity' };
+
+/** Lower case, no accents, micro sign unified; one output character per input character (indexes stay aligned). */
+export function foldText(s: string): string {
+  let out = '';
+  for (const ch of s) {
+    const f = ch.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/μ/g, 'µ');
+    out += f.length === ch.length ? f : ch.length === 1 ? (f[0] ?? ch) : ch;
+  }
+  return out;
+}
+
+export interface GravityKeywordHit {
+  cls: GravityClass;
+  keyword: string;
+  /** Index and length in the text given (the folded text has the same indexes as the original). */
+  index: number;
+  length: number;
+}
+
+/** Every gravity keyword found as a whole word or phrase, in text order. Pass any text; it is folded here. */
+export function findGravityKeywords(text: string): GravityKeywordHit[] {
+  const t = foldText(text);
+  const hits: GravityKeywordHit[] = [];
+  for (const cls of Object.keys(GRAVITY_KEYWORDS) as GravityClass[]) {
+    for (const kw of GRAVITY_KEYWORDS[cls]) {
+      const esc = kw.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&').replace(/ /g, '\\s+');
+      const re = new RegExp(`(?<![a-z0-9µ])${esc}(?![a-z0-9µ])`, 'g');
+      for (const m of t.matchAll(re)) hits.push({ cls, keyword: kw, index: m.index as number, length: m[0].length });
+    }
+  }
+  // Drop a hit that lies inside a longer hit of the same class (e.g. "weightless" in "weightlessness" cannot occur
+  // because of the word boundary, but "zero g" inside "zero g" phrases of another spelling can).
+  hits.sort((a, b) => a.index - b.index || b.length - a.length);
+  return hits.filter((h, i) => !hits.some((o, j) => j !== i && o.cls === h.cls && o.index <= h.index && o.index + o.length >= h.index + h.length && o.length > h.length));
+}
+
+/** Gravity from a keyword found anywhere in the text: exactly one class → that class; two → a typed error. */
+function gravityFromKeywords(original: string): QuantityResult | null {
+  const hits = findGravityKeywords(original);
+  const classes = [...new Set(hits.map((h) => h.cls))];
+  if (classes.length === 0) return null;
+  const shown = (c: GravityClass) => {
+    const h = hits.find((x) => x.cls === c) as GravityKeywordHit;
+    return `${c} ("${original.slice(h.index, h.index + h.length)}")`;
+  };
+  if (classes.length > 1) {
+    return fail('ambiguous_gravity', 'gravity_level', original, `"${original.trim()}" names two different gravities: ${classes.map(shown).join(' and ')}; give one`);
+  }
+  const first = hits[0];
+  const r = gravity(CANONICAL_NAME[classes[0]]);
+  if (!r.ok) return r;
+  const word = original.slice(first.index, first.index + first.length);
+  const rest = r.display.split(' → ').slice(1).join(' → ');
+  return { ...r, original, display: `${original.trim()} → ${rest}`, notes: [`gravity read from the keyword "${word}" in "${original.trim()}"`, ...r.notes] };
+}
+
 function gravity(original: string): QuantityResult {
   const text = original.normalize('NFC').trim();
   const name = text
@@ -486,6 +557,11 @@ function gravity(original: string): QuantityResult {
     };
     const b = bounded(q);
     return b.ok ? { ...b, display: `${text} → ${sig(g.level)} g (${g.label})` } : b;
+  }
+  // Not a name by itself and not starting with a number: look for a gravity keyword anywhere ("base lunar").
+  if (!/^[+-]?\s*(?:\d|\.\d)/.test(text)) {
+    const k = gravityFromKeywords(text);
+    if (k !== null) return { ...k, original } as QuantityResult;
   }
   // numeric: "0.165 g", "1/6 g"
   let n: number;

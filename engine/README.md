@@ -219,3 +219,19 @@ Luna, Marte, marciano/a, microgravedad, ingravidez, caída libre, gravedad cero,
 nivel del mar, presión normal, por ciento. A comma after a leading 0 ("0,165 g", "0,5 atm") is always a decimal comma; after a nonzero integer part one, two
 or four-plus digits are a decimal ("8,2 psia"), while exactly three digits ("101,325", "1,000") or several commas
 are refused: write 101.325 or 101325.
+
+Gravity keywords anywhere (judge battery repeat test): when a gravity text is not a number and not a known name by itself,
+`parseQuantity` looks for gravity keywords as whole words ("base lunar", "lunar habitat", "on the ground", "hábitat en
+Marte"; the list is `GRAVITY_KEYWORDS`, accents ignored). Exactly one class found: that class, with a note naming the
+keyword; two classes ("Moon and Mars"): typed error `ambiguous_gravity` naming both; none: the old error. A text that
+starts with a number is never read by keyword.
+
+`extractQuantities(question)` (`src/extract.ts`, pure, deterministic): returns `{ gravity?, o2?, pressure?,
+flow_velocity?, sample_thickness?, ambient_temperature?, leftover, issues }` with the raw strings exactly as written,
+ready for `targetFromQuantities`. Oxygen = a number with %, percent, por ciento, vol%, mol% and an oxygen word within 30
+characters, or "oxygen fraction of 0.34"; pressure = a number with a pressure unit (a gauge unit is kept so the parser
+refuses it) or "sea level pressure" and the like; a number right after "ppO2" / "partial pressure" is an issue, not a
+pressure; gravity = a number with g, or a keyword; flow, thickness and ambient temperature need a context word
+(flow, thick, ambient) because "a 2 mm sheet" is not assumed to be a thickness. It never guesses: two different values
+for one quantity, a number that disagrees with a gravity keyword, or any number it cannot assign go to `issues` and
+`leftover`. Tests run it over `validation/judge_battery/questions.json` (31 questions, EN + ES, and the traps).

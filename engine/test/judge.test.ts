@@ -154,7 +154,7 @@ describe('E2: gravity words a judge will type', () => {
     }
   });
   it('anything else ambiguous still fails with a typed error', () => {
-    for (const t of ['la luna llena', 'gravity', 'free fall of 3 m', 'marte rojo']) {
+    for (const t of ['gravity', 'caída libre en Marte', 'the weather', 'g']) {
       const e = parseQuantity(t, 'gravity_level');
       assert.ok(!e.ok, t);
     }

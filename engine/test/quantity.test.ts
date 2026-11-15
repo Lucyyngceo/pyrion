@@ -497,7 +497,7 @@ describe('deep audit 6 (MINOR): aliases', () => {
   });
   it('anything ambiguous is still a typed error', () => {
     assert.equal((err('Earth', 'pressure') as { code: string }).code, 'not_a_number');
-    assert.equal((err('mars atmosphere', 'gravity_level') as { code: string }).code, 'not_a_number');
+    assert.equal((err('Mars and the Moon', 'gravity_level') as { code: string }).code, 'ambiguous_gravity');
     assert.equal((err('34 mol', 'o2_mole_fraction') as { code: string }).code, 'unknown_unit');
   });
 });
