@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { loadFacts } from "@/lib/facts";
+import { heroConclusion } from "@/lib/hero";
+import { verdictLabel } from "@/lib/engine";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -67,6 +69,8 @@ const DEEPER = [
 
 export default async function Landing() {
   const facts = await loadFacts();
+  const hero = await heroConclusion();
+  const near = hero.nearest;
 
   return (
     <div className="landing-root">
@@ -95,11 +99,27 @@ export default async function Landing() {
           <div className="ld-hero-text">
           <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team MLMP</p>
           <h1 id="ld-h" className="ld-title">
-            Find the NASA fire experiments relevant to your habitat — and see where the tested evidence ends.
+            NASA&apos;s Moon Base air ({hero.o2} % oxygen, {hero.psia} psi):{" "}
+            {hero.noLunarTest ? "no NASA fire test in lunar gravity in PSI" : "tested in PSI"}
+            {near ? `; the closest solid-fuel tests are ${near.o2Gap} oxygen points away, in ${near.gravity}` : ""}.
           </h1>
           <p className="ld-answer">
-            PYRION reads NASA&apos;s 24 combustion investigations in PSI. Set a cabin condition and it shows which tests come close,
-            what NASA set out to learn there, and the source of every value.
+            {hero.fm2Psia !== null ? (
+              <>
+                NASA&apos;s planned FM2 test runs at {hero.fm2Psia} psia, below the challenge&apos;s 10.2 psi bound (planned, not in PSI;{" "}
+                <a data-help="landing-source" href="https://ntrs.nasa.gov/citations/20260001966">NTRS 20260001966</a>).{" "}
+              </>
+            ) : null}
+            {near ? (
+              <>
+                Nearest evidence:{" "}
+                <Link data-help="landing-card" href={`/investigations/${near.accession}`}>
+                  {near.accession} {near.acronym}
+                </Link>
+                , oxygen up to {near.o2Max} % at {near.psiaAt}.{" "}
+              </>
+            ) : null}
+            Computed by PYRION&apos;s fixed-rule engine from NASA&apos;s Physical Sciences Informatics (PSI) database, not by AI.
           </p>
           <div className="ld-cta">
             <Link data-help="landing-start" href={ISS} className="ld-btn ld-btn-primary">
@@ -115,7 +135,6 @@ export default async function Landing() {
               See a worked example
             </Link>
           </div>
-          <p className="ld-facts small muted">{facts.sentence}</p>
           </div>
           <figure className="ld-hero-fig">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,7 +193,7 @@ export default async function Landing() {
               </p>
               <h3>Data that is hard to use</h3>
               <p>
-                NASA publishes its microgravity fire experiments in PSI, but the challenge notes the data &ldquo;can be hard to
+                NASA publishes its microgravity fire experiments in its Physical Sciences Informatics (PSI) database, but the challenge notes the data &ldquo;can be hard to
                 find, harder to compare, and harder yet to interpret&rdquo;.
               </p>
               <p className="ld-src small">
@@ -270,7 +289,11 @@ export default async function Landing() {
             </li>
             <li>
               <h3>3 · Read the verdict and its receipt</h3>
-              <p>Each investigation: applicable, extrapolation, insufficient evidence, or another regime — with the quote, the file location and the DOI.</p>
+              <p>
+                Each investigation gets one of four labels: {verdictLabel("APPLICABLE")}, {verdictLabel("EXTRAPOLATION")},{" "}
+                {verdictLabel("INSUFFICIENT_EVIDENCE")}, or Not comparable (different gravity, fuel or atmosphere) — with the quote, the
+                file location and the DOI.
+              </p>
             </li>
           </ol>
           <p className="ld-rule">
@@ -296,7 +319,7 @@ export default async function Landing() {
             </div>
             <div className="ld-card">
               <h3>Professors and students</h3>
-              <p>The 24 PSI combustion investigations in one place: objectives, tests, variables, hardware, publications.</p>
+              <p>The PSI combustion investigations in one place: objectives, tests, variables, hardware, publications.</p>
             </div>
           </div>
         </section>
@@ -322,15 +345,15 @@ export default async function Landing() {
             <dd>No. It shows which NASA tests are comparable to a condition and where the tested evidence ends. It never calls a condition safe.</dd>
             <dt>Where does the data come from?</dt>
             <dd>
-              NASA Physical Sciences Informatics (PSI): the 24 combustion investigations, each cited with its DOI. Every value used as
-              evidence is located by code in its NASA file.{" "}
+              NASA&apos;s Physical Sciences Informatics (PSI) database: the combustion investigations, each cited with its DOI. Every value
+              used as evidence is located by code in its NASA file. {facts.sentence}.{" "}
               <Link data-help="landing-card" href="/data">
                 Data →
               </Link>
             </dd>
             <dt>Does the AI decide the verdict?</dt>
             <dd>No. Fixed rules decide. The AI reads questions and explains; numbers come from code and NASA quotes are checked on their page.</dd>
-            <dt>What does &ldquo;applicable&rdquo; mean?</dt>
+            <dt>What does &ldquo;{verdictLabel("APPLICABLE")}&rdquo; mean?</dt>
             <dd>
               The condition lies between measured test points in the same regime (within a 0.5 % tolerance). No test was necessarily run
               at that exact condition, and PYRION computes no value there.
