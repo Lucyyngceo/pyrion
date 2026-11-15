@@ -50,5 +50,34 @@ export function clientModels(providers: Provider[], env: Env = process.env): str
   return ok.length ? ok : configured.slice(0, 1);
 }
 
-/** Models whose license has been checked and may be called open weights (PYRION_OPEN_WEIGHTS_MODELS). Default: none. */
-export const openWeightsModels = (env: Env = process.env): string[] => list(env.PYRION_OPEN_WEIGHTS_MODELS);
+export interface ModelInfo {
+  /** false: send chat_template_kwargs { enable_thinking: false } to NIM for short structured answers. Unknown models: true (provider default). */
+  thinking?: boolean;
+  /** Verified from the model page. Models not in this table are "unverified" and get no label. */
+  open_weights: true;
+  license: string;
+  source: string;
+  checked: string;
+}
+
+/** One entry per model, checked against the model pages on 2026-11-14. Not environment: a license is a fact, not a setting. */
+export const MODEL_INFO: Readonly<Record<string, ModelInfo>> = {
+  "qwen/qwen3.8-27b": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
+  "moonshotai/kimi-k2.6": { open_weights: true, license: "Modified MIT", source: "https://huggingface.co/moonshotai/Kimi-K2.6", checked: "2026-11-14" },
+  "google/gemma-4-31b-it": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
+  "nvidia/nemotron-3-ultra-550b-a55b": {
+    thinking: false,
+    open_weights: true,
+    license: "OpenMDW-1.1 (per NVIDIA NGC catalog)",
+    source: "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/models/nemotron-3-ultra-550b-a55b",
+    checked: "2026-11-14",
+  },
+};
+
+export const modelInfo = (model: string): ModelInfo | undefined => MODEL_INFO[model];
+
+/** What the page may say about a model: a verified open-weights label with license and source, or nothing. */
+export function openWeightsLabel(model: string): { license: string; source: string } | null {
+  const i = MODEL_INFO[model];
+  return i?.open_weights ? { license: i.license, source: i.source } : null;
+}

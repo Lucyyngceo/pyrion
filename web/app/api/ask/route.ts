@@ -6,7 +6,7 @@
 // verdicts with code, asks the model for context only, and checks that context before it can reach the page.
 
 import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorId } from "@/lib/llm";
-import { openWeightsModels } from "@/lib/llm/config";
+import { openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
 import { buildNarrationInput, parseTargetReply, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
@@ -22,7 +22,7 @@ const DEADLINE_MS = 25_000;
 /** Whether questions are enabled and which models a visitor can choose. No secret is returned. */
 export async function GET() {
   const models = providers().length ? selectableModels() : [];
-  return json({ enabled: models.length > 0, models, openWeights: openWeightsModels(), promptVersion: PROMPT_VERSION });
+  return json({ enabled: models.length > 0, models, promptVersion: PROMPT_VERSION });
 }
 
 const metaOf = (m: { model: string; provider: string; latency_ms: number; fell_back_from?: string }) => ({
@@ -30,7 +30,8 @@ const metaOf = (m: { model: string; provider: string; latency_ms: number; fell_b
   model: m.model,
   latency_ms: m.latency_ms,
   fell_back_from: m.fell_back_from ?? null,
-  open_weights: openWeightsModels().includes(m.model),
+  // Only a verified table entry is called open weights, with its license and source; anything else carries no label.
+  open_weights: openWeightsLabel(m.model),
 });
 
 const parsesAsObject = (t: string) => {

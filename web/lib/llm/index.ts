@@ -12,7 +12,7 @@ export { allModels, publicConfig, loadProviders } from "./config.ts";
 export { checkContent } from "./safety.ts";
 export type { Completion, CompleteArgs };
 
-const g = globalThis as unknown as { __pyrionBudget?: Budget; __pyrionWarned?: boolean };
+const g = globalThis as unknown as { __pyrionBudget?: Budget; __pyrionWarned?: boolean; __pyrionProxyWarned?: boolean };
 
 /** A number from the environment: unset or empty gives the default, and "0" really means 0. */
 export function numEnv(name: string, fallback: number): number {
@@ -63,6 +63,14 @@ export function visitorId(req: Request): string {
     if (ip) return createHash("sha256").update(ip).digest("hex").slice(0, 16);
   }
   return "shared";
+}
+
+/** True when visitors are told apart (a proxy we run sets x-real-ip). False: everyone shares one bucket. */
+export const visitorIsolation = () => process.env.PYRION_TRUST_PROXY === "1";
+
+if (process.env.NODE_ENV === "production" && !visitorIsolation() && !g.__pyrionProxyWarned) {
+  g.__pyrionProxyWarned = true;
+  console.error("[pyrion] PYRION_TRUST_PROXY is not 1 in production: all visitors share one rate-limit bucket. Run behind nginx that overwrites X-Real-IP and set PYRION_TRUST_PROXY=1 (docs/DEPLOY.md).");
 }
 
 export function providers(): Provider[] {

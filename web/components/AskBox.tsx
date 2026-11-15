@@ -15,7 +15,7 @@ interface Meta {
   model: string;
   latency_ms: number;
   fell_back_from: string | null;
-  open_weights: boolean;
+  open_weights: { license: string; source: string } | null;
 }
 
 interface Run {
@@ -54,10 +54,23 @@ function describe(p: ParsedTarget): string {
   return parts.length ? parts.join(" · ") : "nothing stated";
 }
 
-/** "qwen/qwen3.8-27b via openrouter, 392 ms; asked for X". Only what the server reports. */
-function who(m: Meta | null, openLabel: boolean): string {
-  if (!m) return "no model";
-  return `${m.model}${openLabel && m.open_weights ? " (open weights)" : ""} via ${m.provider}, ${m.latency_ms} ms${m.fell_back_from ? `; fell back from ${m.fell_back_from}` : ""}`;
+/** "qwen/qwen3.8-27b · open weights · Apache-2.0 (source) via openrouter, 392 ms". Only what the server reports. */
+function Who({ m }: { m: Meta | null }) {
+  if (!m) return <code>no model</code>;
+  return (
+    <>
+      <code>{m.model}</code>
+      {m.open_weights && (
+        <>
+          {" · open weights · "}
+          <a href={m.open_weights.source} target="_blank" rel="noreferrer">
+            {m.open_weights.license}
+          </a>
+        </>
+      )}
+      {` via ${m.provider}, ${m.latency_ms} ms${m.fell_back_from ? `; fell back from ${m.fell_back_from}` : ""}`}
+    </>
+  );
 }
 
 export default function AskBox({ onTarget }: Props) {
@@ -230,7 +243,7 @@ export default function AskBox({ onTarget }: Props) {
             </div>
           ) : null}
           <p className="small muted ask-meta">
-            Question read by <code>{who(r.parseMeta, true)}</code>. Context written by <code>{who(r.narrateMeta, true)}</code>, checked by code. Content check: {r.safety}.
+            Question read by <Who m={r.parseMeta} />. Context written by <Who m={r.narrateMeta} />, checked by code. Content check: {r.safety}.
             <br />
             Engine output SHA-256 (computed by the server): <code title={r.hash ?? ""}>{r.hash ? `${r.hash.slice(0, 16)}…` : "unavailable"}</code>
           </p>

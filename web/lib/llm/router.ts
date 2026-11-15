@@ -3,7 +3,7 @@
 // before it, backoff on 429). An empty or unusable answer is a failure, not a success: the next model is tried.
 
 import { cleanModelText } from "./clean.ts";
-import type { Provider } from "./config.ts";
+import { modelInfo, type Provider } from "./config.ts";
 
 export class NoModelAvailable extends Error {
   reason: string;
@@ -145,6 +145,8 @@ export async function complete(args: CompleteArgs, deps: Deps): Promise<Completi
             max_tokens: args.maxTokens ?? 800,
             stream: !!args.stream,
             ...(provider.id === "openrouter" && !args.reasoning ? { reasoning: { enabled: false } } : {}),
+            // NIM: a model configured with thinking: false answers in a second or two instead of thinking first.
+            ...(provider.id === "nim" && !args.reasoning && modelInfo(model)?.thinking === false ? { chat_template_kwargs: { enable_thinking: false } } : {}),
           }),
           signal: AbortSignal.any([overall, AbortSignal.timeout(timeoutMs(model))]),
           cache: "no-store",

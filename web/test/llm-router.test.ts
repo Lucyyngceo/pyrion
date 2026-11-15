@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createBudget, RateLimited } from "../lib/llm/budget.ts";
-import { clientModels, loadProviders, openWeightsModels, publicConfig } from "../lib/llm/config.ts";
+import { clientModels, loadProviders, openWeightsLabel, publicConfig } from "../lib/llm/config.ts";
 import { cleanModelText } from "../lib/llm/clean.ts";
-import { numEnv, visitorId } from "../lib/llm/index.ts";
+import { numEnv, visitorId, visitorIsolation } from "../lib/llm/index.ts";
 import { candidates, complete, NoModelAvailable } from "../lib/llm/router.ts";
 import { checkContent, readVerdict } from "../lib/llm/safety.ts";
 
@@ -251,5 +251,37 @@ test("environment numbers: 0 is 0; the visitor id trusts only our proxy; clients
   delete process.env.PYRION_TRUST_PROXY;
   const ps = loadProviders({ ...env, OPENROUTER_MODELS: "qwen/qwen3.8-27b,moonshotai/kimi-k2.6,qwen/qwen3.8-max-0902" });
   assert.deepEqual(clientModels(ps, {}), ["qwen/qwen3.8-27b", "moonshotai/kimi-k2.6"]);
-  assert.deepEqual(openWeightsModels({}), []);
+});
+
+test("thinking: false sends enable_thinking false to NIM for that model only, and only when reasoning is not asked for", async () => {
+  const bodies: Record<string, unknown>[] = [];
+  const f = (async (_u: string, init: RequestInit) => {
+    bodies.push(JSON.parse(String(init.body)));
+    return ok("x");
+  }) as unknown as typeof fetch;
+  const nim = loadProviders({ PYRION_LLM_BASE_URL: "https://nim.test/v1", PYRION_LLM_API_KEY: "k", PYRION_LLM_MODELS: "nvidia/nemotron-3-ultra-550b-a55b,google/gemma-4-31b-it,other/unknown" });
+  for (const model of ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "other/unknown"]) await complete({ messages, model, pin: true }, { providers: nim, fetch: f, down: new Map() });
+  await complete({ messages, model: "nvidia/nemotron-3-ultra-550b-a55b", pin: true, reasoning: true }, { providers: nim, fetch: f, down: new Map() });
+  assert.deepEqual(bodies[0].chat_template_kwargs, { enable_thinking: false });
+  assert.equal(bodies[1].chat_template_kwargs, undefined);
+  assert.equal(bodies[2].chat_template_kwargs, undefined);
+  assert.equal(bodies[3].chat_template_kwargs, undefined);
+});
+
+test("open weights: a verified table entry carries license and source; any other model carries no label", () => {
+  const q = openWeightsLabel("qwen/qwen3.8-27b");
+  assert.equal(q?.license, "Apache-2.0");
+  assert.match(q?.source ?? "", /huggingface\.co\/Qwen/);
+  assert.match(openWeightsLabel("nvidia/nemotron-3-ultra-550b-a55b")?.license ?? "", /OpenMDW/);
+  assert.equal(openWeightsLabel("moonshotai/kimi-k2.6")?.license, "Modified MIT");
+  assert.equal(openWeightsLabel("nvidia/llama-3.1-nemotron-safety-guard-8b-v3"), null);
+  assert.equal(openWeightsLabel("some/other-model"), null);
+});
+
+test("visitor isolation reports whether our proxy is trusted", () => {
+  delete process.env.PYRION_TRUST_PROXY;
+  assert.equal(visitorIsolation(), false);
+  process.env.PYRION_TRUST_PROXY = "1";
+  assert.equal(visitorIsolation(), true);
+  delete process.env.PYRION_TRUST_PROXY;
 });

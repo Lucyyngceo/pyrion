@@ -1,6 +1,6 @@
 // Which providers answer, which model would be used, how much of the daily cap is left. No key, no base URL in the output.
 
-import { budget, providers } from "@/lib/llm";
+import { budget, providers, visitorIsolation } from "@/lib/llm";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +26,7 @@ export async function GET() {
   const usable = status.filter((s) => s.answering && (s.provider !== "openrouter" || cap.remaining_today > 0));
   const body = {
     mode: usable.length ? "model" : "structured",
+    visitor_isolation: visitorIsolation(),
     would_use: usable.length ? { provider: usable[0].provider, model: usable[0].models[0] } : null,
     providers: status,
     daily_cap: { ...cap, applies_to: primary ? "openrouter" : null },
