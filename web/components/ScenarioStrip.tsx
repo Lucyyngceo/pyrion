@@ -114,6 +114,11 @@ function Tile({
         <span data-help="tile-condition" className="tile-cond">{cond}</span>
       </button>
       <div className="tile-body">{children}</div>
+      {active && (
+        <a data-help="tile-evidence-link" className="tile-evidence" href="#results-h">
+          Evidence for this condition: the investigations and their sources ↓
+        </a>
+      )}
       {ask && <AskTars q={ask} />}
     </div>
   );

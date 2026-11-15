@@ -18,7 +18,7 @@ export default async function Page() {
     traced === null ? "every value carries its file and location in the NASA source" : traced >= usable ? "every value located by code in the NASA source" : `${traced.toLocaleString("en-US")} of ${usable.toLocaleString("en-US")} values located by code in the NASA source`;
 
   return (
-    <main className="page">
+    <main className="page envelope-page">
       <WarpIntro />
       <header className="hero hero-compact hero-row">
         <div>
@@ -27,6 +27,15 @@ export default async function Page() {
             <p data-help="header-status-line" className="hero-status small muted">
               {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} combustion investigations in NASA&apos;s Physical Sciences Informatics (PSI) database · {located} · <a data-help="header-details-link" href="/data">details</a>
             </p>
+          )}
+          {!synthetic && (
+            /* Phones: the same line, collapsed, so the selected condition comes first. */
+            <details data-help="header-status-collapsed" className="hero-status-m small muted">
+              <summary data-help="header-status-collapsed">Records and sources</summary>
+              <p>
+                {facts.sentence}, from {facts.investigationsWithData} of {facts.investigationsTotal} combustion investigations in NASA&apos;s Physical Sciences Informatics (PSI) database · {located} · <a data-help="header-details-link" href="/data">details</a>
+              </p>
+            </details>
           )}
         </div>
         <div className="hero-actions">
