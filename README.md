@@ -75,7 +75,7 @@ PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=pro
 
 ## What it is
 
-PYRION is being built to rank NASA combustion experiments by how physically applicable they are to a target condition (gravity level, oxygen concentration, pressure, fuel type) and to show where the measured evidence ends.
+PYRION gives each NASA combustion experiment a verdict on how physically applicable it is to a target condition (gravity level, oxygen concentration, pressure, fuel type) and to show where the measured evidence ends.
 
 A condition between tested values counts as comparable, although no test was necessarily run at that exact point and PYRION computes no value there. Across a change of physical regime, such as microgravity versus partial gravity, nothing counts as comparable. It reports the gap instead.
 
@@ -83,7 +83,7 @@ The applicability verdict is computed by a deterministic engine. A language mode
 
 ## Data
 
-Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>: the 24 investigations in the Combustion Science research area.
+Primary source: NASA Physical Sciences Informatics (PSI), <https://psi.nasa.gov>: the 24 investigations in the Combustion Science research area. Condition records are extracted for 18 of the 24; the other 6 are listed with what is missing.
 Each investigation is cited with its DOI and the license its PSI record states (the PSI-10 record states none) in [`data/manifest/investigations.csv`](data/manifest/investigations.csv).
 How the data are selected, downloaded and checked: [`data/README.md`](data/README.md).
 
@@ -122,7 +122,7 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 
 **What the AI does not do.** No model decides a verdict: the applicability engine is plain TypeScript rules over the extracted records, and it gives the same verdict with any model or with none. Models never convert units or do arithmetic (code does), every NASA quote a model shows is checked by code against the page it cites, and any number in the model's own reasoning that does not come from a source or a calculation is removed before it is shown. Without any model key the site works in structured mode.
 
-**What was checked by people and by code.** Every extracted value was located by code in its NASA source file (table cell at its row and column, or quote found word for word with its numbers as written). Reviews of the data and the engine were run by separate AI reviewer agents; they are not NASA review or expert validation.
+**What was checked by code and by AI reviewers.** Every extracted value was located by code in its NASA source file (table cell at its row and column, or quote found word for word with its numbers as written). Reviews of the data and the engine were run by separate AI reviewer agents; they are not NASA review or expert validation.
 
 ## TARS library
 
@@ -141,7 +141,21 @@ The library TARS reads: the page-by-page text of the NASA documents downloaded u
 
 ## Images
 
-Photographs on the home page come from NASA: representative images in the PSI investigation records (`web/public/media/psi/CREDITS.json`) and the NASA Image and Video Library (`web/public/media/nasa/CREDITS.json`), each credited where shown. No NASA logo is used.
+Photographs on the home page come from NASA: representative images in the PSI investigation records (`web/public/media/psi/CREDITS.json`) and the NASA Image and Video Library (`web/public/media/nasa/CREDITS.json` and `web/public/media/warp/CREDITS.json`), each credited where shown. No NASA logo is used, and no NASA endorsement is implied. No image on the site or in the demo video is AI-generated.
+
+## Third-party software, fonts and services
+
+| What | Used for | License |
+|---|---|---|
+| Next.js 16, React 19 | web app | MIT |
+| Chakra Petch, IBM Plex Sans, IBM Plex Mono (Google Fonts, via next/font) | typography | SIL Open Font License 1.1 |
+| PyMuPDF | reading NASA PDFs | AGPL-3.0 (used as a tool, not shipped in the app) |
+| openpyxl | reading NASA spreadsheets | MIT |
+| fastembed + BAAI bge-small-en-v1.5 | text-similarity baseline | Apache-2.0 / MIT |
+| OpenTimestamps | timestamp seals | LGPL-3.0 |
+| OpenRouter, NVIDIA NIM | access to the run-time models listed above | service terms of each provider |
+| Remotion, Playwright, FFmpeg, faster-whisper | building the demo video | Remotion License (free for individuals), Apache-2.0, LGPL-2.1+, MIT |
+| ElevenLabs | demo-video voiceover, an AI voice cloned from the team member's own voice | ElevenLabs terms |
 
 ## License
 
