@@ -103,6 +103,16 @@ def main():
     failures += hit
     print(f"{'PASS' if not hit else 'FAIL'}  language gate leaves clean text alone")
 
+    # Numbers must match exactly as written (independent audit, 14-nov): 1.5 is not 15, .15 is not 0.15.
+    from run_all import quote_found, numbers_found  # noqa: E402
+    doc = "The flame spread rate was 1.5 mm/s at 21 % O2 and 0.15 m/s flow; base rate .9 and tip 1.5."
+    for q, expected in [("spread rate was 1.5 mm/s", True), ("spread rate was 15 mm/s", False),
+                        ("and 0.15 m/s flow", True), ("and .15 m/s flow", False),
+                        ("base rate .9 and tip 1.5", True), ("base rate 9 and tip 1.5", False)]:
+        ok = (quote_found(q, doc) and numbers_found(q, doc)) == expected
+        failures += not ok
+        print(f"{'PASS' if ok else 'FAIL'}  numbers as written: \"{q}\" {'accepted' if expected else 'rejected'}")
+
     print(f"\n{'ALL PASS' if not failures else f'{failures} FAILURE(S)'}")
     sys.exit(1 if failures else 0)
 
