@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { parseConditionCsv } from "@/lib/engine";
+import AddSource from "@/components/AddSource";
 import CountUp from "@/components/CountUp";
 import EvidenceStatus from "@/components/EvidenceStatus";
 import { loadDataset, loadLineage } from "@/lib/data";
@@ -51,12 +52,17 @@ export default async function DataPage() {
 
   return (
     <main className="page">
-      <header className="hero">
-        <h1>The data behind the envelope</h1>
-        <p className="lede">
-          Every condition value PYRION uses comes from a NASA Physical Sciences Informatics (PSI) combustion investigation,
-          with the file and location it was read from. This page shows what was extracted from each one.
-        </p>
+      <header className="hero hero-row">
+        <div>
+          <h1>The data behind the envelope</h1>
+          <p className="lede">
+            Every condition value PYRION uses comes from a NASA Physical Sciences Informatics (PSI) combustion investigation,
+            with the file and location it was read from. This page shows what was extracted from each one.
+          </p>
+        </div>
+        <div className="hero-actions">
+          <AddSource />
+        </div>
       </header>
 
       <EvidenceStatus dataset={ds} lineage={lin} />

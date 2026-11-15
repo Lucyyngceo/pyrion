@@ -299,3 +299,27 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .nav-right .card, .where-list, .where-list li { min-width: 0; }
 
 .tile-sub { font-size: 11.5px; line-height: 1.3; color: var(--ink-2); }
+
+/* ---------- Add a source ---------- */
+.hero-row { flex-wrap: wrap; }
+.hero-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+@media (max-width: 640px) { .hero-actions { margin-left: 0; width: 100%; } }
+.add-source-btn { font: inherit; font-weight: 600; font-size: 14px; padding: 7px 14px; color: var(--neon); background: transparent; border: 1px solid var(--neon); cursor: pointer; }
+.add-source-btn:hover { background: var(--neon); color: #001014; }
+dialog.add-source { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow-y: auto; padding: 18px 20px; color: var(--ink); background: var(--page); border: 1px solid var(--neon); box-shadow: 0 0 40px rgba(0, 240, 255, 0.2); }
+dialog.add-source::backdrop { background: rgba(0, 0, 0, 0.7); }
+.as-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.as-head h2 { margin: 0; font-size: 20px; }
+.as-close { font: inherit; font-size: 22px; line-height: 1; background: transparent; color: var(--ink-2); border: 0; cursor: pointer; }
+.as-only { margin: 6px 0 14px; color: var(--ink-2); }
+.as-field { display: grid; gap: 4px; margin-bottom: 12px; font-size: 13px; color: var(--ink-2); }
+.as-field input[type="url"] { font: inherit; padding: 8px 10px; color: var(--ink); background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-strong); }
+.as-field input:disabled { opacity: 0.5; }
+.as-problem { margin: 0 0 10px; padding: 6px 10px; border-left: 3px solid var(--warn); font-size: 13px; }
+.as-steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; list-style: none; padding: 0; margin: 14px 0 8px; }
+.as-steps li { counter-increment: s; font-size: 12px; line-height: 1.3; padding: 6px 8px; border: 1px solid var(--border); color: var(--ink-2); }
+.as-steps li::before { content: counter(s) " · "; color: var(--neon); font-family: var(--font-mono), monospace; }
+@media (max-width: 520px) { .as-steps { grid-template-columns: 1fr 1fr; } }
+.as-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.as-actions button { font: inherit; font-weight: 600; padding: 8px 16px; color: #000; background: var(--neon); border: 0; }
+.as-actions button:disabled { opacity: 0.4; cursor: not-allowed; }
