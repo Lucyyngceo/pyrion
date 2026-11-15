@@ -365,7 +365,9 @@ export function checkAnswer(answer: unknown, ctx: CheckContext): CheckResult {
         report.dropped.push({ index, layer, reason: "id_not_in_engine_output", detail: badId });
         return;
       }
-      kept.push({ layer, text: b.text, label: ENGINE_LABEL, citations: [], provenance: refs.map((r) => provenanceFor(r, ctx)), flagged: false });
+      // The model's prose is not deterministic, even when its numbers and IDs match.
+      // Only code-generated blocks may carry the engine label.
+      kept.push({ layer: "expert", text: b.text, label: EXPERT_LABEL, citations: [], provenance: refs.map((r) => provenanceFor(r, ctx)), flagged: false });
       return;
     }
 

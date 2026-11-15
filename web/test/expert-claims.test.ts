@@ -144,7 +144,8 @@ test("engine: only numbers and ids found in the referenced engine output; anythi
   const good: AnswerBlock = { layer: "engine", text: "PSI-23 is comparable at 70.3 kPa (10.2 psia), with 30 % oxygen.", toolRefs: ["answer"] };
   const r = checkAnswer([good], ctx);
   assert.equal(r.kept.length, 1, JSON.stringify(r.report));
-  assert.equal(r.kept[0].label, "PYRION engine — computed by code");
+  assert.equal(r.kept[0].label, EXPERT_LABEL);
+  assert.equal(r.kept[0].layer, "expert");
   const wrongNumber = checkAnswer([{ ...good, text: "PSI-23 is comparable at 70.3 kPa, 12 psia." }], ctx);
   assert.deepEqual(wrongNumber.report.dropped, [{ index: 0, layer: "engine", reason: "number_not_in_engine_output", detail: "12" }]);
   const wrongId = checkAnswer([{ ...good, text: "PSI-24 is comparable." }], ctx);
@@ -154,6 +155,16 @@ test("engine: only numbers and ids found in the referenced engine output; anythi
   assert.equal(checkAnswer([{ ...good, text: "See doi:10.60555/abcd-1234." }], ctx).kept.length, 1);
   assert.equal(checkAnswer([{ layer: "engine", text: "All fine." }], ctx).report.dropped[0].reason, "engine_block_without_reference");
   assert.equal(checkAnswer([{ ...good, toolRefs: ["missing"] }], ctx).report.dropped[0].reason, "unknown_engine_reference");
+});
+
+test("contradictory model prose never receives the computed-by-code label", () => {
+  const result = checkAnswer([{ layer: "engine", text: "This condition is applicable and safe.", toolRefs: ["t1"] }], {
+    corpus,
+    engine: { t1: { verdict: "REGIME_BARRIER" } },
+  });
+  assert.equal(result.kept.length, 1);
+  assert.equal(result.kept[0].layer, "expert");
+  assert.equal(result.kept[0].label, EXPERT_LABEL);
 });
 
 test("1.5 against 15 in an engine or expert sentence: the written number must match, not the digits", () => {
@@ -175,7 +186,7 @@ test("the report carries dropped, flagged numbers and verified citations for the
     [nasa(), { layer: "expert", text: "That is 7 times." }, nasa({ citations: [{ doc_id: DOC, page: 12, quote: "wrong words that are not on the page at all" }] }), { layer: "engine", text: "Cabin at 30 %.", toolRefs: ["answer"] }],
     ctx,
   );
-  assert.deepEqual(r.kept.map((k) => k.layer), ["nasa", "expert", "engine"]);
+  assert.deepEqual(r.kept.map((k) => k.layer), ["nasa", "expert", "expert"]);
   assert.equal(r.report.dropped.length, 1);
   assert.equal(r.report.dropped[0].index, 2);
   assert.equal(r.report.flaggedNumbers.length, 1);

@@ -149,4 +149,9 @@ describe('recordsForMaterial keeps only the tests that state the material', () =
     const r = recordsForMaterial(records, 'rod A') as unknown as { test_id: string; value: string }[];
     assert.deepEqual(r.map((x) => `${x.test_id}:${x.value}`).sort(), ['*:microgravity', 'T1:0.21', 'T1:rod A']);
   });
+  it('does not select tests or whole investigations from insufficient material evidence', () => {
+    const rejected = (test_id: string) => ({ ...(rec(test_id, 'material', 'rod A') as object), status: 'insufficient_evidence' }) as never;
+    assert.deepEqual(recordsForMaterial([rejected('*'), rec('T2', 'material', 'film B'), rec('T2', 'o2_mole_fraction', '0.40')], 'rod A'), []);
+    assert.deepEqual(recordsForMaterial([rejected('T1'), rec('T1', 'o2_mole_fraction', '0.21')], 'rod A'), []);
+  });
 });

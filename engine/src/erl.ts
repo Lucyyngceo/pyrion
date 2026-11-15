@@ -132,7 +132,7 @@ const norm = (s: string) => s.trim().toLowerCase();
  * When the material is stated investigation-wide ('*'), every test of that investigation counts.
  */
 export function recordsForMaterial(records: readonly ConditionRecord[], material: string): ConditionRecord[] {
-  const matching = records.filter((r) => r.variable === 'material' && norm(r.value) === norm(material));
+  const matching = records.filter((r) => r.variable === 'material' && r.status !== 'insufficient_evidence' && norm(r.value) === norm(material));
   const wholeInvestigation = new Set(matching.filter((r) => r.test_id === '*').map((r) => r.accession));
   const tests = new Set(matching.map((r) => `${r.accession}\u0000${r.test_id}`));
   return records.filter((r) => wholeInvestigation.has(r.accession) || tests.has(`${r.accession}\u0000${r.test_id}`) || (r.test_id === '*' && matching.some((m) => m.accession === r.accession)));
