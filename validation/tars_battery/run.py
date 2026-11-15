@@ -602,7 +602,7 @@ def selftest() -> int:
     expect("claim class wrong", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI"})]}), None, corpus)[0], "fail")
     expect("supported without evidence", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI", "overclaimPatterns": []})]}), None, corpus)[0], "fail")
     w_br = {"id": "f4", "text": "x", "expect": {"brief": True}}
-    brief_ok = {"markdown": "# Evidence brief\nDate: 2026-11-15\n## What would close this gap\n## Models used\n## Bibliography\n## How to verify\n", "html": "<!doctype html>"}
+    brief_ok = {"markdown": "# Evidence brief\nDate: 2026-11-15\n## What would close this gap\n## Models used\n## Bibliography\n## How to verify\nTARS expert knowledge — not verified against a source\n", "html": "<!doctype html>"}
     expect("brief not wired yet", run_checks(w_br, 200, res(plain), None, corpus)[0], "inconclusive")
     expect("brief with its sections", run_checks(w_br, 200, with_field("brief", brief_ok), None, corpus)[0], "pass")
     expect("brief without bibliography", run_checks(w_br, 200, with_field("brief", {"markdown": "# Evidence brief", "html": "<p>"}), None, corpus)[0], "fail")
