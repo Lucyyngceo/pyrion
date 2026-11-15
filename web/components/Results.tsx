@@ -6,14 +6,14 @@ import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, In
 import { envelopeName } from "@/lib/layers";
 import type { Dataset, Investigation } from "@/lib/types";
 import { axisLabel, readable, valueLabel } from "@/lib/units";
-import { plainVerdict } from "@/lib/plain";
+import { axisWord, plainVerdict } from "@/lib/plain";
 import Term from "./Term";
 
-const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string }> = {
-  APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app" },
-  EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext" },
-  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins" },
-  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar" },
+const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string; label: string }> = {
+  APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app", label: "Applicable" },
+  EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext", label: "Extrapolation" },
+  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins", label: "Insufficient evidence" },
+  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar", label: "Not comparable (different regime)" },
 };
 const ORDER: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
 
@@ -49,7 +49,7 @@ export function VerdictBadge({ verdict }: { verdict: Verdict }) {
   return (
     <span className={`badge ${v.cls}`}>
       <StatusSymbol level={VERDICT_STATUS[verdict]} />
-      <span className="badge-code">{verdict}</span>
+      <span className="badge-label">{v.label}</span> <span className="badge-code">{verdict}</span>
     </span>
   );
 }
@@ -60,6 +60,15 @@ interface Ctx {
 }
 
 const RECEIPT_CAP = 30;
+
+/** "o2_mole_fraction = 0.21" → "Oxygen 21 %"; pressure and other axes in words and units. */
+function plainValue(variable: string, value: string, unit: string): string {
+  const name = axisWord(variable);
+  const n = Number(value);
+  if ((variable === "o2_mole_fraction" || variable === "burner_o2_mole_fraction") && Number.isFinite(n)) return `${name[0].toUpperCase()}${name.slice(1)} ${Number((n * 100).toPrecision(4))} %`;
+  const label = `${name[0].toUpperCase()}${name.slice(1)}`;
+  return `${label} ${value}${unit && unit !== "1" ? ` ${unit}` : ""}`.replace(/^Outcome:/, "Outcome ");
+}
 
 function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; citations: Citation[]; ctx: Ctx; anchor: (i: number) => string }) {
   const [all, setAll] = useState(false);
@@ -77,8 +86,7 @@ function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; cit
             <li key={i} id={anchor(i)}>
               <div className="rc-main">
                 <span className="rc-n">[{i + 1}]</span>
-                <code>{c.variable}</code> = <strong>{c.value}</strong>
-                {c.unit && c.unit !== "1" ? ` ${c.unit}` : ""}
+                <strong>{plainValue(c.variable, c.value, c.unit)}</strong>
                 {asWritten && (
                   <span className="muted">
                     {" "}

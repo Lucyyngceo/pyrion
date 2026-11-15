@@ -15,16 +15,18 @@ import {
 } from "@/lib/engine";
 import { fmt } from "@/lib/units";
 
+// Dial stops come from the engine's gravity constants, never typed here.
 const STOPS = [
   { id: "micro", short: "Microgravity", sub: "0 g", g: 0 },
-  { id: "moon", short: "Moon", sub: "0.165 g", g: 0.165 },
-  { id: "mars", short: "Mars", sub: "1/3 g", g: 1 / 3 },
-  { id: "earth", short: "Earth", sub: "1 g", g: 1 },
+  { id: "moon", short: "Moon", sub: `${fmt(GRAVITY_TARGETS.moon.level, 3)} g`, g: GRAVITY_TARGETS.moon.level },
+  { id: "mars", short: "Mars", sub: `${fmt(GRAVITY_TARGETS.mars.level, 2)} g`, g: GRAVITY_TARGETS.mars.level },
+  { id: "earth", short: "Earth", sub: "1 g", g: GRAVITY_TARGETS.earth.level },
 ] as const;
 
 const M = { top: 34, right: 18, bottom: 48, left: 58 };
 const key = (h: { accession: string; test_id: string }) => `${h.accession}|${h.test_id}`;
 
+const PLAIN_COL: Record<string, string> = { limit_type: "kind of limit", last_stable_flow_cm_s: "last stable flow (cm/s)", extinction_flow_cm_s: "flow at extinction (cm/s)", flow_min_with_flame: "lowest flow with a flame (cm/s)", ended_in_extinction: "ended in extinction" };
 const LIMIT_COLS = ["limit_type", "last_stable_flow_cm_s", "extinction_flow_cm_s", "interpretation_status"];
 
 type Rod = "rod_tip" | "cylinder";
@@ -106,7 +108,9 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           <q>such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability can be examined at Earth&apos;s gravity
           through equivalence of flame stretch rates</q>{" "}
           (<a href="https://ntrs.nasa.gov/citations/20000004509" target="_blank" rel="noreferrer">NTRS 20000004509</a>, <em>Combustion and
-          Flame</em> 121(3), 2000, p. 3). This page uses that idea to point at the PSI tests whose stretch rate is closest. It
+          Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the FM2
+          centrifuge setting, NTRS 20260001966) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
+          All round to the quoted fractions.</span> This page uses that idea to point at the PSI tests whose stretch rate is closest. It
           does not change any verdict, and nothing here is a prediction of flame behavior on the Moon.
         </p>
       </section>
@@ -497,11 +501,12 @@ function Receipt({
           )}
           {extras && Object.keys(extras).length > 0 && (
             <li>
-              Interpreted columns of the derived table:{" "}
+              Read from the test notes by PYRION&apos;s parser:{" "}
               {Object.entries(extras)
-                .map(([k, v]) => `${k} = ${v}`)
+                .filter(([k]) => k !== "interpretation_status")
+                .map(([k, v]) => `${PLAIN_COL[k] ?? k.replaceAll("_", " ")}: ${v}`)
                 .join("; ")}
-              . <span className="muted">An interpretation by PYRION&apos;s parser, not stated by NASA.</span>
+              . <span className="muted">An interpretation by PYRION, not stated by NASA in these words.</span>
             </li>
           )}
         </ul>

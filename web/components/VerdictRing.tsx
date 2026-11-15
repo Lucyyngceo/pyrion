@@ -5,12 +5,12 @@ const ROWS: { key: "APPLICABLE" | "EXTRAPOLATION" | "INSUFFICIENT_EVIDENCE" | "R
   { key: "APPLICABLE", label: "Applicable", level: "normal" },
   { key: "EXTRAPOLATION", label: <Term k="extrapolation">Extrapolation</Term>, level: "caution" },
   { key: "INSUFFICIENT_EVIDENCE", label: <Term k="insufficient evidence">Insufficient evidence</Term>, level: "standby" },
-  { key: "REGIME_BARRIER", label: <Term k="regime barrier">Not comparable</Term>, level: "off" },
+  { key: "REGIME_BARRIER", label: <Term k="regime barrier">Not comparable (different regime)</Term>, level: "off" },
 ];
 
 /** Segmented ring of verdicts by investigation, with the counts beside it. Segments are drawn as arcs
  *  with a small gap; an empty category draws nothing. */
-export default function VerdictRing({ counts }: { counts: Record<string, number> }) {
+export default function VerdictRing({ counts, of }: { counts: Record<string, number>; of?: number }) {
   const total = ROWS.reduce((n, r) => n + (counts[r.key] ?? 0), 0);
   const R = 46;
   const C = 2 * Math.PI * R;
@@ -60,6 +60,11 @@ export default function VerdictRing({ counts }: { counts: Record<string, number>
           INVESTIGATIONS
         </text>
       </svg>
+      {of !== undefined && of > total && (
+        <p className="vring-of small muted">
+          of {of} investigations in PSI · {of - total} have no extracted values yet
+        </p>
+      )}
       <dl className="vring-legend" aria-label="Verdict counts, by investigation">
         {ROWS.map((r) => (
           <div key={r.key} className={(counts[r.key] ?? 0) === 0 ? "zero" : undefined}>

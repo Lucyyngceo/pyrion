@@ -14,7 +14,7 @@ const SHORT: Record<Verdict, string> = {
   APPLICABLE: "applicable",
   EXTRAPOLATION: "extrapolation",
   INSUFFICIENT_EVIDENCE: "insufficient evidence",
-  REGIME_BARRIER: "not comparable",
+  REGIME_BARRIER: "not comparable (different regime)",
 };
 const CLS: Record<Verdict, string> = { APPLICABLE: "v-app", EXTRAPOLATION: "v-ext", INSUFFICIENT_EVIDENCE: "v-ins", REGIME_BARRIER: "v-bar" };
 const N = 8;

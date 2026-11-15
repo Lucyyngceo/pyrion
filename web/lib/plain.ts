@@ -11,6 +11,9 @@ export const GLOSSARY: Record<string, string> = {
   "insufficient evidence": "The extracted records do not state enough to compare, for example a value the test did not record. PYRION does not guess.",
   envelope: "The area of the oxygen-by-pressure plane covered by an investigation's measured test points.",
   "convex hull": "The smallest outline without dents around the measured points. A target inside it is covered by measurements.",
+  diluent: "The gas that fills most of the atmosphere besides oxygen, such as nitrogen, helium or carbon dioxide. Changing it changes how the flame burns, so it is a regime axis.",
+  "normal flame": "A flame burning in the usual way: fuel is on one side, and oxygen reaches it from the surrounding gas.",
+  "inverse flame": "A flame turned inside out: oxygen comes out of a burner into a surrounding fuel gas. It follows different physics, so it is a different regime.",
   "measurement tolerance": "A margin of 0.5 % so that a target exactly on the edge of a measured range, within measurement error, counts as inside.",
 };
 

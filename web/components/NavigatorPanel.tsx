@@ -96,7 +96,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
             )}
           </div>
         </div>
-        <VerdictRing counts={counts} />
+        <VerdictRing counts={counts} of={investigations.length} />
       </section>
 
       <section className="card nav-evidence" aria-labelledby="where-h">
@@ -165,10 +165,18 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <ul className="where-unreach small">
                   {routes.unreachable.slice(0, SHOWN).map((u) => (
                     <li key={u.accession}>
-                      <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
-                        {u.accession} {inv.get(u.accession)?.acronym}
-                      </button>
-                      <span className="muted">: {u.reason}</span>
+                      {u.reason.startsWith(u.accession) ? (
+                        <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
+                          {u.reason}
+                        </button>
+                      ) : (
+                        <>
+                          <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
+                            {u.accession} {inv.get(u.accession)?.acronym}
+                          </button>
+                          <span className="muted">: {u.reason}</span>
+                        </>
+                      )}
                     </li>
                   ))}
                 </ul>

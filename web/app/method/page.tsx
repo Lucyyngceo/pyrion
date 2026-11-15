@@ -138,7 +138,7 @@ export default function MethodPage() {
           the engine converts; and it may add a short description of that target. That description is kept only sentence by
           sentence, and only where a code check finds nothing but the target&apos;s own numbers, units and words; anything else is dropped.
           Without a key the page works the same, in structured mode. AI tools were also used to build the project; the repository
-          README has a section on the use of SI tools, and its full disclosure is still to be written.
+          README lists the AI tools used to build the project and what each did.
         </p>
 
         <p>

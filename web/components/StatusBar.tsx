@@ -11,8 +11,8 @@ export default async function StatusBar() {
     { k: "Data", v: ds.mode === "psi" ? `NASA PSI · ${ds.stats.records.toLocaleString("en-US")} values` : "synthetic fixtures (not NASA data)", tone: ds.mode === "psi" ? undefined : "caution" },
   ];
   if (v) {
-    cells.push({ k: "Validation", v: v.generatedAt.replace("T", " ").replace(/:\d\dZ$/, " UTC") });
-    cells.push({ k: "Blockers", v: String(v.blocker), tone: v.blocker === 0 ? "normal" : "caution" });
+    cells.push({ k: "Checked", v: v.generatedAt.replace("T", " ").replace(/:\d\dZ$/, " UTC") });
+    cells.push({ k: "Validation", v: `${v.blocker} critical findings`, tone: v.blocker === 0 ? "normal" : "caution" });
   }
   return (
     <div className="statusbar" role="note" aria-label="System status">

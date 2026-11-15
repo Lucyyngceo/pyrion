@@ -99,7 +99,7 @@ export default async function DataPage() {
           {v && (
             <li>
               <span className="lin-k">Automated gates</span>
-              <b>{v.blocker} blocker</b>
+              <b>{v.blocker} critical findings</b>
               <span>
                 {n(v.major)} major, {n(v.minor)} minor findings logged for review
               </span>
@@ -202,7 +202,7 @@ export default async function DataPage() {
           </li>
           <li>
             Automated checks run on every change: schema, provenance, cell trace against the source file, unit conversion,
-            physical bounds, consistency and citation. Milestone reviews sample records by hand.
+            physical bounds, consistency and citation. Milestone reviews are run by separate automated reviewer agents (metrology, provenance, combustion, mission).
           </li>
         </ol>
         <p className="muted small">

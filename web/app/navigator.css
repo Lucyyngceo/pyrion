@@ -167,3 +167,5 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .tour-btn { font: inherit; font-weight: 600; font-size: 13px; padding: 4px 14px; color: #000; background: var(--neon); border: 0; cursor: pointer; }
 .tour-back { background: transparent; color: var(--ink); border: 1px solid var(--border-strong); }
 .tour-hint { color: var(--muted); font-size: 11.5px !important; margin: 8px 0 0 !important; }
+
+.vring-of { grid-column: 1 / -1; margin: 6px 0 0; }

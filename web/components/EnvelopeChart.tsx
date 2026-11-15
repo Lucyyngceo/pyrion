@@ -342,13 +342,13 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </button>
         </div>
         <button type="button" className="loupe-btn" aria-pressed={loupe} onClick={() => setLoupe((l) => !l)} title="Magnify ×3 around the cursor">
-          Loupe ×3
+          Zoom ×3
         </button>
       </div>
 
       <div className="plot-wrap" ref={wrapRef} style={{ height }}>
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="env-title env-desc" className="plot">
-          <title id="env-title">Evidence envelope: O₂ mole fraction vs pressure</title>
+          <title id="env-title">Evidence envelope: oxygen (% by volume) vs pressure</title>
           <desc id="env-desc">{desc}</desc>
           <defs>
             <pattern id="gap-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -694,7 +694,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               </text>
             ))}
             <text x={iw / 2} y={ih + 42} textAnchor="middle" className="axis-title">
-              O₂ mole fraction
+              Oxygen (% by volume)
             </text>
             <text transform={`translate(${-50},${ih / 2}) rotate(-90)`} textAnchor="middle" className="axis-title">
               Pressure (kPa)

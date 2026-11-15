@@ -19,13 +19,16 @@ import { countVerb, plural } from "./grammar";
 export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation[], target: Target): EnvelopeStatus {
   const counts = evaluation.counts.investigations;
   const regime = targetRegimeName(target.regime);
+  const regimeStated = Object.keys(target.regime).length > 0;
 
   if (counts.APPLICABLE > 0) {
     return {
       tone: "inside",
       headline: "Inside the measured envelope",
       sub: `${plural(counts.APPLICABLE, "investigation")} applicable`,
-      detail: `${plural(counts.APPLICABLE, "investigation")} measured ${regime} around this O₂ and pressure.`,
+      detail: regimeStated
+        ? `${plural(counts.APPLICABLE, "investigation")} measured ${regime} around this O₂ and pressure.`
+        : `${plural(counts.APPLICABLE, "investigation")} measured tests around this O₂ and pressure (regime left open).`,
       counts,
     };
   }
@@ -51,7 +54,7 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
       tone: "outside",
       headline: "Outside the measured envelope",
       sub: "Same regime, other O₂ and pressure",
-      detail: `${regime} was measured, but not at this O₂ and pressure: ${countVerb(counts.EXTRAPOLATION, "investigation", "needs", "need")} extrapolation.`,
+      detail: `${regimeStated ? `${regime} was measured` : "Tests were measured"}, but not at this O₂ and pressure: ${countVerb(counts.EXTRAPOLATION, "investigation", "needs", "need")} extrapolation.`,
       counts,
     };
   }
