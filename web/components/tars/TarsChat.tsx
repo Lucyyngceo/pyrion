@@ -312,7 +312,9 @@ Reference from this page (${path}): "${ref.text}"` : text;
             aria-label="Pick something on the page as a reference"
             onClick={() => setPicking((p) => !p)}
           >
-            ◎
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path d="M3 1.5 L3 13 L6.2 10.2 L8.4 14.6 L10.3 13.7 L8.1 9.4 L12.4 9.4 Z" fill="currentColor" />
+            </svg>
           </button>
         )}
         <button data-help="tars-send" type="submit" disabled={busy || !text.trim()}>

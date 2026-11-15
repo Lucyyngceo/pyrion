@@ -1407,7 +1407,7 @@ input[type="range"] {
 .tools-line a:hover { color: var(--neon); }
 
 /* TARS page picker: hover outline while picking, and the reference chip. */
-body.tars-picking, body.tars-picking * { cursor: crosshair !important; }
+body.tars-picking, body.tars-picking * { cursor: default !important; }
 .tars-pick-hover { outline: 2px solid var(--neon, #00f0ff) !important; outline-offset: 2px; }
 .tars-pick { min-width: 40px; }
 .tars-pick.is-on { background: var(--neon, #00f0ff); color: #04050a; }

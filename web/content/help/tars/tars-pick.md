@@ -9,11 +9,11 @@ page: global
 link: /envelope
 highlight: [data-help="tars-pick"]
 ---
-What it is: The ◎ button next to Send in the TARS panel.
+What it is: The cursor button (an arrow) next to Send in the TARS panel.
 
 What it shows: While it is on, anything on the page is outlined as you move over it; click it to attach its visible text to your next question as a reference (up to 280 characters).
 
-How to use it: Click ◎, click a verdict card, a table or a quote, then type your question and Send. The × removes the reference; Esc cancels picking.
+How to use it: Click the cursor button, click a verdict card, a table or a quote, then type your question and Send. The × removes the reference; Esc cancels picking.
 
 Example: Pick the BASS-II card on the Envelope and ask "why is this only an extrapolation?".
 
