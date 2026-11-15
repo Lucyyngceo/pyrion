@@ -101,10 +101,42 @@ export default async function Landing() {
           <div className="ld-hero-text">
           <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team MLMP</p>
           <h1 id="ld-h" className="ld-title">
-            NASA&apos;s Moon Base air ({hero.o2} % oxygen, {hero.psia} psi):{" "}
-            {hero.noLunarTest ? "no NASA fire test in lunar gravity in PSI" : "tested in PSI"}
-            {near ? `; the closest solid-fuel tests are ${near.o2Gap} oxygen points away, in ${near.gravity}` : ""}.
+            Has NASA tested fire in your cabin air? See where the evidence ends.
           </h1>
+          <p className="ld-answer">
+            Enter a cabin atmosphere (oxygen, pressure, gravity). PYRION checks it against NASA&apos;s combustion experiments in the
+            Physical Sciences Informatics (PSI) database and shows which tests apply, with NASA&apos;s source and DOI, and where no
+            test exists yet. Fixed rules give the verdict; the AI assistant, TARS, reads your question and explains the result.
+          </p>
+          <div className="ld-cta">
+            <Link data-help="landing-start" href={MOON} className="ld-btn ld-btn-primary">
+              Explore the dashboard
+            </Link>
+            <Link data-help="landing-card" href="/example" className="ld-btn">
+              See a worked example
+            </Link>
+          </div>
+          </div>
+          <figure className="ld-hero-fig">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/media/psi/acme-flame-design-in-space.webp" alt="A flame burning aboard the International Space Station, ACME Flame Design" width={1094} height={804} />
+            <figcaption className="small muted">
+              A flame aboard the ISS. NASA PSI,{" "}
+              <a data-help="landing-source" href={PSI("PSI-10")}>
+                PSI-10
+              </a>{" "}
+              representative image.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section className="ld-section" aria-labelledby="ld-finding-h">
+          <p className="ld-kicker">What PYRION found for NASA&apos;s Moon Base</p>
+          <h2 id="ld-finding-h">
+            Moon Base air ({hero.o2} % oxygen, {hero.psia} psi):{" "}
+            {hero.noLunarTest ? "no fire test in lunar gravity in PSI" : "tested in PSI"}
+            {near ? `; the closest solid-fuel tests are ${near.o2Gap} oxygen points away, in ${near.gravity}` : ""}.
+          </h2>
           <p className="ld-answer">
             {hero.fm2Psia !== null ? (
               <>
@@ -142,18 +174,6 @@ export default async function Landing() {
               See a worked example
             </Link>
           </div>
-          </div>
-          <figure className="ld-hero-fig">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/media/psi/acme-flame-design-in-space.webp" alt="A flame burning aboard the International Space Station, ACME Flame Design" width={1094} height={804} />
-            <figcaption className="small muted">
-              A flame aboard the ISS. NASA PSI,{" "}
-              <a data-help="landing-source" href={PSI("PSI-10")}>
-                PSI-10
-              </a>{" "}
-              representative image.
-            </figcaption>
-          </figure>
         </section>
 
         <section className="ld-section ld-flames" aria-labelledby="ld-flames-h">
