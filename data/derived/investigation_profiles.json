@@ -3439,7 +3439,7 @@
       }
     ],
     "test_count": 129,
-    "value_count": 707,
+    "value_count": 732,
     "variables": [
       {
         "classification": "observed constant",
@@ -3598,13 +3598,13 @@
       },
       {
         "classification": "measured",
-        "distinct_count": 65,
-        "max": 0.404,
+        "distinct_count": 63,
+        "max": 0.222,
         "min": 0.006,
         "source": "data/conditions/PSI-25.csv",
-        "test_count": 127,
+        "test_count": 125,
         "unit": "1",
-        "value_count": 127,
+        "value_count": 125,
         "values": [
           "0.006",
           "0.009",
@@ -3668,11 +3668,23 @@
           "0.218",
           "0.219",
           "0.221",
-          "0.222",
-          "0.391",
-          "0.404"
+          "0.222"
         ],
         "variable": "outcome:o2_mole_fraction_after_test"
+      },
+      {
+        "classification": "observed constant",
+        "distinct_count": 1,
+        "max": 101.325,
+        "min": 101.325,
+        "source": "data/conditions/PSI-25.csv",
+        "test_count": 27,
+        "unit": "kPa",
+        "value_count": 27,
+        "values": [
+          "101.325"
+        ],
+        "variable": "pressure"
       },
       {
         "classification": "varied",

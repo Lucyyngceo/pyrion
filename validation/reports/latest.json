@@ -1,13 +1,13 @@
 {
- "generated_at_utc": "2026-11-15T07:28:13Z",
+ "generated_at_utc": "2026-11-15T07:46:00Z",
  "trace_ran": true,
  "stats": {
-  "records": 10042,
+  "records": 10077,
   "units_identity_no_unit_in_source": 207,
-  "units_rechecked": 3251,
-  "cells_traced": 8531,
-  "quotes_traced": 942,
-  "text_files_scanned": 125
+  "units_rechecked": 3278,
+  "cells_traced": 8529,
+  "quotes_traced": 969,
+  "text_files_scanned": 131
  },
  "counts": {
   "BLOCKER": 0,
