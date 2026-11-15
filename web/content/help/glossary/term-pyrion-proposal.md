@@ -1,6 +1,7 @@
 ---
 id: term-pyrion-proposal
 title: "PYRION proposal"
+keywords: pyrion proposal, proposal, testable plan, not a nasa plan, what would close this gap
 chapter: 11
 order: 21
 dataHelp: [gap-label]

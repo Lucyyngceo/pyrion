@@ -1,6 +1,7 @@
 ---
 id: term-doi
 title: "DOI"
+keywords: doi, digital object identifier, citation, dataset link, ntrs no doi
 chapter: 11
 order: 8
 dataHelp: [result-doi, route-doi, comparable-doi]

@@ -1,6 +1,7 @@
 ---
 id: term-continuous-axis
 title: "Continuous axis"
+keywords: continuous axis, number axis, oxygen, pressure, flow, thickness, axis
 chapter: 11
 order: 5
 dataHelp: [ctl-oxygen-number, ctl-pressure-number]

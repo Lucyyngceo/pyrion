@@ -1,6 +1,7 @@
 ---
 id: term-test
 title: "Test"
+keywords: test, test id, run, experiment run, test of an investigation
 chapter: 11
 order: 28
 dataHelp: [result-card]

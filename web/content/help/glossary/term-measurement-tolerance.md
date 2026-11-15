@@ -1,6 +1,7 @@
 ---
 id: term-measurement-tolerance
 title: "Measurement tolerance"
+keywords: measurement tolerance, 0.5 percent, tolerance, rounding, within tolerance
 chapter: 11
 order: 17
 dataHelp: [result-technical]

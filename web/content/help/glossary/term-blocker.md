@@ -1,6 +1,7 @@
 ---
 id: term-blocker
 title: "Blocker"
+keywords: blocker, reason code, why not comparable, axis not recorded, blocker action
 chapter: 11
 order: 2
 dataHelp: [result-blocker-action]

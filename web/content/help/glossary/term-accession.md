@@ -1,6 +1,7 @@
 ---
 id: term-accession
 title: "Accession (PSI-nn)"
+keywords: accession, psi-25, psi number, investigation id, identifier
 chapter: 11
 order: 1
 dataHelp: [result-ref, result-doi]

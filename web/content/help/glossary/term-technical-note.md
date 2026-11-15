@@ -1,6 +1,7 @@
 ---
 id: term-technical-note
 title: "Technical note"
+keywords: technical note, normalized distance, axis scale, test ids, specialist figures
 chapter: 11
 order: 27
 dataHelp: [result-technical]

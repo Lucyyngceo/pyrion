@@ -1,6 +1,7 @@
 ---
 id: term-status
 title: "Record status"
+keywords: status, extracted, verified, insufficient evidence, verified only, record status
 chapter: 11
 order: 26
 dataHelp: [data-evidence-status]

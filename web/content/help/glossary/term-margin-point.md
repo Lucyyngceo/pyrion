@@ -1,6 +1,7 @@
 ---
 id: term-margin-point
 title: "Margin point"
+keywords: margin point, margin, more severe point, oxygen partial pressure, matrix point
 chapter: 11
 order: 16
 dataHelp: [gap-section-matrix]

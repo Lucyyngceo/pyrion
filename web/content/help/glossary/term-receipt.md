@@ -1,6 +1,7 @@
 ---
 id: term-receipt
 title: "Receipt"
+keywords: receipt, citations, sources, records behind, doi, evidence trail
 chapter: 11
 order: 22
 dataHelp: [result-receipt, bridge-receipt, chart-table-receipt]

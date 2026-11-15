@@ -1,6 +1,7 @@
 ---
 id: term-psi
 title: "PSI"
+keywords: psi, physical sciences informatics, nasa archive, in psi, combustion archive, not pounds per square inch
 chapter: 11
 order: 20
 dataHelp: [help-center]

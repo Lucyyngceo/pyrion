@@ -1,6 +1,7 @@
 ---
 id: term-regime
 title: "Regime"
+keywords: regime, gravity, fuel phase, diluent, flame type, category axis, barrier
 chapter: 11
 order: 23
 dataHelp: [ctl-regime-axis]

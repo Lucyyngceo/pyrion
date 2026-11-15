@@ -1,6 +1,7 @@
 ---
 id: term-route
 title: "Route"
+keywords: route, change, smallest change, make comparable, path to evidence
 chapter: 11
 order: 25
 dataHelp: [route-chip, route-sentence]

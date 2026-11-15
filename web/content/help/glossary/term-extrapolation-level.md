@@ -1,6 +1,7 @@
 ---
 id: term-extrapolation-level
 title: "Extrapolation level"
+keywords: extrapolation level, just outside, outside, far outside, combination, distance level
 chapter: 11
 order: 10
 dataHelp: [verdict-ring, chart-map-legend]

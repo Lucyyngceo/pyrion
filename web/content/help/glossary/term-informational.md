@@ -1,6 +1,7 @@
 ---
 id: term-informational
 title: "Gravity level (informational)"
+keywords: gravity level, g level, 0.165 g, informational, shown not compared
 chapter: 11
 order: 13
 dataHelp: [ctl-gravity-level]

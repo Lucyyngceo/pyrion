@@ -1,6 +1,7 @@
 ---
 id: term-fingerprint
 title: "Fingerprint"
+keywords: fingerprint, hash, sha-256, reproducible, checksum
 chapter: 11
 order: 11
 dataHelp: [tars-fingerprint]

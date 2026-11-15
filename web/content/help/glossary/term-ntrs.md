@@ -1,6 +1,7 @@
 ---
 id: term-ntrs
 title: "NTRS"
+keywords: ntrs, nasa technical reports server, nasa report, ntrs number, pdf page
 chapter: 11
 order: 18
 dataHelp: [tars-document-link]

@@ -1,6 +1,7 @@
 ---
 id: term-cluster
 title: "Cluster"
+keywords: cluster, regime group, tests of an investigation, same regime, glossary
 chapter: 11
 order: 3
 dataHelp: [result-card]

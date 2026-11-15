@@ -1,6 +1,7 @@
 ---
 id: term-condition-record
 title: "Condition record"
+keywords: condition record, record, value, quote, source file, status, receipt, evidence record
 chapter: 11
 order: 4
 dataHelp: [result-receipt, chart-table-receipt]

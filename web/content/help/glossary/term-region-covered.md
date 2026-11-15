@@ -1,6 +1,7 @@
 ---
 id: term-region-covered
 title: "Region covered by tests (hull)"
+keywords: region covered, hull, convex hull, tested region, envelope, oxygen pressure region
 chapter: 11
 order: 24
 dataHelp: [chart-hulls]

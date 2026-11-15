@@ -1,6 +1,7 @@
 ---
 id: term-different-regime
 title: "Different regime (route)"
+keywords: different regime, switch regime, another regime, not a small step, regime route
 chapter: 11
 order: 7
 dataHelp: [route-group-heading, route-sentence]

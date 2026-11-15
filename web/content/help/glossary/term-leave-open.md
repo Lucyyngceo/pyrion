@@ -1,6 +1,7 @@
 ---
 id: term-leave-open
 title: "Leave open"
+keywords: leave open, open axis, not stated, left open, unstated axis
 chapter: 11
 order: 15
 dataHelp: [route-sentence, result-blocker-action]

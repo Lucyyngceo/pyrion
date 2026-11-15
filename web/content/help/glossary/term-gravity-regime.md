@@ -1,6 +1,7 @@
 ---
 id: term-gravity-regime
 title: "Gravity regime: microgravity, partial gravity, normal gravity"
+keywords: gravity regime, microgravity, partial gravity, normal gravity, lunar, moon, mars, iss, zero g
 chapter: 11
 order: 12
 dataHelp: [ctl-regime-axis, ctl-gravity-level]

@@ -1,6 +1,7 @@
 ---
 id: term-unreachable
 title: "Unreachable route"
+keywords: unreachable, no route, cannot build route, did not record, missing route
 chapter: 11
 order: 30
 dataHelp: [no-route-item]

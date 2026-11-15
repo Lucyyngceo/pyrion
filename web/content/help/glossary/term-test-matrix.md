@@ -1,6 +1,7 @@
 ---
 id: term-test-matrix
 title: "Test matrix"
+keywords: test matrix, matrix, plus minus 4 points, plus minus 8 points, test points, 15 points
 chapter: 11
 order: 29
 dataHelp: [gap-section-matrix]

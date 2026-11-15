@@ -1,6 +1,7 @@
 ---
 id: term-investigation
 title: "Investigation"
+keywords: investigation, experiment, psi investigation, study, project, acronym
 chapter: 11
 order: 14
 dataHelp: [result-card]
