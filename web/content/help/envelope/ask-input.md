@@ -1,20 +1,20 @@
 ---
 id: ask-input
+title: Question box
 chapter: envelope
-order: 230
+order: 5
 dataHelp: ask-input
-title: Ask text box
-keywords: ask text box, ask input, envelope
+keywords: ask tars, question bar, ask
 page: envelope
 link: /
 highlight: [data-help="ask-input"]
 ---
-What it is: The field where you type the question.
+What it is: The text box of the Ask TARS SI bar.
 
-What it shows: Your text, up to 500 characters.
+What it shows: Example questions that rotate while it is empty.
 
-How to use it: Type a condition with numbers and units, then press Enter.
+How to use it: Type your question, with numbers and units if it is about a condition.
 
-Example: "21 % oxygen at 14.7 psia in microgravity".
+Example: Would solid fuel burn differently in a lunar base at 30 % oxygen and 10.2 psi?
 
-What it does not do: It does not accept an oxygen partial pressure as total pressure; it asks you to give both.
+What it does not do: It does not run the engine on its own; it hands the question to TARS SI.

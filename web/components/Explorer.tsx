@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Term from "./Term";
 import Tour from "./Tour";
-import AskBox from "./AskBox";
-import type { ParsedTarget } from "@/lib/ask-core";
+import AskTarsBar from "./AskTarsBar";
+import ToolsLine from "./ToolsLine";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
@@ -380,19 +380,9 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
     };
   }, []);
 
-  const applyAsked = (p: ParsedTarget) =>
-    setState((st) => ({
-      presetId: null,
-      regime: { ...p.target.regime },
-      o2: p.target.continuous.o2_mole_fraction ?? st.o2,
-      pressure: p.target.continuous.pressure ?? st.pressure,
-      gravityLevel: p.target.informational?.gravity_level,
-      gravityNotCovered: p.target.informational?.gravity_not_covered,
-    }));
-
   return (
     <>
-      <AskBox onTarget={applyAsked} />
+      <AskTarsBar />
       <Tour />
       <ScenarioStrip
         state={state}
@@ -418,6 +408,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           document.querySelector(".nav-left")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
         }}
       />
+      <ToolsLine />
       <ScenarioNote state={state} />
       {gap && <GapDialog title={gap.title} target={gap.target} onClose={() => setGap(null)} />}
 

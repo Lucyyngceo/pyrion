@@ -1,20 +1,20 @@
 ---
 id: ask-box
+title: Ask TARS SI bar
 chapter: envelope
+order: 5
 dataHelp: ask-box
-order: 45
-title: Ask box
-keywords: ask box, ask box, envelope
+keywords: ask tars, question bar, ask
 page: envelope
 link: /
 highlight: [data-help="ask-box"]
 ---
-What it is: A one-line box for plain-language questions about a condition.
+What it is: The single question bar at the top of the Envelope page.
 
-What it shows: A rotating example in grey until you type.
+What it shows: Rotating example questions; nothing is computed until you send one.
 
-How to use it: Type a question such as "34 % oxygen at 8.2 psia on the Moon" and press Ask.
+How to use it: Type a question and press Ask: TARS SI opens with the question already sent.
 
-Example: Ask: "Would solid fuel burn differently in a lunar base at 30 % oxygen and 10.2 psi?"
+Example: Ask what PSI says at 34 % oxygen and 8.2 psia.
 
-What it does not do: Code reads the numbers first; a model is used only if code cannot. The model never decides a verdict.
+What it does not do: It does not decide anything itself: TARS reads the condition by code, and the engine writes every verdict.

@@ -4,7 +4,7 @@ title: "Reading a question: code first"
 keywords: reading a question, extractor, extract quantities, how the app reads my question, code first, leftover, ask box, parse, typed question
 chapter: 10
 order: 4
-dataHelp: [ask-box, ask-input, ask-apply-suggestion]
+dataHelp: [ask-box, ask-input]
 sources: ["engine/src/extract.ts"]
 ---
 
@@ -18,7 +18,7 @@ The extractor never guesses. If a number cannot be assigned, it is set aside as 
 - A gravity number that disagrees with a gravity word ("lunar base at 1 g") is reported, not resolved.
 - Typos ("oxigen") are not corrected.
 
-What the extractor cannot read is left for the next step, where a language model may help to *understand* the question, but never to convert or compute: its numbers must come from code.
+What the extractor cannot read is left for the next step, where TARS SI (a language model) may help to *understand* the question, but never to convert or compute: its numbers must come from code.
 
 ## For engineers
 

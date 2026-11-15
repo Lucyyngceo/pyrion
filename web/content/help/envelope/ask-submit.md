@@ -1,20 +1,20 @@
 ---
 id: ask-submit
-chapter: envelope
-order: 240
-dataHelp: ask-submit
 title: Ask button
-keywords: ask button, ask submit, envelope
+chapter: envelope
+order: 5
+dataHelp: ask-submit
+keywords: ask tars, question bar, ask
 page: envelope
 link: /
 highlight: [data-help="ask-submit"]
 ---
-What it is: The button next to the Ask box.
+What it is: The button of the Ask TARS SI bar.
 
-What it shows: It is disabled while the box is empty or a question is running.
+What it shows: Nothing by itself.
 
-How to use it: Click it to send the question.
+How to use it: Press it to open TARS SI and send your question.
 
-Example: Type a question and click Ask.
+Example: Press Ask after typing a question.
 
-What it does not do: It does not send anything to a server for storage.
+What it does not do: It does not change the chart; use Show on the envelope in TARS's answer for that.
