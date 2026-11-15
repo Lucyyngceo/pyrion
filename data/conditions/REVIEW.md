@@ -1006,6 +1006,16 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: all tests (`*`)
 - Note: confidence ambiguous (ambiguous: the 2015 ISS Researcher's Guide uses 'BASS' for the whole BASS/BASS-II campaign. A lower-oxygen result needs N2 vitiation, which the PSI-25 report says BASS-II introduced. The sentence cannot be attributed to PSI-26 tests. SHARED_LINEAGE: BASS, BASS-II, SPICE and SLICE share the MSG flow duct.); R102 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
 
+### gravity_regime = microgravity  (extracted)
+
+> Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=17`
+- As written: `Microgravity`
+- Applies to: 12 tests: `1`, `4`, `5`, `12`, `13`, `37`, `44`, `45`, `54`, `55`, `65`, `66`
+- Note: confidence derived (Abstract of PSI-26's own 2013 paper [p17], past tense, about the cotton-fiberglass fabric tests; conclusions [p186] confirm 'burned in long-duration microgravity tests aboard the ISS'. The paper says the custom-made fabric is 'sometimes referred to as SIBAL fabric' (cotton-fiberglass, 75% by mass cotton) [p33]. Scope: only the 12 PSI-26 table rows whose material is SIBAL. Their CSV 'Test #' values (1, 7, 8, 4, 10, 5, 6, 2, 3, 11, 9) match the 11 tests of the paper's Table I in the same run order and with the same widths. The exception is As Run 44 (Test # 5b, a second burn of sample 9 in opposed flow), which is not in Table I. It is covered only as a fabric burn in the same ISS campaign, not by an individual statement in the paper. Candles, spheres, PMMA, Ultem, wax and Nomex samples are not covered. The paper's 1-g comparison flames (Figs. 13-14) have no number and are not rows of the PSI table.); flags: SHARED_LINEAGE; R103 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
 ## PSI-39 CFI
 
 - *Table reading:* CFI "Oxygen", "Nitrogen" and "Helium" columns carry no unit. They are read as ambient mole fractions because the three sum to 1 in every row; `diluent` is N2, He or `mixed` from the two inert columns.

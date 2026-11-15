@@ -115,14 +115,24 @@
         "confidence": "ambiguous",
         "derivation": "Scope sentence of the PSI Data Layout Document: says what BASS examines, not that the tests were run in microgravity. Same rule as the FLEX description-of-data sentence (PSI-69). Stronger candidates were audited and rejected or downgraded (2015 ISS Researcher's Guide pp.2, 31: they describe BASS-II or the whole campaign)."
       }
+    },
+    {
+      "id": "R103",
+      "verdict": "MODIFY",
+      "reason": "Quote verbatim at paragraph 17; past tense; SIBAL = the paper's cotton-fiberglass fabric (paper paragraph 33); exactly 12 SIBAL rows; run order and widths match the paper's Table I; As Run 44 (Test # 5b) is covered only by extension.",
+      "corrected": {
+        "derivation": "Abstract of PSI-26's own 2013 paper [p17], past tense, about the cotton-fiberglass fabric tests; conclusions [p186] confirm 'burned in long-duration microgravity tests aboard the ISS'. The paper says the custom-made fabric is 'sometimes referred to as SIBAL fabric' (cotton-fiberglass, 75% by mass cotton) [p33]. Scope: only the 12 PSI-26 table rows whose material is SIBAL. Their CSV 'Test #' values (1, 7, 8, 4, 10, 5, 6, 2, 3, 11, 9) match the 11 tests of the paper's Table I in the same run order and with the same widths. The exception is As Run 44 (Test # 5b, a second burn of sample 9 in opposed flow), which is not in Table I. It is covered only as a fabric burn in the same ISS campaign, not by an individual statement in the paper. Candles, spheres, PMMA, Ultem, wax and Nomex samples are not covered. The paper's 1-g comparison flames (Figs. 13-14) have no number and are not rows of the PSI table."
+      }
     }
   ],
   "missed": [
     "As-run per-test flow speeds and directions exist in Table I of the 2013 paper (paragraphs 90-141; e.g. '10, 20, 44' cm/s opposed, '9, 44' concurrent). They use the paper's test numbers 1-11, which do not map to PSI test ids: not ingested.",
     "Figure 11 caption (paragraph 166): flow decreased in steps from 10 cm/s to below 1 cm/s for paper test 9: not ingested (paper numbering).",
-    "PSI-26's own 2013 paper, paragraph 186: 'Flat fabric samples were burned in long-duration microgravity tests aboard the ISS.' (and paragraph 190) - past tense about the fabric tests; covers only the fabric (SIBAL/Nomex) tests of the paper, so it was not attached to every BASS row. A per-material scope on the PSI-26 SIBAL rows is possible but not done."
+    "PSI-26's own 2013 paper, paragraph 186: 'Flat fabric samples were burned in long-duration microgravity tests aboard the ISS.' (and paragraph 190) - past tense about the fabric tests; covers only the fabric (SIBAL/Nomex) tests of the paper, so it was not attached to every BASS row. A per-material scope on the PSI-26 SIBAL rows is possible but not done.",
+    "SRD footnote about SIBAL not re-checked in this pass; BASS rows of other materials (Nomex, PMMA, candles, spheres, Ultem) have no gravity statement and stay without a usable gravity_regime."
   ],
   "could_not_check": "PDFs read through their text layer; original PSI-26.json and the .docx not opened (dumps only); figures not audited; the mapping of paper tests 1-11 to PSI ids, the location of the 1-g flames, the phase of the wax candle tests and the O2 % basis are not stated in the sources; BASS-II and SLICE are not named in any source read.",
   "review_level": "segregated internal check by a language model; not expert or NASA review",
-  "addendum2": "R101+ audited in a separate verificador run on 2026-11-14 (BASS/SAFFIRE gravity review); verdicts transcribed by the build session."
+  "addendum2": "R101+ audited in a separate verificador run on 2026-11-14 (BASS/SAFFIRE gravity review); verdicts transcribed by the build session.",
+  "addendum3": "R103 audited in a separate verificador run on 2026-11-14 (gravity gap BASS/CFI/SLICE)."
 }

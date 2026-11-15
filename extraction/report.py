@@ -27,6 +27,12 @@ SHORT = {"gravity_regime": "gravity", "fuel_phase": "phase", "diluent": "diluent
 
 # Why an investigation has no usable condition records, or only a few. Factual, checked
 # against the files in data/raw/ on 2026-11-14. Shown in SUMMARY.md.
+GRAVITY_PARTIAL = {
+    "PSI-26": "microgravity is recorded for the 12 SIBAL (cotton-fiberglass fabric) tests, from the abstract of PSI-26's own 2013 paper "
+              "(paragraph 17, past tense). The other PSI-26 materials (Nomex, PMMA, Ultem, candles, wax, spheres) have no sentence that "
+              "states their gravity condition and no usable gravity_regime.",
+}
+
 GRAVITY_NOTES = {
     "PSI-98": "searched the Glenn Saffire fact sheet, the PSI record, the Readme, the Objectives paper and the Operations "
               "document: they give purpose or plan sentences ('Understanding how fire behaves in microgravity ...', "
@@ -149,6 +155,11 @@ def _summary(by_acc, skipped, inv, order, interp, doc_stats):
             a, "no source sentence found that states the gravity condition of the tests."))
     if not missing:
         L.append("None.")
+    L.append("")
+    L += ["Partial coverage (a gravity record exists for some tests only):", ""]
+    for a, note in GRAVITY_PARTIAL.items():
+        if by_acc.get(a):
+            L.append(f"- **{a} {inv[a]['acronym'] or inv[a]['title']}**: {note}")
     L.append("")
     L += ["## Document extraction: extractor, then verificador", "",
           "For each investigation, an extractor agent proposed records with verbatim quotes "

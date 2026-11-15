@@ -320,6 +320,24 @@
       "confidence": "derived",
       "derivation": "Results sentence about the BASS experiment in the 2015 ISS Researcher's Guide; it states the microgravity comparison without naming individual tests.",
       "flags": []
+    },
+    {
+      "id": "R103",
+      "test_id": "1, 4, 5, 12, 13, 37, 44, 45, 54, 55, 65, 66",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "Microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+      "source_location": "paragraph=17",
+      "quote": "Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.",
+      "confidence": "derived",
+      "derivation": "Abstract of PSI-26's own 2013 paper (past tense) about the cotton-fiberglass fabric tests. Scope: only the PSI-26 table rows whose material is SIBAL (the cotton-fiberglass blend; PSI record approach: 75% cotton and 25% fiberglass), by material, not by test number (the paper numbers its tests 1-11 itself). Candles, spheres, Nomex and other samples are not covered. The paper's 1-g comparison flames are not in the PSI table.",
+      "flags": [
+        "SHARED_LINEAGE"
+      ]
     }
   ],
   "not_found": [
@@ -333,5 +351,6 @@
     }
   ],
   "lineage": "SPICE hardware is stated: SRD page 1 'An ISS Glovebox Experiment Utilizing Existing SPICE Hardware with Minor Modifications'; SRD page 4 'The plan is to use the existing NASA glovebox SPICE hardware with four changes:'; 2013 paper paragraph 51 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].' The cotton-fiberglass fuel is the SIBAL fabric (SRD page 5, footnote 1: 'Solid Inflammability Boundary at Low Speed (Principal Investigator: James T’ien) was a previously funded flight project [...]'). BASS-II and SLICE are not mentioned in any source read.",
-  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run."
+  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run.",
+  "addendum3": "R103 added 2026-11-14 by the build session at the coordinating session's request (gravity gap BASS/CFI/SLICE); audited by a separate verificador run."
 }
