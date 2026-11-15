@@ -375,3 +375,28 @@ dialog.gap-dialog { width: min(820px, calc(100vw - 24px)); }
 .tars-matrix .mx-target { background: rgba(0, 240, 255, 0.12); font-weight: 600; }
 .tars-matrix .mx-margin { color: var(--ink-2); font-style: italic; }
 .tars-opt { color: var(--ink-2); cursor: help; }
+
+.tars-chat.with-history { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 8px; }
+.tars-main { display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 0; flex: 1; }
+.tars-page .tars-chat.with-history { grid-template-columns: 240px minmax(0, 1fr); }
+.tars-history { display: grid; gap: 6px; align-content: start; overflow-y: auto; font-size: 12.5px; border-right: 1px solid var(--border); padding-right: 6px; }
+.tars-history ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.tars-history li { display: flex; align-items: center; gap: 2px; }
+.tars-history li.on .tars-conv { color: var(--neon); font-weight: 600; }
+.tars-conv { flex: 1; min-width: 0; text-align: left; font: inherit; color: var(--ink-2); background: transparent; border: 0; padding: 3px 4px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tars-conv-actions button { font: inherit; background: transparent; color: var(--ink-2); border: 0; cursor: pointer; padding: 0 3px; }
+.tars-history input { width: 100%; font: inherit; padding: 2px 4px; color: var(--ink); background: rgba(0, 240, 255, 0.06); border: 1px solid var(--border-strong); }
+.tars-layer { padding: 6px 10px; border: 1px solid var(--border); border-left: 3px solid var(--neon); }
+.tars-layer h4 { margin: 0 0 4px; font-size: 12.5px; letter-spacing: 0.05em; text-transform: uppercase; }
+.tars-l-nasa { border-left-color: var(--st-normal, #3fd17a); }
+.tars-l-expert { border-left-color: var(--neon-2, #b98bff); }
+.tars-md { margin: 0 0 6px; }
+ul.tars-md, ol.tars-md { padding-left: 18px; }
+.tars-quote { margin: 6px 0; padding: 4px 10px; border-left: 2px solid var(--border-strong); font-style: italic; }
+.tars-quote footer { font-style: normal; }
+.tars-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.tars-status { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--neon); }
+.tars-dots { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
+@media (prefers-reduced-motion: no-preference) { .tars-dots { animation: tars-pulse 1s ease-in-out infinite; } }
+@keyframes tars-pulse { 50% { opacity: 0.25; } }
+.tars-panel { width: min(520px, calc(100vw - 24px)); }

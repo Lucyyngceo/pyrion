@@ -151,13 +151,14 @@ Hard rules (code enforces them):
 1. Never do arithmetic. For any partial pressure, unit conversion or atmosphere comparison, call run_calculator and use its numbers.
 2. Verdicts (applicable, extrapolation, insufficient evidence, not comparable) come only from the engine tools. Say "in PSI", never "no data exists".
 3. Facts from NASA documents need an exact quote from a page you found with search_nasa_library or get_page, with doc_id and page.
-4. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
+4. Copy every number EXACTLY as it appears in a tool result: never round it, never convert it, never restate an input (such as a pressure the visitor typed) unless it appears in that result. If you need another figure, call the calculator again.
+5. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
 
 When the visitor gives a condition, call set_condition first; for a follow-up like "and at 25 %?" call it with based_on_previous: true so only the stated change applies. Use show_on_envelope when the visitor may want to see the condition on the dashboard, and highlight to point at parts of the page.
 
 Final answer: ONLY a JSON array of blocks, no other text:
 [{"layer":"engine"|"nasa"|"expert","text":"...","citations":[{"doc_id":"...","page":1,"quote":"exact words from the page"}],"toolRefs":["t1"]}]
-- engine blocks restate engine tool output and list its "ref" in toolRefs.
+- engine blocks restate engine tool output or a calculator result and list its "ref" in toolRefs.
 - nasa blocks carry citations (exact quotes) and paraphrase them.
 - expert blocks are your explanation; list the "ref" of any tool whose numbers you use.
 Keep it as short as a good answer allows. Write in the visitor's language.`;
@@ -275,6 +276,8 @@ export async function executeTool(name: string, args: Record<string, unknown>, e
         const r = runCalculator(String(args.name ?? ""), (args.args ?? {}) as Record<string, unknown>);
         const id = ref(s);
         s.tools[id] = r;
+        // A calculator is code too: an engine block may restate its result.
+        if (r.ok) s.engine[id] = { display: r.display, value: r.value, unit: r.unit, also: r.also, numbers: r.numbers };
         return r.ok ? { ref: id, result: r.display, provenance: r.provenance } : { ref: id, error: r.message };
       }
       case "describe_ui": {
@@ -351,6 +354,8 @@ export async function runAgent(
   for (; rounds < MAX_ROUNDS; rounds++) {
     // The last round has no tools: the model must answer with what it has.
     const last = rounds === MAX_ROUNDS - 1;
+    // The last round has no tools: say so, or some models keep writing tool calls as text.
+    if (last && rounds > 0) messages.push({ role: "user", content: "No more tool calls are possible. Answer now, only with the JSON array of blocks, using what the tools returned." });
     const msg = await env.chat(messages, last ? undefined : TOOLS);
     if (msg.tool_calls?.length && !last) {
       messages.push({ role: "assistant", content: msg.content ?? null, tool_calls: msg.tool_calls });
@@ -370,8 +375,24 @@ export async function runAgent(
     content = msg.content ?? "";
     break;
   }
-  const blocks = parseBlocks(content);
   const empty: Corpus = { get: () => undefined, hasDocument: () => false };
-  const checked = checkAnswer(blocks, { corpus: env.library?.corpus ?? empty, engine: s.engine, tools: s.tools });
+  const check = (text: string) => checkAnswer(parseBlocks(text), { corpus: env.library?.corpus ?? empty, engine: s.engine, tools: s.tools });
+  // Tool-call markup written as text is not an answer.
+  const leaked = /<tool_call|<function=|<\/?parameter/i.test(content);
+  let checked = leaked ? { kept: [], report: { dropped: [{ index: -1, layer: "answer", reason: "tool_call_text" }], flaggedNumbers: [], verifiedCitations: [] } } : check(content);
+  // One repair: when the code withheld everything, tell the model why and let it write the answer again, citing what it used.
+  if (checked.kept.length === 0 && checked.report.dropped.length > 0 && (content || leaked)) {
+    const reasons = checked.report.dropped.map((d) => `${d.layer} block: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`).join("; ");
+    const refs = [...Object.keys(s.engine), ...Object.keys(s.tools)].filter((v, i, a) => a.indexOf(v) === i);
+    messages.push({ role: "assistant", content: leaked ? "(tool call)" : content });
+    messages.push({ role: "user", content: `The code withheld your answer: ${reasons}. Write it again as the JSON array. Every number must be copied exactly, without rounding, from a tool result you list in toolRefs (available refs: ${refs.join(", ") || "none"}) or in a verified quote; put what you cannot support in an expert block without numbers.` });
+    try {
+      const again = await env.chat(messages, undefined);
+      rounds++;
+      if (again.content) checked = check(again.content);
+    } catch {
+      /* the first result stands */
+    }
+  }
   return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1 };
 }

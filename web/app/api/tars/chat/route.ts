@@ -80,7 +80,7 @@ export async function POST(req: Request) {
           { message, history, lastTarget, ui },
         );
         if (result.report.dropped.length || result.report.flaggedNumbers.length) console.warn("[pyrion] expert answer check:", JSON.stringify(result.report));
-        send({ type: "result", blocks: result.kept, dropped: result.report.dropped.length, flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, steps: result.steps, model: used });
+        send({ type: "result", blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, steps: result.steps, model: used });
       } catch (e) {
         if (e instanceof RateLimited) send({ type: "error", error: e.message });
         else if (e instanceof NoModelAvailable) send({ type: "error", error: STRUCTURED });

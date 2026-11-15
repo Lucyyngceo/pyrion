@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ExperimentsNeeded } from "@/lib/engine";
 import ExperimentsView from "../ExperimentsView";
 import { resolveMode, viewFor, type Mode } from "@/lib/tars/answer";
+import { ExpertAnswer, History } from "./TarsExtras";
 import { useTars, type HelpAnswer, type Msg } from "./TarsProvider";
 
 const MODES: { id: Mode; label: string; hint: string }[] = [
@@ -135,8 +136,9 @@ function Help({ help }: { help: HelpAnswer }) {
 
 /** The chat itself: used by the floating panel and by the /tars page. */
 export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean }) {
-  const { mode, setMode, messages, busy, send, skill } = useTars();
+  const { mode, setMode, messages, busy, status, send, skill } = useTars();
   const [text, setText] = useState("");
+  const [showHistory, setShowHistory] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -147,8 +149,13 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
   }, [messages.length, busy]);
 
   return (
-    <div className="tars-chat">
+    <div className={`tars-chat${showHistory ? " with-history" : ""}`}>
+      {showHistory && <History />}
+      <div className="tars-main">
       <div className="tars-top">
+        <button type="button" className="chip" aria-pressed={showHistory} onClick={() => setShowHistory((h) => !h)} title="Your conversations, kept in this browser">
+          History
+        </button>
         <div className="seg" role="group" aria-label="TARS mode">
           {MODES.map((m) => (
             <button key={m.id} type="button" aria-pressed={mode === m.id} title={m.hint} onClick={() => setMode(m.id)}>
@@ -170,7 +177,7 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
       <div className="tars-log" role="log" aria-live="polite">
         {messages.length === 0 && (
           <p className="tars-hello">
-            Ask about a condition (“34 % oxygen at 8.2 psia on the Moon”) and I answer in three parts: KNOWN, UNKNOWN, NEXT. Or ask about the site (“how do I add a source?”).
+            Ask me anything about fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own expert reasoning.
           </p>
         )}
         {messages.map((m) => (
@@ -182,11 +189,16 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
               </p>
             )}
             {m.role === "tars" && m.kind === "help" && <Help help={m.help} />}
+            {m.role === "tars" && m.kind === "expert" && <ExpertAnswer msg={m} />}
             {m.role === "tars" && m.kind === "answer" && <Answer msg={m} />}
             {m.role === "tars" && m.kind === "experiments" && <Experiments msg={m} />}
           </div>
         ))}
-        {busy && <p className="muted small">TARS is working…</p>}
+        {busy && (
+          <p className="tars-status small" role="status" aria-live="polite">
+            <span className="tars-dots" aria-hidden="true" /> {status ?? "TARS is working…"}
+          </p>
+        )}
         <div ref={end} />
       </div>
 
@@ -207,6 +219,7 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
           Send
         </button>
       </form>
+      </div>
     </div>
   );
 }
