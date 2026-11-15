@@ -201,7 +201,9 @@ export function buildNarrationInput(
     tgt.pressure_kpa = sig(t.pressure, 4);
     tgt.pressure_psia = sig(t.pressure / KPA_PER_PSI, 3);
   }
-  if (t.gravity_level !== undefined) tgt.gravity_level_g = t.gravity_level;
+  // A stated gravity level is informational in the engine's target (it selects the regime, it is not compared).
+  const gl = target.informational?.gravity_level;
+  if (gl !== undefined) tgt.gravity_level_g = gl;
   const top = rows.slice(0, maxTop).map((r) => {
     const c = clusters.get(`${r.accession}|${r.decidingCluster}`);
     return {
@@ -252,17 +254,26 @@ export async function sha256Hex(text: string): Promise<string | null> {
  * Returns the target or a readable error. Runs before any paid call.
  */
 export function shapeTarget(x: unknown): { ok: true; target: Target } | { ok: false; error: string } {
-  const o = x as { regime?: unknown; continuous?: unknown } | null;
+  const o = x as { regime?: unknown; continuous?: unknown; informational?: unknown } | null;
   if (o === null || typeof o !== "object" || Array.isArray(o)) return { ok: false, error: "target must be an object" };
-  if (Object.keys(o).some((k) => k !== "regime" && k !== "continuous")) return { ok: false, error: "target has unknown fields" };
-  const { regime, continuous } = o;
+  if (Object.keys(o).some((k) => k !== "regime" && k !== "continuous" && k !== "informational")) return { ok: false, error: "target has unknown fields" };
+  const { regime, continuous, informational } = o;
   if (typeof regime !== "object" || regime === null || Array.isArray(regime) || typeof continuous !== "object" || continuous === null || Array.isArray(continuous)) {
     return { ok: false, error: "target needs regime and continuous objects" };
   }
   if (Object.keys(regime).length > 8 || Object.keys(continuous).length > 12) return { ok: false, error: "target is too large" };
   for (const v of Object.values(regime)) if (typeof v !== "string" || v.length > 40) return { ok: false, error: "regime values must be short strings" };
   for (const v of Object.values(continuous)) if (typeof v !== "number" || !Number.isFinite(v)) return { ok: false, error: "continuous values must be finite numbers" };
-  const target = { regime: { ...(regime as Record<string, string>) }, continuous: { ...(continuous as Record<string, number>) } } as Target;
+  let info: Target["informational"];
+  if (informational !== undefined) {
+    if (typeof informational !== "object" || informational === null || Array.isArray(informational)) return { ok: false, error: "informational must be an object" };
+    const i = informational as Record<string, unknown>;
+    if (Object.keys(i).some((k) => k !== "gravity_level" && k !== "gravity_not_covered")) return { ok: false, error: "informational has unknown fields" };
+    if (i.gravity_level !== undefined && (typeof i.gravity_level !== "number" || !Number.isFinite(i.gravity_level))) return { ok: false, error: "gravity_level must be a finite number" };
+    if (i.gravity_not_covered !== undefined && (typeof i.gravity_not_covered !== "string" || i.gravity_not_covered.length > 300)) return { ok: false, error: "gravity_not_covered must be short text" };
+    info = { ...(i.gravity_level !== undefined ? { gravity_level: i.gravity_level as number } : {}), ...(i.gravity_not_covered !== undefined ? { gravity_not_covered: i.gravity_not_covered as string } : {}) };
+  }
+  const target = { regime: { ...(regime as Record<string, string>) }, continuous: { ...(continuous as Record<string, number>) }, ...(info ? { informational: info } : {}) } as Target;
   try {
     validateTarget(target);
   } catch (e) {

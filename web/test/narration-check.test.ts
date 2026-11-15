@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { modelText } from "../lib/narration-check.ts";
-import { isOxygenPartialPressure, parseTargetReply, supportedByQuestion } from "../lib/ask-core.ts";
+import { buildNarrationInput, isOxygenPartialPressure, parseTargetReply, shapeTarget, supportedByQuestion } from "../lib/ask-core.ts";
+import { evaluate, targetFromQuantities } from "../../engine/src/index.ts";
 
 const Q = "Would solid fuel burn differently in a lunar base at 30% oxygen and 10.2 psi?";
 const reply = (o: Record<string, unknown>) => JSON.stringify({ gravity: null, o2: null, pressure: null, flow_velocity: null, sample_thickness: null, ambient_temperature: null, gravity_regime: null, fuel_phase: null, diluent: null, flame_type: null, assumptions: [], ...o });
@@ -84,4 +85,25 @@ test("m7: the unit must match exactly, including no unit", () => {
   const o = parseTargetReply(reply({ o2: "2" }), "A 2 mm PMMA rod in 21 % oxygen");
   assert.equal(o.target.continuous.o2_mole_fraction, undefined);
   assert.match(o.warnings.join(" "), /not in the question/);
+});
+
+test("gravity level is informational in the target: parse, shape and narration input read it from there", () => {
+  const lunar = parseTargetReply(reply({ gravity: "lunar", o2: "30%" }), "a lunar base at 30% oxygen");
+  assert.equal(lunar.target.informational?.gravity_level, 0.165);
+  assert.equal(lunar.target.continuous.gravity_level, undefined);
+  // narrate accepts the informational block and still rejects unknown fields
+  assert.equal(shapeTarget(lunar.target).ok, true);
+  assert.equal(shapeTarget({ ...lunar.target, extra: 1 }).ok, false);
+  assert.equal(shapeTarget({ regime: {}, continuous: {}, informational: { gravity_level: 0.165, other: 1 } }).ok, false);
+  assert.equal(shapeTarget({ regime: {}, continuous: {}, informational: { gravity_level: "x" } }).ok, false);
+  // the number is still available to the context from the informational block
+  const t = targetFromQuantities({ gravity: "lunar", o2: "30 %" });
+  if (!t.ok) throw new Error("target");
+  const { input } = buildNarrationInput(evaluate([], t.target), [], t.target);
+  assert.equal(input.target.gravity_level_g, 0.165);
+  // above the normal band the engine's note travels with the target
+  const high = targetFromQuantities({ gravity: "2 g" });
+  if (!high.ok) throw new Error("target");
+  assert.ok(high.target.informational?.gravity_not_covered);
+  assert.equal(shapeTarget(high.target).ok, true);
 });

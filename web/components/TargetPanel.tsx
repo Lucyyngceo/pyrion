@@ -11,6 +11,8 @@ export interface TargetState {
   o2: number;
   pressure: number;
   gravityLevel?: number;
+  /** The engine's note when a stated gravity has no regime in this dataset (for example above 1 g). */
+  gravityNotCovered?: string;
 }
 
 interface Props {
@@ -62,9 +64,11 @@ export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedO
       ...state,
       presetId: fromPreset ? null : state.presetId,
       regime: { ...state.regime, [axis]: value === "" ? undefined : value },
+      gravityNotCovered: undefined,
     });
   };
-  const setNum = (k: "o2" | "pressure" | "gravityLevel", v: number | undefined) => onChange({ ...state, presetId: null, [k]: v });
+  const setNum = (k: "o2" | "pressure" | "gravityLevel", v: number | undefined) =>
+    onChange({ ...state, presetId: null, [k]: v, ...(k === "gravityLevel" ? { gravityNotCovered: undefined } : {}) });
 
   const o2pct = Math.round(state.o2 * 1000) / 10;
   const p = Math.round(state.pressure * 10) / 10;

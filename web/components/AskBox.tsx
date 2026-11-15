@@ -50,7 +50,8 @@ function describe(p: ParsedTarget): string {
   for (const [k, v] of Object.entries(t.regime)) if (v) parts.push(`${k.replaceAll("_", " ")}: ${valueLabel(v)}`);
   if (t.continuous.o2_mole_fraction !== undefined) parts.push(`O₂ ${fmt(t.continuous.o2_mole_fraction * 100, 1)} %`);
   if (t.continuous.pressure !== undefined) parts.push(`${fmt(t.continuous.pressure, 1)} kPa (${fmt(kpaToPsi(t.continuous.pressure), 1)} psia)`);
-  if (t.continuous.gravity_level !== undefined) parts.push(`${fmt(t.continuous.gravity_level, 3)} g`);
+  if (t.informational?.gravity_level !== undefined) parts.push(`${fmt(t.informational.gravity_level, 3)} g`);
+  if (t.informational?.gravity_not_covered) parts.push(`gravity: ${t.informational.gravity_not_covered}`);
   return parts.length ? parts.join(" · ") : "nothing stated";
 }
 

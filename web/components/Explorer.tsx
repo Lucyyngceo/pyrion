@@ -37,10 +37,11 @@ function toTarget(s: TargetState): Target {
   const regime: Target["regime"] = {};
   for (const [k, v] of Object.entries(s.regime)) if (v) regime[k as keyof Target["regime"]] = v;
   const continuous: Target["continuous"] = { o2_mole_fraction: s.o2, pressure: s.pressure };
-  if (s.regime.gravity_regime === "partial_gravity" && s.gravityLevel !== undefined && Number.isFinite(s.gravityLevel)) {
-    continuous.gravity_level = s.gravityLevel;
-  }
-  return { regime, continuous };
+  // A gravity level is informational in the engine's target: shown, never compared.
+  const informational: NonNullable<Target["informational"]> = {};
+  if (s.regime.gravity_regime === "partial_gravity" && s.gravityLevel !== undefined && Number.isFinite(s.gravityLevel)) informational.gravity_level = s.gravityLevel;
+  if (s.gravityNotCovered) informational.gravity_not_covered = s.gravityNotCovered;
+  return Object.keys(informational).length > 0 ? { regime, continuous, informational } : { regime, continuous };
 }
 
 export default function Explorer({ dataset }: { dataset: Dataset }) {
@@ -202,7 +203,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
       regime: { ...p.target.regime },
       o2: p.target.continuous.o2_mole_fraction ?? st.o2,
       pressure: p.target.continuous.pressure ?? st.pressure,
-      gravityLevel: p.target.continuous.gravity_level,
+      gravityLevel: p.target.informational?.gravity_level,
+      gravityNotCovered: p.target.informational?.gravity_not_covered,
     }));
 
   return (
