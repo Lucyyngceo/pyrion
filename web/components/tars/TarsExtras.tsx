@@ -74,6 +74,11 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
   const r: ExpertResult = msg.result;
   return (
     <div className="tars-answer tars-expert">
+      {r.steps.some((x) => x.tool === "what_if_experiment") && (
+        <p className="tars-label" role="note">
+          Hypothetical: not a measurement. The simulated test exists only in this answer and is never saved to the data.
+        </p>
+      )}
       {r.blocks.length === 0 && <p className="muted">TARS had nothing it could stand behind for that question. Try asking it another way.</p>}
       {r.blocks.map((b, i) => {
         const L = LAYER[b.layer];

@@ -119,3 +119,20 @@ test("no more than six rounds: the last one has no tools and the agent still ans
   assert.equal(r.rounds, 6);
   assert.equal(r.kept[0].text, "Done.");
 });
+
+test("what-if: a hypothetical test is labelled, changes the counts in memory only, and is never added to the records", async () => {
+  const before = records.length;
+  const st = newState({ regime: { gravity_regime: "partial_gravity" }, continuous: { o2_mole_fraction: 0.34, pressure: 56.54 } });
+  const env = { records, investigations: [], library: null, topics, chat: async () => ({ content: "" }) };
+  const out = (await executeTool("what_if_experiment", { label: "PMMA rod, lunar gravity", gravity_regime: "partial_gravity", fuel_phase: "solid", o2: "34 %", pressure: "8.2 psia" }, env, st)) as {
+    hypothetical: boolean; label: string; before: Record<string, number>; after: Record<string, number>; error?: string;
+  };
+  assert.equal(out.error, undefined, JSON.stringify(out));
+  assert.equal(out.hypothetical, true);
+  assert.match(out.label, /^HYPOTHETICAL: .*Not a measurement; never saved/);
+  assert.equal(out.before.APPLICABLE, 0, "PSI has no partial-gravity test");
+  assert.ok(out.after.APPLICABLE > out.before.APPLICABLE, "the hypothetical test would make one investigation applicable");
+  assert.ok(out.after.mapCellsWithApplicableEvidence > out.before.mapCellsWithApplicableEvidence, "the map would grow");
+  assert.equal(records.length, before, "the records are untouched");
+  assert.ok(Object.keys(st.engine).length === 1, "the result is an engine output the answer may cite");
+});

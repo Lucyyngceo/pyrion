@@ -4,7 +4,7 @@
 // The model never decides a verdict and never does arithmetic: verdicts come from engine tools, numbers from calculators or
 // verified quotes. Its final answer is a list of layered blocks; checkAnswer keeps only what survives.
 
-import { evaluate, experimentsNeeded, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
+import { evaluate, evidenceMap, experimentsNeeded, parseQuantity, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
 import { readByCode } from "../ask-core.ts";
 import { searchTopics, MIN_SCORE, type Topic } from "../tars/help.ts";
 import { CALCULATOR_SPECS, runCalculator, type ToolResult } from "./calculators.ts";
@@ -110,6 +110,7 @@ const STATUS: Record<string, string> = {
   describe_ui: "Looking at the page…",
   show_on_envelope: "Preparing the envelope…",
   highlight: "Preparing the highlight…",
+  what_if_experiment: "Simulating the experiment (hypothetical)…",
 };
 
 const calcNames = Object.keys(CALCULATOR_SPECS);
@@ -138,6 +139,27 @@ export const TOOLS: ToolDef[] = [
       parameters: { type: "object", properties: { name: { type: "string", enum: calcNames }, args: { type: "object" } }, required: ["name", "args"] },
     },
   },
+  {
+    type: "function",
+    function: {
+      name: "what_if_experiment",
+      description:
+        "What if this experiment were run? Adds ONE HYPOTHETICAL test (never saved, never a measurement) to the records in memory and reports how the verdict counts and the evidence map would change for the current target. Always call it a hypothetical.",
+      parameters: {
+        type: "object",
+        properties: {
+          label: { type: "string", description: "A short name for the experiment, e.g. 'PMMA rod at 34 % O2, 8.2 psia, lunar gravity'" },
+          gravity_regime: { type: "string", enum: ["microgravity", "partial_gravity", "normal_gravity"] },
+          fuel_phase: { type: "string", enum: ["solid", "liquid", "gas"] },
+          diluent: { type: "string" },
+          flame_type: { type: "string", enum: ["normal", "inverse"] },
+          o2: { type: "string", description: 'oxygen as written, e.g. "34 %"' },
+          pressure: { type: "string", description: 'total pressure WITH its unit, e.g. "8.2 psia"' },
+        },
+        required: ["label", "gravity_regime", "fuel_phase", "o2", "pressure"],
+      },
+    },
+  },
   { type: "function", function: { name: "describe_ui", description: "What the page the visitor is on shows, and the help topics about the parts of this site.", parameters: { type: "object", properties: { topic: { type: "string" } } } } },
   { type: "function", function: { name: "show_on_envelope", description: "Offer the visitor a button that loads the current target into the dashboard.", parameters: { type: "object", properties: {} } } },
   { type: "function", function: { name: "highlight", description: `Offer a button that highlights a part of the page. element is one of: ${Object.keys(HIGHLIGHTS).join(", ")}.`, parameters: { type: "object", properties: { element: { type: "string", enum: Object.keys(HIGHLIGHTS) } }, required: ["element"] } } },
@@ -154,7 +176,7 @@ Hard rules (code enforces them):
 4. Copy every number EXACTLY as it appears in a tool result: never round it, never convert it, never restate an input (such as a pressure the visitor typed) unless it appears in that result. If you need another figure, call the calculator again.
 5. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
 
-When the visitor gives a condition, call set_condition first; for a follow-up like "and at 25 %?" call it with based_on_previous: true so only the stated change applies. Use show_on_envelope when the visitor may want to see the condition on the dashboard, and highlight to point at parts of the page.
+When the visitor gives a condition, call set_condition first; for a follow-up like "and at 25 %?" call it with based_on_previous: true so only the stated change applies. For "what if we ran this experiment?" questions call what_if_experiment and always say the result is hypothetical, not a measurement. Use show_on_envelope when the visitor may want to see the condition on the dashboard, and highlight to point at parts of the page.
 
 Final answer: ONLY a JSON array of blocks, no other text:
 [{"layer":"engine"|"nasa"|"expert","text":"...","citations":[{"doc_id":"...","page":1,"quote":"exact words from the page"}],"toolRefs":["t1"]}]
@@ -183,6 +205,20 @@ export function mergeTargets(prev: Target, next: Target): Target {
     continuous: { ...prev.continuous, ...next.continuous },
     ...(prev.informational || next.informational ? { informational: { ...prev.informational, ...next.informational } } : {}),
   };
+}
+
+/** One hypothetical test as engine records. In memory only: it is never written anywhere. */
+export function hypotheticalRecords(x: { gravity_regime: string; fuel_phase: string; diluent?: string; flame_type?: string; o2: number; pressureKpa: number }): ConditionRecord[] {
+  const base = { accession: "HYPOTHETICAL", test_id: "what-if-1", method: "document" as const, source_file: "hypothetical", source_location: "what-if", quote: "hypothetical experiment, not a measurement", status: "extracted" as const, note: "HYPOTHETICAL: not a measurement", unit_original: "" };
+  const rows: [string, string, string][] = [
+    ["o2_mole_fraction", String(x.o2), "1"],
+    ["pressure", String(x.pressureKpa), "kPa"],
+    ["gravity_regime", x.gravity_regime, ""],
+    ["fuel_phase", x.fuel_phase, ""],
+    ...(x.diluent ? ([["diluent", x.diluent, ""]] as [string, string, string][]) : []),
+    ...(x.flame_type ? ([["flame_type", x.flame_type, ""]] as [string, string, string][]) : []),
+  ];
+  return rows.map(([variable, value, unit], i) => ({ ...base, variable, value, unit, value_original: value, origin: { file: "hypothetical", line: i + 2 } }));
 }
 
 export function newState(target: Target | null = null): AgentState {
@@ -279,6 +315,29 @@ export async function executeTool(name: string, args: Record<string, unknown>, e
         // A calculator is code too: an engine block may restate its result.
         if (r.ok) s.engine[id] = { display: r.display, value: r.value, unit: r.unit, also: r.also, numbers: r.numbers };
         return r.ok ? { ref: id, result: r.display, provenance: r.provenance } : { ref: id, error: r.message };
+      }
+      case "what_if_experiment": {
+        const o2 = parseQuantity(String(args.o2 ?? ""), "o2_mole_fraction");
+        const pr = parseQuantity(String(args.pressure ?? ""), "pressure");
+        if (!o2.ok) return { error: o2.message };
+        if (!pr.ok) return { error: pr.message };
+        const label = String(args.label ?? "hypothetical experiment").slice(0, 120);
+        const hypo = hypotheticalRecords({ gravity_regime: String(args.gravity_regime), fuel_phase: String(args.fuel_phase), diluent: args.diluent ? String(args.diluent) : undefined, flame_type: args.flame_type ? String(args.flame_type) : undefined, o2: o2.value, pressureKpa: pr.value });
+        const t: Target = s.target ?? { regime: { gravity_regime: String(args.gravity_regime) as never }, continuous: { o2_mole_fraction: o2.value, pressure: pr.value } };
+        // A grid centred on the experiment's own point (odd node count), so the single hypothetical point is a node of the map.
+        const grid = { o2: [Math.max(0.01, o2.value - 0.1), Math.min(1, o2.value + 0.1), 41] as [number, number, number], pressure: [pr.value * 0.6, pr.value * 1.4, 41] as [number, number, number] };
+        const cells = (recs: readonly ConditionRecord[]) => evidenceMap(recs, t.regime, grid).cells.filter((c) => c.applicable.length > 0).length;
+        const countsOf = (recs: readonly ConditionRecord[]) => evaluate(recs, t).counts.investigations;
+        const out = {
+          hypothetical: true,
+          label: `HYPOTHETICAL: ${label}. Not a measurement; never saved to the data.`,
+          target: targetSummary(t),
+          before: { ...countsOf(env.records), mapCellsWithApplicableEvidence: cells(env.records) },
+          after: { ...countsOf([...env.records, ...hypo]), mapCellsWithApplicableEvidence: cells([...env.records, ...hypo]) },
+        };
+        const id = ref(s);
+        s.engine[id] = out;
+        return { ref: id, ...out };
       }
       case "describe_ui": {
         const hits = searchTopics(env.topics, String(args.topic ?? ui.route ?? "what is this"), 3).filter((h) => h.score >= MIN_SCORE);
