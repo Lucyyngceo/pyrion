@@ -135,6 +135,12 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           ),
         )}
       </div>
+      {r.model && (
+        <p className="small muted tars-by">
+          Answered by {r.model.name}
+          {r.model.fellBackFrom ? ` (${r.model.fellBackFrom} was not available)` : ""} · {r.model.provider === "nim" ? "NVIDIA NIM" : "OpenRouter"}
+        </p>
+      )}
       {r.steps.length > 0 && (
         <details className="tars-steps" open={adv} key={String(adv)}>
           <summary data-help="tars-steps">How TARS got this ({r.steps.length} steps{adv && r.model ? ` · ${r.model.name}` : ""})</summary>

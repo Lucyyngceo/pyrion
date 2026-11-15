@@ -74,10 +74,11 @@ export const MODEL_INFO: Readonly<Record<string, ModelInfo>> = {
     checked: "2026-11-14",
     reasoning: "required",
   },
-  "qwen/qwen3.8-27b": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
+  "qwen/qwen3.8-27b": { name: "Qwen3.8 27B", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
   "moonshotai/kimi-k2.6": { open_weights: true, license: "Modified MIT", source: "https://huggingface.co/moonshotai/Kimi-K2.6", checked: "2026-11-14" },
   "google/gemma-4-31b-it": { open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
   "nvidia/nemotron-3-ultra-550b-a55b": {
+    name: "Nemotron 3 Ultra",
     thinking: false,
     open_weights: true,
     license: "OpenMDW-1.1 (per NVIDIA NGC catalog)",

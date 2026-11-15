@@ -5,10 +5,11 @@
 // verified quotes. Its final answer is a list of layered blocks; checkAnswer keeps only what survives.
 
 import { evaluate, evidenceMap, experimentsNeeded, parseQuantity, routesToEvidence, targetFromQuantities, threePartAnswer, type ConditionRecord, type Target, type TargetQuantities } from "../../../engine/src/index.ts";
+import { axisLabel, valueLabel, verdictLabel, levelSentence } from "../../../engine/src/labels.ts";
 import { readByCode } from "../ask-core.ts";
 import { searchTopics, MIN_SCORE, type Topic } from "../tars/help.ts";
 import { CALCULATOR_SPECS, runCalculator, type ToolResult } from "./calculators.ts";
-import { checkAnswer, type Corpus, type CheckResult } from "./claims.ts";
+import { checkAnswer, quoteFound, type Corpus, type CheckResult } from "./claims.ts";
 
 export interface Inv {
   accession: string;
@@ -174,7 +175,10 @@ Hard rules (code enforces them):
 2. Verdicts (applicable, extrapolation, insufficient evidence, not comparable) come only from the engine tools. Say "in PSI", never "no data exists".
 3. Facts from NASA documents need an exact quote from a page you found with search_nasa_library or get_page, with doc_id and page.
 4. Copy every number EXACTLY as it appears in a tool result: never round it, never convert it, never restate an input (such as a pressure the visitor typed) unless it appears in that result. If you need another figure, call the calculator again.
-5. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
+5. Gravity levels and every other figure come from run_calculator (gravityValue for Moon, Mars, Earth) or a verified quote. Do not number points with digits such as (1) or 2.: use bullets or words, because a digit with no source is removed.
+6. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
+
+A question that asks what would happen, why, or to explain MUST be answered with an expert block that explains the physics in your own words (what raises or lowers flammability and why, what changes without buoyancy, what is uncertain). Engine blocks alone are not an answer to it. For physics questions the library has already been searched: include a nasa block with an exact quote whenever a passage matches. Use plain words: never write verdict codes or snake_case names.
 
 When the visitor gives a condition, call set_condition first; for a follow-up like "and at 25 %?" call it with based_on_previous: true so only the stated change applies. For "what if we ran this experiment?" questions call what_if_experiment and always say the result is hypothetical, not a measurement. Use show_on_envelope when the visitor may want to see the condition on the dashboard, and highlight to point at parts of the page.
 
@@ -185,10 +189,34 @@ Final answer: ONLY a JSON array of blocks, no other text:
 - expert blocks are your explanation; list the "ref" of any tool whose numbers you use.
 Keep it as short as a good answer allows. Write in the visitor's language.`;
 
+const VERDICT_CODES: Record<string, string> = {
+  APPLICABLE: "applicable",
+  EXTRAPOLATION: "extrapolation",
+  INSUFFICIENT_EVIDENCE: "insufficient evidence",
+  REGIME_BARRIER: "not comparable (different regime)",
+};
+
+/** Raw engine codes never reach a reader: verdict codes and snake_case names become the engine's plain labels. Quotes are not touched (they are not in `text`). */
+export function plainify(text: string): string {
+  return text
+    .replace(/\b[A-Z]{2,}(?:_[A-Z0-9]+)+\b/g, (m) => VERDICT_CODES[m] ?? m.toLowerCase().replaceAll("_", " "))
+    .replace(/\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b/g, (m) => {
+      const v = valueLabel(m);
+      if (v !== m) return v;
+      const a = axisLabel(m);
+      return a !== m.replaceAll("_", " ") ? a : m.replaceAll("_", " ");
+    });
+}
+
+/** A "what would happen / why / explain" question must end with an explanation, not only with engine facts. */
+export function isExplanatory(message: string): boolean {
+  return /\b(what (would|will|could) (happen|occur)|what happens|why\b|how (does|do|would|come|can)|explain|what is the physics|what to expect|what.?s going on)\b/i.test(message);
+}
+
 function targetSummary(t: Target) {
   const c = t.continuous;
   return {
-    regime: t.regime,
+    regime: Object.fromEntries(Object.entries(t.regime).map(([k, v]) => [axisLabel(k), valueLabel(String(v))])),
     o2_percent: c.o2_mole_fraction !== undefined ? Number((c.o2_mole_fraction * 100).toPrecision(4)) : undefined,
     pressure_kpa: c.pressure !== undefined ? Number(c.pressure.toPrecision(4)) : undefined,
     pressure_psia: c.pressure !== undefined ? Number((c.pressure / 6.894757293168361).toPrecision(3)) : undefined,
@@ -262,9 +290,9 @@ export async function executeTool(name: string, args: Record<string, unknown>, e
         const ev = evaluate(env.records, t);
         const inv = new Map(env.investigations.map((i) => [i.accession, i]));
         const out = {
-          counts: ev.counts.investigations,
-          investigations: ev.investigations.slice(0, 40).map((i) => ({ accession: i.accession, acronym: inv.get(i.accession)?.acronym, doi: inv.get(i.accession)?.doi, verdict: i.verdict, level: i.extrapolationLevel })),
-          regimeUntested: ev.regimeUntested,
+          counts: Object.fromEntries(Object.entries(ev.counts.investigations).map(([k, v]) => [verdictLabel(k as never), v])),
+          investigations: ev.investigations.slice(0, 40).map((i) => ({ accession: i.accession, acronym: inv.get(i.accession)?.acronym, doi: inv.get(i.accession)?.doi, verdict: verdictLabel(i.verdict), level: i.extrapolationLevel ? levelSentence(i.extrapolationLevel) : undefined })),
+          regimeUntested: ev.regimeUntested ? { gravity: valueLabel(ev.regimeUntested.value), testedOnly: ev.regimeUntested.testedValues.map(valueLabel) } : undefined,
         };
         const id = ref(s);
         s.engine[id] = out;
@@ -301,7 +329,22 @@ export async function executeTool(name: string, args: Record<string, unknown>, e
       case "search_nasa_library": {
         if (!env.library) return { error: "The NASA library is not available on this server." };
         const hits = await env.library.search(String(args.query ?? ""), Math.min(Number(args.top) || 5, 8));
-        return { passages: hits.map((h) => ({ doc_id: h.doc_id, page: h.page_start, page_end: h.page_end, title: h.title, url: h.url, text: cap(h.text, 700) })) };
+        const terms = new Set(String(args.query ?? "").toLowerCase().match(/[a-z0-9]{4,}/g) ?? []);
+        return {
+          note: "Quote only a usable_quote or text copied exactly from inside ONE page (at most 200 characters), with that page number.",
+          passages: hits.map((h) => {
+            // A sentence of the first page of the passage that shares the most words with the question, checked to be on that page word for word.
+            const page = env.library?.page(h.doc_id, h.page_start);
+            let usable: string | undefined;
+            if (page) {
+              const sentences = page.text.split(/(?<=[.!?])\s+/).map((x) => x.replace(/\s+/g, " ").trim()).filter((x) => x.length >= 40 && x.length <= 220);
+              const score = (x: string) => (x.toLowerCase().match(/[a-z0-9]{4,}/g) ?? []).filter((w) => terms.has(w)).length;
+              const best = sentences.toSorted((a, b) => score(b) - score(a))[0];
+              if (best && score(best) > 0 && quoteFound(best, page.text)) usable = best;
+            }
+            return { doc_id: h.doc_id, page: h.page_start, title: h.title, url: h.url, ...(usable ? { usable_quote: usable } : {}), text: cap(h.text, 600) };
+          }),
+        };
       }
       case "get_page": {
         if (!env.library) return { error: "The NASA library is not available on this server." };
@@ -408,6 +451,15 @@ export async function runAgent(
   const ui = input.ui ?? {};
   const system = `${SYSTEM_PROMPT}\n\nPage context (from the visitor's browser): ${cap(JSON.stringify(ui), 1500)}\nPrevious target: ${s.target ? JSON.stringify(targetSummary(s.target)) : "none"}`;
   const messages: ChatMsg[] = [{ role: "system", content: system }, ...(input.history ?? []).slice(-8).map((h) => ({ role: h.role, content: cap(h.text, 1200) }) as ChatMsg), { role: "user", content: input.message }];
+  // For explanations the NASA library is searched first, so the model sees the passages and a verified quote is always possible.
+  const explain = isExplanatory(input.message);
+  let passagesFound = false;
+  if (explain && env.library) {
+    const out = await executeTool("search_nasa_library", { query: input.message, top: 5 }, env, s, ui);
+    passagesFound = Array.isArray(out.passages) && out.passages.length > 0;
+    messages.push({ role: "assistant", content: null, tool_calls: [{ id: "pre-search", type: "function", function: { name: "search_nasa_library", arguments: JSON.stringify({ query: input.message, top: 5 }) } }] });
+    messages.push({ role: "tool", tool_call_id: "pre-search", content: JSON.stringify(out) });
+  }
   let content = "";
   let rounds = 0;
   for (; rounds < MAX_ROUNDS; rounds++) {
@@ -438,20 +490,38 @@ export async function runAgent(
   const check = (text: string) => checkAnswer(parseBlocks(text), { corpus: env.library?.corpus ?? empty, engine: s.engine, tools: s.tools });
   // Tool-call markup written as text is not an answer.
   const leaked = /<tool_call|<function=|<\/?parameter/i.test(content);
-  let checked = leaked ? { kept: [], report: { dropped: [{ index: -1, layer: "answer", reason: "tool_call_text" }], flaggedNumbers: [], verifiedCitations: [] } } : check(content);
-  // One repair: when the code withheld everything, tell the model why and let it write the answer again, citing what it used.
-  if (checked.kept.length === 0 && checked.report.dropped.length > 0 && (content || leaked)) {
-    const reasons = checked.report.dropped.map((d) => `${d.layer} block: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`).join("; ");
+  let checked: CheckResult = leaked ? { kept: [], report: { dropped: [{ index: -1, layer: "answer", reason: "tool_call_text" }], flaggedNumbers: [], verifiedCitations: [] } } : check(content);
+  // One repair round for everything the rules found missing: an answer withheld, no explanation for an explanatory question, no NASA quote
+  // although the library has a matching passage.
+  const missing = (c: CheckResult): string[] => {
+    const out: string[] = [];
+    if (c.kept.length === 0 && c.report.dropped.length > 0) out.push(`the code withheld your answer: ${c.report.dropped.map((d) => `${d.layer} block: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`).join("; ")}`);
+    if (explain && !c.kept.some((k) => k.layer === "expert")) out.push("the question asks for an explanation and your answer has no expert block that explains it");
+    if (passagesFound && !c.kept.some((k) => k.layer === "nasa")) out.push("the NASA library returned matching passages but your answer has no nasa block with an exact quote and its doc_id and page");
+    return out;
+  };
+  let problems = leaked ? ["you wrote tool-call text instead of the JSON answer"] : missing(checked);
+  if (problems.length > 0 && (content || leaked)) {
     const refs = [...Object.keys(s.engine), ...Object.keys(s.tools)].filter((v, i, a) => a.indexOf(v) === i);
     messages.push({ role: "assistant", content: leaked ? "(tool call)" : content });
-    messages.push({ role: "user", content: `The code withheld your answer: ${reasons}. Write it again as the JSON array. Every number must be copied exactly, without rounding, from a tool result you list in toolRefs (available refs: ${refs.join(", ") || "none"}) or in a verified quote; put what you cannot support in an expert block without numbers.` });
+    messages.push({
+      role: "user",
+      content: `Fix this and answer again, only with the JSON array: ${problems.join("; ")}. Every number must be copied exactly, without rounding, from a tool result you list in toolRefs (available refs: ${refs.join(", ") || "none"}) or from a verified quote. Put what you cannot support in an expert block without numbers.`,
+    });
     try {
       const again = await env.chat(messages, undefined);
       rounds++;
-      if (again.content) checked = check(again.content);
+      if (again.content && !/<tool_call|<function=|<\/?parameter/i.test(again.content)) {
+        const second = check(again.content);
+        // keep the repaired answer when it is better than the first
+        if (second.kept.length >= checked.kept.length) checked = second;
+      }
     } catch {
       /* the first result stands */
     }
+    problems = missing(checked);
   }
+  // Raw codes never reach the reader, whatever the layer.
+  checked = { ...checked, kept: checked.kept.map((k) => ({ ...k, text: plainify(k.text) })) };
   return { ...checked, steps: s.steps, actions: s.actions, target: s.target, rounds: rounds + 1 };
 }

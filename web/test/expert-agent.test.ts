@@ -137,3 +137,54 @@ test("what-if: a hypothetical test is labelled, changes the counts in memory onl
   assert.equal(records.length, before, "the records are untouched");
   assert.ok(Object.keys(st.engine).length === 1, "the result is an engine output the answer may cite");
 });
+
+import { isExplanatory, plainify } from "../lib/expert/agent.ts";
+
+test("no verdict code or snake_case name reaches the reader, from any layer", async () => {
+  assert.equal(plainify("PSI-26 is REGIME_BARRIER at 'partial_gravity' and o2_mole_fraction is 21 %"), "PSI-26 is not comparable (different regime) at 'partial gravity' and oxygen is 21 %");
+  const s = script([
+    () => ({ content: null, tool_calls: [call("1", "set_condition", { text: "21% oxygen at 14.7 psia in microgravity" }), call("2", "evaluate_condition", {})] }),
+    (m) => ({
+      content: JSON.stringify([
+        { layer: "engine", text: "The engine reports 3 REGIME_BARRIER investigations for gravity_regime partial_gravity.", toolRefs: [toolOut(m, 1).ref] },
+        { layer: "expert", text: "In INSUFFICIENT_EVIDENCE cases the fuel_phase is missing." },
+      ]),
+    }),
+  ]);
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "21% at 14.7 psia" });
+  assert.ok(r.kept.length >= 1);
+  for (const b of r.kept) {
+    assert.ok(!/\b[A-Z]{2,}(?:_[A-Z0-9]+)+\b/.test(b.text), b.text);
+    assert.ok(!/\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b/.test(b.text), b.text);
+  }
+  // the engine tool itself speaks plain words
+  const ev = JSON.stringify(toolOut(s.seen[1], 1));
+  assert.ok(!/APPLICABLE|REGIME_BARRIER|EXTRAPOLATION|INSUFFICIENT_EVIDENCE/.test(ev), "tool output carries plain verdict names");
+});
+
+test("an explanatory question must end with an expert block and a NASA quote: one repair round asks for what is missing", async () => {
+  assert.ok(isExplanatory("What would happen if we burned PMMA on the Moon?"));
+  assert.ok(isExplanatory("Why is the flame round in microgravity?"));
+  assert.ok(!isExplanatory("What is 34% oxygen at 8.2 psia?"));
+  const asks: string[] = [];
+  const s = script([
+    // first answer: engine facts only
+    () => ({ content: null, tool_calls: [call("1", "run_calculator", { name: "o2PartialPressure", args: { o2: "34 %", pressure: "8.2 psia" } })] }),
+    (m) => ({ content: JSON.stringify([{ layer: "engine", text: "The oxygen partial pressure is 19.22 kPa (2.788 psia).", toolRefs: [toolOut(m, 1).ref] }]) }),
+    // after the repair request: the explanation and a verified quote
+    (m) => {
+      asks.push(String(m[m.length - 1].content));
+      return {
+        content: JSON.stringify([
+          { layer: "nasa", text: "FM2 plans four burns of one fabric.", citations: [{ doc_id: "nasa/ntrs-1/x.pdf", page: 3, quote: "FM2 plans four burns of one fabric at 8.2 psia" }] },
+          { layer: "expert", text: "With less total pressure but more oxygen, and no buoyancy to carry the flame away, the burn can behave differently from the same fuel on Earth." },
+        ]),
+      };
+    },
+  ]);
+  const r = await runAgent({ ...s.env, chat: s.chat }, { message: "What would happen if we burned a PMMA sheet at 34% oxygen and 8.2 psia on the Moon?" });
+  assert.match(asks[0], /no expert block/);
+  assert.match(asks[0], /no nasa block/);
+  assert.deepEqual(r.kept.map((b) => b.layer).sort(), ["expert", "nasa"]);
+  assert.ok(s.seen[0].some((m) => m.role === "tool" && m.tool_call_id === "pre-search"), "the library was searched before the first model turn");
+});

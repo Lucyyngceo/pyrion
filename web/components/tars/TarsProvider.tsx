@@ -23,7 +23,7 @@ export interface ExpertResult {
   actions: ({ type: "show"; target: unknown } | { type: "highlight"; selector: string; label: string })[];
   target: unknown;
   steps: { tool: string; label: string }[];
-  model: { model: string; name: string; provider: string } | null;
+  model: { model: string; name: string; provider: string; fellBackFrom: string | null } | null;
 }
 
 export type Msg =

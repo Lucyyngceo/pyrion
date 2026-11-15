@@ -63,7 +63,7 @@ export async function POST(req: Request) {
       const send = (o: unknown) => controller.enqueue(enc.encode(line(o)));
       try {
         const [{ records, investigations }, topics, library] = await Promise.all([serverData(), helpTopics(), loadLibrary()]);
-        let used: { model: string; name: string; provider: string } | null = null;
+        let used: { model: string; name: string; provider: string; fellBackFrom: string | null } | null = null;
         const result = await runAgent(
           {
             records,
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
             onStatus: (text) => send({ type: "status", text }),
             chat: async (messages, tools) => {
               const c = await askLlm({ messages, tools, effort: "medium", maxTokens: 4000, maxTokensByProvider: { openrouter: 4000, nim: 4000 }, deadlineMs: remaining(), signal: req.signal }, visitor);
-              used = { model: c.meta.model, name: displayName(c.meta.model), provider: c.meta.provider };
+              used = { model: c.meta.model, name: displayName(c.meta.model), provider: c.meta.provider, fellBackFrom: c.meta.fell_back_from ? displayName(c.meta.fell_back_from) : null };
               return (c.json?.choices?.[0]?.message ?? { content: null }) as AssistantMsg;
             },
           },
