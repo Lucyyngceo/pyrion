@@ -15,6 +15,6 @@ What it shows: That covered means inside the region spanned by measured test poi
 
 How to use it: Read it before quoting any coverage figure.
 
-Example: 0 % covered says PSI has no measurement there; it does not say a flame is safe or unsafe.
+Example: 0 % covered says no PSI test region reaches there; it does not say a flame is safe or unsafe.
 
 What it does not do: It is not a button and it does not change any number.

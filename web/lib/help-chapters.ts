@@ -21,7 +21,7 @@ export const CHAPTERS: readonly Chapter[] = [
   { slug: "method", n: 10, title: "Method", intro: "How the engine decides." },
   { slug: "glossary", n: 11, title: "Glossary", intro: "Every term used on the site." },
   { slug: "limits", n: 12, title: "Limits and honesty", intro: "What PYRION does not claim." },
-  { slug: "planner", n: 13, title: "Mission Planner", intro: "How much of the Moon Base band the PSI measurements cover, and what tests would close the rest." },
+  { slug: "planner", n: 13, title: "Mission Planner", intro: "How much of the Moon Base band lies inside the region spanned by PSI test points, and what tests would close the rest." },
 ];
 
 export const chapterBySlug = (slug: string) => CHAPTERS.find((c) => c.slug === slug);
