@@ -122,13 +122,10 @@ function Ticks({ min, max, marks }: { min: number; max: number; marks: Mark[] })
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
 interface ControlsProps extends PanelProps {
-  verifiedOnly: boolean;
-  onVerifiedOnly: (v: boolean) => void;
-  verifiedCount: number;
 }
 
 /** Left column, below: "Your condition" first, then "Other axes". */
-export function ControlsPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount }: ControlsProps) {
+export function ControlsPanel({ state, onChange }: ControlsProps) {
   const id = useId();
   const preset = PRESET_VIEWS.find((v) => v.preset.id === state.presetId)?.preset;
 
@@ -232,13 +229,6 @@ export function ControlsPanel({ state, onChange, verifiedOnly, onVerifiedOnly, v
       <p className="axes-hint muted small">Leave open unless you know it: fixing an axis an investigation did not record makes it insufficient evidence.</p>
       {REGIME_AXES.filter((a) => a !== "gravity_regime").map(axisField)}
 
-      <label className={`toggle${verifiedCount === 0 ? " toggle-off" : ""}`}>
-        <input type="checkbox" checked={verifiedOnly && verifiedCount > 0} disabled={verifiedCount === 0} onChange={(e) => onVerifiedOnly(e.target.checked)} />
-        <span>
-          Count only values verified by a person <span className="muted">({verifiedCount} so far)</span>
-          {verifiedCount === 0 && <span className="toggle-note"> No value has been verified by a person yet; this switch turns on when the first is.</span>}
-        </span>
-      </label>
     </section>
   );
 }

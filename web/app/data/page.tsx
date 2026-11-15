@@ -197,8 +197,8 @@ export default async function DataPage() {
             documents with the page and the exact sentence.
           </li>
           <li>
-            Each value keeps its original text and unit, its converted value, its file and location, and a status: extracted,
-            verified by a person, or flagged as insufficient evidence.
+            Each value keeps its original text and unit, its converted value, its file and location, and a status: extracted, or
+            flagged as insufficient evidence.
           </li>
           <li>
             Automated checks run on every change: schema, provenance, cell trace against the source file, unit conversion,

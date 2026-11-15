@@ -212,7 +212,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           </span>
           {hasLimits && (
             <span>
-              <i className="lg-tri" /> limit read from the test notes (interpreted, verified): ▽ quench, △ blowoff
+              <i className="lg-tri" /> limit read from the test notes (interpreted from the table): ▽ quench, △ blowoff
             </span>
           )}
         </div>
@@ -408,7 +408,7 @@ function StretchMap({
                     d={ex?.limit_type === "quench" ? `M${limX - 6} ${y - 7}h12l-6 12z` : `M${limX - 6} ${y + 7}h12l-6 -12z`}
                     className={`tm-lim tm-lim-${ex?.limit_type}`}
                   >
-                    <title>{`${ex?.limit_type} limit read from the test notes: ${ex?.extinction_flow_cm_s} cm/s (interpreted, verified)`}</title>
+                    <title>{`${ex?.limit_type} limit read from the test notes: ${ex?.extinction_flow_cm_s} cm/s (interpreted from the table)`}</title>
                   </path>
                 )}
                 {fmV !== null && <path d={`M${fmV} ${y - 6}l4 6l-4 6l-4 -6z`} className="tm-fm" />}

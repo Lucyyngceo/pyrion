@@ -1,6 +1,5 @@
 import BootLog from "@/components/BootLog";
 import Explorer from "@/components/Explorer";
-import Link from "next/link";
 import { loadDataset, loadLineage } from "@/lib/data";
 import "./navigator.css";
 
@@ -45,9 +44,9 @@ export default async function Page() {
             <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of 24 PSI investigations
             {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}
           </div>
-          <div className="es-bar" role="img" aria-label={`${traced ?? 0} located by code in the NASA source, ${traced === null ? usable : usable - traced} not located by code, ${s.flagged} flagged as insufficient evidence, ${s.verified} checked by a person`}>
-            <i className="es-ver" style={{ flexGrow: traced ?? s.verified }} />
-            <i className="es-ext" style={{ flexGrow: traced === null ? usable - s.verified : usable - traced }} />
+          <div className="es-bar" role="img" aria-label={`${traced ?? 0} located by code in the NASA source, ${traced === null ? usable : usable - traced} not located by code, ${s.flagged} flagged as insufficient evidence`}>
+            <i className="es-ver" style={{ flexGrow: traced ?? 0 }} />
+            <i className="es-ext" style={{ flexGrow: traced === null ? usable : usable - traced }} />
             <i className="es-flag" style={{ flexGrow: s.flagged }} />
           </div>
           <ul className="es-legend small">
@@ -62,9 +61,6 @@ export default async function Page() {
             </li>
             <li>
               <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged insufficient, not counted
-            </li>
-            <li>
-              {s.verified.toLocaleString("en-US")} checked by a person so far: the last step, <Link href="/method#verification">see Method</Link>
             </li>
           </ul>
         </div>

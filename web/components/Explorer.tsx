@@ -53,7 +53,8 @@ function toTarget(s: TargetState): Target {
 
 export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [state, setState] = useState<TargetState>(INITIAL);
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
+  // The engine can count only human-verified values; the interface does not offer it.
+  const verifiedOnly = false;
   const [highlight, setHighlight] = useState<string | null>(null);
   const [openAccession, setOpenAccession] = useState<string | null>(null);
 
@@ -264,9 +265,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   }, [pinned, records, options, envelopeSet]);
   const status = result.evaluation ? envelopeStatus(result.evaluation, [...locations.values()], target) : null;
   const counts = result.evaluation?.counts.investigations;
-  const verifiedCount = useMemo(() => records.filter((r) => r.status === "verified").length, [records]);
 
-  // "Ask PYRION": the question was translated into a target by a model and validated by code.
+  // "Ask PYRION": the question was translated into a target by a model and checked by code.
   // Axes the question left open stay open; O2 and pressure it did not state keep their current value.
   const applyAsked = (p: ParsedTarget) =>
     setState((st) => ({
@@ -296,7 +296,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
       >
         <div className="nav-left">
           <PresetsPanel state={state} onChange={setState} />
-          <ControlsPanel state={state} onChange={setState} verifiedOnly={verifiedOnly} onVerifiedOnly={setVerifiedOnly} verifiedCount={verifiedCount} />
+          <ControlsPanel state={state} onChange={setState} />
         </div>
 
         <section className="card chart-card nav-center" aria-labelledby="envelope-h">

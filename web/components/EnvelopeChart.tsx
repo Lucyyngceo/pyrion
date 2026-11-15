@@ -756,7 +756,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             </div>
             <div className="muted">{envelopeLongName(hover.env)}</div>
             <div className="muted">
-              {hover.point.citations.every((c) => c.status === "verified") ? "checked by a person" : "extracted, not yet checked by a person"}
+              file and location given
             </div>
             <div className="tt-hint">Click: open its receipt</div>
           </div>
