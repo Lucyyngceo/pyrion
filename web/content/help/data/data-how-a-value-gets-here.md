@@ -11,7 +11,7 @@ highlight: [data-help="data-how-a-value-gets-here"]
 ---
 What it is: A prose section.
 
-What it shows: The path of a value: extraction with quotation, an independent check, then validation by code.
+What it shows: The path of a value: extraction with quotation, a check by a separate AI reviewer agent, then validation by code.
 
 How to use it: Read it for the method.
 

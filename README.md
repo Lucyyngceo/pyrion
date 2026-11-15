@@ -36,9 +36,9 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 
 | Tool | Models | Used for |
 |---|---|---|
-| Claude Code (Anthropic) | Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2 | Writing the engine, the web app, the validators and tests; extracting condition values from NASA documents (with a verbatim quote and location for every value, then checked by code); independent reviews and audits; documentation. Several Claude Code sessions ran in parallel, each on one part (engine, app, extraction), coordinated by one session. |
+| Claude Code (Anthropic) | Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2 | Writing the engine, the web app, the validators and tests; extracting condition values from NASA documents (with a verbatim quote and location for every value, then checked by code); reviews and audits by separate AI reviewer agents; documentation. Several Claude Code sessions ran in parallel, each on one part (engine, app, extraction), coordinated by one session. |
 | Claude Code on a second computer | Claude models | The interface redesign, merged through pull request #1. |
-| GPT (OpenAI) | GPT-6.1 Terra | The Investigations pages, the compare and materials views, and the unified downloadable dataset (built from a written brief by the coordinating Claude session, reviewed by an independent audit before commit). Log: `notes/GPT-CHANGES.md`. |
+| GPT (OpenAI) | GPT-6.1 Terra | The Investigations pages, the compare and materials views, and the unified downloadable dataset (built from a written brief by the coordinating Claude session, reviewed by a separate AI reviewer agent before commit). Log: `notes/GPT-CHANGES.md`. |
 | Grok (xAI) | Grok | The safety/phenomenon lenses (each tag with a quote verified by script), the evidence timeline and the More page; also planning notes and adversarial questions in a private working repository. Log: `notes/GROK-CHANGES.md`. |
 
 **Models that run inside the app (run time).** All of them have open weights with a license checked on the model's own page; the page names the model that answered every question.

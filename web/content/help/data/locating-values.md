@@ -21,7 +21,7 @@ In plain words: a value is only accepted if the program can open the NASA file a
 
 ## Numbers as written
 
-The numbers of a quote must appear in the file exactly as written, in the same order. The check keeps the decimal point, so `1.5` is not `15` and `.15` is not `15`. The `value_original` of a record must itself be written in its quote. This rule was added after an independent audit found that an earlier version compared numbers without their points and signs.
+The numbers of a quote must appear in the file exactly as written, in the same order. The check keeps the decimal point, so `1.5` is not `15` and `.15` is not `15`. The `value_original` of a record must itself be written in its quote. This rule was added after an audit by a separate AI reviewer agent found that an earlier version compared numbers without their points and signs.
 
 ## What it checks today, and what it does not
 

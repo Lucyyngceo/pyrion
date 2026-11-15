@@ -15,7 +15,7 @@ Nothing PYRION says is a statement that a material, a cabin atmosphere or a desi
 - **Material selection for spacecraft** is governed by NASA's standards and tests. PYRION quotes what the NASA standard NASA-STD-6001B measures (for example maximum oxygen concentration and burn length in Test 1), but it does not apply the standard and does not replace it.
 - **"What would close this gap"** is a testable plan proposed by PYRION. It is not a NASA plan and has not been reviewed or approved by anyone at NASA.
 
-No one at NASA has endorsed, validated or reviewed PYRION, and the phrase "validated by NASA" must never be applied to it. Independent checks mentioned in the project (cross-checks between separate reviewers) are internal and are not a NASA review.
+No one at NASA has endorsed, validated or reviewed PYRION, and the phrase "validated by NASA" must never be applied to it. Checks mentioned in the project (cross-checks by separate AI reviewer agents) are internal; they are not a NASA review or expert validation.
 
 ## For engineers
 
