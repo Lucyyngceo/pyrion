@@ -59,13 +59,73 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   const [openAccession, setOpenAccession] = useState<string | null>(null);
 
   const benchRef = useRef<HTMLDivElement>(null);
+  const viewKeys = useRef(false);
+  const cardRef = useRef<HTMLElement>(null);
+  const [fs, setFs] = useState(false);
+  const fsRef = useRef(false);
+  fsRef.current = fs;
+  const fsViaApi = useRef(false);
+  const pendingScroll = useRef(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const scrollY = useRef(0);
+  const enterFs = () => {
+    scrollY.current = window.scrollY;
+    setFs(true);
+    setSheetOpen(false);
+    try {
+      void cardRef.current?.requestFullscreen?.().catch(() => {});
+    } catch {
+      /* the fixed overlay stands in */
+    }
+  };
+  const exitFs = () => {
+    setFs(false);
+    try {
+      if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
+    } catch {
+      /* nothing to exit */
+    }
+  };
+  useEffect(() => {
+    // Esc in the real Fullscreen API ends it by itself; Esc in the overlay is handled here.
+    const onChange = () => {
+      if (!document.fullscreenElement && fsRef.current && fsViaApi.current) setFs(false);
+      fsViaApi.current = !!document.fullscreenElement;
+    };
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && fsRef.current && !document.fullscreenElement) setFs(false);
+    };
+    document.addEventListener("fullscreenchange", onChange);
+    window.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("fullscreenchange", onChange);
+      window.removeEventListener("keydown", onEsc);
+    };
+  }, []);
+  const wasFs = useRef(false);
+  useEffect(() => {
+    // Back from full screen: the page is where it was (the card left the flow while it was open).
+    if (wasFs.current && !fs && !pendingScroll.current) requestAnimationFrame(() => window.scrollTo(0, scrollY.current));
+    pendingScroll.current = false;
+    wasFs.current = fs;
+  }, [fs]);
+  useEffect(() => {
+    if (!fs) return;
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = prev;
+    };
+  }, [fs]);
   const overBench = useRef(false);
   // Keyboard: arrows move the target (left/right O2 0.5 %, up/down 1 kPa; Shift = x5). Ignored while typing in a field.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement | null;
       if (el && (el.tagName === "INPUT" || el.tagName === "SELECT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.metaKey || e.ctrlKey) return;
+      // Zoomed or full screen: the arrows belong to the view, and Alt+arrows move the target.
+      if (e.altKey !== (viewKeys.current || fsRef.current)) return;
       if (!overBench.current && !benchRef.current?.contains(document.activeElement)) return;
       const k = e.shiftKey ? 5 : 1;
       let dO2 = 0;
@@ -299,7 +359,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           <ControlsPanel state={state} onChange={setState} />
         </div>
 
-        <section className="card chart-card nav-center" aria-labelledby="envelope-h">
+        <section ref={cardRef} className={`card chart-card nav-center${fs ? " fs-on" : ""}`} aria-labelledby="envelope-h">
+          <div className="fs-main">
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
@@ -319,17 +380,63 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               status={status}
               seed={SEED}
               highlight={highlight}
-              onPointSelect={setOpenAccession}
+              onPointSelect={(a) => {
+                setOpenAccession(a);
+                if (fsRef.current) {
+                  pendingScroll.current = true;
+                  exitFs();
+                  requestAnimationFrame(() => document.getElementById(`res-${a}`)?.scrollIntoView({ block: "center", behavior: "smooth" }));
+                }
+              }}
               onTargetPick={(o2, pressure) => setState((s) => ({ ...s, presetId: null, o2, pressure }))}
               openAxes={result.evaluation?.openRegimeAxes ?? []}
               evidence={emap?.map ?? null}
               evidenceKey={emap?.key}
+              fs={fs}
+              onToggleFs={fs ? exitFs : enterFs}
+              onZoomedChange={(z) => {
+                viewKeys.current = z;
+              }}
             />
           ) : (
             <p className="banner">The engine rejected this target: {result.error}</p>
           )}
           {/* Slot for the evidence-map layer (N5): drawn inside the chart when the engine's evidence map exists. */}
           <div className="evidence-map-slot" data-slot="evidence-map" />
+          </div>
+          {fs && status && result.evaluation && counts && (
+            <aside className={`fs-side${sheetOpen ? " open" : ""}`} aria-label="Where the evidence is">
+              <button type="button" className="fs-handle" aria-expanded={sheetOpen} onClick={() => setSheetOpen((o) => !o)}>
+                Where the evidence is {sheetOpen ? "▾" : "▴"}
+              </button>
+              <div className="fs-side-body">
+                <NavigatorPanel
+                  evaluation={result.evaluation}
+                  investigations={dataset.investigations}
+                  status={status}
+                  targetLabel={view ? view.short : "custom condition"}
+                  counts={counts}
+                  pinned={pinned && pinnedStatus ? { label: pinned.label, headline: pinnedStatus.headline, tone: pinnedStatus.tone } : null}
+                  onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
+                  onClearPin={() => setPinned(null)}
+                  routes={routes}
+                  onApplyRoute={(t, accession) => applyRoute(t, accession)}
+                  onHover={setHighlight}
+                  onOpen={(a) => {
+                    pendingScroll.current = true;
+                    exitFs();
+                    setOpenAccession(a);
+                    requestAnimationFrame(() => document.getElementById(`res-${a}`)?.scrollIntoView({ block: "center", behavior: "smooth" }));
+                  }}
+                />
+                {/* Slot for TARS Support and the TARS chat (next phase). Renders nothing yet. */}
+                <section className="fs-tars" data-slot="tars" hidden>
+                  <h3>TARS</h3>
+                  <p>Coming in the next phase</p>
+                </section>
+              </div>
+            </aside>
+          )}
         </section>
 
         <div className="nav-right">

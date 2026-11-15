@@ -1,12 +1,12 @@
 "use client";
 
 import Term from "./Term";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { EnvelopePoint, EvidenceMap, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
 import StatusSymbol, { TONE_STATUS } from "./StatusSymbol";
-import { ATM_KPA, axisLabel, fmt, kPa, pctO2, psia } from "@/lib/units";
+import { ATM_KPA, axisLabel, fmt, kPa, kpaToPsi, pctO2, psia } from "@/lib/units";
 
 export type LayerState = "match" | "open" | "dim";
 
@@ -40,9 +40,23 @@ interface Props {
   evidence?: EvidenceMap | null;
   /** Changes with the regime selection: a new map fades in over 300 ms. */
   evidenceKey?: string;
+  /** Full-screen view (state lives in the parent, which also draws the sidebar). */
+  fs?: boolean;
+  onToggleFs?: () => void;
+  /** True while the view is zoomed: the parent then gives the arrow keys to the view (Alt+arrows move the target). */
+  onZoomedChange?: (zoomed: boolean) => void;
 }
 
-const M = { top: 22, right: 34, bottom: 54, left: 66 };
+const M0 = { top: 22, right: 34, bottom: 54, left: 66 };
+const MAX_ZOOM = 40;
+
+/** A window onto the O2-pressure plane. View state only: no engine call depends on it. */
+interface Win {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+}
 
 /** Cabin view: the pressure band of every preset, with margin. */
 const CABIN = { y0: 40, y1: 120 };
@@ -134,10 +148,11 @@ interface Hover {
 }
 
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail, evidence, evidenceKey }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail, evidence, evidenceKey, fs = false, onToggleFs, onZoomedChange }: Props) {
   const [dragging, setDragging] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
-  const [loupe, setLoupe] = useState(false);
+  const [zoom, setZoom] = useState<Win | null>(null);
+  const [boxH, setBoxH] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(780);
   const [viewportH, setViewportH] = useState(900);
@@ -156,6 +171,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     window.addEventListener("resize", onWin, { passive: true });
     const ro = new ResizeObserver(([entry]) => {
       setWidth(Math.max(320, Math.round(entry.contentRect.width)));
+      setBoxH(Math.round(entry.contentRect.height));
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => requestAnimationFrame(() => setMeasured(true)));
     });
@@ -168,11 +184,14 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
   }, []);
 
   // Fits a laptop screen: never taller than ~60% of the window, so chart and target panel share the first view.
-  const height = Math.round(Math.max(320, Math.min(540, width * 0.6, viewportH * 0.54)));
+  // Zoomed or full screen: ticks also give psia, so the left margin is wider.
+  const showPsi = fs || zoom !== null;
+  const M = showPsi ? { ...M0, left: 104 } : M0;
+  const height = fs && boxH > 120 ? boxH : Math.round(Math.max(320, Math.min(540, width * 0.6, viewportH * 0.54)));
   const iw = width - M.left - M.right;
   const ih = height - M.top - M.bottom;
 
-  const domain = useMemo(() => {
+  const base = useMemo(() => {
     const xs = [...seed.o2, target.o2];
     const ys = [...seed.pressure, target.pressure];
     for (const e of envelopes) for (const p of e.points) {
@@ -189,6 +208,103 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     const step = niceStep(yHi - yLo, 6);
     return { x0, x1, y0: Math.max(0, Math.floor(yLo / step) * step), y1: Math.ceil(yHi / step) * step };
   }, [envelopes, seed, target.o2, target.pressure, view]);
+
+  const domain = zoom ?? base;
+  const kx = (base.x1 - base.x0) / (domain.x1 - domain.x0);
+  const zoomed = kx > 1.001;
+  const viewRef = useRef({ base, domain, kx, iw, ih, ml: M.left, mt: M.top, fs });
+  viewRef.current = { base, domain, kx, iw, ih, ml: M.left, mt: M.top, fs };
+
+  /** The one place the view changes: zoom by `factor` about the fraction (fx, fy) of the plot, then pan by fractions of the window. */
+  const applyView = useCallback((factor: number, fx: number, fy: number, dfx = 0, dfy = 0) => {
+    const v = viewRef.current;
+    const b = v.base;
+    const d = v.domain;
+    const bsx = b.x1 - b.x0;
+    const bsy = b.y1 - b.y0;
+    const nk = Math.min(MAX_ZOOM, Math.max(1, v.kx * factor));
+    if (nk <= 1.001) {
+      viewRef.current = { ...v, domain: b, kx: 1 };
+      setZoom(null);
+      return;
+    }
+    const nsx = bsx / nk;
+    const nsy = bsy / nk;
+    const px = d.x0 + fx * (d.x1 - d.x0);
+    const py = d.y1 - fy * (d.y1 - d.y0);
+    const mx = 0.05 * bsx;
+    const my = 0.05 * bsy;
+    const x0 = Math.min(b.x1 + mx - nsx, Math.max(b.x0 - mx, px - fx * nsx + dfx * nsx));
+    const y1 = Math.min(b.y1 + my, Math.max(b.y0 - my + nsy, py + fy * nsy + dfy * nsy));
+    const w = { x0, x1: x0 + nsx, y0: y1 - nsy, y1 };
+    viewRef.current = { ...v, domain: w, kx: nk };
+    setZoom(w);
+  }, []);
+  const resetView = useCallback(() => {
+    viewRef.current = { ...viewRef.current, domain: viewRef.current.base, kx: 1 };
+    setZoom(null);
+  }, []);
+
+  useEffect(() => {
+    onZoomedChange?.(zoomed);
+  }, [zoomed, onZoomedChange]);
+
+  // The view follows the target when it leaves the zoomed area (a preset, a route, "Take me there").
+  useEffect(() => {
+    const v = viewRef.current;
+    if (v.kx <= 1.001 || dragging) return;
+    const d = v.domain;
+    const mx = (d.x1 - d.x0) * 0.08;
+    const my = (d.y1 - d.y0) * 0.08;
+    if (target.o2 >= d.x0 + mx && target.o2 <= d.x1 - mx && target.pressure >= d.y0 + my && target.pressure <= d.y1 - my) return;
+    const dfx = (target.o2 - (d.x0 + d.x1) / 2) / (d.x1 - d.x0);
+    const dfy = (target.pressure - (d.y0 + d.y1) / 2) / (d.y1 - d.y0);
+    applyView(1, 0.5, 0.5, dfx, dfy);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target.o2, target.pressure]);
+
+  // Wheel / trackpad zoom around the cursor. Inline it needs Ctrl (a trackpad pinch sends it), so the page still scrolls; full screen takes the plain wheel.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const on = (e: WheelEvent) => {
+      const v = viewRef.current;
+      if (!v.fs && !(e.ctrlKey || e.metaKey)) return;
+      const r = el.getBoundingClientRect();
+      const fx = (e.clientX - r.left - v.ml) / v.iw;
+      const fy = (e.clientY - r.top - v.mt) / v.ih;
+      if (fx < 0 || fx > 1 || fy < 0 || fy > 1) return;
+      e.preventDefault();
+      const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+      applyView(Math.exp(-dy * (e.ctrlKey ? 0.01 : 0.0015)), fx, fy);
+    };
+    el.addEventListener("wheel", on, { passive: false });
+    return () => el.removeEventListener("wheel", on);
+  }, [applyView]);
+
+  // Keyboard: arrows pan, + and - zoom, 0 resets. Active in full screen, or while zoomed with the pointer over the chart.
+  const overChart = useRef(false);
+  useEffect(() => {
+    const on = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (el && (el.tagName === "INPUT" || el.tagName === "SELECT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const v = viewRef.current;
+      if (!(v.fs || (v.kx > 1.001 && overChart.current))) return;
+      const step = e.shiftKey ? 0.3 : 0.1;
+      if (e.key === "ArrowLeft") applyView(1, 0.5, 0.5, -step, 0);
+      else if (e.key === "ArrowRight") applyView(1, 0.5, 0.5, step, 0);
+      else if (e.key === "ArrowUp") applyView(1, 0.5, 0.5, 0, step);
+      else if (e.key === "ArrowDown") applyView(1, 0.5, 0.5, 0, -step);
+      else if (e.key === "+" || e.key === "=") applyView(1.5, 0.5, 0.5);
+      else if (e.key === "-" || e.key === "_") applyView(1 / 1.5, 0.5, 0.5);
+      else if (e.key === "0") resetView();
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", on);
+    return () => window.removeEventListener("keydown", on);
+  }, [applyView, resetView]);
 
   const sx = (v: number) => ((v - domain.x0) / (domain.x1 - domain.x0)) * iw;
   const sy = (v: number) => ih - ((v - domain.y0) / (domain.y1 - domain.y0)) * ih;
@@ -252,6 +368,62 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
 
   const tx = sx(target.o2);
   const ty = sy(target.pressure);
+  // Pointers: a drag that starts on the target (or any drag, when not zoomed) moves the target; when zoomed, a drag elsewhere pans.
+  // Two fingers pinch and pan. A click without movement still places the target.
+  const ptrs = useRef(new Map<number, { x: number; y: number }>());
+  const gest = useRef<{ mode: "target" | "pan" | "pinch"; moved: number; x: number; y: number; mid?: { x: number; y: number }; dist?: number } | null>(null);
+  const twoFingers = () => {
+    const [a, b] = [...ptrs.current.values()];
+    return { mid: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, dist: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)) };
+  };
+  const surfDown = (ev: React.PointerEvent<SVGRectElement>) => {
+    const el = ev.currentTarget;
+    el.setPointerCapture(ev.pointerId);
+    ptrs.current.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    if (ptrs.current.size === 2) {
+      setDragging(false);
+      gest.current = { mode: "pinch", moved: 9, x: 0, y: 0, ...twoFingers() };
+      return;
+    }
+    const r = el.getBoundingClientRect();
+    const near = !zoomed || Math.hypot(ev.clientX - r.left - tx, ev.clientY - r.top - ty) < 26;
+    if (near) {
+      gest.current = { mode: "target", moved: 0, x: ev.clientX, y: ev.clientY };
+      setDragging(true);
+      pick(ev);
+    } else gest.current = { mode: "pan", moved: 0, x: ev.clientX, y: ev.clientY };
+  };
+  const surfMove = (ev: React.PointerEvent<SVGRectElement>) => {
+    const r = ev.currentTarget.getBoundingClientRect();
+    setCursor({ x: ((ev.clientX - r.left) / r.width) * iw, y: ((ev.clientY - r.top) / r.height) * ih });
+    if (ptrs.current.has(ev.pointerId)) ptrs.current.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    const g = gest.current;
+    if (!g) return;
+    if (g.mode === "target") pick(ev);
+    else if (g.mode === "pan") {
+      const dx = ev.clientX - g.x;
+      const dy = ev.clientY - g.y;
+      g.moved += Math.abs(dx) + Math.abs(dy);
+      g.x = ev.clientX;
+      g.y = ev.clientY;
+      if (g.moved > 4) applyView(1, 0.5, 0.5, -dx / iw, dy / ih);
+    } else if (ptrs.current.size >= 2 && g.mid && g.dist) {
+      const t = twoFingers();
+      const fx = Math.min(1, Math.max(0, (t.mid.x - r.left) / r.width));
+      const fy = Math.min(1, Math.max(0, (t.mid.y - r.top) / r.height));
+      applyView(t.dist / g.dist, fx, fy, -(t.mid.x - g.mid.x) / iw, (t.mid.y - g.mid.y) / ih);
+      g.mid = t.mid;
+      g.dist = t.dist;
+    }
+  };
+  const surfUp = (ev: React.PointerEvent<SVGRectElement>, commit: boolean) => {
+    const g = gest.current;
+    ptrs.current.delete(ev.pointerId);
+    if (commit && g?.mode === "pan" && g.moved <= 4) pick(ev);
+    gest.current = null;
+    setDragging(false);
+  };
+
   const CALLOUT_W = 290;
   const calloutSide =
     M.left + tx + 26 + CALLOUT_W <= width - 40 ? "right" : M.left + tx - 26 - CALLOUT_W >= 0 ? "left" : "below";
@@ -289,7 +461,11 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     });
 
   return (
-    <figure className={`chart tone-${status.tone}${measured && !dragging ? " anim" : ""}${dragging ? " dragging" : ""}`}>
+    <figure
+      className={`chart tone-${status.tone}${measured && !dragging ? " anim" : ""}${dragging ? " dragging" : ""}${zoomed ? " zoomed" : ""}`}
+      onPointerEnter={() => (overChart.current = true)}
+      onPointerLeave={() => (overChart.current = false)}
+    >
       <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
         {envelopes
           .filter((e) => colors.get(e.key) !== "var(--s-other)")
@@ -341,12 +517,30 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             Cabin range
           </button>
         </div>
-        <button type="button" className="loupe-btn" aria-pressed={loupe} onClick={() => setLoupe((l) => !l)} title="Magnify ×3 around the cursor">
-          Zoom ×3
-        </button>
+        <div className="chart-tools" role="group" aria-label="View: zoom and full screen">
+          <button type="button" onClick={() => applyView(1 / 1.5, 0.5, 0.5)} disabled={!zoomed} aria-label="Zoom out" title="Zoom out (−)">
+            −
+          </button>
+          <button type="button" onClick={() => applyView(1.5, 0.5, 0.5)} aria-label="Zoom in" title="Zoom in (+)">
+            +
+          </button>
+          <button type="button" onClick={resetView} disabled={!zoomed} title="Reset the view (0)">
+            Reset
+          </button>
+          {onToggleFs && (
+            <button type="button" className="fs-btn" aria-pressed={fs} onClick={onToggleFs} title={fs ? "Back to the page (Esc)" : "Open the chart full screen"}>
+              {fs ? "Exit full screen" : "Full screen"}
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="plot-wrap" ref={wrapRef} style={{ height }}>
+      <div className="plot-wrap" ref={wrapRef} style={fs ? undefined : { height }}>
+        {zoomed && (
+          <button type="button" className="zoom-badge" onClick={resetView} title="Reset the view (0)">
+            Zoomed ×{fmt(kx, 1)} · Reset
+          </button>
+        )}
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="env-title env-desc" className="plot">
           <title id="env-title">Evidence envelope: oxygen (% by volume) vs pressure</title>
           <desc id="env-desc">{desc}</desc>
@@ -416,19 +610,15 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 width={iw}
                 height={ih}
                 className="pick-surface"
-                onPointerDown={(ev) => {
-                  (ev.currentTarget as SVGRectElement).setPointerCapture(ev.pointerId);
-                  setDragging(true);
-                  pick(ev);
-                }}
-                onPointerMove={(ev) => {
-                  const r = (ev.currentTarget as SVGRectElement).getBoundingClientRect();
-                  setCursor({ x: ((ev.clientX - r.left) / r.width) * iw, y: ((ev.clientY - r.top) / r.height) * ih });
-                  if (dragging) pick(ev);
-                }}
+                onPointerDown={surfDown}
+                onPointerMove={surfMove}
                 onPointerLeave={() => setCursor(null)}
-                onPointerUp={() => setDragging(false)}
-                onPointerCancel={() => setDragging(false)}
+                onPointerUp={(ev) => surfUp(ev, true)}
+                onPointerCancel={(ev) => surfUp(ev, false)}
+                onDoubleClick={(ev) => {
+                  const r = (ev.currentTarget as SVGRectElement).getBoundingClientRect();
+                  applyView(2, (ev.clientX - r.left) / r.width, (ev.clientY - r.top) / r.height);
+                }}
               />
             )}
             {gapHulls.length > 0 && (
@@ -635,41 +825,6 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 <path key={`c${k}`} className="reticle" d={`M${x + dx * 16},${y} L${x},${y} L${x},${y + dy * 16}`} />
               ))}
             </g>
-            {loupe && cursor && !dragging && (() => {
-              const R = 64;
-              const Z = 3;
-              const cx = cursor.x;
-              const cy = cursor.y;
-              return (
-                <g className="loupe" aria-hidden="true">
-                  <clipPath id="loupe-clip">
-                    <circle cx={cx} cy={cy} r={R} />
-                  </clipPath>
-                  <g clipPath="url(#loupe-clip)">
-                    <circle cx={cx} cy={cy} r={R} className="loupe-bg" />
-                    {visible.flatMap((e) => {
-                      const color = colors.get(e.key) ?? "var(--s-other)";
-                      const phase = fuelPhaseOf(e);
-                      const st = layerState.get(e.key) ?? "dim";
-                      return e.points.flatMap((p, i) => {
-                        const x = sx(p.o2_mole_fraction);
-                        const y = sy(p.pressure);
-                        if (Math.abs(x - cx) > R / Z + 6 || Math.abs(y - cy) > R / Z + 6) return [];
-                        return [
-                          <g key={`${e.key}${i}`} className={`layer em-${st}`}>
-                            <Marker phase={phase} x={cx + (x - cx) * Z} y={cy + (y - cy) * Z} color={color} r={4.5} hollow={!e.regimeComplete} />
-                          </g>,
-                        ];
-                      });
-                    })}
-                  </g>
-                  <circle cx={cx} cy={cy} r={R} className="loupe-ring" />
-                  <text x={cx + R - 4} y={cy - R + 12} textAnchor="end" className="loupe-tag">
-                    ×{Z}
-                  </text>
-                </g>
-              );
-            })()}
             {hover && (() => {
               const tipLeft = Math.min(M.left + hover.x + 34, width - 236) - M.left;
               const tipTop = Math.max(4, M.top + hover.y - 34) - M.top;
@@ -685,19 +840,19 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             <line x1={0} x2={0} y1={0} y2={ih} className="axis" />
             {xTicks.map((v) => (
               <text key={`tx${v}`} x={sx(v)} y={ih + 18} textAnchor="middle" className="tick">
-                {fmt(v * 100, 0)}%
+                {fmt(v * 100, domain.x1 - domain.x0 < 0.1 ? 1 : 0)}%
               </text>
             ))}
             {yTicks.map((v) => (
               <text key={`ty${v}`} x={-10} y={sy(v) + 4} textAnchor="end" className="tick">
-                {fmt(v, 0)}
+                {showPsi ? `${fmt(v, domain.y1 - domain.y0 < 20 ? 1 : 0)} (${fmt(kpaToPsi(v), 1)})` : fmt(v, 0)}
               </text>
             ))}
             <text x={iw / 2} y={ih + 42} textAnchor="middle" className="axis-title">
               Oxygen (% by volume)
             </text>
-            <text transform={`translate(${-50},${ih / 2}) rotate(-90)`} textAnchor="middle" className="axis-title">
-              Pressure (kPa)
+            <text transform={`translate(${showPsi ? -88 : -50},${ih / 2}) rotate(-90)`} textAnchor="middle" className="axis-title">
+              {showPsi ? "Pressure (kPa; psia in brackets)" : "Pressure (kPa)"}
             </text>
           </g>
         </svg>

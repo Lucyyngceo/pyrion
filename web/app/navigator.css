@@ -174,3 +174,45 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .hero-compact .lede { margin: 4px 0 4px; max-width: 980px; font-size: 16px; }
 .lede-go { font-weight: 600; white-space: nowrap; }
 .hero-status { margin: 0 0 6px; }
+
+/* ---------- N9: chart tools, zoom badge, full screen ---------- */
+.chart-tools { display: inline-flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.chart-tools button { font: inherit; font-family: var(--font-mono), monospace; font-size: 11.5px; letter-spacing: 0.05em; padding: 3px 9px; min-width: 30px; background: transparent; color: var(--ink-2); border: 1px solid var(--border-strong); cursor: pointer; }
+.chart-tools button:hover:not(:disabled) { color: var(--ink); border-color: var(--neon); }
+.chart-tools button:disabled { opacity: 0.4; cursor: default; }
+.chart-tools .fs-btn[aria-pressed="true"] { color: #001014; background: var(--neon); }
+.plot-wrap { position: relative; }
+.zoom-badge { position: absolute; z-index: 5; top: 6px; left: 6px; font: inherit; font-family: var(--font-mono), monospace; font-size: 11.5px; padding: 3px 9px; color: var(--neon); background: rgba(4, 5, 10, 0.85); border: 1px solid var(--neon); cursor: pointer; }
+.chart.zoomed .pick-surface { cursor: grab; }
+.fs-main { display: contents; }
+
+.chart-card.fs-on {
+  position: fixed; inset: 0; z-index: 400; margin: 0; border-radius: 0; width: auto; max-width: none; height: auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: minmax(0, 1fr);
+  padding: 0; background: var(--page);
+}
+.chart-card.fs-on .fs-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 8px 12px 10px; }
+.chart-card.fs-on .card-head p, .chart-card.fs-on .chart-caption, .chart-card.fs-on .table-view, .chart-card.fs-on .evidence-map-slot { display: none; }
+.chart-card.fs-on .card-head { margin: 0 0 4px; }
+.chart-card.fs-on figure.chart { flex: 1; min-height: 0; display: flex; flex-direction: column; max-width: none; margin: 0; }
+.chart-card.fs-on .plot-wrap { flex: 1; min-height: 0; height: auto; }
+.chart-card.fs-on .legend { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.chart-card.fs-on .legend .chip { font-size: 11.5px; }
+.fs-side { overflow-y: auto; border-left: 1px solid var(--border-strong); background: var(--surface, var(--page)); padding: 8px 10px 16px; min-height: 0; }
+.fs-handle { display: none; }
+@media (max-width: 800px) {
+  .chart-card.fs-on { grid-template-columns: minmax(0, 1fr); }
+  .chart-card.fs-on .fs-main { padding-bottom: 52px; }
+  .fs-side { position: fixed; left: 0; right: 0; bottom: 0; max-height: 62vh; border-left: 0; border-top: 1px solid var(--neon); padding: 0; z-index: 5; display: flex; flex-direction: column; }
+  .fs-handle { display: block; width: 100%; min-height: 44px; font: inherit; font-weight: 600; color: var(--ink); background: var(--page); border: 0; border-bottom: 1px solid var(--border); text-align: left; padding: 0 14px; cursor: pointer; }
+  .fs-side:not(.open) .fs-side-body { display: none; }
+  .fs-side-body { overflow-y: auto; padding: 8px 10px 16px; }
+}
+.chart-card.fs-on .legend .chip-n { display: none; }
+.chart-card.fs-on .legend .chip { padding: 1px 7px 1px 4px; }
+@media (max-width: 800px) {
+  .chart-card.fs-on .legend { flex-wrap: nowrap; overflow-x: auto; align-items: center; padding-bottom: 4px; }
+  .chart-card.fs-on .legend > * { flex: none; white-space: nowrap; }
+  .chart-card.fs-on .legend .chart-tools { order: -2; flex-wrap: nowrap; }
+  .chart-card.fs-on .legend .seg { order: -1; }
+}
