@@ -58,6 +58,30 @@ Keys live only in the server environment (`web/.env.local`, mode 600, owned by t
 - In-app limits: a per-visitor hourly limit, a per-visitor limit on the paid provider, and a daily cap on the paid provider stored on disk (`web/.data/`, survives restarts).
 - When the paid provider is out of balance or down, the router uses the free fallback (NVIDIA NIM); when both are unavailable the app keeps working in structured mode (every verdict, no chat).
 
+## Steps (checked from a clean clone)
+
+A fresh `git clone` builds and passes its tests as is (`cd web && npm ci && npm run build && npm test`; tests that need `data/raw/` or the private challenge copy are skipped, not failed). Two things are not in the repository and must be added on the server:
+
+1. **The TARS library** (`web/.data/corpus/`, about 65 MB). It is regenerated from the NASA files in `data/raw/`, which are not published here (they are downloaded from PSI and NTRS; see `data/README.md`). Build it where `data/raw/` exists and copy the folder:
+
+   ```bash
+   python -I tools/build_corpus.py
+   rsync -a web/.data/corpus/ <server>:<app>/web/.data/corpus/
+   ```
+
+   Without it the site still works; TARS cannot quote NASA pages and says so.
+2. **The keys** in `web/.env.local` (see Secrets), and the two proxy variables above.
+
+Then:
+
+```bash
+cd web && npm ci && npm run build
+PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm run start -- -H 127.0.0.1 -p 3000
+curl -s http://127.0.0.1:3000/api/llm/health   # visitor_isolation must be on
+```
+
+Node: `web/README.md` asks for 20.9 or newer; the public instance runs Node 24.
+
 ## Availability
 
 The link must stay up until the Space Apps winners are announced (January 26, 2027). The process runs under a supervisor that restarts it on failure, and an external check alerts if `GET /api/llm/health` stops answering.
