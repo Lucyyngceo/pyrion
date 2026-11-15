@@ -117,9 +117,9 @@ export default async function DataPage() {
           {v && (
             <li>
               <span className="lin-k">Automated gates</span>
-              <b>{v.blocker} critical findings</b>
+              <b>{v.blocker}</b>
               <span>
-                {n(v.major)} major, {n(v.minor)} minor findings logged for review
+                critical findings; {n(v.major)} major, {n(v.minor)} minor logged for review
               </span>
               <code>validation/reports/latest.md</code>
             </li>

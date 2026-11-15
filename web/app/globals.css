@@ -1412,3 +1412,5 @@ body.tars-picking, body.tars-picking * { cursor: default !important; }
 .tars-pick { min-width: 40px; }
 .tars-pick.is-on { background: var(--neon, #00f0ff); color: #04050a; }
 .tars-ref { flex-basis: 100%; margin: 0 0 6px; border-left: 3px solid var(--neon, #00f0ff); padding-left: 8px; }
+
+.lin-steps b { overflow-wrap: anywhere; min-width: 0; }
