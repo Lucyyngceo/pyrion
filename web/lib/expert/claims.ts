@@ -59,7 +59,7 @@ export interface CheckContext {
 }
 
 export const EXPERT_LABEL = "TARS own reasoning — not verified against a source";
-export const NASA_LABEL = "NASA source — quote checked on the cited page";
+export const NASA_LABEL = "NASA source — only the quoted words are checked on the cited page; the surrounding sentence is TARS's wording";
 export const ENGINE_LABEL = "PYRION engine — computed by code";
 export const NUMBER_REMOVED = "[number removed: not from a source]";
 /** A quote shorter than this (letters and digits only) proves nothing and is refused. */

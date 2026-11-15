@@ -235,3 +235,14 @@ test("scrubNumbers replaces what is not from a source and keeps what is", () => 
   assert.equal(r.text, `It is 8.2 psia, not ${NUMBER_REMOVED} psia.`);
   assert.deepEqual(r.removed, ["9"]);
 });
+
+test("a true quotation next to an unsupported conclusion: the label claims only the quoted words were checked", () => {
+  const r = checkAnswer([nasa({ text: "NASA therefore confirms this cabin atmosphere is safe." })], ctx);
+  assert.equal(r.kept.length, 1, JSON.stringify(r.report));
+  const b = r.kept[0];
+  assert.equal(b.citations.length, 1);
+  assert.equal(b.citations[0].quote, QUOTE, "the quotation itself was checked on its page");
+  assert.match(b.label, /only the quoted words are checked/);
+  assert.match(b.label, /surrounding sentence is TARS/);
+  assert.ok(!/quote checked on the cited page$/.test(b.label), "the label no longer implies the whole block was verified");
+});

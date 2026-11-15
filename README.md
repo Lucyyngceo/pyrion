@@ -89,7 +89,7 @@ PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=pro
 - **Investigations** (`/investigations`): one sheet per PSI combustion investigation, a side-by-side comparison (`/investigations/compare`) and a materials view (`/investigations/materials`).
 - **Lenses** (`/lenses`): PSI investigations by safety leg (prevention, detection, suppression) and phenomenon, each tag with a verbatim quote, a filter by leg, and the evidence timeline.
 - **More** (`/more`): fire-safety equipment and Earth uses, quoted from PSI records and the NASA Space Apps 2026 challenge statement, plus spacesuits and rockets as out of PSI scope.
-- **TARS SI** (`/tars`): an AI assistant that answers in labelled layers: what the engine computed, what NASA wrote (quote checked on its page) and its own reasoning (not verified); it runs in structured mode when no API key is set (`web/.env.example`).
+- **TARS SI** (`/tars`): an AI assistant that answers in labelled layers: what the engine computed, what NASA wrote (only the quoted words are checked on the cited page; the sentence around them is TARS's wording) and its own reasoning (not verified); it runs in structured mode when no API key is set (`web/.env.example`).
 - **Bridge** (`/bridge`): a labelled hypothesis relating microgravity tests to other gravity levels through flame stretch rate. Not evidence.
 - **Method, Data and Proof** (`/method`, `/data`, `/proof`): how a verdict is decided, what was extracted from each investigation (DOI and license), and the repository numbers read at build time.
 - **Help** (`/help`): every control on the site has a help topic.
