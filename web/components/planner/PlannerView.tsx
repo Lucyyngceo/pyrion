@@ -91,7 +91,7 @@ export default function PlannerView({ data }: { data: PlannerData }) {
   const poly = data.band.vertices.filter((v) => !v.edge).map((v) => `${sx(v.o2)},${sy(v.kpa)}`).join(" ");
   const v = hover !== null ? data.band.vertices[hover] : null;
   const askQ = `Explain the Mission Planner for the Moon Base band: PSI covers ${pct(data.coverage.fraction)} of it; FM2 as planned covers ${pct(data.layers.fm2.fraction)} (a line); with tolerance ${pct(data.layers.fm2o.fraction)}. What does that mean?`;
-  const layerNote = showFm2o ? `FM2 optimistic ±0.3 psi: ${pct(data.layers.fm2o.fraction)} (optimistic, planned, not in PSI)` : showFm2 ? `FM2 as planned: ${pct(data.layers.fm2.fraction)} of the grid cells, ${data.layers.fm2.covered} of ${data.layers.fm2.total} (planned, not in PSI)` : null;
+  const layerNote = showFm2o ? `FM2 optimistic ±0.3 psi: ${pct(data.layers.fm2o.fraction)} (optimistic, planned, not in PSI)` : showFm2 ? `${data.layers.fm2.covered} of ${data.layers.fm2.total} sampled grid locations (${pct(data.layers.fm2.fraction)}) fall within FM2's planned oxygen-pressure envelope under PYRION's stated tolerance. PYRION-constructed band: 26.5–34 % O₂, 8.2–10.2 psia; not a NASA design envelope. Planned tests, not PSI results.` : null;
 
   return (
     <>
@@ -211,9 +211,9 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       </section>
 
       <section className="card" aria-labelledby="pl-min">
-        <h2 id="pl-min">Minimum test points (PYRION&apos;s geometric convention)</h2>
+        <h2 id="pl-min">Geometric corner set (PYRION&apos;s convention)</h2>
         <p data-help="planner-min-set" className="small">
-          The fewest test points whose outline covers the band under PYRION&apos;s convention: not a test programme. It holds for
+          Corners whose convex hull spans the PYRION-constructed band; not an experimental test programme. It holds for
           one material, flow velocity and sample thickness at a time; repeats and flammability thresholds are not included.{" "}
           {data.minimumTest.points.length} points (the corners of the band). {data.minimumTest.fm2Contributes.length} are already contributed by FM2 as planned; {data.minimumTest.missing.length} are missing{data.minimumTest.missing.length > 0 ? `: ${data.minimumTest.missing.map((m) => `${Math.round(m.o2_mole_fraction * 1000) / 10} % at ${Math.round((m.pressure_kpa / KPA_PER_PSI) * 10) / 10} psia`).join("; ")}` : ""}.
         </p>

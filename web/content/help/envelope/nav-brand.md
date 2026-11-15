@@ -9,12 +9,12 @@ page: global
 link: /envelope
 highlight: [data-help="nav-brand"]
 ---
-What it is: The mark and name at the left of the top bar.
+What it is: The PYRION Ω logo and name at the left of the top bar.
 
-What it shows: Nothing: it is the way home.
+What it shows: The project name on every page.
 
-How to use it: Click it from any page to open the landing page at /.
+How to use it: Click the PYRION Ω logo or name to open the landing page (/). Choose Dashboard from the navigation menu to open the evidence envelope.
 
-Example: From the Data page, click the brand to open the landing page; choose Explore the dashboard to return to the chart.
+Example: From the Mission Planner, click the logo to return to the landing page.
 
-What it does not do: It is not a menu and it does not reset your condition by itself.
+What it does not do: It does not open the dashboard or change any condition.

@@ -37,7 +37,7 @@ describe('erlFor on the synthetic fixtures', () => {
     const ev = evaluate(records, t);
     assert.equal(ev.counts.investigations.APPLICABLE > 0, true);
     assert.equal(e.level, 4);
-    assert.equal(e.name, 'measured');
+    assert.equal(e.name, 'inside the tested-point envelope');
     assert.equal(e.perInvestigation.length, ev.investigations.length);
     assert.ok(e.perInvestigation.every((p) => p.level === (p.verdict === 'APPLICABLE' ? 4 : p.level)));
     assert.equal(e.note, ERL_NOTE);
@@ -63,7 +63,7 @@ describe('erlFor on the synthetic fixtures', () => {
     assert.equal(evaluate(records, t).counts.investigations.REGIME_BARRIER, 7);
     const e = erlFor(records, t);
     assert.equal(e.level, 1);
-    assert.equal(e.name, 'comparable only in another regime');
+    assert.equal(e.name, 'different regime');
     assert.match(e.reason, /another regime/);
   });
 

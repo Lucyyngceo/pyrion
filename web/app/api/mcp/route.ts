@@ -70,7 +70,7 @@ const EXTRA: Tool[] = [
   {
     name: "gravity_value",
     title: "Gravity level with its source",
-    description: "Gravity of a body or regime with the NASA source PYRION uses: Moon (0.16 / 0.165 g), Mars (0.38 g), Earth (1 g); microgravity is a regime, not a number.",
+    description: "Gravity of a body or regime with its NASA source: Mars 0.38 g, Earth 1 g; microgravity is a regime, not a number. PYRION's lunar verdict preset uses 0.16 g (NTRS 20210020446, PDF p.3), while FM2 calculations use 0.165 g (NTRS 20260001966); current verdicts compare the partial-gravity regime, not these numerical gravity levels.",
     inputSchema: { type: "object", properties: { name: { type: "string", description: "Moon, Mars, Earth, microgravity" } }, required: ["name"], additionalProperties: false },
   },
   {

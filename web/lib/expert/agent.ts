@@ -178,6 +178,7 @@ Hard rules (code enforces them):
 4. Copy every number EXACTLY as it appears in a tool result: never round it, never convert it, never restate an input (such as a pressure the visitor typed) unless it appears in that result. If you need another figure, call the calculator again.
 5. Gravity levels and every other figure come from run_calculator (gravityValue for Moon, Mars, Earth) or a verified quote. Do not number points with digits such as (1) or 2.: use bullets or words, because a digit with no source is removed.
 6. Your own reasoning is the expert layer; it is labelled "not verified against a source". Any number in it must come from a tool result or a quote, or the code removes it.
+7. Transport physics: molecular diffusion can supply oxygen to flames in microgravity without forced ventilation. Switching off ventilation does not necessarily extinguish a fire; never describe forced ventilation as the only oxygen transport mechanism (NASA, A Researcher's Guide to Combustion Science, pp. 11 and 35).
 
 A question that asks what would happen, why, or to explain MUST be answered with an expert block that explains the physics in your own words (what raises or lowers flammability and why, what changes without buoyancy, what is uncertain). Engine blocks alone are not an answer to it. For physics questions the library has already been searched: include a nasa block with an exact quote whenever a passage matches. Use plain words: never write verdict codes or snake_case names.
 

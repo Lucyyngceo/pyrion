@@ -69,7 +69,7 @@ describe('the minimum test set never reads as "this closes the gap"', () => {
 
   it('the gap report heading and closing sentence carry the convention', () => {
     const md = gapReport(records, MOON_BASE_BAND).markdown;
-    assert.match(md, /## Minimum test points \(PYRION's geometric convention\)/);
+    assert.match(md, /## Geometric corner set \(PYRION's convention\)/);
     assert.match(md, /would not by itself show that the band is safe/);
   });
 });

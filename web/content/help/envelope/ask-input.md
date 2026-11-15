@@ -9,12 +9,12 @@ page: envelope
 link: /envelope
 highlight: 
 ---
-What it is: The text field of the former dashboard Ask bar. The bar and its text field are no longer on the site.
+What it is: The question box of the Ask bar. The Ask bar and its question box are no longer on the site.
 
-What it shows: Nothing on the current dashboard.
+What it shows: Nothing today; this topic remains so older links still explain where the feature went.
 
-How to use it: Open the TARS SI bubble, type your question and press Send.
+How to use it: Open the TARS SI bubble at the bottom right, enter your question and press Send.
 
-Example: Ask what PSI supports at 34% oxygen and 8.2 psia on the Moon.
+Example: Ask TARS "Is 30 % oxygen at 10.2 psi on the Moon tested in PSI?" in the bubble.
 
-What it does not do: TARS does not decide verdicts; the fixed-rule engine does.
+What it does not do: It no longer exists on the page. The deterministic engine computes the verdicts; TARS explains them.

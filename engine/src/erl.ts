@@ -1,5 +1,5 @@
 // Evidence Readiness Levels (ERL): how much MEASURED evidence PSI holds for a condition, on a 0-4 scale.
-// PYRION convention, like NASA's TRL, for evidence; it measures how much measured evidence exists, never safety.
+// PYRION convention, like NASA's TRL, for evidence; it measures how much tested evidence exists near a condition, never safety.
 // Everything is read from evaluate(): the level is a relabelling of the engine's own verdicts and extrapolation levels.
 
 import { bestLevel, type ExtrapolationLevel } from './levels.ts';
@@ -9,15 +9,15 @@ import type { ConditionRecord, EngineOptions, Target, Verdict } from './types.ts
 export type ErlLevel = 0 | 1 | 2 | 3 | 4;
 
 export const ERL_NOTE =
-  "PYRION convention, like NASA's TRL, for evidence; it measures how much measured evidence exists, never safety.";
+  "PYRION convention, like NASA's TRL, for evidence; it measures how much tested evidence exists near a condition, never safety.";
 
 /** The scale, highest first. `means` is the plain-words definition shown next to a level. */
 export const ERL_SCALE: readonly { level: ErlLevel; name: string; means: string }[] = [
-  { level: 4, name: 'measured', means: 'PSI measured this condition: at least one investigation is comparable (APPLICABLE).' },
-  { level: 3, name: 'near extrapolation', means: 'Not measured, but just outside tested data, or each setting was tested only separately (extrapolation: just outside or combination).' },
-  { level: 2, name: 'far extrapolation', means: 'Not measured and well outside tested data (extrapolation: outside or far outside).' },
-  { level: 1, name: 'comparable only in another regime', means: 'Comparable oxygen and pressure records exist only in another gravity regime, fuel phase or atmosphere type (regime barrier).' },
-  { level: 0, name: 'no test', means: 'No PSI test in that gravity regime anywhere, or the extracted records cannot be compared with it.' },
+  { level: 4, name: 'inside the tested-point envelope', means: "The condition lies inside the region spanned by tested points, allowing PYRION's stated tolerance; this does not establish a test at the exact condition." },
+  { level: 3, name: 'near or combination extrapolation', means: 'The condition is just outside the tested region, or its settings lie within individual tested ranges but outside their joint oxygen-pressure envelope.' },
+  { level: 2, name: 'outside the tested region', means: "The condition lies outside the tested region and beyond PYRION's near-extrapolation category." },
+  { level: 1, name: 'different regime', means: 'Oxygen-pressure evidence exists only in a different gravity, fuel or atmosphere regime.' },
+  { level: 0, name: 'insufficient evidence', means: 'The extracted PSI records do not support a comparison for this condition.' },
 ];
 
 /** Extrapolation level -> ERL (near: just_outside and combination; far: outside and far_outside). */

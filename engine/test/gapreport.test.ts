@@ -49,8 +49,8 @@ describe('gapReport (fixtures)', () => {
   it('gives the ERL with the convention note and the scale', () => {
     assert.equal(r.data.erl.atCentre.level, 0);
     assert.ok(r.markdown.includes(ERL_NOTE));
-    assert.match(r.markdown, /ERL 0 \(no test\)/);
-    assert.match(r.markdown, /ERL 4 — measured/);
+    assert.match(r.markdown, /ERL 0 \(insufficient evidence\)/);
+    assert.match(r.markdown, /ERL 4 — inside the tested-point envelope/);
     assert.equal(r.data.erl.atVertices.length, 4);
   });
 
@@ -77,7 +77,7 @@ describe('gapReport (fixtures)', () => {
     assert.match(r.html, /^<!doctype html>/);
     assert.ok(r.html.includes('@media print'));
     assert.ok(r.html.includes(r.fingerprint));
-    assert.ok(r.html.includes("<h2>Minimum test points (PYRION's geometric convention)</h2>"));
+    assert.ok(r.html.includes("<h2>Geometric corner set (PYRION's convention)</h2>"));
     assert.equal((r.html.match(/<ul>/g) ?? []).length, (r.html.match(/<\/ul>/g) ?? []).length);
   });
 

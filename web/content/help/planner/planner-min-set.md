@@ -1,6 +1,6 @@
 ---
 id: planner-min-set
-title: Minimum test points (geometric convention)
+title: Geometric corner set (PYRION convention)
 chapter: planner
 order: 10
 dataHelp: planner-min-set
