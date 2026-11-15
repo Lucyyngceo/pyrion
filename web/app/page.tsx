@@ -56,9 +56,11 @@ export default async function Page() {
                 {v.quotesTraced.toLocaleString("en-US")} quotes found word for word
               </li>
             )}
-            <li>
-              <i className="es-ext" /> {(traced === null ? usable : usable - traced).toLocaleString("en-US")} with file and location, not located by code
-            </li>
+            {(traced === null ? usable : usable - traced) > 0 && (
+              <li>
+                <i className="es-ext" /> {(traced === null ? usable : usable - traced).toLocaleString("en-US")} with file and location{traced !== null ? " (format not yet read by the checker)" : ""}
+              </li>
+            )}
             <li>
               <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged insufficient, not counted
             </li>
