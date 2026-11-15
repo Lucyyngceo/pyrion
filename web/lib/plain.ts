@@ -1,13 +1,14 @@
 // Plain-language phrasing of engine output for people who are not combustion engineers.
 // Only wording: every fact comes from the engine's output, and no verdict is changed or softened here.
 
+import { EXTRAPOLATION_LEVEL_NOTE, levelSentence, type ExtrapolationLevel } from "./engine";
 import type { AxisCheck, ClusterVerdict, RegimeState, Verdict } from "./engine";
 import { fmt, valueLabel } from "./units";
 
 /** One sentence each, consistent with the Method page. */
 export const GLOSSARY: Record<string, string> = {
   "regime barrier": "A different physical regime: gravity, fuel phase, diluent or flame type. It is not a worse match, it is not comparable, so no distance is computed across it.",
-  extrapolation: "The same regime, but your condition lies outside the range PSI tested. Any value would have to be extended beyond the measurements.",
+  extrapolation: `The same regime, but your condition lies outside the range PSI tested. Any value would have to be extended beyond the measurements. ${EXTRAPOLATION_LEVEL_NOTE}`,
   "insufficient evidence": "The extracted records do not state enough to compare, for example a value the test did not record. PYRION does not guess.",
   envelope: "The area of the oxygen-by-pressure plane covered by an investigation's measured test points.",
   "convex hull": "The smallest outline without dents around the measured points. A target inside it is covered by measurements.",
@@ -115,3 +116,9 @@ export function plainVerdict(verdict: Verdict, c: ClusterVerdict | undefined): P
       return { sentence: `Not comparable: it measured a different regime (${regime || "regime differs"}). A different regime is not a worse match.`, technical };
   }
 }
+
+/** "Just outside the tested data" -> "just outside the tested data", for use after the verdict label. */
+export const levelPhrase = (l: ExtrapolationLevel): string => {
+  const t = levelSentence(l);
+  return t.charAt(0).toLowerCase() + t.slice(1);
+};

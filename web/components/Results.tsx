@@ -2,12 +2,12 @@
 
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
-import { verdictLabel } from "@/lib/engine";
+import { EXTRAPOLATION_LEVEL_NOTE, verdictLabel, type ExtrapolationLevel } from "@/lib/engine";
 import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
 import type { Dataset, Investigation } from "@/lib/types";
 import { axisLabel, readable, valueLabel } from "@/lib/units";
-import { axisWord, plainVerdict } from "@/lib/plain";
+import { axisWord, levelPhrase, plainVerdict } from "@/lib/plain";
 import Term from "./Term";
 
 const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string; label: string }> = {
@@ -45,12 +45,13 @@ const clusterName = (key: string) =>
     .join(", ");
 const num = (a: string) => Number.parseInt(a.replace(/\D+/g, ""), 10) || 0;
 
-export function VerdictBadge({ verdict }: { verdict: Verdict }) {
+export function VerdictBadge({ verdict, level }: { verdict: Verdict; level?: ExtrapolationLevel }) {
   const v = VERDICT[verdict];
   return (
     <span className={`badge ${v.cls}`}>
       <StatusSymbol level={VERDICT_STATUS[verdict]} />
-      <span className="badge-label">{v.label}</span> <span className="badge-code">{verdict}</span>
+      <span className="badge-label">{v.label}</span>
+      {verdict === "EXTRAPOLATION" && level && <span className="badge-level"> — {levelPhrase(level)}</span>} <span className="badge-code">{verdict}</span>
     </span>
   );
 }
@@ -237,7 +238,7 @@ function ResultRow({
       onPointerLeave={() => onHover(null)}
     >
       <header className="result-head">
-        <VerdictBadge verdict={iv.verdict} />
+        <VerdictBadge verdict={iv.verdict} level={iv.extrapolationLevel} />
         <div className="result-id">
           <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
@@ -282,7 +283,7 @@ function ResultRow({
           <span className="muted">Measured in:</span> {envelopeName(cluster)} · {cluster.tests.length} test
           {cluster.tests.length === 1 ? "" : "s"}
           <br />
-          <span className="muted">Technical:</span> <span className="tech">{pv.technical}</span>
+          <span className="muted">Technical:</span> <span className="tech">{pv.technical}</span>{iv.verdict === "EXTRAPOLATION" && <span className="tech"> {EXTRAPOLATION_LEVEL_NOTE}</span>}
         </p>
       )}
 

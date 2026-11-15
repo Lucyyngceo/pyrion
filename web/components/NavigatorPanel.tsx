@@ -1,5 +1,7 @@
 "use client";
 
+import { levelPhrase } from "@/lib/plain";
+import type { ExtrapolationLevel } from "@/lib/engine";
 import { memo } from "react";
 import type { ClusterVerdict, Evaluation, Route, RouteSet, Target } from "@/lib/engine";
 import { valueLabel } from "@/lib/units";
@@ -34,7 +36,7 @@ const switchLabel = (r: Route) => {
   return to.length ? to.join(" · ") : "that regime";
 };
 
-function RouteItem({ r, inv, onHover, onOpen, button, onApply }: { r: Route; inv: Investigation | undefined; onHover: (a: string | null) => void; onOpen: (a: string) => void; button: string; onApply: () => void }) {
+function RouteItem({ r, inv, level, onHover, onOpen, button, onApply }: { r: Route; inv: Investigation | undefined; level?: ExtrapolationLevel; onHover: (a: string | null) => void; onOpen: (a: string) => void; button: string; onApply: () => void }) {
   return (
     <li onPointerEnter={() => onHover(r.accession)} onPointerLeave={() => onHover(null)}>
       <div className="where-head">
@@ -48,7 +50,10 @@ function RouteItem({ r, inv, onHover, onOpen, button, onApply }: { r: Route; inv
           </a>
         )}
       </div>
-      <p className="where-text">{r.sentence}</p>
+      <p className="where-text">
+        {level && <strong className="where-level">Extrapolation — {levelPhrase(level)}. </strong>}
+        {r.sentence}
+      </p>
       <button type="button" className={`take-btn${r.kind === "different_regime" ? " take-regime" : ""}`} onClick={onApply}>
         {button}
       </button>
@@ -65,6 +70,15 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
     .map((i) => ({ iv: i, c: clusters.get(`${i.accession}|${i.decidingCluster}`) as ClusterVerdict | undefined }))
     .toSorted((a, b) => (a.iv.verdict === b.iv.verdict ? 0 : a.iv.verdict === "APPLICABLE" ? -1 : 1) || (a.c?.rank ?? 1e9) - (b.c?.rank ?? 1e9));
   const SHOWN = 5;
+  // Extrapolating investigations, and how far outside the tested data each is (never a pass: a distance only).
+  const levelOf = new Map<string, ExtrapolationLevel>();
+  const levelCounts: Partial<Record<ExtrapolationLevel, number>> = {};
+  for (const i of evaluation.investigations) {
+    if (i.verdict === "EXTRAPOLATION" && i.extrapolationLevel) {
+      levelOf.set(i.accession, i.extrapolationLevel);
+      levelCounts[i.extrapolationLevel] = (levelCounts[i.extrapolationLevel] ?? 0) + 1;
+    }
+  }
   const steps = routes ? routes.routes.filter((r) => r.kind !== "different_regime") : [];
   const other = routes ? routes.routes.filter((r) => r.kind === "different_regime") : [];
 
@@ -96,7 +110,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
             )}
           </div>
         </div>
-        <VerdictRing counts={counts} of={investigations.length} />
+        <VerdictRing counts={counts} of={investigations.length} levels={levelCounts} />
       </section>
 
       <section className="card nav-evidence" aria-labelledby="where-h">
@@ -141,7 +155,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <p className="muted small">The smallest change that makes each investigation comparable. Nearest first.</p>
                 <ul className="where-list">
                   {steps.slice(0, SHOWN).map((r) => (
-                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} onHover={onHover} onOpen={onOpen} button="Take me there" onApply={() => onApplyRoute(r.target, r.accession)} />
+                    <RouteItem key={r.accession} r={r} inv={inv.get(r.accession)} level={levelOf.get(r.accession)} onHover={onHover} onOpen={onOpen} button="Take me there" onApply={() => onApplyRoute(r.target, r.accession)} />
                   ))}
                 </ul>
                 {steps.length > SHOWN && <p className="muted small">and {steps.length - SHOWN} more.</p>}

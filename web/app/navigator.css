@@ -224,3 +224,11 @@ main.page:has(.nav-grid) { max-width: 1500px; }
 .plot .hit { cursor: pointer; }
 .chart[data-gesture] .callout, .chart[data-gesture] .tooltip, .chart[data-gesture] .map-tip, .chart[data-gesture] .rail, .chart[data-gesture] .tt-link { visibility: hidden; }
 .plot .grid, .plot .layer path, .plot .layer line { vector-effect: non-scaling-stroke; }
+
+.emap-l { display: inline-block; width: 14px; height: 9px; vertical-align: middle; margin-left: 4px; }
+.emap-l1 { background: rgba(185, 139, 255, 0.55); }
+.emap-l2 { background: rgba(150, 105, 215, 0.4); }
+.emap-l3 { background: rgba(105, 80, 165, 0.3); }
+.emap-lc { background-image: repeating-linear-gradient(135deg, transparent 0 3px, rgba(255, 255, 255, 0.6) 3px 4px); }
+.badge-level { font-weight: 500; }
+.where-level { color: var(--ink); }

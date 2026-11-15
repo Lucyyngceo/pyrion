@@ -1,4 +1,5 @@
-import { verdictLabel } from "@/lib/engine";
+import { EXTRAPOLATION_LEVEL_ORDER, verdictLabel, type ExtrapolationLevel } from "@/lib/engine";
+import { levelPhrase } from "@/lib/plain";
 import StatusSymbol, { type StatusLevel } from "./StatusSymbol";
 import Term from "./Term";
 
@@ -11,7 +12,13 @@ const ROWS: { key: "APPLICABLE" | "EXTRAPOLATION" | "INSUFFICIENT_EVIDENCE" | "R
 
 /** Segmented ring of verdicts by investigation, with the counts beside it. Segments are drawn as arcs
  *  with a small gap; an empty category draws nothing. */
-export default function VerdictRing({ counts, of }: { counts: Record<string, number>; of?: number }) {
+/** "1 just outside the tested data, 2 outside the tested data": the Extrapolation count split by distance. */
+const levelTitle = (levels?: Partial<Record<ExtrapolationLevel, number>>) => {
+  const parts = EXTRAPOLATION_LEVEL_ORDER.filter((l) => (levels?.[l] ?? 0) > 0).map((l) => `${levels?.[l]} ${levelPhrase(l)}`);
+  return parts.length ? `Extrapolation, by distance: ${parts.join("; ")}. A distance from the tested data, not a pass.` : undefined;
+};
+
+export default function VerdictRing({ counts, of, levels }: { counts: Record<string, number>; of?: number; levels?: Partial<Record<ExtrapolationLevel, number>> }) {
   const total = ROWS.reduce((n, r) => n + (counts[r.key] ?? 0), 0);
   const R = 46;
   const C = 2 * Math.PI * R;
@@ -68,7 +75,7 @@ export default function VerdictRing({ counts, of }: { counts: Record<string, num
       )}
       <dl className="vring-legend" aria-label="Verdict counts, by investigation">
         {ROWS.map((r) => (
-          <div key={r.key} className={(counts[r.key] ?? 0) === 0 ? "zero" : undefined}>
+          <div key={r.key} className={(counts[r.key] ?? 0) === 0 ? "zero" : undefined} title={r.key === "EXTRAPOLATION" ? levelTitle(levels) : undefined}>
             <dt>
               <StatusSymbol level={r.level} size={10} /> {r.label}
             </dt>

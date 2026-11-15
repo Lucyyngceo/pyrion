@@ -76,3 +76,5 @@ export type {
 
 // Verdict names live in the engine (labels.ts); not yet re-exported by its index.
 export { verdictLabel } from "../../engine/src/labels.ts";
+export { EXTRAPOLATION_LEVEL_SENTENCES, levelSentence } from "../../engine/src/labels.ts";
+export { EXTRAPOLATION_LEVEL_NOTE, EXTRAPOLATION_LEVEL_ORDER, type ExtrapolationLevel } from "../../engine/src/levels.ts";

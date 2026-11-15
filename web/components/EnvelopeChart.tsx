@@ -6,6 +6,7 @@ import type { EnvelopePoint, EvidenceMap, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
 import type { EnvelopeStatus } from "@/lib/summary";
 import StatusSymbol, { TONE_STATUS } from "./StatusSymbol";
+import { levelPhrase } from "@/lib/plain";
 import { ATM_KPA, axisLabel, fmt, kPa, kpaToPsi, pctO2, psia } from "@/lib/units";
 
 export type LayerState = "match" | "open" | "dim";
@@ -49,6 +50,12 @@ interface Props {
 
 const M0 = { top: 22, right: 34, bottom: 54, left: 66 };
 const MAX_ZOOM = 40;
+/** Evidence-map tones for extrapolation, by distance from the tested data. */
+const EXTRA_TONE = {
+  just_outside: "rgba(185, 139, 255, 0.40)",
+  outside: "rgba(150, 105, 215, 0.25)",
+  far_outside: "rgba(105, 80, 165, 0.15)",
+} as const;
 /** How far past the data a pan may go, as a fraction of the data window. */
 const PAN_MARGIN = 0.1;
 
@@ -383,7 +390,7 @@ const MapTip = memo(function MapTip({ domain, iw, ih, evidence, left, top, maxLe
           {cell.applicable.length > 4 ? ` and ${cell.applicable.length - 4} more` : ""}
         </>
       ) : cell.extrapolation.length > 0 ? (
-        <>No investigation applies here; {cell.extrapolation.length} would need extrapolation.</>
+        <>No investigation applies here; {cell.extrapolation.length} would need extrapolation{cell.extrapolationLevel ? ` (nearest: ${levelPhrase(cell.extrapolationLevel)})` : ""}.</>
       ) : (
         <>No investigation of this regime covers this point.</>
       )}
@@ -745,19 +752,35 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     if (!evidence || typeof document === "undefined" || evidence.cells.length === 0) return null;
     const nx = evidence.o2Values.length;
     const ny = evidence.pressureValues.length;
+    const S = 4; // pixels per cell, so the hatch of 'combination' cells can be drawn
     const c = document.createElement("canvas");
-    c.width = nx;
-    c.height = ny;
+    c.width = nx * S;
+    c.height = ny * S;
     const g = c.getContext("2d");
     if (!g) return null;
     const max = Math.max(1, evidence.maxApplicable);
     for (let i = 0; i < ny; i++) {
       for (let j = 0; j < nx; j++) {
         const cell = evidence.cells[i * nx + j];
-        if (cell.applicable.length > 0) g.fillStyle = `rgba(0, 240, 255, ${0.18 + 0.62 * (cell.applicable.length / max)})`;
-        else if (cell.extrapolation.length > 0) g.fillStyle = "rgba(185, 139, 255, 0.13)";
-        else continue;
-        g.fillRect(j, ny - 1 - i, 1, 1);
+        const x = j * S;
+        const y = (ny - 1 - i) * S;
+        if (cell.applicable.length > 0) {
+          g.fillStyle = `rgba(0, 240, 255, ${0.18 + 0.62 * (cell.applicable.length / max)})`;
+          g.fillRect(x, y, S, S);
+        } else if (cell.extrapolation.length > 0) {
+          // Three clear steps by distance from the tested data; never the bright applicable tone.
+          const lvl = cell.extrapolationLevel ?? "outside";
+          g.fillStyle = EXTRA_TONE[lvl === "combination" ? "just_outside" : lvl];
+          g.fillRect(x, y, S, S);
+          if (lvl === "combination") {
+            g.strokeStyle = "rgba(255, 255, 255, 0.55)";
+            g.lineWidth = 1;
+            g.beginPath();
+            g.moveTo(x, y + S);
+            g.lineTo(x + S, y);
+            g.stroke();
+          }
+        }
       }
     }
     return c.toDataURL();
@@ -1221,8 +1244,13 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
         )}
         {mapImage && (
           <p className="small emap-legend">
-            <i className="emap-ramp" aria-hidden="true" /> Shading: brighter = more NASA investigations apply here (same regime as your condition, inside what they tested).{" "}
-            <i className="emap-extra" aria-hidden="true" /> Faint violet: same regime, but only by extrapolation. Dark: no investigation of this regime covers the point. Hover the chart to see which.
+            <i className="emap-ramp" aria-hidden="true" /> Bright: NASA investigations apply here (same regime, inside what they tested); brighter = more of them.{" "}
+            Extrapolation, by distance from the tested data:{" "}
+            <i className="emap-l emap-l1" aria-hidden="true" /> just outside,{" "}
+            <i className="emap-l emap-l2" aria-hidden="true" /> outside,{" "}
+            <i className="emap-l emap-l3" aria-hidden="true" /> far outside,{" "}
+            <i className="emap-l emap-l1 emap-lc" aria-hidden="true" /> hatched: inside each tested range but this combination was not tested. A distance, not a pass: even
+            &quot;just outside&quot; is an extrapolation. Dark: no investigation of this regime covers the point. Hover the chart to see which.
           </p>
         )}
         <p className="muted small">
