@@ -115,6 +115,11 @@ def interval(text):
     if m:
         a, b = float(m.group(1)), float(m.group(2))
         return min(a, b), max(a, b)
+    # a stepped or listed value written '20 and 15', '10, 6, 5, and 3' (commas already dropped): its extent
+    m = re.fullmatch(rf"\s*({NUM}(?:\s+(?:and\s+)?{NUM})+)\s*", t)
+    if m:
+        vals = [float(x) for x in re.findall(NUM, m.group(1))]
+        return min(vals), max(vals)
     v = number(t)
     return v, v
 

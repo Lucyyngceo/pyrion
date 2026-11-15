@@ -232,6 +232,295 @@
    "id": "R423",
    "verdict": "KEEP",
    "reason": "Verbatim at the stated location; ids and direction word checked by the verificador against the PSI table (restrictor and fan cells of the same rows)."
+  },
+  {
+   "id": "R601",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "derivation": "Table 7.1 rows GMT45-T1, GMT175-T9, GMT190-T23, GMT190-T24 (PSI table GMT and O2 match). T9: Table 7.1 'No ignition', but Table A.6 note (page=121) 'Brief ignition but flame extinguished before spreading beyond igniter'. T23: A.6 'Did not ignite with moved igniter'. For T9 and T23, 10 cm/s is the flow set for the attempt. T1 A.6 note (page=120): 'flow velocity held constant'. Caution: Table 7.1 width 2.2 for T24 vs PSI/A.6 '1 cm SIBAL'."
+   }
+  },
+  {
+   "id": "R602",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R603",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R604",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R605",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R606",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R607",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R608",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R609",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R610",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "derivation": "Table 7.1 rows GMT175-T10, GMT178-T12, GMT216-T28a, GMT216-T28b (PSI GMT and O2 match; BASS-II T10 is the GMT175 row, not the 'GMT131-T10 ... BASS' row). Table 7.1 says 'No ignition' / 'did not ignite', but the Table A.6 notes report a brief flame in each case. 5 cm/s is the flow set for the attempt; no sustained flame."
+   }
+  },
+  {
+   "id": "R611",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R612",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R613",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R614",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R615",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R616",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R617",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R618",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R619",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R620",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R621",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R622",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R623",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R624",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R625",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R626",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R627",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R628",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R629",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R630",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R631",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R632",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R633",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R634",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R635",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R636",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R637",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R638",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R639",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R640",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R641",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "confidence": "direct"
+   }
+  },
+  {
+   "id": "R642",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R643",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R644",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R645",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R646",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R647",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original).",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R648",
+   "verdict": "MODIFY",
+   "reason": "See corrected fields (derivation, discrepancy decision or value_original). (value_original left as the extractor wrote it, 'set at 3 cm/s': the verificador's longer string is not contiguous in the quote)",
+   "corrected": {
+    "derivation": "Bhattacharjee section 2.2.5 (page=31; same text in 2.1.2.1, page=21). Test not named. Inferred as B3: the 'first test' (100 um, flow abruptly cut off) matches B1 (Table A.1 page=111) and B3 is the only other 100-um, 2-cm sample at 22.2 % O2 on 2/19/2014. Against this: the B3 log has single values and no recorded reduction; B16 (7/2/2014, 17.3 % O2) also starts at 3 but is not 'the same conditions'. Range: about 1.1 (extinction) to 3 (set)."
+   }
+  },
+  {
+   "id": "R649",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R650",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R651",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R652",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R653",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
   }
  ],
  "missed": [
@@ -263,5 +552,12 @@
    "page=60 'The postburn rod samples in Figure 4.5 preserve bubble layers for the opposed flow and for concurrent flow (Olson tests).'"
   ],
   "could_not_check": "The verificador saw no page image; the build session checked Table A.3 (page 114) visually: P16 and P19 read Concurrent, other P rows Opposed, and the column that holds the direction words is titled 'Sample distance' in the original. Olson O1, O2 read '?' in Table A.5 and O20-O22 have no row; whether the Olson chapter includes the 2016 tests cannot be told."
+ },
+ "addendum_flow": {
+  "date": "2026-11-15",
+  "verified_by": "verificador agent (Claude Opus 5.5), separate runs for PSI-25 and PSI-26",
+  "transcription": "Verdicts condensed by the build session. Competing values for one test: exactly one direct, the other lowered to ambiguous (R641 direct, R621 ambiguous; R622, R625, R629, R638, R640 direct, R642-R647 ambiguous).",
+  "missed": "B21, B22 partial flows (ignition at 5 cm/s, extinction at a pot setting): not proposed. Overview page 22 labels (2 cm 20 cm/s, 1 cm 10 cm/s) conflict loosely with Table I: not used.",
+  "could_not_check": "No page image seen by the verificadores; the build session checked pages 65 and 104 against images afterwards."
  }
 }

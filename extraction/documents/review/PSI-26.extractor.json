@@ -1,356 +1,657 @@
 {
-  "accession": "PSI-26",
+ "accession": "PSI-26",
+ "extracted_by": "extractor agent (Claude Opus 5.5)",
+ "date": "2026-11-14",
+ "sources_read": [
+  "psi-data/PSI-26/_investigation/PSI-26.json",
+  "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+  "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+  "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf"
+ ],
+ "records": [
+  {
+   "id": "R1",
+   "test_id": "*",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf",
+   "source_location": "page=1",
+   "quote": "BASS (Burning and Suppression of Solids) examines the burning and extinction characteristics of a wide variety of fuel samples in microgravity.",
+   "confidence": "direct",
+   "derivation": "Investigation-level description in the PSI Data Layout Document; the sentence spans two PDF lines (joined with one space).",
+   "flags": []
+  },
+  {
+   "id": "R2",
+   "test_id": "1-11 (cotton-fiberglass fabric tests; numbering of Table I in the 2013 paper)",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "Microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=17",
+   "quote": "Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.",
+   "confidence": "direct",
+   "derivation": "First sentence of the abstract. Scope is the fabric tests of this paper; the paper's test numbers may not match the PSI test numbering.",
+   "flags": []
+  },
+  {
+   "id": "R3",
+   "test_id": "1-g upward (concurrent) comparison flame, no test number given (Fig. 13 of the 2013 paper)",
+   "variable": "gravity_regime",
+   "value": "normal_gravity",
+   "value_original": "normal gravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=175",
+   "quote": "In Fig. 13, a comparison is made for two flames burning in concurrent flow, but with one in microgravity and the other in normal gravity.",
+   "confidence": "direct",
+   "derivation": "1-g comparison flame reported alongside the flight tests. The paper gives no test number and does not say where it was run. Figure 13 caption (paragraph 180): 'Comparison of 0-g concurrent-flow flame (left) and 1-g upward flame (right) for 2-cm wide sample.'",
+   "flags": []
+  },
+  {
+   "id": "R4",
+   "test_id": "1-g opposed-flow (downward) comparison flame, no test number given (Fig. 14 of the 2013 paper)",
+   "variable": "gravity_regime",
+   "value": "normal_gravity",
+   "value_original": "1-g",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=183",
+   "quote": "Figure 14.  Comparison of 0-g and 1-g flames in opposed flow.  Image sequences shows flames spreading from top down.  (Test 6 and a 1-g test)",
+   "confidence": "direct",
+   "derivation": "Figure caption (double spaces as in the document). 'Test 6' is the 0-g flight test; the 1-g test has no number and the paper does not say where it was run. Paragraph 179 adds: 'On the right, the normal-gravity, downward-burning flame is ignited, but sputters and then goes out.'",
+   "flags": []
+  },
+  {
+   "id": "R5",
+   "test_id": "*",
+   "variable": "fuel_phase",
+   "value": "solid",
+   "value_original": "Solids",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=title",
+   "quote": "Burning and Suppression of Solids",
+   "confidence": "direct",
+   "derivation": "Investigation title (a name, not a sentence). See R6 for the requirement sentence.",
+   "flags": []
+  },
+  {
+   "id": "R6",
+   "test_id": "*",
+   "variable": "fuel_phase",
+   "value": "solid",
+   "value_original": "Solid fuel materials",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+   "source_location": "page=7",
+   "quote": "Configuration: Solid fuel materials on individual and exchangeable sample cards",
+   "confidence": "direct",
+   "derivation": "'BASS Requirement' column of the requirements table, row 'Configuration' (planning document, February 2010). Note for the auditor: SRD page 4, Figure 1 labels the sample 'Solid fuel or wax-impregnated “wick”', and the test matrix (page 10) includes wax candles and wax-saturated fabric; the sources do not state a phase for the wax samples separately.",
+   "flags": []
+  },
+  {
+   "id": "R7",
+   "test_id": "*",
+   "variable": "platform",
+   "value": "International Space Station (ISS)",
+   "value_original": "International Space Station (ISS)",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=approach",
+   "quote": "The experiment was conducted aboard the International Space Station (ISS) inside the Microgravity Glove Box (MSG).",
+   "confidence": "direct",
+   "derivation": "Vehicle. Section=flightProgram also reads 'International Space Station (ISS)'.",
+   "flags": []
+  },
+  {
+   "id": "R8",
+   "test_id": "*",
+   "variable": "platform",
+   "value": "Microgravity Science Glovebox",
+   "value_original": "Microgravity Science Glovebox",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=experimentHardware",
+   "quote": "Microgravity Science Glovebox",
+   "confidence": "direct",
+   "derivation": "Facility (field value, not a sentence). Section=approach writes it 'Microgravity Glove Box (MSG)'; the 2013 paper, paragraph 53, writes 'Microgravity Science Glovebox (MSG)'.",
+   "flags": []
+  },
+  {
+   "id": "R9",
+   "test_id": "*",
+   "variable": "diluent",
+   "value": "N2",
+   "value_original": "air",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+   "source_location": "page=4",
+   "quote": "The air co-flow is produced by using a fan to blow air through the duct.",
+   "confidence": "derived",
+   "derivation": "air: oxygen balanced mainly by nitrogen. The 2013 paper (paragraph 51) also speaks of 'air flow speeds'. Separate note, NOT the ambient diluent: the extinguishing agent is nitrogen, SRD page 4: '3.) Nitrogen gas jet for flame extinguishment'; record section=researchImpacts: 'Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques.'",
+   "flags": []
+  },
+  {
+   "id": "R10",
+   "test_id": "*",
+   "variable": "flow_configuration",
+   "value": "concurrent",
+   "value_original": "concurrent-flow",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=approach",
+   "quote": "This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.",
+   "confidence": "ambiguous",
+   "derivation": "Investigation-level statement that both configurations were used; it does not say which test used which, so this value does not hold for every test. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering). Nothing is stated for the spheres or candles.",
+   "flags": []
+  },
+  {
+   "id": "R11",
+   "test_id": "*",
+   "variable": "flow_configuration",
+   "value": "opposed",
+   "value_original": "opposed-flow",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=approach",
+   "quote": "This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.",
+   "confidence": "ambiguous",
+   "derivation": "Same sentence as R10: both configurations were used; it does not say which test used which. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering).",
+   "flags": []
+  },
+  {
+   "id": "R12",
+   "test_id": "*",
+   "variable": "flow_configuration",
+   "value": "coflow",
+   "value_original": "co-flow",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+   "source_location": "page=4",
+   "quote": "The air co-flow is produced by using a fan to blow air through the duct.",
+   "confidence": "ambiguous",
+   "derivation": "Planning document (February 2010). 'co-flow' is the name of the duct air stream carried over from SPICE (SRD page 7, SPICE column: 'Configuration: Round gas jet diffusion flame in a co-flowing oxidizer stream'); it may name the duct stream rather than the flame/flow configuration. The PSI record describes the configurations as concurrent or opposed (R10, R11). Not assigned to specific tests.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R13",
+   "test_id": "*",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "as high as 40 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "40"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
+   "source_location": "section=approach",
+   "quote": "Airflow was controlled using a variable speed fan, with airflow speeds reaching as high as 40 cm/s.",
+   "confidence": "ambiguous",
+   "derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R14",
+   "test_id": "1-11 (cotton-fiberglass fabric tests; numbering of Table I in the 2013 paper)",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "0 to 40 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "0",
+    "40"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=51",
+   "quote": "A variable-speed fan is used to generate air flow speeds from 0 to 40 cm/s.",
+   "confidence": "ambiguous",
+   "derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. Note for the auditor: the paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R15",
+   "test_id": "*",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5 to 50 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "50"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+   "source_location": "page=4",
+   "quote": "An anemometer is used to measure the actual flow speed. The airflow speed can be adjusted from 5 to 50 cm/s.",
+   "confidence": "ambiguous",
+   "derivation": "Planning document (Science Requirements, February 2010) describing the existing SPICE fan and duct. SRD page 7 repeats 'Oxidizer Velocity: 5 to 50 cm/s' and 'Co-flow Velocity: 5 to 50 cm/s', with the BASS column '---Same---' as SPICE. Disagrees with the 0 to 40 cm/s of R13 and R14.",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R16",
+   "test_id": "*",
+   "variable": "o2_mole_fraction",
+   "value": "",
+   "value_original": "at or above 21% O2",
+   "unit_original": "%",
+   "numbers": [
+    "21"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
+   "source_location": "page=8",
+   "quote": "On each day of testing, the oxygen concentration of the ISS cabin atmosphere should be measured. Testing is restricted to oxygen concentrations at or above 21% O2.",
+   "confidence": "ambiguous",
+   "derivation": "Lower bound only, and a requirement in the February 2010 planning SRD ('Ambient Oxygen Concentration Requirements', BASS column), not a measured value. The same restriction is repeated on page 8 for the MSG working volume. The as-run O2 is not stated in the record text or the 2013 paper. The percent basis (volume/mole or mass) is not stated. The '2' in 'O2' is a subscript in the PDF.",
+   "flags": [
+    "UNIT_AMBIGUOUS"
+   ]
+  },
+  {
+   "id": "R101",
+   "test_id": "*",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+   "source_location": "page=2",
+   "quote": "A snapshot of 2-cm diameter acrylic sphere burning in microgravity at 17 percent oxygen and 10 cm/s flow from the Burning and Suppression of Solids (BASS) experiment conducted on the International Space Station.",
+   "confidence": "direct",
+   "derivation": "Figure caption in the 2015 ISS Researcher's Guide describing an actual BASS test (acrylic sphere, 17 % O2, 10 cm/s) 'conducted on the International Space Station'.",
+   "flags": []
+  },
+  {
+   "id": "R102",
+   "test_id": "*",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+   "source_location": "page=31",
+   "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
+   "confidence": "derived",
+   "derivation": "Results sentence about the BASS experiment in the 2015 ISS Researcher's Guide; it states the microgravity comparison without naming individual tests.",
+   "flags": []
+  },
+  {
+   "id": "R103",
+   "test_id": "1, 4, 5, 12, 13, 37, 44, 45, 54, 55, 65, 66",
+   "variable": "gravity_regime",
+   "value": "microgravity",
+   "value_original": "Microgravity",
+   "unit_original": "",
+   "numbers": [],
+   "kind": "term",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=17",
+   "quote": "Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.",
+   "confidence": "derived",
+   "derivation": "Abstract of PSI-26's own 2013 paper (past tense) about the cotton-fiberglass fabric tests. Scope: only the PSI-26 table rows whose material is SIBAL (the cotton-fiberglass blend; PSI record approach: 75% cotton and 25% fiberglass), by material, not by test number (the paper numbers its tests 1-11 itself). Candles, spheres, Nomex and other samples are not covered. The paper's 1-g comparison flames are not in the PSI table.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R654",
+   "test_id": "1",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10, 5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=81-92",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments 1 2 Concurrent 10, 5 Single flow speed change",
+   "confidence": "direct",
+   "derivation": "2013 paper Table I, row Test 1 (cells are separate paragraphs, joined with one space). Paper Test 1 = PSI-26 CSV Test # 1, As Run 1 (3/30/2012, GMT 90, SIBAL 2 cm); see top-level mapping_psi26. Corroboration: as-run matrix (sheet 'as run matrix', row As Run 1) observation 'Nice symmetric burn, some soot at 10 cm/s' and camera cell 'best 1/25s 10 cm/s,    1/10s 5 cm/s'; Overview pdf page=20 'Ignition at airflow speed of 10 cm/s, then flow is reduced to 5 cm/s.' (test not named).",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R655",
+   "test_id": "4",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=93-96",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 7 2 Concurrent 10",
+   "confidence": "direct",
+   "derivation": "Table I row Test 7 = PSI-26 CSV Test # 7, As Run 4 (4/5/2012, GMT 96, SIBAL 2 cm). Same value in BASS-II Summary Report Table 7.1 row 'GMT96-T7 2.2 10 21 BASS' (PSI-25 report page=104) and Figure 7 caption (paragraph=145) 'Left: 10 cm/s.  Right: 5 cm/s. (Tests 7 and 8)'.",
+   "flags": []
+  },
+  {
+   "id": "R656",
+   "test_id": "5",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=98-101",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 8 2 Concurrent 5",
+   "confidence": "direct",
+   "derivation": "Table I row Test 8 = PSI-26 CSV Test # 8, As Run 5 (4/5/2012, GMT 96, SIBAL 2 cm). Same value in Summary Report Table 7.1 row 'GMT96-T8 2.2 5 21 BASS' (PSI-25 report page=104) and Figure 7 caption (Tests 7 and 8, right: 5 cm/s).",
+   "flags": []
+  },
+  {
+   "id": "R657",
+   "test_id": "12",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "22",
+   "unit_original": "cm/s",
+   "numbers": [
+    "22"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=103-106",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 4 2 Concurrent 22",
+   "confidence": "direct",
+   "derivation": "Table I row Test 4 = PSI-26 CSV Test # 4, As Run 12 (5/10/2012, GMT 131, SIBAL 2 cm).",
+   "flags": []
+  },
+  {
+   "id": "R658",
+   "test_id": "13",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "11",
+   "unit_original": "cm/s",
+   "numbers": [
+    "11"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=108-111",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 10 1 Concurrent 11",
+   "confidence": "direct",
+   "derivation": "Table I row Test 10 = PSI-26 CSV Test # 10, As Run 13 (5/10/2012, GMT 131, SIBAL 1 cm). Same value in the Figure 9 caption (paragraph=154: '... in concurrent air flow of 11 cm/s. (Test 10)'), the Figure 10 caption (paragraph=160: '... with concurrent air flow = 11 cm/s. ... (Test 10)') and Summary Report Table 7.1 row 'GMT131-T10 1.2 11 21 BASS' (PSI-25 report page=104).",
+   "flags": []
+  },
+  {
+   "id": "R659",
+   "test_id": "37",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5, 3, 1.5, 1",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "1"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=113-117",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 5 2 Concurrent 5, 3, 1.5, 1 Flow reduction; quenching extinction observed",
+   "confidence": "direct",
+   "derivation": "Table I row Test 5 = PSI-26 CSV Test # 5, As Run 37 (6/28/2012, GMT 180, SIBAL 2 cm, sample 9). Stepped list; numbers are first and last written values. Not Test # 5b (As Run 44), which reburned the same sample and is not in Table I.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R660",
+   "test_id": "45",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "9",
+   "unit_original": "cm/s",
+   "numbers": [
+    "9"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=118-121",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 6 2 Opposed 9",
+   "confidence": "direct",
+   "derivation": "Table I row Test 6 = PSI-26 CSV Test # 6, As Run 45 (7/3/2012, GMT 185, SIBAL 2 cm). For the reader: Figure 12 caption (paragraph=176) labels Tests 7 and 6 'Concurrent and opposed comparison at 10 cm/s air flow speed', while the text describing that figure (paragraph=171) says 'The air flow speed is around 10 cm/s.'; read here as an approximate label, not as a second value. The auditor may prefer to treat it as a discrepancy.",
+   "flags": []
+  },
+  {
+   "id": "R661",
+   "test_id": "54",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "9, 44",
+   "unit_original": "cm/s",
+   "numbers": [
+    "9",
+    "44"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=123-127",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 2 2 Concurrent 9, 44 Flow increase; blowoff extinction not attained",
+   "confidence": "direct",
+   "derivation": "Table I row Test 2 = PSI-26 CSV Test # 2, As Run 54 (7/19/2012, GMT 201, SIBAL 2 cm). Note: 44 exceeds the paper's own fan range 'from 0 to 40 cm/s' (paragraph=51); written as found.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R662",
+   "test_id": "55",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10, 20, 44",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "44"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=128-132",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 3 2 Opposed 10, 20, 44 Flow increase; blowoff extinction not attained",
+   "confidence": "direct",
+   "derivation": "Table I row Test 3 = PSI-26 CSV Test # 3, As Run 55 (7/19/2012, GMT 201, SIBAL 2 cm). Stepped list; numbers are first and last written values. Same note as R661 on 44 vs the stated 0 to 40 cm/s fan range.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R663",
+   "test_id": "65",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "20",
+   "unit_original": "cm/s",
+   "numbers": [
+    "20"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=133-136",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 11 1 Concurrent 20",
+   "confidence": "ambiguous",
+   "derivation": "Table I row Test 11 = PSI-26 CSV Test # 11, As Run 65 (8/9/2012, GMT 222, SIBAL 1 cm). DISCREPANCY with R664: BASS-II Summary Report Table 7.1 gives 19 cm/s for 'GMT222-T11' (same test by GMT day and T number). Both proposed.",
+   "flags": [
+    "DISCREPANCY"
+   ]
+  },
+  {
+   "id": "R664",
+   "test_id": "65",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "19",
+   "unit_original": "cm/s",
+   "numbers": [
+    "19"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT222-T11 1.2 19 21 BASS",
+   "confidence": "ambiguous",
+   "derivation": "BASS-II Summary Report (PSI-25 file) Table 7.1, row labelled 'BASS': GMT222-T11 = PSI-26 CSV Test # 11 on GMT 222 (8/9/2012), As Run 65, 'SIBAL 1 cm'. DISCREPANCY with R663 (2013 paper: 20). The document sits in PSI-25 but the row is a BASS (PSI-26) test.",
+   "flags": [
+    "DISCREPANCY",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R665",
+   "test_id": "66",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10, 6, 4, 2, 1.5, 1",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "1"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
+   "source_location": "paragraph=138-142",
+   "quote": "Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 9 2 Opposed 10, 6, 4, 2, 1.5, 1 Flow reduction; extinction not observed",
+   "confidence": "direct",
+   "derivation": "Table I row Test 9 = PSI-26 CSV Test # 9, As Run 66 (8/9/2012, GMT 222, SIBAL 2 cm). Stepped list; first and last written values. For the reader: Figure 11 caption for the same test (paragraph=166, '(Test 9)') says 'The flow is decreased in discrete steps from 10 cm/s all the way down to less than 1 cm/s', and paragraph=169 'The lowest flow imposed was less than 1 cm/s'; the Overview pdf page=23 shows the same steps '10 cm/s', '6 cm/s', '4 cm/s', '2 cm/s', '1.5 cm/s', '1 cm/s' ('down to about 1 cm/s'). The low end is therefore 1 or slightly below 1.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R666",
+   "test_id": "43, 58",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "around 15 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "15"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-26/Presentations/PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf",
+   "source_location": "page=30",
+   "quote": "Ultem and Nomex HT90-40 samples did not burn on ISS atmosphere 21% to 22% O2 Flow speeds around 15 cm/s",
+   "confidence": "ambiguous",
+   "derivation": "Slide bullets (lines joined with one space), presentation of July 2013. Group-level, approximate ('around'). The Ultem tests are the PSI-26 CSV rows 'ultem sheet': As Run 43 (Test # 16, 6/29/2012) and As Run 58 (Test # 17, 7/19/2012), both before the presentation. The Nomex HT90-40 tests in the same sentence are NOT included: the CSV calls Test # 14 and 15 'Nomex III Natural' / 'nomex natural III' while the planned matrix calls Test 14-15 'WSTF Nomex Natural (HT90-40)', so the material mapping is unclear.",
+   "flags": []
+  }
+ ],
+ "not_found": [
+  {
+   "variable": "pressure",
+   "looked_in": "record text (all sections), SRD pages 1-11, 2013 paper (all paragraphs), DLD page 1. No numeric value anywhere. The only mention is the SRD page 7 requirements table: SPICE column 'Pressure: Shuttle ambient pressure', BASS column '---Same---' (a term inherited from SPICE, no number, and written for the Shuttle although BASS ran on the ISS)."
+  },
+  {
+   "variable": "o2_mole_fraction (as-run / measured value)",
+   "looked_in": "record text (all sections), 2013 paper (all paragraphs), DLD page 1. Only the SRD lower-bound requirement exists (R16)."
+  }
+ ],
+ "lineage": "SPICE hardware is stated: SRD page 1 'An ISS Glovebox Experiment Utilizing Existing SPICE Hardware with Minor Modifications'; SRD page 4 'The plan is to use the existing NASA glovebox SPICE hardware with four changes:'; 2013 paper paragraph 51 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].' The cotton-fiberglass fuel is the SIBAL fabric (SRD page 5, footnote 1: 'Solid Inflammability Boundary at Low Speed (Principal Investigator: James T’ien) was a previously funded flight project [...]'). BASS-II and SLICE are not mentioned in any source read.",
+ "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run.",
+ "addendum3": "R103 added 2026-11-14 by the build session at the coordinating session's request (gravity gap BASS/CFI/SLICE); audited by a separate verificador run.",
+ "addendum_flow": {
+  "date": "2026-11-15",
   "extracted_by": "extractor agent (Claude Opus 5.5)",
-  "date": "2026-11-14",
-  "sources_read": [
-    "psi-data/PSI-26/_investigation/PSI-26.json",
-    "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-    "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-    "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf"
-  ],
-  "records": [
-    {
-      "id": "R1",
-      "test_id": "*",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_DLD_BASS.pdf",
-      "source_location": "page=1",
-      "quote": "BASS (Burning and Suppression of Solids) examines the burning and extinction characteristics of a wide variety of fuel samples in microgravity.",
-      "confidence": "direct",
-      "derivation": "Investigation-level description in the PSI Data Layout Document; the sentence spans two PDF lines (joined with one space).",
-      "flags": []
-    },
-    {
-      "id": "R2",
-      "test_id": "1-11 (cotton-fiberglass fabric tests; numbering of Table I in the 2013 paper)",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "Microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-      "source_location": "paragraph=17",
-      "quote": "Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.",
-      "confidence": "direct",
-      "derivation": "First sentence of the abstract. Scope is the fabric tests of this paper; the paper's test numbers may not match the PSI test numbering.",
-      "flags": []
-    },
-    {
-      "id": "R3",
-      "test_id": "1-g upward (concurrent) comparison flame, no test number given (Fig. 13 of the 2013 paper)",
-      "variable": "gravity_regime",
-      "value": "normal_gravity",
-      "value_original": "normal gravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-      "source_location": "paragraph=175",
-      "quote": "In Fig. 13, a comparison is made for two flames burning in concurrent flow, but with one in microgravity and the other in normal gravity.",
-      "confidence": "direct",
-      "derivation": "1-g comparison flame reported alongside the flight tests. The paper gives no test number and does not say where it was run. Figure 13 caption (paragraph 180): 'Comparison of 0-g concurrent-flow flame (left) and 1-g upward flame (right) for 2-cm wide sample.'",
-      "flags": []
-    },
-    {
-      "id": "R4",
-      "test_id": "1-g opposed-flow (downward) comparison flame, no test number given (Fig. 14 of the 2013 paper)",
-      "variable": "gravity_regime",
-      "value": "normal_gravity",
-      "value_original": "1-g",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-      "source_location": "paragraph=183",
-      "quote": "Figure 14.  Comparison of 0-g and 1-g flames in opposed flow.  Image sequences shows flames spreading from top down.  (Test 6 and a 1-g test)",
-      "confidence": "direct",
-      "derivation": "Figure caption (double spaces as in the document). 'Test 6' is the 0-g flight test; the 1-g test has no number and the paper does not say where it was run. Paragraph 179 adds: 'On the right, the normal-gravity, downward-burning flame is ignited, but sputters and then goes out.'",
-      "flags": []
-    },
-    {
-      "id": "R5",
-      "test_id": "*",
-      "variable": "fuel_phase",
-      "value": "solid",
-      "value_original": "Solids",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=title",
-      "quote": "Burning and Suppression of Solids",
-      "confidence": "direct",
-      "derivation": "Investigation title (a name, not a sentence). See R6 for the requirement sentence.",
-      "flags": []
-    },
-    {
-      "id": "R6",
-      "test_id": "*",
-      "variable": "fuel_phase",
-      "value": "solid",
-      "value_original": "Solid fuel materials",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-      "source_location": "page=7",
-      "quote": "Configuration: Solid fuel materials on individual and exchangeable sample cards",
-      "confidence": "direct",
-      "derivation": "'BASS Requirement' column of the requirements table, row 'Configuration' (planning document, February 2010). Note for the auditor: SRD page 4, Figure 1 labels the sample 'Solid fuel or wax-impregnated “wick”', and the test matrix (page 10) includes wax candles and wax-saturated fabric; the sources do not state a phase for the wax samples separately.",
-      "flags": []
-    },
-    {
-      "id": "R7",
-      "test_id": "*",
-      "variable": "platform",
-      "value": "International Space Station (ISS)",
-      "value_original": "International Space Station (ISS)",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=approach",
-      "quote": "The experiment was conducted aboard the International Space Station (ISS) inside the Microgravity Glove Box (MSG).",
-      "confidence": "direct",
-      "derivation": "Vehicle. Section=flightProgram also reads 'International Space Station (ISS)'.",
-      "flags": []
-    },
-    {
-      "id": "R8",
-      "test_id": "*",
-      "variable": "platform",
-      "value": "Microgravity Science Glovebox",
-      "value_original": "Microgravity Science Glovebox",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=experimentHardware",
-      "quote": "Microgravity Science Glovebox",
-      "confidence": "direct",
-      "derivation": "Facility (field value, not a sentence). Section=approach writes it 'Microgravity Glove Box (MSG)'; the 2013 paper, paragraph 53, writes 'Microgravity Science Glovebox (MSG)'.",
-      "flags": []
-    },
-    {
-      "id": "R9",
-      "test_id": "*",
-      "variable": "diluent",
-      "value": "N2",
-      "value_original": "air",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-      "source_location": "page=4",
-      "quote": "The air co-flow is produced by using a fan to blow air through the duct.",
-      "confidence": "derived",
-      "derivation": "air: oxygen balanced mainly by nitrogen. The 2013 paper (paragraph 51) also speaks of 'air flow speeds'. Separate note, NOT the ambient diluent: the extinguishing agent is nitrogen, SRD page 4: '3.) Nitrogen gas jet for flame extinguishment'; record section=researchImpacts: 'Using nitrogen as a flame suppressant in microgravity provides a direct link to current and planned extinguishment techniques.'",
-      "flags": []
-    },
-    {
-      "id": "R10",
-      "test_id": "*",
-      "variable": "flow_configuration",
-      "value": "concurrent",
-      "value_original": "concurrent-flow",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=approach",
-      "quote": "This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.",
-      "confidence": "ambiguous",
-      "derivation": "Investigation-level statement that both configurations were used; it does not say which test used which, so this value does not hold for every test. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering). Nothing is stated for the spheres or candles.",
-      "flags": []
-    },
-    {
-      "id": "R11",
-      "test_id": "*",
-      "variable": "flow_configuration",
-      "value": "opposed",
-      "value_original": "opposed-flow",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=approach",
-      "quote": "This investigation explored two primary air flow configurations; concurrent-flow and opposed-flow. With concurrent-flow air flows in the same direction as the flame spread and in opposed-flow air flows in the opposite direction of flame spread.",
-      "confidence": "ambiguous",
-      "derivation": "Same sentence as R10: both configurations were used; it does not say which test used which. Per-test directions for the fabric tests are in Table I of the 2013 paper (paragraphs 79-142, paper numbering).",
-      "flags": []
-    },
-    {
-      "id": "R12",
-      "test_id": "*",
-      "variable": "flow_configuration",
-      "value": "coflow",
-      "value_original": "co-flow",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-      "source_location": "page=4",
-      "quote": "The air co-flow is produced by using a fan to blow air through the duct.",
-      "confidence": "ambiguous",
-      "derivation": "Planning document (February 2010). 'co-flow' is the name of the duct air stream carried over from SPICE (SRD page 7, SPICE column: 'Configuration: Round gas jet diffusion flame in a co-flowing oxidizer stream'); it may name the duct stream rather than the flame/flow configuration. The PSI record describes the configurations as concurrent or opposed (R10, R11). Not assigned to specific tests.",
-      "flags": [
-        "SHARED_LINEAGE"
-      ]
-    },
-    {
-      "id": "R13",
-      "test_id": "*",
-      "variable": "flow_velocity",
-      "value": "",
-      "value_original": "as high as 40 cm/s",
-      "unit_original": "cm/s",
-      "numbers": [
-        "40"
-      ],
-      "kind": "range",
-      "source_file": "psi-data/PSI-26/_investigation/PSI-26.json",
-      "source_location": "section=approach",
-      "quote": "Airflow was controlled using a variable speed fan, with airflow speeds reaching as high as 40 cm/s.",
-      "confidence": "ambiguous",
-      "derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
-      "flags": [
-        "DISCREPANCY",
-        "RANGE_NOT_POINT"
-      ]
-    },
-    {
-      "id": "R14",
-      "test_id": "1-11 (cotton-fiberglass fabric tests; numbering of Table I in the 2013 paper)",
-      "variable": "flow_velocity",
-      "value": "",
-      "value_original": "0 to 40 cm/s",
-      "unit_original": "cm/s",
-      "numbers": [
-        "0",
-        "40"
-      ],
-      "kind": "range",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-      "source_location": "paragraph=51",
-      "quote": "A variable-speed fan is used to generate air flow speeds from 0 to 40 cm/s.",
-      "confidence": "ambiguous",
-      "derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. Note for the auditor: the paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15).",
-      "flags": [
-        "DISCREPANCY",
-        "RANGE_NOT_POINT"
-      ]
-    },
-    {
-      "id": "R15",
-      "test_id": "*",
-      "variable": "flow_velocity",
-      "value": "",
-      "value_original": "5 to 50 cm/s",
-      "unit_original": "cm/s",
-      "numbers": [
-        "5",
-        "50"
-      ],
-      "kind": "range",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-      "source_location": "page=4",
-      "quote": "An anemometer is used to measure the actual flow speed. The airflow speed can be adjusted from 5 to 50 cm/s.",
-      "confidence": "ambiguous",
-      "derivation": "Planning document (Science Requirements, February 2010) describing the existing SPICE fan and duct. SRD page 7 repeats 'Oxidizer Velocity: 5 to 50 cm/s' and 'Co-flow Velocity: 5 to 50 cm/s', with the BASS column '---Same---' as SPICE. Disagrees with the 0 to 40 cm/s of R13 and R14.",
-      "flags": [
-        "DISCREPANCY",
-        "RANGE_NOT_POINT",
-        "SHARED_LINEAGE"
-      ]
-    },
-    {
-      "id": "R16",
-      "test_id": "*",
-      "variable": "o2_mole_fraction",
-      "value": "",
-      "value_original": "at or above 21% O2",
-      "unit_original": "%",
-      "numbers": [
-        "21"
-      ],
-      "kind": "range",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_SRD_BASS.pdf",
-      "source_location": "page=8",
-      "quote": "On each day of testing, the oxygen concentration of the ISS cabin atmosphere should be measured. Testing is restricted to oxygen concentrations at or above 21% O2.",
-      "confidence": "ambiguous",
-      "derivation": "Lower bound only, and a requirement in the February 2010 planning SRD ('Ambient Oxygen Concentration Requirements', BASS column), not a measured value. The same restriction is repeated on page 8 for the MSG working volume. The as-run O2 is not stated in the record text or the 2013 paper. The percent basis (volume/mole or mass) is not stated. The '2' in 'O2' is a subscript in the PDF.",
-      "flags": [
-        "UNIT_AMBIGUOUS"
-      ]
-    },
-    {
-      "id": "R101",
-      "test_id": "*",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
-      "source_location": "page=2",
-      "quote": "A snapshot of 2-cm diameter acrylic sphere burning in microgravity at 17 percent oxygen and 10 cm/s flow from the Burning and Suppression of Solids (BASS) experiment conducted on the International Space Station.",
-      "confidence": "direct",
-      "derivation": "Figure caption in the 2015 ISS Researcher's Guide describing an actual BASS test (acrylic sphere, 17 % O2, 10 cm/s) 'conducted on the International Space Station'.",
-      "flags": []
-    },
-    {
-      "id": "R102",
-      "test_id": "*",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "nasa/iss-combustion-guide-2015/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
-      "source_location": "page=31",
-      "quote": "Recent results from the BASS experiment currently running on the ISS indicate that NASA-STD-6001 Test 1 is not conservative, and materials can burn at lower oxygen levels in microgravity than on Earth.",
-      "confidence": "derived",
-      "derivation": "Results sentence about the BASS experiment in the 2015 ISS Researcher's Guide; it states the microgravity comparison without naming individual tests.",
-      "flags": []
-    },
-    {
-      "id": "R103",
-      "test_id": "1, 4, 5, 12, 13, 37, 44, 45, 54, 55, 65, 66",
-      "variable": "gravity_regime",
-      "value": "microgravity",
-      "value_original": "Microgravity",
-      "unit_original": "",
-      "numbers": [],
-      "kind": "term",
-      "source_file": "psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx",
-      "source_location": "paragraph=17",
-      "quote": "Microgravity combustion tests burning fabric samples were performed aboard the International Space Station.",
-      "confidence": "derived",
-      "derivation": "Abstract of PSI-26's own 2013 paper (past tense) about the cotton-fiberglass fabric tests. Scope: only the PSI-26 table rows whose material is SIBAL (the cotton-fiberglass blend; PSI record approach: 75% cotton and 25% fiberglass), by material, not by test number (the paper numbers its tests 1-11 itself). Candles, spheres, Nomex and other samples are not covered. The paper's 1-g comparison flames are not in the PSI table.",
-      "flags": [
-        "SHARED_LINEAGE"
-      ]
-    }
-  ],
+  "note": "flow_velocity records from draft-BASS-flow.extractor.json; SHARED_LINEAGE added to R601-R620 by the build session on the verificador's advice (Table 7.1 covers BASS and BASS-II).",
   "not_found": [
-    {
-      "variable": "pressure",
-      "looked_in": "record text (all sections), SRD pages 1-11, 2013 paper (all paragraphs), DLD page 1. No numeric value anywhere. The only mention is the SRD page 7 requirements table: SPICE column 'Pressure: Shuttle ambient pressure', BASS column '---Same---' (a term inherited from SPICE, no number, and written for the Shuttle although BASS ran on the ISS)."
-    },
-    {
-      "variable": "o2_mole_fraction (as-run / measured value)",
-      "looked_in": "record text (all sections), 2013 paper (all paragraphs), DLD page 1. Only the SRD lower-bound requirement exists (R16)."
-    }
-  ],
-  "lineage": "SPICE hardware is stated: SRD page 1 'An ISS Glovebox Experiment Utilizing Existing SPICE Hardware with Minor Modifications'; SRD page 4 'The plan is to use the existing NASA glovebox SPICE hardware with four changes:'; 2013 paper paragraph 51 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].' The cotton-fiberglass fuel is the SIBAL fabric (SRD page 5, footnote 1: 'Solid Inflammability Boundary at Low Speed (Principal Investigator: James T’ien) was a previously funded flight project [...]'). BASS-II and SLICE are not mentioned in any source read.",
-  "addendum2": "R101+ added 2026-11-14 by the build session (Sonnet) on request of the coordinating session (review finding): gravity_regime from NASA Researcher's Guide / NTRS 20180005168; audited by a separate verificador run.",
-  "addendum3": "R103 added 2026-11-14 by the build session at the coordinating session's request (gravity gap BASS/CFI/SLICE); audited by a separate verificador run."
+   {
+    "variable": "pressure (PSI-25 B1, B2, B3, B4, B5, B7, B12; 2/19/2014, calibrated initial O2 22.2 %)",
+    "looked_in": "Summary Report full text searched for 'kPa', 'atm', 'pressure', 'psi', 'torr' (all hits reviewed). Only B3 (written 'B03') and B4 are named next to a pressure, in the Figure 2.20 caption (page=49, '... at 1 atm'), already held as R301. B1, B2, B5, B7, B12 are never named with a pressure. Page=30, Figure 2.7 text: 'flame spread over 100-µm-thick PMMA sheet for the ambient conditions of 20.7 percent O2, 1 atm, and an opposed-flow velocity of 2.5 cm/s' names no test; the 2/19/2014 100-µm samples are B1 and B3 (Air display 5 and 2, neither 2.5) and further 100-µm samples were run on later days (B6, B9, B15, B16, B19, B20), so it cannot be tied. Pages 21 and 31 ('In the first test ... a second test was done under the same conditions') state no pressure. Page=46 '99.2 to 99.5 kPa in the tests reported' (held as R302) and page=102 '1 atm' (SIBAL, held as R303) do not name B tests. Table A.1 (pages 111-112) has no pressure column."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 B1, B2, B4, B5, B7, B10, B11, B12, B13, B14, B16, B17, B18, B19, B20, B21, B22)",
+    "looked_in": "Table A.1 observation cells (pages 111-112) state no flow in cm/s for these rows, or only the ignition flow: B21 'Ignition at 5 cm/s then fan pot turned down slowly', B22 'Ignition at 5 cm/s then decreased flow in step, fan pot 1.7, 0.5, 0.4, 0.36 (flame out)' (lower end in pot only). B10, B11, B13: 'Multiple velocities for steady spread, extinguished at pot 0.35'. Chapter 2 extinction-velocity sentences (pages 21-23, 31-33: about 1 cm/s for 100, 200, 300 µm, about 1.5 cm/s for 400 µm; about 2.6 and 4 cm/s at 16 percent O2) give limits by thickness, not per test id. Page=48 '100-µm-thick samples ... the opposing flow velocity is 3 cm/s' names no test. Air display cells not used (insufficient, per task)."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 O1..O22, Olson rods)",
+    "looked_in": "Table A.5 observation cells (pages 118-119) give only ignition or single in-test flows in cm/s (O2 'Ignited at 2 cm/s', O3a 'flame sooty at 5 cm/s', O14 and O19 'Ignition at 5 cm/s then slow pot decreases to quenching pot', O15a '1.5 min at 5 cm/s; 2.5 min pot 1.0; ...'); the rest of each test is in potentiometer settings. Olson chapter (pages 72-80): 'typically at a flow speed of 5 cm/s' (ignition, all rods) and campaign range '0- to 55-cm/s'. Pot-to-cm/s conversion is handled separately (derived-bass2-rods-flow.extractor.json)."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 P tests other than P21a)",
+    "looked_in": "Table A.3 observation cells (pages 114-115): P5, P9, P13a, P13b 'Fan pot 1.5 (5 cm/s), 0.9, 0.4, ...' (start only, rest in pot); P17 'turned back down to 2 cm/s, then 0.36, 0.34 pots' (partial); P21b 'Igniter broke after third attempt' (no flow). Fernandez-Pello chapter Figure 4.4 (page=60): rod diameters 4.76 mm and 3.18 mm match no PSI-table P rod (1/4, 3/8, 0.5 inch), so not tied."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 F1, F2, F3, F4)",
+    "looked_in": "Table A.2 (page=113): F1-F3 observation cells state no flow in cm/s (Nomex did not ignite). F4: 'Long ignition, but blue flame established at 3 cm/s, reduced flow in increments: potentiometers 0.6, 0.4, 0.35, 0.32, 0.31, 0.305 flame extinguished' and Ferkul chapter page=54 'At the initial 3 cm/s' / Figure 3.1 '(a) Postignition at 3 cm/s (potentiometer or pot 0.6)': only the starting flow is in cm/s."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 T3, T7, spherical sections)",
+    "looked_in": "Not in Table 7.1 (page=104). Table A.6 rows (page=121) have no observation in cm/s."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 M tests: extra single values not proposed as records)",
+    "looked_in": "Table A.4 single in-test values, folded into the derivation of the Table 5.1 record of the same test: M3 'Extinguished at 18 cm/s', M4 and M13 'Mild ignition at 10 cm/s' (identical notes), M10 'self-extinguished at 8 cm/s', M11 'extinguished at 12 cm/s', M14 'air reading of 9 cm/s', M15 'turned down flow to 15' (no unit), M17 'targeted constant flows of 10, 5, and 3' (no unit), M19 'went out on its own at 5 cm/s'."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 As Run 44, Test # 5b, SIBAL opposed reburn)",
+    "looked_in": "Not in 2013 paper Table I (paragraphs 79-142) nor in Summary Report Table 7.1. Its as-run matrix row is beyond the first 25 rows indexed in the corpus page index (not read)."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 spheres, wake spheres, candles, PMMA and wax slabs, Nomex)",
+    "looked_in": "Overview pdf (corpus page index, pages 1-63): flows are given for unnamed samples only: page=31 'NOMEX – III, 22% O2, 1 atm  14 cm/s (0g)' and 'concurrent propagation at 15 cm/s on ISS' (one Nomex-III sample; candidates As Run 14, 24, 57 'Nomex blend' or 38, 56 'Nomex III Natural'; 14 vs 15 inside the slide); page=34 and page=51 2-cm PMMA sphere '17% oxygen and 12 cm/s' (as-run matrix 2013 sheet has two candidates at 17.07 % O2 with Air display 12: As Run 80 and 81); page=36 1-cm sphere 'less than 1 cm/s'; page=54 1-cm flat acrylic 'around 9 cm/s'; page=56 15-mm sphere 'Flow of less than 1 cm/s'; pages 59-61 candles at 17 % O2 'less than 1 cm/s' / '5, 4, 3, 2, 1, <1 cm/s'. None names a test; not tied. As-run matrix observation cells in cm/s (first 25 rows per sheet): As Run 10 'Still a sooty flame even at 1 cm/s' (one moment of a stepped test); As Run 80 'fan 122 =31 cm/s' (during vitiation, before ignition); As Run 85 'increased flow to 20 cm/s ... back to 8 cm/s ... down to 1 cm/s' and As Run 89 'Sooty at 2 cm/s and then at 1 cm/s' cannot be used because those As Run numbers are each shared by two different CSV rows (85: Test # 117 and 117a; 89: Test # 26 and 87). Rows beyond the first 25 per sheet are not in the page index and were not read."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 planned test matrix)",
+    "looked_in": "BASS ERD slides 10-12 and SysAcceptanceReview.1 pages 41-43 ('BASS Test Matrix', planned flow per Test ID). Not proposed: where as-run values exist the plan was not followed (plan Test 1: 5, as run 10, 5; Test 4: 50 vs 22; Test 7: 5 vs 10; Test 8: 10 vs 5; Test 10: 5 vs 11; Test 2: 10 vs 9, 44); Test 12 as-run Air display '15' vs plan 30; Ultem plan 30/50 vs Overview 'around 15 cm/s'; plan Test 14-15 material 'WSTF Nomex Natural (HT90-40)' vs CSV 'Nomex III Natural'; Test IDs 18-81 carry group-level lists ('5, 10, 20, 50'), not per-test values. Planned_Test Matrix.xlsx not opened (same plan)."
+   }
+  ]
+ }
 }

@@ -1222,6 +1222,536 @@ For each record below, open the file at the location given and check that the qu
 - Applies to: 2 tests: `T3`, `T7`
 - Note: confidence ambiguous (Table A.6 rows for the two 4-cm PMMA spherical-section tests (BASS-II T7 is GMT 190, sample 182m, not the BASS T7 of Table 7.1). No source equates this stagnation geometry with a controlled term (the ReadMe paragraph=10 on T'ien's sphere states no direction), so value is left empty.); R423 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
+### flow_velocity = 10 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments GMT45-T1 2.2 10 18.5b [...] GMT175-T9 2.2 10 16.4 No ignition [...] GMT190-T23 2.2 10 17.2 Reused, did not ignite [...] GMT190-T24 2.2 10 18.2 Reused, one-sided flame
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10` (cm/s)
+- Applies to: 4 tests: `T1`, `T9`, `T23`, `T24`
+- Note: confidence direct (Table 7.1 rows GMT45-T1, GMT175-T9, GMT190-T23, GMT190-T24 (PSI table GMT and O2 match). T9: Table 7.1 'No ignition', but Table A.6 note (page=121) 'Brief ignition but flame extinguished before spreading beyond igniter'. T23: A.6 'Did not ignite with moved igniter'. For T9 and T23, 10 cm/s is the flow set for the attempt. T1 A.6 note (page=120): 'flow velocity held constant'. Caution: Table 7.1 width 2.2 for T24 vs PSI/A.6 '1 cm SIBAL'.); flags: SHARED_LINEAGE; R601 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 5..10 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T2 2.2 10 to 5 18.5b
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10 to 5` (cm/s)
+- Applies to: 1 tests: `T2`
+- Note: confidence direct (Table 7.1 row GMT45-T2 (PSI table T2, GMT 45). Flow stepped during the test. For the reader: Table A.6 (page=120) note for T2 says 'Flow velocity changed to 9 to 5 fairly early then very late in the burn changed to 4' with no unit written; those numbers equal the PSI table 'Air display' cell ('9   5   4'), a display reading, so they are not proposed as a second value.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R602 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.2..10 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T4 2.2 10 to 2.2 18.7 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10 to 2.2` (cm/s)
+- Applies to: 1 tests: `T4`
+- Note: confidence direct (Table 7.1 row GMT45-T4 (PSI table T4, GMT 45). Consistent with the chapter text, page=106: 'sample in 18.7 percent O2 was first ignited at 10-cm/s flow. Flow speed was decreased to 2.2 cm/s' (the only quenched 18.7 % row of Table 7.1 is T4).); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R603 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..29 cm/s  (insufficient_evidence)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T15 2.2 10 to 29 18.7 No blowoff
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10 to 29` (cm/s)
+- Applies to: 1 tests: `T15`
+- Note: confidence ambiguous (Table 7.1 row GMT45-T15 (PSI table T15, GMT 45). DISCREPANCY with R605: Table A.6 note for the same test says the actual starting airspeed was about 9 cm/s, not 10. Both proposed, none chosen.); flags: DISCREPANCY, RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R604 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 9..29 cm/s  (insufficient_evidence)
+
+> Initial air reading is 15, but Rick did not wait long enough for the anemometer to stabilize; actual airspeed is about 9 cm/s; no flow restrictors installed, but flow only maxed out to 29 cm/s; no blowoff attained
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=120`
+- As written: `actual airspeed is about 9 cm/s; no flow restrictors installed, but flow only maxed out to 29 cm/s` (cm/s)
+- Applies to: 1 tests: `T15`
+- Note: confidence ambiguous (Table A.6 'T'IEN TEST MATRIX', observation cell of row T15 (2/14/2014, GMT 2014-45, as-run 4, sample 138). 'about 9' is approximate. DISCREPANCY with R604 (Table 7.1: 10 to 29).); flags: DISCREPANCY, RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R605 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.4..10 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T5 2.2 10 to 2.4 18.8
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10 to 2.4` (cm/s)
+- Applies to: 1 tests: `T5`
+- Note: confidence direct (Table 7.1 row GMT100-T5 (PSI table T5, GMT 100).); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R606 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.6..4.5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T6 2.2 4.5 to 2.6 18.8
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `4.5 to 2.6` (cm/s)
+- Applies to: 1 tests: `T6`
+- Note: confidence direct (Table 7.1 row GMT100-T6 (PSI table T6, GMT 100). For the reader: the PSI table 'Air display' cell is '5  2  1   <1' (display readings, not used).); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R607 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.2..4 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T13 2.2 4 to 2.2 17.5 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `4 to 2.2` (cm/s)
+- Applies to: 1 tests: `T13`
+- Note: confidence direct (Table 7.1 row GMT100-T13 (PSI table T13, GMT 100).); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R608 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 3..4 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T16 2.2 4 to 3 17.6
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `4 to 3` (cm/s)
+- Applies to: 1 tests: `T16`
+- Note: confidence direct (Table 7.1 row GMT100-T16 (PSI table T16, GMT 100). Consistent with Table A.6 note, page=120: 'flame spread whole sample at 3 cm/s'.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R609 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT175-T10 2.2 5 16.4 No ignition [...] GMT178-T12 2.2 5 16.8 No ignition [...] GMT216-T28a 1.2 5 20.7 Reused, did not ignite [...] GMT216-T28b 1.2 5 20.7 Reused, did not ignite
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `5` (cm/s)
+- Applies to: 4 tests: `T10`, `T12`, `T28a`, `T28b`
+- Note: confidence direct (Table 7.1 rows GMT175-T10, GMT178-T12, GMT216-T28a, GMT216-T28b (PSI GMT and O2 match; BASS-II T10 is the GMT175 row, not the 'GMT131-T10 ... BASS' row). Table 7.1 says 'No ignition' / 'did not ignite', but the Table A.6 notes report a brief flame in each case. 5 cm/s is the flow set for the attempt; no sustained flame.); flags: SHARED_LINEAGE; R610 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 2.6..5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT175-T18 2.2 5 to 2.6 17.4 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `5 to 2.6` (cm/s)
+- Applies to: 1 tests: `T18`
+- Note: confidence direct (Table 7.1 row GMT175-T18 (PSI table T18, GMT 175; table date typed '6/24/2018').); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R611 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 4 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T11 2.2 4 17.1
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `4` (cm/s)
+- Applies to: 1 tests: `T11`
+- Note: confidence direct (Table 7.1 row GMT178-T11 (PSI table T11, GMT 178). Not the 'GMT222-T11 ... BASS' row (PSI-26, see R664).); flags: SHARED_LINEAGE; R612 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.8..4 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T14 2.2 4 to 2.8 16.9 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `4 to 2.8` (cm/s)
+- Applies to: 1 tests: `T14`
+- Note: confidence direct (Table 7.1 row GMT178-T14 (PSI table T14, GMT 178). Consistent with Table A.6 note, page=120: 'Extinguished as we reduced flow below 3 cm/s'.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R613 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 6..53 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T17 2.2 6 to 53 16.9 No blowoff
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `6 to 53` (cm/s)
+- Applies to: 1 tests: `T17`
+- Note: confidence direct (Table 7.1 row GMT178-T17 (PSI table T17, GMT 178). Flow increased during the test (blowoff attempt; A.6 note page=120: 'Tried to blowoff, but did not').); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R614 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 11 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T19 1.2 11 17.2
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `11` (cm/s)
+- Applies to: 1 tests: `T19`
+- Note: confidence direct (Table 7.1 row GMT190-T19 (PSI table T19, GMT 190). A.6 note: 'Steady burn'.); flags: SHARED_LINEAGE; R615 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 3..11 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T20 1.2 11 to 3 17.2 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `11 to 3` (cm/s)
+- Applies to: 1 tests: `T20`
+- Note: confidence direct (Table 7.1 row GMT190-T20 (PSI table T20, GMT 190). Consistent with Table A.6 note, page=120: 'Quick extinction when we turned air down to 3 cm/s'.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R616 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 11..47 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T21 1.2 11 to 47 17.2 Blow-off
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `11 to 47` (cm/s)
+- Applies to: 1 tests: `T21`
+- Note: confidence direct (Table 7.1 row GMT190-T21 (PSI table T21, GMT 190). Flow increased to blowoff.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R617 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 5..10.5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T22 1.2 10.5 to 5 17.1 Quenched
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `10.5 to 5` (cm/s)
+- Applies to: 1 tests: `T22`
+- Note: confidence direct (Table 7.1 row GMT190-T22 (PSI table T22, GMT 190).); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R618 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2.5..5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT216-T25 2.2 5 to 2.5 20.8 Reused, ignited [...] GMT216-T26 2.2 5 to 2.5 20.8 Reused, ignited
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `5 to 2.5` (cm/s)
+- Applies to: 2 tests: `T25`, `T26`
+- Note: confidence direct (Table 7.1 rows (PSI table T25, T26, GMT 216). Consistent with Table A.6 notes, page=121, both rows: 'Ignition at 5 cm/s then decrease to 2.5 cm/s and hold constant'.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R619 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2..5 cm/s  (extracted)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT216-T27 1.2 5 to 2 20.7 Reused, ignited [...] GMT216-T29 1.2 5 to 2 20.7 Reused, ignited
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `5 to 2` (cm/s)
+- Applies to: 2 tests: `T27`, `T29`
+- Note: confidence direct (Table 7.1 rows (PSI table T27, T29, GMT 216). T27 consistent with Table A.6 note, page=121: 'Ignition at 5 cm/s, then quickly to 2 cm/s (fan pot 0.7)'.); flags: RANGE_NOT_POINT, SHARED_LINEAGE; range stated in the source; R620 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 9 cm/s  (insufficient_evidence)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% M1 1 2.2 1 9 0.071 6.4 22.2 21.9
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `9` (cm/s)
+- Applies to: 1 tests: `M1`
+- Note: confidence ambiguous (Table 5.1 'TWENTY BURNING AND SUPPRESSION OF SOLIDS—II (BASS–II) TESTS' (Miller chapter); the Velocity column pairs each velocity with the spread rate measured at it. DISCREPANCY with R641: Table A.4 note for M1 says 'changed flow from 10 to 8 cm/s'; 9 is neither set value. Both proposed.); flags: DISCREPANCY; R621 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 15..20 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M2 3 2.2 1 20 and 15 0.052 and 0.033 22.9 22.2 21.2
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `20 and 15` (cm/s)
+- Applies to: 1 tests: `M2`
+- Note: confidence direct (Table 5.1: velocities at which spread rates were measured (one spread rate per velocity in the same row). The Table A.4 note for M2 (R642) gives the full set sequence 20, 15, 13, 14 cm/s; complementary scope (spread-measurement flows vs. all set flows), not treated as a disagreement.); flags: RANGE_NOT_POINT; range stated in the source; R622 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..20 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M3 5 2.2 1 10 and 20 0.029 and 0.024 20.1 20.8 19.7
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10 and 20` (cm/s)
+- Applies to: 1 tests: `M3`
+- Note: confidence direct (Table 5.1. Consistent with Table A.4 note, page=117: 'Extinguished at 18 cm/s'.); flags: RANGE_NOT_POINT; range stated in the source; R623 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 3..5 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M4 5 2.2 2 5 and 3 0.045 and 0.033 19.8 21.8 19.8
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `5 and 3` (cm/s)
+- Applies to: 1 tests: `M4`
+- Note: confidence direct (Table 5.1. For the reader: the Table A.4 note for M4 (page=117), 'Mild ignition at 10 cm/s; decreased flow down holding constant for 6 min at pot settings of 1.7, 1.0, and 0.55; finally extinguished by turning pot down to 0.3', is word for word the note of M13 (page=116), so it may be a copy; not proposed.); flags: RANGE_NOT_POINT; range stated in the source; R624 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M5 3 2.2 2 10 0.071 27.2 22.2 19
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10` (cm/s)
+- Applies to: 1 tests: `M5`
+- Note: confidence direct (Table 5.1: the single velocity at which a spread rate was measured. The test itself ran over more flows: Table A.4 note (R643) 'turned down to 10 cm/s, then further down in increments to 5 cm/s; extinguished at 5 cm/s'.); R625 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 8..10 cm/s  (insufficient_evidence)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M6 1 2.2 2 10 and 8 Not tracked 16.8 21.8 20.7
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10 and 8` (cm/s)
+- Applies to: 1 tests: `M6`
+- Note: confidence ambiguous (Table 5.1 (spread rate 'Not tracked'). DISCREPANCY with Table A.4 row M6 (page=117), which states no cm/s but says 'once flame settled down, we kept flow low and had two flow plateaus (pot 0.4 and 0.36)', with Air display '10, 5, 3, 0': the plateaus look far below 8 cm/s. No second record (A.4 gives no value in cm/s).); flags: DISCREPANCY, RANGE_NOT_POINT; range stated in the source; R626 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 3..10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10, 6, 5, and 3` (cm/s)
+- Applies to: 1 tests: `M7`
+- Note: confidence direct (Table 5.1. Stepped list; numbers are its first and last written values (range 3 to 10).); flags: RANGE_NOT_POINT; range stated in the source; R627 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 5..10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M8 2 1.2 2 10, 6, and 5 0.057, 0.056, and 0.04 25.2 19.1 18.2
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10, 6, and 5` (cm/s)
+- Applies to: 1 tests: `M8`
+- Note: confidence direct (Table 5.1. Stepped list; numbers are first and last written values. Corroborated on page=64 for the same test (Figure 5.2 caption, page=65: 'Position versus time graph for test M8'): 'The red portion on the graph represents the part of experiment where the opposed-flow velocity was 10 cm/s. Similarly, the green and purple regions represent flow speeds of 6 and 5 cm/s, respectively.'); flags: RANGE_NOT_POINT; range stated in the source; R628 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 14 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M9 3 1.2 2 14 0.025 16.8 18 17.6
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `14` (cm/s)
+- Applies to: 1 tests: `M9`
+- Note: confidence direct (Table 5.1: the velocity of the reported spread rate. The test was ignited at 10 cm/s and raised to 14 cm/s (Table A.4 note, R644); complementary scope.); R629 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..15 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M10 4 1.2 2 15 and 10 0.0373 and 0.03 30.5 20.1 18.6
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `15 and 10` (cm/s)
+- Applies to: 1 tests: `M10`
+- Note: confidence direct (Table 5.1 (spread-measurement velocities). For the reader: Table A.4 note for M10 (page=116) extends the test history: 'flame big at 17, so only left it there 3 min' (no unit written) and 'flame self-extinguished at 8 cm/s after almost 10 min'; only one end is in cm/s, so no second record.); flags: RANGE_NOT_POINT; range stated in the source; R630 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 13..21 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `21, 15, and 13` (cm/s)
+- Applies to: 1 tests: `M11`
+- Note: confidence direct (Table 5.1; first and last written values. Table A.4 note (page=116): '29-min burn; extinguished at 12 cm/s.' (extinction just below the lowest spread-measurement flow; single value, no second record).); flags: RANGE_NOT_POINT; range stated in the source; R631 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..12 cm/s  (insufficient_evidence)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M12 2 2.2 2 12 and 10 Not tracked 16.2 21.7 20.4
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `12 and 10` (cm/s)
+- Applies to: 1 tests: `M12`
+- Note: confidence ambiguous (Table 5.1 (spread rate 'Not tracked'). DISCREPANCY: Table A.4 row M12 (page=116) has Fan display '41, 42, 41', Air display '<1' and note 'finally had about  plateaus at pot = 0.35, 0.4, and again 0.35'; and Figure 5.4(c) caption (page=67), '2-mm-thick by 2.2-cm-wide PMMA slab tests. [...] (c) Preextinction flame, two sided, 21.7 percent O2, <1 cm/s', matches M12 only by attributes (2 mm, 2.2 cm, two sided, initial O2 21.7 in Table 5.1), not by test number. No second record: '<1' is a bound, not a value.); flags: DISCREPANCY, RANGE_NOT_POINT; range stated in the source; R632 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 4..6 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M13 4 2.2 2 6, 5, and 4 0.047, 0.035, and 0.033 20.5 20.8 19
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `6, 5, and 4` (cm/s)
+- Applies to: 1 tests: `M13`
+- Note: confidence direct (Table 5.1; first and last written values. Table A.4 note (page=116) adds 'Mild ignition at 10 cm/s' (same wording as the M4 note, see R624), ignition flow only.); flags: RANGE_NOT_POINT; range stated in the source; R633 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..15 cm/s  (insufficient_evidence)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M14 2 2.2 1 15, 14, and 10 0.0624, 0.055, and 0.0353 15.4 22.2 21.6
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `15, 14, and 10` (cm/s)
+- Applies to: 1 tests: `M14`
+- Note: confidence ambiguous (Table 5.1. DISCREPANCY: Table A.4 row M14 (page=116) shows Air display '10, ~8' and note 'Prolonged ignition, followed by flow reduction after flame moved away from igniter region and spread steadily; flame self-extinguished at an air reading of 9 cm/s.' Nothing in A.4 shows 15 or 14. No second record (single extinction value).); flags: DISCREPANCY, RANGE_NOT_POINT; range stated in the source; R634 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 20 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M15 4 2.2 1 20 0.045 22.0 21 20
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `20` (cm/s)
+- Applies to: 1 tests: `M15`
+- Note: confidence direct (Table 5.1: velocity of the reported spread rate. Table A.4 note (page=116): 'then turned flow up to 20 cm/s and got steady spreading there, turned down flow to 15 and got spreading and slow extinction there.' The 15 has no unit written, so no second record; the test ran at other flows too.); R635 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2..5 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `5, 3, and 2` (cm/s)
+- Applies to: 1 tests: `M16`
+- Note: confidence direct (Table 5.1; first and last written values. The A.4 note (R645) shows the test also ran down to about 1 cm/s and up to 10 cm/s; complementary scope.); flags: RANGE_NOT_POINT; range stated in the source; R636 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 3..5 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M17 2 2.2 2 5, 4, and 3 0.053, 0.042, and 0.026 30.7 18.8 17.1
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `5, 4, and 3` (cm/s)
+- Applies to: 1 tests: `M17`
+- Note: confidence direct (Table 5.1; first and last written values. Table A.4 note (page=116): '30-min burn targeted constant flows of 10, 5, and 3; finally turned fan pot to 0 to extinguish.' (no unit written; not proposed).); flags: RANGE_NOT_POINT; range stated in the source; R637 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 8..10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10 and 8` (cm/s)
+- Applies to: 1 tests: `M18`
+- Note: confidence direct (Table 5.1. The A.4 note (R646) adds a brief 15 cm/s step; complementary scope.); flags: RANGE_NOT_POINT; range stated in the source; R638 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 6..10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M19 4 2.2 2 10 and 6 0.027 and 0.0159 25.7 19 17.4
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10 and 6` (cm/s)
+- Applies to: 1 tests: `M19`
+- Note: confidence direct (Table 5.1. Table A.4 note (page=117): 'Burned with decreasing flows until it went out on its own at 5 cm/s' (single value; Air display '10, 17, 14, 10, 7, 5' shows the test also went above 10). No second record.); flags: RANGE_NOT_POINT; range stated in the source; R639 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10 cm/s  (extracted)
+
+> Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M20 5 2.2 2 10 0.012 16.5 18 17.4
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=65`
+- As written: `10` (cm/s)
+- Applies to: 1 tests: `M20`
+- Note: confidence direct (Table 5.1: velocity of the reported spread rate. The test then went down to 8 cm/s (A.4 note, R647).); R640 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 8..10 cm/s  (extracted)
+
+> very slow propagation; changed flow from 10 to 8 cm/s and flame shrank to a circle
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=116`
+- As written: `10 to 8 cm/s` (cm/s)
+- Applies to: 1 tests: `M1`
+- Note: confidence direct (Table A.4 'MILLER TEST MATRIX', observation cell of row M1 (2/20/14, GMT 2014-051, as-run 15, sample 222); Air display cell '10, 8'. DISCREPANCY with R621 (Table 5.1: 9).); flags: DISCREPANCY, RANGE_NOT_POINT; range stated in the source; R641 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 13..20 cm/s  (insufficient_evidence)
+
+> Ignite at 20 cm/s, turn down to 15 cm/s after spread away from igniter; seemed steady, so turned down to 13 cm/s; flame got very dim, so increased flow to 14 cm/s
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=117`
+- As written: `Ignite at 20 cm/s, turn down to 15 cm/s after spread away from igniter; seemed steady, so turned down to 13 cm/s` (cm/s)
+- Applies to: 1 tests: `M2`
+- Note: confidence ambiguous (Table A.4 observation cell of row M2 (2/20/14, GMT 2014-051, as-run 17, sample 224); set flows 20, 15, 13, 14 cm/s, range 13 to 20. Air display cell '20, 15, 13'. Complements R622 (Table 5.1 spread-measurement flows 20 and 15).); flags: RANGE_NOT_POINT; range stated in the source; R642 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 5..10 cm/s  (insufficient_evidence)
+
+> turned down to 10 cm/s, then further down in increments to 5 cm/s; extinguished at 5 cm/s
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=117`
+- As written: `turned down to 10 cm/s, then further down in increments to 5 cm/s` (cm/s)
+- Applies to: 1 tests: `M5`
+- Note: confidence ambiguous (Table A.4 observation cell of row M5 (2/20/14, GMT 2014-051, as-run 18, sample 167). Ambiguous because the flame was ignited during loss of signal ('Rick ignited while we were loss of signal') and burned before the turn-down at a flow not stated in cm/s (Air display cell '20, 13, 10, 8, 5'), so 10 is not the top of the test's flow range.); flags: RANGE_NOT_POINT; range stated in the source; R643 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..14 cm/s  (insufficient_evidence)
+
+> Ignited at 10 cm/s, photographs every 5 s or so,  turned up flow when flame looked weak; died after 15 min at 14 cm/s
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=117`
+- As written: `Ignited at 10 cm/s, photographs every 5 s or so,  turned up flow when flame looked weak; died after 15 min at 14 cm/s` (cm/s)
+- Applies to: 1 tests: `M9`
+- Note: confidence ambiguous (Table A.4 observation cell of row M9 (7/11/14, GMT 192, as-run 78, sample 179m); double space after 'or so,' as in the text layer. Air display cell '10, 14'. Complements R629.); flags: RANGE_NOT_POINT; range stated in the source; R644 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 1..10 cm/s  (insufficient_evidence)
+
+> Burned at decreasing flow down to 1 cm/s or so, still fine, at end of sample, turned up flow to 10 cm/s and flame got really long
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=116`
+- As written: `Burned at decreasing flow down to 1 cm/s or so, still fine, at end of sample, turned up flow to 10 cm/s` (cm/s)
+- Applies to: 1 tests: `M16`
+- Note: confidence ambiguous (Table A.4 observation cell of row M16 (7/23/14, GMT 204, as-run 99, sample 164m); Air display cell '10, 6, 3, 2, 1, 10'. Ambiguous only because the low end is approximate ('1 cm/s or so'). Complements R636.); flags: RANGE_NOT_POINT; range stated in the source; R645 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 8..15 cm/s  (insufficient_evidence)
+
+> 26-min burn; flow briefly at 15 cm/s but flame was too strong so turned down; HCl 0 > 3.1,  extinguished 8 cm/s
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=116`
+- As written: `flow briefly at 15 cm/s but flame was too strong so turned down; HCl 0 > 3.1,  extinguished 8 cm/s` (cm/s)
+- Applies to: 1 tests: `M18`
+- Note: confidence ambiguous (Table A.4 observation cell of row M18 (7/15/14, GMT 196, as-run 87, sample 168m); double space before 'extinguished' as in the text layer. Air display cell '10, 15 (brief), 10, 8'. Range 8 to 15 (15 only briefly). Complements R638.); flags: RANGE_NOT_POINT; range stated in the source; R646 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 8..10 cm/s  (insufficient_evidence)
+
+> ignition at 10 cm/s (left 8 min) then flow down to 8 cm/s (flame out after 3 more minutes)
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=117`
+- As written: `ignition at 10 cm/s (left 8 min) then flow down to 8 cm/s` (cm/s)
+- Applies to: 1 tests: `M20`
+- Note: confidence ambiguous (Table A.4 observation cell of row M20 (8/1/14, GMT 213, as-run 116, sample 172m); Air display cell '10, 8'. Complements R640.); flags: RANGE_NOT_POINT; range stated in the source; R647 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 1.1..3 cm/s  (insufficient_evidence)
+
+> To pin down the extinction flow velocity, a second test was done under the same conditions except the flow velocity was set at 3 cm/s and after the flame propagated about half the sample length, the flow was gradually reduced. [...] The fan voltage at that time indicates a flow velocity of about 1.1 cm/s.
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=31`
+- As written: `set at 3 cm/s` (cm/s)
+- Applies to: 1 tests: `B3`
+- Note: confidence ambiguous (Bhattacharjee section 2.2.5 (page=31; same text in 2.1.2.1, page=21). Test not named. Inferred as B3: the 'first test' (100 um, flow abruptly cut off) matches B1 (Table A.1 page=111) and B3 is the only other 100-um, 2-cm sample at 22.2 % O2 on 2/19/2014. Against this: the B3 log has single values and no recorded reduction; B16 (7/2/2014, 17.3 % O2) also starts at 3 but is not 'the same conditions'. Range: about 1.1 (extinction) to 3 (set).); flags: RANGE_NOT_POINT; range stated in the source; R648 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 3..5 cm/s  (insufficient_evidence)
+
+> Steady burning at 3 and 5 cm/s, did not reach 10 cm/s before end of sample
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=112`
+- As written: `3 and 5 cm/s` (cm/s)
+- Applies to: 1 tests: `B6`
+- Note: confidence ambiguous (Table A.1 'BHATTACHARJEE TEST MATRIX', observation cell of row B6 (7/7/2014, GMT 188, as-run 57, sample 153m). Ambiguous: 3 and 5 are the steady-burning flows; the flow was then being raised toward 10 cm/s (Air display '3, 5, approaching 10'), so the top of the test's range is above 5 but not stated.); flags: RANGE_NOT_POINT; range stated in the source; R649 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10 cm/s  (insufficient_evidence)
+
+> Spread at 10 cm/s, did not blowoff
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=112`
+- As written: `10` (cm/s)
+- Applies to: 1 tests: `B8`
+- Note: confidence ambiguous (Table A.1 observation cell of row B8 (7/7/2014, GMT 188, as-run 60, sample 157m). Ambiguous: 10 cm/s is the spreading flow; the flow was then increased to maximum without blowoff (Fan display '1.4, increase to 10.0', Air display '10, maximum', flow restrictor 0); the maximum is not stated in cm/s, so 10 is a lower end, not the test's only flow.); R650 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10 cm/s  (insufficient_evidence)
+
+> Spread at 10 cm/s, did not blowoff
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=111`
+- As written: `10` (cm/s)
+- Applies to: 1 tests: `B15`
+- Note: confidence ambiguous (Table A.1 observation cell of row B15 (7/7/2014, GMT 188, as-run 59, sample 149m); same wording as B8. Flow then increased to maximum (Fan display '1.4 (50) increase to 10.0 pot', Air display '10, max'); 10 is a lower end only.); R651 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 2 cm/s  (insufficient_evidence)
+
+> Steady burning at 2 cm/s, extinguished at 0.35
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=112`
+- As written: `2` (cm/s)
+- Applies to: 1 tests: `B9`
+- Note: confidence ambiguous (Table A.1 observation cell of row B9 (7/7/2014, GMT 188, as-run 58, sample 154m). Ambiguous: 2 cm/s is the steady-burning flow; extinction came at pot 0.35 (Air display '2, <1'), a lower flow not stated in cm/s.); R652 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 5 cm/s  (extracted)
+
+> Flame self-extinguished at 5 cm/s after sample end became flat, dim flame
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=114`
+- As written: `5` (cm/s)
+- Applies to: 1 tests: `P21a`
+- Note: confidence direct (Table A.3 'FERNANDEZ-PELLO TEST MATRIX', observation cell of row P21a (6/23/2014, GMT 174, as-run 31, sample 196M). The same row has a single Fan display value '46' and a single Air display value '5' (no flow change recorded). Not used: Figure 4.4(f) caption (page=60) 'Black PMMA rod, 3.18 mm, 16.3 percent O2, at 5 cm/s' resembles P21a (16.3 % O2, flat tip) but gives 3.18 mm while the PSI table says '1/4 black rod'.); R653 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
 ## PSI-26 BASS
 
 - *Table reading:* BASS as-run matrix (`psi-data/PSI-26/Science Documents/PSI-26_Science Documents_As Run_Test Matrix.xlsx`, sheet "as run matrix"): the column "O2 % by volume" holds values such as 0.221 and 0.1707. They are read as mole fractions (22.1 %, 17.07 %), not as 0.221 %: a flame cannot burn at 0.2 % oxygen and the tests did burn. Both this column and "pressure, atm" sit under the header group "ISS environment"; the table does not say whether they were read in the station cabin or inside the glovebox work volume (values down to 0.159 suggest a diluted work volume, which is not stated).
@@ -1356,6 +1886,136 @@ For each record below, open the file at the location given and check that the qu
 - As written: `Microgravity`
 - Applies to: 12 tests: `1`, `4`, `5`, `12`, `13`, `37`, `44`, `45`, `54`, `55`, `65`, `66`
 - Note: confidence derived (Abstract of PSI-26's own 2013 paper [p17], past tense, about the cotton-fiberglass fabric tests; conclusions [p186] confirm 'burned in long-duration microgravity tests aboard the ISS'. The paper says the custom-made fabric is 'sometimes referred to as SIBAL fabric' (cotton-fiberglass, 75% by mass cotton) [p33]. Scope: only the 12 PSI-26 table rows whose material is SIBAL. Their CSV 'Test #' values (1, 7, 8, 4, 10, 5, 6, 2, 3, 11, 9) match the 11 tests of the paper's Table I in the same run order and with the same widths. The exception is As Run 44 (Test # 5b, a second burn of sample 9 in opposed flow), which is not in Table I. It is covered only as a fabric burn in the same ISS campaign, not by an individual statement in the paper. Candles, spheres, PMMA, Ultem, wax and Nomex samples are not covered. The paper's 1-g comparison flames (Figs. 13-14) have no number and are not rows of the PSI table.); flags: SHARED_LINEAGE; R103 extracted by the extractor agent; MODIFY by the verificador agent (separate run)
+
+### flow_velocity = 5..10 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments 1 2 Concurrent 10, 5 Single flow speed change
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=81-92`
+- As written: `10, 5` (cm/s)
+- Applies to: 1 tests: `1`
+- Note: confidence direct (2013 paper Table I, row Test 1 (cells are separate paragraphs, joined with one space). Paper Test 1 = PSI-26 CSV Test # 1, As Run 1 (3/30/2012, GMT 90, SIBAL 2 cm); see top-level mapping_psi26. Corroboration: as-run matrix (sheet 'as run matrix', row As Run 1) observation 'Nice symmetric burn, some soot at 10 cm/s' and camera cell 'best 1/25s 10 cm/s,    1/10s 5 cm/s'; Overview pdf page=20 'Ignition at airflow speed of 10 cm/s, then flow is reduced to 5 cm/s.' (test not named).); flags: RANGE_NOT_POINT; range stated in the source; R654 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 7 2 Concurrent 10
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=93-96`
+- As written: `10` (cm/s)
+- Applies to: 1 tests: `4`
+- Note: confidence direct (Table I row Test 7 = PSI-26 CSV Test # 7, As Run 4 (4/5/2012, GMT 96, SIBAL 2 cm). Same value in BASS-II Summary Report Table 7.1 row 'GMT96-T7 2.2 10 21 BASS' (PSI-25 report page=104) and Figure 7 caption (paragraph=145) 'Left: 10 cm/s.  Right: 5 cm/s. (Tests 7 and 8)'.); R655 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 5 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 8 2 Concurrent 5
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=98-101`
+- As written: `5` (cm/s)
+- Applies to: 1 tests: `5`
+- Note: confidence direct (Table I row Test 8 = PSI-26 CSV Test # 8, As Run 5 (4/5/2012, GMT 96, SIBAL 2 cm). Same value in Summary Report Table 7.1 row 'GMT96-T8 2.2 5 21 BASS' (PSI-25 report page=104) and Figure 7 caption (Tests 7 and 8, right: 5 cm/s).); R656 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 22 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 4 2 Concurrent 22
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=103-106`
+- As written: `22` (cm/s)
+- Applies to: 1 tests: `12`
+- Note: confidence direct (Table I row Test 4 = PSI-26 CSV Test # 4, As Run 12 (5/10/2012, GMT 131, SIBAL 2 cm).); R657 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 11 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 10 1 Concurrent 11
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=108-111`
+- As written: `11` (cm/s)
+- Applies to: 1 tests: `13`
+- Note: confidence direct (Table I row Test 10 = PSI-26 CSV Test # 10, As Run 13 (5/10/2012, GMT 131, SIBAL 1 cm). Same value in the Figure 9 caption (paragraph=154: '... in concurrent air flow of 11 cm/s. (Test 10)'), the Figure 10 caption (paragraph=160: '... with concurrent air flow = 11 cm/s. ... (Test 10)') and Summary Report Table 7.1 row 'GMT131-T10 1.2 11 21 BASS' (PSI-25 report page=104).); R658 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 1..5 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 5 2 Concurrent 5, 3, 1.5, 1 Flow reduction; quenching extinction observed
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=113-117`
+- As written: `5, 3, 1.5, 1` (cm/s)
+- Applies to: 1 tests: `37`
+- Note: confidence direct (Table I row Test 5 = PSI-26 CSV Test # 5, As Run 37 (6/28/2012, GMT 180, SIBAL 2 cm, sample 9). Stepped list; numbers are first and last written values. Not Test # 5b (As Run 44), which reburned the same sample and is not in Table I.); flags: RANGE_NOT_POINT; range stated in the source; R659 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 9 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 6 2 Opposed 9
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=118-121`
+- As written: `9` (cm/s)
+- Applies to: 1 tests: `45`
+- Note: confidence direct (Table I row Test 6 = PSI-26 CSV Test # 6, As Run 45 (7/3/2012, GMT 185, SIBAL 2 cm). For the reader: Figure 12 caption (paragraph=176) labels Tests 7 and 6 'Concurrent and opposed comparison at 10 cm/s air flow speed', while the text describing that figure (paragraph=171) says 'The air flow speed is around 10 cm/s.'; read here as an approximate label, not as a second value. The auditor may prefer to treat it as a discrepancy.); R660 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 9..44 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 2 2 Concurrent 9, 44 Flow increase; blowoff extinction not attained
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=123-127`
+- As written: `9, 44` (cm/s)
+- Applies to: 1 tests: `54`
+- Note: confidence direct (Table I row Test 2 = PSI-26 CSV Test # 2, As Run 54 (7/19/2012, GMT 201, SIBAL 2 cm). Note: 44 exceeds the paper's own fan range 'from 0 to 40 cm/s' (paragraph=51); written as found.); flags: RANGE_NOT_POINT; range stated in the source; R661 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 10..44 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 3 2 Opposed 10, 20, 44 Flow increase; blowoff extinction not attained
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=128-132`
+- As written: `10, 20, 44` (cm/s)
+- Applies to: 1 tests: `55`
+- Note: confidence direct (Table I row Test 3 = PSI-26 CSV Test # 3, As Run 55 (7/19/2012, GMT 201, SIBAL 2 cm). Stepped list; numbers are first and last written values. Same note as R661 on 44 vs the stated 0 to 40 cm/s fan range.); flags: RANGE_NOT_POINT; range stated in the source; R662 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 20 cm/s  (insufficient_evidence)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 11 1 Concurrent 20
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=133-136`
+- As written: `20` (cm/s)
+- Applies to: 1 tests: `65`
+- Note: confidence ambiguous (Table I row Test 11 = PSI-26 CSV Test # 11, As Run 65 (8/9/2012, GMT 222, SIBAL 1 cm). DISCREPANCY with R664: BASS-II Summary Report Table 7.1 gives 19 cm/s for 'GMT222-T11' (same test by GMT day and T number). Both proposed.); flags: DISCREPANCY; R663 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 19 cm/s  (insufficient_evidence)
+
+> Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT222-T11 1.2 19 21 BASS
+
+- File: `psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf`
+- Location: `page=104`
+- As written: `19` (cm/s)
+- Applies to: 1 tests: `65`
+- Note: confidence ambiguous (BASS-II Summary Report (PSI-25 file) Table 7.1, row labelled 'BASS': GMT222-T11 = PSI-26 CSV Test # 11 on GMT 222 (8/9/2012), As Run 65, 'SIBAL 1 cm'. DISCREPANCY with R663 (2013 paper: 20). The document sits in PSI-25 but the row is a BASS (PSI-26) test.); flags: DISCREPANCY, SHARED_LINEAGE; R664 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 1..10 cm/s  (extracted)
+
+> Test Width (cm) Direction Flow Speed (cm/s) Comments [...] 9 2 Opposed 10, 6, 4, 2, 1.5, 1 Flow reduction; extinction not observed
+
+- File: `psi-data/PSI-26/Science Documents/PSI-26_Science Documents_FlammabilityAspectsofFabric_USNationalCombustion.2013.docx`
+- Location: `paragraph=138-142`
+- As written: `10, 6, 4, 2, 1.5, 1` (cm/s)
+- Applies to: 1 tests: `66`
+- Note: confidence direct (Table I row Test 9 = PSI-26 CSV Test # 9, As Run 66 (8/9/2012, GMT 222, SIBAL 2 cm). Stepped list; first and last written values. For the reader: Figure 11 caption for the same test (paragraph=166, '(Test 9)') says 'The flow is decreased in discrete steps from 10 cm/s all the way down to less than 1 cm/s', and paragraph=169 'The lowest flow imposed was less than 1 cm/s'; the Overview pdf page=23 shows the same steps '10 cm/s', '6 cm/s', '4 cm/s', '2 cm/s', '1.5 cm/s', '1 cm/s' ('down to about 1 cm/s'). The low end is therefore 1 or slightly below 1.); flags: RANGE_NOT_POINT; range stated in the source; R665 extracted by the extractor agent; KEEP by the verificador agent (separate run)
+
+### flow_velocity = 15 cm/s  (insufficient_evidence)
+
+> Ultem and Nomex HT90-40 samples did not burn on ISS atmosphere 21% to 22% O2 Flow speeds around 15 cm/s
+
+- File: `psi-data/PSI-26/Presentations/PSI-26_Presentations_BASS_Overview of Recent ISS Results.pdf`
+- Location: `page=30`
+- As written: `15` (cm/s)
+- Applies to: 2 tests: `43`, `58`
+- Note: confidence ambiguous (Slide bullets (lines joined with one space), presentation of July 2013. Group-level, approximate ('around'). The Ultem tests are the PSI-26 CSV rows 'ultem sheet': As Run 43 (Test # 16, 6/29/2012) and As Run 58 (Test # 17, 7/19/2012), both before the presentation. The Nomex HT90-40 tests in the same sentence are NOT included: the CSV calls Test # 14 and 15 'Nomex III Natural' / 'nomex natural III' while the planned matrix calls Test 14-15 'WSTF Nomex Natural (HT90-40)', so the material mapping is unclear.); R666 extracted by the extractor agent; KEEP by the verificador agent (separate run)
 
 ## PSI-39 CFI
 

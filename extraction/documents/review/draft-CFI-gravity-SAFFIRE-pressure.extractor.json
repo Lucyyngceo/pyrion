@@ -1,0 +1,97 @@
+{
+  "accession": "PSI-39 (Part A: gravity_regime); PSI-98, PSI-99, PSI-100 (Part B: pressure)",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "date": "2026-11-15",
+  "sources_read": [
+    "psi-data/PSI-39/_investigation/PSI-39.json",
+    "psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf",
+    "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_CFI_SCR.pdf",
+    "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_SRD_CFI.pdf",
+    "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_CFI_DataSummary_Spreadsheet_Jan2021.xlsx",
+    "psi-data/PSI-39/Engineering Documents/PSI-39_Engineering Documents_CFI Operational Requirements and Protocols.pdf",
+    "psi-data/PSI-39/Presentations/PSI-39_Presentations_Aspects of Cool-Flame Supported Droplet Combustion in Microgravity_CFI.pdf",
+    "psi-data/PSI-39/Presentations/PSI-39_Presentations_Cool Flames in Space, a Hot Prospect on Earth_CFI.pdf",
+    "psi-data/PSI-39/Experimental table/PSI-39_Experimental table_CFI.csv",
+    "psi-data/PSI-39/Analyzed Data/PSI-39_Analyzed Data_FLEX-*_Summary*.pdf (31 plot pages)",
+    "psi-data/PSI-98/_investigation/PSI-98.json",
+    "psi-data/PSI-98/Engineering Documents/PSI-98_Engineering Documents_SAFFIRE-I Operations.pdf",
+    "psi-data/PSI-98/Experimental table/PSI-98_Experimental table_SAFFIRE-1.csv",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-I Image Directory Nomenclature.pdf",
+    "psi-data/PSI-98/Science Documents/PSI-98_Science Documents_SAFFIRE-1_MergeResult-jpeg_Update_Final_v2.xlsx",
+    "psi-data/PSI-99/_investigation/PSI-99.json",
+    "psi-data/PSI-99/Experimental table/PSI-99_Experimental table_SAFFIRE-2.csv",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II Readme.docx",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II_Image_Directory_Nomenclature_v3.0.pdf",
+    "psi-data/PSI-99/Science Documents/PSI-99_Science Documents_SAFFIRE-II_MergeResult-jpeg_v5_Final.xlsx",
+    "psi-data/PSI-100/_investigation/PSI-100.json",
+    "psi-data/PSI-100/Engineering Documents/PSI-100_Engineering Documents_SAFFIRE-III Operations.pdf",
+    "psi-data/PSI-100/Experimental table/PSI-100_Experimental table_SAFFIRE-3.csv",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE Objectives, Development and Status.pdf",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-III Image Directory Nomenclature_v3.0.pdf",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-III_MergeResult-jpeg_Final.xlsx",
+    "psi-data/PSI-100/Science Documents/PSI-100_Science Documents_SAFFIRE-III_MergeResult-raw_Final.xlsx",
+    "nasa/ntrs-20180005168/20180005168.pdf"
+  ],
+  "records": [
+    {
+      "id": "R701",
+      "acc": "PSI-39",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "g-levels ≤ 10-5g0",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-39/Science Documents/PSI-39_Science Documents_CFI_SCR.pdf",
+      "source_location": "page=8",
+      "quote": "Misc. Ambient Requirements [...] g-levels ≤ 10-5g0",
+      "confidence": "ambiguous",
+      "derivation": "Pre-flight requirement (Science Concept Review slide 'Requirements – Ambient Environment', dated May 4, 2014), not a statement about the tests as run. The text layer flattens the exponent: '10-5g0' is printed as 10 to the power -5 times g0 (the same requirement is written '1x10−5 as the required g-level (g0 is the earth normal gravity)' in the SRD). Not a measured g-level for the CFI tests.",
+      "flags": []
+    },
+    {
+      "id": "R702",
+      "acc": "PSI-39",
+      "test_id": "*",
+      "variable": "gravity_regime",
+      "value": "microgravity",
+      "value_original": "Microgravity",
+      "unit_original": "",
+      "numbers": [],
+      "kind": "term",
+      "source_file": "psi-data/PSI-39/Reports/PSI-39_Reports_CFI Science Final Report.pdf",
+      "source_location": "page=13",
+      "quote": "Dietrich, D. L., Nayagam, V., and Williams, F. A., 2018. Hot and Cool-Flame Combustion of N-dodecane Droplets at Moderately High Pressures in Microgravity, 34th Annual Technical Meeting, The American Society for Gravitational and Space Research, 31 October – 03 November, 2018, Rockville, Maryland.",
+      "confidence": "ambiguous",
+      "derivation": "Title of a 2018 presentation listed under the CFI Final Report appendix '6c. Presentations' (post-flight; CFI flew Jan-Sep 2017 per page 4). Its subject (n-dodecane droplets, elevated pressure) matches the CFI test matrix (page 6: 'Pure n-dodecane at 0.5, 0.75, 1, 1.25, 2, 3, and 5 atm'), but the title is a citation, not a sentence stating that the CFI tests were run in microgravity, and the cited presentation itself is not in the corpus.",
+      "flags": ["SECONDARY_SOURCE"]
+    }
+  ],
+  "not_found": [
+    {
+      "variable": "gravity_regime",
+      "acc": "PSI-39",
+      "looked_in": "No sentence in the past tense saying the CFI tests themselves were burned in microgravity / low gravity. Searched (page index pages.jsonl lines 6732-6897 + record dump): record JSON (all sections: hypothesis and researchImpacts only state aims; projectType 'Microgravity Investigation' is a label); Final Report pages 1-13 (page 4 'CFI experiments were conducted onboard the ISS from January 2017 through September 2017' = platform only; page 6 rationale already held as R1; page 3 and page 5 'in microgravity' sentences are about FLEX/FLEX-2); SCR pages 1, 3-17 (page 3 'cool-flame burning in microgravity observed for the first time' is a FLEX summary; page 4 objective 'by conducting droplet combustion experiments in low gravity' is the same pre-flight objective as held R3, not repeated; page 5 'Justification for Long-Duration Microgravity' is rationale; page 8 g-level requirement proposed as R701; page 16 'Require measurement of g-level during experiment' has no value); SRD pages 1-54 (page 14 'Examination of the SAMS data showed that the g-levels (across the frequency spectrum) were typically less than 10−5g0' is past tense and measured, but it is in SRD section 2.3 describing the FLEX tests 'reported herein' in a 2014 document written before CFI flew, so it is NOT proposed for CFI (would be analogy, rule 7); pages 30-33 objective/justification already held as R3); Operational Requirements and Protocols page 1 (no gravity term); presentation 'Aspects of Cool-Flame...' pages 1-19 (2015, FLEX results; title only); presentation 'Cool Flames in Space...' pages 1-24 (2013, FLEX; page 23 already held as R101); DataSummary spreadsheet sheets Master Sheet/DATA/Camera Settings/Igniter/Comments/Graphs (no gravity term; Comments describe droplet drift only); experimental table CSV rows 1-25 shown in index (no gravity column); Analyzed Data FLEX-1206..FLEX-1393 summary plots (labels only). SCR page 2 is absent from the page index (not inspected: PDF renderer unavailable). No normal-gravity (1-g) CFI comparison tests found. Terms: microgravity, micro-gravity, low gravity, low-gravity, reduced gravity, g-level, g0, weightless, in space, buoyan*, spherically symmetric."
+    },
+    {
+      "variable": "pressure",
+      "acc": "PSI-98",
+      "looked_in": "No sentence naming Saffire-I (or Cygnus OA-6) with a total pressure value or a named atmosphere. Documents: record JSON psi-data/PSI-98/_investigation/PSI-98.json (all sections; approach and researchImpacts only say sensors 'measure pressure', no value); SAFFIRE-I Operations.pdf page 1 (only 'Earth's atmosphere' for re-entry); Experimental table SAFFIRE-1.csv rows 1-4 (columns: thickness, length, width, air flow, Percent O2, ignition, burn time, direction; no pressure column); SAFFIRE-I and SAFFIRE-III Readme.docx (scratchpad docx dump, all paragraphs); SAFFIRE-I Image Directory Nomenclature.pdf page 1; SAFFIRE-1_MergeResult-jpeg_Update_Final_v2.xlsx (12 sheets, header rows are file/timestamp columns only); SAFFIRE Objectives, Development and Status.pdf: the PSI-98 copy is not in the page index and was not opened separately (the PSI-99 copy was read in full, pages 1-6, and the PSI-100 copy in the index, pages 1-6; same title, authors and text; Table 2 lists 'Pressure solid‐state sensor in avionics bay' with no value; Table 5 'Elevated O2, lower P' refers to Saffire-IV-VI, no value); NTRS 20180005168 pages 1-32 (see PSI-100 entry). Terms: psia, psi, atm, kPa, mbar, Pressure/pressure, cabin pressure, 14.7, one atmosphere, sea level, standard atmosphere, ISS atmosphere, atmosphere, cabin, ambient."
+    },
+    {
+      "variable": "pressure",
+      "acc": "PSI-99",
+      "looked_in": "No sentence naming Saffire-II (or Cygnus OA-5) with a total pressure value or a named atmosphere. Documents: record JSON psi-data/PSI-99/_investigation/PSI-99.json (all sections; 'solid state sensors were used to measure pressure', no value); Experimental table SAFFIRE-2.csv rows 1-15 (no pressure column; Note 1 'Derived from measured CO2 production and referenced to initial O2 concentration reported by ISS' concerns O2 only); SAFFIRE-II Readme.docx paragraphs 1-87; SAFFIRE-II_Image_Directory_Nomenclature_v3.0.pdf pages 1-2; SAFFIRE-II_MergeResult-jpeg_v5_Final.xlsx (13 sheets, header rows are file/timestamp columns only); SAFFIRE Objectives, Development and Status.pdf pages 1-6 (read in full from data/raw; page 2 'expected concentration of O2 when Cygnus unberths from ISS' is O2, not pressure; page 3 Table 2 pressure sensor, no value); NTRS 20180005168 pages 1-32. PSI-99 has no Operations document. Same terms as PSI-98."
+    },
+    {
+      "variable": "pressure",
+      "acc": "PSI-100",
+      "looked_in": "No sentence naming Saffire-III (or Cygnus OA-7) with a total pressure value or a named atmosphere. Documents: record JSON psi-data/PSI-100/_investigation/PSI-100.json (all sections; sensors 'measure pressure', no value); SAFFIRE-III Operations.pdf page 1 (only 'Earth's atmosphere' for re-entry); Experimental table SAFFIRE-3.csv rows 1-2 (no pressure column); SAFFIRE-I and SAFFIRE-III Readme.docx paragraphs 1-62; SAFFIRE-III Image Directory Nomenclature_v3.0.pdf page 1; SAFFIRE-III_MergeResult-jpeg_Final.xlsx (6 sheets) and SAFFIRE-III_MergeResult-raw_Final.xlsx (7 sheets), header rows are file/exposure/gain/timestamp columns only; SAFFIRE Objectives, Development and Status.pdf pages 1-6. NTRS 20180005168 (nasa/ntrs-20180005168/20180005168.pdf), 32 pages, all read with the PDF reader: text pages mention 'Pressure Rise?' (page 3, generic question), 'low pressure atmospheres' (page 19, Saffire-IV-VI objective, no value), 'burning in air' (pages 23, 25, no pressure value); Table 1 (pages 30-31) has no pressure column. Pages absent from the page index: 9, 21, 22, 27, 28, 29, 32. Of these, 27, 28, 29 and 32 carry no text beyond the slide number (image-only: duct drawings, sample-tracking plots, Cygnus specification table with dry mass, payload, dimensions, volume, power but no pressure); 9 ('Car Fire Training'), 21 (logo), 22 ('Backup') have only a title. All seven were inspected on the rendered page; none states a pressure. Same terms as PSI-98."
+    }
+  ],
+  "lineage": "CFI (PSI-39) uses the FLEX hardware (MDCA in the CIR): Final Report page 6, 'The experimental hardware is same as that of the FLEX experiments with few minor modifications in the data acquisition systems.' CFI test ids are FLEX numbers (FLEX-1206 to FLEX-1431, Final Report page 7), shared with FLEX/FLEX-2 (PSI-68/69). The only measured g-level sentence in the PSI-39 folder (SRD page 14, 'typically less than 10−5g0') belongs to the FLEX tests described in the 2014 SRD, not to CFI. Saffire-I, -II, -III (PSI-98/99/100) share one flight-unit design and one 'SAFFIRE Objectives, Development and Status' paper filed under all three accessions (Objectives page 5: 'The decision to develop flight units of nearly identical design')."
+}

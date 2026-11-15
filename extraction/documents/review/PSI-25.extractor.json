@@ -699,6 +699,1112 @@
    "confidence": "ambiguous",
    "derivation": "Table A.6 rows for the two 4-cm PMMA spherical-section tests (BASS-II T7 is GMT 190, sample 182m, not the BASS T7 of Table 7.1). No source equates this stagnation geometry with a controlled term (the ReadMe paragraph=10 on T'ien's sphere states no direction), so value is left empty.",
    "flags": []
+  },
+  {
+   "id": "R601",
+   "test_id": "T1, T9, T23, T24",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments GMT45-T1 2.2 10 18.5b [...] GMT175-T9 2.2 10 16.4 No ignition [...] GMT190-T23 2.2 10 17.2 Reused, did not ignite [...] GMT190-T24 2.2 10 18.2 Reused, one-sided flame",
+   "confidence": "direct",
+   "derivation": "Table 7.1 (T'ien SIBAL fabric chapter), column 'Flow, cm/s'. Row ids 'GMT<day>-T<n>' map to PSI-25 table T ids by T number plus GMT day (PSI table GMT: T1 45, T9 175, T23 190, T24 190); same mapping as the held R303/R419. T9 and T23 did not ignite: 10 cm/s is the flow set for the attempt. A.6 note for T1 (page=120): 'flow velocity held constant'. Caution kept from R303: Table 7.1 gives width 2.2 for T24 while the PSI table material is '1 cm SIBAL   top side ign'.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R602",
+   "test_id": "T2",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 to 5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T2 2.2 10 to 5 18.5b",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT45-T2 (PSI table T2, GMT 45). Flow stepped during the test. For the reader: Table A.6 (page=120) note for T2 says 'Flow velocity changed to 9 to 5 fairly early then very late in the burn changed to 4' with no unit written; those numbers equal the PSI table 'Air display' cell ('9   5   4'), a display reading, so they are not proposed as a second value.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R603",
+   "test_id": "T4",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 to 2.2",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "2.2"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T4 2.2 10 to 2.2 18.7 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT45-T4 (PSI table T4, GMT 45). Consistent with the chapter text, page=106: 'sample in 18.7 percent O2 was first ignited at 10-cm/s flow. Flow speed was decreased to 2.2 cm/s' (the only quenched 18.7 % row of Table 7.1 is T4).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R604",
+   "test_id": "T15",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 to 29",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "29"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT45-T15 2.2 10 to 29 18.7 No blowoff",
+   "confidence": "ambiguous",
+   "derivation": "Table 7.1 row GMT45-T15 (PSI table T15, GMT 45). DISCREPANCY with R605: Table A.6 note for the same test says the actual starting airspeed was about 9 cm/s, not 10. Both proposed, none chosen.",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R605",
+   "test_id": "T15",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "actual airspeed is about 9 cm/s; no flow restrictors installed, but flow only maxed out to 29 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "9",
+    "29"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=120",
+   "quote": "Initial air reading is 15, but Rick did not wait long enough for the anemometer to stabilize; actual airspeed is about 9 cm/s; no flow restrictors installed, but flow only maxed out to 29 cm/s; no blowoff attained",
+   "confidence": "ambiguous",
+   "derivation": "Table A.6 'T'IEN TEST MATRIX', observation cell of row T15 (2/14/2014, GMT 2014-45, as-run 4, sample 138). 'about 9' is approximate. DISCREPANCY with R604 (Table 7.1: 10 to 29).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R606",
+   "test_id": "T5",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 to 2.4",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "2.4"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T5 2.2 10 to 2.4 18.8",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT100-T5 (PSI table T5, GMT 100).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R607",
+   "test_id": "T6",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "4.5 to 2.6",
+   "unit_original": "cm/s",
+   "numbers": [
+    "4.5",
+    "2.6"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T6 2.2 4.5 to 2.6 18.8",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT100-T6 (PSI table T6, GMT 100). For the reader: the PSI table 'Air display' cell is '5  2  1   <1' (display readings, not used).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R608",
+   "test_id": "T13",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "4 to 2.2",
+   "unit_original": "cm/s",
+   "numbers": [
+    "4",
+    "2.2"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T13 2.2 4 to 2.2 17.5 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT100-T13 (PSI table T13, GMT 100).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R609",
+   "test_id": "T16",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "4 to 3",
+   "unit_original": "cm/s",
+   "numbers": [
+    "4",
+    "3"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT100-T16 2.2 4 to 3 17.6",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT100-T16 (PSI table T16, GMT 100). Consistent with Table A.6 note, page=120: 'flame spread whole sample at 3 cm/s'.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R610",
+   "test_id": "T10, T12, T28a, T28b",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT175-T10 2.2 5 16.4 No ignition [...] GMT178-T12 2.2 5 16.8 No ignition [...] GMT216-T28a 1.2 5 20.7 Reused, did not ignite [...] GMT216-T28b 1.2 5 20.7 Reused, did not ignite",
+   "confidence": "direct",
+   "derivation": "Table 7.1 rows (PSI table GMT: T10 175, T12 178, T28a 216, T28b 216). BASS-II T10 is the GMT175 row, not the 'GMT131-T10 ... BASS' row (that one is PSI-26). All four did not ignite: 5 cm/s is the flow set for the attempt.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R611",
+   "test_id": "T18",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5 to 2.6",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "2.6"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT175-T18 2.2 5 to 2.6 17.4 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT175-T18 (PSI table T18, GMT 175; table date typed '6/24/2018').",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R612",
+   "test_id": "T11",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "4",
+   "unit_original": "cm/s",
+   "numbers": [
+    "4"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T11 2.2 4 17.1",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT178-T11 (PSI table T11, GMT 178). Not the 'GMT222-T11 ... BASS' row (PSI-26, see R664).",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R613",
+   "test_id": "T14",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "4 to 2.8",
+   "unit_original": "cm/s",
+   "numbers": [
+    "4",
+    "2.8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T14 2.2 4 to 2.8 16.9 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT178-T14 (PSI table T14, GMT 178). Consistent with Table A.6 note, page=120: 'Extinguished as we reduced flow below 3 cm/s'.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R614",
+   "test_id": "T17",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "6 to 53",
+   "unit_original": "cm/s",
+   "numbers": [
+    "6",
+    "53"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT178-T17 2.2 6 to 53 16.9 No blowoff",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT178-T17 (PSI table T17, GMT 178). Flow increased during the test (blowoff attempt; A.6 note page=120: 'Tried to blowoff, but did not').",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R615",
+   "test_id": "T19",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "11",
+   "unit_original": "cm/s",
+   "numbers": [
+    "11"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T19 1.2 11 17.2",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT190-T19 (PSI table T19, GMT 190). A.6 note: 'Steady burn'.",
+   "flags": [
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R616",
+   "test_id": "T20",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "11 to 3",
+   "unit_original": "cm/s",
+   "numbers": [
+    "11",
+    "3"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T20 1.2 11 to 3 17.2 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT190-T20 (PSI table T20, GMT 190). Consistent with Table A.6 note, page=120: 'Quick extinction when we turned air down to 3 cm/s'.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R617",
+   "test_id": "T21",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "11 to 47",
+   "unit_original": "cm/s",
+   "numbers": [
+    "11",
+    "47"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T21 1.2 11 to 47 17.2 Blow-off",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT190-T21 (PSI table T21, GMT 190). Flow increased to blowoff.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R618",
+   "test_id": "T22",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10.5 to 5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10.5",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT190-T22 1.2 10.5 to 5 17.1 Quenched",
+   "confidence": "direct",
+   "derivation": "Table 7.1 row GMT190-T22 (PSI table T22, GMT 190).",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R619",
+   "test_id": "T25, T26",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5 to 2.5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "2.5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT216-T25 2.2 5 to 2.5 20.8 Reused, ignited [...] GMT216-T26 2.2 5 to 2.5 20.8 Reused, ignited",
+   "confidence": "direct",
+   "derivation": "Table 7.1 rows (PSI table T25, T26, GMT 216). Consistent with Table A.6 notes, page=121, both rows: 'Ignition at 5 cm/s then decrease to 2.5 cm/s and hold constant'.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R620",
+   "test_id": "T27, T29",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5 to 2",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "2"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=104",
+   "quote": "Test number Sample width, cm Flow, cm/s O2, vol% Comments [...] GMT216-T27 1.2 5 to 2 20.7 Reused, ignited [...] GMT216-T29 1.2 5 to 2 20.7 Reused, ignited",
+   "confidence": "direct",
+   "derivation": "Table 7.1 rows (PSI table T27, T29, GMT 216). T27 consistent with Table A.6 note, page=121: 'Ignition at 5 cm/s, then quickly to 2 cm/s (fan pot 0.7)'.",
+   "flags": [
+    "RANGE_NOT_POINT",
+    "SHARED_LINEAGE"
+   ]
+  },
+  {
+   "id": "R621",
+   "test_id": "M1",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "9",
+   "unit_original": "cm/s",
+   "numbers": [
+    "9"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% M1 1 2.2 1 9 0.071 6.4 22.2 21.9",
+   "confidence": "ambiguous",
+   "derivation": "Table 5.1 'TWENTY BURNING AND SUPPRESSION OF SOLIDS—II (BASS–II) TESTS' (Miller chapter); the Velocity column pairs each velocity with the spread rate measured at it. DISCREPANCY with R641: Table A.4 note for M1 says 'changed flow from 10 to 8 cm/s'; 9 is neither set value. Both proposed.",
+   "flags": [
+    "DISCREPANCY"
+   ]
+  },
+  {
+   "id": "R622",
+   "test_id": "M2",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "20 and 15",
+   "unit_original": "cm/s",
+   "numbers": [
+    "20",
+    "15"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M2 3 2.2 1 20 and 15 0.052 and 0.033 22.9 22.2 21.2",
+   "confidence": "direct",
+   "derivation": "Table 5.1: velocities at which spread rates were measured (one spread rate per velocity in the same row). The Table A.4 note for M2 (R642) gives the full set sequence 20, 15, 13, 14 cm/s; complementary scope (spread-measurement flows vs. all set flows), not treated as a disagreement.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R623",
+   "test_id": "M3",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 and 20",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "20"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M3 5 2.2 1 10 and 20 0.029 and 0.024 20.1 20.8 19.7",
+   "confidence": "direct",
+   "derivation": "Table 5.1. Consistent with Table A.4 note, page=117: 'Extinguished at 18 cm/s'.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R624",
+   "test_id": "M4",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5 and 3",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "3"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M4 5 2.2 2 5 and 3 0.045 and 0.033 19.8 21.8 19.8",
+   "confidence": "direct",
+   "derivation": "Table 5.1. For the reader: the Table A.4 note for M4 (page=117), 'Mild ignition at 10 cm/s; decreased flow down holding constant for 6 min at pot settings of 1.7, 1.0, and 0.55; finally extinguished by turning pot down to 0.3', is word for word the note of M13 (page=116), so it may be a copy; not proposed.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R625",
+   "test_id": "M5",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M5 3 2.2 2 10 0.071 27.2 22.2 19",
+   "confidence": "direct",
+   "derivation": "Table 5.1: the single velocity at which a spread rate was measured. The test itself ran over more flows: Table A.4 note (R643) 'turned down to 10 cm/s, then further down in increments to 5 cm/s; extinguished at 5 cm/s'.",
+   "flags": []
+  },
+  {
+   "id": "R626",
+   "test_id": "M6",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 and 8",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M6 1 2.2 2 10 and 8 Not tracked 16.8 21.8 20.7",
+   "confidence": "ambiguous",
+   "derivation": "Table 5.1 (spread rate 'Not tracked'). DISCREPANCY with Table A.4 row M6 (page=117), which states no cm/s but says 'once flame settled down, we kept flow low and had two flow plateaus (pot 0.4 and 0.36)', with Air display '10, 5, 3, 0': the plateaus look far below 8 cm/s. No second record (A.4 gives no value in cm/s).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R627",
+   "test_id": "M7",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10, 6, 5, and 3",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "3"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M7 1 1.2 2 10, 6, 5, and 3 0.106, 0.099, 0.083, and 0.07 18.4 18.9 18.4",
+   "confidence": "direct",
+   "derivation": "Table 5.1. Stepped list; numbers are its first and last written values (range 3 to 10).",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R628",
+   "test_id": "M8",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10, 6, and 5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M8 2 1.2 2 10, 6, and 5 0.057, 0.056, and 0.04 25.2 19.1 18.2",
+   "confidence": "direct",
+   "derivation": "Table 5.1. Stepped list; numbers are first and last written values. Corroborated on page=64 for the same test (Figure 5.2 caption, page=65: 'Position versus time graph for test M8'): 'The red portion on the graph represents the part of experiment where the opposed-flow velocity was 10 cm/s. Similarly, the green and purple regions represent flow speeds of 6 and 5 cm/s, respectively.'",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R629",
+   "test_id": "M9",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "14",
+   "unit_original": "cm/s",
+   "numbers": [
+    "14"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M9 3 1.2 2 14 0.025 16.8 18 17.6",
+   "confidence": "direct",
+   "derivation": "Table 5.1: the velocity of the reported spread rate. The test was ignited at 10 cm/s and raised to 14 cm/s (Table A.4 note, R644); complementary scope.",
+   "flags": []
+  },
+  {
+   "id": "R630",
+   "test_id": "M10",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "15 and 10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "15",
+    "10"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M10 4 1.2 2 15 and 10 0.0373 and 0.03 30.5 20.1 18.6",
+   "confidence": "direct",
+   "derivation": "Table 5.1 (spread-measurement velocities). For the reader: Table A.4 note for M10 (page=116) extends the test history: 'flame big at 17, so only left it there 3 min' (no unit written) and 'flame self-extinguished at 8 cm/s after almost 10 min'; only one end is in cm/s, so no second record.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R631",
+   "test_id": "M11",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "21, 15, and 13",
+   "unit_original": "cm/s",
+   "numbers": [
+    "21",
+    "13"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M11 5 1.2 2 21, 15, and 13 0.048, 0.028, and 0.022 28.5 20 18.5",
+   "confidence": "direct",
+   "derivation": "Table 5.1; first and last written values. Table A.4 note (page=116): '29-min burn; extinguished at 12 cm/s.' (extinction just below the lowest spread-measurement flow; single value, no second record).",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R632",
+   "test_id": "M12",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "12 and 10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "12",
+    "10"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M12 2 2.2 2 12 and 10 Not tracked 16.2 21.7 20.4",
+   "confidence": "ambiguous",
+   "derivation": "Table 5.1 (spread rate 'Not tracked'). DISCREPANCY: Table A.4 row M12 (page=116) has Fan display '41, 42, 41', Air display '<1' and note 'finally had about  plateaus at pot = 0.35, 0.4, and again 0.35'; and Figure 5.4(c) caption (page=67), '2-mm-thick by 2.2-cm-wide PMMA slab tests. [...] (c) Preextinction flame, two sided, 21.7 percent O2, <1 cm/s', matches M12 only by attributes (2 mm, 2.2 cm, two sided, initial O2 21.7 in Table 5.1), not by test number. No second record: '<1' is a bound, not a value.",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R633",
+   "test_id": "M13",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "6, 5, and 4",
+   "unit_original": "cm/s",
+   "numbers": [
+    "6",
+    "4"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M13 4 2.2 2 6, 5, and 4 0.047, 0.035, and 0.033 20.5 20.8 19",
+   "confidence": "direct",
+   "derivation": "Table 5.1; first and last written values. Table A.4 note (page=116) adds 'Mild ignition at 10 cm/s' (same wording as the M4 note, see R624), ignition flow only.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R634",
+   "test_id": "M14",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "15, 14, and 10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "15",
+    "10"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M14 2 2.2 1 15, 14, and 10 0.0624, 0.055, and 0.0353 15.4 22.2 21.6",
+   "confidence": "ambiguous",
+   "derivation": "Table 5.1. DISCREPANCY: Table A.4 row M14 (page=116) shows Air display '10, ~8' and note 'Prolonged ignition, followed by flow reduction after flame moved away from igniter region and spread steadily; flame self-extinguished at an air reading of 9 cm/s.' Nothing in A.4 shows 15 or 14. No second record (single extinction value).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R635",
+   "test_id": "M15",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "20",
+   "unit_original": "cm/s",
+   "numbers": [
+    "20"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M15 4 2.2 1 20 0.045 22.0 21 20",
+   "confidence": "direct",
+   "derivation": "Table 5.1: velocity of the reported spread rate. Table A.4 note (page=116): 'then turned flow up to 20 cm/s and got steady spreading there, turned down flow to 15 and got spreading and slow extinction there.' The 15 has no unit written, so no second record; the test ran at other flows too.",
+   "flags": []
+  },
+  {
+   "id": "R636",
+   "test_id": "M16",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5, 3, and 2",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "2"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M16 1 2.2 2 5, 3, and 2 0.144, 0.1309, and 0.1062 8.4 19.2 18.7",
+   "confidence": "direct",
+   "derivation": "Table 5.1; first and last written values. The A.4 note (R645) shows the test also ran down to about 1 cm/s and up to 10 cm/s; complementary scope.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R637",
+   "test_id": "M17",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5, 4, and 3",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5",
+    "3"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M17 2 2.2 2 5, 4, and 3 0.053, 0.042, and 0.026 30.7 18.8 17.1",
+   "confidence": "direct",
+   "derivation": "Table 5.1; first and last written values. Table A.4 note (page=116): '30-min burn targeted constant flows of 10, 5, and 3; finally turned fan pot to 0 to extinguish.' (no unit written; not proposed).",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R638",
+   "test_id": "M18",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 and 8",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M18 3 2.2 2 10 and 8 0.026 and 0.013 25.5 17.9 16.8",
+   "confidence": "direct",
+   "derivation": "Table 5.1. The A.4 note (R646) adds a brief 15 cm/s step; complementary scope.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R639",
+   "test_id": "M19",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 and 6",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "6"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M19 4 2.2 2 10 and 6 0.027 and 0.0159 25.7 19 17.4",
+   "confidence": "direct",
+   "derivation": "Table 5.1. Table A.4 note (page=117): 'Burned with decreasing flows until it went out on its own at 5 cm/s' (single value; Air display '10, 17, 14, 10, 7, 5' shows the test also went above 10). No second record.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R640",
+   "test_id": "M20",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=65",
+   "quote": "Test no. Thickness, mm Width, cm One or two sides burning Velocity, cm/s Spread rate, mm/s Burn time, min Initial O2, vol% Final O2, vol% [...] M20 5 2.2 2 10 0.012 16.5 18 17.4",
+   "confidence": "direct",
+   "derivation": "Table 5.1: velocity of the reported spread rate. The test then went down to 8 cm/s (A.4 note, R647).",
+   "flags": []
+  },
+  {
+   "id": "R641",
+   "test_id": "M1",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10 to 8 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=116",
+   "quote": "very slow propagation; changed flow from 10 to 8 cm/s and flame shrank to a circle",
+   "confidence": "ambiguous",
+   "derivation": "Table A.4 'MILLER TEST MATRIX', observation cell of row M1 (2/20/14, GMT 2014-051, as-run 15, sample 222); Air display cell '10, 8'. DISCREPANCY with R621 (Table 5.1: 9).",
+   "flags": [
+    "DISCREPANCY",
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R642",
+   "test_id": "M2",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "Ignite at 20 cm/s, turn down to 15 cm/s after spread away from igniter; seemed steady, so turned down to 13 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "20",
+    "13"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=117",
+   "quote": "Ignite at 20 cm/s, turn down to 15 cm/s after spread away from igniter; seemed steady, so turned down to 13 cm/s; flame got very dim, so increased flow to 14 cm/s",
+   "confidence": "direct",
+   "derivation": "Table A.4 observation cell of row M2 (2/20/14, GMT 2014-051, as-run 17, sample 224); set flows 20, 15, 13, 14 cm/s, range 13 to 20. Air display cell '20, 15, 13'. Complements R622 (Table 5.1 spread-measurement flows 20 and 15).",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R643",
+   "test_id": "M5",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "turned down to 10 cm/s, then further down in increments to 5 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=117",
+   "quote": "turned down to 10 cm/s, then further down in increments to 5 cm/s; extinguished at 5 cm/s",
+   "confidence": "ambiguous",
+   "derivation": "Table A.4 observation cell of row M5 (2/20/14, GMT 2014-051, as-run 18, sample 167). Ambiguous because the flame was ignited during loss of signal ('Rick ignited while we were loss of signal') and burned before the turn-down at a flow not stated in cm/s (Air display cell '20, 13, 10, 8, 5'), so 10 is not the top of the test's flow range.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R644",
+   "test_id": "M9",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "Ignited at 10 cm/s, photographs every 5 s or so,  turned up flow when flame looked weak; died after 15 min at 14 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "14"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=117",
+   "quote": "Ignited at 10 cm/s, photographs every 5 s or so,  turned up flow when flame looked weak; died after 15 min at 14 cm/s",
+   "confidence": "direct",
+   "derivation": "Table A.4 observation cell of row M9 (7/11/14, GMT 192, as-run 78, sample 179m); double space after 'or so,' as in the text layer. Air display cell '10, 14'. Complements R629.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R645",
+   "test_id": "M16",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "Burned at decreasing flow down to 1 cm/s or so, still fine, at end of sample, turned up flow to 10 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "1",
+    "10"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=116",
+   "quote": "Burned at decreasing flow down to 1 cm/s or so, still fine, at end of sample, turned up flow to 10 cm/s and flame got really long",
+   "confidence": "ambiguous",
+   "derivation": "Table A.4 observation cell of row M16 (7/23/14, GMT 204, as-run 99, sample 164m); Air display cell '10, 6, 3, 2, 1, 10'. Ambiguous only because the low end is approximate ('1 cm/s or so'). Complements R636.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R646",
+   "test_id": "M18",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "flow briefly at 15 cm/s but flame was too strong so turned down; HCl 0 > 3.1,  extinguished 8 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "15",
+    "8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=116",
+   "quote": "26-min burn; flow briefly at 15 cm/s but flame was too strong so turned down; HCl 0 > 3.1,  extinguished 8 cm/s",
+   "confidence": "direct",
+   "derivation": "Table A.4 observation cell of row M18 (7/15/14, GMT 196, as-run 87, sample 168m); double space before 'extinguished' as in the text layer. Air display cell '10, 15 (brief), 10, 8'. Range 8 to 15 (15 only briefly). Complements R638.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R647",
+   "test_id": "M20",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "ignition at 10 cm/s (left 8 min) then flow down to 8 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10",
+    "8"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=117",
+   "quote": "ignition at 10 cm/s (left 8 min) then flow down to 8 cm/s (flame out after 3 more minutes)",
+   "confidence": "direct",
+   "derivation": "Table A.4 observation cell of row M20 (8/1/14, GMT 213, as-run 116, sample 172m); Air display cell '10, 8'. Complements R640.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R648",
+   "test_id": "B3",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "set at 3 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "3",
+    "1.1"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=31",
+   "quote": "To pin down the extinction flow velocity, a second test was done under the same conditions except the flow velocity was set at 3 cm/s and after the flame propagated about half the sample length, the flow was gradually reduced. [...] The fan voltage at that time indicates a flow velocity of about 1.1 cm/s.",
+   "confidence": "ambiguous",
+   "derivation": "Bhattacharjee section 2.2.5 (same text in 2.1.2.1, page=21). The test is NOT named; identification is inferred: the 'first test' (100-µm sample, 'the flow was abruptly cut off') matches B1 (Table A.1 page=111: 'Ignited very quickly, turned flow off after spread halfway'), and the only other 100-µm, 2-cm sample run under the same conditions (2/19/2014, calibrated initial O2 22.2) is B3. Range 1.1 (extinction, 'about') to 3 (set). Figure 2.9 caption (page=32) for the same sequence: 'Vg = 3.0 cm/s' to 'Vg = 1.1 cm/s'. Caution: the PSI table Air display for B3 is '2'.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R649",
+   "test_id": "B6",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "3 and 5 cm/s",
+   "unit_original": "cm/s",
+   "numbers": [
+    "3",
+    "5"
+   ],
+   "kind": "range",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=112",
+   "quote": "Steady burning at 3 and 5 cm/s, did not reach 10 cm/s before end of sample",
+   "confidence": "ambiguous",
+   "derivation": "Table A.1 'BHATTACHARJEE TEST MATRIX', observation cell of row B6 (7/7/2014, GMT 188, as-run 57, sample 153m). Ambiguous: 3 and 5 are the steady-burning flows; the flow was then being raised toward 10 cm/s (Air display '3, 5, approaching 10'), so the top of the test's range is above 5 but not stated.",
+   "flags": [
+    "RANGE_NOT_POINT"
+   ]
+  },
+  {
+   "id": "R650",
+   "test_id": "B8",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=112",
+   "quote": "Spread at 10 cm/s, did not blowoff",
+   "confidence": "ambiguous",
+   "derivation": "Table A.1 observation cell of row B8 (7/7/2014, GMT 188, as-run 60, sample 157m). Ambiguous: 10 cm/s is the spreading flow; the flow was then increased to maximum without blowoff (Fan display '1.4, increase to 10.0', Air display '10, maximum', flow restrictor 0); the maximum is not stated in cm/s, so 10 is a lower end, not the test's only flow.",
+   "flags": []
+  },
+  {
+   "id": "R651",
+   "test_id": "B15",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "10",
+   "unit_original": "cm/s",
+   "numbers": [
+    "10"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=111",
+   "quote": "Spread at 10 cm/s, did not blowoff",
+   "confidence": "ambiguous",
+   "derivation": "Table A.1 observation cell of row B15 (7/7/2014, GMT 188, as-run 59, sample 149m); same wording as B8. Flow then increased to maximum (Fan display '1.4 (50) increase to 10.0 pot', Air display '10, max'); 10 is a lower end only.",
+   "flags": []
+  },
+  {
+   "id": "R652",
+   "test_id": "B9",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "2",
+   "unit_original": "cm/s",
+   "numbers": [
+    "2"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=112",
+   "quote": "Steady burning at 2 cm/s, extinguished at 0.35",
+   "confidence": "ambiguous",
+   "derivation": "Table A.1 observation cell of row B9 (7/7/2014, GMT 188, as-run 58, sample 154m). Ambiguous: 2 cm/s is the steady-burning flow; extinction came at pot 0.35 (Air display '2, <1'), a lower flow not stated in cm/s.",
+   "flags": []
+  },
+  {
+   "id": "R653",
+   "test_id": "P21a",
+   "variable": "flow_velocity",
+   "value": "",
+   "value_original": "5",
+   "unit_original": "cm/s",
+   "numbers": [
+    "5"
+   ],
+   "kind": "point",
+   "source_file": "psi-data/PSI-25/Reports/PSI-25_Reports_BASS-II Summary Report.pdf",
+   "source_location": "page=114",
+   "quote": "Flame self-extinguished at 5 cm/s after sample end became flat, dim flame",
+   "confidence": "direct",
+   "derivation": "Table A.3 'FERNANDEZ-PELLO TEST MATRIX', observation cell of row P21a (6/23/2014, GMT 174, as-run 31, sample 196M). The same row has a single Fan display value '46' and a single Air display value '5' (no flow change recorded). Not used: Figure 4.4(f) caption (page=60) 'Black PMMA rod, 3.18 mm, 16.3 percent O2, at 5 cm/s' resembles P21a (16.3 % O2, flat tip) but gives 3.18 mm while the PSI table says '1/4 black rod'.",
+   "flags": []
   }
  ],
  "not_found": [
@@ -765,5 +1871,52 @@
    }
   ],
   "lineage_addendum": "BASS-II shares the MSG small flow duct with BASS (PSI-26), SPICE and SLICE (verificador: Summary Report page=102 'All tests were conducted in a small flow duct (shown in Figure 7.1) within the MSG aboard the ISS.')"
+ },
+ "addendum_flow": {
+  "date": "2026-11-15",
+  "extracted_by": "extractor agent (Claude Opus 5.5)",
+  "note": "flow_velocity records from draft-BASS-flow.extractor.json; SHARED_LINEAGE added to R601-R620 by the build session on the verificador's advice (Table 7.1 covers BASS and BASS-II).",
+  "not_found": [
+   {
+    "variable": "pressure (PSI-25 B1, B2, B3, B4, B5, B7, B12; 2/19/2014, calibrated initial O2 22.2 %)",
+    "looked_in": "Summary Report full text searched for 'kPa', 'atm', 'pressure', 'psi', 'torr' (all hits reviewed). Only B3 (written 'B03') and B4 are named next to a pressure, in the Figure 2.20 caption (page=49, '... at 1 atm'), already held as R301. B1, B2, B5, B7, B12 are never named with a pressure. Page=30, Figure 2.7 text: 'flame spread over 100-µm-thick PMMA sheet for the ambient conditions of 20.7 percent O2, 1 atm, and an opposed-flow velocity of 2.5 cm/s' names no test; the 2/19/2014 100-µm samples are B1 and B3 (Air display 5 and 2, neither 2.5) and further 100-µm samples were run on later days (B6, B9, B15, B16, B19, B20), so it cannot be tied. Pages 21 and 31 ('In the first test ... a second test was done under the same conditions') state no pressure. Page=46 '99.2 to 99.5 kPa in the tests reported' (held as R302) and page=102 '1 atm' (SIBAL, held as R303) do not name B tests. Table A.1 (pages 111-112) has no pressure column."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 B1, B2, B4, B5, B7, B10, B11, B12, B13, B14, B16, B17, B18, B19, B20, B21, B22)",
+    "looked_in": "Table A.1 observation cells (pages 111-112) state no flow in cm/s for these rows, or only the ignition flow: B21 'Ignition at 5 cm/s then fan pot turned down slowly', B22 'Ignition at 5 cm/s then decreased flow in step, fan pot 1.7, 0.5, 0.4, 0.36 (flame out)' (lower end in pot only). B10, B11, B13: 'Multiple velocities for steady spread, extinguished at pot 0.35'. Chapter 2 extinction-velocity sentences (pages 21-23, 31-33: about 1 cm/s for 100, 200, 300 µm, about 1.5 cm/s for 400 µm; about 2.6 and 4 cm/s at 16 percent O2) give limits by thickness, not per test id. Page=48 '100-µm-thick samples ... the opposing flow velocity is 3 cm/s' names no test. Air display cells not used (insufficient, per task)."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 O1..O22, Olson rods)",
+    "looked_in": "Table A.5 observation cells (pages 118-119) give only ignition or single in-test flows in cm/s (O2 'Ignited at 2 cm/s', O3a 'flame sooty at 5 cm/s', O14 and O19 'Ignition at 5 cm/s then slow pot decreases to quenching pot', O15a '1.5 min at 5 cm/s; 2.5 min pot 1.0; ...'); the rest of each test is in potentiometer settings. Olson chapter (pages 72-80): 'typically at a flow speed of 5 cm/s' (ignition, all rods) and campaign range '0- to 55-cm/s'. Pot-to-cm/s conversion is handled separately (derived-bass2-rods-flow.extractor.json)."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 P tests other than P21a)",
+    "looked_in": "Table A.3 observation cells (pages 114-115): P5, P9, P13a, P13b 'Fan pot 1.5 (5 cm/s), 0.9, 0.4, ...' (start only, rest in pot); P17 'turned back down to 2 cm/s, then 0.36, 0.34 pots' (partial); P21b 'Igniter broke after third attempt' (no flow). Fernandez-Pello chapter Figure 4.4 (page=60): rod diameters 4.76 mm and 3.18 mm match no PSI-table P rod (1/4, 3/8, 0.5 inch), so not tied."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 F1, F2, F3, F4)",
+    "looked_in": "Table A.2 (page=113): F1-F3 observation cells state no flow in cm/s (Nomex did not ignite). F4: 'Long ignition, but blue flame established at 3 cm/s, reduced flow in increments: potentiometers 0.6, 0.4, 0.35, 0.32, 0.31, 0.305 flame extinguished' and Ferkul chapter page=54 'At the initial 3 cm/s' / Figure 3.1 '(a) Postignition at 3 cm/s (potentiometer or pot 0.6)': only the starting flow is in cm/s."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 T3, T7, spherical sections)",
+    "looked_in": "Not in Table 7.1 (page=104). Table A.6 rows (page=121) have no observation in cm/s."
+   },
+   {
+    "variable": "flow_velocity (PSI-25 M tests: extra single values not proposed as records)",
+    "looked_in": "Table A.4 single in-test values, folded into the derivation of the Table 5.1 record of the same test: M3 'Extinguished at 18 cm/s', M4 and M13 'Mild ignition at 10 cm/s' (identical notes), M10 'self-extinguished at 8 cm/s', M11 'extinguished at 12 cm/s', M14 'air reading of 9 cm/s', M15 'turned down flow to 15' (no unit), M17 'targeted constant flows of 10, 5, and 3' (no unit), M19 'went out on its own at 5 cm/s'."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 As Run 44, Test # 5b, SIBAL opposed reburn)",
+    "looked_in": "Not in 2013 paper Table I (paragraphs 79-142) nor in Summary Report Table 7.1. Its as-run matrix row is beyond the first 25 rows indexed in the corpus page index (not read)."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 spheres, wake spheres, candles, PMMA and wax slabs, Nomex)",
+    "looked_in": "Overview pdf (corpus page index, pages 1-63): flows are given for unnamed samples only: page=31 'NOMEX – III, 22% O2, 1 atm  14 cm/s (0g)' and 'concurrent propagation at 15 cm/s on ISS' (one Nomex-III sample; candidates As Run 14, 24, 57 'Nomex blend' or 38, 56 'Nomex III Natural'; 14 vs 15 inside the slide); page=34 and page=51 2-cm PMMA sphere '17% oxygen and 12 cm/s' (as-run matrix 2013 sheet has two candidates at 17.07 % O2 with Air display 12: As Run 80 and 81); page=36 1-cm sphere 'less than 1 cm/s'; page=54 1-cm flat acrylic 'around 9 cm/s'; page=56 15-mm sphere 'Flow of less than 1 cm/s'; pages 59-61 candles at 17 % O2 'less than 1 cm/s' / '5, 4, 3, 2, 1, <1 cm/s'. None names a test; not tied. As-run matrix observation cells in cm/s (first 25 rows per sheet): As Run 10 'Still a sooty flame even at 1 cm/s' (one moment of a stepped test); As Run 80 'fan 122 =31 cm/s' (during vitiation, before ignition); As Run 85 'increased flow to 20 cm/s ... back to 8 cm/s ... down to 1 cm/s' and As Run 89 'Sooty at 2 cm/s and then at 1 cm/s' cannot be used because those As Run numbers are each shared by two different CSV rows (85: Test # 117 and 117a; 89: Test # 26 and 87). Rows beyond the first 25 per sheet are not in the page index and were not read."
+   },
+   {
+    "variable": "flow_velocity (PSI-26 planned test matrix)",
+    "looked_in": "BASS ERD slides 10-12 and SysAcceptanceReview.1 pages 41-43 ('BASS Test Matrix', planned flow per Test ID). Not proposed: where as-run values exist the plan was not followed (plan Test 1: 5, as run 10, 5; Test 4: 50 vs 22; Test 7: 5 vs 10; Test 8: 10 vs 5; Test 10: 5 vs 11; Test 2: 10 vs 9, 44); Test 12 as-run Air display '15' vs plan 30; Ultem plan 30/50 vs Overview 'around 15 cm/s'; plan Test 14-15 material 'WSTF Nomex Natural (HT90-40)' vs CSV 'Nomex III Natural'; Test IDs 18-81 carry group-level lists ('5, 10, 20, 50'), not per-test values. Planned_Test Matrix.xlsx not opened (same plan)."
+   }
+  ]
  }
 }

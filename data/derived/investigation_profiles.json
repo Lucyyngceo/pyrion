@@ -3499,7 +3499,7 @@
       }
     ],
     "test_count": 129,
-    "value_count": 884,
+    "value_count": 928,
     "variables": [
       {
         "classification": "distinct values as recorded",
@@ -3515,6 +3515,48 @@
           "opposed"
         ],
         "variable": "flow_configuration"
+      },
+      {
+        "classification": "distinct values as recorded",
+        "distinct_count": 29,
+        "max": null,
+        "min": null,
+        "source": "data/conditions/PSI-25.csv",
+        "test_count": 44,
+        "unit": "cm/s",
+        "value_count": 44,
+        "values": [
+          "10",
+          "10..15",
+          "10..20",
+          "11",
+          "11..47",
+          "13..21",
+          "14",
+          "15..20",
+          "2..5",
+          "2.2..10",
+          "2.2..4",
+          "2.4..10",
+          "2.5..5",
+          "2.6..4.5",
+          "2.6..5",
+          "2.8..4",
+          "20",
+          "3..10",
+          "3..11",
+          "3..4",
+          "3..5",
+          "4",
+          "4..6",
+          "5",
+          "5..10",
+          "5..10.5",
+          "6..10",
+          "6..53",
+          "8..10"
+        ],
+        "variable": "flow_velocity"
       },
       {
         "classification": "observed constant",
@@ -4003,8 +4045,31 @@
       }
     ],
     "test_count": 116,
-    "value_count": 379,
+    "value_count": 389,
     "variables": [
+      {
+        "classification": "distinct values as recorded",
+        "distinct_count": 10,
+        "max": null,
+        "min": null,
+        "source": "data/conditions/PSI-26.csv",
+        "test_count": 10,
+        "unit": "cm/s",
+        "value_count": 10,
+        "values": [
+          "1..10",
+          "1..5",
+          "10",
+          "10..44",
+          "11",
+          "22",
+          "5",
+          "5..10",
+          "9",
+          "9..44"
+        ],
+        "variable": "flow_velocity"
+      },
       {
         "classification": "observed constant",
         "distinct_count": 1,

@@ -1,138 +1,210 @@
 {
-  "accession": "PSI-26",
-  "verified_by": "verificador agent (Claude Opus 5.5)",
-  "date": "2026-11-14",
-  "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
-  "verdicts": [
-    {
-      "id": "R1",
-      "verdict": "KEEP",
-      "reason": "Verbatim on DLD page 1; describes what the investigation does in microgravity. Its '*' scope does not cover the unnumbered 1-g comparison flames of R3/R4."
-    },
-    {
-      "id": "R2",
-      "verdict": "KEEP",
-      "reason": "Verbatim at paragraph=17; states the gravity condition of the fabric tests; paragraph 186 agrees."
-    },
-    {
-      "id": "R3",
-      "verdict": "KEEP",
-      "reason": "Verbatim at paragraph=175. Unnumbered ground comparison flame with no stated location or conditions: must not carry the flight conditions."
-    },
-    {
-      "id": "R4",
-      "verdict": "KEEP",
-      "reason": "Verbatim at paragraph=183. Same caution as R3."
-    },
-    {
-      "id": "R5",
-      "verdict": "KEEP",
-      "reason": "section=title names solids. Caveat: wax candles were also burned, and no source states their phase."
-    },
-    {
-      "id": "R6",
-      "verdict": "MODIFY",
-      "reason": "Verbatim on SRD page 7, but the SRD is a pre-flight requirement, so it cannot be direct.",
-      "corrected": {
-        "confidence": "ambiguous"
-      }
-    },
-    {
-      "id": "R7",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=approach; used only for platform."
-    },
-    {
-      "id": "R8",
-      "verdict": "KEEP",
-      "reason": "experimentHardware reads exactly 'Microgravity Science Glovebox'."
-    },
-    {
-      "id": "R9",
-      "verdict": "KEEP",
-      "reason": "Verbatim on SRD page 4; air -> N2 derivation correct; the as-run paper confirms air."
-    },
-    {
-      "id": "R10",
-      "verdict": "KEEP",
-      "reason": "Verbatim at section=approach; both configurations used, not assigned to tests: ambiguous."
-    },
-    {
-      "id": "R11",
-      "verdict": "KEEP",
-      "reason": "Same quote as R10, same reasoning."
-    },
-    {
-      "id": "R12",
-      "verdict": "REJECT",
-      "reason": "'Air co-flow' is the SPICE name for the duct stream in a planning document; every as-run source gives BASS as concurrent or opposed. 'coflow' would wrongly match BASS with SPICE jet flames."
-    },
-    {
-      "id": "R13",
-      "verdict": "MODIFY",
-      "reason": "Upper bound only, ambiguous; needs the SPICE-duct lineage; as-run Table I reaches 44 cm/s.",
-      "corrected": {
-        "derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15). As-run speeds in Table I of the 2013 paper reach 44 cm/s (paragraphs 126 and 131), above this stated maximum. Lineage: the fan and the 76 mm x 76 mm duct are the SPICE apparatus (2013 paper, paragraph 51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'); flag SHARED_LINEAGE."
-      }
-    },
-    {
-      "id": "R14",
-      "verdict": "MODIFY",
-      "reason": "Hardware range exceeded by Table I (44 cm/s); ambiguous; needs the SPICE-duct lineage.",
-      "corrected": {
-        "derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. The paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15). Lineage: the same paragraph states 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'; flag SHARED_LINEAGE."
-      }
-    },
-    {
-      "id": "R15",
-      "verdict": "KEEP",
-      "reason": "Verbatim on SRD page 4; planning range, ambiguous, SHARED_LINEAGE: all correct."
-    },
-    {
-      "id": "R16",
-      "verdict": "KEEP",
-      "reason": "Verbatim on SRD page 8; a requirement (lower bound only), ambiguous, UNIT_AMBIGUOUS correct."
-    },
-    {
-      "id": "R101",
-      "verdict": "REJECT",
-      "reason": "The 17 % O2 sphere test described in the guide caption is a BASS-II (PSI-25) test (O2 vitiation with GN2 was first used in BASS-II); the caption describes one test, and the guide gives 10 vs 12 cm/s for it."
-    },
-    {
-      "id": "R102",
-      "verdict": "MODIFY",
-      "reason": "Program-level result needing reduced-oxygen tests (BASS-II); cannot be attached to PSI-26 tests.",
-      "corrected": {
-        "confidence": "ambiguous",
-        "derivation": "ambiguous: the 2015 ISS Researcher's Guide uses 'BASS' for the whole BASS/BASS-II campaign. A lower-oxygen result needs N2 vitiation, which the PSI-25 report says BASS-II introduced. The sentence cannot be attributed to PSI-26 tests. SHARED_LINEAGE: BASS, BASS-II, SPICE and SLICE share the MSG flow duct."
-      }
-    },
-    {
-      "id": "R1",
-      "verdict": "MODIFY",
-      "reason": "Consistency rule (coordinating session, review finding): a scope sentence ('examines ... in microgravity') is ambiguous, as for the FLEX description sentence. Decision of the build session after R101/R102 failed audit.",
-      "corrected": {
-        "confidence": "ambiguous",
-        "derivation": "Scope sentence of the PSI Data Layout Document: says what BASS examines, not that the tests were run in microgravity. Same rule as the FLEX description-of-data sentence (PSI-69). Stronger candidates were audited and rejected or downgraded (2015 ISS Researcher's Guide pp.2, 31: they describe BASS-II or the whole campaign)."
-      }
-    },
-    {
-      "id": "R103",
-      "verdict": "MODIFY",
-      "reason": "Quote verbatim at paragraph 17; past tense; SIBAL = the paper's cotton-fiberglass fabric (paper paragraph 33); exactly 12 SIBAL rows; run order and widths match the paper's Table I; As Run 44 (Test # 5b) is covered only by extension.",
-      "corrected": {
-        "derivation": "Abstract of PSI-26's own 2013 paper [p17], past tense, about the cotton-fiberglass fabric tests; conclusions [p186] confirm 'burned in long-duration microgravity tests aboard the ISS'. The paper says the custom-made fabric is 'sometimes referred to as SIBAL fabric' (cotton-fiberglass, 75% by mass cotton) [p33]. Scope: only the 12 PSI-26 table rows whose material is SIBAL. Their CSV 'Test #' values (1, 7, 8, 4, 10, 5, 6, 2, 3, 11, 9) match the 11 tests of the paper's Table I in the same run order and with the same widths. The exception is As Run 44 (Test # 5b, a second burn of sample 9 in opposed flow), which is not in Table I. It is covered only as a fabric burn in the same ISS campaign, not by an individual statement in the paper. Candles, spheres, PMMA, Ultem, wax and Nomex samples are not covered. The paper's 1-g comparison flames (Figs. 13-14) have no number and are not rows of the PSI table."
-      }
-    }
-  ],
-  "missed": [
-    "As-run per-test flow speeds and directions exist in Table I of the 2013 paper (paragraphs 90-141; e.g. '10, 20, 44' cm/s opposed, '9, 44' concurrent). They use the paper's test numbers 1-11, which do not map to PSI test ids: not ingested.",
-    "Figure 11 caption (paragraph 166): flow decreased in steps from 10 cm/s to below 1 cm/s for paper test 9: not ingested (paper numbering).",
-    "PSI-26's own 2013 paper, paragraph 186: 'Flat fabric samples were burned in long-duration microgravity tests aboard the ISS.' (and paragraph 190) - past tense about the fabric tests; covers only the fabric (SIBAL/Nomex) tests of the paper, so it was not attached to every BASS row. A per-material scope on the PSI-26 SIBAL rows is possible but not done.",
-    "SRD footnote about SIBAL not re-checked in this pass; BASS rows of other materials (Nomex, PMMA, candles, spheres, Ultem) have no gravity statement and stay without a usable gravity_regime."
-  ],
-  "could_not_check": "PDFs read through their text layer; original PSI-26.json and the .docx not opened (dumps only); figures not audited; the mapping of paper tests 1-11 to PSI ids, the location of the 1-g flames, the phase of the wax candle tests and the O2 % basis are not stated in the sources; BASS-II and SLICE are not named in any source read.",
-  "review_level": "segregated internal check by a language model; not expert or NASA review",
-  "addendum2": "R101+ audited in a separate verificador run on 2026-11-14 (BASS/SAFFIRE gravity review); verdicts transcribed by the build session.",
-  "addendum3": "R103 audited in a separate verificador run on 2026-11-14 (gravity gap BASS/CFI/SLICE)."
+ "accession": "PSI-26",
+ "verified_by": "verificador agent (Claude Opus 5.5)",
+ "date": "2026-11-14",
+ "transcription": "Verdicts and corrected fields copied verbatim from the verificador's final message; reasons condensed by the build session.",
+ "verdicts": [
+  {
+   "id": "R1",
+   "verdict": "KEEP",
+   "reason": "Verbatim on DLD page 1; describes what the investigation does in microgravity. Its '*' scope does not cover the unnumbered 1-g comparison flames of R3/R4."
+  },
+  {
+   "id": "R2",
+   "verdict": "KEEP",
+   "reason": "Verbatim at paragraph=17; states the gravity condition of the fabric tests; paragraph 186 agrees."
+  },
+  {
+   "id": "R3",
+   "verdict": "KEEP",
+   "reason": "Verbatim at paragraph=175. Unnumbered ground comparison flame with no stated location or conditions: must not carry the flight conditions."
+  },
+  {
+   "id": "R4",
+   "verdict": "KEEP",
+   "reason": "Verbatim at paragraph=183. Same caution as R3."
+  },
+  {
+   "id": "R5",
+   "verdict": "KEEP",
+   "reason": "section=title names solids. Caveat: wax candles were also burned, and no source states their phase."
+  },
+  {
+   "id": "R6",
+   "verdict": "MODIFY",
+   "reason": "Verbatim on SRD page 7, but the SRD is a pre-flight requirement, so it cannot be direct.",
+   "corrected": {
+    "confidence": "ambiguous"
+   }
+  },
+  {
+   "id": "R7",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=approach; used only for platform."
+  },
+  {
+   "id": "R8",
+   "verdict": "KEEP",
+   "reason": "experimentHardware reads exactly 'Microgravity Science Glovebox'."
+  },
+  {
+   "id": "R9",
+   "verdict": "KEEP",
+   "reason": "Verbatim on SRD page 4; air -> N2 derivation correct; the as-run paper confirms air."
+  },
+  {
+   "id": "R10",
+   "verdict": "KEEP",
+   "reason": "Verbatim at section=approach; both configurations used, not assigned to tests: ambiguous."
+  },
+  {
+   "id": "R11",
+   "verdict": "KEEP",
+   "reason": "Same quote as R10, same reasoning."
+  },
+  {
+   "id": "R12",
+   "verdict": "REJECT",
+   "reason": "'Air co-flow' is the SPICE name for the duct stream in a planning document; every as-run source gives BASS as concurrent or opposed. 'coflow' would wrongly match BASS with SPICE jet flames."
+  },
+  {
+   "id": "R13",
+   "verdict": "MODIFY",
+   "reason": "Upper bound only, ambiguous; needs the SPICE-duct lineage; as-run Table I reaches 44 cm/s.",
+   "corrected": {
+    "derivation": "Upper bound only ('as high as'); the sentence gives no lower bound. Agrees with the 40 cm/s maximum in R14; disagrees with the 5 to 50 cm/s of the planning SRD (R15). As-run speeds in Table I of the 2013 paper reach 44 cm/s (paragraphs 126 and 131), above this stated maximum. Lineage: the fan and the 76 mm x 76 mm duct are the SPICE apparatus (2013 paper, paragraph 51: 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'); flag SHARED_LINEAGE."
+   }
+  },
+  {
+   "id": "R14",
+   "verdict": "MODIFY",
+   "reason": "Hardware range exceeded by Table I (44 cm/s); ambiguous; needs the SPICE-duct lineage.",
+   "corrected": {
+    "derivation": "Hardware range from the paper's Methods; the abstract (paragraph 17) says 'up to 40 cm/s'. The paper's own Table I lists 44 cm/s for two tests (paragraphs 126 and 131), above this stated maximum, and paragraph 75 says 'The minimum measurable air flow speed is 1 cm/s.' Disagrees with the 5 to 50 cm/s of the planning SRD (R15). Lineage: the same paragraph states 'The samples are burned in the SPICE apparatus which is a small flow duct with a cross-sectional area of 76mm x 76mm [Dotson et. al. 2010].'; flag SHARED_LINEAGE."
+   }
+  },
+  {
+   "id": "R15",
+   "verdict": "KEEP",
+   "reason": "Verbatim on SRD page 4; planning range, ambiguous, SHARED_LINEAGE: all correct."
+  },
+  {
+   "id": "R16",
+   "verdict": "KEEP",
+   "reason": "Verbatim on SRD page 8; a requirement (lower bound only), ambiguous, UNIT_AMBIGUOUS correct."
+  },
+  {
+   "id": "R101",
+   "verdict": "REJECT",
+   "reason": "The 17 % O2 sphere test described in the guide caption is a BASS-II (PSI-25) test (O2 vitiation with GN2 was first used in BASS-II); the caption describes one test, and the guide gives 10 vs 12 cm/s for it."
+  },
+  {
+   "id": "R102",
+   "verdict": "MODIFY",
+   "reason": "Program-level result needing reduced-oxygen tests (BASS-II); cannot be attached to PSI-26 tests.",
+   "corrected": {
+    "confidence": "ambiguous",
+    "derivation": "ambiguous: the 2015 ISS Researcher's Guide uses 'BASS' for the whole BASS/BASS-II campaign. A lower-oxygen result needs N2 vitiation, which the PSI-25 report says BASS-II introduced. The sentence cannot be attributed to PSI-26 tests. SHARED_LINEAGE: BASS, BASS-II, SPICE and SLICE share the MSG flow duct."
+   }
+  },
+  {
+   "id": "R1",
+   "verdict": "MODIFY",
+   "reason": "Consistency rule (coordinating session, review finding): a scope sentence ('examines ... in microgravity') is ambiguous, as for the FLEX description sentence. Decision of the build session after R101/R102 failed audit.",
+   "corrected": {
+    "confidence": "ambiguous",
+    "derivation": "Scope sentence of the PSI Data Layout Document: says what BASS examines, not that the tests were run in microgravity. Same rule as the FLEX description-of-data sentence (PSI-69). Stronger candidates were audited and rejected or downgraded (2015 ISS Researcher's Guide pp.2, 31: they describe BASS-II or the whole campaign)."
+   }
+  },
+  {
+   "id": "R103",
+   "verdict": "MODIFY",
+   "reason": "Quote verbatim at paragraph 17; past tense; SIBAL = the paper's cotton-fiberglass fabric (paper paragraph 33); exactly 12 SIBAL rows; run order and widths match the paper's Table I; As Run 44 (Test # 5b) is covered only by extension.",
+   "corrected": {
+    "derivation": "Abstract of PSI-26's own 2013 paper [p17], past tense, about the cotton-fiberglass fabric tests; conclusions [p186] confirm 'burned in long-duration microgravity tests aboard the ISS'. The paper says the custom-made fabric is 'sometimes referred to as SIBAL fabric' (cotton-fiberglass, 75% by mass cotton) [p33]. Scope: only the 12 PSI-26 table rows whose material is SIBAL. Their CSV 'Test #' values (1, 7, 8, 4, 10, 5, 6, 2, 3, 11, 9) match the 11 tests of the paper's Table I in the same run order and with the same widths. The exception is As Run 44 (Test # 5b, a second burn of sample 9 in opposed flow), which is not in Table I. It is covered only as a fabric burn in the same ISS campaign, not by an individual statement in the paper. Candles, spheres, PMMA, Ultem, wax and Nomex samples are not covered. The paper's 1-g comparison flames (Figs. 13-14) have no number and are not rows of the PSI table."
+   }
+  },
+  {
+   "id": "R654",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R655",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R656",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R657",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R658",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R659",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R660",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R661",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R662",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R663",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R664",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R665",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  },
+  {
+   "id": "R666",
+   "verdict": "KEEP",
+   "reason": "Verbatim at the stated page; ids and values checked by the verificador against the PSI table rows."
+  }
+ ],
+ "missed": [
+  "As-run per-test flow speeds and directions exist in Table I of the 2013 paper (paragraphs 90-141; e.g. '10, 20, 44' cm/s opposed, '9, 44' concurrent). They use the paper's test numbers 1-11, which do not map to PSI test ids: not ingested.",
+  "Figure 11 caption (paragraph 166): flow decreased in steps from 10 cm/s to below 1 cm/s for paper test 9: not ingested (paper numbering).",
+  "PSI-26's own 2013 paper, paragraph 186: 'Flat fabric samples were burned in long-duration microgravity tests aboard the ISS.' (and paragraph 190) - past tense about the fabric tests; covers only the fabric (SIBAL/Nomex) tests of the paper, so it was not attached to every BASS row. A per-material scope on the PSI-26 SIBAL rows is possible but not done.",
+  "SRD footnote about SIBAL not re-checked in this pass; BASS rows of other materials (Nomex, PMMA, candles, spheres, Ultem) have no gravity statement and stay without a usable gravity_regime."
+ ],
+ "could_not_check": "PDFs read through their text layer; original PSI-26.json and the .docx not opened (dumps only); figures not audited; the mapping of paper tests 1-11 to PSI ids, the location of the 1-g flames, the phase of the wax candle tests and the O2 % basis are not stated in the sources; BASS-II and SLICE are not named in any source read.",
+ "review_level": "segregated internal check by a language model; not expert or NASA review",
+ "addendum2": "R101+ audited in a separate verificador run on 2026-11-14 (BASS/SAFFIRE gravity review); verdicts transcribed by the build session.",
+ "addendum3": "R103 audited in a separate verificador run on 2026-11-14 (gravity gap BASS/CFI/SLICE).",
+ "addendum_flow": {
+  "date": "2026-11-15",
+  "verified_by": "verificador agent (Claude Opus 5.5), separate runs for PSI-25 and PSI-26",
+  "transcription": "Verdicts condensed by the build session. Competing values for one test: exactly one direct, the other lowered to ambiguous (R641 direct, R621 ambiguous; R622, R625, R629, R638, R640 direct, R642-R647 ambiguous).",
+  "missed": "B21, B22 partial flows (ignition at 5 cm/s, extinction at a pot setting): not proposed. Overview page 22 labels (2 cm 20 cm/s, 1 cm 10 cm/s) conflict loosely with Table I: not used.",
+  "could_not_check": "No page image seen by the verificadores; the build session checked pages 65 and 104 against images afterwards."
+ }
 }
