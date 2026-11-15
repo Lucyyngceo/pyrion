@@ -8,11 +8,11 @@ import { useEffect, useRef, useState } from "react";
 const MAIN = [
   { href: "/example", label: "Example", help: "nav-example" },
   { href: "/envelope", label: "Envelope", help: "nav-envelope" },
+  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
   { href: "/planner", label: "Planner", help: "nav-planner" },
   { href: "/investigations", label: "Investigations", help: "nav-investigations" },
   { href: "/lenses", label: "Safety", help: "nav-lenses" },
   { href: "/more", label: "Earth & equipment", help: "nav-more-page" },
-  { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
 ];
 
 /** Behind the "More" menu, in order of importance. */
