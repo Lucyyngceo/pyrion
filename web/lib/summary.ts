@@ -66,7 +66,7 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
       tone: "outside",
       headline: "No PSI test in this gravity regime",
       sub: "Measured in other gravity regimes only",
-      detail: `The target is in ${valueLabel(ru.value)}; the extracted PSI tests were run in ${ru.testedValues.map(valueLabel).join(", ") || "no stated regime"}. Nothing measured here can be compared with it.`,
+      detail: `The target is in ${valueLabel(ru.value)}. PSI tested ${ru.testedValues.length ? `${ru.testedValues.map(valueLabel).join(" and ")} only` : "no stated gravity regime"}, so nothing measured there can be compared with it.`,
       counts,
     };
   }

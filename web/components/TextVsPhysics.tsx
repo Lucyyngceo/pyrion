@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useMemo } from "react";
-import type { Evaluation, Verdict } from "@/lib/engine";
+import { verdictLabel, type Evaluation, type Verdict } from "@/lib/engine";
 import type { Investigation } from "@/lib/types";
 import { tfidfRank } from "@/lib/textsearch";
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
@@ -10,12 +10,7 @@ import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 // and by the engine's physical verdicts. Deterministic, no language model.
 
 const ORDER: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
-const SHORT: Record<Verdict, string> = {
-  APPLICABLE: "applicable",
-  EXTRAPOLATION: "extrapolation",
-  INSUFFICIENT_EVIDENCE: "insufficient evidence",
-  REGIME_BARRIER: "not comparable (different regime)",
-};
+const SHORT = (v: Verdict) => verdictLabel(v).toLowerCase();
 const CLS: Record<Verdict, string> = { APPLICABLE: "v-app", EXTRAPOLATION: "v-ext", INSUFFICIENT_EVIDENCE: "v-ins", REGIME_BARRIER: "v-bar" };
 const N = 8;
 
@@ -62,7 +57,7 @@ function TextVsPhysics({
           <span className="acc">{id}</span> {inv.get(id)?.acronym}
         </span>
         <span className={`tvp-v ${v ? CLS[v] : ""}`}>
-          {v && <StatusSymbol level={VERDICT_STATUS[v]} size={10} />} {v ? SHORT[v] : ""}
+          {v && <StatusSymbol level={VERDICT_STATUS[v]} size={10} />} {v ? SHORT(v) : ""}
         </span>
         {right}
       </li>

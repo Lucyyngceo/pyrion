@@ -2,6 +2,7 @@
 
 import StatusSymbol, { VERDICT_STATUS } from "./StatusSymbol";
 import { memo, useEffect, useRef, useState } from "react";
+import { verdictLabel } from "@/lib/engine";
 import type { Blocker, Citation, ClusterVerdict, ConditionRecord, Evaluation, InvestigationVerdict, Reason, Verdict } from "@/lib/engine";
 import { envelopeName } from "@/lib/layers";
 import type { Dataset, Investigation } from "@/lib/types";
@@ -10,10 +11,10 @@ import { axisWord, plainVerdict } from "@/lib/plain";
 import Term from "./Term";
 
 const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string; label: string }> = {
-  APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app", label: "Applicable" },
-  EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext", label: "Extrapolation" },
-  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins", label: "Insufficient evidence" },
-  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar", label: "Not comparable (different regime)" },
+  APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app", label: verdictLabel("APPLICABLE") },
+  EXTRAPOLATION: { icon: "↗", plain: "outside the measured envelope", cls: "v-ext", label: verdictLabel("EXTRAPOLATION") },
+  INSUFFICIENT_EVIDENCE: { icon: "?", plain: "not enough stated to compare", cls: "v-ins", label: verdictLabel("INSUFFICIENT_EVIDENCE") },
+  REGIME_BARRIER: { icon: "≠", plain: "not comparable: different physical regime", cls: "v-bar", label: verdictLabel("REGIME_BARRIER") },
 };
 const ORDER: Record<Verdict, number> = { APPLICABLE: 0, EXTRAPOLATION: 1, INSUFFICIENT_EVIDENCE: 2, REGIME_BARRIER: 3 };
 
@@ -207,6 +208,7 @@ function ResultRow({
         <span>
           
           {readable(reason.message)}
+          {reason.technicalNote && <span className="reason-tech small muted"> Technical: {readable(reason.technicalNote)}</span>}
           {refs.length > 0 && (
             <span className="refs">
               {refs.slice(0, 3).map((n) => (

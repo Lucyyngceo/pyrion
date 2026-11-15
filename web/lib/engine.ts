@@ -73,3 +73,6 @@ export type {
   TransferReport,
   TransferTest,
 } from "../../engine/src/index.ts";
+
+// Verdict names live in the engine (labels.ts); not yet re-exported by its index.
+export { verdictLabel } from "../../engine/src/labels.ts";

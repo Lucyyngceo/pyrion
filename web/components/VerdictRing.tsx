@@ -1,11 +1,12 @@
+import { verdictLabel } from "@/lib/engine";
 import StatusSymbol, { type StatusLevel } from "./StatusSymbol";
 import Term from "./Term";
 
 const ROWS: { key: "APPLICABLE" | "EXTRAPOLATION" | "INSUFFICIENT_EVIDENCE" | "REGIME_BARRIER"; label: React.ReactNode; level: StatusLevel }[] = [
-  { key: "APPLICABLE", label: "Applicable", level: "normal" },
-  { key: "EXTRAPOLATION", label: <Term k="extrapolation">Extrapolation</Term>, level: "caution" },
-  { key: "INSUFFICIENT_EVIDENCE", label: <Term k="insufficient evidence">Insufficient evidence</Term>, level: "standby" },
-  { key: "REGIME_BARRIER", label: <Term k="regime barrier">Not comparable (different regime)</Term>, level: "off" },
+  { key: "APPLICABLE", label: verdictLabel("APPLICABLE"), level: "normal" },
+  { key: "EXTRAPOLATION", label: <Term k="extrapolation">{verdictLabel("EXTRAPOLATION")}</Term>, level: "caution" },
+  { key: "INSUFFICIENT_EVIDENCE", label: <Term k="insufficient evidence">{verdictLabel("INSUFFICIENT_EVIDENCE")}</Term>, level: "standby" },
+  { key: "REGIME_BARRIER", label: <Term k="regime barrier">{verdictLabel("REGIME_BARRIER")}</Term>, level: "off" },
 ];
 
 /** Segmented ring of verdicts by investigation, with the counts beside it. Segments are drawn as arcs
