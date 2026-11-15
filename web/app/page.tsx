@@ -91,7 +91,7 @@ export default async function Landing() {
       <main className="page landing">
         <section className="ld-hero ld-hero-split" aria-labelledby="ld-h">
           <div className="ld-hero-text">
-          <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team NDMLM</p>
+          <p className="ld-kicker">NASA Space Apps 2026 · Flame in Freefall · team MLMP</p>
           <h1 id="ld-h" className="ld-title">
             Find the NASA fire experiments relevant to your habitat — and see where the tested evidence ends.
           </h1>

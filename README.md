@@ -1,6 +1,6 @@
 # PYRION Ω — The Evidence Envelope
 
-**NASA Space Apps Challenge 2026** · Challenge: *Flame in Freefall: SI-Powered Fire Safety Insights from Microgravity Combustion Data* · Team **NDMLM** · Local event: San José, Costa Rica
+**NASA Space Apps Challenge 2026** · Challenge: *Flame in Freefall: SI-Powered Fire Safety Insights from Microgravity Combustion Data* · Team **MLMP** · Local event: San José, Costa Rica
 
 > Built during the NASA Space Apps Challenge hackathon, November 14–15, 2026.
 
@@ -80,13 +80,13 @@ Development started on November 14, 2026, after the hackathon opened at 09:00 CS
 
 ## How it was built
 
-One person (team NDMLM) working from two computers. Data, extraction, engine and validation were built on one; the interface redesign was built on the other in branch `laptop/ui` and merged through pull request #1. Every push carries a server-side provenance stamp (GitHub Actions, workflow `provenance`).
+One person (team MLMP) working from two computers. Data, extraction, engine and validation were built on one; the interface redesign was built on the other in branch `laptop/ui` and merged through pull request #1. Every push carries a server-side provenance stamp (GitHub Actions, workflow `provenance`).
 
 ## Use of AI (SI) tools
 
 NASA Space Apps asks every team to declare its use of Artificial Intelligence / Super Intelligence. This is the full declaration. The trail is in git: every AI-assisted commit carries a `Co-Authored-By` line naming the model.
 
-**Who did what.** One person (Luis Johan Elizondo Arias, team NDMLM) directed the project, made every decision, wrote the personal text on the Why page, and checked the work. The code, data extraction, tests, documentation and this README were written with AI assistance, under his direction, during the event.
+**Who did what.** One person (Luis Johan Elizondo Arias, team MLMP) directed the project, made every decision, wrote the personal text on the Why page, and checked the work. The code, data extraction, tests, documentation and this README were written with AI assistance, under his direction, during the event.
 
 **Tools used to build the project (development time):**
 
