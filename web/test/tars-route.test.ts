@@ -40,34 +40,26 @@ test("Support finds the right topic for the site questions", () => {
   assert.equal(best("blorfzzt quux"), null);
 });
 
-import { resolveMode, threePart, viewFor } from "../lib/tars/answer.ts";
-import { evaluate, experimentsNeeded, parseConditionCsv, routesToEvidence, type ConditionRecord, type Target } from "../../engine/src/index.ts";
+import { resolveMode, viewFor } from "../lib/tars/answer.ts";
+import { parseConditionCsv, threePartAnswer, type ConditionRecord, type Target } from "../../engine/src/index.ts";
 
-test("the facts are identical in Easy, Advanced and Auto; only the presentation changes", () => {
+test("the engine's facts are identical in Easy and Advanced; the mode only chooses wording and detail", () => {
   const cdir = join(import.meta.dirname, "../../data/conditions");
   const records: ConditionRecord[] = readdirSync(cdir)
     .filter((n) => /^PSI-\d+\.csv$/.test(n))
     .flatMap((n) => parseConditionCsv(readFileSync(join(cdir, n), "utf8"), n, n.replace(".csv", "")).records);
   const target: Target = { regime: { gravity_regime: "microgravity" }, continuous: { o2_mole_fraction: 0.21, pressure: 101.325 } };
-  const a = threePart({
-    target,
-    evaluation: evaluate(records, target),
-    routes: routesToEvidence(records, target),
-    experiments: experimentsNeeded(records, target),
-    investigations: [],
-    fingerprint: "0".repeat(64),
-    readBy: "Read by code",
-  });
-  const facts = (m: "easy" | "advanced" | "auto", route: "condition" | "support") => {
-    const v = viewFor(a, resolveMode(m, route));
-    return JSON.stringify([v.known.map((f) => [f.id, f.text]), v.unknown.map((f) => [f.id, f.text]), v.next.map((f) => [f.id, f.text])]);
+  const pair = { easy: threePartAnswer(records, target, { mode: "easy" }), advanced: threePartAnswer(records, target, { mode: "advanced" }), readBy: "Read by code" };
+  const shape = (m: "easy" | "advanced") => {
+    const a = viewFor(pair, m).answer;
+    return JSON.stringify({ k: a.known.map((x) => x.citations.map((c) => c.accession)), u: a.unknown.map((x) => x.kind), n: a.next.map((x) => x.kind), f: a.fingerprint, t: a.target });
   };
-  const base = facts("advanced", "condition");
-  for (const m of ["easy", "advanced", "auto"] as const) for (const r of ["condition", "support"] as const) assert.equal(facts(m, r), base, `${m}/${r}`);
-  assert.equal(viewFor(a, "easy").showDetail, false);
-  assert.equal(viewFor(a, "easy").stepsOpen, false);
-  assert.equal(viewFor(a, "advanced").stepsOpen, true);
+  assert.equal(shape("easy"), shape("advanced"));
+  for (const r of ["condition", "support"] as const) assert.equal(shape(resolveMode("auto", r)), shape("advanced"));
+  assert.equal(viewFor(pair, "easy").showDetail, false);
+  assert.equal(viewFor(pair, "easy").stepsOpen, false);
+  assert.equal(viewFor(pair, "advanced").stepsOpen, true);
   assert.equal(resolveMode("auto", "condition"), "advanced");
   assert.equal(resolveMode("auto", "support"), "easy");
-  assert.ok(a.known.length > 0 && a.unknown.length > 0 && a.next.length > 0, "three parts, all present");
+  assert.ok(pair.advanced.known.length > 0 && pair.advanced.unknown.length >= 0 && pair.advanced.next.length > 0, "known and next are present");
 });

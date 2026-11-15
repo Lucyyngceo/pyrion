@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { readByCode, type ParsedTarget } from "@/lib/ask-core";
 import { deliver, getCurrentTarget, storePending, takePending, type Pending } from "@/lib/tars/bridge";
-import type { Mode, ThreePart } from "@/lib/tars/answer";
+import type { AnswerPair, Mode } from "@/lib/tars/answer";
 import { routeMessage, type Route } from "@/lib/tars/route";
 
 export interface HelpAnswer {
@@ -18,10 +18,10 @@ export type Msg =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "tars"; kind: "error" | "note"; text: string }
   | { id: number; role: "tars"; kind: "help"; route: Route; help: HelpAnswer }
-  | { id: number; role: "tars"; kind: "answer"; route: Route; answer: ThreePart; question: string }
+  | { id: number; role: "tars"; kind: "answer"; route: Route; answer: AnswerPair; question: string }
   | { id: number; role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
 
-type NewMsg = { role: "user"; text: string } | { role: "tars"; kind: "error" | "note"; text: string } | { role: "tars"; kind: "help"; route: Route; help: HelpAnswer } | { role: "tars"; kind: "answer"; route: Route; answer: ThreePart; question: string } | { role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
+type NewMsg = { role: "user"; text: string } | { role: "tars"; kind: "error" | "note"; text: string } | { role: "tars"; kind: "help"; route: Route; help: HelpAnswer } | { role: "tars"; kind: "answer"; route: Route; answer: AnswerPair; question: string } | { role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
 
 interface Ctx {
   open: boolean;
@@ -122,7 +122,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
 
   const answerFor = useCallback(
     async (target: unknown, readBy: string, question: string, route: Route) => {
-      const r = await postJson<{ answer: ThreePart }>("/api/tars", { kind: "answer", target, readBy });
+      const r = await postJson<{ answer: AnswerPair }>("/api/tars", { kind: "answer", target, readBy });
       if (!r.ok) return add({ role: "tars", kind: "error", text: r.data.error ?? "TARS could not build the answer." });
       add({ role: "tars", kind: "answer", route, answer: r.data.answer, question });
     },

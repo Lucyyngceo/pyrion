@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { ExperimentsNeeded } from "@/lib/engine";
 import ExperimentsView from "../ExperimentsView";
-import { resolveMode, viewFor, type Fact, type Mode, type ThreePart } from "@/lib/tars/answer";
+import { resolveMode, viewFor, type Mode } from "@/lib/tars/answer";
 import { useTars, type HelpAnswer, type Msg } from "./TarsProvider";
 
 const MODES: { id: Mode; label: string; hint: string }[] = [
@@ -14,7 +14,9 @@ const MODES: { id: Mode; label: string; hint: string }[] = [
 
 const HONESTY = "Honesty is enforced by code: the verdicts and every number come from the engine.";
 
-function Block({ title, sub, facts, showDetail }: { title: string; sub: string; facts: Fact[]; showDetail: boolean }) {
+type Cite = { accession: string; acronym?: string; doi?: string; recordIds: string[] };
+
+function Block({ title, sub, items, showDetail }: { title: string; sub: string; items: { sentence: string; citations?: Cite[] }[]; showDetail: boolean }) {
   const { showOnEnvelope } = useTars();
   return (
     <section className={`tars-block tars-${title.toLowerCase()}`} aria-label={title}>
@@ -22,11 +24,10 @@ function Block({ title, sub, facts, showDetail }: { title: string; sub: string; 
         {title} <span className="tars-sub">{sub}</span>
       </h4>
       <ul>
-        {facts.map((f) => (
-          <li key={f.id}>
-            <span>{f.text}</span>
-            {showDetail && f.detail && <span className="tars-detail small muted"> {f.detail}</span>}
-            {f.refs?.map((r) => (
+        {items.map((f, i) => (
+          <li key={i}>
+            <span>{f.sentence}</span>
+            {f.citations?.map((r) => (
               <span key={r.accession} className="tars-ref">
                 <button type="button" className="linklike small" onClick={() => showOnEnvelope({ open: r.accession })}>
                   {r.accession} receipt
@@ -36,6 +37,7 @@ function Block({ title, sub, facts, showDetail }: { title: string; sub: string; 
                     doi
                   </a>
                 )}
+                {showDetail && r.recordIds.length > 0 && <span className="small muted">{r.recordIds.length} records</span>}
               </span>
             ))}
           </li>
@@ -47,13 +49,13 @@ function Block({ title, sub, facts, showDetail }: { title: string; sub: string; 
 
 function Answer({ msg }: { msg: Extract<Msg, { kind: "answer" }> }) {
   const { mode, showOnEnvelope } = useTars();
-  const a: ThreePart = msg.answer;
-  const v = viewFor(a, resolveMode(mode, msg.route));
+  const v = viewFor(msg.answer, resolveMode(mode, msg.route));
+  const a = v.answer;
   return (
     <div className="tars-answer">
-      <Block title="KNOWN" sub="what the extracted PSI records support" facts={v.known} showDetail={v.showDetail} />
-      <Block title="UNKNOWN" sub="where the evidence ends, and why" facts={v.unknown} showDetail={v.showDetail} />
-      <Block title="NEXT" sub="what would close it (a PYRION proposal, not a NASA plan)" facts={v.next} showDetail={v.showDetail} />
+      <Block title="KNOWN" sub="what the extracted PSI records support" items={a.known} showDetail={v.showDetail} />
+      <Block title="UNKNOWN" sub="where the evidence ends, and why" items={a.unknown} showDetail={v.showDetail} />
+      <Block title="NEXT" sub="what would close it (a PYRION proposal, not a NASA plan)" items={a.next} showDetail={v.showDetail} />
       <p className="tars-fp small muted">
         Engine fingerprint (SHA-256): <code>{v.showDetail ? a.fingerprint : `${a.fingerprint.slice(0, 16)}…`}</code>
       </p>
@@ -61,12 +63,10 @@ function Answer({ msg }: { msg: Extract<Msg, { kind: "answer" }> }) {
         Show on the envelope
       </button>
       <details className="tars-steps" open={v.stepsOpen} key={String(v.stepsOpen)}>
-        <summary>How TARS got this ({a.steps.length} steps)</summary>
+        <summary>How TARS got this ({v.steps.length} steps)</summary>
         <ol>
-          {a.steps.map((s) => (
-            <li key={s.id}>
-              <strong>{s.label}.</strong> <span className="muted">{s.detail}</span>
-            </li>
+          {v.steps.map((s) => (
+            <li key={s.id}>{s.label}</li>
           ))}
         </ol>
       </details>

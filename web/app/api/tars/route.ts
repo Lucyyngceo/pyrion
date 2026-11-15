@@ -1,11 +1,10 @@
 // TARS: Support answers (help topics, no model) and the three-part answer (engine only). No model is called here.
 
-import { experimentsNeeded, routesToEvidence } from "@/lib/engine";
+import { experimentsNeeded, threePartAnswer } from "@/lib/engine";
 import { shapeTarget } from "@/lib/ask-core";
 import { evaluateOnServer, serverData } from "@/lib/server-eval";
 import { MIN_SCORE, searchTopics } from "@/lib/tars/help";
 import { helpTopics } from "@/lib/tars/topics-server";
-import { threePart } from "@/lib/tars/answer";
 
 export const dynamic = "force-dynamic";
 
@@ -35,17 +34,16 @@ export async function POST(req: Request) {
     const shaped = shapeTarget(body.target);
     if (!shaped.ok) return json({ error: shaped.error }, 400);
     const { records, investigations } = await serverData();
-    const { evaluation, sha256 } = await evaluateOnServer(shaped.target);
-    const experiments = experimentsNeeded(records, shaped.target);
-    if (body.kind === "experiments") return json({ experiments, fingerprint: sha256 });
-    let routes = null;
-    try {
-      routes = routesToEvidence(records, shaped.target);
-    } catch {
-      routes = null;
+    if (body.kind === "experiments") {
+      const { sha256 } = await evaluateOnServer(shaped.target);
+      return json({ experiments: experimentsNeeded(records, shaped.target), fingerprint: sha256 });
     }
     const readBy = typeof body.readBy === "string" && body.readBy.length < 120 ? body.readBy : "Read by code";
-    return json({ answer: threePart({ target: shaped.target, evaluation, routes, experiments, investigations, fingerprint: sha256, readBy }) });
+    const catalog = Object.fromEntries(investigations.map((i) => [i.accession, { acronym: i.acronym, title: i.title, doi: i.doi }]));
+    // The engine writes both wordings of the same facts; the client chooses by mode.
+    const easy = threePartAnswer(records, shaped.target, { mode: "easy", catalog });
+    const advanced = threePartAnswer(records, shaped.target, { mode: "advanced", catalog });
+    return json({ answer: { easy, advanced, readBy } });
   }
   return json({ error: "unknown request" }, 400);
 }
