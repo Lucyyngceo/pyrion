@@ -1,0 +1,20 @@
+---
+id: page-envelope
+chapter: envelope
+order: 200
+dataHelp: page-envelope
+title: Envelope page overview
+keywords: envelope page overview, page envelope, envelope
+page: envelope
+link: /
+highlight: [data-help="page-envelope"]
+---
+What it is: The home page: choose a condition, see where NASA's tests stand relative to it, and read the verdicts.
+
+What it shows: From top to bottom: header line, Ask box, four scenario tiles, the controls, the chart, the verdict and the list "Where the evidence is", then the result cards for every investigation.
+
+How to use it: Pick a tile, or set oxygen, pressure and gravity by hand, and read the headline.
+
+Example: Click "NASA's Moon Base" and look at the headline.
+
+What it does not do: It never says a condition is safe or validated; it says what PSI contains.

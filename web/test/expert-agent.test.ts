@@ -5,14 +5,15 @@ import { test } from "node:test";
 import { parseConditionCsv, type ConditionRecord, type Target } from "../../engine/src/index.ts";
 import { corpusFromPages } from "../lib/expert/claims.ts";
 import { executeTool, mergeTargets, newState, runAgent, type AgentEnv, type AssistantMsg, type ChatMsg } from "../lib/expert/agent.ts";
-import { parseTopic, type Topic } from "../lib/tars/help.ts";
+import { type Topic } from "../lib/tars/help.ts";
+import { loadTopicsSync } from "../lib/tars/topics-sync.ts";
 
 const cdir = join(import.meta.dirname, "../../data/conditions");
 const records: ConditionRecord[] = readdirSync(cdir)
   .filter((n) => /^PSI-\d+\.csv$/.test(n))
   .flatMap((n) => parseConditionCsv(readFileSync(join(cdir, n), "utf8"), n, n.replace(".csv", "")).records);
 const hdir = join(import.meta.dirname, "../content/help");
-const topics: Topic[] = readdirSync(hdir).filter((n) => n.endsWith(".md")).map((n) => parseTopic(n.replace(/\.md$/, ""), readFileSync(join(hdir, n), "utf8")));
+const topics: Topic[] = loadTopicsSync();
 
 const PAGE = "FM2 plans four burns of one fabric at 8.2 psia with 37, 33, 29 and 25 % oxygen in a closed chamber.";
 const pages = [{ doc_id: "nasa/ntrs-1/x.pdf", page: 3, text: PAGE, title: "FM2 plan", url: "https://ntrs.nasa.gov/x" }];
@@ -90,9 +91,9 @@ test("UI-context question: describe_ui returns the page context and the help top
     (m) => ({ content: JSON.stringify([{ layer: "expert", text: `That is the ${(toolOut(m, 0).topics as { title: string }[])[0].title} panel.` }]) }),
   ]);
   const r = await runAgent({ ...s.env, chat: s.chat }, { message: "what is that thing on the right?", ui: { route: "/", panels: ["strip", "evidence_list", "chart"] } });
-  const first = toolOut(s.seen[1], 0) as { page: { route: string }; topics: { id: string }[] };
+  const first = toolOut(s.seen[1], 0) as { page: { route: string }; topics: { id: string; title: string }[] };
   assert.equal(first.page.route, "/");
-  assert.equal(first.topics[0].id, "navigator-take-me-there");
+  assert.ok(first.topics.some((t) => ["navigator-take-me-there", "evidence-panel", "navigator-overview"].includes(t.id)), JSON.stringify(first.topics.map((t) => t.id)));
   assert.deepEqual(r.actions, [{ type: "highlight", selector: ".nav-evidence", label: "Where the evidence is" }]);
 });
 

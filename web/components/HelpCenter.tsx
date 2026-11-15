@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 interface HelpTopic extends Topic {
   page: string;
+  chapter?: string;
 }
 
 const PAGES: { id: string; label: string }[] = [
@@ -183,6 +184,17 @@ export default function HelpCenter() {
                 <div className="tars-actions">
                   <button data-help="help-center-take-me-there" type="button" className="tars-btn" onClick={() => takeMeThere(topic)}>
                     Take me there
+                  </button>
+                  <button
+                    data-help="help-center-open-manual"
+                    type="button"
+                    className="tars-btn"
+                    onClick={() => {
+                      setOpen(false);
+                      router.push(`/help/${topic.chapter ?? "what-is-pyrion"}#${topic.id}`);
+                    }}
+                  >
+                    Open in the manual
                   </button>
                   <button
                     data-help="help-center-ask-tars"

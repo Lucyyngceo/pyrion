@@ -1,11 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 /** The "?" at the top right: Help (TARS Support) and Guide (the tour, beta). */
 export default function HelpMenu() {
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   useEffect(() => {
     if (!open) return;
     const away = (e: MouseEvent) => !box.current?.contains(e.target as Node) && setOpen(false);
@@ -29,21 +31,10 @@ export default function HelpMenu() {
             role="menuitem"
             onClick={() => {
               setOpen(false);
-              window.dispatchEvent(new CustomEvent("pyrion:tars", { detail: "what is this" }));
+              router.push("/help");
             }}
           >
-            Help <span className="muted small">TARS Support: how this site works</span>
-          </button>
-          <button
-            data-help="help-menu-center"
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              setOpen(false);
-              window.dispatchEvent(new CustomEvent("pyrion:help"));
-            }}
-          >
-            Help center <span className="muted small">search every page, button and number</span>
+            Help <span className="muted small">the manual: every page, button and number</span>
           </button>
           <button
             data-help="help-menu-mode"

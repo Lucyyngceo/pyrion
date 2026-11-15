@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
   if (body.kind === "help-all") {
     const topics = await helpTopics();
-    return json({ topics: topics.map((t) => ({ id: t.id, title: t.title, keywords: t.keywords, page: t.page ?? "overview", link: t.link, highlight: t.highlight ?? null, body: t.body })) });
+    return json({ topics: topics.map((t) => ({ id: t.id, title: t.title, keywords: t.keywords, page: t.page ?? "overview", chapter: t.chapter ?? null, link: t.link, highlight: t.highlight ?? null, body: t.body })) });
   }
 
   if (body.kind === "answer" || body.kind === "experiments") {

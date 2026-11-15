@@ -1,5 +1,9 @@
 // TARS Support: help topics (web/content/help/*.md) and keyword retrieval (BM25). Pure, no model, no network.
 
+import { CHAPTERS, pageOf } from "../help-chapters.ts";
+
+const chapterSlug = (n: number) => CHAPTERS.find((c) => c.n === n)?.slug ?? String(n);
+
 export interface Topic {
   id: string;
   title: string;
@@ -10,6 +14,11 @@ export interface Topic {
   highlight?: string;
   /** Which page the topic belongs to (envelope, bridge, data, method, why, tars, global); overview topics have none. */
   page?: string;
+  /** The chapter of the manual at /help (slug), its order inside the chapter, and the data-help ids the topic covers. */
+  chapter?: string;
+  order?: number;
+  dataHelp?: string[];
+  sources?: string[];
   body: string;
 }
 
@@ -22,8 +31,14 @@ export function parseTopic(id: string, text: string): Topic {
     const i = line.indexOf(":");
     if (i > 0) fm[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^"(.*)"$/, "$1");
   }
-  if (!fm.title || !fm.link) throw new Error(`help topic ${id}: title and link are required`);
-  return { id, title: fm.title, keywords: (fm.keywords ?? "").split(",").map((k) => k.trim()).filter(Boolean), link: fm.link, ...(fm.highlight ? { highlight: fm.highlight } : {}), ...(fm.page ? { page: fm.page } : {}), body: m[2].replace(/\r\n/g, "\n").trim() };
+  if (!fm.title) throw new Error(`help topic ${id}: a title is required`);
+  // Lists are written `a, b` or `[a, b]` or with quotes.
+  const list = (v?: string) => (v ?? "").replace(/[\[\]"']/g, "").split(",").map((x) => x.trim()).filter(Boolean);
+  const dataHelp = list(fm.dataHelp);
+  // "Show me" goes to the page of the first data-help id it covers, unless the file says where.
+  const link = fm.link ?? (dataHelp[0] ? pageOf(dataHelp[0]) : "/");
+  const highlight = fm.highlight ?? (dataHelp[0] ? `[data-help="${dataHelp[0]}"]` : undefined);
+  return { id: fm.id || id, title: fm.title, keywords: (fm.keywords ?? "").split(",").map((k) => k.trim()).filter(Boolean), link, ...(highlight ? { highlight } : {}), ...(fm.page ? { page: fm.page } : {}), ...(fm.chapter ? { chapter: /^\d+$/.test(fm.chapter) ? chapterSlug(Number(fm.chapter)) : fm.chapter } : {}), ...(fm.order ? { order: Number(fm.order) } : {}), ...(dataHelp.length ? { dataHelp } : {}), ...(fm.sources ? { sources: list(fm.sources) } : {}), body: m[2].replace(/\r\n/g, "\n").trim() };
 }
 
 const STOP = new Set("a an the is are was were be of to in on at for and or do does did how what why when where which who can i my me it this that with about use used using please tell show explain mean means meaning work works".split(" "));
