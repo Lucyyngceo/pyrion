@@ -216,3 +216,11 @@ main.page:has(.nav-grid) { max-width: 1500px; }
   .chart-card.fs-on .legend .chart-tools { order: -2; flex-wrap: nowrap; }
   .chart-card.fs-on .legend .seg { order: -1; }
 }
+
+/* ---------- N9b: TradingView-style drag and a gesture that never re-renders the data layers ---------- */
+.plot { cursor: grab; touch-action: none; user-select: none; }
+.chart[data-near] .plot { cursor: move; }
+.chart[data-gesture] .plot { cursor: grabbing; }
+.plot .hit { cursor: pointer; }
+.chart[data-gesture] .callout, .chart[data-gesture] .tooltip, .chart[data-gesture] .map-tip, .chart[data-gesture] .rail, .chart[data-gesture] .tt-link { visibility: hidden; }
+.plot .grid, .plot .layer path, .plot .layer line { vector-effect: non-scaling-stroke; }
