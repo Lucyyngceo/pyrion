@@ -444,3 +444,7 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 .tars-three-col { padding: 6px 8px; border: 1px solid var(--border); min-width: 0; }
 .tars-three-col h5 { margin: 0 0 4px; font-size: 12.5px; color: var(--neon-2); }
 .tars-three-col p { font-size: 12.5px; }
+
+.tars-second { padding: 5px 10px; border: 1px dashed var(--border-strong); font-size: 13px; }
+.tars-second ul { margin: 4px 0 0; padding-left: 18px; }
+.tars-second-object { border-color: var(--warn); }

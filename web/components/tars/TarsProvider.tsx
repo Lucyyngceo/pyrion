@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { readByCode, type ParsedTarget } from "@/lib/ask-core";
 import { deliver, getCurrentTarget, storePending, takePending, type Pending } from "@/lib/tars/bridge";
-import type { AnswerPair, Mode } from "@/lib/tars/answer";
+import { resolveMode, type AnswerPair, type Mode } from "@/lib/tars/answer";
 import { routeMessage, type Route } from "@/lib/tars/route";
 import { clearConversations, deleteConversation, loadConversations, saveConversation, titleFrom, type StoredConversation } from "@/lib/tars/store";
 import type { KeptBlock } from "@/lib/expert/claims";
@@ -14,6 +14,14 @@ export interface HelpAnswer {
   others?: { id: string; title: string }[];
   none?: boolean;
   topics?: { id: string; title: string }[];
+}
+
+/** The second opinion of another model family, as the server sends it. */
+export interface SkepticView {
+  verdict: "agree" | "object" | "unavailable";
+  objections: { blockIndex: number; reason: string; citation?: { doc_id: string; page: number; quote: string; title?: string; url?: string } }[];
+  model: { model: string; name?: string; family: string } | null;
+  note?: string;
 }
 
 export interface ExpertResult {
@@ -31,7 +39,7 @@ export type Msg =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "tars"; kind: "error" | "note"; text: string }
   | { id: number; role: "tars"; kind: "help"; route: Route; help: HelpAnswer }
-  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult; question?: string }
+  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult; question?: string; skeptic?: SkepticView }
   | { id: number; role: "tars"; kind: "answer"; route: Route; answer: AnswerPair; question: string }
   | { id: number; role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
 
@@ -101,6 +109,8 @@ const textOfMsg = (m: Msg): string => {
 export default function TarsProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [mode, setModeState] = useState<Mode>("advanced");
+  const modeRef = useRef<Mode>("advanced");
+  modeRef.current = mode;
   const [convs, setConvs] = useState<StoredConversation[]>([]);
   const [activeId, setActiveId] = useState<string>(() => newId());
   const [busy, setBusy] = useState(false);
@@ -143,7 +153,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
 
   /** Add a message to the active conversation and keep it in the browser's storage. */
   const add = useCallback(
-    (m: NewMsg) => {
+    (m: NewMsg): number => {
       const msg = { ...m, id: ++id.current } as Msg;
       setConvs((all) => {
         const cur = all.find((c) => c.id === activeId);
@@ -153,6 +163,22 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
         void saveConversation(next);
         return [next, ...all.filter((c) => c.id !== activeId)];
       });
+      return msg.id;
+    },
+    [activeId],
+  );
+
+  /** Update a message already in the conversation (the second opinion arrives after the answer). */
+  const patchMsg = useCallback(
+    (mid: number, patch: Record<string, unknown>) => {
+      setConvs((all) =>
+        all.map((c) => {
+          if (c.id !== activeId) return c;
+          const n = { ...c, messages: c.messages.map((m: { id: number }) => (m.id === mid ? { ...m, ...patch } : m)) };
+          void saveConversation(n);
+          return n;
+        }),
+      );
     },
     [activeId],
   );
@@ -226,7 +252,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       });
       const lastExpert = [...messages].reverse().find((m) => m.role === "tars" && m.kind === "expert") as Extract<Msg, { kind: "expert" }> | undefined;
       const lastTarget = (lastExpert?.result.target as unknown) ?? getCurrentTarget() ?? null;
-      const res = await fetch("/api/tars/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: t, history, lastTarget, ui: pageContext(path) }) });
+      const res = await fetch("/api/tars/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: t, history, lastTarget, ui: pageContext(path), skeptic: resolveMode(modeRef.current, route) === "advanced" }) });
       if (res.status === 503 || !res.body) {
         const d = (await res.json().catch(() => ({}))) as { error?: string };
         // A content-check message is shown as it is; a missing model uses the model-free path.
@@ -244,6 +270,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
       const reader = res.body.getReader();
       const dec = new TextDecoder();
       let buf = "";
+      let lastId: number | null = null;
       for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -256,12 +283,13 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
           const ev = JSON.parse(line) as { type: string; text?: string; error?: string } & Partial<ExpertResult>;
           if (ev.type === "status") setStatus(ev.text ?? null);
           else if (ev.type === "error") add({ role: "tars", kind: "error", text: ev.error ?? "TARS could not answer." });
-          else if (ev.type === "result") add({ role: "tars", kind: "expert", route, result: ev as ExpertResult, question: t });
+          else if (ev.type === "result") lastId = add({ role: "tars", kind: "expert", route, result: ev as ExpertResult, question: t });
+          else if (ev.type === "skeptic" && lastId !== null) patchMsg(lastId, { skeptic: (ev as unknown as { skeptic: SkepticView }).skeptic });
         }
       }
       return true;
     },
-    [add, messages, path],
+    [add, messages, patchMsg, path],
   );
 
   const send = useCallback(

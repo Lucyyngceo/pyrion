@@ -7,7 +7,9 @@ import { serverData } from "@/lib/server-eval";
 import { helpTopics } from "@/lib/tars/topics-server";
 import { loadLibrary } from "@/lib/expert/library";
 import { runAgent, type AssistantMsg, type HistoryTurn, type UiContext } from "@/lib/expert/agent";
-import { displayName } from "@/lib/llm/config";
+import { allModels, displayName } from "@/lib/llm/config";
+import { reviewSecondOpinion } from "@/lib/expert/skeptic";
+import { modelFamily, type AskModel } from "@/lib/expert/model";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +24,7 @@ export async function POST(req: Request) {
   const cookie: Record<string, string> = setCookie ? { "Set-Cookie": setCookie } : {};
   const raw = await req.text();
   if (raw.length > MAX_BODY) return Response.json({ error: "the request is too large" }, { status: 413 });
-  let body: { message?: unknown; history?: unknown; lastTarget?: unknown; ui?: unknown };
+  let body: { message?: unknown; history?: unknown; lastTarget?: unknown; ui?: unknown; skeptic?: unknown };
   try {
     body = JSON.parse(raw);
   } catch {
@@ -82,6 +84,30 @@ export async function POST(req: Request) {
         );
         if (result.report.dropped.length || result.report.flaggedNumbers.length) console.warn("[pyrion] expert answer check:", JSON.stringify(result.report));
         send({ type: "result", blocks: result.kept, dropped: result.report.dropped.length, droppedReasons: result.report.dropped.map((d) => `${d.layer}: ${d.reason}${d.detail ? ` (${d.detail})` : ""}`), flagged: result.report.flaggedNumbers.length, actions: result.actions, target: result.target, lang: result.lang, steps: result.steps, model: used });
+        // Second opinion: a model of a different family reviews the checked answer; it never changes it. Sent after the answer, so the answer is not delayed.
+        if (body.skeptic === true && result.kept.length > 0 && used) {
+          send({ type: "status", text: "Asking for a second opinion…" });
+          const askModel: AskModel = async (req) => {
+            let last: unknown = null;
+            for (const m of req.prefer) {
+              if (req.avoidFamilies.includes(modelFamily(m))) continue;
+              try {
+                const c = await askLlm({ messages: req.messages, model: m, pin: true, effort: "low", maxTokens: 1500, maxTokensByProvider: { openrouter: 1500, nim: 1500 }, deadlineMs: 45_000 }, visitor);
+                const text = c.json?.choices?.[0]?.message?.content;
+                if (typeof text === "string") return { text, model: c.meta.model, name: displayName(c.meta.model), provider: c.meta.provider };
+              } catch (e) {
+                last = e;
+              }
+            }
+            throw last instanceof Error ? last : new Error("no reviewing model answered");
+          };
+          try {
+            const sk = await reviewSecondOpinion(message, result.kept, { corpus: library?.corpus ?? { get: () => undefined, hasDocument: () => false }, askModel, answeredBy: (used as { model: string }).model, available: allModels(providers()) });
+            send({ type: "skeptic", skeptic: sk });
+          } catch {
+            send({ type: "skeptic", skeptic: { verdict: "unavailable", objections: [], model: null, answeredBy: null, dropped: [], note: "The second opinion could not run." } });
+          }
+        }
       } catch (e) {
         if (e instanceof RateLimited) send({ type: "error", error: e.message });
         else if (e instanceof NoModelAvailable) send({ type: "error", error: STRUCTURED });

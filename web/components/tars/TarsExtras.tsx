@@ -6,7 +6,7 @@ import { resolveMode } from "@/lib/tars/answer";
 import { labelsFor, type Lang } from "@/lib/tars/lang";
 import { CitationQuote } from "./CitationPreview";
 import { suggestNext } from "@/lib/tars/suggest";
-import { useTars, type ExpertResult, type Msg } from "./TarsProvider";
+import { useTars, type ExpertResult, type Msg, type SkepticView } from "./TarsProvider";
 
 /** A small, safe Markdown renderer: paragraphs, bullet and numbered lists, **bold**, *italic*, `code`. The model's text is never inserted as HTML. */
 function inline(text: string, key: string): React.ReactNode[] {
@@ -126,6 +126,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           ),
         )}
       </div>
+      {msg.skeptic && <SecondOpinion s={msg.skeptic} blocks={r.blocks.map((b) => b.layer)} es={r.lang === "es"} />}
       <NextQuestions result={r} />
       {adv && msg.question && <ThreeModels question={msg.question} target={r.target} lang={r.lang} />}
       {r.model && (
@@ -304,6 +305,33 @@ function ThreeModels({ question, target, lang }: { question: string; target: unk
           </div>
         </>
       )}
+    </div>
+  );
+}
+
+const LAYER_NAME = { engine: "Engine", nasa: "NASA", expert: "Expert" } as const;
+
+/** The second opinion of a model of another family: agree, object (with the reason and a verified quote), or unavailable. It never changes the answer. */
+function SecondOpinion({ s, blocks, es }: { s: SkepticView; blocks: ("engine" | "nasa" | "expert")[]; es: boolean }) {
+  const who = s.model ? (s.model.name ?? s.model.model) : null;
+  return (
+    <div className={`tars-second tars-second-${s.verdict}`} data-help="tars-second-opinion" role="note">
+      <strong>{es ? "Segunda opinión" : "Second opinion"}</strong>{" "}
+      {s.verdict === "agree" && <span>✓ {es ? "de acuerdo" : "agrees"}{who ? ` · ${who}` : ""}</span>}
+      {s.verdict === "object" && (
+        <>
+          <span>⚠ {es ? "objeta" : "objects"}{who ? ` · ${who}` : ""}</span>
+          <ul>
+            {s.objections.map((o, i) => (
+              <li key={i}>
+                <em>{LAYER_NAME[blocks[o.blockIndex]] ?? "Answer"} {es ? "bloque" : "block"}:</em> {o.reason}
+                {o.citation && <CitationQuote doc_id={o.citation.doc_id} page={o.citation.page} quote={o.citation.quote} title={o.citation.title} url={o.citation.url} />}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {s.verdict === "unavailable" && <span className="muted">{es ? "no disponible" : "unavailable"}{s.note ? `: ${s.note}` : ""}</span>}
     </div>
   );
 }
