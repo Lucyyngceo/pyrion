@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import "./cyber.css";
+import "./mobile.css";
 import CommandPalette from "@/components/CommandPalette";
 import SiteNav from "@/components/SiteNav";
 import StatusBar from "@/components/StatusBar";
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f9f9f7" },
     { media: "(prefers-color-scheme: dark)", color: "#0d0d0d" },

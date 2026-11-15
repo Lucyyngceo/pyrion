@@ -1,0 +1,84 @@
+/* Phones and small tablets. Desktop layout is untouched: every rule sits behind a max-width query
+   (plus safe-area padding, which is 0 on desktop). */
+
+/* Safe areas (notch, home indicator): fixed corners keep clear of them. */
+.tars-bubble { right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+.warp-text { padding: 0 max(16px, env(safe-area-inset-left, 0px)); text-align: center; }
+
+@media (max-width: 760px) {
+  html, body { overflow-x: hidden; }
+  body { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+  /* Wide content gets its own horizontal scroll instead of widening the page. */
+  main table, .card table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  main pre { max-width: 100%; overflow-x: auto; }
+  main code { overflow-wrap: anywhere; word-break: break-word; }
+  main img, main video { max-width: 100%; height: auto; }
+  main svg.plot { max-width: 100%; height: auto; }
+
+}
+
+/* Touch screens of any size (phones and tablets): finger-sized controls. */
+@media (max-width: 760px), (pointer: coarse) {
+  /* Tap targets: at least 44 px. Inputs at 16 px so iOS does not zoom on focus. */
+  main button, main select, main summary, main .chip, main a.chip,
+  .tars-panel button, .help-center button, .cmdk-hint, .nav-burger, .sitenav-brand,
+  .ld-bar a, .ld-brand { min-height: 44px; }
+  main button, .tars-panel button, .nav-burger { min-width: 44px; }
+  main summary { display: flex; align-items: center; }
+  main .chip, main a.chip { display: inline-flex; align-items: center; }
+  main input:not([type=checkbox]):not([type=radio]):not([type=range]), main select, main textarea,
+  .tars-panel input, .tars-panel textarea, .cmdk-input input, .help-center input {
+    min-height: 44px; font-size: 16px;
+  }
+  main input[type=checkbox], main input[type=radio] { width: 22px; height: 22px; }
+  main input[type=checkbox], main input[type=radio] { flex-shrink: 0; }
+  main input[type=range] { min-height: 44px; }
+  html body .tile-pick { min-height: 44px; }
+  main button { min-width: 44px; }
+  .help-side a, .help-reader nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  .linklike { min-height: 44px; display: inline-flex; align-items: center; }
+  .sitenav-brand, .ld-brand { display: inline-flex; align-items: center; }
+  .nav-burger { display: inline-grid; place-items: center; }
+  .sitenav-links a, .sitenav-links button { min-height: 44px; display: flex; align-items: center; font-size: 14px; }
+  html body .tars-bubble { min-width: 48px; min-height: 48px; justify-content: center; }
+}
+
+@media (max-width: 760px) {
+
+  /* Fixed corner controls: TARS bubble right, command hint left, both above the home indicator. */
+  html body .cmdk-hint { right: auto; left: calc(12px + env(safe-area-inset-left, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); align-items: center; }
+  footer, .footer-wrap { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+
+  /* TARS panel: full width, sized to the visible viewport (keyboard-aware where dvh is supported). */
+  html body .tars-panel {
+    left: 0; right: 0; bottom: 0; width: 100vw; max-width: 100vw;
+    height: 85vh; height: 85dvh; max-height: 85dvh;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px);
+  }
+  .tars-form { flex-wrap: nowrap; }
+
+  /* Modals and the command palette fit the screen. */
+  .cmdk-scrim { padding-top: max(10vh, env(safe-area-inset-top, 0px)); padding-left: 12px; padding-right: 12px; }
+  dialog { max-width: calc(100vw - 24px); max-height: 90dvh; overflow: auto; }
+
+  /* Long words and numbers never push the page wider. */
+  main h1, main h2, main h3, main p, main li, main td, main dd { overflow-wrap: anywhere; }
+  .warp-text { font-size: clamp(22px, 7vw, 34px); }
+}
+
+/* The Ctrl+K hint is a keyboard shortcut; on touch screens it only covers the footer. */
+@media (hover: none) and (pointer: coarse) { .cmdk-hint { display: none; } }
+
+/* Tablets (above the hamburger breakpoint): the link row wraps instead of running off the right edge. */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .sitenav-inner { flex-wrap: wrap; }
+  .sitenav-links { min-width: 0; max-width: 100%; }
+  .sitenav-links > ul { flex-wrap: wrap; }
+  main table, .card table { display: block; max-width: 100%; overflow-x: auto; }
+  main pre { max-width: 100%; overflow-x: auto; }
+  main svg.plot { max-width: 100%; height: auto; }
+  .sitenav-links a, .sitenav-links button, .sitenav-brand { min-height: 44px; display: inline-flex; align-items: center; }
+}
+@media (max-width: 760px) { html body main input[type=checkbox], html body main input[type=radio] { min-width: 22px; } }
