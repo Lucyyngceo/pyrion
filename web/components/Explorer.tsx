@@ -425,7 +425,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           <ControlsPanel state={state} onChange={setState} />
         </div>
 
-        <section ref={cardRef} className={`card chart-card nav-center${fs ? " fs-on" : ""}`} aria-labelledby="envelope-h">
+        <section data-help="chart-card" ref={cardRef} className={`card chart-card nav-center${fs ? " fs-on" : ""}`} aria-labelledby="envelope-h">
           <div className="fs-main">
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
@@ -472,7 +472,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           </div>
           {fs && status && result.evaluation && counts && (
             <aside className={`fs-side${sheetOpen ? " open" : ""}`} aria-label="Where the evidence is">
-              <button type="button" className="fs-handle" aria-expanded={sheetOpen} onClick={() => setSheetOpen((o) => !o)}>
+              <button data-help="fs-evidence-handle" type="button" className="fs-handle" aria-expanded={sheetOpen} onClick={() => setSheetOpen((o) => !o)}>
                 Where the evidence is {sheetOpen ? "▾" : "▴"}
               </button>
               <div className="fs-side-body">
@@ -532,7 +532,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
         <aside className="bridge-teaser" role="note">
           <span className="hyp-tag small-tag">HYPOTHESIS</span>
           <span>
-            Not comparable in PSI. <Link href="/bridge">See the transfer hypothesis →</Link>
+            Not comparable in PSI. <Link data-help="bridge-teaser-link" href="/bridge">See the transfer hypothesis →</Link>
           </span>
         </aside>
       )}

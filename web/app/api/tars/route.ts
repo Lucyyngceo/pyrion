@@ -30,6 +30,11 @@ export async function POST(req: Request) {
     return json({ topic: pick(hits[0].topic), others: hits.slice(1).map((h) => ({ id: h.topic.id, title: h.topic.title })) });
   }
 
+  if (body.kind === "help-all") {
+    const topics = await helpTopics();
+    return json({ topics: topics.map((t) => ({ id: t.id, title: t.title, keywords: t.keywords, page: t.page ?? "overview", link: t.link, highlight: t.highlight ?? null, body: t.body })) });
+  }
+
   if (body.kind === "answer" || body.kind === "experiments") {
     const shaped = shapeTarget(body.target);
     if (!shaped.ok) return json({ error: shaped.error }, 400);

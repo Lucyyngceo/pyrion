@@ -17,10 +17,12 @@ const HONESTY = "Honesty is enforced by code: the verdicts and every number come
 
 type Cite = { accession: string; acronym?: string; doi?: string; recordIds: string[] };
 
+const BLOCK_HELP: Record<string, { help: string }> = { KNOWN: { help: "tars-known" }, UNKNOWN: { help: "tars-unknown" }, NEXT: { help: "tars-next" } };
+
 function Block({ title, sub, items, showDetail }: { title: string; sub: string; items: { sentence: string; citations?: Cite[] }[]; showDetail: boolean }) {
   const { showOnEnvelope } = useTars();
   return (
-    <section className={`tars-block tars-${title.toLowerCase()}`} aria-label={title}>
+    <section data-help={BLOCK_HELP[title]?.help} className={`tars-block tars-${title.toLowerCase()}`} aria-label={title}>
       <h4>
         {title} <span className="tars-sub">{sub}</span>
       </h4>
@@ -30,11 +32,11 @@ function Block({ title, sub, items, showDetail }: { title: string; sub: string; 
             <span>{f.sentence}</span>
             {f.citations?.map((r) => (
               <span key={r.accession} className="tars-ref">
-                <button type="button" className="linklike small" onClick={() => showOnEnvelope({ open: r.accession })}>
+                <button data-help="tars-receipt" type="button" className="linklike small" onClick={() => showOnEnvelope({ open: r.accession })}>
                   {r.accession} receipt
                 </button>
                 {showDetail && r.doi && (
-                  <a className="small" href={`https://doi.org/${r.doi}`} target="_blank" rel="noreferrer">
+                  <a data-help="tars-doi" className="small" href={`https://doi.org/${r.doi}`} target="_blank" rel="noreferrer">
                     doi
                   </a>
                 )}
@@ -57,14 +59,14 @@ function Answer({ msg }: { msg: Extract<Msg, { kind: "answer" }> }) {
       <Block title="KNOWN" sub="what the extracted PSI records support" items={a.known} showDetail={v.showDetail} />
       <Block title="UNKNOWN" sub="where the evidence ends, and why" items={a.unknown} showDetail={v.showDetail} />
       <Block title="NEXT" sub="what would close it (a PYRION proposal, not a NASA plan)" items={a.next} showDetail={v.showDetail} />
-      <p className="tars-fp small muted">
+      <p data-help="tars-fingerprint" className="tars-fp small muted">
         Engine fingerprint (SHA-256): <code>{v.showDetail ? a.fingerprint : `${a.fingerprint.slice(0, 16)}…`}</code>
       </p>
-      <button type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
+      <button data-help="tars-show-on-envelope" type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
         Show on the envelope
       </button>
       <details className="tars-steps" open={v.stepsOpen} key={String(v.stepsOpen)}>
-        <summary>How TARS got this ({v.steps.length} steps)</summary>
+        <summary data-help="tars-steps">How TARS got this ({v.steps.length} steps)</summary>
         <ol>
           {v.steps.map((s) => (
             <li key={s.id}>{s.label}</li>
@@ -82,7 +84,7 @@ function Experiments({ msg }: { msg: Extract<Msg, { kind: "experiments" }> }) {
   return (
     <>
       <ExperimentsView ex={ex} fingerprint={adv ? msg.fingerprint : `${msg.fingerprint.slice(0, 16)}…`} detailed={adv} />
-      <button type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: ex.target })}>
+      <button data-help="tars-show-on-envelope" type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: ex.target })}>
         Show on the envelope
       </button>
     </>
@@ -98,7 +100,7 @@ function Help({ help }: { help: HelpAnswer }) {
         <ul>
           {(help.topics ?? []).map((t) => (
             <li key={t.id}>
-              <button type="button" className="linklike" onClick={() => void send(t.title)}>
+              <button data-help="tars-support-topic" type="button" className="linklike" onClick={() => void send(t.title)}>
                 {t.title}
               </button>
             </li>
@@ -113,7 +115,7 @@ function Help({ help }: { help: HelpAnswer }) {
       {t.body.split(/\n\n+/).map((p, i) => (
         <p key={i}>{p}</p>
       ))}
-      <button type="button" className="tars-btn" onClick={() => go(t.link, t.highlight)}>
+      <button data-help="tars-take-me-there" type="button" className="tars-btn" onClick={() => go(t.link, t.highlight)}>
         Take me there
       </button>
       {help.others && help.others.length > 0 && (
@@ -122,7 +124,7 @@ function Help({ help }: { help: HelpAnswer }) {
           {help.others.map((o, i) => (
             <span key={o.id}>
               {i > 0 && " · "}
-              <button type="button" className="linklike small" onClick={() => void send(o.title)}>
+              <button data-help="tars-related" type="button" className="linklike small" onClick={() => void send(o.title)}>
                 {o.title}
               </button>
             </span>
@@ -153,28 +155,28 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
       {showHistory && <History />}
       <div className="tars-main">
       <div className="tars-top">
-        <button type="button" className="chip" aria-pressed={showHistory} onClick={() => setShowHistory((h) => !h)} title="Your conversations, kept in this browser">
+        <button data-help="tars-history-toggle" type="button" className="chip" aria-pressed={showHistory} onClick={() => setShowHistory((h) => !h)} title="Your conversations, kept in this browser">
           History
         </button>
         <div className="seg" role="group" aria-label="TARS mode">
           {MODES.map((m) => (
-            <button key={m.id} type="button" aria-pressed={mode === m.id} title={m.hint} onClick={() => setMode(m.id)}>
+            <button data-help="tars-mode" key={m.id} type="button" aria-pressed={mode === m.id} title={m.hint} onClick={() => setMode(m.id)}>
               {m.label}
             </button>
           ))}
         </div>
         <div className="tars-skills">
-          <button type="button" className="chip" disabled={busy} onClick={() => void skill("map")}>
+          <button data-help="tars-skill-map" type="button" className="chip" disabled={busy} onClick={() => void skill("map")}>
             Map the unknown
           </button>
-          <button type="button" className="chip" disabled={busy} onClick={() => void skill("close-gap")}>
+          <button data-help="tars-skill-gap" type="button" className="chip" disabled={busy} onClick={() => void skill("close-gap")}>
             What would close this gap
           </button>
         </div>
       </div>
-      <p className="tars-honesty small muted">{HONESTY}</p>
+      <p data-help="tars-honesty" className="tars-honesty small muted">{HONESTY}</p>
 
-      <div className="tars-log" role="log" aria-live="polite">
+      <div data-help="tars-log" className="tars-log" role="log" aria-live="polite">
         {messages.length === 0 && (
           <p className="tars-hello">
             Ask me anything about fire safety in space, cabin atmospheres, NASA's combustion data or this site. Answers carry three labelled layers: what the engine computed, what NASA said (quoted and checked), and my own expert reasoning.
@@ -195,7 +197,7 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
           </div>
         ))}
         {busy && (
-          <p className="tars-status small" role="status" aria-live="polite">
+          <p data-help="tars-status" className="tars-status small" role="status" aria-live="polite">
             <span className="tars-dots" aria-hidden="true" /> {status ?? "TARS is working…"}
           </p>
         )}
@@ -214,8 +216,8 @@ export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean })
         <label className="sr-only" htmlFor="tars-q">
           Message to TARS
         </label>
-        <input id="tars-q" ref={input} type="text" maxLength={300} value={text} onChange={(e) => setText(e.target.value)} placeholder="Ask TARS…" autoComplete="off" />
-        <button type="submit" disabled={busy || !text.trim()}>
+        <input data-help="tars-input" id="tars-q" ref={input} type="text" maxLength={300} value={text} onChange={(e) => setText(e.target.value)} placeholder="Ask TARS…" autoComplete="off" />
+        <button data-help="tars-send" type="submit" disabled={busy || !text.trim()}>
           Send
         </button>
       </form>

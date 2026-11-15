@@ -10,15 +10,15 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
   const hasMargin = ex.testMatrix.points.some((p) => p.marginPoint);
   return (
     <div className="tars-answer tars-exp">
-      <p className="tars-label">{EXPERIMENT_LABEL}</p>
+      <p data-help="gap-label" className="tars-label">{EXPERIMENT_LABEL}</p>
 
-      <section className="tars-block">
+      <section data-help="gap-section-gap" className="tars-block">
         <h4>The gap</h4>
         <p>{ex.gap.sentence}</p>
         {detailed && ex.gap.detail.length > 0 && <p className="small muted">{ex.gap.detail.join(" ")}</p>}
       </section>
 
-      <section className="tars-block">
+      <section data-help="gap-section-matrix" className="tars-block">
         <h4>Test matrix ({ex.testMatrix.pointCount} points)</h4>
         <p>{ex.testMatrix.sentence}</p>
         {ex.testMatrix.points.length > 0 && (
@@ -48,7 +48,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
       </section>
 
       {ex.additionalAxes.length > 0 && (
-        <section className="tars-block">
+        <section data-help="gap-section-axes" className="tars-block">
           <h4>Other axes to set</h4>
           <ul className="small">
             {ex.additionalAxes.map((a) => (
@@ -66,7 +66,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
         </section>
       )}
 
-      <section className="tars-block">
+      <section data-help="gap-section-measurements" className="tars-block">
         <h4>Measurements</h4>
         <p>{ex.measurements.sentence}</p>
         <ul className="small">
@@ -79,14 +79,14 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
         </ul>
         <p className="small muted">
           Standard:{" "}
-          <a href={ex.measurements.standard.url} target="_blank" rel="noreferrer">
+          <a data-help="gap-standard-link" href={ex.measurements.standard.url} target="_blank" rel="noreferrer">
             {ex.measurements.standard.title}
           </a>{" "}
           ({ex.measurements.standard.note})
         </p>
       </section>
 
-      <section className="tars-block">
+      <section data-help="gap-section-solids" className="tars-block">
         <h4>Solids first</h4>
         <p>{ex.solidsRationale.sentence}</p>
         <ul className="small">
@@ -99,7 +99,7 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
         </ul>
       </section>
 
-      <section className="tars-block">
+      <section data-help="gap-section-planned" className="tars-block">
         <h4>What NASA&apos;s planned experiments cover</h4>
         <ul className="small">
           {ex.plannedCoverage.sources.map((s) => (
@@ -116,12 +116,12 @@ export default function ExperimentsView({ ex, fingerprint, detailed = true }: { 
         ))}
       </section>
 
-      <section className="tars-block">
+      <section data-help="gap-section-remaining" className="tars-block">
         <h4>Remaining gap</h4>
         <p>{ex.remainingGap.sentence}</p>
       </section>
 
-      <section className="tars-block">
+      <section data-help="gap-section-priority" className="tars-block">
         <h4>Priority</h4>
         <ol>
           {ex.priority.map((p) => (

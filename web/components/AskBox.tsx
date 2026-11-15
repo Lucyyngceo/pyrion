@@ -70,7 +70,7 @@ function Who({ m }: { m: Meta | null }) {
       {m.open_weights && (
         <>
           {" · open weights · "}
-          <a href={m.open_weights.source} target="_blank" rel="noreferrer">
+          <a data-help="ask-model-license" href={m.open_weights.source} target="_blank" rel="noreferrer">
             {m.open_weights.license}
           </a>
         </>
@@ -185,7 +185,7 @@ export default function AskBox({ onTarget }: Props) {
   const same = runs.length > 1 && runs.every((r) => r.hash) && hashes.size === 1;
 
   return (
-    <section className="card ask" aria-labelledby="ask-h">
+    <section data-help="ask-box" className="card ask" aria-labelledby="ask-h">
       <h2 id="ask-h" className="sr-only">
         Ask PYRION
       </h2>
@@ -205,7 +205,7 @@ export default function AskBox({ onTarget }: Props) {
             <label className="sr-only" htmlFor="ask-q">
               Ask about a condition
             </label>
-            <input
+            <input data-help="ask-input"
               id="ask-q"
               type="text"
               maxLength={500}
@@ -215,7 +215,7 @@ export default function AskBox({ onTarget }: Props) {
               onChange={(e) => setQ(e.target.value)}
               disabled={!cfg?.enabled}
             />
-            <button type="submit" disabled={busy || !q.trim() || !cfg?.enabled}>
+            <button data-help="ask-submit" type="submit" disabled={busy || !q.trim() || !cfg?.enabled}>
               {busy ? "Working…" : "Ask"}
             </button>
           </form>
@@ -234,14 +234,14 @@ export default function AskBox({ onTarget }: Props) {
             <strong>PYRION understood:</strong> {describe(r.parsed)}.{" "}
             {r.added.length > 0 && <span>{r.added.map((x) => `${x.axis.replaceAll("_", " ")} = ${valueLabel(x.value)} (added by you)`).join("; ")}. </span>}
             {r.parsed.unstated.length > 0 && <span className="muted">Not stated, left as it was on the chart or not compared: {r.parsed.unstated.map((u) => u.replaceAll("_", " ")).join(", ")}. </span>}
-            <a href="#target-panel">Edit the target</a>
+            <a data-help="ask-edit-target" href="#target-panel">Edit the target</a>
           </p>
           {r.parsed.suggestions.length > 0 && (
             <ul className="small ask-suggest">
               {r.parsed.suggestions.map((x) => (
                 <li key={x.axis}>
                   The model suggests: {x.axis.replaceAll("_", " ")} = {valueLabel(x.value)} (not in your question; it is not used unless you apply it).{" "}
-                  <button type="button" className="linklike" disabled={busy} onClick={() => void apply(i, x.axis, x.value)}>
+                  <button data-help="ask-apply-suggestion" type="button" className="linklike" disabled={busy} onClick={() => void apply(i, x.axis, x.value)}>
                     Apply
                   </button>
                 </li>
@@ -300,7 +300,7 @@ export default function AskBox({ onTarget }: Props) {
           {cfg.models
             .filter((m) => !runs.some((r) => r.parseMeta.model === m))
             .map((m) => (
-              <button key={m} type="button" className="chip" disabled={busy} onClick={() => void run(asked.current, m, false)}>
+              <button data-help="ask-model-chip" key={m} type="button" className="chip" disabled={busy} onClick={() => void run(asked.current, m, false)}>
                 {m}
               </button>
             ))}

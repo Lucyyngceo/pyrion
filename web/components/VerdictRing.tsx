@@ -25,7 +25,7 @@ export default function VerdictRing({ counts, of, levels }: { counts: Record<str
   const GAP = total > 1 ? 3 : 0;
   let offset = 0;
   return (
-    <div className="vring">
+    <div data-help="verdict-ring" className="vring">
       <svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-label={`Verdicts for ${total} investigations`}>
         <circle cx="60" cy="60" r={R} className="vring-track" />
         {[...Array(36)].map((_, i) => {
@@ -69,7 +69,7 @@ export default function VerdictRing({ counts, of, levels }: { counts: Record<str
         </text>
       </svg>
       {of !== undefined && of > total && (
-        <p className="vring-of small muted">
+        <p data-help="ring-caption" className="vring-of small muted">
           of {of} PSI combustion investigations · {of - total} have no extracted values yet
         </p>
       )}

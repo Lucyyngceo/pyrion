@@ -19,17 +19,17 @@ export default function TarsBubble() {
   if (path === "/tars") return null;
   return (
     <>
-      <button ref={btn} type="button" className="tars-bubble" aria-expanded={open} aria-controls="tars-panel" onClick={() => setOpen(!open)} title="TARS: Traceable Applicability Reasoning System">
+      <button data-help="tars-bubble" ref={btn} type="button" className="tars-bubble" aria-expanded={open} aria-controls="tars-panel" onClick={() => setOpen(!open)} title="TARS: Traceable Applicability Reasoning System">
         <span aria-hidden="true">T</span>
         <span className="tars-bubble-name">TARS</span>
       </button>
       {open && (
-        <section id="tars-panel" className="tars-panel" role="dialog" aria-label="TARS chat">
+        <section data-help="tars-panel" id="tars-panel" className="tars-panel" role="dialog" aria-label="TARS chat">
           <header className="tars-head">
             <div>
               <strong>TARS</strong> <span className="muted small">Traceable Applicability Reasoning System</span>
             </div>
-            <button type="button" className="tars-x" aria-label="Close TARS" onClick={() => setOpen(false)}>
+            <button data-help="tars-close" type="button" className="tars-x" aria-label="Close TARS" onClick={() => setOpen(false)}>
               ×
             </button>
           </header>

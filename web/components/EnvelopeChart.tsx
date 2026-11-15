@@ -164,7 +164,7 @@ const PointTable = memo(function PointTable({ envelopes, selectRef }: { envelope
   const total = envelopes.reduce((n, e) => n + e.points.length, 0);
   return (
     <details className="table-view" onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}>
-      <summary>Data table ({total} plotted points)</summary>
+      <summary data-help="chart-data-table">Data table ({total} plotted points)</summary>
       {open && (
         <div className="table-scroll">
           <table>
@@ -187,7 +187,7 @@ const PointTable = memo(function PointTable({ envelopes, selectRef }: { envelope
                   <tr key={`${e.key}|${i}`}>
                     <td>{envelopeName(e)}</td>
                     <td>
-                      <button type="button" className="linklike" onClick={() => selectRef.current?.(p.accession)}>
+                      <button data-help="chart-table-receipt" type="button" className="linklike" onClick={() => selectRef.current?.(p.accession)}>
                         {p.accession}
                       </button>
                     </td>
@@ -237,10 +237,10 @@ const GridLayer = memo(function GridLayer({ domain, iw, ih, setters }: { domain:
   return (
     <>
       {yTicks.map((v) => (
-        <line key={`gy${v}`} x1={0} x2={iw} y1={sy(v)} y2={sy(v)} className="grid" />
+        <line data-help="chart-grid" key={`gy${v}`} x1={0} x2={iw} y1={sy(v)} y2={sy(v)} className="grid" />
       ))}
       {xTicks.map((v) => (
-        <line key={`gx${v}`} x1={sx(v)} x2={sx(v)} y1={0} y2={ih} className="grid" />
+        <line data-help="chart-grid" key={`gx${v}`} x1={sx(v)} x2={sx(v)} y1={0} y2={ih} className="grid" />
       ))}
       {d.y0 < ATM_KPA && d.y1 > ATM_KPA && (
         <g className="ref">
@@ -272,7 +272,7 @@ const TickLayer = memo(function TickLayer({ domain, iw, ih, showPsi, setters }: 
   return (
     <>
       {/* instrument frame: minor ruler ticks on both axes and corner reticles */}
-      <g className="ruler" aria-hidden="true">
+      <g data-help="chart-axes" className="ruler" aria-hidden="true">
         {xTicks.slice(0, -1).flatMap((v, k) => {
           const nx = xTicks[k + 1];
           return [1, 2, 3, 4].map((j) => {
@@ -380,7 +380,7 @@ const MapTip = memo(function MapTip({ domain, iw, ih, evidence, left, top, maxLe
   if (j < 0 || j >= o.length || i < 0 || i >= p.length) return null;
   const cell = evidence.cells[i * o.length + j];
   return (
-    <div className="map-tip" role="status" style={{ left: Math.min(left + c.x + 14, maxLeft), top: Math.max(4, top + c.y - 10) }}>
+    <div data-help="chart-map-tip" className="map-tip" role="status" style={{ left: Math.min(left + c.x + 14, maxLeft), top: Math.max(4, top + c.y - 10) }}>
       {cell.applicable.length > 0 ? (
         <>
           <strong>
@@ -446,14 +446,14 @@ const PlotLayers = memo(function PlotLayers({ domain, iw, ih, visible, colors, l
         </mask>
       </defs>
       {mapImage && mapBox && (
-        <image key={evidenceKey} className="emap-img" href={mapImage} x={mapBox.x} y={mapBox.y} width={mapBox.w} height={mapBox.h} preserveAspectRatio="none" pointerEvents="none" aria-hidden="true" />
+        <image data-help="chart-map" key={evidenceKey} className="emap-img" href={mapImage} x={mapBox.x} y={mapBox.y} width={mapBox.w} height={mapBox.h} preserveAspectRatio="none" pointerEvents="none" aria-hidden="true" />
       )}
       {gapHulls.length > 0 && <rect x={-iw} y={-ih} width={iw * 3} height={ih * 3} fill="url(#gap-hatch)" mask="url(#gap-mask)" className="gap" aria-hidden="true" />}
       {/* decision hulls: one per investigation, the exact hull its verdict uses */}
       {visible.map((e) => {
         const color = colors.get(e.key) ?? "var(--s-other)";
         return (
-          <g key={`h${e.key}`} className={`layer reveal-hull em-${layerState.get(e.key) ?? "dim"}`} pointerEvents="none">
+          <g data-help="chart-hulls" key={`h${e.key}`} className={`layer reveal-hull em-${layerState.get(e.key) ?? "dim"}`} pointerEvents="none">
             {e.investigations.map((inv) => {
               const faded = highlight !== null && inv.accession !== highlight;
               return (
@@ -473,7 +473,7 @@ const PlotLayers = memo(function PlotLayers({ domain, iw, ih, visible, colors, l
         const color = colors.get(e.key) ?? "var(--s-other)";
         const phase = fuelPhaseOf(e);
         return (
-          <g key={`p${e.key}`} className={`layer reveal-pts em-${layerState.get(e.key) ?? "dim"}`} style={{ "--i": Math.min(li, 10) } as React.CSSProperties}>
+          <g data-help="chart-points" key={`p${e.key}`} className={`layer reveal-pts em-${layerState.get(e.key) ?? "dim"}`} style={{ "--i": Math.min(li, 10) } as React.CSSProperties}>
             {e.points.map((p, i) => {
               const x = sx(p.o2_mole_fraction);
               const y = sy(p.pressure);
@@ -482,7 +482,7 @@ const PlotLayers = memo(function PlotLayers({ domain, iw, ih, visible, colors, l
               return (
                 <g key={i} className={faded ? "faded" : undefined}>
                   <Marker phase={phase} x={x} y={y} color={color} r={hl ? 6 : 4.5} hollow={!e.regimeComplete} />
-                  <circle
+                  <circle data-help="chart-point"
                     cx={x}
                     cy={y}
                     r={9}
@@ -950,20 +950,20 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
     });
 
   return (
-    <figure
+    <figure data-help="chart"
       ref={figRef}
       className={`chart tone-${status.tone}${measured && !dragging ? " anim" : ""}${dragging ? " dragging" : ""}${zoomed ? " zoomed" : ""}`}
       onPointerEnter={() => (overChart.current = true)}
       onPointerLeave={() => (overChart.current = false)}
     >
-      <div className="legend" role="group" aria-label="Regime layers (click to show or hide)">
+      <div data-help="chart-legend" className="legend" role="group" aria-label="Regime layers (click to show or hide)">
         {envelopes
           .filter((e) => colors.get(e.key) !== "var(--s-other)")
           .map((e) => {
             const on = !hidden.has(e.key);
             const em = layerState.get(e.key) ?? "dim";
             return (
-              <button
+              <button data-help="chart-layer-chip"
                 key={e.key}
                 type="button"
                 className={`chip chip-${em}`}
@@ -978,7 +978,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             );
           })}
         {incomplete.length > 0 && (
-          <button
+          <button data-help="chart-layer-regime-not-stated"
             type="button"
             className="chip chip-open"
             aria-pressed={incomplete.some((e) => !hidden.has(e.key))}
@@ -1000,25 +1000,25 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           <span>Target</span>
         </span>
         <div className="seg" role="group" aria-label="Pressure range shown">
-          <button type="button" aria-pressed={view === "all"} onClick={() => setView("all")}>
+          <button data-help="chart-view-all" type="button" aria-pressed={view === "all"} onClick={() => setView("all")}>
             All pressures
           </button>
-          <button type="button" aria-pressed={view === "cabin"} onClick={() => setView("cabin")}>
+          <button data-help="chart-view-cabin" type="button" aria-pressed={view === "cabin"} onClick={() => setView("cabin")}>
             Cabin range
           </button>
         </div>
         <div className="chart-tools" role="group" aria-label="View: zoom and full screen">
-          <button type="button" onClick={() => zoomBy(1 / 1.5)} disabled={!zoomed} aria-label="Zoom out" title="Zoom out (−)">
+          <button data-help="chart-zoom-out" type="button" onClick={() => zoomBy(1 / 1.5)} disabled={!zoomed} aria-label="Zoom out" title="Zoom out (−)">
             −
           </button>
-          <button type="button" onClick={() => zoomBy(1.5)} aria-label="Zoom in" title="Zoom in (+)">
+          <button data-help="chart-zoom-in" type="button" onClick={() => zoomBy(1.5)} aria-label="Zoom in" title="Zoom in (+)">
             +
           </button>
-          <button type="button" onClick={resetView} disabled={!zoomed} title="Reset the view (0)">
+          <button data-help="chart-reset" type="button" onClick={resetView} disabled={!zoomed} title="Reset the view (0)">
             Reset
           </button>
           {onToggleFs && (
-            <button type="button" className="fs-btn" aria-pressed={fs} onClick={onToggleFs} title={fs ? "Back to the page (Esc)" : "Open the chart full screen"}>
+            <button data-help="chart-fullscreen" type="button" className="fs-btn" aria-pressed={fs} onClick={onToggleFs} title={fs ? "Back to the page (Esc)" : "Open the chart full screen"}>
               {fs ? "Exit full screen" : "Full screen"}
             </button>
           )}
@@ -1027,11 +1027,11 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
 
       <div className="plot-wrap" ref={wrapRef} style={fs ? undefined : { height }}>
         {zoomed && (
-          <button type="button" className="zoom-badge" onClick={resetView} title="Reset the view (0)">
+          <button data-help="chart-zoom-badge" type="button" className="zoom-badge" onClick={resetView} title="Reset the view (0)">
             {kx > 1.001 ? `Zoomed ×${fmt(kx, 1)}` : "Panned"} · Reset
           </button>
         )}
-        <svg
+        <svg data-help="chart-plot"
           ref={svgRef}
           width={width}
           height={height}
@@ -1118,7 +1118,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                 <line x1={0} x2={0} y1={-3 * ih} y2={4 * ih} style={{ transform: `translateX(${txyR.x}px)` }} />
                 <line x1={-3 * iw} x2={4 * iw} y1={0} y2={0} style={{ transform: `translateY(${txyR.y}px)` }} />
               </g>
-              <g className="target" style={{ transform: `translate(${txyR.x}px, ${txyR.y}px)` }} aria-hidden="true">
+              <g data-help="chart-target" className="target" style={{ transform: `translate(${txyR.x}px, ${txyR.y}px)` }} aria-hidden="true">
                 <circle r={17} className="target-halo" />
                 <circle r={10} className="target-ring" />
                 <circle r={3} className="target-dot" />
@@ -1150,7 +1150,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
             </g>
 
             {rail && rail.length > 1 && (
-              <g className="rail" aria-label="Verdict along pressure at this O2">
+              <g data-help="chart-rail" className="rail" aria-label="Verdict along pressure at this O2">
                 {rail.map((r, i) => {
                   const step = rail[1].pressure - rail[0].pressure;
                   const y0 = sy(Math.min(domain.y1, r.pressure + step / 2));
@@ -1181,7 +1181,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </g>
         </svg>
 
-        <div
+        <div data-help="chart-callout"
           className={`callout callout-${status.tone} callout-${calloutSide}`}
           style={{ transform: `translate(${M.left + tx}px, ${M.top + ty}px)` }}
           aria-live="polite"
@@ -1198,7 +1198,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
 
         {!hover && <MapTip domain={domain} iw={iw} ih={ih} evidence={evidence} left={M.left} top={M.top} maxLeft={width - 250} cursors={cursors} />}
         {hover && (
-          <div
+          <div data-help="chart-tooltip"
             className="tooltip"
             style={{ left: Math.min(M.left + hover.x + 34, width - 236), top: Math.max(4, M.top + hover.y - 34) }}
             role="status"
@@ -1226,7 +1226,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
         )}
       </div>
 
-      <figcaption className="chart-caption">
+      <figcaption data-help="chart-caption" className="chart-caption">
         <p className={`status status-${status.tone}`}>
           <strong>{status.headline}.</strong> {status.detail}
         </p>
@@ -1243,7 +1243,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           </p>
         )}
         {mapImage && (
-          <p className="small emap-legend">
+          <p data-help="chart-map-legend" className="small emap-legend">
             <i className="emap-ramp" aria-hidden="true" /> Bright: NASA investigations apply here (same regime, inside what they tested); brighter = more of them.{" "}
             Extrapolation, by distance from the tested data:{" "}
             <i className="emap-l emap-l1" aria-hidden="true" /> just outside,{" "}

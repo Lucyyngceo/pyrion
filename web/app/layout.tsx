@@ -5,6 +5,7 @@ import "./cyber.css";
 import CommandPalette from "@/components/CommandPalette";
 import SiteNav from "@/components/SiteNav";
 import StatusBar from "@/components/StatusBar";
+import HelpCenter from "@/components/HelpCenter";
 import TarsBubble from "@/components/tars/TarsBubble";
 import TarsProvider from "@/components/tars/TarsProvider";
 
@@ -35,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <div className="page footer-wrap">
           <StatusBar />
-          <footer className="footer muted small">
+          <footer data-help="footer-note" className="footer muted small">
             <p>
               PYRION Ω, team NDMLM, NASA Space Apps Challenge 2026. A hackathon project, not a NASA product. Data: NASA PSI,
               released under CC0-1.0 except PSI-10, whose license is not stated on PSI. Code: Apache-2.0. Built with the help of
@@ -43,17 +44,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               2024 Rocket Communications, Inc.
             </p>
             <p>
-              <a href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
+              <a data-help="footer-psi" href="https://psi.nasa.gov" target="_blank" rel="noreferrer">
                 psi.nasa.gov
               </a>{" "}
               ·{" "}
-              <a href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">
+              <a data-help="footer-github" href="https://github.com/Lucyyngceo/pyrion" target="_blank" rel="noreferrer">
                 github.com/Lucyyngceo/pyrion
               </a>
             </p>
           </footer>
         </div>
         <TarsBubble />
+        <HelpCenter />
         </TarsProvider>
       </body>
     </html>

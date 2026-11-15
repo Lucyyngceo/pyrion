@@ -51,22 +51,22 @@ function RouteItem({ r, inv, level, onHover, onOpen, button, onApply }: { r: Rou
     <li className="route" onPointerEnter={() => onHover(r.accession)} onPointerLeave={() => onHover(null)}>
       <div className="route-head">
         <StatusSymbol level={regime ? "off" : "caution"} size={10} />
-        <button type="button" className="linklike where-name" onClick={() => onOpen(r.accession)} title={inv?.title}>
+        <button data-help="route-name" type="button" className="linklike where-name" onClick={() => onOpen(r.accession)} title={inv?.title}>
           {r.accession} · {inv?.acronym}
         </button>
         {inv?.doi && (
-          <a className="small" href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
+          <a data-help="route-doi" className="small" href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
             doi
           </a>
         )}
-        <span className={`route-chip${regime ? " chip-regime" : ""}`} title={regime ? "Different regime: not comparable" : level ? `Extrapolation — ${levelPhrase(level)}` : "Insufficient evidence: values left open"}>
+        <span data-help="route-chip" className={`route-chip${regime ? " chip-regime" : ""}`} title={regime ? "Different regime: not comparable" : level ? `Extrapolation — ${levelPhrase(level)}` : "Insufficient evidence: values left open"}>
           {regime ? "Other regime" : level ? CHIP_LEVEL[level] : "Insufficient"}
         </span>
-        <button type="button" className={`take-btn take-inline${regime ? " take-regime" : ""}`} onClick={onApply}>
+        <button data-help="take-me-there" type="button" className={`take-btn take-inline${regime ? " take-regime" : ""}`} onClick={onApply}>
           {button}
         </button>
       </div>
-      <p className="where-text route-text" tabIndex={0} title={full}>
+      <p data-help="route-sentence" className="where-text route-text" tabIndex={0} title={full}>
         {full}
       </p>
     </li>
@@ -86,7 +86,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
   const upto = (key: string, n: number) => (more[key] ? n : SHOWN);
   const moreBtn = (key: string, n: number) =>
     n > SHOWN && (
-      <button type="button" className="linklike small more-btn" aria-expanded={!!more[key]} onClick={() => setMore((m) => ({ ...m, [key]: !m[key] }))}>
+      <button data-help="route-more" type="button" className="linklike small more-btn" aria-expanded={!!more[key]} onClick={() => setMore((m) => ({ ...m, [key]: !m[key] }))}>
         {more[key] ? "Show fewer" : `+ ${n - SHOWN} more`}
       </button>
     );
@@ -104,19 +104,19 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
 
   return (
     <>
-      <section className="card nav-verdict" aria-label="Verdict">
+      <section data-help="verdict-panel" className="card nav-verdict" aria-label="Verdict">
         <div className={`outcome outcome-${status.tone}`} role="status" aria-live="polite">
           <div className="outcome-kicker">Result for {targetLabel}</div>
-          <div className="outcome-head" key={status.headline}>
+          <div data-help="verdict-headline" className="outcome-head" key={status.headline}>
             {status.headline}
           </div>
           <p className="outcome-detail" key={status.detail}>
             {status.detail}
           </p>
           {evaluation.target.regime.gravity_regime === "normal_gravity" && (
-            <p className="outcome-detail ground-note small">
+            <p data-help="ground-note" className="outcome-detail ground-note small">
               {GROUND_NOTE} Inventory:{" "}
-              <a href={GROUND_INVENTORY_URL} target="_blank" rel="noreferrer">
+              <a data-help="ground-note-link" href={GROUND_INVENTORY_URL} target="_blank" rel="noreferrer">
                 extraction/ground_tests_inventory.md
               </a>
               .
@@ -128,12 +128,12 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                 <span className={`compare-chip tone-${pinned.tone}`}>
                   {pinned.label}: {pinned.headline.toLowerCase()}
                 </span>
-                <button type="button" className="linklike small" onClick={onClearPin}>
+                <button data-help="pin-clear" type="button" className="linklike small" onClick={onClearPin}>
                   Clear
                 </button>
               </>
             ) : (
-              <button type="button" className="pin-btn" onClick={onPin}>
+              <button data-help="pin-compare" type="button" className="pin-btn" onClick={onPin}>
                 Pin to compare
               </button>
             )}
@@ -142,14 +142,14 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
         <VerdictRing counts={counts} of={investigations.length} levels={levelCounts} />
       </section>
 
-      <section className="card nav-evidence" aria-labelledby="where-h">
+      <section data-help="evidence-panel" className="card nav-evidence" aria-labelledby="where-h">
         <h2 id="where-h" className="panel-title">
           Where the evidence is
         </h2>
 
         {near.length > 0 && (
           <>
-            <h3 className="where-sub">Already comparable ({near.length})</h3>
+            <h3 data-help="route-group-heading" className="where-sub">Already comparable ({near.length})</h3>
             <ul className="where-list">
               {near.slice(0, SHOWN).map(({ iv, c }) => {
                 const i = inv.get(iv.accession);
@@ -158,11 +158,11 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
                   <li key={iv.accession} onPointerEnter={() => onHover(iv.accession)} onPointerLeave={() => onHover(null)}>
                     <div className="where-head">
                       <StatusSymbol level="normal" size={11} />
-                      <button type="button" className="linklike where-name" onClick={() => onOpen(iv.accession)}>
+                      <button data-help="comparable-name" type="button" className="linklike where-name" onClick={() => onOpen(iv.accession)}>
                         {iv.accession} {i?.acronym}
                       </button>
                       {i?.doi && (
-                        <a className="small" href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
+                        <a data-help="comparable-doi" className="small" href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
                           doi
                         </a>
                       )}
@@ -180,7 +180,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
           <>
             {steps.length > 0 && (
               <>
-                <h3 className="where-sub">How to reach more evidence</h3>
+                <h3 data-help="route-group-heading" className="where-sub">How to reach more evidence</h3>
                 <p className="muted small">The smallest change that makes each investigation comparable. Nearest first.</p>
                 <ul className="where-list">
                   {steps.slice(0, upto("steps", steps.length)).map((r) => (
@@ -192,7 +192,7 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
             )}
             {other.length > 0 && (
               <>
-                <h3 className="where-sub where-sub-regime">Tested only in another regime ({other.length})</h3>
+                <h3 data-help="route-group-heading" className="where-sub where-sub-regime">Tested only in another regime ({other.length})</h3>
                 <p className="muted small">A different regime is not a small step: it changes the physics. Switching moves your condition to that regime.</p>
                 <ul className="where-list where-list-regime">
                   {other.slice(0, upto("other", other.length)).map((r) => (
@@ -204,17 +204,17 @@ function NavigatorPanel({ evaluation, investigations, status, targetLabel, count
             )}
             {routes.unreachable.length > 0 && (
               <>
-                <h3 className="where-sub">No route found ({routes.unreachable.length})</h3>
+                <h3 data-help="route-group-heading" className="where-sub">No route found ({routes.unreachable.length})</h3>
                 <ul className="where-unreach small">
                   {routes.unreachable.slice(0, upto("unreach", routes.unreachable.length)).map((u) => (
                     <li key={u.accession}>
                       {u.reason.startsWith(u.accession) ? (
-                        <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
+                        <button data-help="no-route-item" type="button" className="linklike" onClick={() => onOpen(u.accession)}>
                           {u.reason}
                         </button>
                       ) : (
                         <>
-                          <button type="button" className="linklike" onClick={() => onOpen(u.accession)}>
+                          <button data-help="no-route-item" type="button" className="linklike" onClick={() => onOpen(u.accession)}>
                             {u.accession} {inv.get(u.accession)?.acronym}
                           </button>
                           <span className="muted">: {u.reason}</span>

@@ -78,7 +78,7 @@ const nameFor = (investigations: Investigation[]) => (accession: string) => inve
 
 function GapButton({ onClick }: { onClick: () => void }) {
   return (
-    <button type="button" className="gap-btn" onClick={onClick}>
+    <button data-help="tile-gap-button" type="button" className="gap-btn" onClick={onClick}>
       What would close this gap
     </button>
   );
@@ -105,10 +105,10 @@ function Tile({
 }) {
   return (
     <div className={`tile ${active ? "tile-on" : ""} ${className}`} title={hover}>
-      <button type="button" className="tile-pick" aria-pressed={active} onClick={onPick}>
-        <span className="tile-title">{title}</span>
-        {subtitle && <span className="tile-sub">{subtitle}</span>}
-        <span className="tile-cond">{cond}</span>
+      <button data-help="tile-pick" type="button" className="tile-pick" aria-pressed={active} onClick={onPick}>
+        <span data-help="tile-title" className="tile-title">{title}</span>
+        {subtitle && <span data-help="tile-subtitle" className="tile-sub">{subtitle}</span>}
+        <span data-help="tile-condition" className="tile-cond">{cond}</span>
       </button>
       <div className="tile-body">{children}</div>
     </div>
@@ -142,29 +142,29 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
   const myCond = `${fmt(state.o2 * 100, 1)} % O₂ · ${fmt(kpaToPsi(state.pressure), 1)} psia · ${state.gravityLevel !== undefined ? `${fmt(state.gravityLevel, 2)} g` : state.regime.gravity_regime ? valueLabel(state.regime.gravity_regime) : "gravity open"}`;
 
   return (
-    <section className="scenario-strip" aria-label="Scenarios">
+    <section data-help="tile-strip" className="scenario-strip" aria-label="Scenarios">
       <Tile active={preset === TILE_PRESETS.iss} title="ISS cabin air" cond={cIss ? cond(cIss) : ""} hover={cIss?.sources} onPick={() => onPick(TILE_PRESETS.iss)}>
-        <p className="tile-head">{summary(iss)}</p>
-        {iss && <p className="tile-line">{solidLine(iss.facts, name)}</p>}
+        <p data-help="tile-summary" className="tile-head">{summary(iss)}</p>
+        {iss && <p data-help="tile-line" className="tile-line">{solidLine(iss.facts, name)}</p>}
       </Tile>
 
       <Tile active={preset === TILE_PRESETS.lunar} title="NASA's Moon Base" subtitle="as stated in the Flame in Freefall challenge: 30 % O₂ or more at 10.2 psi or less" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
-        <p className="tile-head" title={`From the challenge statement (${SOURCES.challenge.url}). It is NASA's text, not our extraction.`}>
+        <p data-help="tile-summary" className="tile-head" title={`From the challenge statement (${SOURCES.challenge.url}). It is NASA's text, not our extraction.`}>
           NASA: “{CHALLENGE_QUOTE}”.
         </p>
-        <p className="tile-line" title="Counted in the condition records PYRION extracted, not from NASA's statement.">
+        <p data-help="tile-line" className="tile-line" title="Counted in the condition records PYRION extracted, not from NASA's statement.">
           {lunar ? lunar.facts.partialGravity : "–"} of {withData} investigations with extracted records state partial gravity.
         </p>
-        <p className="tile-line" title="Challenge statement (spaceappschallenge.org, Flame in Freefall)">
+        <p data-help="tile-line" className="tile-line" title="Challenge statement (spaceappschallenge.org, Flame in Freefall)">
           NASA expects such data from LUCI and FM2.
         </p>
-        <p className="tile-line tile-quote">
+        <p data-help="tile-nasa-quote" className="tile-line tile-quote">
           Why it matters: “{FM2_QUOTE}”{" "}
-          <a href={FM2_URL} target="_blank" rel="noreferrer">
+          <a data-help="tile-fm2-link" href={FM2_URL} target="_blank" rel="noreferrer">
             NASA, FM2 page
           </a>
         </p>
-        {lunar && <p className="tile-line tile-status">{summary(lunar)}</p>}
+        {lunar && <p data-help="tile-summary" className="tile-line tile-status">{summary(lunar)}</p>}
         <GapButton onClick={() => onGap("lunar")} />
       </Tile>
 
@@ -176,24 +176,24 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
         hover={cNesc?.sources}
         onPick={() => onPick(TILE_PRESETS.nesc)}
       >
-        <p className="tile-head">{summary(nesc)}</p>
+        <p data-help="tile-summary" className="tile-head">{summary(nesc)}</p>
         {nescMicro && (
-          <p className="tile-line">
+          <p data-help="tile-line" className="tile-line">
             In microgravity the same atmosphere gives {nescMicro.facts.applicable} applicable.{" "}
             {solidLine(nescMicro.facts, name)}
           </p>
         )}
         <GapButton onClick={() => onGap("nesc")} />
         <p className="tile-line tile-alt">
-          <button type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.nescA)}>
+          <button data-help="tile-atmosphere-a" type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.nescA)}>
             Or atmosphere A: {cNescA ? `${cNescA.o2} · ${cNescA.pressure}` : ""}
           </button>
         </p>
       </Tile>
 
       <Tile active={!isTile} className="tile-mine" title="Your condition" cond={myCond} onPick={onCustom} hover="The controls on the left. Every number is computed by the engine for exactly these values.">
-        <p className="tile-head">{summary(mine)}</p>
-        {mine && <p className="tile-line">{solidLine(mine.facts, name)}</p>}
+        <p data-help="tile-summary" className="tile-head">{summary(mine)}</p>
+        {mine && <p data-help="tile-line" className="tile-line">{solidLine(mine.facts, name)}</p>}
         {mine && mine.facts.applicable === 0 && <GapButton onClick={() => onGap("mine")} />}
       </Tile>
     </section>

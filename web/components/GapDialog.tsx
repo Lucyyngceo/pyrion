@@ -27,10 +27,10 @@ export default function GapDialog({ title, target, onClose }: { title: string; t
   }, [target]);
 
   return (
-    <dialog ref={ref} className="add-source gap-dialog" aria-labelledby="gap-title" onClose={onClose} onClick={(e) => e.target === ref.current && ref.current?.close()}>
+    <dialog data-help="gap-dialog" ref={ref} className="add-source gap-dialog" aria-labelledby="gap-title" onClose={onClose} onClick={(e) => e.target === ref.current && ref.current?.close()}>
       <div className="as-head">
         <h2 id="gap-title">What would close this gap: {title}</h2>
-        <button type="button" className="as-close" aria-label="Close" onClick={() => ref.current?.close()}>
+        <button data-help="gap-close" type="button" className="as-close" aria-label="Close" onClick={() => ref.current?.close()}>
           ×
         </button>
       </div>

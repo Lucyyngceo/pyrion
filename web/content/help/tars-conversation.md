@@ -1,0 +1,16 @@
+---
+title: Conversation entry
+keywords: conversation entry, tars conversation, tars
+page: tars
+link: /tars
+highlight: [data-help="tars-conversation"]
+---
+What it is: A list item.
+
+What it shows: The chat title.
+
+How to use it: Click it to open.
+
+Example: Open a chat.
+
+What it does not do: Titles are the first thing you said.

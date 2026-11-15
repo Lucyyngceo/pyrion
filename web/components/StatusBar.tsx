@@ -15,7 +15,7 @@ export default async function StatusBar() {
     cells.push({ k: "Validation", v: `${v.blocker} critical findings`, tone: v.blocker === 0 ? "normal" : "caution" });
   }
   return (
-    <div className="statusbar" role="note" aria-label="System status">
+    <div data-help="status-bar" className="statusbar" role="note" aria-label="System status">
       {cells.map((c) => (
         <span key={c.k} className={`sb-cell${c.tone ? ` sb-${c.tone}` : ""}`}>
           <span className="sb-k">{c.k}</span>

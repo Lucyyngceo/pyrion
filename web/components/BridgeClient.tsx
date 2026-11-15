@@ -92,13 +92,13 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
   return (
     <>
       <header className="hero br-hero">
-        <h1>Bridge: relating gravity levels through flame stretch rate</h1>
-        <span className="hyp-tag" role="note">
+        <h1 data-help="page-bridge">Bridge: relating gravity levels through flame stretch rate</h1>
+        <span data-help="bridge-hypothesis-tag" className="hyp-tag" role="note">
           HYPOTHESIS — NOT EVIDENCE
         </span>
       </header>
 
-      <section className="card br-card" aria-labelledby="br-intro">
+      <section data-help="bridge-intro" className="card br-card" aria-labelledby="br-intro">
         <h2 id="br-intro" className="sr-only">
           Why this page exists
         </h2>
@@ -112,20 +112,20 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           <strong>flame stretch rate</strong>. Olson &amp; T&apos;ien write that the effect of partial gravity{" "}
           <q>such as those found on the Moon (1/6 g) or Mars (1/3 g) on material flammability can be examined at Earth&apos;s gravity
           through equivalence of flame stretch rates</q>{" "}
-          (<a href="https://ntrs.nasa.gov/citations/20000004509" target="_blank" rel="noreferrer">NTRS 20000004509</a>, <em>Combustion and
+          (<a data-help="bridge-source-link" href="https://ntrs.nasa.gov/citations/20000004509" target="_blank" rel="noreferrer">NTRS 20000004509</a>, <em>Combustion and
           Flame</em> 121(3), 2000, p. 3). <span className="muted">Quoted as written by NASA. PYRION uses {fmt(GRAVITY_TARGETS.moon.level, 3)} g for the Moon (the setting of the FM2 centrifuge, FM2 being Flammability of Materials on the Moon, NTRS 20260001966, p. 13) and {fmt(GRAVITY_TARGETS.mars.level, 2)} g for Mars (NASA NSSDC Mars Fact Sheet); the Envelope presets use 0.16 g (NTRS 20210020446).
           All round to the quoted fractions.</span> This page uses that idea to point at the PSI tests whose stretch rate is closest. It
           does not change any verdict, and nothing here is a prediction of flame behavior on the Moon.
         </p>
       </section>
 
-      <section className="card br-card" aria-labelledby="dial-h">
+      <section data-help="bridge-dial-panel" className="card br-card" aria-labelledby="dial-h">
         <div className="card-head">
           <h2 id="dial-h">Gravity dial</h2>
           <p className="muted small">One control for everything below. Four stops, not a continuous scale.</p>
         </div>
         <div className="dial">
-          <input
+          <input data-help="bridge-gravity-dial"
             type="range"
             min={0}
             max={STOPS.length - 1}
@@ -144,7 +144,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           <ol className="dial-stops">
             {STOPS.map((s, i) => (
               <li key={s.id}>
-                <button type="button" tabIndex={-1} className={i === stop ? "on" : ""} onClick={() => setStop(i)} aria-label={`${s.short}, ${s.sub}`}>
+                <button data-help="bridge-gravity-stop" type="button" tabIndex={-1} className={i === stop ? "on" : ""} onClick={() => setStop(i)} aria-label={`${s.short}, ${s.sub}`}>
                   <span className="dial-name">{s.short}</span>
                   <span className="dial-sub">{s.sub}</span>
                 </button>
@@ -163,7 +163,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         </p>
       </section>
 
-      <section className="card br-card" aria-labelledby="map-h">
+      <section data-help="bridge-stretch-map" className="card br-card" aria-labelledby="map-h">
         <div className="card-head">
           <h2 id="map-h">Stretch map</h2>
           <p className="muted small">
@@ -175,10 +175,10 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
 
         <div className="br-controls">
           <fieldset className="seg" aria-label="Forced-stretch formula for rods">
-            <button type="button" aria-pressed={rod === "rod_tip"} onClick={() => setRod("rod_tip")}>
+            <button data-help="bridge-formula-rod-tip" type="button" aria-pressed={rod === "rod_tip"} onClick={() => setRod("rod_tip")}>
               Rod tip, 3/2 U/R
             </button>
-            <button type="button" aria-pressed={rod === "cylinder"} onClick={() => setRod("cylinder")}>
+            <button data-help="bridge-formula-cylinder" type="button" aria-pressed={rod === "cylinder"} onClick={() => setRod("cylinder")}>
               Cylinder, 2 U/R
             </button>
           </fieldset>
@@ -186,7 +186,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         <p className="muted small">
           The PSI table itself labels these rods only &quot;clear rod&quot; and &quot;black rod&quot;. NASA states what they are: <q>Microgravity experiments burning cast PMMA
           cylindrical rods in axial flow have been conducted aboard the International Space Station</q> <q>as part of the BASS-II experiment</q> (
-          <a href="https://ntrs.nasa.gov/citations/20150008961" target="_blank" rel="noreferrer">NTRS 20150008961</a>, Olson &amp; Ferkul, p. 1). So the PMMA-in-air
+          <a data-help="bridge-source-link" href="https://ntrs.nasa.gov/citations/20150008961" target="_blank" rel="noreferrer">NTRS 20150008961</a>, Olson &amp; Ferkul, p. 1). So the PMMA-in-air
           density factor applies (T*, the flame temperature at the limit, 865–990 K, Olson &amp; T&apos;ien), and axial flow is why the rod-tip formula is the default. The table does not say how each individual rod sat in the flow, so the formula stays a choice, shown with every result.
         </p>
 
@@ -248,7 +248,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
             <ul>
               {analogs.map((h) => (
                 <li key={key(h)}>
-                  <button type="button" className="linklike" onClick={() => setSelected(key(h))}>
+                  <button data-help="bridge-analog-test" type="button" className="linklike" onClick={() => setSelected(key(h))}>
                     {h.accession} {h.test_id}
                   </button>{" "}
                   <span className="muted">
@@ -262,7 +262,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         )}
         {partial.length > 0 && (
           <details className="analogs partials">
-            <summary>
+            <summary data-help="bridge-partial-summary">
               {partial.length} test{partial.length === 1 ? "" : "s"} whose flow sweep only passes through the band at {g.short}
             </summary>
             <p className="muted small">
@@ -272,7 +272,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
             <ul>
               {partial.map((h) => (
                 <li key={key(h)}>
-                  <button type="button" className="linklike" onClick={() => setSelected(key(h))}>
+                  <button data-help="bridge-analog-test" type="button" className="linklike" onClick={() => setSelected(key(h))}>
                     {h.accession} {h.test_id}
                   </button>{" "}
                   <span className="muted">
@@ -285,7 +285,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
         )}
       </section>
 
-      <section className="card br-card limits" aria-labelledby="lim-h">
+      <section data-help="bridge-limits" className="card br-card limits" aria-labelledby="lim-h">
         <h2 id="lim-h">Limits</h2>
         <ul>
           {TRANSFER_LIMITS.map((l) => {
@@ -301,7 +301,7 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
 
       <Fm2Panel />
 
-      <section className="card br-card" aria-labelledby="sealed-h">
+      <section data-help="bridge-sealed" className="card br-card" aria-labelledby="sealed-h">
         <div className="card-head">
           <h2 id="sealed-h">Sealed before FM2 flies</h2>
         </div>
@@ -309,11 +309,11 @@ export default function BridgeClient({ csv, gravitySource }: Props) {
           PYRION wrote down what it will and will not say about FM2 before any result is public. The fingerprint (SHA-256) of that
           text was stamped with OpenTimestamps, which anchors it in the Bitcoin blockchain, so anyone can check later that the
           text was not changed after the results came out. Read the statements in the{" "}
-          <a href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/README.md" target="_blank" rel="noreferrer">
+          <a data-help="bridge-sealed-readme" href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/README.md" target="_blank" rel="noreferrer">
             predictions README
           </a>{" "}
           and the proof file{" "}
-          <a href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/SHA256SUMS.ots" target="_blank" rel="noreferrer">
+          <a data-help="bridge-sealed-proof" href="https://github.com/Lucyyngceo/pyrion/blob/main/predictions/SHA256SUMS.ots" target="_blank" rel="noreferrer">
             SHA256SUMS.ots
           </a>{" "}
           on GitHub.
@@ -439,7 +439,7 @@ function StretchMap({
                   </path>
                 )}
                 {fmV !== null && <path d={`M${fmV} ${y - 6}l4 6l-4 6l-4 -6z`} className="tm-fm" />}
-                <rect x={a - 6} y={y - 9} width={Math.max(12, b - a + 12)} height={18} className="hit" tabIndex={0} role="button" aria-label={`${x.accession} ${x.test_id}, ${band(x.testStretch.value)} per second, O2 ${fmt((x.atmosphere.o2_mole_fraction.test ?? 0) * 100, 1)} percent`} onClick={() => onSelect(selected === k ? null : k)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect(selected === k ? null : k))} />
+                <rect data-help="bridge-stretch-segment" x={a - 6} y={y - 9} width={Math.max(12, b - a + 12)} height={18} className="hit" tabIndex={0} role="button" aria-label={`${x.accession} ${x.test_id}, ${band(x.testStretch.value)} per second, O2 ${fmt((x.atmosphere.o2_mole_fraction.test ?? 0) * 100, 1)} percent`} onClick={() => onSelect(selected === k ? null : k)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect(selected === k ? null : k))} />
               </g>
             );
           })}
@@ -491,7 +491,7 @@ function Receipt({
           {h.accession} · test {h.test_id}
         </strong>
         <span className="hyp-tag small-tag">HYPOTHESIS — NOT EVIDENCE</span>
-        <button type="button" className="linklike small" onClick={onClose}>
+        <button data-help="bridge-detail-close" type="button" className="linklike small" onClick={onClose}>
           Close
         </button>
       </div>
@@ -509,7 +509,7 @@ function Receipt({
         )}
       </p>
       <details open className="receipt-box">
-        <summary>Receipt: inputs, sources, limits</summary>
+        <summary data-help="bridge-receipt">Receipt: inputs, sources, limits</summary>
         <h4 className="br-h4">Condition records</h4>
         <ul className="small">
           {h.inputRecords.map((r) => (

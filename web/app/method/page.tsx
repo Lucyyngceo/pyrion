@@ -53,7 +53,7 @@ export default function MethodPage() {
   return (
     <main className="page">
       <header className="hero">
-        <h1>How PYRION decides</h1>
+        <h1 data-help="page-method">How PYRION decides</h1>
         <p className="lede">
           A deterministic rule set, not a model. Given a target condition, each NASA PSI combustion investigation gets one of
           four verdicts, and every input to that verdict is a value you can trace to a file.
@@ -61,7 +61,7 @@ export default function MethodPage() {
       </header>
 
       <div className="prose">
-        <h2>Two kinds of axes</h2>
+        <h2 data-help="method-axes">Two kinds of axes</h2>
         <p>
           <strong>Regime axes</strong> change the physics: gravity regime (microgravity, partial, normal), fuel phase (solid,
           liquid, gas), diluent (N₂, He, CO₂, …) and flame type. They are <em>barriers</em>: a test in another regime is not
@@ -82,7 +82,7 @@ export default function MethodPage() {
       </figure>
 
       <div className="prose">
-        <h2>The four verdicts</h2>
+        <h2 data-help="method-verdicts">The four verdicts</h2>
         <table className="vtable">
           <thead>
             <tr>
@@ -110,27 +110,27 @@ export default function MethodPage() {
           </tbody>
         </table>
 
-        <h2>Ranking</h2>
+        <h2 data-help="method-ranking">Ranking</h2>
         <p>
           Within a regime, investigations are ordered by the normalized distance from the target to the nearest measured
           point. Across a regime barrier there is no ranking. The same records and the same target always give the same
           verdicts and the same order.
         </p>
 
-        <h2>The receipt</h2>
+        <h2 data-help="method-receipt">The receipt</h2>
         <p>
           Every number in a verdict links to its source: the investigation DOI and PSI version, the file, the row and column
           or the page and quoted sentence, the original text and unit, and the conversion applied.
         </p>
 
-        <h2>What the checks cover, and what they do not</h2>
+        <h2 data-help="method-checks">What the checks cover, and what they do not</h2>
         <ul>
           <li>Automated gates on every change: schema, provenance (file checksums), cell trace, unit recomputation, physical bounds, consistency, citations, and banned public claims.</li>
           <li>Milestone reviews by a separate process that did not write the records, with a fixed round limit. Values still in doubt are marked insufficient evidence.</li>
           <li>This is not a review by NASA and not a validation by combustion experts. Values are extracted from the NASA files and located in them by code; the Envelope page says how many were located.</li>
         </ul>
 
-        <h2>What an LLM does here</h2>
+        <h2 data-help="method-llm">What an LLM does here</h2>
         <p>
           No language model decides a verdict: the engine is plain TypeScript rules over the extracted records, and the verdict
           lines on the page are written by code. When a model is configured, it does two small things in the question box: it
@@ -142,7 +142,7 @@ export default function MethodPage() {
         </p>
 
         <p>
-          <Link href="/">Back to the envelope</Link> · <Link href="/data">See the data coverage</Link>
+          <Link data-help="method-back" href="/">Back to the envelope</Link> · <Link data-help="method-data" href="/data">See the data coverage</Link>
         </p>
       </div>
     </main>

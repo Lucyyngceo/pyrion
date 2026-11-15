@@ -32,10 +32,10 @@ export default function AddSource() {
 
   return (
     <>
-      <button type="button" className="add-source-btn" onClick={() => dialog.current?.showModal()}>
+      <button data-help="add-source-button" type="button" className="add-source-btn" onClick={() => dialog.current?.showModal()}>
         + Add a source
       </button>
-      <dialog ref={dialog} className="add-source" aria-labelledby="as-title" onClick={(e) => e.target === dialog.current && dialog.current?.close()}>
+      <dialog data-help="add-source-dialog" ref={dialog} className="add-source" aria-labelledby="as-title" onClick={(e) => e.target === dialog.current && dialog.current?.close()}>
         <form
           method="dialog"
           onSubmit={(e) => {
@@ -46,7 +46,7 @@ export default function AddSource() {
         >
           <div className="as-head">
             <h2 id="as-title">Add NASA evidence</h2>
-            <button type="button" className="as-close" aria-label="Close" onClick={() => dialog.current?.close()}>
+            <button data-help="add-source-close" type="button" className="as-close" aria-label="Close" onClick={() => dialog.current?.close()}>
               ×
             </button>
           </div>
@@ -54,11 +54,11 @@ export default function AddSource() {
 
           <label className="as-field">
             <span>NTRS document number</span>
-            <input type="text" inputMode="numeric" autoComplete="off" placeholder="20250010653" value={ntrs} onChange={(e) => onUrl(e.target.value)} disabled={!!file} />
+            <input data-help="add-source-ntrs" type="text" inputMode="numeric" autoComplete="off" placeholder="20250010653" value={ntrs} onChange={(e) => onUrl(e.target.value)} disabled={!!file} />
           </label>
           <label className="as-field">
             <span>or upload a table (CSV or XLSX, max {MAX_FILE_BYTES / 1024 / 1024} MB)</span>
-            <input type="file" accept={ALLOWED_EXTENSIONS.map((e) => `.${e}`).join(",")} onChange={(e) => onFile(e.target.files?.[0] ?? null)} disabled={!!ntrs.trim()} />
+            <input data-help="add-source-file" type="file" accept={ALLOWED_EXTENSIONS.map((e) => `.${e}`).join(",")} onChange={(e) => onFile(e.target.files?.[0] ?? null)} disabled={!!ntrs.trim()} />
           </label>
           <p className="small muted">{UPLOAD_NOTE}</p>
           {problem && (
@@ -75,7 +75,7 @@ export default function AddSource() {
           <p className="small muted">Added evidence is shown as external, only in your view, and can be switched off or exported.</p>
 
           <div className="as-actions">
-            <button type="submit" disabled>
+            <button data-help="add-source-submit" type="submit" disabled>
               Add this source
             </button>
             <span className="small muted">Processing arrives in the next build.</span>

@@ -63,9 +63,9 @@ export function Md({ text }: { text: string }) {
 }
 
 const LAYER = {
-  engine: { icon: "🔒", name: "Engine", cls: "tars-l-engine" },
-  nasa: { icon: "📄", name: "NASA said it", cls: "tars-l-nasa" },
-  expert: { icon: "🧠", name: "TARS expert knowledge", cls: "tars-l-expert" },
+  engine: { icon: "🔒", name: "Engine", cls: "tars-l-engine", help: "tars-layer-engine" },
+  nasa: { icon: "📄", name: "NASA said it", cls: "tars-l-nasa", help: "tars-layer-nasa" },
+  expert: { icon: "🧠", name: "TARS expert knowledge", cls: "tars-l-expert", help: "tars-layer-expert" },
 } as const;
 
 export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> }) {
@@ -83,7 +83,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
       {r.blocks.map((b, i) => {
         const L = LAYER[b.layer];
         return (
-          <section key={i} className={`tars-layer ${L.cls}`}>
+          <section key={i} data-help={L.help} className={`tars-layer ${L.cls}`}>
             <h4>
               <span aria-hidden="true">{L.icon}</span> {L.name} <span className="tars-sub">{b.label}</span>
             </h4>
@@ -96,7 +96,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
                   {c.url && (
                     <>
                       {" · "}
-                      <a href={c.url} target="_blank" rel="noreferrer">
+                      <a data-help="tars-document-link" href={c.url} target="_blank" rel="noreferrer">
                         open the document
                       </a>
                     </>
@@ -125,11 +125,11 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
       <div className="tars-actions">
         {r.actions.map((a, i) =>
           a.type === "show" ? (
-            <button key={i} type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
+            <button data-help="tars-show-on-envelope" key={i} type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
               Show on the envelope
             </button>
           ) : (
-            <button key={i} type="button" className="tars-btn" onClick={() => highlight(a.selector)}>
+            <button data-help="tars-show-me" key={i} type="button" className="tars-btn" onClick={() => highlight(a.selector)}>
               Show me {a.label}
             </button>
           ),
@@ -137,7 +137,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
       </div>
       {r.steps.length > 0 && (
         <details className="tars-steps" open={adv} key={String(adv)}>
-          <summary>How TARS got this ({r.steps.length} steps{adv && r.model ? ` · ${r.model.name}` : ""})</summary>
+          <summary data-help="tars-steps">How TARS got this ({r.steps.length} steps{adv && r.model ? ` · ${r.model.name}` : ""})</summary>
           <ol>
             {r.steps.map((s, i) => (
               <li key={i}>{s.label.replace(/…$/, "")}</li>
@@ -155,8 +155,8 @@ export function History() {
   const [renaming, setRenaming] = useState<string | null>(null);
   const [name, setName] = useState("");
   return (
-    <nav className="tars-history" aria-label="Conversations">
-      <button type="button" className="tars-btn" onClick={newChat}>
+    <nav data-help="tars-history" className="tars-history" aria-label="Conversations">
+      <button data-help="tars-new-chat" type="button" className="tars-btn" onClick={newChat}>
         + New chat
       </button>
       <ul>
@@ -170,15 +170,15 @@ export function History() {
                   setRenaming(null);
                 }}
               >
-                <input autoFocus value={name} onChange={(e) => setName(e.target.value)} onBlur={() => setRenaming(null)} aria-label="Conversation name" maxLength={60} />
+                <input data-help="tars-rename-input" autoFocus value={name} onChange={(e) => setName(e.target.value)} onBlur={() => setRenaming(null)} aria-label="Conversation name" maxLength={60} />
               </form>
             ) : (
-              <button type="button" className="tars-conv" onClick={() => selectChat(c.id)} title={c.title}>
+              <button data-help="tars-conversation" type="button" className="tars-conv" onClick={() => selectChat(c.id)} title={c.title}>
                 {c.title}
               </button>
             )}
             <span className="tars-conv-actions">
-              <button
+              <button data-help="tars-rename"
                 type="button"
                 aria-label={`Rename ${c.title}`}
                 title="Rename"
@@ -189,7 +189,7 @@ export function History() {
               >
                 ✎
               </button>
-              <button type="button" aria-label={`Delete ${c.title}`} title="Delete" onClick={() => removeChat(c.id)}>
+              <button data-help="tars-delete" type="button" aria-label={`Delete ${c.title}`} title="Delete" onClick={() => removeChat(c.id)}>
                 ×
               </button>
             </span>
@@ -197,7 +197,7 @@ export function History() {
         ))}
       </ul>
       {conversations.length > 0 && (
-        <button
+        <button data-help="tars-delete-all"
           type="button"
           className="linklike small"
           onClick={() => {

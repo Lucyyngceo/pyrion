@@ -9,7 +9,7 @@ export default function EvidenceStatus({ dataset, lineage }: { dataset: Dataset;
   const usable = s.records - s.flagged;
   const rest = traced === null ? usable : usable - traced;
   return (
-    <div className="evidence-status" aria-label="Status of the extracted values">
+    <div data-help="data-evidence-status" className="evidence-status" aria-label="Status of the extracted values">
       <div className="es-head">
         <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations
         {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}

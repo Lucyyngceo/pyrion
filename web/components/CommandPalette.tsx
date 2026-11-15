@@ -69,7 +69,7 @@ export default function CommandPalette() {
 
   if (!open)
     return (
-      <button type="button" className="cmdk-hint" onClick={() => setOpen(true)} aria-label="Open command palette">
+      <button data-help="command-palette-button" type="button" className="cmdk-hint" onClick={() => setOpen(true)} aria-label="Open command palette">
         <kbd>Ctrl</kbd>
         <kbd>K</kbd>
       </button>
@@ -86,7 +86,7 @@ export default function CommandPalette() {
       <div className="cmdk" role="dialog" aria-modal="true" aria-label="Command palette">
         <div className="cmdk-input">
           <span aria-hidden="true">&gt;</span>
-          <input
+          <input data-help="command-palette-input"
             ref={input}
             value={q}
             placeholder="Jump to a preset, section or page…"
@@ -109,7 +109,7 @@ export default function CommandPalette() {
         </div>
         <ul className="cmdk-list" role="listbox">
           {list.map((c, k) => (
-            <li
+            <li data-help="command-palette-item"
               key={c.id}
               role="option"
               aria-selected={k === i}

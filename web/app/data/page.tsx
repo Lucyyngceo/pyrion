@@ -54,7 +54,7 @@ export default async function DataPage() {
     <main className="page">
       <header className="hero hero-row">
         <div>
-          <h1>The data behind the envelope</h1>
+          <h1 data-help="page-data">The data behind the envelope</h1>
           <p className="lede">
             Every condition value PYRION uses comes from a NASA Physical Sciences Informatics (PSI) combustion investigation,
             with the file and location it was read from. This page shows what was extracted from each one.
@@ -67,7 +67,7 @@ export default async function DataPage() {
 
       <EvidenceStatus dataset={ds} lineage={lin} />
 
-      <section className="card lineage" aria-labelledby="lin-h">
+      <section data-help="data-lineage" className="card lineage" aria-labelledby="lin-h">
         <div className="card-head">
           <h2 id="lin-h">Lineage: from PSI to a verdict</h2>
           <p className="muted small">
@@ -124,7 +124,7 @@ export default async function DataPage() {
         </ol>
       </section>
 
-      <section className="card" aria-labelledby="cov-h">
+      <section data-help="data-coverage" className="card" aria-labelledby="cov-h">
         <div className="card-head">
           <h2 id="cov-h">Coverage by investigation</h2>
           <p className="muted small">
@@ -181,7 +181,7 @@ export default async function DataPage() {
                     <td className="num">{i.publications?.length ?? 0}</td>
                     <td className="small">
                       {i.doi ? (
-                        <a href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
+                        <a data-help="data-doi-link" href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
                           {i.doi}
                         </a>
                       ) : (
@@ -197,7 +197,7 @@ export default async function DataPage() {
         </div>
       </section>
 
-      <section className="prose">
+      <section data-help="data-how-a-value-gets-here" className="prose">
         <h2>How a value gets here</h2>
         <ol>
           <li>The PSI files of each investigation are downloaded and listed with their SHA-256 checksum.</li>

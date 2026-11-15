@@ -60,7 +60,7 @@ export default function Fm2Panel() {
   const b0 = rows[0].at.inputs;
 
   return (
-    <section className="card br-card" aria-labelledby="fm2-h">
+    <section data-help="fm2-panel" className="card br-card" aria-labelledby="fm2-h">
       <div className="card-head">
         <h2 id="fm2-h">FM2 instrument balance</h2>
         <p className="muted small">
@@ -90,20 +90,20 @@ export default function Fm2Panel() {
             </li>
           </ul>
 
-          <label className="fm2-ctl" htmlFor={`${id}-t`}>
+          <label data-help="fm2-temperature" className="fm2-ctl" htmlFor={`${id}-t`}>
             <span>
               Temperature <strong>{fmt(tK, 1)} K</strong> ({fmt(tK - 273.15, 1)} °C){" "}
               <span className="tag-assumed">assumed range {fmt(T_RANGE.lo - 273.15, 0)}–{fmt(T_RANGE.hi - 273.15, 0)} °C, not in the source</span>
             </span>
-            <input id={`${id}-t`} type="range" min={T_RANGE.lo} max={T_RANGE.hi} step={0.5} value={tK} onChange={(e) => setTK(Number(e.target.value))} />
+            <input data-help="fm2-temperature" id={`${id}-t`} type="range" min={T_RANGE.lo} max={T_RANGE.hi} step={0.5} value={tK} onChange={(e) => setTK(Number(e.target.value))} />
           </label>
 
-          <label className="fm2-ctl" htmlFor={`${id}-l`}>
+          <label data-help="fm2-limit" className="fm2-ctl" htmlFor={`${id}-l`}>
             <span>
               Hypothesised limiting O₂ <strong>{fmt(limit, 1)} %</strong>{" "}
               <span className="tag-assumed">hypothesis, not a measurement</span>
             </span>
-            <input id={`${id}-l`} type="range" min={20} max={32} step={0.5} value={limit} onChange={(e) => setLimit(Number(e.target.value))} />
+            <input data-help="fm2-limit" id={`${id}-l`} type="range" min={20} max={32} step={0.5} value={limit} onChange={(e) => setLimit(Number(e.target.value))} />
             <span className="muted small">
               The FM2 plan expects a lunar limit of 24–26 % (<Cite s={FM2_SOURCES.plan} />). That is an expectation, not a result.
             </span>
@@ -147,7 +147,7 @@ export default function Fm2Panel() {
             reached, not a prediction of the flame.
           </p>
           <details className="receipt-box">
-            <summary>Formulas and assumptions</summary>
+            <summary data-help="fm2-formulas">Formulas and assumptions</summary>
             <ul className="fm2-in small">
               {rows[0].at.formulas.map((f) => (
                 <li key={f}>

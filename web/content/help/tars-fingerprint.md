@@ -1,0 +1,16 @@
+---
+title: Engine fingerprint
+keywords: engine fingerprint, tars fingerprint, tars
+page: tars
+link: /tars
+highlight: [data-help="tars-fingerprint"]
+---
+What it is: A hex string.
+
+What it shows: The SHA-256 of the engine's evaluation.
+
+How to use it: Compare it across runs.
+
+Example: The same question gives the same fingerprint.
+
+What it does not do: It proves reproducibility of the computation, not correctness of the data.

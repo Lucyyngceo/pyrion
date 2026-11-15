@@ -21,14 +21,14 @@ export function ScenarioNote({ state }: { state: TargetState }) {
   if (!preset) return null;
   return (
     <details className="scenario-note">
-      <summary>About this scenario: sources and limits</summary>
+      <summary data-help="scenario-note-summary">About this scenario: sources and limits</summary>
       <p className="preset-desc">{preset.description}</p>
       <p className="cite">
         Sources:{" "}
         {sourcesOf(preset).map((src, i) => (
           <span key={`${src.id}|${src.quote}`}>
             {i > 0 && "; "}
-            <a href={src.url} target="_blank" rel="noreferrer" title={`${src.quote} (${src.locator})`}>
+            <a data-help="scenario-note-source" href={src.url} target="_blank" rel="noreferrer" title={`${src.quote} (${src.locator})`}>
               {src.identifier.split(" (")[0]}
             </a>
             <span className="muted">, {src.locator.split(",")[0]}</span>
@@ -107,7 +107,7 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
         <span>
           {axisLabel(axis)} <span className={`origin ${fromPreset ? "origin-preset" : ""}`}>{fromPreset ? "preset" : "your choice"}</span>
         </span>
-        <select value={state.regime[axis] ?? ""} onChange={(e) => setRegime(axis, e.target.value)}>
+        <select data-help="ctl-regime-axis" value={state.regime[axis] ?? ""} onChange={(e) => setRegime(axis, e.target.value)}>
           <option value="">{axis === "gravity_regime" ? "open (not compared)" : "left open"}</option>
           {REGIME_VALUES[axis].map((v) => (
             <option key={v} value={v}>
@@ -120,16 +120,17 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
   };
 
   return (
-    <section className="card nav-controls" id="target-panel" aria-labelledby={`${id}-h`}>
+    <section data-help="controls-panel" className="card nav-controls" id="target-panel" aria-labelledby={`${id}-h`}>
       <h2 id={`${id}-h`} className="panel-title">
         Your condition
       </h2>
 
       <div className="field">
         <div className="field-head">
-          <label htmlFor={`${id}-o2`}>Oxygen (O₂)</label>
+          <label data-help="ctl-oxygen-number" htmlFor={`${id}-o2`}>Oxygen (O₂)</label>
           <span className="numbox">
             <input
+              data-help="ctl-oxygen-number"
               id={`${id}-o2`}
               type="number"
               min={O2_WIN.lo}
@@ -144,15 +145,16 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
             <small>%</small>
           </span>
         </div>
-        <input type="range" min={O2_WIN.lo} max={O2_WIN.hi} step={0.5} value={clamp(o2pct, O2_WIN.lo, O2_WIN.hi)} aria-label="Oxygen slider (%)" onChange={(e) => setNum("o2", Number(e.target.value) / 100)} />
+        <input data-help="ctl-oxygen-slider" type="range" min={O2_WIN.lo} max={O2_WIN.hi} step={0.5} value={clamp(o2pct, O2_WIN.lo, O2_WIN.hi)} aria-label="Oxygen slider (%)" onChange={(e) => setNum("o2", Number(e.target.value) / 100)} />
         <Ticks min={O2_WIN.lo} max={O2_WIN.hi} marks={O2_MARKS} />
       </div>
 
       <div className="field">
         <div className="field-head">
-          <label htmlFor={`${id}-p`}>Pressure</label>
+          <label data-help="ctl-pressure-number" htmlFor={`${id}-p`}>Pressure</label>
           <span className="numbox">
             <input
+              data-help="ctl-pressure-number"
               id={`${id}-p`}
               type="number"
               min={P_WIN.lo}
@@ -167,7 +169,7 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
             <small>kPa</small>
           </span>
         </div>
-        <input type="range" min={P_WIN.lo} max={P_WIN.hi} step={0.5} value={clamp(p, P_WIN.lo, P_WIN.hi)} aria-label="Pressure slider (kPa)" onChange={(e) => setNum("pressure", Number(e.target.value))} />
+        <input data-help="ctl-pressure-slider" type="range" min={P_WIN.lo} max={P_WIN.hi} step={0.5} value={clamp(p, P_WIN.lo, P_WIN.hi)} aria-label="Pressure slider (kPa)" onChange={(e) => setNum("pressure", Number(e.target.value))} />
         <Ticks min={P_WIN.lo} max={P_WIN.hi} marks={P_MARKS} />
         <span className="hint psia-line">= {fmt(kpaToPsi(state.pressure), 2)} psia</span>
       </div>
@@ -176,7 +178,7 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
       {state.regime.gravity_regime === "partial_gravity" && (
         <label className="field">
           <span>Gravity level (g)</span>
-          <input
+          <input data-help="ctl-gravity-level"
             type="number"
             min={0.01}
             max={0.99}

@@ -19,10 +19,10 @@ export default async function Page() {
     <main className="page">
       <header className="hero hero-compact hero-row">
         <div>
-          <h1 className="h1-small">The evidence envelope</h1>
+          <h1 data-help="page-envelope" className="h1-small">The evidence envelope</h1>
           {!synthetic && (
-            <p className="hero-status small muted">
-              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations · {located} · <a href="/data">details</a>
+            <p data-help="header-status-line" className="hero-status small muted">
+              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations · {located} · <a data-help="header-details-link" href="/data">details</a>
             </p>
           )}
         </div>

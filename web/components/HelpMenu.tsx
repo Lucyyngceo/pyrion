@@ -19,12 +19,12 @@ export default function HelpMenu() {
   }, [open]);
   return (
     <div className="help-menu" ref={box}>
-      <button type="button" className="help-btn" aria-label="Help and guide" aria-expanded={open} aria-haspopup="menu" title="Help and guide" onClick={() => setOpen((o) => !o)}>
+      <button data-help="help-menu" type="button" className="help-btn" aria-label="Help and guide" aria-expanded={open} aria-haspopup="menu" title="Help and guide" onClick={() => setOpen((o) => !o)}>
         ?
       </button>
       {open && (
         <div className="help-pop" role="menu">
-          <button
+          <button data-help="help-menu-help"
             type="button"
             role="menuitem"
             onClick={() => {
@@ -35,6 +35,28 @@ export default function HelpMenu() {
             Help <span className="muted small">TARS Support: how this site works</span>
           </button>
           <button
+            data-help="help-menu-center"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              window.dispatchEvent(new CustomEvent("pyrion:help"));
+            }}
+          >
+            Help center <span className="muted small">search every page, button and number</span>
+          </button>
+          <button
+            data-help="help-menu-mode"
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              window.dispatchEvent(new CustomEvent("pyrion:help-mode", { detail: true }));
+            }}
+          >
+            Help mode <span className="muted small">click anything to learn about it</span>
+          </button>
+          <button data-help="help-menu-guide"
             type="button"
             role="menuitem"
             onClick={() => {

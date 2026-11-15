@@ -8,6 +8,8 @@ export interface Topic {
   link: string;
   /** A CSS selector to highlight after arriving. */
   highlight?: string;
+  /** Which page the topic belongs to (envelope, bridge, data, method, why, tars, global); overview topics have none. */
+  page?: string;
   body: string;
 }
 
@@ -21,7 +23,7 @@ export function parseTopic(id: string, text: string): Topic {
     if (i > 0) fm[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^"(.*)"$/, "$1");
   }
   if (!fm.title || !fm.link) throw new Error(`help topic ${id}: title and link are required`);
-  return { id, title: fm.title, keywords: (fm.keywords ?? "").split(",").map((k) => k.trim()).filter(Boolean), link: fm.link, ...(fm.highlight ? { highlight: fm.highlight } : {}), body: m[2].replace(/\r\n/g, "\n").trim() };
+  return { id, title: fm.title, keywords: (fm.keywords ?? "").split(",").map((k) => k.trim()).filter(Boolean), link: fm.link, ...(fm.highlight ? { highlight: fm.highlight } : {}), ...(fm.page ? { page: fm.page } : {}), body: m[2].replace(/\r\n/g, "\n").trim() };
 }
 
 const STOP = new Set("a an the is are was were be of to in on at for and or do does did how what why when where which who can i my me it this that with about use used using please tell show explain mean means meaning work works".split(" "));
@@ -63,7 +65,14 @@ export function searchTopics(topics: readonly Topic[], query: string, limit = 3)
       const idf = Math.log(1 + (docs.length - n + 0.5) / (n + 0.5));
       score += idf * ((f * (K1 + 1)) / (f + K1 * (1 - B + (B * d.words.length) / avg)));
     }
-    if (score > 0) hits.push({ topic: d.t, score });
+    if (score > 0) {
+      // A title that says what was asked beats a body that mentions it: coverage of the question's words by the title, a small cost for title words
+      // the question did not use, and a preference for a page overview over a single element when both fit.
+      const tt = [...new Set(tokens(d.t.title))];
+      const overlap = tt.filter((w) => q.includes(w)).length;
+      if (overlap > 0) score += 6 * (overlap / q.length) - 1.5 * ((tt.length - overlap) / tt.length) + (d.t.page ? 0 : 3);
+      hits.push({ topic: d.t, score });
+    }
   }
   return hits.toSorted((a, b) => b.score - a.score).slice(0, limit);
 }

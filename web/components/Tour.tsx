@@ -101,15 +101,15 @@ export default function Tour() {
         <h2>{s.title}</h2>
         <p>{s.text}</p>
         <div className="tour-actions">
-          <button type="button" className="linklike" onClick={close}>
+          <button data-help="tour-skip" type="button" className="linklike" onClick={close}>
             Skip
           </button>
           {step > 0 && (
-            <button type="button" className="tour-btn tour-back" onClick={() => setStep(step - 1)}>
+            <button data-help="tour-back" type="button" className="tour-btn tour-back" onClick={() => setStep(step - 1)}>
               Back
             </button>
           )}
-          <button type="button" className="tour-btn" onClick={() => (last ? close() : setStep(step + 1))}>
+          <button data-help="tour-next" type="button" className="tour-btn" onClick={() => (last ? close() : setStep(step + 1))}>
             {last ? "Done" : "Next"}
           </button>
         </div>

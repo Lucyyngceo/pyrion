@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function WhyPage() {
   return (
     <main className="why">
-      <h1>Why this exists</h1>
+      <h1 data-help="page-why">Why this exists</h1>
 
       <p>
         This project reached me at a very hard moment in my life, a moment in which I am fighting adversity on every front:
@@ -36,7 +36,7 @@ export default function WhyPage() {
         not let you down in the mission of my life, which is MAKING LIFE MULTIPLANETARY. Thank you.
       </p>
 
-      <h2>Thank you, Costa Rica</h2>
+      <h2 data-help="why-thanks">Thank you, Costa Rica</h2>
 
       <p>
         Thank you all. To Universidad Fidélitas, which opened its doors to host NASA Space Apps San José. To the NASA Space

@@ -107,7 +107,7 @@ function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; cit
                 ) : (
                   <>
                     {inv?.doi ? (
-                      <a href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
+                      <a data-help="result-source-doi" href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
                         {inv.accession} v{inv.version} · doi:{inv.doi}
                       </a>
                     ) : (
@@ -143,7 +143,7 @@ function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; cit
         })}
       </ol>
       {citations.length > RECEIPT_CAP && (
-        <button type="button" className="linklike small more" onClick={() => setAll((a) => !a)}>
+        <button data-help="result-citations-more" type="button" className="linklike small more" onClick={() => setAll((a) => !a)}>
           {all ? "Show fewer" : `Show all ${citations.length} source values`}
         </button>
       )}
@@ -213,12 +213,12 @@ function ResultRow({
           {refs.length > 0 && (
             <span className="refs">
               {refs.slice(0, 3).map((n) => (
-                <button key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source value ${n + 1}`}>
+                <button data-help="result-ref" key={n} type="button" className="ref" onClick={() => jump(n)} aria-label={`Source value ${n + 1}`}>
                   [{n + 1}]
                 </button>
               ))}
               {refs.length > 3 && (
-                <button type="button" className="ref" onClick={() => jump(refs[3])}>
+                <button data-help="result-ref-more" type="button" className="ref" onClick={() => jump(refs[3])}>
                   +{refs.length - 3}
                 </button>
               )}
@@ -230,7 +230,7 @@ function ResultRow({
   };
 
   return (
-    <article
+    <article data-help="result-card"
       ref={rowRef}
       className={`result ${VERDICT[iv.verdict].cls}`}
       id={`res-${iv.accession}`}
@@ -251,7 +251,7 @@ function ResultRow({
             <li key={i} className={b.action?.kind === "switch_regime" ? "blocker blocker-regime" : "blocker"}>
               <span>{b.sentence}</span>
               {b.action && (
-                <button type="button" className={`take-btn${b.action.kind === "switch_regime" ? " take-regime" : ""}`} onClick={() => onAction(b.action!, iv.accession)}>
+                <button data-help="result-blocker-action" type="button" className={`take-btn${b.action.kind === "switch_regime" ? " take-regime" : ""}`} onClick={() => onAction(b.action!, iv.accession)}>
                   {b.action.kind === "switch_regime" ? `Another regime: ${b.action.sentence}` : b.action.sentence}
                 </button>
               )}
@@ -259,7 +259,7 @@ function ResultRow({
           ))}
         </ul>
       ) : (
-        <p className="result-plain">{pv.sentence}</p>
+        <p data-help="result-sentence" className="result-plain">{pv.sentence}</p>
       )}
       {inv && <p className="result-title">{inv.title}</p>}
       <div className="result-cite">
@@ -268,7 +268,7 @@ function ResultRow({
         ) : (
           <>
             {inv?.doi && (
-              <a href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
+              <a data-help="result-doi" href={doiUrl(inv.doi)} target="_blank" rel="noreferrer">
                 doi:{inv.doi}
               </a>
             )}
@@ -283,15 +283,15 @@ function ResultRow({
           <span className="muted">Measured in:</span> {envelopeName(cluster)} · {cluster.tests.length} test
           {cluster.tests.length === 1 ? "" : "s"}
           <br />
-          <span className="muted">Technical:</span> <span className="tech">{pv.technical}</span>{iv.verdict === "EXTRAPOLATION" && <span className="tech"> {EXTRAPOLATION_LEVEL_NOTE}</span>}
+          <span className="muted">Technical:</span> <span data-help="result-technical" className="tech">{pv.technical}</span>{iv.verdict === "EXTRAPOLATION" && <span data-help="result-technical" className="tech"> {EXTRAPOLATION_LEVEL_NOTE}</span>}
         </p>
       )}
 
-      <ul className="reasons">{main.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
+      <ul data-help="result-reasons" className="reasons">{main.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
       {context.length > 0 && (
         <div className="context-box">
           <p className="context-title small muted">Other checks that did not decide the verdict ({context.length})</p>
-          <ul className="reasons">{context.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
+          <ul data-help="result-reasons" className="reasons">{context.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
         </div>
       )}
 
@@ -309,7 +309,7 @@ function ResultRow({
       )}
 
       <details className="receipt-box" open={open} onToggle={(e) => onOpenChange((e.target as HTMLDetailsElement).open)}>
-        <summary>
+        <summary data-help="result-receipt">
           Receipt: {ordered.length} source value{ordered.length === 1 ? "" : "s"}
         </summary>
         {open && <ReceiptList inv={inv} citations={ordered} ctx={ctx} anchor={anchor} />}
@@ -360,7 +360,7 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
   );
 
   return (
-    <section className="results" aria-labelledby="results-h">
+    <section data-help="results-section" className="results" aria-labelledby="results-h">
       <div className="results-top">
         <h2 id="results-h">The investigations, one card each</h2>
         <p className="muted small">
@@ -387,7 +387,7 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
         <div className="group group-barrier">
           <h3 className="group-title">
             Not comparable: a different physical <Term k="regime barrier">regime</Term> <span className="count">{barrier.length}</span>
-            <button type="button" className="linklike small" onClick={() => setShowBarrier((s) => !s)} aria-expanded={showBarrier}>
+            <button data-help="result-barrier-toggle" type="button" className="linklike small" onClick={() => setShowBarrier((s) => !s)} aria-expanded={showBarrier}>
               {showBarrier ? "Hide" : "Show"}
             </button>
           </h3>
@@ -411,7 +411,7 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
                 <span className="acc">{i.accession}</span> {i.acronym && <strong>{i.acronym}</strong>}{" "}
                 <span className="muted">{i.title}</span>{" "}
                 {i.doi && (
-                  <a href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
+                  <a data-help="result-barrier-doi" href={doiUrl(i.doi)} target="_blank" rel="noreferrer">
                     doi:{i.doi}
                   </a>
                 )}

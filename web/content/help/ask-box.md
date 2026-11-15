@@ -1,9 +1,16 @@
 ---
-title: The Ask box
-keywords: ask, question, plain english, natural language, type, spanish, condition, parse
+title: Ask box
+keywords: ask box, ask box, envelope
+page: envelope
 link: /
-highlight: #ask-q
+highlight: [data-help="ask-box"]
 ---
-The Ask box turns a plain-language question about a condition into a target for the dashboard. Code reads the numbers first (oxygen %, pressure with its unit, gravity); a language model is used only when code cannot, and its reading is checked against your own words.
+What it is: A one-line box for plain-language questions about a condition.
 
-If the questions are off on this server, pick a NASA condition instead: every verdict works without them.
+What it shows: A rotating example in grey until you type.
+
+How to use it: Type a question such as "34 % oxygen at 8.2 psia on the Moon" and press Ask.
+
+Example: Ask: "Would solid fuel burn differently in a lunar base at 30 % oxygen and 10.2 psi?"
+
+What it does not do: Code reads the numbers first; a model is used only if code cannot. The model never decides a verdict.
