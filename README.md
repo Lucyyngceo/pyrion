@@ -131,6 +131,8 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
 | Text-similarity baseline (the "text vs physics" comparison) | BAAI bge-small-en-v1.5 | MIT | local (fastembed) |
 
+**It keeps working without credits.** TARS tries Nemotron 3 Ultra on OpenRouter first. If the OpenRouter credit runs out, the daily cap (`PYRION_DAILY_REQUEST_CAP`) is reached, or the provider fails, the same Nemotron 3 Ultra answers from NVIDIA's free NIM endpoint, then Gemma 4 31B, with no action from the visitor. If no model is reachable at all, every verdict, the Envelope, the Planner, the MCP server and the structured TARS answers still work, because they are code, not a model.
+
 **No run-time model comes from a China-owned company** (NASA Space Apps terms). Earlier during the event TARS used GLM-5.3, Qwen3.8-27B and Kimi K2.6 through OpenRouter; they were replaced on 15 November 2026 after a model trial (`validation/model_trial/`).
 
 **What the AI does not do.** No model decides a verdict: the applicability engine is plain TypeScript rules over the extracted records, and it gives the same verdict with any model or with none. Models never convert units or do arithmetic (code does), every NASA quote a model shows is checked by code against the page it cites, and any number in the model's own reasoning that does not come from a source or a calculation is removed before it is shown. Without any model key the site works in structured mode.
