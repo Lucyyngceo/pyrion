@@ -80,7 +80,7 @@ PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=pro
 curl -s http://127.0.0.1:3000/api/llm/health   # visitor_isolation must be on
 ```
 
-Node: `web/README.md` asks for 20.9 or newer; the public instance runs Node 24.
+Node: 24 or newer everywhere (`engine/package.json`, `web/package.json`, `web/README.md`, CI); the public instance runs Node 24.
 
 ## Availability
 
