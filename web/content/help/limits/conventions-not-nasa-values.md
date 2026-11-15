@@ -10,7 +10,7 @@ sources: ["engine/src/types.ts", "engine/src/levels.ts", "engine/src/quantity.ts
 
 Some numbers in PYRION are not measurements and not NASA's: they are choices made so that the tool is usable. They are listed here, each with the reason, and each is shown as a convention wherever it changes a result.
 
-- **0.5 % measurement tolerance.** So 101.3 kPa and 101.325 kPa are the same condition.
+- **0.5 % numerical tolerance.** So 101.3 kPa and 101.325 kPa are the same condition. It is a rounding convention, not the uncertainty of any experiment.
 - **Below 0.01 g is microgravity.** NASA's chart shows 1e-4 g and 1e-2 g on one continuous axis, so this cut is a modelling choice.
 - **0.9 to 1.1 g is normal gravity.** A band so that 0.998 g is not "partial".
 - **Above 1.1 g: not covered.** No PSI regime exists there.

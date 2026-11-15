@@ -1,14 +1,14 @@
 ---
 id: term-measurement-tolerance
-title: "Measurement tolerance"
-keywords: measurement tolerance, 0.5 percent, tolerance, rounding, within tolerance
+title: "Numerical tolerance (0.5 %)"
+keywords: numerical tolerance, measurement tolerance, 0.5 percent, tolerance, rounding, within tolerance
 chapter: 11
 order: 17
 dataHelp: [result-technical]
 sources: ["engine/src/types.ts"]
 ---
 
-The 0.5 % of your own value by which you may miss a tested range or region and still count as inside. It stops 101.3 kPa and 101.325 kPa from giving different verdicts. A PYRION convention.
+The 0.5 % of your own value by which you may miss a tested range or region and still count as inside. It stops 101.3 kPa and 101.325 kPa from giving different verdicts. A PYRION numerical convention: not a NASA value and not the measurement uncertainty of any experiment.
 
 ## For engineers
 

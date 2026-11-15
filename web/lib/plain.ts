@@ -21,7 +21,7 @@ export const GLOSSARY: Record<string, string> = {
   "normal gravity": `${GROUND_NOTE} Inventory: extraction/ground_tests_inventory.md.`,
   "normal flame": "A flame burning in the usual way: fuel is on one side, and oxygen reaches it from the surrounding gas.",
   "inverse flame": "A flame turned inside out: oxygen comes out of a burner into a surrounding fuel gas. It follows different physics, so it is a different regime.",
-  "measurement tolerance": "A margin of 0.5 % so that a target exactly on the edge of a measured range, within measurement error, counts as inside.",
+  "numerical tolerance": "A PYRION convention: a margin of 0.5 % so that rounding of typed values (101.3 kPa for 101.325 kPa) does not change a verdict. It is not a NASA value and not the uncertainty of any experiment.",
 };
 
 const AXIS_NAME: Record<string, string> = {

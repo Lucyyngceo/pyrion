@@ -205,12 +205,11 @@ Earth gravity, normal gravity, `1 g Earth`, micro-gravity, zero-g, zero gravity,
 `sea level` (101.325 kPa), `kPa abs`, `psia (absolute)`, `mol%`, `per cent`. The O2 and pressure plausibility windows
 (`HABITAT_WINDOWS`) are PYRION windows, not NASA values, and the warnings say so.
 
-Measurement tolerance (judge battery): every inside-the-envelope test, per axis and in the (O2, pressure) hull,
-counts a target as inside when it is within ±0.5 % of its own value of the measured range or hull
-(`MEASUREMENT_TOLERANCE_REL`; PYRION convention, not a NASA value; `MEASUREMENT_TOLERANCE_NOTE`). 0.5 % is the worst-case
-rounding of a three-significant-digit value and sits inside typical pressure-transducer accuracy (0.25–1 % of
-reading), so "101.3 kPa", "14.7 psia" and "760 mmHg" count as the tested 1 atm while 110 kPa does not. When the
-tolerance is what made the target count as inside, the reason says so ("within the 0.5 % measurement tolerance of
+Numerical tolerance (judge battery): every inside-the-envelope test, per axis and in the (O2, pressure) hull,
+counts a target as inside when it is within ±0.5 % of its own value of the tested range or hull
+(`MEASUREMENT_TOLERANCE_REL`, a historical name; a PYRION numerical convention, not a NASA value and not the uncertainty of any experiment; `MEASUREMENT_TOLERANCE_NOTE`). 0.5 % is the worst-case
+rounding of a three-significant-digit value, so "101.3 kPa", "14.7 psia" and "760 mmHg" count as the tested 1 atm while 110 kPa does not. When the
+tolerance is what made the target count as inside, the reason says so ("within the 0.5 % numerical tolerance (a PYRION convention) of
 the tested 101.325 kPa") and `AxisCheck.viaTolerance` / `HullCheck.viaTolerance` is true. The chart geometry in
 `locateTarget` (chart geometry) uses the same tolerance, so a chart marker is never outside a hull the verdict calls inside; when the tolerance is what put it inside, `TargetLocation.viaTolerance` (and the per-investigation flag) is true and `hullDistance` is 0: draw the marker on the edge with the "within 0.5 % tolerance" note.
 

@@ -163,13 +163,13 @@ export interface TargetLocation {
   hullDistance: number | null;
   /**
    * Present (true) only when the target counts as inside the hull (or the ranges) because of the
-   * measurement tolerance (MEASUREMENT_TOLERANCE_REL, the same one evaluate() uses). Draw the marker on the
-   * edge with the "within 0.5 % measurement tolerance" note.
+   * numerical tolerance (MEASUREMENT_TOLERANCE_REL, the same one evaluate() uses). Draw the marker on the
+   * edge with the "within 0.5 % numerical tolerance" note.
    */
   viaTolerance?: true;
   /**
    * The measured test point nearest to the target in this envelope (normalized O2-pressure distance), and
-   * whether the target coincides with it within the measurement tolerance on both axes. Inside a hull a
+   * whether the target coincides with it within the numerical tolerance on both axes. Inside a hull a
    * target usually lies between tests: no test was necessarily run at that exact condition.
    */
   nearestTest?: { accession: string; test_id: string; o2_mole_fraction: number; pressure: number; coincides: boolean };

@@ -18,7 +18,7 @@ A route is made of changes, and there are only three kinds.
 
 A route can combine kinds: "Leave fuel phase open ... Move pressure from 70.3 kPa to 101 kPa ...". If it contains a regime switch it is a different-regime route; otherwise, if it mixes kinds, it is a *combined* route.
 
-Moves smaller than the measurement tolerance (0.5 %) are not listed, because the verdict already treats them as the same condition.
+Moves smaller than the numerical tolerance (0.5 %) are not listed, because the verdict already treats them as the same condition.
 
 ## For engineers
 

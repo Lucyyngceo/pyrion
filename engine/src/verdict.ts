@@ -270,7 +270,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
     if (status === 'inside') {
       const msg =
         tolBound !== null
-          ? `${L}: your ${humanValue(axis, tv, 4)} is within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the tested ${humanValue(axis, tolBound, 4)} (tested range: ${testedText}). ${MEASUREMENT_TOLERANCE_NOTE}`
+          ? `${L}: your ${humanValue(axis, tv, 4)} is within the ${MEASUREMENT_TOLERANCE_REL * 100} % numerical tolerance (a PYRION convention) of the tested ${humanValue(axis, tolBound, 4)} (tested range: ${testedText}). ${MEASUREMENT_TOLERANCE_NOTE}`
           : `${L}: your ${humanValue(axis, tv)} is inside ${range}.`;
       reasons.push(reason('inside_range', axisContext, axis, msg, citationsOf([...minRecs, ...maxRecs])));
     } else {
@@ -374,7 +374,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
         const onePressure = pts.every((q) => q.p === pts[0].p);
         const line = onePressure ? `Inside the tested oxygen span, at one pressure: all ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')} are at ${humanValue('pressure', pts[0].p)}. ` : '';
         const msg = line + (onePressure && !tolInside ? '' : tolInside
-          ? `Oxygen and pressure together are within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}. ${MEASUREMENT_TOLERANCE_NOTE}`
+          ? `Oxygen and pressure together are within the ${MEASUREMENT_TOLERANCE_REL * 100} % numerical tolerance (a PYRION convention) of the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}. ${MEASUREMENT_TOLERANCE_NOTE}`
           : `Oxygen and pressure together are inside the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}.`).trim();
         reasons.push(reason('inside_hull', decided, 'o2_mole_fraction+pressure', msg, citationsOf(vertexRecs)));
       } else {

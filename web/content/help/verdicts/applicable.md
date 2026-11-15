@@ -13,7 +13,7 @@ sources: ["engine/src/verdict.ts"]
 Two details make this stricter than it sounds:
 
 - "Inside" is checked on each axis separately **and** on oxygen and pressure together. A condition can be inside the oxygen range and inside the pressure range and still sit in an untested corner. That case is not Applicable (it is Extrapolation, level "combination").
-- "Inside" allows a small measurement tolerance of 0.5 %, so typing 101.3 kPa instead of 101.325 kPa does not change the verdict.
+- "Inside" allows a small numerical tolerance of 0.5 % (a PYRION convention), so typing 101.3 kPa instead of 101.325 kPa does not change the verdict.
 
 Applicable does **not** mean "the same experiment". It means your numbers fall within what that investigation measured, in the same regime. The investigation's records, with their sources and DOI, are the receipt.
 

@@ -164,16 +164,17 @@ export interface Reason {
 }
 
 /**
- * Measurement tolerance used by every inside-the-envelope test, on every continuous axis: a target counts
- * as inside a measured range or hull when it is within ±0.5 % of its own value of it.
- * PYRION convention, not a NASA value. Why 0.5 %: it is the worst-case rounding of a three-significant-digit
- * value (1.00 → ±0.5 %) and sits inside the usual accuracy of pressure transducers (0.25–1 % of reading),
- * so "101.3 kPa", "14.7 psia" and "760 mmHg" all count as the tested 1 atm, while a real gap
- * (110 kPa against 101.325) does not. Without it a zero-width envelope (all records at exactly 1 atm)
- * would turn the same physical pressure into APPLICABLE or EXTRAPOLATION by the digits typed.
+ * Numerical tolerance used by every inside-the-envelope test, on every continuous axis: a target counts
+ * as inside a tested range or hull when it is within +-0.5 % of its own value of it.
+ * A PYRION numerical convention. It is not a NASA value and not an experiment-specific measurement
+ * uncertainty: no source establishes the uncertainty of the tests it is compared with. Why 0.5 %: it is the
+ * worst-case rounding of a three-significant-digit value (1.00 -> +-0.5 %), so "101.3 kPa", "14.7 psia"
+ * and "760 mmHg" all count as the tested 1 atm, while a real gap (110 kPa against 101.325) does not.
+ * Without it a zero-width envelope (all records at exactly 1 atm) would turn the same physical pressure
+ * into APPLICABLE or EXTRAPOLATION by the digits typed. (The constant keeps its historical name.)
  */
 export const MEASUREMENT_TOLERANCE_REL = 0.005;
-export const MEASUREMENT_TOLERANCE_NOTE = `PYRION convention, not a NASA value: a target within ±${MEASUREMENT_TOLERANCE_REL * 100} % of its own value of a measured range or tested region counts as inside it (rounding of typed values and typical instrument accuracy).`;
+export const MEASUREMENT_TOLERANCE_NOTE = `PYRION numerical convention, not a NASA value and not the uncertainty of any experiment: a target within ±${MEASUREMENT_TOLERANCE_REL * 100} % of its own value of a tested range or region counts as inside it, so rounding of typed values (101.3 kPa for 101.325 kPa) does not change a verdict.`;
 
 export interface AxisCheck {
   axis: ContinuousAxis;
@@ -188,7 +189,7 @@ export interface AxisCheck {
   gapNormalized: number | null;
   minCitations: Citation[];
   maxCitations: Citation[];
-  /** Present (true) only when the target counts as inside because of the measurement tolerance. */
+  /** Present (true) only when the target counts as inside because of the numerical tolerance. */
   viaTolerance?: true;
 }
 
@@ -204,7 +205,7 @@ export interface HullCheck {
   /** Normalized distance from the target to the hull. 0 when inside. */
   distanceNormalized: number;
   pointCount: number;
-  /** Present (true) only when the target counts as inside because of the measurement tolerance. */
+  /** Present (true) only when the target counts as inside because of the numerical tolerance. */
   viaTolerance?: true;
 }
 
