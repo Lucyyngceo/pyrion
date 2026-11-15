@@ -370,9 +370,12 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
         ...(tolInside ? { viaTolerance: true as const } : {}),
       };
       if (inside) {
-        const msg = tolInside
+        // A "region" whose tests all sit at one pressure is a line: say so, so nobody reads it as an area of evidence.
+        const onePressure = pts.every((q) => q.p === pts[0].p);
+        const line = onePressure ? `Inside the tested oxygen span, at one pressure: all ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')} are at ${humanValue('pressure', pts[0].p)}. ` : '';
+        const msg = line + (onePressure && !tolInside ? '' : tolInside
           ? `Oxygen and pressure together are within the ${MEASUREMENT_TOLERANCE_REL * 100} % measurement tolerance of the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}. ${MEASUREMENT_TOLERANCE_NOTE}`
-          : `Oxygen and pressure together are inside the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}.`;
+          : `Oxygen and pressure together are inside the region covered by ${pts.length} tested ${plural(pts.length, 'condition', 'conditions')}.`).trim();
         reasons.push(reason('inside_hull', decided, 'o2_mole_fraction+pressure', msg, citationsOf(vertexRecs)));
       } else {
         outsideHull = true;

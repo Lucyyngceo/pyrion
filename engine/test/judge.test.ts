@@ -69,6 +69,10 @@ describe('E1: measurement tolerance on a zero-width envelope', () => {
     assert.equal(verdictFor('PSI-9201', '1 atm', '21.05 %').verdict, 'APPLICABLE');
     assert.equal(verdictFor('PSI-9201', '1 atm', '22 %').verdict, 'EXTRAPOLATION');
   });
+  it('a region whose tests all sit at one pressure is called a line: "inside the tested oxygen span, at one pressure"', () => {
+    const msgs = verdictFor('PSI-9201', '1 atm').reasons.map((r) => r.message).join(' ');
+    assert.match(msgs, /Inside the tested oxygen span, at one pressure: all \d+ tested conditions? (is|are) at/);
+  });
   it('the reason says the tolerance is what made it count as inside, and names the convention', () => {
     const c = verdictFor('PSI-9201', '101.3 kPa');
     const msgs = c.reasons.map((r) => r.message).join('\n');
