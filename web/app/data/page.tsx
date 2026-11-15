@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { parseConditionCsv } from "@/lib/engine";
-import AddSource from "@/components/AddSource";
 import CountUp from "@/components/CountUp";
 import EvidenceStatus from "@/components/EvidenceStatus";
 import { loadDataset, loadLineage } from "@/lib/data";
@@ -70,7 +69,6 @@ export default async function DataPage() {
           <a data-help="data-proof-link" href="/proof" className="chip">
             Proof: how PYRION is checked
           </a>
-          <AddSource />
         </div>
       </header>
 

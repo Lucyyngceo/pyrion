@@ -1,5 +1,4 @@
 import ExplorerLoader from "@/components/ExplorerLoader";
-import AddSource from "@/components/AddSource";
 import HelpMenu from "@/components/HelpMenu";
 import WarpIntro from "@/components/WarpIntro";
 import { loadDataset, loadLineage } from "@/lib/data";
@@ -30,7 +29,6 @@ export default async function Page() {
           )}
         </div>
         <div className="hero-actions">
-          <AddSource />
           <HelpMenu />
         </div>
       </header>

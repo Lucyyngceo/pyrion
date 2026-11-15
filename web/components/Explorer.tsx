@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Term from "./Term";
 import Tour from "./Tour";
-import AskTarsBar from "./AskTarsBar";
 import ToolsLine from "./ToolsLine";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
@@ -382,7 +381,6 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   return (
     <>
-      <AskTarsBar />
       <Tour />
       <ScenarioStrip
         state={state}

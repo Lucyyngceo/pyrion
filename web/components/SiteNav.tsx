@@ -10,6 +10,7 @@ const MAIN = [
   { href: "/envelope", label: "Envelope", help: "nav-envelope" },
   { href: "/tars", label: "TARS SI", help: "nav-tars", ai: true },
   { href: "/planner", label: "Planner", help: "nav-planner" },
+  { href: "/example#ex-gaps", label: "Evidence gaps", help: "nav-gaps" },
   { href: "/investigations", label: "Investigations", help: "nav-investigations" },
   { href: "/lenses", label: "Safety", help: "nav-lenses" },
   { href: "/more", label: "Earth & equipment", help: "nav-more-page" },

@@ -71,7 +71,7 @@ export default async function Landing() {
   return (
     <div className="landing-root">
       {/* Warm the cache for the dashboard's loading video. */}
-      <link rel="prefetch" href="/media/warp/warp.webm" as="video" />
+      {/* The dashboard's loading animation uses small NASA thumbnails; fetching them is cheap and needs no preload. */}
       <header className="ld-bar">
         <div className="ld-bar-inner">
           <Link data-help="nav-home" href="/" className="ld-brand">
