@@ -108,6 +108,14 @@ export default function PlannerView({ data }: { data: PlannerData }) {
           </span>{" "}
           <AskTars q={askQ} />
         </p>
+        {data.coverage.fraction === 0 && (
+          <p data-help="planner-zero-expected" className="small">
+            The 0 % is expected, not a finding: NASA&apos;s challenge statement says there is currently no partial-gravity
+            combustion data in PSI. What this page adds is below: what FM2 as planned would measure, which corners of the band
+            stay unmeasured, and the nearest PSI evidence, which is in microgravity or normal gravity (open the{" "}
+            <a href="/?preset=challenge-lunar-base">Envelope with the Moon Base condition</a>).
+          </p>
+        )}
         <p data-help="planner-honesty" className="honesty">
           Covered means the condition lies between measured PSI test points (inside the outline around them, within the 0.5 % tolerance). No test was necessarily run at that exact condition, other axes are checked one at a time so that exact combination may never have been tested, and PYRION computes no value there. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
@@ -202,8 +210,10 @@ export default function PlannerView({ data }: { data: PlannerData }) {
       </section>
 
       <section className="card" aria-labelledby="pl-min">
-        <h2 id="pl-min">Minimum test set</h2>
+        <h2 id="pl-min">Minimum test points (PYRION&apos;s geometric convention)</h2>
         <p data-help="planner-min-set" className="small">
+          The fewest test points whose outline covers the band under PYRION&apos;s convention: not a test programme. Materials,
+          flow velocity, sample thickness, repeats and flammability thresholds are not included.{" "}
           {data.minimumTest.points.length} points (the corners of the band). {data.minimumTest.fm2Contributes.length} are already contributed by FM2 as planned; {data.minimumTest.missing.length} are missing{data.minimumTest.missing.length > 0 ? `: ${data.minimumTest.missing.map((m) => `${Math.round(m.o2_mole_fraction * 1000) / 10} % at ${Math.round((m.pressure_kpa / KPA_PER_PSI) * 10) / 10} psia`).join("; ")}` : ""}.
         </p>
         <div className="tars-cmptable">
