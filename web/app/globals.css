@@ -1371,3 +1371,27 @@ input[type="range"] {
 .outcome-outside { border-color: color-mix(in srgb, var(--st-caution) 70%, transparent); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--st-caution) 10%, var(--surface)) 0 8px, var(--surface) 8px 16px); }
 .outcome-unknown { border-color: color-mix(in srgb, var(--st-standby) 55%, transparent); }
 .es-ver { background: var(--st-normal); }
+
+/* main nav: Envelope · Planner · TARS SI · Investigations · More; a hamburger on a phone */
+.sitenav-links { display: flex; }
+.nav-burger { display: none; margin-left: auto; font: inherit; font-size: 20px; line-height: 1; padding: 4px 10px; background: transparent; color: var(--ink); border: 1px solid var(--border-strong); cursor: pointer; }
+.nav-more { position: relative; }
+.nav-more-btn { font: inherit; font-size: 14px; padding: 6px 12px; background: transparent; color: var(--ink-2); border: 0; cursor: pointer; font-family: var(--font-mono), ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; }
+.nav-more-btn:hover, .nav-more-btn.is-current { color: var(--neon); }
+.nav-more-btn.is-current { box-shadow: inset 0 -2px 0 var(--neon); }
+.sitenav ul.nav-more-list { display: none; position: absolute; top: 100%; left: 0; min-width: 11em; flex-direction: column; gap: 0; padding: 4px; background: var(--page); border: 1px solid var(--border-strong); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); z-index: 30; }
+.sitenav ul.nav-more-list.is-open { display: flex; }
+@media (max-width: 700px) {
+  .nav-burger { display: block; }
+  .sitenav-links { display: none; flex-basis: 100%; }
+  .sitenav.nav-open .sitenav-links { display: block; }
+  .sitenav-links > ul { flex-direction: column; flex-wrap: nowrap; gap: 0; }
+  .nav-more-btn { width: 100%; text-align: left; color: var(--muted); pointer-events: none; }
+  .nav-more-btn span { display: none; }
+  .sitenav ul.nav-more-list { display: flex; position: static; border: 0; box-shadow: none; padding: 0 0 0 12px; background: transparent; }
+}
+
+.honesty { font-size: 13px; padding: 6px 10px; border-left: 3px solid var(--neon-2); margin: 8px 0; }
+.sitenav ul a.nav-ai { color: var(--neon-2); }
+.sitenav ul a.nav-ai:hover { color: var(--neon-2); background: rgba(255, 43, 214, 0.1); text-shadow: 0 0 10px var(--neon-2); }
+.sitenav ul a.nav-ai[aria-current="page"] { color: var(--neon-2); background: rgba(255, 43, 214, 0.12); box-shadow: inset 0 -2px 0 var(--neon-2), 0 6px 14px -8px var(--neon-2); text-shadow: 0 0 10px var(--neon-2); }

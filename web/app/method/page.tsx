@@ -74,6 +74,9 @@ export default function MethodPage() {
           investigation&apos;s (O₂, pressure) test points, and a target inside it is covered by measurements while a target outside it
           would need extrapolation. The other axes are checked one at a time against their measured range.
         </p>
+        <p data-help="method-coverage-honesty" className="honesty">
+          Covered means there are measurements at that condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+        </p>
       </div>
 
       <figure className="card figure-card">

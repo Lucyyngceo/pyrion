@@ -108,6 +108,9 @@ export default function PlannerView({ data }: { data: PlannerData }) {
           </span>{" "}
           <AskTars q={askQ} />
         </p>
+        <p data-help="planner-honesty" className="honesty">
+          Covered means there are measurements at that condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+        </p>
         <div className="pl-controls" role="group" aria-label="Layers">
           <label className="small">
             <input data-help="planner-layer-fm2" type="checkbox" checked={showFm2} onChange={(e) => { setShowFm2(e.target.checked); if (e.target.checked) setShowFm2o(false); }} /> FM2 as planned (a line, planned, not in PSI)

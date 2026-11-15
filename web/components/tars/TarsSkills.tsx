@@ -22,6 +22,60 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   return j;
 }
 
+/** The claims table: one row per claim with its class badge, the reason, the engine reference and the verified quotes. Shared by the panel and the chat. */
+export function ClaimResultView({ res }: { res: ClaimCheck }) {
+  return (
+    <div data-help="tars-claim-table" className="tars-claims">
+              <p className="small muted">
+                {(Object.keys(res.counts) as ClaimClass[]).map((k) => `${res.counts[k]} ${k}`).join(" · ")}
+                {res.models.length > 0 ? ` · proposed by ${res.models.join(", ")}; classified by code` : " · split by code (no model was available)"}
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Class</th>
+                    <th>Why, and the evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {res.claims.map((c, i) => (
+                    <tr key={i}>
+                      <td>{c.text}</td>
+                      <td>
+                        <span className={`tars-badge tars-badge-${CLASS_SLUG[c.class]}`} title={CLASS_HELP[c.class]}>
+                          {c.class}
+                        </span>
+                        {c.overclaimPatterns.length > 0 && <div className="small muted">wording: {c.overclaimPatterns.join(", ")}</div>}
+                      </td>
+                      <td>
+                        <div className="small">{c.reason}</div>
+                        {c.engineRefs.map((e) => (
+                          <div key={e.accession + e.fingerprint} className="small muted">
+                            Engine: {e.accession} is {e.engineVerdict} at {e.target} · fingerprint <code>{e.fingerprint.slice(0, 12)}…</code>
+                            {e.doi && (
+                              <>
+                                {" · "}
+                                <a data-help="tars-doi" href={`https://doi.org/${e.doi}`} target="_blank" rel="noreferrer">
+                                  DOI
+                                </a>
+                              </>
+                            )}
+                          </div>
+                        ))}
+                        {c.citations.map((q, j) => (
+                          <CitationQuote key={j} doc_id={q.doc_id} page={q.page} quote={q.quote} title={q.title} url={q.url} />
+                        ))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {res.dropped.length > 0 && <p className="small muted">{res.dropped.length} proposal(s) were discarded because code could not verify them.</p>}
+            </div>
+  );
+}
+
 /** "Check a claim": paste a text; each claim is classified by code, with its engine reference or verified NASA quote. */
 export function ClaimChecker({ onClose }: { onClose: () => void }) {
   const [text, setText] = useState("");
@@ -56,57 +110,36 @@ export function ClaimChecker({ onClose }: { onClose: () => void }) {
         {busy ? "Checking…" : "Check the claims"}
       </button>
       {err && <p className="tars-err" role="alert">{err}</p>}
-      {res && (
-        <div data-help="tars-claim-table" className="tars-claims">
-          <p className="small muted">
-            {(Object.keys(res.counts) as ClaimClass[]).map((k) => `${res.counts[k]} ${k}`).join(" · ")}
-            {res.models.length > 0 ? ` · proposed by ${res.models.join(", ")}; classified by code` : " · split by code (no model was available)"}
-          </p>
-          <table>
-            <thead>
-              <tr>
-                <th>Claim</th>
-                <th>Class</th>
-                <th>Why, and the evidence</th>
-              </tr>
-            </thead>
-            <tbody>
-              {res.claims.map((c, i) => (
-                <tr key={i}>
-                  <td>{c.text}</td>
-                  <td>
-                    <span className={`tars-badge tars-badge-${CLASS_SLUG[c.class]}`} title={CLASS_HELP[c.class]}>
-                      {c.class}
-                    </span>
-                    {c.overclaimPatterns.length > 0 && <div className="small muted">wording: {c.overclaimPatterns.join(", ")}</div>}
-                  </td>
-                  <td>
-                    <div className="small">{c.reason}</div>
-                    {c.engineRefs.map((e) => (
-                      <div key={e.accession + e.fingerprint} className="small muted">
-                        Engine: {e.accession} is {e.engineVerdict} at {e.target} · fingerprint <code>{e.fingerprint.slice(0, 12)}…</code>
-                        {e.doi && (
-                          <>
-                            {" · "}
-                            <a data-help="tars-doi" href={`https://doi.org/${e.doi}`} target="_blank" rel="noreferrer">
-                              DOI
-                            </a>
-                          </>
-                        )}
-                      </div>
-                    ))}
-                    {c.citations.map((q, j) => (
-                      <CitationQuote key={j} doc_id={q.doc_id} page={q.page} quote={q.quote} title={q.title} url={q.url} />
-                    ))}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {res.dropped.length > 0 && <p className="small muted">{res.dropped.length} proposal(s) were discarded because code could not verify them.</p>}
-        </div>
-      )}
+      {res && <ClaimResultView res={res} />}
     </section>
+  );
+}
+
+/** The brief: Download .md, Print / PDF and the preview. Shared by the panel and the chat. */
+export function BriefView({ brief }: { brief: Brief }) {
+  const frame = useRef<HTMLIFrameElement>(null);
+  const download = () => {
+    if (!brief) return;
+    const url = URL.createObjectURL(new Blob([brief.markdown], { type: "text/markdown;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "pyrion-evidence-brief.md";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <>
+              <div className="tars-brief-actions">
+                <button data-help="tars-brief-download" type="button" className="tars-btn" onClick={download}>
+                  Download .md
+                </button>
+                <button data-help="tars-brief-print" type="button" className="tars-btn" onClick={() => frame.current?.contentWindow?.print()}>
+                  Print / PDF
+                </button>
+              </div>
+              {brief.left_out.length > 0 && <p className="small muted">{brief.left_out.length} block(s) were left out because they could not be checked.</p>}
+              <iframe data-help="tars-brief-preview" ref={frame} title="Evidence brief preview" className="tars-brief-frame" sandbox="allow-same-origin allow-modals" srcDoc={brief.html} />
+            </>
   );
 }
 
@@ -116,7 +149,6 @@ export function BriefMe({ onClose }: { onClose: () => void }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [brief, setBrief] = useState<Brief | null>(null);
-  const frame = useRef<HTMLIFrameElement>(null);
   const turns = messages.flatMap((m) =>
     m.role === "tars" && m.kind === "expert" && m.question
       ? [{ question: m.question, kept: m.result.blocks, target: m.result.target, model: m.result.model ? { model: m.result.model.model, name: m.result.model.name } : null, skeptic: m.skeptic ? { verdict: m.skeptic.verdict, model: m.skeptic.model, objections: m.skeptic.objections } : null }]
@@ -132,15 +164,6 @@ export function BriefMe({ onClose }: { onClose: () => void }) {
     } finally {
       setBusy(false);
     }
-  };
-  const download = () => {
-    if (!brief) return;
-    const url = URL.createObjectURL(new Blob([brief.markdown], { type: "text/markdown;charset=utf-8" }));
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "pyrion-evidence-brief.md";
-    a.click();
-    URL.revokeObjectURL(url);
   };
   return (
     <section data-help="tars-brief" className="tars-skillpanel" aria-label="Brief me">
@@ -161,27 +184,69 @@ export function BriefMe({ onClose }: { onClose: () => void }) {
         {busy ? "Building…" : "Build the brief"}
       </button>
       {err && <p className="tars-err" role="alert">{err}</p>}
-      {brief && (
-        <>
-          <div className="tars-brief-actions">
-            <button data-help="tars-brief-download" type="button" className="tars-btn" onClick={download}>
-              Download .md
-            </button>
-            <button data-help="tars-brief-print" type="button" className="tars-btn" onClick={() => frame.current?.contentWindow?.print()}>
-              Print / PDF
-            </button>
-          </div>
-          {brief.left_out.length > 0 && <p className="small muted">{brief.left_out.length} block(s) were left out because they could not be checked.</p>}
-          <iframe data-help="tars-brief-preview" ref={frame} title="Evidence brief preview" className="tars-brief-frame" sandbox="allow-same-origin allow-modals" srcDoc={brief.html} />
-        </>
-      )}
+      {brief && <BriefView brief={brief} />}
     </section>
+  );
+}
+
+/** The comparison table, the ranking rule and the button that draws the points on the map. Shared by the panel and the chat. */
+export function ComparisonView({ res }: { res: ComparisonResult }) {
+  const { showOnEnvelope } = useTars();
+  const rowOf = (i: number) => res.ranking.find((x) => x.index === i)?.rank;
+  const show = () => {
+    const pts = res.rows.flatMap((r) => (r.ok && r.o2_percent !== undefined && r.total_kpa !== undefined ? [{ o2: r.o2_percent / 100, pressure: r.total_kpa, label: r.name }] : []));
+    showOnEnvelope({ overlay: pts });
+  };
+  return (
+    <div data-help="tars-compare-table" className="tars-cmptable">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Condition</th>
+                    <th>O₂</th>
+                    <th>Total</th>
+                    <th>pO₂</th>
+                    <th>Comparable / extrapolation</th>
+                    <th>Solid fuel</th>
+                    <th>Nearest evidence</th>
+                    <th>Rank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {res.rows.map((r) => (
+                    <tr key={r.index}>
+                      <td>{r.index + 1}</td>
+                      <td>{r.name}</td>
+                      {r.ok ? (
+                        <>
+                          <td>{r.o2_percent !== undefined ? `${r.o2_percent} %` : "—"}</td>
+                          <td>{r.total_kpa !== undefined ? `${r.total_kpa} kPa (${r.total_psia} psia)` : "—"}</td>
+                          <td>{r.pO2_display ?? "—"}</td>
+                          <td>{r.counts ? `${r.counts.APPLICABLE} / ${r.counts.EXTRAPOLATION}` : "—"}</td>
+                          <td>{r.solid_fuel ? r.solid_fuel.best.toLowerCase().replace(/_/g, " ") : "—"}</td>
+                          <td>{r.nearest ? `${r.nearest.accession}${r.nearest.acronym ? ` ${r.nearest.acronym}` : ""}` : "none ranked"}</td>
+                          <td>{rowOf(r.index) ?? "—"}</td>
+                        </>
+                      ) : (
+                        <td colSpan={7} className="small muted">
+                          {r.error ?? "could not be computed"}
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="small muted">{res.rule}</p>
+              <button data-help="tars-compare-map" type="button" className="tars-btn" onClick={show}>
+                Show these points on the map
+              </button>
+            </div>
   );
 }
 
 /** "Compare atmospheres": pick presets and/or write a condition; a table of what PSI holds near each, and the points on the map. */
 export function CompareAtmospheres({ onClose }: { onClose: () => void }) {
-  const { showOnEnvelope } = useTars();
   const [presets, setPresets] = useState<{ id: string; label: string }[]>([]);
   const [picked, setPicked] = useState<string[]>([]);
   const [name, setName] = useState("");
@@ -211,12 +276,6 @@ export function CompareAtmospheres({ onClose }: { onClose: () => void }) {
       setBusy(false);
     }
   };
-  const show = () => {
-    if (!res) return;
-    const pts = res.rows.flatMap((r) => (r.ok && r.o2_percent !== undefined && r.total_kpa !== undefined ? [{ o2: r.o2_percent / 100, pressure: r.total_kpa, label: r.name }] : []));
-    showOnEnvelope({ overlay: pts });
-  };
-  const rowOf = (i: number) => res?.ranking.find((x) => x.index === i)?.rank;
   return (
     <section data-help="tars-compare" className="tars-skillpanel" aria-label="Compare atmospheres">
       <div className="tars-skillhead">
@@ -243,52 +302,7 @@ export function CompareAtmospheres({ onClose }: { onClose: () => void }) {
         {busy ? "Comparing…" : `Compare ${count} condition${count === 1 ? "" : "s"}`}
       </button>
       {err && <p className="tars-err" role="alert">{err}</p>}
-      {res && (
-        <div data-help="tars-compare-table" className="tars-cmptable">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Condition</th>
-                <th>O₂</th>
-                <th>Total</th>
-                <th>pO₂</th>
-                <th>Comparable / extrapolation</th>
-                <th>Solid fuel</th>
-                <th>Nearest evidence</th>
-                <th>Rank</th>
-              </tr>
-            </thead>
-            <tbody>
-              {res.rows.map((r) => (
-                <tr key={r.index}>
-                  <td>{r.index + 1}</td>
-                  <td>{r.name}</td>
-                  {r.ok ? (
-                    <>
-                      <td>{r.o2_percent !== undefined ? `${r.o2_percent} %` : "—"}</td>
-                      <td>{r.total_kpa !== undefined ? `${r.total_kpa} kPa (${r.total_psia} psia)` : "—"}</td>
-                      <td>{r.pO2_display ?? "—"}</td>
-                      <td>{r.counts ? `${r.counts.APPLICABLE} / ${r.counts.EXTRAPOLATION}` : "—"}</td>
-                      <td>{r.solid_fuel ? r.solid_fuel.best.toLowerCase().replace(/_/g, " ") : "—"}</td>
-                      <td>{r.nearest ? `${r.nearest.accession}${r.nearest.acronym ? ` ${r.nearest.acronym}` : ""}` : "none ranked"}</td>
-                      <td>{rowOf(r.index) ?? "—"}</td>
-                    </>
-                  ) : (
-                    <td colSpan={7} className="small muted">
-                      {r.error ?? "could not be computed"}
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="small muted">{res.rule}</p>
-          <button data-help="tars-compare-map" type="button" className="tars-btn" onClick={show}>
-            Show these points on the map
-          </button>
-        </div>
-      )}
+      {res && <ComparisonView res={res} />}
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { resolveMode } from "@/lib/tars/answer";
 import { labelsFor, type Lang } from "@/lib/tars/lang";
 import { CitationQuote } from "./CitationPreview";
 import { suggestNext } from "@/lib/tars/suggest";
+import { BriefView, ClaimResultView, ComparisonView } from "./TarsSkills";
 import { encodeShare } from "@/lib/tars/share";
 import { useTars, type ExpertResult, type Msg, type SkepticView } from "./TarsProvider";
 
@@ -128,6 +129,9 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
           ),
         )}
       </div>
+      {r.claimCheck && <ClaimResultView res={r.claimCheck} />}
+      {r.brief && <BriefView brief={r.brief} />}
+      {r.comparison && <ComparisonView res={r.comparison} />}
       {msg.skeptic && <SecondOpinion s={msg.skeptic} blocks={r.blocks.map((b) => b.layer)} es={r.lang === "es"} />}
       <NextQuestions result={r} />
       {adv && msg.question && <ThreeModels question={msg.question} target={r.target} lang={r.lang} />}

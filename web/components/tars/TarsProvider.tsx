@@ -26,6 +26,10 @@ export interface SkepticView {
 }
 
 export interface ExpertResult {
+  /** Results of a typed workflow request ("Check this: …", "Make an evidence brief…", "Compare … with …"). */
+  claimCheck?: import("@/lib/expert/claim").ClaimCheck;
+  brief?: import("@/lib/expert/brief").Brief;
+  comparison?: import("@/lib/expert/compare").ComparisonResult;
   /** SHA-256 of the engine's evaluation for the condition of this answer (null when the answer had no condition). */
   fingerprint?: string | null;
   blocks: KeptBlock[];
