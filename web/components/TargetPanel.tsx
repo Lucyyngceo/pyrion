@@ -1,7 +1,7 @@
 "use client";
 
 import { useId } from "react";
-import { REGIME_AXES, REGIME_VALUES, type RegimeAxis } from "@/lib/engine";
+import { HABITAT_WINDOWS, REGIME_AXES, REGIME_VALUES, type RegimeAxis } from "@/lib/engine";
 import { PRESET_VIEWS, sourcesOf, type PresetView } from "@/lib/presets";
 import { axisLabel, fmt, kpaToPsi, valueLabel } from "@/lib/units";
 
@@ -15,14 +15,9 @@ export interface TargetState {
   gravityNotCovered?: string;
 }
 
-interface Props {
+interface PanelProps {
   state: TargetState;
   onChange: (s: TargetState) => void;
-  verifiedOnly: boolean;
-  onVerifiedOnly: (v: boolean) => void;
-  verifiedCount: number;
-  /** The result for this target, shown right under the presets so it is visible with the chart. */
-  result?: React.ReactNode;
 }
 
 /** Where the preset sits on the O2 x pressure plane (16-40 % O2, 40-110 kPa), as a tiny map. */
@@ -53,204 +48,212 @@ export function applyPreset(state: TargetState, view: PresetView): TargetState {
   };
 }
 
-export default function TargetPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount, result }: Props) {
+/** Left column, top: big NASA presets, each with its source line. */
+export function PresetsPanel({ state, onChange }: PanelProps) {
   const id = useId();
   const view = PRESET_VIEWS.find((v) => v.preset.id === state.presetId);
   const preset = view?.preset;
+  return (
+    <section className="card nav-presets" aria-labelledby={`${id}-h`}>
+      <h2 id={`${id}-h`} className="panel-title">
+        Start from a NASA condition
+      </h2>
+      <div className="presets" role="radiogroup" aria-label="NASA conditions">
+        {PRESET_VIEWS.map((v) => (
+          <button key={v.preset.id} type="button" role="radio" aria-checked={v.preset.id === state.presetId} className="preset" onClick={() => onChange(applyPreset(state, v))}>
+            <PresetGlyph o2={v.preset.continuous.o2_mole_fraction?.value} pressure={v.preset.continuous.pressure?.value} />
+            <span className="preset-label">{v.short}</span>
+            <span className="preset-summary">{v.summary}</span>
+            <span className="preset-source">{sourcesOf(v.preset)[0]?.identifier.split(" (")[0] ?? ""}</span>
+          </button>
+        ))}
+      </div>
+      <div className="source-note">
+        {preset ? (
+          <>
+            <p className="preset-desc">{preset.description}</p>
+            <p className="cite">
+              Sources:{" "}
+              {sourcesOf(preset).map((src, i) => (
+                <span key={`${src.id}|${src.quote}`}>
+                  {i > 0 && "; "}
+                  <a href={src.url} target="_blank" rel="noreferrer" title={`${src.quote} (${src.locator})`}>
+                    {src.identifier.split(" (")[0]}
+                  </a>
+                  <span className="muted">, {src.locator.split(",")[0]}</span>
+                </span>
+              ))}
+              . Hover a link for the quoted sentence.
+            </p>
+            {preset.limits.length > 0 && (
+              <ul className="limits">
+                {preset.limits.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+            )}
+          </>
+        ) : (
+          <p className="preset-desc">Custom condition: values set below.</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+const O2_WIN = { lo: HABITAT_WINDOWS.o2_mole_fraction[0] * 100, hi: HABITAT_WINDOWS.o2_mole_fraction[1] * 100 };
+const P_WIN = { lo: HABITAT_WINDOWS.pressure[0], hi: HABITAT_WINDOWS.pressure[1] };
+
+interface Mark {
+  value: number;
+  label: string;
+  title: string;
+}
+const NESC = "NASA/TM-20260003925 (NESC)";
+const PSI = 6.894757293168361;
+const O2_MARKS: Mark[] = [
+  { value: 21, label: "21 %", title: `ISS cabin air, 21 % O₂: ${NESC}, p. 18` },
+  { value: 26.5, label: "26.5 %", title: `Exploration atmosphere A, 26.5 % O₂ at 10.2 psia: ${NESC}, p. 13` },
+  { value: 34, label: "34 %", title: `Exploration atmosphere B, 34 % O₂ at 8.2 psia: ${NESC}, p. 13` },
+];
+const P_MARKS: Mark[] = [
+  { value: 8.2 * PSI, label: "8.2 psia", title: `Exploration atmosphere B, 8.2 psia (56.5 kPa): ${NESC}, p. 13` },
+  { value: 10.2 * PSI, label: "10.2 psia", title: `Exploration atmosphere A, 10.2 psia (70.3 kPa): ${NESC}, p. 13` },
+  { value: 101.325, label: "ISS 14.7 psia", title: `ISS cabin, 14.7 psia (101.3 kPa): ${NESC}, p. 18` },
+];
+
+/** Labelled tick marks under a slider, at NASA conditions. Alternate labels sit on two rows so they never overlap. */
+function Ticks({ min, max, marks }: { min: number; max: number; marks: Mark[] }) {
+  return (
+    <div className="ticks">
+      {marks.map((m, i) => (
+        <span key={m.label} className={`tick-mark tick-row-${i % 2}`} style={{ left: `${((m.value - min) / (max - min)) * 100}%` }} title={m.title}>
+          <i />
+          <b>{m.label}</b>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+interface ControlsProps extends PanelProps {
+  verifiedOnly: boolean;
+  onVerifiedOnly: (v: boolean) => void;
+  verifiedCount: number;
+}
+
+/** Left column, below: "Your condition" first, then "Other axes". */
+export function ControlsPanel({ state, onChange, verifiedOnly, onVerifiedOnly, verifiedCount }: ControlsProps) {
+  const id = useId();
+  const preset = PRESET_VIEWS.find((v) => v.preset.id === state.presetId)?.preset;
 
   const setRegime = (axis: RegimeAxis, value: string) => {
     const fromPreset = preset?.regime[axis] !== undefined;
-    onChange({
-      ...state,
-      presetId: fromPreset ? null : state.presetId,
-      regime: { ...state.regime, [axis]: value === "" ? undefined : value },
-      gravityNotCovered: undefined,
-    });
+    onChange({ ...state, presetId: fromPreset ? null : state.presetId, regime: { ...state.regime, [axis]: value === "" ? undefined : value }, gravityNotCovered: undefined });
   };
   const setNum = (k: "o2" | "pressure" | "gravityLevel", v: number | undefined) =>
     onChange({ ...state, presetId: null, [k]: v, ...(k === "gravityLevel" ? { gravityNotCovered: undefined } : {}) });
 
   const o2pct = Math.round(state.o2 * 1000) / 10;
   const p = Math.round(state.pressure * 10) / 10;
+  const axisField = (axis: RegimeAxis) => {
+    const fromPreset = preset?.regime[axis] !== undefined;
+    return (
+      <label key={axis} className="field">
+        <span>
+          {axisLabel(axis)} <span className={`origin ${fromPreset ? "origin-preset" : ""}`}>{fromPreset ? "preset" : "your choice"}</span>
+        </span>
+        <select value={state.regime[axis] ?? ""} onChange={(e) => setRegime(axis, e.target.value)}>
+          <option value="">{axis === "gravity_regime" ? "open (not compared)" : "left open"}</option>
+          {REGIME_VALUES[axis].map((v) => (
+            <option key={v} value={v}>
+              {valueLabel(v)}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  };
 
   return (
-    <section className="panel" aria-labelledby={`${id}-h`}>
+    <section className="card nav-controls" id="target-panel" aria-labelledby={`${id}-h`}>
       <h2 id={`${id}-h`} className="panel-title">
-        Target condition
+        Your condition
       </h2>
 
-      <div className="presets" role="radiogroup" aria-label="Presets">
-        {PRESET_VIEWS.map((v) => (
-          <button
-            key={v.preset.id}
-            type="button"
-            role="radio"
-            aria-checked={v.preset.id === state.presetId}
-            className="preset"
-            onClick={() => onChange(applyPreset(state, v))}
-          >
-            <PresetGlyph o2={v.preset.continuous.o2_mole_fraction?.value} pressure={v.preset.continuous.pressure?.value} />
-            <span className="preset-label">{v.short}</span>
-            <span className="preset-summary">{v.summary}</span>
-          </button>
-        ))}
-      </div>
-
-      {result}
-
-      <div className="source-note">
-        {preset ? (
-          <>
-            <p className="preset-desc">{preset.description}</p>
-            <details className="preset-sources">
-              <summary>
-                Sources and limits ({sourcesOf(preset).map((s) => s.identifier.split(" (")[0]).filter((v, i, a) => a.indexOf(v) === i).join(", ")})
-              </summary>
-              {sourcesOf(preset).map((s) => (
-                <p key={`${s.id}|${s.quote}`} className="cite">
-                  <q>{s.quote}</q>{" "}
-                  <a href={s.url} target="_blank" rel="noreferrer">
-                    {s.identifier}
-                  </a>
-                  <span className="muted">, {s.locator}</span>
-                </p>
-              ))}
-              {preset.limits.length > 0 && (
-                <ul className="limits">
-                  {preset.limits.map((l) => (
-                    <li key={l}>{l}</li>
-                  ))}
-                </ul>
-              )}
-            </details>
-          </>
-        ) : (
-          <p className="preset-desc">Custom target: values entered below.</p>
-        )}
-      </div>
-
-      <div className="readout" aria-label="Target values">
-        <div>
-          <span className="ro-k">O₂</span>
-          <span className="ro-v">
-            {fmt(state.o2 * 100, 1)}
-            <small>%</small>
-          </span>
-        </div>
-        <div>
-          <span className="ro-k">Pressure</span>
-          <span className="ro-v">
-            {fmt(state.pressure, 1)}
-            <small>kPa</small>
-          </span>
-          <span className="ro-sub">{fmt(kpaToPsi(state.pressure), 2)} psia</span>
-        </div>
-        <div>
-          <span className="ro-k">Gravity</span>
-          <span className="ro-v ro-text">
-            {state.regime.gravity_regime === "partial_gravity" && state.gravityLevel !== undefined
-              ? `${fmt(state.gravityLevel, 2)} g`
-              : state.regime.gravity_regime
-                ? valueLabel(state.regime.gravity_regime)
-                : "open"}
-          </span>
-        </div>
-      </div>
-
-      <div className="fields">
-        {REGIME_AXES.map((axis) => {
-          const fromPreset = preset?.regime[axis] !== undefined;
-          return (
-            <label key={axis} className="field">
-              <span>
-                {axisLabel(axis)} <span className={`origin ${fromPreset ? "origin-preset" : ""}`}>{fromPreset ? "preset" : "your choice"}</span>
-              </span>
-              <select value={state.regime[axis] ?? ""} onChange={(e) => setRegime(axis, e.target.value)}>
-                <option value="">not stated</option>
-                {REGIME_VALUES[axis].map((v) => (
-                  <option key={v} value={v}>
-                    {valueLabel(v)}
-                  </option>
-                ))}
-              </select>
-            </label>
-          );
-        })}
-
-        {state.regime.gravity_regime === "partial_gravity" && (
-          <label className="field">
-            <span>Gravity level (g)</span>
-            <input
-              type="number"
-              min={0.01}
-              max={0.99}
-              step={0.01}
-              value={state.gravityLevel ?? ""}
-              onChange={(e) => setNum("gravityLevel", e.target.value === "" ? undefined : Number(e.target.value))}
-            />
-          </label>
-        )}
-
-        <div className="field field-wide">
-          <label htmlFor={`${id}-o2`}>O₂ mole fraction (%)</label>
-          <div className="range-row">
-            <input
-              type="range"
-              min={10}
-              max={100}
-              step={0.5}
-              value={o2pct}
-              aria-label="O₂ mole fraction slider (%)"
-              onChange={(e) => setNum("o2", Number(e.target.value) / 100)}
-            />
+      <div className="field">
+        <div className="field-head">
+          <label htmlFor={`${id}-o2`}>Oxygen (O₂)</label>
+          <span className="numbox">
             <input
               id={`${id}-o2`}
               type="number"
-              min={0}
-              max={100}
+              min={O2_WIN.lo}
+              max={O2_WIN.hi}
               step={0.5}
               value={o2pct}
               onChange={(e) => {
                 const v = Number(e.target.value);
-                if (e.target.value !== "" && Number.isFinite(v) && v >= 0 && v <= 100) setNum("o2", v / 100);
+                if (e.target.value !== "" && Number.isFinite(v)) setNum("o2", clamp(v, O2_WIN.lo, O2_WIN.hi) / 100);
               }}
             />
-          </div>
+            <small>%</small>
+          </span>
         </div>
+        <input type="range" min={O2_WIN.lo} max={O2_WIN.hi} step={0.5} value={clamp(o2pct, O2_WIN.lo, O2_WIN.hi)} aria-label="Oxygen slider (%)" onChange={(e) => setNum("o2", Number(e.target.value) / 100)} />
+        <Ticks min={O2_WIN.lo} max={O2_WIN.hi} marks={O2_MARKS} />
+      </div>
 
-        <div className="field field-wide">
-          <label htmlFor={`${id}-p`}>Pressure (kPa)</label>
-          <div className="range-row">
-            <input
-              type="range"
-              min={10}
-              max={350}
-              step={0.5}
-              value={p}
-              aria-label="Pressure slider (kPa)"
-              onChange={(e) => setNum("pressure", Number(e.target.value))}
-            />
+      <div className="field">
+        <div className="field-head">
+          <label htmlFor={`${id}-p`}>Pressure</label>
+          <span className="numbox">
             <input
               id={`${id}-p`}
               type="number"
-              min={1}
-              max={1000}
+              min={P_WIN.lo}
+              max={P_WIN.hi}
               step={0.1}
               value={p}
               onChange={(e) => {
                 const v = Number(e.target.value);
-                if (e.target.value !== "" && Number.isFinite(v) && v > 0) setNum("pressure", v);
+                if (e.target.value !== "" && Number.isFinite(v)) setNum("pressure", clamp(v, P_WIN.lo, P_WIN.hi));
               }}
             />
-          </div>
-          <span className="hint">= {fmt(kpaToPsi(state.pressure), 2)} psia</span>
+            <small>kPa</small>
+          </span>
         </div>
+        <input type="range" min={P_WIN.lo} max={P_WIN.hi} step={0.5} value={clamp(p, P_WIN.lo, P_WIN.hi)} aria-label="Pressure slider (kPa)" onChange={(e) => setNum("pressure", Number(e.target.value))} />
+        <Ticks min={P_WIN.lo} max={P_WIN.hi} marks={P_MARKS} />
+        <span className="hint psia-line">= {fmt(kpaToPsi(state.pressure), 2)} psia</span>
       </div>
 
-      <label className="toggle">
-        <input type="checkbox" checked={verifiedOnly} onChange={(e) => onVerifiedOnly(e.target.checked)} />
+      {axisField("gravity_regime")}
+      {state.regime.gravity_regime === "partial_gravity" && (
+        <label className="field">
+          <span>Gravity level (g)</span>
+          <input
+            type="number"
+            min={0.01}
+            max={0.99}
+            step={0.01}
+            value={state.gravityLevel ?? ""}
+            onChange={(e) => setNum("gravityLevel", e.target.value === "" ? undefined : Number(e.target.value))}
+          />
+        </label>
+      )}
+
+      <h3 className="axes-title">Other axes</h3>
+      <p className="axes-hint muted small">Leave open unless you know it: fixing an axis an investigation did not record makes it insufficient evidence.</p>
+      {REGIME_AXES.filter((a) => a !== "gravity_regime").map(axisField)}
+
+      <label className={`toggle${verifiedCount === 0 ? " toggle-off" : ""}`}>
+        <input type="checkbox" checked={verifiedOnly && verifiedCount > 0} disabled={verifiedCount === 0} onChange={(e) => onVerifiedOnly(e.target.checked)} />
         <span>
           Count only values verified by a person <span className="muted">({verifiedCount} so far)</span>
+          {verifiedCount === 0 && <span className="toggle-note"> No value has been verified by a person yet; this switch turns on when the first is.</span>}
         </span>
       </label>
     </section>

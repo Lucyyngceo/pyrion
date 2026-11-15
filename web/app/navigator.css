@@ -1,0 +1,130 @@
+/* NAVIGATOR layout (N4) and plain-language details (N6). Loaded after cyber.css. */
+
+/* ---------- three columns, everything visible, no accordions on desktop ---------- */
+.nav-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+.nav-left, .nav-right { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.nav-center { min-width: 0; }
+.nav-presets .presets { grid-template-columns: 1fr; gap: 8px; }
+.nav-presets .preset { grid-template-columns: 1fr; gap: 1px; padding: 10px 12px; }
+.nav-presets .preset-summary { padding-right: 40px; }
+.nav-presets .preset-label { font-size: 15px; }
+.preset-source { font-size: 11.5px; color: var(--muted); }
+.nav-presets .source-note { margin-top: 10px; font-size: 12.5px; }
+.nav-presets .cite { margin: 0 0 6px; }
+
+.nav-controls .field { margin-bottom: 14px; display: grid; gap: 4px; }
+.field-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.numbox { display: inline-flex; align-items: baseline; gap: 4px; }
+.numbox input { width: 74px; text-align: right; }
+.axes-title { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 18px 0 2px; }
+.axes-hint { margin: 0 0 10px; }
+.psia-line { display: block; margin-top: 2px; }
+
+/* NASA tick marks under a slider */
+.ticks { position: relative; height: 30px; margin: 0 8px; }
+.tick-mark { position: absolute; transform: translateX(-50%); display: grid; justify-items: center; cursor: help; }
+.tick-mark i { width: 1px; height: 6px; background: var(--neon); opacity: 0.8; }
+.tick-mark b { font-weight: 500; font-size: 10.5px; color: var(--ink-2); white-space: nowrap; }
+.tick-row-1 { top: 12px; }
+.tick-row-1 i { height: 14px; }
+
+.toggle-off { opacity: 0.85; }
+.toggle-note { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.toggle input:disabled { cursor: not-allowed; }
+
+/* the chart gets the room */
+.nav-center .plot-wrap { min-height: 420px; }
+.evidence-map-slot:empty { display: none; }
+
+/* right column */
+.nav-verdict .vring { margin-top: 12px; grid-template-columns: 110px 1fr; }
+.where-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
+.where-list li { padding: 8px 10px; border: 1px solid var(--border); border-left: 3px solid var(--st-normal); background: rgba(0, 240, 255, 0.03); }
+.where-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.where-name { font-weight: 600; }
+.where-text { margin: 4px 0 2px; font-size: 13.5px; line-height: 1.45; }
+.where-none { margin: 8px 0; font-size: 13.5px; }
+.where-soon { margin-top: 12px; }
+
+/* result cards: the plain sentence leads */
+.result-plain { margin: 6px 0 4px; font-size: 15px; line-height: 1.45; color: var(--ink); }
+.tech { font-family: var(--font-mono), ui-monospace, monospace; font-size: 12px; color: var(--ink-2); }
+.context-title { margin: 8px 0 2px; }
+
+/* glossary on hover or focus */
+.term { position: relative; border-bottom: 1px dotted var(--neon); cursor: help; }
+.term:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
+.term-tip {
+  position: absolute; left: 0; top: calc(100% + 6px); z-index: 30; width: 260px; padding: 8px 10px; display: none;
+  background: rgba(6, 8, 14, 0.98); border: 1px solid var(--neon); color: var(--ink); font-size: 12.5px; line-height: 1.4;
+  font-weight: 400; text-transform: none; letter-spacing: 0; box-shadow: var(--glow);
+}
+.term:hover .term-tip, .term:focus .term-tip, .term:focus-within .term-tip { display: block; }
+
+/* selects readable on the dark theme */
+:root { color-scheme: dark; }
+select, input, textarea { color-scheme: dark; }
+select { background-color: #0a0e18; color: #e6f6ff; border: 1px solid var(--border-strong); }
+select option { background-color: #0a0e18; color: #e6f6ff; }
+select option:checked { background-color: #12304a; color: #ffffff; }
+select:focus-visible, input:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
+
+/* ---------- narrower screens ---------- */
+@media (max-width: 1279px) {
+  .nav-grid { grid-template-columns: 280px minmax(0, 1fr) 300px; gap: 12px; }
+}
+@media (max-width: 1099px) {
+  /* single column: presets, verdict, where the evidence is, chart, controls, results */
+  .nav-grid { display: flex; flex-direction: column; gap: 16px; }
+  .nav-left, .nav-right { display: contents; }
+  .nav-presets { order: 1; }
+  .nav-verdict { order: 2; }
+  .nav-evidence { order: 3; }
+  .nav-center { order: 4; }
+  .nav-controls { order: 5; }
+  .nav-presets .presets { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .nav-presets .presets { grid-template-columns: 1fr; }
+  .term-tip { width: min(260px, calc(100vw - 48px)); }
+  .nav-center .plot-wrap { min-height: 320px; }
+}
+
+/* Ask PYRION: compact, one line and the examples */
+.ask { padding: 10px 14px; margin-bottom: 12px; }
+.ask .card-head p { margin: 2px 0 8px; font-size: 12px; }
+.ask-ex { flex-direction: row; flex-wrap: wrap; gap: 2px 16px; margin: 6px 0 0; }
+.ask-ex .linklike { font-size: 12px; }
+
+/* the home page gets the width the three columns need */
+main.page:has(.nav-grid) { max-width: 1500px; }
+
+/* chart legend: two columns of compact chips so the chart starts high */
+.nav-center .legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 6px; }
+.nav-center .legend .chip { min-width: 0; font-size: 11.5px; padding: 2px 8px 2px 6px; white-space: normal; text-align: left; line-height: 1.25; }
+.nav-center .legend .chip-static, .nav-center .legend .seg { grid-column: auto; }
+@media (max-width: 520px) { .nav-center .legend { grid-template-columns: 1fr; } }
+.nav-presets .preset-desc { margin: 0 0 4px; font-size: 12.5px; }
+.nav-presets .limits { font-size: 11.5px; margin-top: 4px; }
+
+/* nothing in the three columns may widen the page (the chart's first render is wider than a phone) */
+.nav-grid, .nav-grid > *, .nav-left, .nav-right, .nav-grid .card { min-width: 0; max-width: 100%; }
+.nav-center figure.chart, .nav-center .plot-wrap { max-width: 100%; overflow: hidden; }
+.nav-center .plot { max-width: 100%; height: auto; }
+
+/* site nav on a phone: the links wrap instead of widening the page */
+@media (max-width: 700px) {
+  .sitenav-inner { flex-wrap: wrap; gap: 6px 14px; padding: 8px 16px; }
+  .sitenav ul { flex-wrap: wrap; gap: 2px 10px; padding: 0; margin: 0; }
+  .sitenav-sub { display: none; }
+}
+@media (max-width: 520px) {
+  .tvp-row { grid-template-columns: 20px minmax(0, 1fr) auto; }
+  .tvp-row .tvp-score { display: none; }
+  .tvp-name { min-width: 0; overflow-wrap: anywhere; }
+}

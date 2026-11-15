@@ -1,24 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Term from "./Term";
 import AskBox from "./AskBox";
 import type { ParsedTarget } from "@/lib/ask-core";
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import EnvelopeChart, { type DomainSeed, type LayerState } from "./EnvelopeChart";
 import Results, { citationKey } from "./Results";
-import TargetPanel, { applyPreset, type TargetState } from "./TargetPanel";
+import { ControlsPanel, PresetsPanel, applyPreset, type TargetState } from "./TargetPanel";
+import NavigatorPanel from "./NavigatorPanel";
 import {
   buildEnvelopes,
   evaluate,
   locateTarget,
   parseConditionCsv,
+  HABITAT_WINDOWS,
   type ConditionRecord,
   type Evaluation,
   type Target,
 } from "@/lib/engine";
 import { colorMap, sortEnvelopes, targetRegimeName } from "@/lib/layers";
 import TextVsPhysics from "./TextVsPhysics";
-import VerdictRing from "./VerdictRing";
 import { PRESET_VIEWS } from "@/lib/presets";
 import { envelopeStatus } from "@/lib/summary";
 import type { Dataset } from "@/lib/types";
@@ -71,8 +73,8 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
       setState((st) => ({
         ...st,
         presetId: null,
-        o2: Math.min(1, Math.max(0, Math.round((st.o2 + dO2) * 1000) / 1000)),
-        pressure: Math.max(1, Math.round((st.pressure + dP) * 10) / 10),
+        o2: Math.min(HABITAT_WINDOWS.o2_mole_fraction[1], Math.max(HABITAT_WINDOWS.o2_mole_fraction[0], Math.round((st.o2 + dO2) * 1000) / 1000)),
+        pressure: Math.min(HABITAT_WINDOWS.pressure[1], Math.max(HABITAT_WINDOWS.pressure[0], Math.round((st.pressure + dP) * 10) / 10)),
       }));
     };
     window.addEventListener("keydown", onKey);
@@ -212,17 +214,22 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
       <AskBox onTarget={applyAsked} />
 
       <div
-        className="workbench"
+        className="nav-grid"
         ref={benchRef}
         onPointerEnter={() => (overBench.current = true)}
         onPointerLeave={() => (overBench.current = false)}
       >
-        <section className="card chart-card" aria-labelledby="envelope-h">
+        <div className="nav-left">
+          <PresetsPanel state={state} onChange={setState} />
+          <ControlsPanel state={state} onChange={setState} verifiedOnly={verifiedOnly} onVerifiedOnly={setVerifiedOnly} verifiedCount={verifiedCount} />
+        </div>
+
+        <section className="card chart-card nav-center" aria-labelledby="envelope-h">
           <div className="card-head">
             <h2 id="envelope-h">The evidence envelope</h2>
             <p className="muted small">
-              Measured PSI test points, one layer per regime (gravity · fuel phase · diluent). Click, drag or use the arrow keys
-              to move the target.
+              Each shaded area is the <Term k="envelope">envelope</Term> of one regime: the oxygen and pressure PSI tested. Click, drag or use the arrow keys to move your
+              condition.
             </p>
           </div>
           {status ? (
@@ -244,49 +251,29 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
           ) : (
             <p className="banner">The engine rejected this target: {result.error}</p>
           )}
+          {/* Slot for the evidence-map layer (N5): drawn inside the chart when the engine's evidence map exists. */}
+          <div className="evidence-map-slot" data-slot="evidence-map" />
         </section>
-        <aside className="card panel-card" id="target-panel">
-          <TargetPanel
-            state={state}
-            onChange={setState}
-            verifiedOnly={verifiedOnly}
-            onVerifiedOnly={setVerifiedOnly}
-            verifiedCount={verifiedCount}
-            result={
-              status && (
-                <div className={`outcome outcome-${status.tone}`} role="status" aria-live="polite">
-                  <div className="outcome-kicker">Result for {view ? view.short : "custom target"}</div>
-                  <div className="outcome-head" key={status.headline}>{status.headline}</div>
-                  <p className="outcome-detail" key={status.detail}>{status.detail}</p>
-                  <div className="compare">
-                    {pinned && pinnedStatus ? (
-                      <>
-                        <span className={`compare-chip tone-${pinnedStatus.tone}`}>
-                          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                            <circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 2" />
-                          </svg>
-                          {pinned.label}: {pinnedStatus.headline.toLowerCase()}
-                        </span>
-                        <button type="button" className="linklike small" onClick={() => setPinned(null)}>
-                          Clear
-                        </button>
-                      </>
-                    ) : (
-                      <button
-                        type="button"
-                        className="pin-btn"
-                        onClick={() => setPinned({ state, label: view ? view.short : "Custom target" })}
-                      >
-                        Pin to compare
-                      </button>
-                    )}
-                  </div>
-                </div>
-              )
-            }
-          />
-          {counts && <VerdictRing counts={counts} />}
-        </aside>
+
+        <div className="nav-right">
+          {status && result.evaluation && counts && (
+            <NavigatorPanel
+              evaluation={result.evaluation}
+              investigations={dataset.investigations}
+              status={status}
+              targetLabel={view ? view.short : "custom condition"}
+              counts={counts}
+              pinned={pinned && pinnedStatus ? { label: pinned.label, headline: pinnedStatus.headline, tone: pinnedStatus.tone } : null}
+              onPin={() => setPinned({ state, label: view ? view.short : "Custom target" })}
+              onClearPin={() => setPinned(null)}
+              onHover={setHighlight}
+              onOpen={(a) => {
+                setOpenAccession(a);
+                requestAnimationFrame(() => document.getElementById(`res-${a}`)?.scrollIntoView({ block: "center", behavior: "smooth" }));
+              }}
+            />
+          )}
+        </div>
       </div>
 
       {target.regime.gravity_regime === "partial_gravity" && (

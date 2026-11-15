@@ -1,6 +1,7 @@
 import BootLog from "@/components/BootLog";
 import Explorer from "@/components/Explorer";
 import { loadDataset } from "@/lib/data";
+import "./navigator.css";
 
 export default async function Page() {
   const dataset = await loadDataset();

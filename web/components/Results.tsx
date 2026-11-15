@@ -6,6 +6,8 @@ import type { Citation, ClusterVerdict, ConditionRecord, Evaluation, Investigati
 import { envelopeName } from "@/lib/layers";
 import type { Dataset, Investigation } from "@/lib/types";
 import { axisLabel, readable, valueLabel } from "@/lib/units";
+import { plainVerdict } from "@/lib/plain";
+import Term from "./Term";
 
 const VERDICT: Record<Verdict, { icon: string; plain: string; cls: string }> = {
   APPLICABLE: { icon: "✓", plain: "inside the measured envelope", cls: "v-app" },
@@ -182,6 +184,7 @@ function ResultRow({
   }, [open]);
 
   const others = iv.clusters.filter((c) => c.clusterKey !== iv.decidingCluster);
+  const pv = plainVerdict(iv.verdict, cluster);
   const main = reasons.filter((r) => !r.informational);
   const context = reasons.filter((r) => r.informational);
   const reasonItem = (reason: (typeof reasons)[number], i: number) => {
@@ -226,10 +229,10 @@ function ResultRow({
         <div className="result-id">
           <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
-          <span className="verdict-plain">{VERDICT[iv.verdict].plain}</span>
         </div>
-        {cluster?.rank != null && <span className="rank">rank {cluster.rank}</span>}
+        {cluster?.rank != null && <span className="rank">nearest #{cluster.rank}</span>}
       </header>
+      <p className="result-plain">{pv.sentence}</p>
       {inv && <p className="result-title">{inv.title}</p>}
       <div className="result-cite">
         {synthetic ? (
@@ -249,30 +252,21 @@ function ResultRow({
 
       {cluster && (
         <p className="cluster-line small">
-          <span className="muted">Evidence used:</span> {envelopeName(cluster)} · {cluster.tests.length} test
+          <span className="muted">Measured in:</span> {envelopeName(cluster)} · {cluster.tests.length} test
           {cluster.tests.length === 1 ? "" : "s"}
           {cluster.evidenceStatus === "includes_unverified" && <span className="muted"> · includes values not yet verified by a person</span>}
           {cluster.evidenceStatus === "verified" && <span className="muted"> · every value verified by a person</span>}
           <br />
-          <span className="muted">Distance:</span>{" "}
-          {cluster.distance !== null ? (
-            <>
-              {cluster.distance.toPrecision(3)} <span className="muted">({cluster.distanceNote})</span>
-            </>
-          ) : (
-            <span>{cluster.distanceNote}</span>
-          )}
+          <span className="muted">Technical:</span> <span className="tech">{pv.technical}</span>
         </p>
       )}
 
       <ul className="reasons">{main.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
       {context.length > 0 && (
-        <details className="context-box">
-          <summary>
-            Context: {context.length} axis check{context.length === 1 ? "" : "s"} that did not decide the verdict
-          </summary>
+        <div className="context-box">
+          <p className="context-title small muted">Other checks that did not decide the verdict ({context.length})</p>
           <ul className="reasons">{context.map((r) => reasonItem(r, reasons.indexOf(r)))}</ul>
-        </details>
+        </div>
       )}
 
       {others.length > 0 && (
@@ -340,10 +334,10 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
   return (
     <section className="results" aria-labelledby="results-h">
       <div className="results-top">
-        <h2 id="results-h">Applicability, one row per investigation</h2>
+        <h2 id="results-h">The investigations, one card each</h2>
         <p className="muted small">
-          Every verdict is computed by the PYRION engine ({evaluation.engine.name} {evaluation.engine.version}): deterministic
-          rules, no language model. Same records and target in, same verdict out.
+          Each card says in one sentence where your condition stands, then shows the reasons and the sources. Every verdict is computed by
+          the PYRION engine ({evaluation.engine.name} {evaluation.engine.version}): deterministic rules, no language model.
         </p>
       </div>
 
@@ -364,7 +358,7 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
       {barrier.length > 0 && (
         <div className="group group-barrier">
           <h3 className="group-title">
-            Not comparable: different physical regime <span className="count">{barrier.length}</span>
+            Not comparable: a different physical <Term k="regime barrier">regime</Term> <span className="count">{barrier.length}</span>
             <button type="button" className="linklike small" onClick={() => setShowBarrier((s) => !s)} aria-expanded={showBarrier}>
               {showBarrier ? "Hide" : "Show"}
             </button>

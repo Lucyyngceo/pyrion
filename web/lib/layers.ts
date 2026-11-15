@@ -1,7 +1,8 @@
 // Presentation helpers for the engine's regime envelopes: stable order, colors, shapes, names.
 
 import { REGIME_AXES, REGIME_VALUES, type RegimeEnvelope, type RegimeState } from "./engine";
-import { GRAVITY_SHORT, valueLabel } from "./units";
+import { regimeWords } from "./plain";
+import { valueLabel } from "./units";
 
 function rank(s: RegimeState): number {
   if (s.state !== "known") return 99;
@@ -41,22 +42,10 @@ export function colorMap(envs: readonly RegimeEnvelope[]): Map<string, string> {
   return m;
 }
 
-const stateText = (s: RegimeState | undefined, short = false) => {
-  if (!s || s.state === "missing") return "?";
-  if (s.state === "conflicting") return s.values.map((v) => valueLabel(v)).join("/");
-  const v = s.values[0];
-  return short && s.axis === "gravity_regime" ? GRAVITY_SHORT[v] ?? valueLabel(v) : valueLabel(v);
-};
+/** "microgravity · gas fuel · N₂ diluent · normal flame": the layer's regime in words (no codes). */
+export const envelopeName = (e: { regime: readonly RegimeState[] }) => regimeWords(e.regime);
 
-/** "μg · solid · N₂" (one entry per regime axis the engine knows). */
-export const envelopeName = (e: { regime: readonly RegimeState[] }) =>
-  REGIME_AXES.map((a) => stateText(e.regime.find((s) => s.axis === a), true)).join(" · ");
-
-export const envelopeLongName = (e: { regime: readonly RegimeState[] }) =>
-  REGIME_AXES.map((a) => {
-    const s = e.regime.find((x) => x.axis === a);
-    return `${a.replaceAll("_", " ")} ${stateText(s)}`;
-  }).join(", ");
+export const envelopeLongName = (e: { regime: readonly RegimeState[] }) => regimeWords(e.regime);
 
 export function fuelPhaseOf(e: RegimeEnvelope): string {
   const s = e.regime.find((x) => x.axis === "fuel_phase");

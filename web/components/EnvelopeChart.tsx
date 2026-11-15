@@ -1,5 +1,6 @@
 "use client";
 
+import Term from "./Term";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import type { EnvelopePoint, RegimeEnvelope } from "@/lib/engine";
 import { envelopeLongName, envelopeName, fuelPhaseOf } from "@/lib/layers";
@@ -257,7 +258,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
               >
                 <Glyph phase={fuelPhaseOf(e)} color={colors.get(e.key) ?? "var(--s-other)"} hollow={!e.regimeComplete} />
                 <span>{envelopeName(e)}</span>
-                <span className="chip-n">{e.points.length}</span>
+                <span className="chip-n">({e.points.length} points)</span>
               </button>
             );
           })}
@@ -273,7 +274,7 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
           >
             <Glyph phase="unknown" color="var(--s-other)" hollow />
             <span>Regime not stated</span>
-            <span className="chip-n">{incomplete.reduce((n, e) => n + e.points.length, 0)}</span>
+            <span className="chip-n">({incomplete.reduce((n, e) => n + e.points.length, 0)} points)</span>
           </button>
         )}
         <span className="chip chip-static" aria-hidden="true">
@@ -699,11 +700,10 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
         )}
         <p className="muted small">
           {gapHulls.length > 0 && "Hatching marks the O₂–pressure plane outside every measured hull of the target's regime: no PSI test there, in the extracted records. "}
-          Each shaded area is the convex hull of one investigation&apos;s measured test points: the exact hull its verdict
-          uses. Color is the regime (gravity regime · fuel phase · diluent · flame type). Regimes are barriers: a layer of
-          another regime is faded and never used for comparison. A line joins the two ends of a measured range. Hollow
-          markers are tests with some regime axis not stated in the extracted records; gray ones lack gravity regime or fuel
-          phase.
+          Each shaded area is the <Term k="convex hull">convex hull</Term> of one investigation&apos;s measured test points: the exact outline its verdict
+          uses. Color is the regime (gravity · fuel phase · diluent · flame type). A different <Term k="regime barrier">regime</Term> is faded and never used for
+          comparison. A line joins the two ends of a measured range. Hollow markers are tests with some regime axis not stated in the extracted records; gray ones
+          lack gravity or fuel phase.
         </p>
       </figcaption>
 

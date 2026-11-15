@@ -19,6 +19,7 @@ export {
   parseConditionCsv,
   parseCsv,
   validateTarget,
+  HABITAT_WINDOWS,
   // transfer hypothesis (docs/TRANSFER.md) and FM2 instrument balance
   DENSITY_FACTOR_PMMA_AIR,
   FM2_SOURCES,
