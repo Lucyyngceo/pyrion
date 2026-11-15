@@ -15,6 +15,9 @@ function load() {
   return cache;
 }
 
+/** The server's own records and investigation list. */
+export const serverData = () => load();
+
 export async function evaluateOnServer(target: Target): Promise<{ evaluation: Evaluation; investigations: Investigation[]; sha256: string }> {
   const { records, investigations } = await load();
   const evaluation = evaluate(records, target);

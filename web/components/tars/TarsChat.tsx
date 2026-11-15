@@ -1,0 +1,266 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { EXPERIMENT_LABEL, type ExperimentsNeeded } from "@/lib/engine";
+import { citeSource } from "@/lib/cite";
+import { resolveMode, viewFor, type Fact, type Mode, type ThreePart } from "@/lib/tars/answer";
+import { useTars, type HelpAnswer, type Msg } from "./TarsProvider";
+
+const MODES: { id: Mode; label: string; hint: string }[] = [
+  { id: "easy", label: "Easy", hint: "Plain wording; details and steps folded." },
+  { id: "advanced", label: "Advanced", hint: "Figures, receipts and the steps open." },
+  { id: "auto", label: "Auto", hint: "Advanced for a condition, Easy for a how-to question." },
+];
+
+const HONESTY = "Honesty is enforced by code: the verdicts and every number come from the engine.";
+
+function Block({ title, sub, facts, showDetail }: { title: string; sub: string; facts: Fact[]; showDetail: boolean }) {
+  const { showOnEnvelope } = useTars();
+  return (
+    <section className={`tars-block tars-${title.toLowerCase()}`} aria-label={title}>
+      <h4>
+        {title} <span className="tars-sub">{sub}</span>
+      </h4>
+      <ul>
+        {facts.map((f) => (
+          <li key={f.id}>
+            <span>{f.text}</span>
+            {showDetail && f.detail && <span className="tars-detail small muted"> {f.detail}</span>}
+            {f.refs?.map((r) => (
+              <span key={r.accession} className="tars-ref">
+                <button type="button" className="linklike small" onClick={() => showOnEnvelope({ open: r.accession })}>
+                  {r.accession} receipt
+                </button>
+                {showDetail && r.doi && (
+                  <a className="small" href={`https://doi.org/${r.doi}`} target="_blank" rel="noreferrer">
+                    doi
+                  </a>
+                )}
+              </span>
+            ))}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function Answer({ msg }: { msg: Extract<Msg, { kind: "answer" }> }) {
+  const { mode, showOnEnvelope } = useTars();
+  const a: ThreePart = msg.answer;
+  const v = viewFor(a, resolveMode(mode, msg.route));
+  return (
+    <div className="tars-answer">
+      <Block title="KNOWN" sub="what the extracted PSI records support" facts={v.known} showDetail={v.showDetail} />
+      <Block title="UNKNOWN" sub="where the evidence ends, and why" facts={v.unknown} showDetail={v.showDetail} />
+      <Block title="NEXT" sub="what would close it (a PYRION proposal, not a NASA plan)" facts={v.next} showDetail={v.showDetail} />
+      <p className="tars-fp small muted">
+        Engine fingerprint (SHA-256): <code>{v.showDetail ? a.fingerprint : `${a.fingerprint.slice(0, 16)}…`}</code>
+      </p>
+      <button type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: a.target })}>
+        Show on the envelope
+      </button>
+      <details className="tars-steps" open={v.stepsOpen} key={String(v.stepsOpen)}>
+        <summary>How TARS got this ({a.steps.length} steps)</summary>
+        <ol>
+          {a.steps.map((s) => (
+            <li key={s.id}>
+              <strong>{s.label}.</strong> <span className="muted">{s.detail}</span>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </div>
+  );
+}
+
+function Experiments({ msg }: { msg: Extract<Msg, { kind: "experiments" }> }) {
+  const ex = msg.experiments as ExperimentsNeeded;
+  const { mode, showOnEnvelope } = useTars();
+  const adv = resolveMode(mode, msg.route) === "advanced";
+  return (
+    <div className="tars-answer tars-exp">
+      <p className="tars-label">{EXPERIMENT_LABEL}</p>
+      <section className="tars-block">
+        <h4>The gap</h4>
+        <p>{ex.gap.sentence}</p>
+        {adv && ex.gap.detail.length > 0 && <p className="small muted">{ex.gap.detail.join(" ")}</p>}
+      </section>
+      <section className="tars-block">
+        <h4>Test matrix ({ex.testMatrix.pointCount} points)</h4>
+        <p>{ex.testMatrix.sentence}</p>
+        {adv && <p className="small muted">{ex.testMatrix.note}</p>}
+      </section>
+      <section className="tars-block">
+        <h4>Solids first</h4>
+        <p>{ex.solidsRationale.sentence}</p>
+        {adv && (
+          <ul className="small">
+            {ex.solidsRationale.sources.map((s) => (
+              <li key={s.measure}>
+                {s.measure} ({citeSource(s.file)}, p. {s.page}): “{s.quote}”{s.qualifier ? ` [${s.qualifier}]` : ""}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+      <section className="tars-block">
+        <h4>What FM2 and LUCI plan or did</h4>
+        <ul className="small">
+          {ex.plannedCoverage.sources.map((s) => (
+            <li key={s.id}>
+              <strong>{s.name}</strong>
+              {s.qualifier ? ` [${s.qualifier}]` : ""}: “{s.quote}” {s.page ? `(p. ${s.page})` : ""}
+            </li>
+          ))}
+        </ul>
+        {ex.plannedCoverage.statements.map((s) => (
+          <p key={s.source} className="small">
+            {s.sentence}
+          </p>
+        ))}
+      </section>
+      <section className="tars-block">
+        <h4>Remaining gap</h4>
+        <p>{ex.remainingGap.sentence}</p>
+      </section>
+      <section className="tars-block">
+        <h4>Priority</h4>
+        <ol>
+          {ex.priority.map((p) => (
+            <li key={p.rank}>{p.sentence}</li>
+          ))}
+        </ol>
+      </section>
+      <p className="tars-fp small muted">
+        Engine fingerprint (SHA-256): <code>{adv ? msg.fingerprint : `${msg.fingerprint.slice(0, 16)}…`}</code>
+      </p>
+      <button type="button" className="tars-btn" onClick={() => showOnEnvelope({ target: ex.target })}>
+        Show on the envelope
+      </button>
+    </div>
+  );
+}
+
+function Help({ help }: { help: HelpAnswer }) {
+  const { go, send } = useTars();
+  if (help.none || !help.topic)
+    return (
+      <div className="tars-help">
+        <p>TARS Support has no topic for that. These are the topics it has:</p>
+        <ul>
+          {(help.topics ?? []).map((t) => (
+            <li key={t.id}>
+              <button type="button" className="linklike" onClick={() => void send(t.title)}>
+                {t.title}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  const t = help.topic;
+  return (
+    <div className="tars-help">
+      <h4>{t.title}</h4>
+      {t.body.split(/\n\n+/).map((p, i) => (
+        <p key={i}>{p}</p>
+      ))}
+      <button type="button" className="tars-btn" onClick={() => go(t.link, t.highlight)}>
+        Take me there
+      </button>
+      {help.others && help.others.length > 0 && (
+        <p className="small muted">
+          Related:{" "}
+          {help.others.map((o, i) => (
+            <span key={o.id}>
+              {i > 0 && " · "}
+              <button type="button" className="linklike small" onClick={() => void send(o.title)}>
+                {o.title}
+              </button>
+            </span>
+          ))}
+        </p>
+      )}
+      <p className="small muted">Answered from the site's help topics, with no AI involved.</p>
+    </div>
+  );
+}
+
+/** The chat itself: used by the floating panel and by the /tars page. */
+export default function TarsChat({ autoFocus = false }: { autoFocus?: boolean }) {
+  const { mode, setMode, messages, busy, send, skill } = useTars();
+  const [text, setText] = useState("");
+  const input = useRef<HTMLInputElement>(null);
+  const end = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (autoFocus) input.current?.focus();
+  }, [autoFocus]);
+  useEffect(() => {
+    end.current?.scrollIntoView({ block: "end" });
+  }, [messages.length, busy]);
+
+  return (
+    <div className="tars-chat">
+      <div className="tars-top">
+        <div className="seg" role="group" aria-label="TARS mode">
+          {MODES.map((m) => (
+            <button key={m.id} type="button" aria-pressed={mode === m.id} title={m.hint} onClick={() => setMode(m.id)}>
+              {m.label}
+            </button>
+          ))}
+        </div>
+        <div className="tars-skills">
+          <button type="button" className="chip" disabled={busy} onClick={() => void skill("map")}>
+            Map the unknown
+          </button>
+          <button type="button" className="chip" disabled={busy} onClick={() => void skill("close-gap")}>
+            What would close this gap
+          </button>
+        </div>
+      </div>
+      <p className="tars-honesty small muted">{HONESTY}</p>
+
+      <div className="tars-log" role="log" aria-live="polite">
+        {messages.length === 0 && (
+          <p className="tars-hello">
+            Ask about a condition (“34 % oxygen at 8.2 psia on the Moon”) and I answer in three parts: KNOWN, UNKNOWN, NEXT. Or ask about the site (“how do I add a source?”).
+          </p>
+        )}
+        {messages.map((m) => (
+          <div key={m.id} className={`tars-msg tars-${m.role}`}>
+            {m.role === "user" && <p>{m.text}</p>}
+            {m.role === "tars" && (m.kind === "error" || m.kind === "note") && (
+              <p className={m.kind === "error" ? "tars-err" : undefined} role={m.kind === "error" ? "alert" : undefined}>
+                {m.text}
+              </p>
+            )}
+            {m.role === "tars" && m.kind === "help" && <Help help={m.help} />}
+            {m.role === "tars" && m.kind === "answer" && <Answer msg={m} />}
+            {m.role === "tars" && m.kind === "experiments" && <Experiments msg={m} />}
+          </div>
+        ))}
+        {busy && <p className="muted small">TARS is working…</p>}
+        <div ref={end} />
+      </div>
+
+      <form
+        className="tars-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const t = text;
+          setText("");
+          void send(t);
+        }}
+      >
+        <label className="sr-only" htmlFor="tars-q">
+          Message to TARS
+        </label>
+        <input id="tars-q" ref={input} type="text" maxLength={300} value={text} onChange={(e) => setText(e.target.value)} placeholder="Ask TARS…" autoComplete="off" />
+        <button type="submit" disabled={busy || !text.trim()}>
+          Send
+        </button>
+      </form>
+    </div>
+  );
+}

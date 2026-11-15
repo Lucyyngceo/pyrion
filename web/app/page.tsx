@@ -1,6 +1,6 @@
 import Explorer from "@/components/Explorer";
 import AddSource from "@/components/AddSource";
-import TourButton from "@/components/TourButton";
+import HelpMenu from "@/components/HelpMenu";
 import { loadDataset, loadLineage } from "@/lib/data";
 import "./navigator.css";
 
@@ -28,7 +28,7 @@ export default async function Page() {
         </div>
         <div className="hero-actions">
           <AddSource />
-          <TourButton />
+          <HelpMenu />
         </div>
       </header>
 

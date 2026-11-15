@@ -323,3 +323,45 @@ dialog.add-source::backdrop { background: rgba(0, 0, 0, 0.7); }
 .as-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
 .as-actions button { font: inherit; font-weight: 600; padding: 8px 16px; color: #000; background: var(--neon); border: 0; }
 .as-actions button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- TARS ---------- */
+.help-menu { position: relative; }
+.help-pop { position: absolute; right: 0; top: 36px; z-index: 60; display: grid; min-width: 250px; background: var(--page); border: 1px solid var(--neon); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); }
+.help-pop button { display: grid; text-align: left; gap: 1px; font: inherit; font-weight: 600; padding: 9px 12px; color: var(--ink); background: transparent; border: 0; cursor: pointer; }
+.help-pop button:hover, .help-pop button:focus-visible { background: rgba(0, 240, 255, 0.1); }
+.tars-bubble { position: fixed; right: 18px; bottom: 18px; z-index: 300; display: flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; font: inherit; font-weight: 700; color: #001014; background: var(--neon); border: 0; border-radius: 999px; cursor: pointer; box-shadow: 0 0 18px rgba(0, 240, 255, 0.5); }
+.tars-bubble > span:first-child { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #001014; color: var(--neon); font-family: var(--font-mono), monospace; }
+.tars-bubble:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.tars-panel { position: fixed; right: 18px; bottom: 72px; z-index: 300; width: min(420px, calc(100vw - 24px)); height: min(640px, calc(100vh - 100px)); display: flex; flex-direction: column; background: var(--page); border: 1px solid var(--neon); box-shadow: 0 0 40px rgba(0, 240, 255, 0.25); }
+.tars-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.tars-x { font: inherit; font-size: 22px; line-height: 1; background: transparent; color: var(--ink-2); border: 0; cursor: pointer; }
+.tars-chat { display: flex; flex-direction: column; min-height: 0; flex: 1; padding: 8px 12px 10px; gap: 6px; }
+.tars-page .tars-chat { min-height: 70vh; max-width: 900px; padding: 0; }
+.tars-top { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.tars-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+.tars-honesty { margin: 0; }
+.tars-log { flex: 1; min-height: 0; overflow-y: auto; display: grid; gap: 10px; align-content: start; padding: 4px 2px; }
+.tars-hello { margin: 0; color: var(--ink-2); }
+.tars-msg p { margin: 0; }
+.tars-user { justify-self: end; max-width: 85%; padding: 6px 10px; background: rgba(0, 240, 255, 0.1); border: 1px solid var(--border-strong); }
+.tars-tars { justify-self: stretch; }
+.tars-err { padding: 6px 10px; border-left: 3px solid var(--warn); }
+.tars-answer, .tars-help { display: grid; gap: 8px; }
+.tars-help h4, .tars-block h4 { margin: 0 0 2px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+.tars-sub { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--ink-2); font-size: 12px; }
+.tars-block { padding: 6px 10px; border: 1px solid var(--border); border-left: 3px solid var(--neon); }
+.tars-block.tars-unknown { border-left-color: var(--warn); }
+.tars-block.tars-next { border-left-color: var(--neon-2, #b98bff); }
+.tars-block ul, .tars-block ol { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.tars-block p { margin: 0 0 4px; }
+.tars-ref { display: inline-flex; gap: 6px; margin-left: 6px; }
+.tars-btn { justify-self: start; font: inherit; font-weight: 600; padding: 6px 14px; color: #001014; background: var(--neon); border: 0; cursor: pointer; }
+.tars-steps { font-size: 13px; }
+.tars-steps summary { cursor: pointer; }
+.tars-label { margin: 0; font-weight: 600; color: var(--neon); }
+.tars-form { display: flex; gap: 8px; }
+.tars-form input { flex: 1; min-width: 0; font: inherit; padding: 8px 10px; color: var(--ink); background: rgba(0, 240, 255, 0.04); border: 1px solid var(--border-strong); }
+.tars-form button { font: inherit; font-weight: 600; padding: 0 16px; color: #000; background: var(--neon); border: 0; cursor: pointer; }
+.tars-form button:disabled { opacity: 0.45; cursor: default; }
+.tars-highlight { outline: 3px solid var(--neon) !important; outline-offset: 4px; box-shadow: 0 0 24px var(--neon) !important; transition: none; }
+@media (max-width: 640px) { .tars-panel { right: 0; bottom: 0; width: 100vw; height: 80vh; } .tars-bubble-name { display: none; } .tars-bubble { padding: 8px; } }

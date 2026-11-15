@@ -79,3 +79,4 @@ export { verdictLabel } from "../../engine/src/labels.ts";
 export { EXTRAPOLATION_LEVEL_SENTENCES, levelSentence } from "../../engine/src/labels.ts";
 export { EXTRAPOLATION_LEVEL_NOTE, EXTRAPOLATION_LEVEL_ORDER, type ExtrapolationLevel } from "../../engine/src/levels.ts";
 export { humanGap, humanValue } from "../../engine/src/labels.ts";
+export { experimentsNeeded, EXPERIMENT_LABEL, type ExperimentsNeeded } from "../../engine/src/index.ts";

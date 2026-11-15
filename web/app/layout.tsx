@@ -5,6 +5,8 @@ import "./cyber.css";
 import CommandPalette from "@/components/CommandPalette";
 import SiteNav from "@/components/SiteNav";
 import StatusBar from "@/components/StatusBar";
+import TarsBubble from "@/components/tars/TarsBubble";
+import TarsProvider from "@/components/tars/TarsProvider";
 
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
 const display = Chakra_Petch({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
@@ -27,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}>
       <body>
+        <TarsProvider>
         <SiteNav />
         <CommandPalette />
         {children}
@@ -50,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
           </footer>
         </div>
+        <TarsBubble />
+        </TarsProvider>
       </body>
     </html>
   );

@@ -12,6 +12,7 @@ import { ControlsPanel, ScenarioNote, applyPreset, type TargetState } from "./Ta
 import ScenarioStrip, { type Computed } from "./ScenarioStrip";
 import { scenarioFacts } from "@/lib/scenarios";
 import { stateFromTarget, toTarget, withRegimeAxis } from "@/lib/preset-apply";
+import { setCurrentTarget } from "@/lib/tars/bridge";
 import NavigatorPanel from "./NavigatorPanel";
 import {
   buildEnvelopes,
@@ -341,6 +342,36 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   // "Ask PYRION": the question was translated into a target by a model and checked by code.
   // Axes the question left open stay open; O2 and pressure it did not state keep their current value.
+  useEffect(() => {
+    setCurrentTarget(target);
+  }, [target]);
+  // TARS: "Show on the envelope" loads a target; a receipt link opens its card.
+  const loadTarget = (t: Target) =>
+    setState((st) => ({
+      presetId: null,
+      regime: { ...t.regime },
+      o2: t.continuous.o2_mole_fraction ?? st.o2,
+      pressure: t.continuous.pressure ?? st.pressure,
+      gravityLevel: t.informational?.gravity_level,
+      gravityNotCovered: t.informational?.gravity_not_covered,
+    }));
+  const loadRef = useRef(loadTarget);
+  loadRef.current = loadTarget;
+  useEffect(() => {
+    const onTarget = (e: Event) => loadRef.current((e as CustomEvent<Target>).detail);
+    const onOpen = (e: Event) => {
+      const a = (e as CustomEvent<string>).detail;
+      setOpenAccession(a);
+      requestAnimationFrame(() => document.getElementById(`res-${a}`)?.scrollIntoView({ block: "center", behavior: "smooth" }));
+    };
+    window.addEventListener("pyrion:target", onTarget);
+    window.addEventListener("pyrion:open", onOpen);
+    return () => {
+      window.removeEventListener("pyrion:target", onTarget);
+      window.removeEventListener("pyrion:open", onOpen);
+    };
+  }, []);
+
   const applyAsked = (p: ParsedTarget) =>
     setState((st) => ({
       presetId: null,
