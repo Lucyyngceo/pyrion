@@ -37,7 +37,7 @@ test("Support finds the right topic for the site questions", () => {
   assert.equal(best("what does Take me there do"), "navigator-take-me-there");
   assert.equal(best("how do I zoom the chart in full screen"), "envelope-full-screen-zoom-pan");
   assert.equal(best("can the AI decide the verdict"), "ai-limits");
-  assert.ok(["bridge", "bridge-explained"].includes(best("what is the bridge")));
+  assert.ok(["bridge", "bridge-explained"].includes(best("what is the bridge") ?? ""));
   assert.equal(best("blorfzzt quux"), null);
 });
 
