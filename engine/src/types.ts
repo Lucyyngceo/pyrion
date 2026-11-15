@@ -1,6 +1,8 @@
 // Shared types and constants of the PYRION applicability engine.
 // The engine reads only condition records as defined in schema/condition_record.schema.json.
 
+import type { ExtrapolationLevel } from './levels.ts';
+
 export const REGIME_AXES = ['gravity_regime', 'fuel_phase', 'diluent', 'flame_type'] as const;
 export type RegimeAxis = (typeof REGIME_AXES)[number];
 
@@ -146,6 +148,7 @@ export type ReasonCode =
   | 'outside_hull'
   | 'nearest_point'
   | 'incomplete_tests'
+  | 'extrapolation_level'
   | 'flagged_records_ignored';
 
 export interface Reason {
@@ -230,6 +233,8 @@ export interface ClusterVerdict {
   hull: HullCheck | null;
   /** 'verified' only if every record used for this verdict has status verified. */
   evidenceStatus: 'verified' | 'includes_unverified' | 'none';
+  /** EXTRAPOLATION clusters only: how far outside the tested data (the verdict does not change). */
+  extrapolationLevel?: ExtrapolationLevel;
   descriptors: Record<string, string[]>;
   reasons: Reason[];
 }
@@ -257,6 +262,8 @@ export interface Blocker {
 export interface InvestigationVerdict {
   accession: string;
   verdict: Verdict;
+  /** EXTRAPOLATION investigations: the lowest level among their EXTRAPOLATION clusters. */
+  extrapolationLevel?: ExtrapolationLevel;
   /** Present for INSUFFICIENT_EVIDENCE and REGIME_BARRIER: the reasons of the deciding cluster. */
   blockers?: Blocker[];
   /** Cluster that gives the investigation verdict (see README, "One verdict per investigation"). */

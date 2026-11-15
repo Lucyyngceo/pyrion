@@ -29,6 +29,7 @@ import {
   type Target,
 } from './types.ts';
 import { axisLabel, valueLabel, verdictLabel } from './labels.ts';
+import { bestLevel, levelFromRelativeGaps, relativeGap, type ExtrapolationLevel } from './levels.ts';
 import { canonicalTarget, judgeCluster, validateTarget } from './verdict.ts';
 
 // ---------- plain-language labels (shared with the reason codes) ----------
@@ -408,6 +409,11 @@ export interface EvidenceCell {
   applicable: string[];
   /** Investigations EXTRAPOLATION here (nothing better), in accession order. */
   extrapolation: string[];
+  /**
+   * The closest (lowest) distance level among the extrapolating investigations, for shading the map in tones;
+   * absent when no investigation extrapolates here. Equals the best extrapolationLevel of evaluate().
+   */
+  extrapolationLevel?: ExtrapolationLevel;
 }
 
 export interface EvidenceMap {
@@ -492,26 +498,41 @@ export function evidenceMap(records: readonly ConditionRecord[], regime: Target[
       const hy = (MEASUREMENT_TOLERANCE_REL * Math.abs(p)) / sp;
       const applicable: string[] = [];
       const extrapolation: string[] = [];
+      const levels: (ExtrapolationLevel | undefined)[] = [];
       for (const acc of accessions) {
         let best = 3;
+        let accLevel: ExtrapolationLevel | undefined;
         for (const c of byAcc.get(acc) as PreparedCluster[]) {
           let v: number;
+          let lvl: ExtrapolationLevel | undefined;
           if (c.state === 'barrier') v = 3;
           else if (c.state !== 'ok') v = 2;
           else {
-            const outside = !inRange(o2, c.o2[0], c.o2[1]) || !inRange(p, c.p[0], c.p[1]);
+            const o2Out = !inRange(o2, c.o2[0], c.o2[1]);
+            const pOut = !inRange(p, c.p[0], c.p[1]);
+            const outside = o2Out || pOut;
             const outsideHull = c.hasPoints && !(hullContains(tv, c.hull) || hullNearBox(c.hull, tv, hx, hy));
             v = outside || outsideHull ? 1 : !c.hasPoints ? 2 : 0;
+            if (v === 1) {
+              const gaps: number[] = [];
+              if (o2Out) gaps.push(o2 < c.o2[0] ? relativeGap(c.o2[0] - o2, c.o2[0], so) : relativeGap(o2 - c.o2[1], c.o2[1], so));
+              if (pOut) gaps.push(p < c.p[0] ? relativeGap(c.p[0] - p, c.p[0], sp) : relativeGap(p - c.p[1], c.p[1], sp));
+              lvl = levelFromRelativeGaps(gaps);
+            }
           }
+          if (v === 1) accLevel = bestLevel([accLevel, lvl]);
           if (v < best) best = v;
-          if (best === 0) break;
         }
         if (best === VERDICT_RANK.APPLICABLE) applicable.push(acc);
-        else if (best === VERDICT_RANK.EXTRAPOLATION) extrapolation.push(acc);
+        else if (best === VERDICT_RANK.EXTRAPOLATION) {
+          extrapolation.push(acc);
+          levels.push(accLevel);
+        }
       }
+      const cellLevel = bestLevel(levels);
       maxA = Math.max(maxA, applicable.length);
       maxE = Math.max(maxE, extrapolation.length);
-      cells.push({ o2, pressure: p, applicable, extrapolation });
+      cells.push({ o2, pressure: p, applicable, extrapolation, ...(cellLevel ? { extrapolationLevel: cellLevel } : {}) });
     }
   }
   return { engine: { name: ENGINE_NAME, version: ENGINE_VERSION }, regime: { ...regime }, o2Values, pressureValues, cells, maxApplicable: maxA, maxExtrapolation: maxE };

@@ -10,7 +10,8 @@ import {
   type Cluster,
   type TestEvidence,
 } from './evidence.ts';
-import { axisLabel, cap, excludedWhy, humanGap, humanValue, plural, valueLabel } from './labels.ts';
+import { EXTRAPOLATION_LEVEL_NOTE, bestLevel, levelFromRelativeGaps, relativeGap, type ExtrapolationLevel } from './levels.ts';
+import { axisLabel, cap, levelSentence, excludedWhy, humanGap, humanValue, plural, valueLabel } from './labels.ts';
 import { convexHull, distanceToHull, hullContains, hullNearBox, type Vec2 } from './geometry.ts';
 import {
   AXIS_UNITS,
@@ -441,6 +442,25 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
     }
   }
 
+  // ---- 6. Distance level (EXTRAPOLATION only; the verdict does not change) ----
+  let extrapolationLevel: ExtrapolationLevel | undefined;
+  if (verdict === 'EXTRAPOLATION') {
+    const outAxes = axisChecks.filter((a) => (a.status === 'below' || a.status === 'above') && a.min !== null && a.max !== null && a.gap !== null);
+    const gaps = outAxes.map((a) => relativeGap(a.gap as number, a.status === 'below' ? (a.min as number) : (a.max as number), (scales.get(a.axis) as AxisScale).scale));
+    extrapolationLevel = levelFromRelativeGaps(gaps);
+    const worst = gaps.length > 0 ? outAxes[gaps.indexOf(Math.max(...gaps))] : null;
+    reasons.push(
+      reason(
+        'extrapolation_level',
+        true,
+        worst ? worst.axis : null,
+        `${levelSentence(extrapolationLevel)}.`,
+        [],
+        `${worst ? `Worst axis: ${axisLabel(worst.axis)}, ${String(Number((Math.max(...gaps) * 100).toFixed(1)))} % of the nearest tested value beyond the tested range. ` : ''}${EXTRAPOLATION_LEVEL_NOTE}`,
+      ),
+    );
+  }
+
   if (excludedRelevant.length > 0) {
     reasons.push(
       reason(
@@ -473,6 +493,7 @@ export function judgeCluster(cluster: Cluster, target: Target, scales: Map<Conti
     distanceNote,
     axes: axisChecks,
     hull,
+    ...(extrapolationLevel ? { extrapolationLevel } : {}),
     evidenceStatus: used.length === 0 ? 'none' : used.every((c) => c.status === 'verified') ? 'verified' : 'includes_unverified',
     descriptors: sortedDescriptors,
     reasons,
@@ -521,6 +542,7 @@ export function evaluate(records: readonly ConditionRecord[], target: Target, op
     investigations.push({
       accession,
       verdict: best.verdict,
+      ...(best.verdict === 'EXTRAPOLATION' ? { extrapolationLevel: bestLevel(mine.filter((v) => v.verdict === 'EXTRAPOLATION').map((v) => v.extrapolationLevel)) } : {}),
       ...(best.verdict === 'INSUFFICIENT_EVIDENCE' || best.verdict === 'REGIME_BARRIER' ? { blockers: blockersOf(accession, best, mine, tgt) } : {}),
       decidingCluster: best.clusterKey,
       clusters: mine.map((v) => ({ clusterKey: v.clusterKey, verdict: v.verdict })),

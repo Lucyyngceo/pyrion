@@ -83,3 +83,14 @@ export function excludedWhy(statuses: readonly string[]): string {
   if (statuses.includes('extracted')) parts.push('not verified');
   return parts.length > 0 ? parts.join(' and ') : 'flagged as insufficient in the extraction';
 }
+
+import type { ExtrapolationLevel } from './levels.ts';
+
+/** One plain sentence per extrapolation level. */
+export const EXTRAPOLATION_LEVEL_SENTENCES: Readonly<Record<ExtrapolationLevel, string>> = {
+  combination: 'Inside each tested range, but this combination was not tested',
+  just_outside: 'Just outside the tested data',
+  outside: 'Outside the tested data',
+  far_outside: 'Far outside the tested data',
+};
+export const levelSentence = (l: ExtrapolationLevel): string => EXTRAPOLATION_LEVEL_SENTENCES[l];
