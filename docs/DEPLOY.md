@@ -20,6 +20,8 @@ server {
     listen 443 ssl;
     server_name pyrion.us www.pyrion.us;
     # ssl_certificate … (certbot)
+    # Questions are under 500 characters; nothing legitimate needs a large body.
+    client_max_body_size 16k;
 
     location / {
         proxy_pass         http://127.0.0.1:3000;
@@ -29,6 +31,8 @@ server {
         proxy_set_header   X-Real-IP         $remote_addr;
         proxy_set_header   X-Forwarded-For   $remote_addr;
         proxy_set_header   X-Forwarded-Proto $scheme;
+        # Proves the request came through this nginx (same value as PYRION_PROXY_SECRET).
+        proxy_set_header   X-Pyrion-Proxy    "<long random value>";
         proxy_read_timeout 60s;
     }
 }
@@ -37,8 +41,10 @@ server {
 and the app is started with:
 
 ```bash
-PYRION_TRUST_PROXY=1 NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
+PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
 ```
+
+The client address is trusted only when both hold: `PYRION_TRUST_PROXY=1` and the request carries `X-Pyrion-Proxy` equal to `PYRION_PROXY_SECRET`. If Node were ever reachable directly, a forged `X-Real-IP` without the secret is ignored. The secret lives only in the nginx config and the server environment (generate it with `openssl rand -hex 32`); it is never committed. The app also refuses request bodies larger than 8 KB on its own.
 
 Without `PYRION_TRUST_PROXY=1` the app ignores every client-supplied address header and all callers share one hourly bucket. That is safe (no one can create fresh allowances by forging headers) but it would let a single heavy user use up the hour for everyone, so production must set it. The app logs an error at startup in production when it is missing, and `GET /api/llm/health` reports `visitor_isolation`.
 
