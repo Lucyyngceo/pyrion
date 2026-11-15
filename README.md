@@ -13,7 +13,7 @@
 2. **[The worked example](https://pyrion.us/example)** — two full questions printed step by step, computed by the engine on the server, no AI.
 3. **[Proof](https://pyrion.us/proof)** — the validator report and the scripted judge battery, read from this repository.
 
-436 engine tests + 208 web tests pass on every push (badge above; `cd engine && npm test`, `cd web && npm test`).
+437 engine tests and 208 web tests pass on every push (badge above; `cd engine && npm test`, `cd web && npm test`). In a clean clone without the NASA source files, 5 web tests that read them are skipped (203 pass).
 **Where the AI ends:** the verdict is computed by fixed rules in `engine/` and is the same for the same condition. A language model only reads a question into a condition and narrates the result; it never decides a verdict, and every NASA quote it shows is checked against its page. With no API key the envelope, the verdicts and the worked example all work.
 
 PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
@@ -54,7 +54,7 @@ Things we did not know at the start and only found near the deadline, kept here 
 
 ## Run locally
 
-Requires Node.js 20.9 or newer (`web/README.md`); the public instance runs Node 24 (`docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).
+Requires Node.js 24 or newer (the engine runs its TypeScript directly; the public instance runs Node 24, `docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).
 
 ```bash
 cd web
@@ -143,7 +143,7 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 | Fallback, models a visitor can pick, and the "Ask 3 models" panel | Gemma 4 31B (Google); Mistral Small 3.2 24B (Mistral AI) | Apache-2.0; Apache-2.0 | OpenRouter (Gemma also on NVIDIA NIM) |
 | Second-opinion reviewers of TARS answers (always a different family from the one that answered) | Nemotron 3 Ultra, Gemma 4 31B, Mistral Small 3.2, gpt-oss-120b (OpenAI) | as above; gpt-oss-120b Apache-2.0 | OpenRouter / NVIDIA NIM |
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
-| Text-similarity baseline (the "text vs physics" comparison) | BAAI bge-small-en-v1.5 | MIT | local (fastembed) |
+| Text-similarity baseline (the "text vs physics" comparison), computed offline once; the site reads the stored rankings, no model runs at request time | BAAI bge-small-en-v1.5 | MIT | offline, local (fastembed) |
 
 **It keeps working without credits.** TARS tries Nemotron 3 Ultra on OpenRouter first. If the OpenRouter credit runs out, the daily cap (`PYRION_DAILY_REQUEST_CAP`) is reached, or the provider fails, the same Nemotron 3 Ultra answers from NVIDIA's free NIM endpoint, then Gemma 4 31B, with no action from the visitor. If no model is reachable at all, every verdict, the Envelope, the Planner, the MCP server and the structured TARS answers still work, because they are code, not a model.
 

@@ -134,3 +134,19 @@ describe('ERL on the real records', { skip: !existsSync(REAL) }, () => {
     }
   });
 });
+
+describe('recordsForMaterial keeps only the tests that state the material', () => {
+  const rec = (test_id: string, variable: string, value: string) =>
+    ({ accession: 'PSI-1', test_id, variable, value, unit: '', status: 'extracted', source_file: 'x', source_location: 'x', quote: 'x' }) as never;
+  const records = [
+    rec('T1', 'material', 'rod A'),
+    rec('T1', 'o2_mole_fraction', '0.21'),
+    rec('T2', 'material', 'film B'),
+    rec('T2', 'o2_mole_fraction', '0.40'),
+    rec('*', 'gravity_regime', 'microgravity'),
+  ];
+  it('drops the other material of the same investigation and keeps investigation-wide records', () => {
+    const r = recordsForMaterial(records, 'rod A') as unknown as { test_id: string; value: string }[];
+    assert.deepEqual(r.map((x) => `${x.test_id}:${x.value}`).sort(), ['*:microgravity', 'T1:0.21', 'T1:rod A']);
+  });
+});

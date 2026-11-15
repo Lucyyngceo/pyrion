@@ -348,9 +348,15 @@ export async function POST(req: Request) {
   } catch {
     return Response.json(fail(null, -32700, "parse error"), { status: 400, headers: CORS });
   }
-  const msgs = (Array.isArray(body) ? body : [body]) as Rpc[];
+  const isObj = (x: unknown): x is Rpc => typeof x === "object" && x !== null && !Array.isArray(x);
+  if (!isObj(body) && !(Array.isArray(body) && body.length > 0)) return Response.json(fail(null, -32600, "invalid request: expected a JSON-RPC object or a non-empty batch"), { status: 400, headers: CORS });
+  const msgs = (Array.isArray(body) ? body : [body]) as unknown[];
   const replies = [];
   for (const m of msgs.slice(0, 20)) {
+    if (!isObj(m) || typeof m.method !== "string") {
+      replies.push(fail(isObj(m) ? m.id : null, -32600, "invalid request"));
+      continue;
+    }
     if (m.id === undefined || m.id === null) continue; // notifications get no reply
     replies.push(await handle(m));
   }

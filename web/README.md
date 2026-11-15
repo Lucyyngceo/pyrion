@@ -11,7 +11,7 @@ TypeScript, so it runs in the browser and the verdict updates as the target chan
 
 ## Run it
 
-Requires Node.js 20.9 or newer.
+Requires Node.js 24 or newer.
 
 ```bash
 cd web

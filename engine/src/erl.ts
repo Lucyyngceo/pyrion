@@ -126,10 +126,16 @@ export function materialsOf(records: readonly ConditionRecord[]): string[] {
 
 const norm = (s: string) => s.trim().toLowerCase();
 
-/** Records of the investigations that state this material in at least one test. */
+/**
+ * Records of the tests that state this material, plus the investigation-wide records ('*') of those investigations.
+ * Other tests of the same investigation (other materials) are left out, so one material never borrows another's evidence.
+ * When the material is stated investigation-wide ('*'), every test of that investigation counts.
+ */
 export function recordsForMaterial(records: readonly ConditionRecord[], material: string): ConditionRecord[] {
-  const accs = new Set(records.filter((r) => r.variable === 'material' && norm(r.value) === norm(material)).map((r) => r.accession));
-  return records.filter((r) => accs.has(r.accession));
+  const matching = records.filter((r) => r.variable === 'material' && norm(r.value) === norm(material));
+  const wholeInvestigation = new Set(matching.filter((r) => r.test_id === '*').map((r) => r.accession));
+  const tests = new Set(matching.map((r) => `${r.accession}\u0000${r.test_id}`));
+  return records.filter((r) => wholeInvestigation.has(r.accession) || tests.has(`${r.accession}\u0000${r.test_id}`) || (r.test_id === '*' && matching.some((m) => m.accession === r.accession)));
 }
 
 function withLeg(t: Target, leg: Leg): Target {
