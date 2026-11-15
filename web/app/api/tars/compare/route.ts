@@ -13,7 +13,7 @@ import { runAgent, type AssistantMsg } from "@/lib/expert/agent";
 export const dynamic = "force-dynamic";
 
 /** The three models of the panel, in order; only the configured ones are asked. */
-const PANEL = ["z-ai/glm-5.3", "qwen/qwen3.8-27b", "nvidia/nemotron-3-ultra-550b-a55b"];
+const PANEL = ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct"];
 const DEADLINE_MS = Number(process.env.PYRION_AGENT_DEADLINE_MS) > 0 ? Number(process.env.PYRION_AGENT_DEADLINE_MS) : 90_000;
 
 export async function POST(req: Request) {

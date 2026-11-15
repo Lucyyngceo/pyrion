@@ -29,7 +29,7 @@ export interface ModelReply {
 export type AskModel = (req: ModelRequest) => Promise<ModelReply>;
 
 /** The models the project knows about, by family, in the order a reviewer is tried (free NIM Nemotron first). */
-export const REVIEWER_ORDER: readonly string[] = ["nvidia/nemotron-3-ultra-550b-a55b", "z-ai/glm-5.3", "qwen/qwen3.8-27b", "moonshotai/kimi-k2.6", "google/gemma-4-31b-it"];
+export const REVIEWER_ORDER: readonly string[] = ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct", "openai/gpt-oss-120b"];
 
 /** "nemotron", "glm", "qwen", "kimi", "gemma"; any other id: its vendor prefix. */
 export function modelFamily(id: string | null | undefined): string {

@@ -270,8 +270,8 @@ test("environment numbers: 0 is 0; clients get only the cheap models", () => {
   assert.equal(numEnv("PYRION_DAILY_REQUEST_CAP", 300), 0);
   delete process.env.PYRION_DAILY_REQUEST_CAP;
   assert.equal(numEnv("PYRION_DAILY_REQUEST_CAP", 300), 300);
-  const ps = loadProviders({ ...env, OPENROUTER_MODELS: "qwen/qwen3.8-27b,moonshotai/kimi-k2.6,qwen/qwen3.8-max-0902" });
-  assert.deepEqual(clientModels(ps, {}), ["qwen/qwen3.8-27b", "moonshotai/kimi-k2.6"]);
+  const ps = loadProviders({ ...env, OPENROUTER_MODELS: "nvidia/nemotron-3-ultra-550b-a55b,google/gemma-4-31b-it,mistralai/mistral-small-3.2-24b-instruct,openai/gpt-oss-120b" });
+  assert.deepEqual(clientModels(ps, {}), ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct"]);
 });
 
 test("m6: X-Real-IP is believed only with PYRION_TRUST_PROXY=1 and the proxy's secret", () => {

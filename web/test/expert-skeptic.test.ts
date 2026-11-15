@@ -34,9 +34,9 @@ test("model families and the reviewer preference: never the family that wrote th
   assert.deepEqual(reviewerPreference("qwen/qwen3.8-27b")[0], "nvidia/nemotron-3-ultra-550b-a55b");
   assert.ok(!reviewerPreference("qwen/qwen3.8-27b").some((m) => modelFamily(m) === "qwen"));
   const fromNemotron = reviewerPreference("nvidia/nemotron-3-ultra-550b-a55b");
-  assert.equal(fromNemotron[0], "z-ai/glm-5.3");
-  assert.deepEqual(fromNemotron.slice(0, 2), ["z-ai/glm-5.3", "qwen/qwen3.8-27b"]);
-  assert.deepEqual(reviewerPreference("nvidia/nemotron-3-ultra-550b-a55b", ["qwen/qwen3.8-27b"]), ["qwen/qwen3.8-27b"]);
+  assert.equal(fromNemotron[0], "google/gemma-4-31b-it");
+  assert.deepEqual(fromNemotron.slice(0, 2), ["google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct"]);
+  assert.deepEqual(reviewerPreference("nvidia/nemotron-3-ultra-550b-a55b", ["google/gemma-4-31b-it"]), ["google/gemma-4-31b-it"]);
 });
 
 test("extractJson finds the first JSON value in prose and code fences", () => {
@@ -57,7 +57,7 @@ test("agree: the reviewer found nothing; the model is named; the answer is untou
   assert.deepEqual(checked, structuredClone(frozen), "the answer was not changed");
   // The request asked for another family and listed the preference without Nemotron.
   assert.deepEqual(seen[0].avoidFamilies, ["nemotron"]);
-  assert.equal(seen[0].prefer[0], "z-ai/glm-5.3");
+  assert.equal(seen[0].prefer[0], "google/gemma-4-31b-it");
   assert.match(seen[0].messages[1].content, /"blockIndex":0/);
 });
 

@@ -125,12 +125,13 @@ NASA Space Apps asks every team to declare its use of Artificial Intelligence / 
 
 | Role | Model | License | Provider |
 |---|---|---|---|
-| TARS SI brain (chat, reading questions) | GLM-5.3 (Z.ai) | GLM-5.3 License | OpenRouter |
-| Fallback | Qwen3.8-27B | Apache-2.0 | OpenRouter |
-| Model a visitor can pick in TARS; one of the second-opinion reviewers | Kimi K2.6 (Moonshot AI) | Modified MIT | OpenRouter |
-| Free fallback; Nemotron 3 Ultra is also the first second-opinion reviewer of TARS answers | NVIDIA Nemotron 3 Ultra; Gemma 4 31B | OpenMDW-1.1 (per NVIDIA NGC); Apache-2.0 | NVIDIA NIM |
+| TARS SI brain (chat, reading questions) | NVIDIA Nemotron 3 Ultra 550B | OpenMDW-1.1 (per NVIDIA NGC) | OpenRouter, with the free NVIDIA NIM endpoint as fallback |
+| Fallback, models a visitor can pick, and the "Ask 3 models" panel | Gemma 4 31B (Google); Mistral Small 3.2 24B (Mistral AI) | Apache-2.0; Apache-2.0 | OpenRouter (Gemma also on NVIDIA NIM) |
+| Second-opinion reviewers of TARS answers (always a different family from the one that answered) | Nemotron 3 Ultra, Gemma 4 31B, Mistral Small 3.2, gpt-oss-120b (OpenAI) | as above; gpt-oss-120b Apache-2.0 | OpenRouter / NVIDIA NIM |
 | Content check on questions | NVIDIA Nemotron safety guard 8B v3, then Llama Guard 4 12B as second opinion | as published by NVIDIA and Meta | NVIDIA NIM |
 | Text-similarity baseline (the "text vs physics" comparison) | BAAI bge-small-en-v1.5 | MIT | local (fastembed) |
+
+**No run-time model comes from a China-owned company** (NASA Space Apps terms). Earlier during the event TARS used GLM-5.3, Qwen3.8-27B and Kimi K2.6 through OpenRouter; they were replaced on 15 November 2026 after a model trial (`validation/model_trial/`).
 
 **What the AI does not do.** No model decides a verdict: the applicability engine is plain TypeScript rules over the extracted records, and it gives the same verdict with any model or with none. Models never convert units or do arithmetic (code does), every NASA quote a model shows is checked by code against the page it cites, and any number in the model's own reasoning that does not come from a source or a calculation is removed before it is shown. Without any model key the site works in structured mode.
 

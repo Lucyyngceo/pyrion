@@ -37,7 +37,7 @@ export const allModels = (providers: Provider[]) => [...new Set(providers.flatMa
 /** Public view of the configuration: no key, no base URL. */
 export const publicConfig = (providers: Provider[]) => providers.map((p) => ({ provider: p.id, models: p.models }));
 
-const DEFAULT_CLIENT_MODELS = ["qwen/qwen3.8-27b", "moonshotai/kimi-k2.6"];
+const DEFAULT_CLIENT_MODELS = ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct"];
 
 /**
  * Models a visitor may ask for: PYRION_CLIENT_MODELS (default: the two cheap ones), limited to configured models.
