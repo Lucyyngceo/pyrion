@@ -59,7 +59,7 @@ export interface Labels {
 const ES: Labels = {
   engine: "Motor",
   nasa: "NASA lo dijo",
-  expert: "Conocimiento experto de TARS",
+  expert: "Razonamiento propio de TARS",
   engineSub: "PYRION engine — calculado por código",
   nasaSub: "Fuente NASA — cita comprobada en la página citada",
   expertSub: "no verificado contra una fuente",
@@ -70,7 +70,7 @@ const ES: Labels = {
 const EN_LABELS: Labels = {
   engine: "Engine",
   nasa: "NASA said it",
-  expert: "TARS expert knowledge",
+  expert: "TARS own reasoning",
   engineSub: "PYRION engine — computed by code",
   nasaSub: "NASA source — quote checked on the cited page",
   expertSub: "not verified against a source",

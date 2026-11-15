@@ -7,7 +7,7 @@
 //           (quote_found: verbatim up to spacing and punctuation; numbers_found: the numbers exactly as written,
 //           so 1.5 never matches 15). One unverified citation drops the whole block (its text is never shown).
 //   engine  may only contain numbers and ids that are in the engine output it references; otherwise the block is dropped.
-//   expert  free text, labelled "TARS expert knowledge - not verified against a source". Every number in it must come
+//   expert  free text, labelled "TARS own reasoning - not verified against a source". Every number in it must come
 //           from a tool result it references, or from a verified quote in the same answer. A number that does not is
 //           REPLACED BY CODE with "[number removed: not from a source]" and logged.
 //
@@ -58,7 +58,7 @@ export interface CheckContext {
   tools?: Record<string, ToolResult>;
 }
 
-export const EXPERT_LABEL = "TARS expert knowledge — not verified against a source";
+export const EXPERT_LABEL = "TARS own reasoning — not verified against a source";
 export const NASA_LABEL = "NASA source — quote checked on the cited page";
 export const ENGINE_LABEL = "PYRION engine — computed by code";
 export const NUMBER_REMOVED = "[number removed: not from a source]";

@@ -542,7 +542,7 @@ def selftest() -> int:
     def res(blocks, target=None, steps=None, flagged=0, model=None):
         return [{"type": "result", "blocks": blocks, "target": target, "steps": steps or [], "flagged": flagged, "dropped": 0, "droppedReasons": [], "actions": [], "model": {"name": "Test model", "model": "test", "provider": "test", "fellBackFrom": None} if model is None else model}]
 
-    expert = lambda t, **k: {"layer": "expert", "text": t, "label": "TARS expert knowledge — not verified against a source", "citations": [], "provenance": [], "flagged": False, **k}
+    expert = lambda t, **k: {"layer": "expert", "text": t, "label": "TARS own reasoning — not verified against a source", "citations": [], "provenance": [], "flagged": False, **k}
     arith = {"id": "e7", "text": "What is the O2 partial pressure of 34 % at 8.2 psia?", "expect": {"arithmetic": {"psia": 2.788, "kpa": 19.22}}}
     good = [expert("The oxygen partial pressure is 2.788 psia (19.22 kPa).", provenance=["Oxygen partial pressure = 34 % x 56.54 kPa (8.2 psia) = 19.22 kPa (2.788 psia). — computed by code (PYRION engine)"])]
     steps = [{"tool": "run_calculator", "label": "o2PartialPressure"}]
@@ -609,7 +609,7 @@ def selftest() -> int:
     expect("claim class wrong", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI"})]}), None, corpus)[0], "fail")
     expect("supported without evidence", run_checks(w_cc, 200, with_field("claimCheck", {"claims": [dict(good_cc["claims"][0], **{"class": "supported in PSI", "overclaimPatterns": []})]}), None, corpus)[0], "fail")
     w_br = {"id": "f4", "text": "x", "expect": {"brief": True}}
-    brief_ok = {"markdown": "# Evidence brief\nDate: 2026-11-15\n## What would close this gap\n## Models used\n## Bibliography\n## How to verify\nTARS expert knowledge — not verified against a source\n", "html": "<!doctype html>"}
+    brief_ok = {"markdown": "# Evidence brief\nDate: 2026-11-15\n## What would close this gap\n## Models used\n## Bibliography\n## How to verify\nTARS own reasoning — not verified against a source\n", "html": "<!doctype html>"}
     expect("brief not wired yet", run_checks(w_br, 200, res(plain), None, corpus)[0], "inconclusive")
     expect("brief with its sections", run_checks(w_br, 200, with_field("brief", brief_ok), None, corpus)[0], "pass")
     expect("brief without bibliography", run_checks(w_br, 200, with_field("brief", {"markdown": "# Evidence brief", "html": "<p>"}), None, corpus)[0], "fail")

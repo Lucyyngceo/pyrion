@@ -225,7 +225,7 @@ export function buildBrief(conversation: readonly BriefTurn[], ctx: BriefContext
   md.push("1. For each NASA quote, open the URL or DOI in the bibliography, go to the PDF page given, and find the quoted words on that page (the page number is the PDF page, not the printed one).");
   md.push("2. For each engine verdict, rerun PYRION with the same condition and records: the 64-character fingerprint above must be identical; a different fingerprint means different records or a different engine version.");
   md.push("3. Receipts (`investigation|test|variable|source file|location`) point to the exact record behind each statement.");
-  md.push("4. Anything labelled TARS expert knowledge is not verified against a source; treat it as a question to check, not as a fact.");
+  md.push("4. Anything labelled TARS own reasoning is not verified against a source; treat it as a question to check, not as a fact.");
   if (leftOut.length) md.push("", "## Left out", "", ...leftOut.map((l) => `- ${l}`));
   const markdown = md.join("\n") + "\n";
 
