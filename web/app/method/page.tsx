@@ -71,11 +71,11 @@ export default function MethodPage() {
           <strong>Continuous axes</strong> are compared only inside what was measured: ambient O₂ mole fraction and pressure, and,
           where the extracted records carry them, burner O₂, flow velocity, sample thickness, initial droplet diameter and
           ambient temperature. Only O₂ and pressure have a joint check: the engine builds the convex hull of each
-          investigation&apos;s (O₂, pressure) test points, and a target inside it lies within the region spanned by measured test points (interpolated between them, not
-          necessarily a test at that exact condition), while a target outside it would need extrapolation. The other axes are checked one at a time against their measured range.
+          investigation&apos;s (O₂, pressure) test points, and a target inside it lies between measured test points (no test was necessarily run at that exact
+          condition, and no value is computed there), while a target outside it would need extrapolation. The other axes are checked one at a time against their measured range.
         </p>
         <p data-help="method-coverage-honesty" className="honesty">
-          Covered means the condition lies inside the region spanned by measured PSI test points: it is interpolated between tests, not necessarily a test run at that exact condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+          Covered means the condition lies between measured PSI test points (inside the outline around them, within the 0.5 % tolerance). No test was necessarily run at that exact condition, other axes are checked one at a time so that exact combination may never have been tested, and PYRION computes no value there. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
       </div>
 

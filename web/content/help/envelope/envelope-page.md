@@ -11,4 +11,4 @@ The Envelope page is the home page. The chart plots oxygen (% by volume) against
 
 Your condition is the target marker. Click the chart, drag the marker or use the controls on the left to move it. Dragging elsewhere pans the view; Ctrl and the wheel, or the + and - buttons, zoom.
 
-Inside an outline means that oxygen and pressure lie within the region spanned by an investigation's test points (interpolated between tests, not necessarily tested at that exact point). Outside means beyond every extracted PSI test region.
+Inside an outline means that oxygen and pressure lie within the region spanned by an investigation's test points (between tests, not necessarily tested at that exact point). Outside means beyond every extracted PSI test region.

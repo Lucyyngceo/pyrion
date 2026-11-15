@@ -8,7 +8,7 @@
 
 PYRION is being built to rank NASA combustion experiments by how physically applicable they are to a target condition (gravity level, oxygen concentration, pressure, fuel type) and to show where the measured evidence ends.
 
-Inside the measured range of a variable it can interpolate. Across a change of physical regime, such as microgravity versus partial gravity, it does not interpolate. It reports the gap instead.
+A condition between tested values counts as comparable, although no test was necessarily run at that exact point and PYRION computes no value there. Across a change of physical regime, such as microgravity versus partial gravity, nothing counts as comparable. It reports the gap instead.
 
 The applicability verdict is computed by a deterministic engine. A language model is used only to parse inputs and to narrate results. It never decides the verdict.
 

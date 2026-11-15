@@ -109,7 +109,7 @@ export default function PlannerView({ data }: { data: PlannerData }) {
           <AskTars q={askQ} />
         </p>
         <p data-help="planner-honesty" className="honesty">
-          Covered means the condition lies inside the region spanned by measured PSI test points: it is interpolated between tests, not necessarily a test run at that exact condition. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
+          Covered means the condition lies between measured PSI test points (inside the outline around them, within the 0.5 % tolerance). No test was necessarily run at that exact condition, other axes are checked one at a time so that exact combination may never have been tested, and PYRION computes no value there. It does not mean flammability behaves the same there: combustion can change abruptly near limits, so coverage is evidence, not a prediction or a safety assessment.
         </p>
         <div className="pl-controls" role="group" aria-label="Layers">
           <label className="small">
