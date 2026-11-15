@@ -83,3 +83,12 @@ test("busy gate: an earlier request finishing later does not unlock a newer one"
   assert.equal(gate.release(second), true);
   assert.deepEqual(states, [true, false, true, false]);
 });
+
+test("busy gate: the same request releases only once (answer, then end of stream)", () => {
+  const states: boolean[] = [];
+  const gate = createBusyGate((b) => states.push(b));
+  const t = gate.begin();
+  assert.equal(gate.release(t), true);
+  assert.equal(gate.release(t), false);
+  assert.deepEqual(states, [true, false]);
+});

@@ -70,6 +70,7 @@ export function splitLines(buf: string): { lines: string[]; rest: string } {
 /** Busy flag shared by overlapping requests: only the latest request may clear it. */
 export function createBusyGate(setBusy: (b: boolean) => void) {
   let seq = 0;
+  let released = 0;
   return {
     begin(): number {
       seq += 1;
@@ -78,7 +79,9 @@ export function createBusyGate(setBusy: (b: boolean) => void) {
     },
     /** Release for this request; ignored if a newer request has started since. */
     release(token: number): boolean {
-      if (token !== seq) return false;
+      // Only the latest request, and only once (the answer and the end of the stream both release).
+      if (token !== seq || released === token) return false;
+      released = token;
       setBusy(false);
       return true;
     },

@@ -148,7 +148,9 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
     } catch {
       /* the default stays */
     }
-    void loadConversations().then((list) => {
+    void loadConversations().then((stored) => {
+      // A review cannot still be running after a reload: a saved "pending" is shown as unavailable.
+      const list = stored.map((c) => ({ ...c, messages: c.messages.map((m: { review?: string }) => (m.review === "pending" ? { ...m, review: "unavailable" } : m)) }));
       setConvs((cur) => {
         const ids = new Set(cur.map((c) => c.id));
         return [...cur, ...list.filter((c) => !ids.has(c.id))].sort((a, b) => b.updated - a.updated);
@@ -339,16 +341,20 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
           if (lastId !== null) patchMsg(lastId, skeptic ? { review, skeptic } : { review }, convId);
         },
       });
-      for (;;) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buf += dec.decode(value, { stream: true });
-        const { lines, rest } = splitLines(buf);
-        buf = rest;
-        for (const line of lines) stream.push(line);
+      try {
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          const { lines, rest } = splitLines(buf);
+          buf = rest;
+          for (const line of lines) stream.push(line);
+        }
+        if (buf.trim()) stream.push(buf);
+      } finally {
+        // Always closes a review that was announced but never delivered (stream cut, network error).
+        stream.end();
       }
-      if (buf.trim()) stream.push(buf);
-      stream.end();
       return true;
     },
     [activeId, add, answerFor, messages, patchMsg, path],
@@ -390,7 +396,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
         add({ role: "tars", kind: "note", text: "Tell me a condition first (for example “34 % oxygen at 8.2 psia in lunar gravity”), or open the Envelope page and pick a scenario: I use the condition shown there." });
         return;
       }
-      setBusy(true);
+      const token = gate.begin();
       try {
         if (name === "map") {
           add({ role: "user", text: "Map the unknown (current condition)" });
@@ -402,10 +408,10 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
           else add({ role: "tars", kind: "experiments", route: "condition", experiments: r.data.experiments, fingerprint: r.data.fingerprint });
         }
       } finally {
-        setBusy(false);
+        gate.release(token);
       }
     },
-    [add, answerFor, busy],
+    [add, answerFor, busy, gate],
   );
 
   // Conversations: new, open, rename, delete one, delete all. All in this browser.
