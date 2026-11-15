@@ -17,6 +17,22 @@ def main():
         for key in ['title','objective','approach','hypothesis','researchImpacts','experimentHardware','flightProgram','investigationStartDate','investigationEndDate','related_glds']:
             value = raw.get(key)
             fields[key] = {'value': value or '', 'badge': 'text' if value else 'not in PSI', 'source': {'file': source, 'key': key}}
+        # Preserve exact substrings from PSI; no generated paraphrase.
+        quotes = []
+        for key in ['objective', 'approach', 'description']:
+            value = raw.get(key)
+            if not isinstance(value, str): continue
+            for match in re.finditer(r'[^.!?\n]+[.!?](?=\s|$)', value):
+                sentence = match.group().strip()
+                if 35 <= len(sentence) <= 400 and sentence not in [q['text'] for q in quotes]:
+                    quotes.append({'text': sentence, 'field': key})
+                    break
+            if len(quotes) == 3: break
+        # A single sentence is not a 2–3 sentence summary.
+        if len(quotes) < 2: quotes = []
+        for quote in quotes:
+            if quote['text'] not in raw.get(quote['field'], ''):
+                raise ValueError(f'{acc}: summary quote does not match PSI field {quote["field"]}')
         conditions_path = ROOT / 'data/conditions' / (acc+'.csv')
         cond = rows(conditions_path) if conditions_path.exists() else []
         valid = [r for r in cond if r.get('status') == 'extracted']
@@ -47,6 +63,6 @@ def main():
                     for column in next(csv.reader(f),[]):
                         if re.search(r'(?i)^(pi|date|gmt|test( id| number| #)?|notes?|comments?|camera( \d+)?|day|sample number)\s*$', column.strip()): continue
                         measurements.append({'column':column,'file':str(p.relative_to(ROOT)).replace('\\','/'),'badge':'table'})
-        profiles.append({'accession':acc,'acronym':inv['acronym'],'doi':inv['doi'],'psi_links':psi_links,'context_variables':{v:sorted(set(x['value'] for x in valid if x['test_id']=='*' and x['variable']==v and x['value'])) for v in ['gravity_regime','fuel_phase']},'fields':fields,'hardware':[x for x in manifests['hardware'] if x['accession']==acc], 'publications':[x for x in manifests['publications'] if x['accession']==acc], 'measurements':measurements,'variables':summary,'test_count':len({parent(t) for t in real_ids}),'value_count':len(valid)})
+        profiles.append({'summary_quotes':quotes,'accession':acc,'acronym':inv['acronym'],'doi':inv['doi'],'psi_links':psi_links,'context_variables':{v:sorted(set(x['value'] for x in valid if x['test_id']=='*' and x['variable']==v and x['value'])) for v in ['gravity_regime','fuel_phase']},'fields':fields,'hardware':[x for x in manifests['hardware'] if x['accession']==acc], 'publications':[x for x in manifests['publications'] if x['accession']==acc], 'measurements':measurements,'variables':summary,'test_count':len({parent(t) for t in real_ids}),'value_count':len(valid)})
     out=ROOT/'data/derived/investigation_profiles.json'; out.parent.mkdir(parents=True,exist_ok=True); out.write_text(json.dumps(profiles,indent=2,sort_keys=True,ensure_ascii=False)+'\n',encoding='utf-8'); print(f'{len(profiles)} profiles, {sum(p["value_count"] for p in profiles)} condition rows')
 if __name__=='__main__': main()
