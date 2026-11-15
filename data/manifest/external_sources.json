@@ -551,6 +551,13 @@
    "role": "stretch-rate framework: forced, buoyant and mixed stretch",
    "title": "Low stretch solid-fuel flame research (NTRS 20040053568)",
    "url": "https://ntrs.nasa.gov/api/citations/20040053568/downloads/20040053568.pdf"
+  },
+  {
+   "id": "nssdc-mars-fact-sheet",
+   "priority": "P1",
+   "role": "Mars surface gravity 0.38 g (row 'Surface gravity (mean) (m/s2) 3.73 | 9.82 | 0.380', page last updated 19 May 2025)",
+   "title": "Mars Fact Sheet, NASA GSFC NSSDC",
+   "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
   }
  ]
 }
