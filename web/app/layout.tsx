@@ -16,7 +16,7 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 export const metadata: Metadata = {
   title: "PYRION Ω · The evidence envelope",
   description:
-    "Ranks NASA PSI combustion investigations by physical applicability to a target condition and shows where the measured evidence ends.",
+    "Orders NASA PSI combustion investigations by how close their tested conditions are to a target condition, and shows where the tested evidence ends.",
 };
 
 export const viewport: Viewport = {

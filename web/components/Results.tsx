@@ -258,7 +258,7 @@ function ResultRow({
           <span className="acc">{iv.accession}</span>
           {inv?.acronym && <span className="acronym">{inv.acronym}</span>}
         </div>
-        {cluster?.rank != null && <span className="rank">nearest #{cluster.rank}</span>}
+        {cluster?.rank != null && <span className="rank" title="Order by condition similarity on the axes you set, not relevance">nearest by condition #{cluster.rank}</span>}
       </header>
       {iv.blockers && iv.blockers.length > 0 ? (
         <ul className="blockers">
@@ -409,7 +409,8 @@ function Results({ evaluation, dataset, lookup, openAccession, onOpenAccession, 
           </h3>
           <p className="muted small">
             A regime barrier is not a low score. Gravity regime, fuel phase and diluent change the physics, so no distance is
-            defined across them.
+            defined across them. Not directly applicable does not mean irrelevant: microgravity and normal-gravity results
+            can bound what occurs at intermediate gravity (challenge statement).
           </p>
           {showBarrier && barrier.map(row)}
         </div>

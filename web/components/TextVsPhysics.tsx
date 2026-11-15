@@ -67,7 +67,7 @@ function TextVsPhysics({
   return (
     <section className="card tvp" aria-labelledby="tvp-h">
       <div className="card-head">
-        <h2 id="tvp-h">Ranked by text similarity vs. ranked by physics</h2>
+        <h2 id="tvp-h">Ranked by text similarity vs. ranked by condition similarity</h2>
         <p className="muted small">
           The same target, ranked two ways. Left: TF-IDF cosine similarity between the target description and each PSI
           investigation&apos;s text: its title plus the titles of the publications PSI lists for it. Right: the engine&apos;s physical verdicts. Each row shows the physical verdict
@@ -94,7 +94,7 @@ function TextVsPhysics({
           </div>
         )}
         <div>
-          <h3 className="tvp-h">By physics</h3>
+          <h3 className="tvp-h">By tested conditions</h3>
           <ol className="tvp-list">
             {physics.map((p, i) => (
               <Row key={p.accession} id={p.accession} i={i} right={<span className="tvp-score" />} />
