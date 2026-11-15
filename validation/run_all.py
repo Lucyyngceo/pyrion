@@ -284,6 +284,32 @@ def _letters(s):
     return re.sub(r"[^a-z0-9]+", "", s.lower())   # spacing and punctuation differ in extracted PDF text
 
 
+_NUM = re.compile(r"(?<![\w.])[-−]?(?:\d+(?:[.,]\d+)?|\.\d+)(?![\w])")
+
+
+def numbers_in(s):
+    """Numeric tokens exactly as written (decimal point kept, so 1.5 != 15 and .15 != 15)."""
+    import unicodedata
+    s = unicodedata.normalize("NFKC", s).replace("−", "-")
+    # The sign is dropped: documents split words like "FLEX-2" into "FLEX -2", which would read as a negative number.
+    toks = [t.lstrip("-") for t in _NUM.findall(s)]
+    return [t.replace(",", ".") if re.fullmatch(r"\d+,\d{1,2}", t) else t for t in toks]
+
+
+def numbers_found(quote, text):
+    """Every elision fragment's numbers must appear, in the same order and contiguously, among the
+    document's numeric tokens. Catches '1.5' quoted from a text that says '15'."""
+    doc = numbers_in(text)
+    for frag in re.split(r"\[\s*(?:\.\.\.|…)\s*\]|…|\.\.\.", quote):
+        q = numbers_in(frag)
+        if not q:
+            continue
+        n = len(q)
+        if not any(doc[i:i + n] == q for i in range(len(doc) - n + 1)):
+            return False
+    return True
+
+
 def quote_found(quote, text):
     """Verbatim up to spacing/punctuation. An elision marker ([...] or …) splits the quote:
     every fragment must appear, in order."""
@@ -340,8 +366,14 @@ def check_trace(recs, rep):
             continue
         try:
             if r["method"] == "document":
-                if not quote_found(r["quote"], document_text(r["source_file"])):
+                text = document_text(r["source_file"])
+                if not quote_found(r["quote"], text):
                     rep.add("BLOCKER", "trace", r["_file"], f"quote not found verbatim in {r['source_file']}: \"{r['quote'][:80]}\"")
+                elif not numbers_found(r["quote"], text):
+                    rep.add("BLOCKER", "trace", r["_file"], f"the numbers of the quote do not appear as written in {r['source_file']}: \"{r['quote'][:80]}\"")
+                vo = numbers_in(r.get("value_original") or "")
+                if vo and not all(v in numbers_in(r["quote"]) for v in vo):
+                    rep.add("BLOCKER", "trace", r["_file"], f"value_original '{r.get('value_original')}' is not written in the quote")
                 rep.stats["quotes_traced"] += 1
             elif r["method"] == "table" and p.suffix.lower() in (".csv", ".xlsx"):
                 # Headers may contain ';' (e.g. "Ambient pressure; mmHg"): split only before sheet=/row=/column=.
