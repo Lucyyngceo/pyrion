@@ -9,11 +9,11 @@ page: envelope
 link: /envelope
 highlight: [data-help="ask-box"]
 ---
-What it is: The single question bar at the top of the Envelope page.
+What it is: Not shown on the site today: the question bar was removed from the Envelope page; ask TARS SI in the chat bubble at the bottom right instead. This topic describes the former bar.
 
 What it shows: Rotating example questions; nothing is computed until you send one.
 
-How to use it: Type a question and press Ask: TARS SI opens with the question already sent.
+How to use it: Use the TARS SI bubble: type a question and press Send; TARS SI answers with the question already sent.
 
 Example: Ask what PSI says at 34 % oxygen and 8.2 psia.
 

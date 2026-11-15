@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-dialog"]
 ---
-What it is: The dialog that opens from + Add a source.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. The dialog that opens from + Add a source.
 
 What it shows: The rule (NASA sources only), the fields and the five steps that will run.
 

@@ -30,9 +30,9 @@ const ctxFor = (s: Script = {}): ClaimContext => {
     s.seen?.push(req);
     if (req.purpose === "split claims") {
       if (s.failSplit) throw new Error("no model");
-      return { text: JSON.stringify({ claims: s.claims ?? [] }), model: "z-ai/glm-5.3", name: "GLM-5.3" };
+      return { text: JSON.stringify({ claims: s.claims ?? [] }), model: "mistralai/mistral-small-3.2-24b-instruct", name: "Mistral Small 3.2" };
     }
-    return { text: JSON.stringify({ candidates: s.candidates ?? [] }), model: "z-ai/glm-5.3", name: "GLM-5.3" };
+    return { text: JSON.stringify({ candidates: s.candidates ?? [] }), model: "mistralai/mistral-small-3.2-24b-instruct", name: "Mistral Small 3.2" };
   };
   return { corpus, askModel, records, catalog: { "PSI-9801": { acronym: "SYN", title: "Synthetic", doi: "10.0000/s1" } }, search: async () => [{ doc_id: DOC, page_start: 10, title: "Test document", text: "The chamber volume is 14.4 L." }] };
 };
@@ -133,7 +133,7 @@ test("the model only proposes: claims that are not in the pasted text are droppe
   const a = await checkClaim(text, ctxFor({ claims: ["The chamber volume is 14.4 L.", "NASA completely approved the whole mission design."] }));
   assert.deepEqual(a.claims.map((c) => c.text), ["The chamber volume is 14.4 L."]);
   assert.ok(a.dropped.some((d) => /not in the pasted text/.test(d)));
-  assert.deepEqual(a.models, ["GLM-5.3"]);
+  assert.deepEqual(a.models, ["Mistral Small 3.2"]);
   const b = await checkClaim(text, ctxFor({ failSplit: true }));
   assert.deepEqual(b.claims.map((c) => c.text), ["The chamber volume is 14.4 L.", "The vent line is short."]);
   assert.ok(!b.dropped.some((d) => /not in the pasted text/.test(d)));

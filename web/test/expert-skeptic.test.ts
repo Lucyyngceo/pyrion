@@ -20,19 +20,19 @@ const deepFreeze = <T,>(o: T): T => {
   return Object.freeze(o);
 };
 
-const stub = (text: string, model = "z-ai/glm-5.3", seen?: ModelRequest[]): AskModel => async (req) => {
+const stub = (text: string, model = "mistralai/mistral-small-3.2-24b-instruct", seen?: ModelRequest[]): AskModel => async (req) => {
   seen?.push(req);
-  return { text, model, name: model === "z-ai/glm-5.3" ? "GLM-5.3" : undefined };
+  return { text, model, name: model === "mistralai/mistral-small-3.2-24b-instruct" ? "Mistral Small 3.2" : undefined };
 };
 
 test("model families and the reviewer preference: never the family that wrote the answer, Nemotron first otherwise", () => {
   assert.equal(modelFamily("nvidia/nemotron-3-ultra-550b-a55b"), "nemotron");
-  assert.equal(modelFamily("z-ai/glm-5.3"), "glm");
-  assert.equal(modelFamily("qwen/qwen3.8-27b"), "qwen");
+  assert.equal(modelFamily("mistralai/mistral-small-3.2-24b-instruct"), "mistral");
+  assert.equal(modelFamily("openai/gpt-oss-120b"), "gpt-oss");
   assert.equal(modelFamily("acme/foo"), "acme");
   assert.equal(modelFamily(null), "unknown");
-  assert.deepEqual(reviewerPreference("qwen/qwen3.8-27b")[0], "nvidia/nemotron-3-ultra-550b-a55b");
-  assert.ok(!reviewerPreference("qwen/qwen3.8-27b").some((m) => modelFamily(m) === "qwen"));
+  assert.deepEqual(reviewerPreference("openai/gpt-oss-120b")[0], "nvidia/nemotron-3-ultra-550b-a55b");
+  assert.ok(!reviewerPreference("openai/gpt-oss-120b").some((m) => modelFamily(m) === "gpt-oss"));
   const fromNemotron = reviewerPreference("nvidia/nemotron-3-ultra-550b-a55b");
   assert.equal(fromNemotron[0], "google/gemma-4-31b-it");
   assert.deepEqual(fromNemotron.slice(0, 2), ["google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct"]);
@@ -49,10 +49,10 @@ test("extractJson finds the first JSON value in prose and code fences", () => {
 test("agree: the reviewer found nothing; the model is named; the answer is untouched", async () => {
   const frozen = deepFreeze(structuredClone(checked));
   const seen: ModelRequest[] = [];
-  const r = await reviewSecondOpinion("What does FM2 plan?", frozen, { corpus, answeredBy: "nvidia/nemotron-3-ultra-550b-a55b", askModel: stub('{"verdict":"agree","objections":[]}', "z-ai/glm-5.3", seen) });
+  const r = await reviewSecondOpinion("What does FM2 plan?", frozen, { corpus, answeredBy: "nvidia/nemotron-3-ultra-550b-a55b", askModel: stub('{"verdict":"agree","objections":[]}', "mistralai/mistral-small-3.2-24b-instruct", seen) });
   assert.equal(r.verdict, "agree");
   assert.deepEqual(r.objections, []);
-  assert.deepEqual(r.model, { model: "z-ai/glm-5.3", name: "GLM-5.3", family: "glm" });
+  assert.deepEqual(r.model, { model: "mistralai/mistral-small-3.2-24b-instruct", name: "Mistral Small 3.2", family: "mistral" });
   assert.equal(r.answeredBy, "nvidia/nemotron-3-ultra-550b-a55b");
   assert.deepEqual(checked, structuredClone(frozen), "the answer was not changed");
   // The request asked for another family and listed the preference without Nemotron.
@@ -63,7 +63,7 @@ test("agree: the reviewer found nothing; the model is named; the answer is untou
 
 test("object: an objection that points to a block, with a NASA quote verified on its page", async () => {
   const reply = JSON.stringify({ verdict: "object", objections: [{ blockIndex: 0, reason: "The quote gives 8.2 psia but says nothing about a limit.", citation: { doc_id: DOC, page: 10, quote: "The chamber volume is 14.4 L" } }] });
-  const r = await reviewSecondOpinion("q", checked, { corpus, answeredBy: "qwen/qwen3.8-27b", askModel: stub(reply, "nvidia/nemotron-3-ultra-550b-a55b") });
+  const r = await reviewSecondOpinion("q", checked, { corpus, answeredBy: "openai/gpt-oss-120b", askModel: stub(reply, "nvidia/nemotron-3-ultra-550b-a55b") });
   assert.equal(r.verdict, "object");
   assert.equal(r.objections.length, 1);
   assert.equal(r.objections[0].blockIndex, 0);
@@ -122,9 +122,9 @@ test("unavailable when the model fails, returns text that is not JSON, there is 
   assert.equal((await reviewSecondOpinion("q", checked, { corpus, askModel: boom })).verdict, "unavailable");
   const bad = await reviewSecondOpinion("q", checked, { corpus, askModel: stub("I think it is fine.") });
   assert.equal(bad.verdict, "unavailable");
-  assert.equal(bad.model?.family, "glm");
+  assert.equal(bad.model?.family, "mistral");
   assert.equal((await reviewSecondOpinion("q", [], { corpus, askModel: stub("{}") })).verdict, "unavailable");
-  const none = await reviewSecondOpinion("q", checked, { corpus, answeredBy: "qwen/qwen3.8-27b", available: ["qwen/qwen3.8-27b"], askModel: stub("{}") });
+  const none = await reviewSecondOpinion("q", checked, { corpus, answeredBy: "openai/gpt-oss-120b", available: ["openai/gpt-oss-120b"], askModel: stub("{}") });
   assert.equal(none.verdict, "unavailable");
   assert.match(none.note ?? "", /another family/);
 });

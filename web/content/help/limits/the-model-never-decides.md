@@ -4,7 +4,7 @@ title: "The model never decides"
 keywords: model never decides, language model, llm, ai, who decides, numbers from code, quotes checked, expert knowledge, trust, hallucination
 chapter: 12
 order: 2
-dataHelp: [ask-box, tars-honesty, ai-limits]
+dataHelp: [ask-box, tars-honesty]
 sources: ["engine/src/answer.ts", "web/lib/expert/claims.ts", "web/lib/expert/calculators.ts"]
 ---
 

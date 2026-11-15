@@ -411,7 +411,7 @@ def run_checks(q: dict, status: int, events: list[dict], err: str | None, corpus
 # ------------------------------------------------------------------ the workflows (second opinion, claim check, brief, compare)
 
 CLAIM_CLASSES = ("supported in PSI", "not supported in PSI", "contradicted", "overclaim")
-FAMILIES = ("nemotron", "glm", "qwen", "kimi", "gemma")
+FAMILIES = ("nemotron", "gemma", "mistral", "gpt-oss", "llama")
 
 
 def model_family(model_id: str | None) -> str:
@@ -593,14 +593,14 @@ def selftest() -> int:
     print("workflows")
     plain = [expert("Flames need fuel, oxygen and heat.")]
     w_sk = {"id": "f1", "text": "x", "expect": {"skeptic": True}}
-    def with_field(field, value, model="z-ai/glm-5.3"):
+    def with_field(field, value, model="mistralai/mistral-small-3.2-24b-instruct"):
         r = res(plain, model={"name": "Test model", "model": model, "provider": "test", "fellBackFrom": None})
         r[0][field] = value
         return r
     expect("skeptic field not wired yet", run_checks(w_sk, 200, res(plain), None, corpus)[0], "inconclusive")
     expect("skeptic: objection on a block, other family", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "object", "objections": [{"blockIndex": 0, "reason": "vague"}], "model": {"model": "nvidia/nemotron-3-ultra-550b-a55b"}}), None, corpus)[0], "pass")
     expect("skeptic: objection with no block", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "object", "objections": [{"reason": "vague"}], "model": {"model": "nvidia/nemotron-3-ultra-550b-a55b"}}), None, corpus)[0], "fail")
-    expect("skeptic: same family as the answer", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "agree", "objections": [], "model": {"model": "z-ai/glm-5.2"}}), None, corpus)[0], "fail")
+    expect("skeptic: same family as the answer", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "agree", "objections": [], "model": {"model": "mistralai/mistral-small-3.1"}}), None, corpus)[0], "fail")
     expect("skeptic: unavailable is allowed", run_checks(w_sk, 200, with_field("skeptic", {"verdict": "unavailable", "objections": [], "model": None}), None, corpus)[0], "pass")
     w_cc = {"id": "f2", "text": "x", "expect": {"claim_classes": {"are safe": "overclaim"}}}
     expect("claim check not wired yet", run_checks(w_cc, 200, res(plain), None, corpus)[0], "inconclusive")

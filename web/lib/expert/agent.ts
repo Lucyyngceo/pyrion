@@ -95,8 +95,7 @@ export const HIGHLIGHTS: Record<string, { selector: string; label: string }> = {
   evidence_list: { selector: ".nav-evidence", label: "Where the evidence is" },
   chart: { selector: ".chart-card", label: "the evidence envelope chart" },
   verdict_ring: { selector: ".vring", label: "the verdict ring" },
-  add_source: { selector: ".add-source-btn", label: "the Add a source button" },
-  ask_box: { selector: "#ask-q", label: "the Ask box" },
+  mcp_panel: { selector: ".mcp-panel", label: "the MCP panel (use PYRION from your AI assistant)" },
   full_screen: { selector: ".fs-btn", label: "the Full screen button" },
   controls: { selector: ".nav-left", label: "the controls on the left" },
 };

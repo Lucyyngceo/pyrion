@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-ntrs"]
 ---
-What it is: A text box for an NTRS document number.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. A text box for an NTRS document number.
 
 What it shows: Digits only, or the digits of a pasted ntrs.nasa.gov link.
 

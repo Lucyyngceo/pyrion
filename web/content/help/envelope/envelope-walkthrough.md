@@ -6,9 +6,9 @@ order: 1
 ---
 The page reads from top to bottom like a short report.
 
-**The header** has the page title, a one-line status of the data behind it, the **+ Add a source** button and the **?** menu.
+**The header** has the page title, a one-line status of the data behind it, and the **?** menu. Below it, a panel shows how to use PYRION from your own AI assistant (MCP).
 
-**The Ask box** is one line. Type a question about a condition and press Ask, or leave it and use the tiles.
+**Questions** go to TARS SI, the chat bubble at the bottom right; there is no separate question bar on this page.
 
 **The four scenario tiles** are ready-made conditions: the ISS cabin, NASA's Moon Base, a NASA exploration atmosphere, and Your condition. Click one to load it.
 

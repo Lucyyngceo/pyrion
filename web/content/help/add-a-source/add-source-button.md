@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-button"]
 ---
-What it is: The button next to the page title.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. The button next to the page title.
 
 What it shows: It opens the Add NASA evidence dialog.
 

@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="tile-strip"]
 ---
-What it is: The row of four tiles under the Ask box.
+What it is: The row of four scenario tiles near the top of the page.
 
 What it shows: ISS cabin air, NASA's Moon Base, NASA exploration atmosphere and Your condition, each with live numbers.
 

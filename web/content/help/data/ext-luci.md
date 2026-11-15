@@ -38,6 +38,6 @@ What was **not** recorded, and why:
 ## For engineers
 
 - File `data/raw/nasa/ntrs-20250010653/ASGSR 2025-LUCI-Ferkul-Presentation-v2-20250010653.pdf`, 44 slides, SHA-256 `bb0aadd2f9543483467b86796e6aa19f4e13c3f8169eec96134015f95ed61d79`. License: not stated in the document.
-- Records use accession `NTRS-20250010653` and descriptive test ids; built by `python -I extraction/build_external.py ntrs-20250010653` from an extractor and a separate verificador (`extraction/documents/review/external-ntrs-20250010653.*.json`).
+- Records use accession `NTRS-20250010653` and descriptive test ids; built by `python -I extraction/build_external.py ntrs-20250010653` from an extractor and a separate verifier (`extraction/documents/review/external-ntrs-20250010653.*.json`).
 - Validation: `python -I extraction/validate.py --conditions data/external/ntrs-20250010653` and `python -I validation/run_all.py --conditions data/external/ntrs-20250010653` (0 BLOCKER).
 - Slides 9, 11, 14, 15, 32 and 35 have no text layer. Both flight samples burned in one chamber with one O2 sensor, so their two O2 records are not independent observations.

@@ -92,7 +92,7 @@ the requested model, the OpenRouter list (`OPENROUTER_*`), then the NVIDIA NIM l
 429, 5xx or timeout, then the next model is tried. Every answer reports which model wrote it. Limits: 20 questions an hour per visitor, a per-visitor quota on the primary provider, and a daily cap on it
 (`PYRION_DAILY_REQUEST_CAP`, default 300, `0` means 0, persisted in `web/.data/`) send traffic to the fallback; past both the page stays in
 structured mode. Visitors are told apart only by `x-real-ip` from our own proxy, believed only with `PYRION_TRUST_PROXY=1` and the secret header (`PYRION_PROXY_SECRET`); visitors may choose only
-`PYRION_CLIENT_MODELS` (default: qwen3.8-27b and kimi-k2.6). Each step has a 25 s deadline. User questions are screened with a NIM safety model; if that model is down the question goes
+`PYRION_CLIENT_MODELS` (default: Nemotron 3 Ultra, Gemma 4 31B and Mistral Small 3.2). Each step has a 25 s deadline. User questions are screened with a NIM safety model; if that model is down the question goes
 through. `GET /api/llm/health` shows which providers answer and the cap left, with no key in the output.
 
 With no provider configured, `/api/ask` answers 503 and the page shows "Structured mode: add a key to enable questions". All prompts are in

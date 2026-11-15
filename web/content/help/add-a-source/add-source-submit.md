@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-submit"]
 ---
-What it is: A link at the bottom of the Add a source dialog.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. A link at the bottom of the Add a source dialog.
 
 What it shows: Nothing by itself; it opens the Data page, which explains how every extracted value is located in the NASA file by code.
 

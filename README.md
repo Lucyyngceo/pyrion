@@ -38,6 +38,20 @@ PYRION is also a Model Context Protocol server at `https://pyrion.us/api/mcp` (S
 claude mcp add --transport http pyrion https://pyrion.us/api/mcp
 ```
 
+## What we learned late (and fixed on the last day)
+
+Things we did not know at the start and only found near the deadline, kept here so the next team does not repeat them:
+
+1. **Run-time AI and the China rule.** The Space Apps terms bar collaboration with China-owned entities. TARS was running on GLM, Qwen and Kimi (open weights, but from China-owned companies) through OpenRouter. We replaced them on 15 November with Nemotron 3 Ultra, Gemma 4 31B, Mistral Small 3.2 and gpt-oss-120b, after a model trial (`validation/model_trial/`). The licenses were never the problem; who owns the company is.
+2. **Our own safety cap looked like broken models.** The trial used up PYRION's daily cap of 300 OpenRouter calls, and the models tested last seemed to fail instantly. The cause was the cap, not the models. It now allows 1000 calls a day. The same incident proved the fallback: with OpenRouter blocked, TARS kept answering through the free NVIDIA NIM Nemotron 3 Ultra.
+3. **gpt-oss-120b needs reasoning switched on** in the OpenRouter request, or it returns an empty answer. Each model's quirks now live in `web/lib/llm/config.ts`.
+4. **AI audio must be declared in the file's metadata too.** Saying "AI voice" on screen was not enough. The demo video now carries the disclosure in its MP4 metadata as well.
+5. **A screen recording beats a cropped screenshot.** Zooming into site text cut lines mid-sentence and looked fake. The demo shows the live dashboard with a cursor instead, and every frame was checked for cut text.
+6. **New data can break old tests.** A test that asserted "BASS-II has no flow velocity" failed once the extraction located it. The test now checks what the data says.
+7. **A rebuild on the server means a minute of errors.** `next build` replaces the running app's files, so pages return 500 for about a minute during a deploy. Do not deploy while judges are looking.
+8. **The help encyclopedia drifts.** Removing the Ask bar and the Add a source button left help topics and TARS "take me there" targets pointing at nothing. A coverage test catches missing help ids; topics about removed elements still needed a manual pass.
+9. **Say what it does before what it found.** The first landing headline led with the Moon Base finding and confused readers. It now says what PYRION does, and the finding sits right below.
+
 ## Run locally
 
 Requires Node.js 20.9 or newer (`web/README.md`); the public instance runs Node 24 (`docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).

@@ -106,8 +106,7 @@ function pageContext(path: string) {
     has(".chart-card") && "chart",
     has(".fs-on") && "chart_full_screen",
     has(".vring") && "verdict_ring",
-    has(".add-source-btn") && "add_source",
-    has("#ask-q") && "ask_box",
+    has(".mcp-panel") && "mcp_panel",
     has(".nav-left") && "controls",
   ].filter(Boolean) as string[];
   const text = (sel: string) => document.querySelector(sel)?.textContent?.trim().slice(0, 160) ?? null;

@@ -11,4 +11,6 @@ PYRION ranks the NASA combustion investigations in PSI (Physical Sciences Inform
 
 Every verdict is computed by a deterministic engine from values read out of the NASA sources. A language model never decides a verdict. Where PSI has no test, PYRION says so; it never fills the gap with a guess.
 
+PYRION is also an MCP server at https://pyrion.us/api/mcp, so an AI assistant that supports the Model Context Protocol can call the same engine and get the same verdicts (see "Use PYRION from your AI assistant (MCP)").
+
 PYRION is a hackathon project (NASA Space Apps 2026, Flame in Freefall), not a NASA product.

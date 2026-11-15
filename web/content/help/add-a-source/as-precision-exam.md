@@ -15,7 +15,7 @@ In plain words: the same program that will read a new document is run on documen
 
 ## The answer key
 
-The **LUCI golden set** was extracted by hand with the usual rigour (an extractor, a separate verificador, then the validator): 42 records in 4 tests, 37 usable and 5 `insufficient_evidence`, in `data/external/ntrs-20250010653/`. It exists today.
+The **LUCI golden set** was extracted by hand with the usual rigour (an extractor, a separate verifier, then the validator): 42 records in 4 tests, 37 usable and 5 `insufficient_evidence`, in `data/external/ntrs-20250010653/`. It exists today.
 
 ## The exam
 

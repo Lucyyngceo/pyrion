@@ -25,7 +25,7 @@ Per investigation: `none`, `partial`, `requirements_only`, `not_ground`, `yes_ta
 
 ## What was extracted from it
 
-Nothing automatically. After approval, two stated 1 g conditions were extracted by hand with the usual extractor and verificador: one from PSI-25 (the downward PMMA series at San Diego State University, where the Summary Report gives 101 kPa and 21 % O2 on page 46 and 20.7 % O2 in a figure caption on page 49; the two are kept apart and not averaged) and one from PSI-20. Outside PSI, NTRS 20000004509 (Olson and T’ien) has a normal-gravity PMMA table of about 8 stretch-rate rows, with pressure not stated.
+Nothing automatically. After approval, two stated 1 g conditions were extracted by hand with the usual extractor and verifier: one from PSI-25 (the downward PMMA series at San Diego State University, where the Summary Report gives 101 kPa and 21 % O2 on page 46 and 20.7 % O2 in a figure caption on page 49; the two are kept apart and not averaged) and one from PSI-20. Outside PSI, NTRS 20000004509 (Olson and T’ien) has a normal-gravity PMMA table of about 8 stretch-rate rows, with pressure not stated.
 
 ## For engineers
 

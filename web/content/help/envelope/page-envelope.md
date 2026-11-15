@@ -11,7 +11,7 @@ highlight: [data-help="page-envelope"]
 ---
 What it is: The home page: choose a condition, see where NASA's tests stand relative to it, and read the verdicts.
 
-What it shows: From top to bottom: header line, Ask box, four scenario tiles, the controls, the chart, the verdict and the list "Where the evidence is", then the result cards for every investigation.
+What it shows: From top to bottom: header line, the MCP panel, four scenario tiles, the controls, the chart, the verdict and the list "Where the evidence is", then the result cards for every investigation.
 
 How to use it: Pick a tile, or set oxygen, pressure and gravity by hand, and read the headline.
 

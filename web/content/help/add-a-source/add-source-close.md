@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-close"]
 ---
-What it is: The cross at the dialog's top right.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. The cross at the dialog's top right.
 
 What it shows: Nothing.
 

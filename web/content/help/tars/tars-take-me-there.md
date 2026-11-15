@@ -15,6 +15,6 @@ What it shows: Goes to the page and highlights the control.
 
 How to use it: Click it.
 
-Example: Go to the Add a source button.
+Example: Go to the evidence chart.
 
 What it does not do: It moves you; it does not click the control.

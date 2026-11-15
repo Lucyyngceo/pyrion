@@ -22,15 +22,15 @@ const blocks: AnswerBlock[] = [
   { layer: "expert", text: "That atmosphere is richer in oxygen than the cabin air." },
 ];
 const kept = checkAnswer(blocks, { corpus }).kept;
-const turn: BriefTurn = { question: "What does FM2 plan?", kept, target, model: { model: "z-ai/glm-5.3", name: "GLM-5.3" } };
+const turn: BriefTurn = { question: "What does FM2 plan?", kept, target, model: { model: "mistralai/mistral-small-3.2-24b-instruct", name: "Mistral Small 3.2" } };
 const ctx = { date: "2026-11-15", records, catalog, corpus };
 
 test("the brief has every required section, the date, and the models used", () => {
   const b = buildBrief([turn], ctx);
   for (const h of ["# Evidence brief", "Date: 2026-11-15", "## Questions and findings", "## What would close this gap", "## Models used", "## Bibliography", "## How to verify"]) assert.ok(b.markdown.includes(h), h);
   assert.ok(b.markdown.includes("> What does FM2 plan?"));
-  assert.ok(b.models.includes("GLM-5.3 (z-ai/glm-5.3)"));
-  assert.ok(b.markdown.includes("- GLM-5.3 (z-ai/glm-5.3)"));
+  assert.ok(b.models.includes("Mistral Small 3.2 (mistralai/mistral-small-3.2-24b-instruct)"));
+  assert.ok(b.markdown.includes("- Mistral Small 3.2 (mistralai/mistral-small-3.2-24b-instruct)"));
 });
 
 test("NASA quotes come with full references and the page; the bibliography is deduplicated", () => {

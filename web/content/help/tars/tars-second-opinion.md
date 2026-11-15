@@ -8,7 +8,7 @@ keywords: second opinion, skeptic, reviewer, objection
 ---
 What it is: A strip under an answer in Advanced and Auto modes.
 
-What it shows: A review of the checked answer by a model of a different family than the one that wrote it: it agrees, objects (with the reason, and a NASA quote that code verified), or is unavailable. The reviewing model is named.
+What it shows: A review of the checked answer by a model of a different family than the one that wrote it: it agrees, objects (with the reason, and a NASA quote that code verified), or is unavailable. The reviewing model is named: one of Nemotron 3 Ultra, Gemma 4 31B, Mistral Small 3.2 or gpt-oss-120b, always from a different family than the answering model.
 
 How to use it: Read it after the answer; hover an objection's quote to see its page.
 

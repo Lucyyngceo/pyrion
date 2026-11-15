@@ -15,6 +15,6 @@ What it shows: The title of a help topic.
 
 How to use it: Click it to open the topic.
 
-Example: Click "Add a source (as built today)".
+Example: Click "Evidence gaps (top bar)".
 
 What it does not do: It asks Support again.

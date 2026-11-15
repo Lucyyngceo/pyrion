@@ -4,11 +4,11 @@ title: Ask 3 models
 chapter: tars
 order: 998
 dataHelp: tars-three-models
-keywords: three models, compare models, glm, qwen, nemotron, fingerprint
+keywords: three models, compare models, nemotron, gemma, mistral, fingerprint
 ---
 What it is: A button under an answer in Advanced mode.
 
-What it shows: The same question asked to GLM-5.3, Qwen and Nemotron, side by side, with the engine fingerprint of each run. If the fingerprints are identical the page says "Same verdict, different words": the models may phrase things differently, but the engine computed the same thing.
+What it shows: The same question asked to Nemotron 3 Ultra (NVIDIA), Gemma 4 31B (Google) and Mistral Small 3.2 (Mistral AI), side by side, with the engine fingerprint of each run. If the fingerprints are identical the page says "Same verdict, different words": the models may phrase things differently, but the engine computed the same thing.
 
 How to use it: Click it once; it takes a while because three models run.
 

@@ -9,7 +9,7 @@ page: envelope
 link: /envelope
 highlight: [data-help="add-source-file"]
 ---
-What it is: A file picker.
+What it is: Not shown on the site today: the button and dialog were removed from the Envelope and Data pages; this topic describes the planned design. A file picker.
 
 What it shows: CSV or Excel tables up to 20 MB.
 

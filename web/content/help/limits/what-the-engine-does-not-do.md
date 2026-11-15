@@ -4,7 +4,7 @@ title: "What the engine does not do"
 keywords: limits, what it does not do, not a simulator, no cfd, no prediction, not safe, honesty, only in psi, no data exists, can it predict
 chapter: 12
 order: 1
-dataHelp: [bridge-limits, ai-limits]
+dataHelp: [bridge-limits]
 sources: ["engine/src/verdict.ts", "engine/README.md"]
 ---
 

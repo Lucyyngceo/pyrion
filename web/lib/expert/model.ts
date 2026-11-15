@@ -31,15 +31,15 @@ export type AskModel = (req: ModelRequest) => Promise<ModelReply>;
 /** The models the project knows about, by family, in the order a reviewer is tried (free NIM Nemotron first). */
 export const REVIEWER_ORDER: readonly string[] = ["nvidia/nemotron-3-ultra-550b-a55b", "google/gemma-4-31b-it", "mistralai/mistral-small-3.2-24b-instruct", "openai/gpt-oss-120b"];
 
-/** "nemotron", "glm", "qwen", "kimi", "gemma"; any other id: its vendor prefix. */
+/** "nemotron", "gemma", "gpt-oss", "mistral", "llama"; any other id: its vendor prefix. */
 export function modelFamily(id: string | null | undefined): string {
   const m = (id ?? "").toLowerCase();
   if (m === "") return "unknown";
   if (m.includes("nemotron")) return "nemotron";
-  if (m.includes("glm")) return "glm";
-  if (m.includes("qwen")) return "qwen";
-  if (m.includes("kimi")) return "kimi";
   if (m.includes("gemma")) return "gemma";
+  if (m.includes("gpt-oss")) return "gpt-oss";
+  if (m.includes("mistral")) return "mistral";
+  if (m.includes("llama")) return "llama";
   return m.split("/")[0] || "unknown";
 }
 

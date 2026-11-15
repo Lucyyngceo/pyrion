@@ -309,11 +309,11 @@ test("thinking: false sends enable_thinking false to NIM for that model only, an
 });
 
 test("open weights: a verified table entry carries license and source; any other model carries no label", () => {
-  const q = openWeightsLabel("qwen/qwen3.8-27b");
+  const q = openWeightsLabel("openai/gpt-oss-120b");
   assert.equal(q?.license, "Apache-2.0");
-  assert.match(q?.source ?? "", /huggingface\.co\/Qwen/);
+  assert.match(q?.source ?? "", /huggingface\.co\/openai/);
   assert.match(openWeightsLabel("nvidia/nemotron-3-ultra-550b-a55b")?.license ?? "", /OpenMDW/);
-  assert.equal(openWeightsLabel("moonshotai/kimi-k2.6")?.license, "Modified MIT");
+  assert.equal(openWeightsLabel("mistralai/mistral-small-3.2-24b-instruct")?.license, "Apache-2.0");
   assert.equal(openWeightsLabel("nvidia/llama-3.1-nemotron-safety-guard-8b-v3"), null);
   assert.equal(openWeightsLabel("some/other-model"), null);
 });
@@ -413,29 +413,29 @@ test("A1b: a second guard that times out once is retried; twice is 'unresolved',
   assert.equal(r.unresolved, true);
 });
 
-test("GLM-5.3 (reasoning required): effort instead of enabled:false, room to think, reasoning hidden; 402 still falls back to NIM", async () => {
-  const glmEnv = { ...env, OPENROUTER_MODELS: "z-ai/glm-5.3,qwen/qwen3.8-27b" };
-  const glmProviders = loadProviders(glmEnv);
+test("gpt-oss-120b (reasoning required): effort instead of enabled:false, room to think, reasoning hidden; 402 still falls back to NIM", async () => {
+  const reasonEnv = { ...env, OPENROUTER_MODELS: "openai/gpt-oss-120b,mistralai/mistral-small-3.2-24b-instruct" };
+  const reasonProviders = loadProviders(reasonEnv);
   const bodies: Record<string, unknown>[] = [];
   const f = (async (url: string, init: RequestInit) => {
     const b = JSON.parse(String(init.body)) as Record<string, unknown>;
     bodies.push({ host: new URL(url).host, ...b });
     return ok("answer");
   }) as unknown as typeof fetch;
-  await complete({ messages, effort: "medium", maxTokens: 400 }, { providers: glmProviders, fetch: f, down: new Map() });
+  await complete({ messages, effort: "medium", maxTokens: 400 }, { providers: reasonProviders, fetch: f, down: new Map() });
   assert.deepEqual(bodies[0].reasoning, { effort: "medium", exclude: true });
   assert.ok((bodies[0].max_tokens as number) >= 1500, "a reasoning model gets room to think");
   bodies.length = 0;
-  await complete({ messages, model: "qwen/qwen3.8-27b" }, { providers: glmProviders, fetch: f, down: new Map() });
+  await complete({ messages, model: "mistralai/mistral-small-3.2-24b-instruct" }, { providers: reasonProviders, fetch: f, down: new Map() });
   assert.deepEqual(bodies[0].reasoning, { enabled: false }, "other models stay switched off");
   // OpenRouter has no credit (402): the whole provider is skipped and NIM answers
   const g = (async (url: string, init: RequestInit) => {
     const host = new URL(url).host;
     return host === "or.test" ? new Response("{}", { status: 402 }) : ok("from nim");
   }) as unknown as typeof fetch;
-  const r = await complete({ messages }, { providers: glmProviders, fetch: g, down: new Map() });
+  const r = await complete({ messages }, { providers: reasonProviders, fetch: g, down: new Map() });
   assert.equal(r.meta.provider, "nim");
-  assert.deepEqual(openWeightsLabel("z-ai/glm-5.3"), { license: "GLM-5.3 License (permissive; Z.AI)", source: "https://huggingface.co/zai-org/GLM-5.3" });
+  assert.deepEqual(openWeightsLabel("openai/gpt-oss-120b"), { license: "Apache-2.0", source: "https://huggingface.co/openai/gpt-oss-120b" });
 });
 
 test("device id: a random 128-bit number in an HttpOnly SameSite=Lax cookie; bad or missing cookies are not accepted", () => {

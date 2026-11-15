@@ -56,7 +56,7 @@ export interface ModelInfo {
   /** Verified from the model page. Models not in this table are "unverified" and get no label. */
   /** "required": the endpoint rejects reasoning disabled; send reasoning { effort, exclude: true } instead. */
   reasoning?: "required";
-  /** The name the page shows ("GLM-5.3"). Models without one show their id. */
+  /** The name the page shows ("Nemotron 3 Ultra"). Models without one show their id. */
   name?: string;
   open_weights: true;
   license: string;
@@ -66,16 +66,6 @@ export interface ModelInfo {
 
 /** One entry per model, checked against the model pages on 2026-11-14. Not environment: a license is a fact, not a setting. */
 export const MODEL_INFO: Readonly<Record<string, ModelInfo>> = {
-  "z-ai/glm-5.3": {
-    name: "GLM-5.3",
-    open_weights: true,
-    license: "GLM-5.3 License (permissive; Z.AI)",
-    source: "https://huggingface.co/zai-org/GLM-5.3",
-    checked: "2026-11-14",
-    reasoning: "required",
-  },
-  "qwen/qwen3.8-27b": { name: "Qwen3.8 27B", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/Qwen/Qwen3.8-27B", checked: "2026-11-14" },
-  "moonshotai/kimi-k2.6": { open_weights: true, license: "Modified MIT", source: "https://huggingface.co/moonshotai/Kimi-K2.6", checked: "2026-11-14" },
   "google/gemma-4-31b-it": { name: "Gemma 4 31B", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/google/gemma-4-31b-it", checked: "2026-11-14" },
   "openai/gpt-oss-120b": { name: "gpt-oss-120b", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/openai/gpt-oss-120b", checked: "2026-11-15", reasoning: "required" },
   "mistralai/mistral-small-3.2-24b-instruct": { name: "Mistral Small 3.2", open_weights: true, license: "Apache-2.0", source: "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506", checked: "2026-11-15" },

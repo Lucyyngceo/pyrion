@@ -4,7 +4,7 @@ title: "The evidence map"
 keywords: evidence map, map, shaded map, chart background, how many investigations apply, grid, oxygen pressure plane, cells
 chapter: 10
 order: 2
-dataHelp: [chart-map, chart-map-legend, chart-map-tip, evidence-map]
+dataHelp: [chart-map, chart-map-legend, chart-map-tip]
 sources: ["engine/src/navigator.ts"]
 ---
 

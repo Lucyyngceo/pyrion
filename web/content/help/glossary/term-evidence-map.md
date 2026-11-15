@@ -4,7 +4,7 @@ title: "Evidence map"
 keywords: evidence map, map, shaded chart, grid cells, how many apply
 chapter: 11
 order: 9
-dataHelp: [chart-map, evidence-map]
+dataHelp: [chart-map]
 sources: ["engine/src/navigator.ts"]
 ---
 
