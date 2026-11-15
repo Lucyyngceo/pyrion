@@ -89,3 +89,9 @@
 
 /* What-if section: visibly different from evidence. */
 .ld-whatif { border-left: 4px dashed var(--neon-2, #ff2bd6); padding-left: 16px; }
+
+/* Suit-to-Earth axis (home). */
+.ld-axis-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.ld-axis-svg { max-width: 100%; height: auto; color: var(--ink); }
+.ld-axis-list { margin: 0; padding-left: 1.1em; display: grid; gap: 10px; }
+@media (max-width: 860px) { .ld-axis-wrap { grid-template-columns: minmax(0, 1fr); } }

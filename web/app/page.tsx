@@ -3,6 +3,7 @@ import Link from "next/link";
 import { loadFacts } from "@/lib/facts";
 import { heroConclusion } from "@/lib/hero";
 import { verdictLabel } from "@/lib/engine";
+import { ISS_PRESET, sourcesOf } from "@/lib/presets";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ const FLAMES = [
 
 const SECTIONS = [
   { id: "about", label: "About" },
+  { id: "axis", label: "Suit to Earth" },
   { id: "found", label: "What NASA found" },
   { id: "edge", label: "The lunar edge" },
   { id: "how", label: "How it works" },
@@ -120,6 +122,11 @@ export default async function Landing() {
               </>
             ) : null}
             Computed by PYRION&apos;s fixed-rule engine from NASA&apos;s Physical Sciences Informatics (PSI) database, not by AI.
+          </p>
+          <p className="small muted">
+            Why it matters: the challenge recalls the Apollo 1 fire in an &ldquo;oxygen-filled spacecraft&rdquo; (1967), the Apollo 13
+            oxygen tank explosion, the Mir fire &ldquo;caused by an oxygen generator failure&rdquo;, and a smoke alarm during Artemis
+            II (<a data-help="landing-source" href={CHALLENGE}>challenge statement</a>).
           </p>
           <div className="ld-cta">
             <Link data-help="landing-start" href={ISS} className="ld-btn ld-btn-primary">
@@ -211,6 +218,65 @@ export default async function Landing() {
               </p>
             </div>
           </div>
+        </section>
+
+
+        <section id="axis" className="ld-section" aria-labelledby="ld-axis-h">
+          <p className="ld-kicker">One oxygen-pressure axis</p>
+          <h2 id="ld-axis-h">From the spacesuit to Earth: where the Moon Base sits</h2>
+          <div className="ld-axis-wrap">
+            <svg viewBox="0 0 520 250" width="100%" role="img" aria-labelledby="ld-axis-t" className="ld-axis-svg">
+              <title id="ld-axis-t">Oxygen against pressure: spacesuit 100 % at 4.3 psi, Moon Base 30 % or more at 10.2 psi or less, ISS cabin air 21 % at 14.7 psia</title>
+              <line x1="50" y1="210" x2="500" y2="210" stroke="currentColor" strokeOpacity="0.5" />
+              <line x1="50" y1="20" x2="50" y2="210" stroke="currentColor" strokeOpacity="0.5" />
+              <text x="275" y="242" textAnchor="middle" fontSize="12" fill="currentColor">pressure (psi) →</text>
+              <text x="14" y="115" fontSize="12" fill="currentColor" transform="rotate(-90 14 115)" textAnchor="middle">oxygen (%) →</text>
+              {[0, 5, 10, 15].map((v) => (
+                <text key={v} x={50 + v * 30} y="225" textAnchor="middle" fontSize="11" fill="currentColor" opacity="0.7">{v}</text>
+              ))}
+              {[0, 50, 100].map((v) => (
+                <text key={v} x="44" y={210 - v * 1.8 + 4} textAnchor="end" fontSize="11" fill="currentColor" opacity="0.7">{v}</text>
+              ))}
+              {/* Moon Base band: 30 % or more at 10.2 psi or less (challenge); drawn up to the suit's 100 % for scale only. */}
+              <rect x={50 + 4.3 * 30} y={210 - 100 * 1.8} width={(10.2 - 4.3) * 30} height={70 * 1.8} fill="var(--s1, #e06c2c)" fillOpacity="0.14" stroke="var(--s1, #e06c2c)" strokeDasharray="4 3" />
+              <text x={50 + 7.25 * 30} y={210 - 62 * 1.8} textAnchor="middle" fontSize="11" fill="currentColor">Moon Base: ≥30 %, ≤10.2 psi</text>
+              <circle cx={50 + 4.3 * 30} cy={210 - 100 * 1.8} r="6" fill="currentColor" />
+              <text x={50 + 4.3 * 30 + 10} y={210 - 100 * 1.8 + 4} fontSize="11" fill="currentColor">Spacesuit: 100 %, 4.3 psi</text>
+              <circle cx={50 + 14.7 * 30} cy={210 - 21 * 1.8} r="6" fill="currentColor" />
+              <text x={50 + 14.7 * 30 - 10} y={210 - 21 * 1.8 - 10} textAnchor="end" fontSize="11" fill="currentColor">ISS cabin air: 21 %, 14.7 psia</text>
+            </svg>
+            <ul className="ld-axis-list">
+              <li>
+                <strong>Spacesuit.</strong> &ldquo;spacesuits are filled with 100% oxygen to only 4.3 psi&rdquo;; astronauts &ldquo;pre-breathe 100%
+                oxygen to expel absorbed nitrogen&rdquo; to avoid the bends.
+              </li>
+              <li>
+                <strong>Moon Base and pressurized rovers.</strong> Between the suit and Earth, to shorten pre-breathing: &ldquo;30% or greater,
+                with a corresponding pressure of 10.2 psi or less&rdquo;, &ldquo;more than a 40% increase in the oxygen concentration&rdquo;
+                compared to Earth&apos;s atmosphere.
+              </li>
+              <li>
+                <strong>ISS cabin air.</strong> &ldquo;{ISS_PRESET.continuous.o2_mole_fraction!.source.quote ?? "14.7 psia with 21% O2"}&rdquo; (
+                <a data-help="landing-source" href={sourcesOf(ISS_PRESET)[0]?.url}>{sourcesOf(ISS_PRESET)[0]?.title}</a>).
+              </li>
+              <li>
+                <strong>The highest oxygen in PSI is burner gas, not cabin air.</strong> In CFI-G, &ldquo;an oxygen-nitrogen mixture of up to
+                85% oxygen flowed from the spherical burner&rdquo; into a chamber of nitrogen and fuel gas: 85 % is the oxygen of the burner
+                stream, not the ambient atmosphere.{" "}
+                <Link data-help="landing-card" href="/investigations/PSI-159">CFI-G →</Link>
+              </li>
+              <li>
+                <strong>A stand-in for gravity, as a hypothesis.</strong> &ldquo;Partial gravity was mimicked in ACME&apos;s Electric-Field Effects on
+                Laminar Diffusion Flames (E-FIELD Flames) experiment through the effect of the electric field on the ions that naturally occur
+                in flames.&rdquo; PYRION treats this as an analogue to study, not as lunar-gravity data.{" "}
+                <Link data-help="landing-card" href="/investigations/PSI-22">E-FIELD Flames →</Link>
+              </li>
+            </ul>
+          </div>
+          <p className="ld-src small">
+            Quotes: <a data-help="landing-source" href={CHALLENGE}>NASA Space Apps 2026 challenge statement</a>, &ldquo;Spacesuits and oxygen
+            concentration&rdquo; and &ldquo;Partial-gravity data&rdquo;, except the ISS line.
+          </p>
         </section>
 
         <section id="found" className="ld-section" aria-labelledby="ld-found-h">
