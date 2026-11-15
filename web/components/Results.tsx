@@ -88,7 +88,7 @@ function ReceiptList({ inv, citations, ctx, anchor }: { inv?: Investigation; cit
                 )}
                 {c.test_id !== "*" && <span className="muted"> · test {c.test_id}</span>}
                 <span className={`rc-status rc-${c.status}`}>
-                  {c.status === "verified" ? "verified by a person" : c.status === "extracted" ? "extracted, not yet verified" : "insufficient evidence"}
+                  {c.status === "verified" ? "checked by a person" : c.status === "extracted" ? "extracted, not yet checked by a person" : "insufficient evidence"}
                 </span>
               </div>
               <div className="rc-src">
@@ -271,8 +271,8 @@ function ResultRow({
         <p className="cluster-line small">
           <span className="muted">Measured in:</span> {envelopeName(cluster)} · {cluster.tests.length} test
           {cluster.tests.length === 1 ? "" : "s"}
-          {cluster.evidenceStatus === "includes_unverified" && <span className="muted"> · includes values not yet verified by a person</span>}
-          {cluster.evidenceStatus === "verified" && <span className="muted"> · every value verified by a person</span>}
+          {cluster.evidenceStatus === "includes_unverified" && <span className="muted"> · includes values not yet checked by a person</span>}
+          {cluster.evidenceStatus === "verified" && <span className="muted"> · every value checked by a person</span>}
           <br />
           <span className="muted">Technical:</span> <span className="tech">{pv.technical}</span>
         </p>

@@ -1,10 +1,15 @@
 import BootLog from "@/components/BootLog";
 import Explorer from "@/components/Explorer";
-import { loadDataset } from "@/lib/data";
+import Link from "next/link";
+import { loadDataset, loadLineage } from "@/lib/data";
 import "./navigator.css";
 
 export default async function Page() {
-  const dataset = await loadDataset();
+  const [dataset, lineage] = await Promise.all([loadDataset(), loadLineage()]);
+  // What the code located in the NASA files, read from the validation report (never hard-coded). Omitted if the trace did not run.
+  const v = lineage.validation;
+  const traced = v && v.traceRan ? v.cellsTraced + v.quotesTraced : null;
+  const usable = dataset.stats.records - dataset.stats.flagged;
   const synthetic = dataset.mode === "synthetic";
   const s = dataset.stats;
 
@@ -40,20 +45,26 @@ export default async function Page() {
             <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of 24 PSI investigations
             {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}
           </div>
-          <div className="es-bar" role="img" aria-label={`${s.verified} verified, ${s.records - s.verified - s.flagged} extracted not yet verified, ${s.flagged} flagged as insufficient evidence`}>
-            <i className="es-ver" style={{ flexGrow: s.verified }} />
-            <i className="es-ext" style={{ flexGrow: s.records - s.verified - s.flagged }} />
+          <div className="es-bar" role="img" aria-label={`${traced ?? 0} located by code in the NASA source, ${traced === null ? usable : usable - traced} not located by code, ${s.flagged} flagged as insufficient evidence, ${s.verified} checked by a person`}>
+            <i className="es-ver" style={{ flexGrow: traced ?? s.verified }} />
+            <i className="es-ext" style={{ flexGrow: traced === null ? usable - s.verified : usable - traced }} />
             <i className="es-flag" style={{ flexGrow: s.flagged }} />
           </div>
           <ul className="es-legend small">
+            {traced !== null && v && (
+              <li>
+                <i className="es-ver" /> ✓ {traced.toLocaleString("en-US")} located by code in the NASA source: {v.cellsTraced.toLocaleString("en-US")} table cells at their row and column,{" "}
+                {v.quotesTraced.toLocaleString("en-US")} quotes found word for word
+              </li>
+            )}
             <li>
-              <i className="es-ver" /> {s.verified.toLocaleString("en-US")} verified by a person
-            </li>
-            <li>
-              <i className="es-ext" /> {(s.records - s.verified - s.flagged).toLocaleString("en-US")} extracted with file and location, not yet verified
+              <i className="es-ext" /> {(traced === null ? usable : usable - traced).toLocaleString("en-US")} with file and location, not located by code
             </li>
             <li>
               <i className="es-flag" /> {s.flagged.toLocaleString("en-US")} flagged insufficient, not counted
+            </li>
+            <li>
+              {s.verified.toLocaleString("en-US")} checked by a person so far: the last step, <Link href="/method#verification">see Method</Link>
             </li>
           </ul>
         </div>

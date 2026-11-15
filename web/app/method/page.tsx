@@ -123,11 +123,11 @@ export default function MethodPage() {
           or the page and quoted sentence, the original text and unit, and the conversion applied.
         </p>
 
-        <h2>What the checks cover, and what they do not</h2>
+        <h2 id="verification">What the checks cover, and what they do not</h2>
         <ul>
           <li>Automated gates on every change: schema, provenance (file checksums), cell trace, unit recomputation, physical bounds, consistency, citations, and banned public claims.</li>
           <li>Milestone reviews by a separate process that did not write the records, with a fixed round limit. Values still in doubt are marked insufficient evidence.</li>
-          <li>This is not a review by NASA and not a validation by combustion experts. Most values are extracted and not yet verified by a person; the Envelope page says how many.</li>
+          <li>This is not a review by NASA and not a validation by combustion experts. Code locates each value in the NASA file; a person checking it against the source is the last step, and most values have not had it yet. The Envelope page says how many have.</li>
         </ul>
 
         <h2>What an LLM does here</h2>
