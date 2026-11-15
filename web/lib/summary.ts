@@ -2,6 +2,7 @@
 
 import type { Evaluation, Target, TargetLocation, Verdict } from "./engine";
 import { targetRegimeName } from "./layers";
+import { valueLabel } from "./units";
 
 export type Tone = "inside" | "outside" | "unknown";
 
@@ -55,6 +56,17 @@ export function envelopeStatus(evaluation: Evaluation, locations: TargetLocation
       headline: "Outside the measured envelope",
       sub: "Same regime, other O₂ and pressure",
       detail: `${regimeStated ? `${regime} was measured` : "Tests were measured"}, but not at this O₂ and pressure: ${countVerb(counts.EXTRAPOLATION, "investigation", "needs", "need")} extrapolation.`,
+      counts,
+    };
+  }
+
+  if (evaluation.regimeUntested) {
+    const ru = evaluation.regimeUntested;
+    return {
+      tone: "outside",
+      headline: "No PSI test in this gravity regime",
+      sub: "Measured in other gravity regimes only",
+      detail: `The target is in ${valueLabel(ru.value)}; the extracted PSI tests were run in ${ru.testedValues.map(valueLabel).join(", ") || "no stated regime"}. Nothing measured here can be compared with it.`,
       counts,
     };
   }

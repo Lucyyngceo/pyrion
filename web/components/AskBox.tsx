@@ -187,7 +187,7 @@ export default function AskBox({ onTarget }: Props) {
 
       {cfg && !cfg.enabled ? (
         <p className="ask-off" role="status">
-          <strong>Structured mode:</strong> add a key to enable questions. Everything else on this page works without one: pick a preset or set the target by hand.
+          Plain-English questions are off on this server. Pick a NASA condition below: every verdict works without them.
         </p>
       ) : (
         <>

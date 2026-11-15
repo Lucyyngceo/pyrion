@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { parseConditionCsv } from "@/lib/engine";
 import CountUp from "@/components/CountUp";
+import EvidenceStatus from "@/components/EvidenceStatus";
 import { loadDataset, loadLineage } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -57,6 +58,8 @@ export default async function DataPage() {
           with the file and location it was read from. This page shows what was extracted from each one.
         </p>
       </header>
+
+      <EvidenceStatus dataset={ds} lineage={lin} />
 
       <section className="card lineage" aria-labelledby="lin-h">
         <div className="card-head">
