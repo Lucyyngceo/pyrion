@@ -135,7 +135,10 @@ export default async function Example() {
                     <Link data-help="example-link" href={`/investigations/${v.accession}`}>
                       {v.accession} {name(v.accession)}
                     </Link>{" "}
-                    ({gravityOf(v)}: {(v.reasons.find((r) => !r.informational)?.message ?? verdictLabel(v.verdict)).replace(/\.$/, "")})
+                    ({gravityOf(v)}: {(v.reasons.find((r) => !r.informational)?.message ?? verdictLabel(v.verdict)).replace(/\.$/, "")}) · DOI{" "}
+                    <a data-help="example-link" href={`https://doi.org/${doi(v.accession)}`}>
+                      {doi(v.accession)}
+                    </a>
                   </span>
                 ))}
             . Microgravity and normal-gravity results could bound what happens in between (challenge statement); they do not
