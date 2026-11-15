@@ -31,7 +31,7 @@ export type Msg =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "tars"; kind: "error" | "note"; text: string }
   | { id: number; role: "tars"; kind: "help"; route: Route; help: HelpAnswer }
-  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult }
+  | { id: number; role: "tars"; kind: "expert"; route: Route; result: ExpertResult; question?: string }
   | { id: number; role: "tars"; kind: "answer"; route: Route; answer: AnswerPair; question: string }
   | { id: number; role: "tars"; kind: "experiments"; route: Route; experiments: unknown; fingerprint: string };
 
@@ -256,7 +256,7 @@ export default function TarsProvider({ children }: { children: React.ReactNode }
           const ev = JSON.parse(line) as { type: string; text?: string; error?: string } & Partial<ExpertResult>;
           if (ev.type === "status") setStatus(ev.text ?? null);
           else if (ev.type === "error") add({ role: "tars", kind: "error", text: ev.error ?? "TARS could not answer." });
-          else if (ev.type === "result") add({ role: "tars", kind: "expert", route, result: ev as ExpertResult });
+          else if (ev.type === "result") add({ role: "tars", kind: "expert", route, result: ev as ExpertResult, question: t });
         }
       }
       return true;

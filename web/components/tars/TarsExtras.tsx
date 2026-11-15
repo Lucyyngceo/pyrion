@@ -127,6 +127,7 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
         )}
       </div>
       <NextQuestions result={r} />
+      {adv && msg.question && <ThreeModels question={msg.question} target={r.target} lang={r.lang} />}
       {r.model && (
         <p className="small muted tars-by">
           {L10n.answeredBy} {r.model.name}
@@ -228,6 +229,80 @@ function NextQuestions({ result }: { result: ExpertResult }) {
             {x.label}
           </button>
         ),
+      )}
+    </div>
+  );
+}
+
+interface Run {
+  model: string;
+  name: string;
+  provider?: string | null;
+  ok: boolean;
+  error?: string;
+  blocks?: { layer: "engine" | "nasa" | "expert"; text: string }[];
+  fingerprint?: string | null;
+  dropped?: number;
+}
+
+/** Ask 3 models: the same question to three models, side by side. Only on a click: it uses credit and counts against the limits. */
+function ThreeModels({ question, target, lang }: { question: string; target: unknown; lang?: string }) {
+  const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
+  const [runs, setRuns] = useState<Run[]>([]);
+  const [same, setSame] = useState<boolean | null>(null);
+  const [print, setPrint] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const es = lang === "es";
+  const go = async () => {
+    setState("busy");
+    try {
+      const res = await fetch("/api/tars/compare", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: question, lastTarget: target ?? null }) });
+      const d = (await res.json()) as { runs?: Run[]; identicalFingerprint?: boolean | null; fingerprint?: string | null; error?: string };
+      if (!res.ok || !d.runs) {
+        setError(d.error ?? "The comparison could not run.");
+        setState("error");
+        return;
+      }
+      setRuns(d.runs);
+      setSame(d.identicalFingerprint ?? null);
+      setPrint(d.fingerprint ?? null);
+      setState("done");
+    } catch {
+      setError("The comparison could not run.");
+      setState("error");
+    }
+  };
+  return (
+    <div className="tars-three" data-help="tars-three-models">
+      {state === "idle" && (
+        <button data-help="tars-three-models" type="button" className="chip" onClick={() => void go()} title="Sends the same question to three models. It uses credit and counts against your limits.">
+          {es ? "Preguntar a 3 modelos" : "Ask 3 models"}
+        </button>
+      )}
+      {state === "busy" && <p className="small muted">{es ? "Preguntando a tres modelos…" : "Asking three models…"}</p>}
+      {state === "error" && <p className="small tars-err">{error}</p>}
+      {state === "done" && (
+        <>
+          <p className="small">
+            {same === true ? `${es ? "Mismo veredicto, distintas palabras" : "Same verdict, different words"} ✓` : same === false ? (es ? "Las huellas del motor difieren: cada modelo leyó una condición distinta." : "The engine fingerprints differ: the models read different conditions.") : es ? "No se pudo comparar las huellas." : "The fingerprints could not be compared."}
+            {print && (
+              <>
+                {" "}
+                <code className="small">{print.slice(0, 16)}…</code>
+              </>
+            )}
+          </p>
+          <div className="tars-three-grid">
+            {runs.map((r) => (
+              <section key={r.model} className="tars-three-col">
+                <h5>{r.name}</h5>
+                {!r.ok && <p className="small muted">{r.error}</p>}
+                {r.ok && (r.blocks ?? []).map((b, i) => <Md key={i} text={`${LAYER[b.layer].icon} ${b.text}`} />)}
+                {r.ok && (r.blocks ?? []).length === 0 && <p className="small muted">{es ? "Sin respuesta verificable." : "No verifiable answer."}</p>}
+              </section>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

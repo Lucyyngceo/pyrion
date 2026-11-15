@@ -438,3 +438,9 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 
 .tars-next { display: flex; flex-wrap: wrap; gap: 6px; }
 .tars-next .chip { text-decoration: none; opacity: 1; }
+
+.tars-three { margin-top: 4px; }
+.tars-three-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+.tars-three-col { padding: 6px 8px; border: 1px solid var(--border); min-width: 0; }
+.tars-three-col h5 { margin: 0 0 4px; font-size: 12.5px; color: var(--neon-2); }
+.tars-three-col p { font-size: 12.5px; }
