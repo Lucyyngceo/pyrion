@@ -17,4 +17,4 @@ How to use it: Click it to read how evidence is checked.
 
 Example: Open it to see the located-by-code counts.
 
-What it does not do: It does not process or add a source; today the dialog only checks your input.
+What it does not do: It does not process or add a source; the dialog is not on the site today.

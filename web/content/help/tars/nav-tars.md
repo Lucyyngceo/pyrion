@@ -15,6 +15,6 @@ What it shows: The same chat as the floating TARS bubble, with more room and a c
 
 How to use it: Click it to talk to TARS about a condition, about NASA documents or about this site.
 
-Example: Open it and ask how to add a source.
+Example: Open it and ask what the verdict ring on the Envelope page counts.
 
 What it does not do: It does not change the Envelope page unless you press a button in an answer, such as Show on the envelope.

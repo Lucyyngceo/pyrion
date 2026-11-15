@@ -25,7 +25,7 @@ A CSV or Excel file you upload is read by code with columns you map by hand. A f
 
 ## Status
 
-**In the next build.** Today only the NTRS number field and the file chooser exist, and they check the input; nothing is fetched or read yet.
+**In the next build.** The NTRS number field and the file chooser exist in the code but are not shown on the site; nothing is fetched or read.
 
 ## For engineers
 

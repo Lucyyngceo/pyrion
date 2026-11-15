@@ -17,4 +17,4 @@ How to use it: Click it to see what a source needs.
 
 Example: Click it, then type an NTRS number.
 
-What it does not do: Processing is not built yet: nothing is added today.
+What it does not do: Processing was never built: nothing can be added.

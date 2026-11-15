@@ -3,7 +3,7 @@ id: method-checks
 chapter: method
 order: 60
 dataHelp: method-checks
-title: What the checks cover and what they do not
+title: What the checks cover, and what they do not
 keywords: what the checks cover and what they do not, method checks, method
 page: method
 link: /method

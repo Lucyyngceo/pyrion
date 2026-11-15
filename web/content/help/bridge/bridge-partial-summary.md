@@ -15,6 +15,6 @@ What it shows: Tests whose stretch passes through the band for part of their flo
 
 How to use it: Click to open.
 
-Example: Open it to see the six partial overlaps.
+Example: Open it to see the tests that only partly overlap.
 
 What it does not do: Partial overlap is weaker than an analog.

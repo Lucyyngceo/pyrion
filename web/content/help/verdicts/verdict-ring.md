@@ -17,4 +17,4 @@ How to use it: Hover a row for the split by extrapolation level.
 
 Example: Read how many are applicable.
 
-What it does not do: Six investigations have no extracted values yet and are not in the ring.
+What it does not do: Investigations with no extracted values yet are not in the ring; the caption under it says how many.

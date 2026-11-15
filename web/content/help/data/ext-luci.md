@@ -23,7 +23,7 @@ The ground (1 g) comparison runs say: “Gravity (in g’s) remains constant at 
 
 ## What PYRION takes from it
 
-PYRION holds a hand-checked extraction of this deck, the **golden set**, in `data/external/ntrs-20250010653/`: 42 records in 4 tests (`LUCI partial-g SIBAL`, `LUCI partial-g PMMA`, `LUCI 1-g SIBAL`, `LUCI 1-g PMMA`); 37 are usable and 5 are kept as `insufficient_evidence`. It is **external evidence**, labelled as such, and it is not part of the PSI records. It is also the exam for the future “Add a source” feature (see the article on the precision exam).
+PYRION holds a hand-checked extraction of this deck, the **golden set**, in `data/external/ntrs-20250010653/`: 42 records in 4 tests (`LUCI partial-g SIBAL`, `LUCI partial-g PMMA`, `LUCI 1-g SIBAL`, `LUCI 1-g PMMA`); 37 are usable and 5 are kept as `insufficient_evidence`. It is **external evidence**, labelled as such, and it is not part of the PSI records. It is also the answer key for the planned “Add a source” feature, which is not on the site (see the article on the precision exam).
 
 What was recorded: the gravity statements above, material (SIBAL, PMMA), geometry (fabric 5 cm wide x 30 cm long; 4 mm diameter rod), the platform, flame spread rates read from tables (flame base and flame tip are kept apart), flame length, extinction, and the chamber O2 measured during the burn (an outcome, not a test condition).
 

@@ -4,7 +4,7 @@ title: "Reading a question: code first"
 keywords: reading a question, extractor, extract quantities, how the app reads my question, code first, leftover, ask box, parse, typed question
 chapter: 10
 order: 4
-dataHelp: [ask-box, ask-input]
+dataHelp: [tars-bubble]
 sources: ["engine/src/extract.ts"]
 ---
 

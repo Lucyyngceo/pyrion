@@ -30,5 +30,5 @@ Nothing can be added to the evidence today. This chapter describes the design, n
 ## For engineers
 
 - Design document: `FASE-3-ADD-SOURCE.md`, the section on the correction after the independent audit (the corrected design; the design document is in Spanish).
-- The hook in the web code is `addSource()`; the dialog is wired to it and the submit is disabled until the pipeline exists.
+- The hook in the web code is `addSource()`; the dialog is wired to it but no page shows it, and the submit stays disabled until the pipeline exists.
 - The golden set and the validator changes it needed are in place: `data/external/ntrs-20250010653/` and `--conditions` in both validators.

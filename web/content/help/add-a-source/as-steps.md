@@ -25,7 +25,7 @@ Before you accept anything, a table lists every proposed record: value, unit, qu
 
 ## Status
 
-**In the next build.** Today the dialog shows that these steps will run; it does not run them.
+**In the next build.** The dialog that listed these steps is no longer on the site; nothing runs them.
 
 ## For engineers
 

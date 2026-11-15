@@ -11,10 +11,10 @@ highlight: [data-help="ring-caption"]
 ---
 What it is: The small line under the ring.
 
-What it shows: "of 24 PSI combustion investigations, N have no extracted values yet".
+What it shows: "of N PSI combustion investigations · M have no extracted values yet", with the counts computed from the data.
 
 How to use it: Read it to see coverage.
 
-Example: See that 6 have no extracted values.
+Example: See how many investigations have no extracted values yet.
 
-What it does not do: It is not a statement about PSI at large (the PSI catalogue is bigger than the 24 combustion ones).
+What it does not do: It is not a statement about PSI at large (the PSI catalogue is bigger than the combustion investigations counted here).
