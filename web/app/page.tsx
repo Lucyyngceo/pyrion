@@ -70,6 +70,8 @@ export default async function Landing() {
 
   return (
     <div className="landing-root">
+      {/* Warm the cache for the dashboard's loading video. */}
+      <link rel="prefetch" href="/media/warp/warp.webm" as="video" />
       <header className="ld-bar">
         <div className="ld-bar-inner">
           <Link data-help="nav-home" href="/" className="ld-brand">

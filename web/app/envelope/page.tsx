@@ -1,6 +1,7 @@
 import ExplorerLoader from "@/components/ExplorerLoader";
 import AddSource from "@/components/AddSource";
 import HelpMenu from "@/components/HelpMenu";
+import WarpIntro from "@/components/WarpIntro";
 import { loadDataset, loadLineage } from "@/lib/data";
 import { loadFacts } from "@/lib/facts";
 import "../navigator.css";
@@ -18,6 +19,7 @@ export default async function Page() {
 
   return (
     <main className="page">
+      <WarpIntro />
       <header className="hero hero-compact hero-row">
         <div>
           <h1 data-help="page-envelope" className="h1-small">The evidence envelope</h1>

@@ -1,0 +1,187 @@
+{
+ "note": "Thumbnails from the NASA Image and Video Library (images.nasa.gov), shown briefly in the loading screen. NASA imagery is generally not copyrighted; no NASA logos; no third-party (company) images.",
+ "images": [
+  {
+   "file": "media/warp/jsc2007e034221.webp",
+   "nasa_id": "jsc2007e034221",
+   "title": "Apollo 11 spacecraft pre-launch",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/jsc2007e034221"
+  },
+  {
+   "file": "media/warp/7012482.webp",
+   "nasa_id": "7012482",
+   "title": "Saturn Apollo Program",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/7012482"
+  },
+  {
+   "file": "media/warp/as17-152-23272.webp",
+   "nasa_id": "as17-152-23272",
+   "title": "Apollo 17, Earthrise over Moon",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/as17-152-23272"
+  },
+  {
+   "file": "media/warp/as17-152-23311.webp",
+   "nasa_id": "as17-152-23311",
+   "title": "Full disc of moon photographed by Apollo 17 crewmen during transearth coast",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/as17-152-23311"
+  },
+  {
+   "file": "media/warp/201002060005hq.webp",
+   "nasa_id": "201002060005HQ",
+   "title": "Space Shuttle Endeavour on Launch Pad",
+   "credit": "NASA/Bill Ingalls",
+   "source": "https://images.nasa.gov/details/201002060005HQ"
+  },
+  {
+   "file": "media/warp/ed06-0045-1.webp",
+   "nasa_id": "ED06-0045-1",
+   "title": "The Space Shuttle Columbia touches down on lakebed runway 23 at Edwards Air Force Base, Calif., to conclude the first orbital shuttle mission",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/ED06-0045-1"
+  },
+  {
+   "file": "media/warp/200623_iss_1.webp",
+   "nasa_id": "200623_ISS_1",
+   "title": "2020 International Space Station Configuration",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/200623_ISS_1"
+  },
+  {
+   "file": "media/warp/41g-102-047.webp",
+   "nasa_id": "41g-102-047",
+   "title": "Photo of the earth before touchdown of Challenger and end of STS 41-G",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/41g-102-047"
+  },
+  {
+   "file": "media/warp/ksc-20220915-ph-jnp01_0003.webp",
+   "nasa_id": "KSC-20220915-PH-JNP01_0003",
+   "title": "Artemis I SLS at Launch Complex 39B",
+   "credit": "NASA/Jason Parrish",
+   "source": "https://images.nasa.gov/details/KSC-20220915-PH-JNP01_0003"
+  },
+  {
+   "file": "media/warp/ksc-20220915-ph-jnp01_0002.webp",
+   "nasa_id": "KSC-20220915-PH-JNP01_0002",
+   "title": "Artemis I SLS at Launch Complex 39B",
+   "credit": "NASA/Jason Parrish",
+   "source": "https://images.nasa.gov/details/KSC-20220915-PH-JNP01_0002"
+  },
+  {
+   "file": "media/warp/art002e009567.webp",
+   "nasa_id": "art002e009567",
+   "title": "Orion POV: Destination and Home",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/art002e009567"
+  },
+  {
+   "file": "media/warp/art002e009566.webp",
+   "nasa_id": "art002e009566",
+   "title": "Orion in the Spotlight",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/art002e009566"
+  },
+  {
+   "file": "media/warp/pia10569.webp",
+   "nasa_id": "PIA10569",
+   "title": "It Full of Moons!",
+   "credit": "NASA/JPL/Space Science Institute",
+   "source": "https://images.nasa.gov/details/PIA10569"
+  },
+  {
+   "file": "media/warp/ksc-20240819-ph-jbs01_0009.webp",
+   "nasa_id": "KSC-20240819-PH-JBS01_0009",
+   "title": "Creative Photography - Full Blue Moon",
+   "credit": "NASA/Ben Smegelsky",
+   "source": "https://images.nasa.gov/details/KSC-20240819-PH-JBS01_0009"
+  },
+  {
+   "file": "media/warp/ksc-20200402-ph-jpl01_0002.webp",
+   "nasa_id": "KSC-20200402-PH-JPL01_0002",
+   "title": "Mars 2020 Perseverance Rover Wheels",
+   "credit": "NASA JPL/Christian Mangano",
+   "source": "https://images.nasa.gov/details/KSC-20200402-PH-JPL01_0002"
+  },
+  {
+   "file": "media/warp/ksc-20200402-ph-jpl01_0003.webp",
+   "nasa_id": "KSC-20200402-PH-JPL01_0003",
+   "title": "Mars 2020 Perseverance Rover Wheels",
+   "credit": "NASA JPL/Christian Mangano",
+   "source": "https://images.nasa.gov/details/KSC-20200402-PH-JPL01_0003"
+  },
+  {
+   "file": "media/warp/pia05445.webp",
+   "nasa_id": "PIA05445",
+   "title": "Opportunity Slices into the Surface of Mars",
+   "credit": "NASA/JPL/Cornell/US Geological Survey",
+   "source": "https://images.nasa.gov/details/PIA05445"
+  },
+  {
+   "file": "media/warp/pia10739.webp",
+   "nasa_id": "PIA10739",
+   "title": "Mars Surface Beneath Phoenix",
+   "credit": "NASA/JPL-Caltech/University of Arizona",
+   "source": "https://images.nasa.gov/details/PIA10739"
+  },
+  {
+   "file": "media/warp/pia12110.webp",
+   "nasa_id": "PIA12110",
+   "title": "Hubble Deep Field Image Unveils Myriad Galaxies Back to the Beginning of Time",
+   "credit": "NASA/JPL/STScI Hubble Deep Field Team",
+   "source": "https://images.nasa.gov/details/PIA12110"
+  },
+  {
+   "file": "media/warp/pia01249.webp",
+   "nasa_id": "PIA01249",
+   "title": "Hubble Sharpest View Of Mars",
+   "credit": "NASA/JPL",
+   "source": "https://images.nasa.gov/details/PIA01249"
+  },
+  {
+   "file": "media/warp/maf_19671005-hassembly.webp",
+   "nasa_id": "MAF_19671005-HAssembly",
+   "title": "Saturn V Boosters in Production at Michoud Assembly Facility",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/MAF_19671005-HAssembly"
+  },
+  {
+   "file": "media/warp/maf_19671005_viewtowest.webp",
+   "nasa_id": "MAF_19671005_ViewtoWest",
+   "title": "Saturn V Production at MIchoud Assembly Facility -1967",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/MAF_19671005_ViewtoWest"
+  },
+  {
+   "file": "media/warp/624073main_1969-04-04_full.webp",
+   "nasa_id": "624073main_1969-04-04_full",
+   "title": "Apollo 11 Lunar Module",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/624073main_1969-04-04_full"
+  },
+  {
+   "file": "media/warp/as17-149-22857.webp",
+   "nasa_id": "as17-149-22857",
+   "title": "View of the Lunar Module \"Challenger\" in lunar orbit",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/as17-149-22857"
+  },
+  {
+   "file": "media/warp/9902615.webp",
+   "nasa_id": "9902615",
+   "title": "Microgravity",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/9902615"
+  },
+  {
+   "file": "media/warp/sts050-232-011.webp",
+   "nasa_id": "sts050-232-011",
+   "title": "Candle Flames in Microgravity Experiment",
+   "credit": "NASA",
+   "source": "https://images.nasa.gov/details/sts050-232-011"
+  }
+ ]
+}
