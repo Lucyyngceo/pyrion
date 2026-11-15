@@ -7,6 +7,7 @@ import { axisLabel, fmt, kpaToPsi, valueLabel } from "@/lib/units";
 
 export type { TargetState } from "@/lib/preset-apply";
 export { applyPreset } from "@/lib/preset-apply";
+import { withRegimeAxis } from "@/lib/preset-apply";
 import type { TargetState } from "@/lib/preset-apply";
 
 interface PanelProps {
@@ -92,8 +93,7 @@ export function ControlsPanel({ state, onChange }: ControlsProps) {
   const preset = PRESET_VIEWS.find((v) => v.preset.id === state.presetId)?.preset;
 
   const setRegime = (axis: RegimeAxis, value: string) => {
-    const fromPreset = preset?.regime[axis] !== undefined;
-    onChange({ ...state, presetId: fromPreset ? null : state.presetId, regime: { ...state.regime, [axis]: value === "" ? undefined : value }, gravityNotCovered: undefined });
+    onChange(withRegimeAxis(state, axis, value === "" ? undefined : value));
   };
   const setNum = (k: "o2" | "pressure" | "gravityLevel", v: number | undefined) =>
     onChange({ ...state, presetId: null, [k]: v, ...(k === "gravityLevel" ? { gravityNotCovered: undefined } : {}) });

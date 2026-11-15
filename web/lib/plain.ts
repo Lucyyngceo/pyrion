@@ -1,7 +1,7 @@
 // Plain-language phrasing of engine output for people who are not combustion engineers.
 // Only wording: every fact comes from the engine's output, and no verdict is changed or softened here.
 
-import { EXTRAPOLATION_LEVEL_NOTE, levelSentence, type ExtrapolationLevel } from "./engine";
+import { EXTRAPOLATION_LEVEL_NOTE, humanGap, humanValue, levelSentence, type ContinuousAxis, type ExtrapolationLevel } from "./engine";
 import type { AxisCheck, ClusterVerdict, RegimeState, Verdict } from "./engine";
 import { fmt, valueLabel } from "./units";
 
@@ -61,16 +61,14 @@ export function regimeWords(regime: readonly RegimeState[]): string {
 
 /** The value of a range bound with its unit, for a sentence. */
 function show(axis: string, v: number, unit: string): string {
-  if (axis === "o2_mole_fraction" || axis === "burner_o2_mole_fraction") return `${fmt(v * 100, 1)} %`;
-  return `${fmt(v, 2)} ${unit}`;
+  return humanValue(axis as ContinuousAxis, v);
 }
 
 /** "oxygen is 4.0 points above the highest tested value (35 %)" for one axis outside its range; null when inside. */
 export function plainGap(a: AxisCheck): string | null {
   if (a.status === "inside" || a.status === "missing" || a.gap === null) return null;
   const name = axisWord(a.axis);
-  const isO2 = a.axis === "o2_mole_fraction" || a.axis === "burner_o2_mole_fraction";
-  const amount = isO2 ? `${fmt(a.gap * 100, 1)} points` : `${fmt(a.gap, 2)} ${a.unit}`;
+  const amount = humanGap(a.axis as ContinuousAxis, a.gap);
   const above = a.status === "above";
   const bound = above ? a.max : a.min;
   return `${name} is ${amount} ${above ? "above the highest" : "below the lowest"} tested value${bound !== null ? ` (${show(a.axis, bound, a.unit)})` : ""}`;

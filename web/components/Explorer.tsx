@@ -11,7 +11,7 @@ import Results, { citationKey } from "./Results";
 import { ControlsPanel, ScenarioNote, applyPreset, type TargetState } from "./TargetPanel";
 import ScenarioStrip, { type Computed } from "./ScenarioStrip";
 import { scenarioFacts } from "@/lib/scenarios";
-import { toTarget } from "@/lib/preset-apply";
+import { stateFromTarget, toTarget, withRegimeAxis } from "@/lib/preset-apply";
 import NavigatorPanel from "./NavigatorPanel";
 import {
   buildEnvelopes,
@@ -19,9 +19,11 @@ import {
   locateTarget,
   parseConditionCsv,
   HABITAT_WINDOWS,
+  REGIME_AXES,
   routesToEvidence,
   evidenceMap,
   type Blocker,
+  type RegimeAxis,
   type EvidenceMap,
   type ConditionRecord,
   type Evaluation,
@@ -238,24 +240,15 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
   };
   const applyRoute = (t: Target, accession: string) => {
     glow(accession);
-    setState((st) => ({
-      presetId: null,
-      regime: { ...t.regime },
-      o2: t.continuous.o2_mole_fraction ?? st.o2,
-      pressure: t.continuous.pressure ?? st.pressure,
-      gravityLevel: t.informational?.gravity_level,
-      gravityNotCovered: t.informational?.gravity_not_covered,
-    }));
+    if (t.continuous.o2_mole_fraction === undefined || t.continuous.pressure === undefined) console.warn("[pyrion] a route target leaves oxygen or pressure open; the controls keep their old value", accession);
+    setState((st) => stateFromTarget(t, st));
   };
   /** A blocker's action: leave an axis open, or switch the regime (always shown as another regime, never a small step). */
   const applyAction = (action: NonNullable<Blocker["action"]>, accession: string) => {
     glow(accession);
-    setState((st) => {
-      const regime = { ...st.regime } as Record<string, string | undefined>;
-      if (action.kind === "leave_open") delete regime[action.axis];
-      else if (action.to !== undefined) regime[action.axis] = action.to;
-      return { ...st, presetId: null, regime: regime as TargetState["regime"], gravityNotCovered: undefined };
-    });
+    // Only regime axes can be left open or switched; continuous axes are never "left open" (the state always has a value).
+    if (!(REGIME_AXES as readonly string[]).includes(action.axis)) return;
+    setState((st) => withRegimeAxis(st, action.axis as RegimeAxis, action.kind === "leave_open" ? undefined : action.to));
   };
 
   // N1: the engine's routes to evidence, recomputed whenever the target changes.
@@ -368,6 +361,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
         lunar={tiles.lunar}
         nesc={tiles.nesc}
         nescMicro={tiles.nescMicro}
+        withData={dataset.stats.accessions}
         mine={mine}
         investigations={dataset.investigations}
         onPick={(id) => {

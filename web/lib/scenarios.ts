@@ -49,7 +49,8 @@ export function scenarioFacts(evaluation: Evaluation): ScenarioFacts {
       .toSorted((a, b) => rank(a.extrapolationLevel) - rank(b.extrapolationLevel) || (a.distance ?? 1e9) - (b.distance ?? 1e9));
     if (ext[0]) closest = { accession: ext[0].accession, level: ext[0].extrapolationLevel };
   }
-  const undecided = new Set(solidClusters.filter((c) => c.verdict === "INSUFFICIENT_EVIDENCE").map((c) => c.accession)).size;
+  const named = new Set([...applicable, ...(closest ? [closest.accession] : [])]);
+  const undecided = new Set(solidClusters.filter((c) => c.verdict === "INSUFFICIENT_EVIDENCE" && !named.has(c.accession)).map((c) => c.accession)).size;
   const partialGravity = new Set(clusters.filter((c) => c.clusterKey.split("|").includes("gravity_regime=partial_gravity")).map((c) => c.accession)).size;
   return {
     applicable: evaluation.counts.investigations.APPLICABLE,

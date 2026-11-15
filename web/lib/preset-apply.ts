@@ -37,3 +37,24 @@ export function toTarget(s: TargetState): Target {
   if (s.gravityNotCovered) informational.gravity_not_covered = s.gravityNotCovered;
   return Object.keys(informational).length > 0 ? { regime, continuous, informational } : { regime, continuous };
 }
+
+/** The state a route's target means, exactly: regime, O2, pressure, and the informational gravity level (only for partial gravity). */
+export function stateFromTarget(t: Target, fallback: TargetState): TargetState {
+  const partial = t.regime.gravity_regime === "partial_gravity";
+  return {
+    presetId: null,
+    regime: { ...t.regime },
+    o2: t.continuous.o2_mole_fraction ?? fallback.o2,
+    pressure: t.continuous.pressure ?? fallback.pressure,
+    gravityLevel: partial ? t.informational?.gravity_level : undefined,
+    gravityNotCovered: t.informational?.gravity_not_covered,
+  };
+}
+
+/** Change one regime axis: the gravity level only means something in partial gravity, so any other gravity clears it. */
+export function withRegimeAxis(st: TargetState, axis: RegimeAxis, value: string | undefined): TargetState {
+  const regime = { ...st.regime, [axis]: value };
+  if (value === undefined) delete regime[axis];
+  const gravityLevel = regime.gravity_regime === "partial_gravity" ? st.gravityLevel : undefined;
+  return { ...st, presetId: null, regime, gravityLevel, gravityNotCovered: undefined };
+}

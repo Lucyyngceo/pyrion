@@ -70,7 +70,7 @@ export default function VerdictRing({ counts, of, levels }: { counts: Record<str
       </svg>
       {of !== undefined && of > total && (
         <p className="vring-of small muted">
-          of {of} investigations in PSI · {of - total} have no extracted values yet
+          of {of} PSI combustion investigations · {of - total} have no extracted values yet
         </p>
       )}
       <dl className="vring-legend" aria-label="Verdict counts, by investigation">

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Evaluation } from "@/lib/engine";
+import { SOURCES, type Evaluation } from "@/lib/engine";
 import { levelPhrase } from "@/lib/plain";
 import { PRESET_VIEWS, sourcesOf } from "@/lib/presets";
 import { fuelSplit, type ScenarioFacts } from "@/lib/scenarios";
@@ -27,6 +27,8 @@ interface Props {
   nesc: Computed | null;
   /** The NESC atmosphere with microgravity swapped in, for tile 3's second line. */
   nescMicro: Computed | null;
+  /** Investigations that have extracted records (the 24 of the catalogue is NASA's count; this one is ours). */
+  withData: number;
   mine: Computed | null;
   investigations: Investigation[];
   onPick: (presetId: string) => void;
@@ -56,15 +58,16 @@ function conditionOf(presetId: string) {
   };
 }
 
-/** The solid-fuel sentence: computed from the closest solid-fuel investigation, never typed. */
-function solidLine(f: ScenarioFacts, name: (accession: string) => string, lead = "Solid fuel"): string {
-  if (f.solid.applicable.length > 0) return `${lead}: ${f.solid.applicable.map(name).join(", ")} applies.`;
+/** The solid-fuel sentence: from the closest solid-fuel investigation that can be compared, and how many others lack the values. */
+function solidLine(f: ScenarioFacts, name: (accession: string) => string): string {
+  const others = f.solid.undecided > 0 ? `; ${f.solid.undecided} other${f.solid.undecided === 1 ? " lacks" : "s lack"} the values to compare` : "";
+  if (f.solid.applicable.length > 0) return `Solid fuel: ${f.solid.applicable.map(name).join(", ")} applies${others}.`;
   if (f.solid.closest) {
     const lvl = f.solid.closest.level;
-    return `${lead}: none applies (closest: ${name(f.solid.closest.accession)}${lvl ? `, ${levelPhrase(lvl)}` : ""}).`;
+    return `Closest solid-fuel investigation that can be compared: ${name(f.solid.closest.accession)}${lvl ? `, ${levelPhrase(lvl)}` : ""}${others}.`;
   }
-  if (f.untested) return `${lead}: no PSI test in this gravity regime.`;
-  return `${lead}: none applies${f.solid.undecided ? `; ${f.solid.undecided} lack the stated values to compare` : ""}.`;
+  if (f.untested) return "Solid fuel: no PSI test in this gravity regime.";
+  return `Solid fuel: none can be compared here${f.solid.undecided ? `; ${f.solid.undecided} lack the values to compare` : ""}.`;
 }
 
 const nameFor = (investigations: Investigation[]) => (accession: string) => investigations.find((i) => i.accession === accession)?.acronym || accession;
@@ -97,14 +100,14 @@ function Tile({
   );
 }
 
-export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, mine, investigations, onPick, onCustom }: Props) {
+export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, withData, mine, investigations, onPick, onCustom }: Props) {
   const name = nameFor(investigations);
-  const total = investigations.length;
-  const preset = state.presetId;
+    const preset = state.presetId;
   const isTile = preset === TILE_PRESETS.iss || preset === TILE_PRESETS.lunar || preset === TILE_PRESETS.nesc || preset === TILE_PRESETS.nescA;
   const cIss = conditionOf(TILE_PRESETS.iss);
   const cLunar = conditionOf(TILE_PRESETS.lunar);
   const cNesc = conditionOf(TILE_PRESETS.nesc);
+  const cNescA = conditionOf(TILE_PRESETS.nescA);
 
   const cond = (c: NonNullable<ReturnType<typeof conditionOf>>) => (
     <>
@@ -131,11 +134,11 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, mine
       </Tile>
 
       <Tile active={preset === TILE_PRESETS.lunar} title="Lunar habitat (challenge)" cond={cLunar ? cond(cLunar) : ""} hover={cLunar?.sources} onPick={() => onPick(TILE_PRESETS.lunar)}>
-        <p
-          className="tile-head"
-          title={`NASA's challenge statement: “${CHALLENGE_QUOTE}”. That count is NASA's text, not our extraction${lunar ? `; in the records PYRION extracted, ${lunar.facts.partialGravity} of ${total} investigations state partial gravity` : ""}.`}
-        >
-          {lunar ? `${lunar.facts.partialGravity} of ${total}` : `– of ${total}`} PSI investigations ran in partial gravity
+        <p className="tile-head" title={`From the challenge statement (${SOURCES.challenge.url}). It is NASA's text, not our extraction.`}>
+          NASA: “{CHALLENGE_QUOTE}”.
+        </p>
+        <p className="tile-line" title="Counted in the condition records PYRION extracted, not from NASA's statement.">
+          {lunar ? lunar.facts.partialGravity : "–"} of {withData} investigations with extracted records state partial gravity.
         </p>
         <p className="tile-line" title="Challenge statement (spaceappschallenge.org, Flame in Freefall)">
           NASA expects such data from LUCI and FM2.
@@ -160,14 +163,12 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, mine
         {nescMicro && (
           <p className="tile-line">
             In microgravity the same atmosphere gives {nescMicro.facts.applicable} applicable.{" "}
-            {nescMicro.facts.solid.applicable.length === 0 && nescMicro.facts.solid.closest?.level
-              ? `Even in microgravity, solid fuel is ${levelPhrase(nescMicro.facts.solid.closest.level)}.`
-              : solidLine(nescMicro.facts, name, "Solid fuel in microgravity")}
+            {solidLine(nescMicro.facts, name)}
           </p>
         )}
         <p className="tile-line tile-alt">
           <button type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.nescA)}>
-            Or atmosphere A: 26.5 % O₂ · 10.2 psia
+            Or atmosphere A: {cNescA ? `${cNescA.o2} · ${cNescA.pressure}` : ""}
           </button>
         </p>
       </Tile>

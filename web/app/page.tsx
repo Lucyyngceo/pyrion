@@ -21,7 +21,7 @@ export default async function Page() {
           <h1 className="h1-small">The evidence envelope</h1>
           {!synthetic && (
             <p className="hero-status small muted">
-              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} investigations · {located} · <a href="/data">details</a>
+              {s.records.toLocaleString("en-US")} values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations · {located} · <a href="/data">details</a>
             </p>
           )}
         </div>

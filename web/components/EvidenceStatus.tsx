@@ -11,7 +11,7 @@ export default function EvidenceStatus({ dataset, lineage }: { dataset: Dataset;
   return (
     <div className="evidence-status" aria-label="Status of the extracted values">
       <div className="es-head">
-        <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of 24 PSI investigations
+        <b>{s.records.toLocaleString("en-US")}</b> condition values from {s.accessions} of {dataset.investigations.length} PSI combustion investigations
         {s.rejected > 0 && <span className="muted"> · {s.rejected} rows rejected by the engine&apos;s validator</span>}
       </div>
       <div className="es-bar" role="img" aria-label={`${traced ?? 0} located by code in the NASA source, ${rest} not located by code, ${s.flagged} flagged as insufficient evidence`}>

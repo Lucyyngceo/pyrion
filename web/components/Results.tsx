@@ -48,10 +48,10 @@ const num = (a: string) => Number.parseInt(a.replace(/\D+/g, ""), 10) || 0;
 export function VerdictBadge({ verdict, level }: { verdict: Verdict; level?: ExtrapolationLevel }) {
   const v = VERDICT[verdict];
   return (
-    <span className={`badge ${v.cls}`}>
+    <span className={`badge ${v.cls}`} data-verdict={verdict}>
       <StatusSymbol level={VERDICT_STATUS[verdict]} />
       <span className="badge-label">{v.label}</span>
-      {verdict === "EXTRAPOLATION" && level && <span className="badge-level"> — {levelPhrase(level)}</span>} <span className="badge-code">{verdict}</span>
+      {verdict === "EXTRAPOLATION" && level && <span className="badge-level"> — {levelPhrase(level)}</span>}
     </span>
   );
 }
