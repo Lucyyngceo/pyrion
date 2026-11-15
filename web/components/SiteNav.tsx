@@ -14,6 +14,8 @@ const MAIN = [
 
 /** Behind the "More" menu, in order of importance. */
 const MORE = [
+  { href: "/lenses", label: "Safety lenses", help: "nav-lenses" },
+  { href: "/more", label: "Equipment & Earth", help: "nav-more" },
   { href: "/bridge", label: "Bridge", help: "nav-bridge" },
   { href: "/method", label: "Method", help: "nav-method" },
   { href: "/data", label: "Data", help: "nav-data" },
