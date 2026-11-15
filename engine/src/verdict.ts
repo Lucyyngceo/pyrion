@@ -77,7 +77,8 @@ export function validateTarget(target: Target): void {
 }
 
 /** Canonical copy of the target: fixed key order, undefined entries dropped. */
-function canonicalTarget(target: Target): Target {
+/** Internal (used by the navigator). */
+export function canonicalTarget(target: Target): Target {
   const regime: Target['regime'] = {};
   for (const a of REGIME_AXES) if (target.regime[a] !== undefined) regime[a] = target.regime[a];
   const continuous: Target['continuous'] = {};
@@ -87,7 +88,8 @@ function canonicalTarget(target: Target): Target {
   return out;
 }
 
-function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAxis, AxisScale>): ClusterVerdict {
+/** Internal (used by the navigator): the verdict of one cluster against one target. */
+export function judgeCluster(cluster: Cluster, target: Target, scales: Map<ContinuousAxis, AxisScale>): ClusterVerdict {
   const reasons: Reason[] = [];
   const usedRecords: ConditionRecord[] = [];
   const excludedRelevant: ConditionRecord[] = [];

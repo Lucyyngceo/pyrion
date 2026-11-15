@@ -119,6 +119,35 @@ export function hullNearBox(hull: readonly Vec2[], c: Vec2, hx: number, hy: numb
   return false;
 }
 
+function closestOnSegment(p: Vec2, a: Vec2, b: Vec2): Vec2 {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const len2 = dx * dx + dy * dy;
+  let t = len2 === 0 ? 0 : ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2;
+  t = Math.max(0, Math.min(1, t));
+  return { x: a.x + t * dx, y: a.y + t * dy };
+}
+
+/**
+ * The point of the hull (inside or on its boundary) nearest to p, with the hull vertices that bound it
+ * (one vertex, or the two ends of the edge). p itself when it is inside. Hull in normalized units.
+ */
+export function nearestPointOnHull(p: Vec2, hull: readonly Vec2[]): { point: Vec2; vertices: Vec2[] } | null {
+  if (hull.length === 0) return null;
+  if (hull.length >= 3 && hullContains(p, hull)) return { point: p, vertices: [] };
+  if (hull.length === 1) return { point: hull[0], vertices: [hull[0]] };
+  let best: { point: Vec2; vertices: Vec2[]; d: number } | null = null;
+  const n = hull.length === 2 ? 1 : hull.length;
+  for (let i = 0; i < n; i += 1) {
+    const a = hull[i];
+    const b = hull[(i + 1) % hull.length];
+    const q = closestOnSegment(p, a, b);
+    const d = Math.hypot(q.x - p.x, q.y - p.y);
+    if (best === null || d < best.d) best = { point: q, vertices: [a, b], d };
+  }
+  return best === null ? null : { point: best.point, vertices: best.vertices };
+}
+
 /** 0 when p is inside the hull, otherwise the distance to its boundary. */
 export function distanceToHull(p: Vec2, hull: readonly Vec2[]): number {
   if (hull.length === 0) return Infinity;
