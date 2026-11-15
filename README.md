@@ -4,6 +4,62 @@
 
 > Built during the NASA Space Apps Challenge hackathon, November 14–15, 2026.
 
+PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
+It plots every extracted PSI test point as an evidence envelope (O₂ against pressure) and gives a deterministic verdict on whether a target condition lies inside the region spanned by tested points.
+Every test point is cited to its PSI investigation (DOI and license on the Data page), and the verdict says when a condition lies outside what PSI tested.
+It is for spacecraft and habitat fire-safety engineers, students and researchers who need to know what PSI already tested and what it did not.
+No API key and no language model are needed for the envelope and the verdict: the engine is pure TypeScript and runs in the browser.
+
+## Try it
+
+- [Envelope with the Moon Base preset](https://pyrion.us/?preset=challenge-lunar-base)
+- [Mission Planner](https://pyrion.us/planner)
+- [Investigations](https://pyrion.us/investigations)
+- [TARS SI](https://pyrion.us/tars)
+
+## Run locally
+
+Requires Node.js 20.9 or newer (`web/README.md`); the public instance runs Node 24 (`docs/DEPLOY.md`).
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000>. Production build:
+
+```bash
+npm run build
+npm start
+```
+
+Tests and type check (scripts in `web/package.json`):
+
+```bash
+npm test
+npm run typecheck
+```
+
+The public instance behind nginx, as in `docs/DEPLOY.md`:
+
+```bash
+PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
+```
+
+## Features
+
+- **Evidence envelope** (`/`): every extracted PSI test point, O₂ mole fraction against pressure, with a deterministic applicability verdict for a target condition and presets such as the Moon Base band.
+- **Mission Planner** (`/planner`): how much of the Moon Base oxygen-pressure band lies inside the region spanned by PSI test points, what FM2 as planned would add, and the fewest test points that would span the band under a stated geometric convention (not a test programme). Evidence coverage, not a prediction.
+- **Investigations** (`/investigations`): one sheet per PSI combustion investigation, a side-by-side comparison (`/investigations/compare`) and a materials view (`/investigations/materials`).
+- **Lenses** (`/lenses`): PSI investigations by safety leg (prevention, detection, suppression) and phenomenon, each tag with a verbatim quote, a filter by leg, and the evidence timeline.
+- **More** (`/more`): fire-safety equipment and Earth uses, quoted from PSI records and the NASA Space Apps 2026 challenge statement, plus spacesuits and rockets as out of PSI scope.
+- **TARS SI** (`/tars`): an AI assistant that answers in labelled layers: what the engine computed, what NASA wrote (quote checked on its page) and its own reasoning (not verified); it runs in structured mode when no API key is set (`web/.env.example`).
+- **Bridge** (`/bridge`): a labelled hypothesis relating microgravity tests to other gravity levels through flame stretch rate. Not evidence.
+- **Method, Data and Proof** (`/method`, `/data`, `/proof`): how a verdict is decided, what was extracted from each investigation (DOI and license), and the repository numbers read at build time.
+- **Help** (`/help`): every control on the site has a help topic.
+
+
 ## What it is
 
 PYRION is being built to rank NASA combustion experiments by how physically applicable they are to a target condition (gravity level, oxygen concentration, pressure, fuel type) and to show where the measured evidence ends.
