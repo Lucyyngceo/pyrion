@@ -1,78 +1,12 @@
-# Validation report — 2026-11-14T17:15:15Z
+# Validation report — 2026-11-15T02:06:35Z
 
-Records: 10003 · trace check: ran · cells_traced: 8352 · quotes_traced: 933 · text_files_scanned: 19 · units_identity_no_unit_in_source: 232 · units_rechecked: 3239
+Records: 10010 · trace check: skipped (no data/raw) · text_files_scanned: 54 · units_identity_no_unit_in_source: 207 · units_rechecked: 3240
 
-**BLOCKER 0 · MAJOR 67 · MINOR 129**
+**BLOCKER 0 · MAJOR 1 · MINOR 131**
 
 | severity | check | where | what |
 |---|---|---|---|
-| MAJOR | units | `data/conditions/PSI-20.csv:100` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:101` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:102` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:103` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:104` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:105` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:106` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:107` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:148` | non-numeric value '101.353' / original 'p = 14.7 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:81` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:82` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:83` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:84` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:85` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:86` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:87` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:88` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:89` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:90` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:91` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:92` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:93` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:94` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:95` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:96` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:97` | non-numeric value '70.3265' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:98` | non-numeric value '56.537' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
-| MAJOR | units | `data/conditions/PSI-20.csv:99` | non-numeric value '101.353' / original '(1) 14.7 psia, 21% oxygen; (2) 10.2 psia, 26.5% oxygen; and (3) 8.2 psia' |
 | MAJOR | units | `data/conditions/PSI-22.csv:31` | cannot recompute o2_mole_fraction: no known conversion 'on a volume basis' -> '1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:110` | non-numeric value '0..5' / original '5   2   0' |
-| MAJOR | units | `data/conditions/PSI-25.csv:130` | non-numeric value '8..10' / original '10  8' |
-| MAJOR | units | `data/conditions/PSI-25.csv:135` | non-numeric value '13..20' / original '20  15  13   14' |
-| MAJOR | units | `data/conditions/PSI-25.csv:140` | non-numeric value '10..20' / original '10   20  18' |
-| MAJOR | units | `data/conditions/PSI-25.csv:145` | non-numeric value '3..5' / original '5   4   3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:150` | non-numeric value '5..20' / original '20  13  10  8  5' |
-| MAJOR | units | `data/conditions/PSI-25.csv:155` | non-numeric value '0..10' / original '10   5   3   0' |
-| MAJOR | units | `data/conditions/PSI-25.csv:160` | non-numeric value '3..10' / original '10   6  5  4.5  4  3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:170` | non-numeric value '10..14' / original '10   14' |
-| MAJOR | units | `data/conditions/PSI-25.csv:175` | non-numeric value '8..17' / original '10  17  14  10  8' |
-| MAJOR | units | `data/conditions/PSI-25.csv:180` | non-numeric value '10..20' / original '10   20   15  12' |
-| MAJOR | units | `data/conditions/PSI-25.csv:190` | non-numeric value '4..6' / original '6   5   4' |
-| MAJOR | units | `data/conditions/PSI-25.csv:200` | non-numeric value '7..20' / original '10   8  7  8  10  20  18  16  15' |
-| MAJOR | units | `data/conditions/PSI-25.csv:205` | non-numeric value '1..10' / original '10  6  3  2  1  10' |
-| MAJOR | units | `data/conditions/PSI-25.csv:220` | non-numeric value '5..17' / original '10  17  14  10  7  5' |
-| MAJOR | units | `data/conditions/PSI-25.csv:225` | non-numeric value '8..10' / original '10  8' |
-| MAJOR | units | `data/conditions/PSI-25.csv:229` | non-numeric value '1..20' / original '20  10  5  2  1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:237` | non-numeric value '3..5' / original '5  3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:297` | non-numeric value '0..5' / original '5  0' |
-| MAJOR | units | `data/conditions/PSI-25.csv:301` | non-numeric value '0..5' / original '5   0' |
-| MAJOR | units | `data/conditions/PSI-25.csv:309` | non-numeric value '0..11' / original '3   0   11' |
-| MAJOR | units | `data/conditions/PSI-25.csv:313` | non-numeric value '0..11' / original '5  2  0  11  2  11  2  0' |
-| MAJOR | units | `data/conditions/PSI-25.csv:445` | non-numeric value '4..9' / original '9   5   4' |
-| MAJOR | units | `data/conditions/PSI-25.csv:453` | non-numeric value '1..9' / original '9  1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:457` | non-numeric value '1..10' / original '10   2   1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:485` | non-numeric value '1..5' / original '5  1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:489` | non-numeric value '3..5' / original '5  3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:493` | non-numeric value '9..29' / original '9   29' |
-| MAJOR | units | `data/conditions/PSI-25.csv:497` | non-numeric value '3..5' / original '5  3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:501` | non-numeric value '6..53' / original '6   53' |
-| MAJOR | units | `data/conditions/PSI-25.csv:505` | non-numeric value '2..5' / original '5  2' |
-| MAJOR | units | `data/conditions/PSI-25.csv:51` | non-numeric value '1..5' / original '5  4  3  2  1' |
-| MAJOR | units | `data/conditions/PSI-25.csv:513` | non-numeric value '3..11' / original '11   3' |
-| MAJOR | units | `data/conditions/PSI-25.csv:521` | non-numeric value '5..10' / original '10   5' |
-| MAJOR | units | `data/conditions/PSI-25.csv:533` | non-numeric value '2.5..5' / original '5   2.5' |
-| MAJOR | units | `data/conditions/PSI-25.csv:537` | non-numeric value '2.5..5' / original '5   2.5' |
-| MAJOR | units | `data/conditions/PSI-25.csv:541` | non-numeric value '2..5' / original '5   2' |
-| MAJOR | units | `data/conditions/PSI-25.csv:66` | non-numeric value '1..10' / original '10   5  4  3  2  1' |
 | MINOR | consistency | `PSI-68 test Decane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Ethanol (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Heptane (50%) IsoOctane (50%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
@@ -81,6 +15,8 @@ Records: 10003 · trace check: ran · cells_traced: 8352 · quotes_traced: 933 �
 | MINOR | consistency | `PSI-68 test Propanol (80%) Glycerol (20%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Propanol (95%) Glycerol (5%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test n-Octane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
+| MINOR | language | `web/lib/llm/safety.ts:36` | 'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s |
+| MINOR | language | `web/lib/llm/safety.ts:53` | 'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */ |
 | MINOR | units | `data/conditions/PSI-26.csv:123` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
 | MINOR | units | `data/conditions/PSI-26.csv:125` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
 | MINOR | units | `data/conditions/PSI-26.csv:127` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |

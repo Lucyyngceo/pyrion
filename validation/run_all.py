@@ -293,6 +293,20 @@ def quote_found(quote, text):
 _table_cache = {}
 
 
+def xlsx_rows(path, sheet, columns):
+    """Header and data rows of one Excel sheet. The header is the first row (within the first 10) that holds every
+    column the record names; data row 1 is the row right below it. Cells are read as values, never as formulas."""
+    key = (path, sheet, tuple(columns))
+    if key not in _table_cache:
+        import openpyxl
+        wb = openpyxl.load_workbook(RAW.joinpath(*path.split("/")), read_only=True, data_only=True)
+        rows = [["" if v is None else str(v) for v in row] for row in wb[sheet].iter_rows(values_only=True)]
+        wb.close()
+        hi = next((i for i, row in enumerate(rows[:10]) if all(c.strip() in [h.strip() for h in row] for c in columns)), None)
+        _table_cache[key] = ([h.strip() for h in rows[hi]], rows[hi + 1:]) if hi is not None else (None, [])
+    return _table_cache[key]
+
+
 def table_rows(path):
     if path not in _table_cache:
         raw = RAW.joinpath(*path.split("/")).read_bytes()
@@ -319,12 +333,21 @@ def check_trace(recs, rep):
                 if not quote_found(r["quote"], document_text(r["source_file"])):
                     rep.add("BLOCKER", "trace", r["_file"], f"quote not found verbatim in {r['source_file']}: \"{r['quote'][:80]}\"")
                 rep.stats["quotes_traced"] += 1
-            elif r["method"] == "table" and p.suffix.lower() == ".csv":
-                # Headers may contain ';' (e.g. "Ambient pressure; mmHg"): split only before row=/column=.
-                parts = re.split(r";(?=(?:row|column)=)", r["source_location"])
-                loc = dict(p.split("=", 1) for p in parts if p.startswith("row="))
+            elif r["method"] == "table" and p.suffix.lower() in (".csv", ".xlsx"):
+                # Headers may contain ';' (e.g. "Ambient pressure; mmHg"): split only before sheet=/row=/column=.
+                parts = re.split(r";(?=(?:sheet|row|column)=)", r["source_location"])
+                loc = dict(p.split("=", 1) for p in parts if p.startswith(("row=", "sheet=")))
                 cols = [p.split("=", 1)[1] for p in parts if p.startswith("column=")]
-                header, rows = table_rows(r["source_file"])
+                if p.suffix.lower() == ".xlsx":
+                    if "sheet" not in loc:
+                        rep.add("BLOCKER", "trace", r["_file"], "Excel source without sheet= in source_location")
+                        continue
+                    header, rows = xlsx_rows(r["source_file"], loc["sheet"], cols)
+                    if header is None:
+                        rep.add("BLOCKER", "trace", r["_file"], f"no header row with {cols} in sheet '{loc['sheet']}'")
+                        continue
+                else:
+                    header, rows = table_rows(r["source_file"])
                 n = int(loc.get("row", "0"))
                 if not (1 <= n <= len(rows)):
                     rep.add("BLOCKER", "trace", r["_file"], f"row {n} not in table ({len(rows)} data rows)")
