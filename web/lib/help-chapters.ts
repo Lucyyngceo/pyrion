@@ -21,6 +21,7 @@ export const CHAPTERS: readonly Chapter[] = [
   { slug: "method", n: 10, title: "Method", intro: "How the engine decides." },
   { slug: "glossary", n: 11, title: "Glossary", intro: "Every term used on the site." },
   { slug: "limits", n: 12, title: "Limits and honesty", intro: "What PYRION does not claim." },
+  { slug: "planner", n: 13, title: "Mission Planner", intro: "How much of the Moon Base band the PSI measurements cover, and what tests would close the rest." },
 ];
 
 export const chapterBySlug = (slug: string) => CHAPTERS.find((c) => c.slug === slug);
@@ -31,6 +32,7 @@ const starts = (id: string, ...prefixes: string[]) => prefixes.some((p) => id.st
 export function pageOf(id: string): string {
   if (starts(id, "bridge", "fm2-") || id === "page-bridge") return "/bridge";
   if (id.startsWith("data-") || id === "page-data") return "/data";
+  if (id.startsWith("planner") || id === "page-planner" || id === "nav-planner" || id === "chart-planner") return id === "nav-planner" ? "/" : "/planner";
   if (id.startsWith("method") || id === "page-method") return "/method";
   if (id.startsWith("why") || id === "page-why") return "/why";
   if (id.startsWith("help-reader")) return "/help";

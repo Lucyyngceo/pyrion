@@ -19,6 +19,7 @@ const PAGES: { id: string; label: string }[] = [
   { id: "method", label: "Method" },
   { id: "why", label: "Why" },
   { id: "tars", label: "TARS" },
+  { id: "planner", label: "Planner" },
   { id: "global", label: "Everywhere" },
   { id: "overview", label: "Overviews" },
 ];

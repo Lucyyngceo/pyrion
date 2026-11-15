@@ -99,10 +99,10 @@ export async function loadProof(): Promise<Proof> {
     const v = JSON.parse((await text("validation", "reports", "latest.json")) ?? "null") as {
       generated_at_utc: string;
       trace_ran: boolean;
-      stats: { records: number; cells_traced: number; quotes_traced: number; text_files_scanned: number };
+      stats: { records: number; cells_traced?: number; quotes_traced?: number; text_files_scanned: number };
       counts: { BLOCKER: number; MAJOR: number; MINOR: number };
     } | null;
-    if (v) validation = { generatedAt: v.generated_at_utc, records: v.stats.records, cells: v.stats.cells_traced, quotes: v.stats.quotes_traced, textFiles: v.stats.text_files_scanned, blocker: v.counts.BLOCKER, major: v.counts.MAJOR, minor: v.counts.MINOR, traceRan: v.trace_ran };
+    if (v) validation = { generatedAt: v.generated_at_utc, records: v.stats.records, cells: v.stats.cells_traced ?? 0, quotes: v.stats.quotes_traced ?? 0, textFiles: v.stats.text_files_scanned, blocker: v.counts.BLOCKER, major: v.counts.MAJOR, minor: v.counts.MINOR, traceRan: v.trace_ran };
   } catch {
     validation = null;
   }

@@ -468,3 +468,19 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 .tars-cmptable { overflow-x: auto; }
 .tars-cmptable table { border-collapse: collapse; font-size: 13px; width: 100%; }
 .tars-cmptable th, .tars-cmptable td { text-align: left; vertical-align: top; padding: 3px 6px; border-top: 1px solid var(--border-strong); }
+
+.planner .card { margin-bottom: 14px; }
+.pl-controls { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0; }
+.pl-chart { width: 100%; max-width: 760px; height: auto; touch-action: none; cursor: crosshair; background: var(--surface, transparent); border: 1px solid var(--border-strong); }
+.pl-grid { stroke: var(--border-strong); stroke-opacity: 0.5; }
+.pl-tick { font-size: 10px; fill: var(--ink-2); }
+.pl-axis { font-size: 12px; fill: var(--ink-2); }
+.pl-cell { fill: var(--ink); fill-opacity: 0.05; stroke: var(--surface); stroke-width: 1; }
+.pl-cell-on { fill: var(--ok, #2fbf71); fill-opacity: 0.55; }
+.pl-band { fill: none; stroke: var(--neon-2); stroke-width: 2; }
+.pl-v { stroke: var(--ink); stroke-width: 2; cursor: help; }
+.pl-v-src { fill: var(--ink); }
+.pl-v-conv { fill: none; stroke-dasharray: 3 3; }
+.pl-fm2 { fill: var(--neon-2); fill-opacity: 0.8; }
+.pl-mine { fill: var(--warn, #ff8a3d); stroke: var(--ink); cursor: grab; }
+.pl-detail { min-height: 3em; margin-top: 6px; }
