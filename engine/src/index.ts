@@ -15,4 +15,7 @@ export * from './navigator.ts';
 export * from './levels.ts';
 export * from './experiments.ts';
 export * from './answer.ts';
+export * from './erl.ts';
+export * from './planner.ts';
+export * from './gapreport.ts';
 export { sha256Hex } from './sha256.ts';
