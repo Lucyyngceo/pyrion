@@ -30,6 +30,8 @@ interface Run {
   narrateMeta: Meta | null;
   narrationUnavailable: boolean;
   narrateError: string | null;
+  /** Suggestions the user applied: part of the target now, marked as added by the user. */
+  added: { axis: string; value: string }[];
 }
 
 interface Props {
@@ -98,6 +100,35 @@ export default function AskBox({ onTarget }: Props) {
     };
   }, []);
 
+  type Narrated = { meta: Meta | null; engine_sha256?: string; verdicts: string[]; context: string | null; dropped?: number; narration_unavailable?: boolean };
+
+  async function narrate(m: string, target: ParsedTarget["target"]): Promise<{ n: Narrated | null; error: string | null }> {
+    try {
+      return { n: await post<Narrated>({ step: "narrate", model: m, target }), error: null };
+    } catch (e) {
+      return { n: null, error: e instanceof Error ? e.message : String(e) };
+    }
+  }
+
+  /** The user applies a suggestion: the axis joins the target, is marked as added by the user, and the verdicts are recomputed. */
+  async function apply(index: number, axis: string, value: string) {
+    const r = runs[index];
+    if (!r || busy) return;
+    setBusy(true);
+    const target = { ...r.parsed.target, regime: { ...r.parsed.target.regime, [axis]: value } };
+    const parsed: ParsedTarget = { ...r.parsed, target, suggestions: r.parsed.suggestions.filter((x) => x.axis !== axis), unstated: r.parsed.unstated.filter((u) => u !== axis) };
+    onTarget(parsed);
+    const { n, error } = await narrate(r.parseMeta.model, target);
+    setRuns((all) =>
+      all.map((x, i) =>
+        i !== index
+          ? x
+          : { ...x, parsed, added: [...x.added, { axis, value }], hash: n?.engine_sha256 ?? null, verdicts: n?.verdicts ?? [], context: n?.context ?? null, dropped: n?.dropped ?? 0, narrateMeta: n?.meta ?? null, narrationUnavailable: !!n?.narration_unavailable, narrateError: error },
+      ),
+    );
+    setBusy(false);
+  }
+
   async function run(question: string, m: string, fresh: boolean) {
     setBusy(true);
     setError(null);
@@ -107,13 +138,7 @@ export default function AskBox({ onTarget }: Props) {
       const a = await post<{ parsed: ParsedTarget; meta: Meta; safety: string }>({ step: "parse", model: m, question });
       onTarget(a.parsed);
       // Steps B and C run on the server: it evaluates the target itself, writes the verdicts, and checks the model's context.
-      let n: { meta: Meta | null; engine_sha256?: string; verdicts: string[]; context: string | null; dropped?: number; narration_unavailable?: boolean } | null = null;
-      let narrateError: string | null = null;
-      try {
-        n = await post({ step: "narrate", model: m, target: a.parsed.target });
-      } catch (e) {
-        narrateError = e instanceof Error ? e.message : String(e);
-      }
+      const { n, error: narrateError } = await narrate(m, a.parsed.target);
       setRuns((r) => [
         ...r,
         {
@@ -127,6 +152,7 @@ export default function AskBox({ onTarget }: Props) {
           narrateMeta: n?.meta ?? null,
           narrationUnavailable: !!n?.narration_unavailable,
           narrateError,
+          added: [],
         },
       ]);
     } catch (e) {
@@ -198,9 +224,22 @@ export default function AskBox({ onTarget }: Props) {
         <div key={i} className="ask-run">
           <p className="ask-understood">
             <strong>PYRION understood:</strong> {describe(r.parsed)}.{" "}
+            {r.added.length > 0 && <span>{r.added.map((x) => `${x.axis.replaceAll("_", " ")} = ${valueLabel(x.value)} (added by you)`).join("; ")}. </span>}
             {r.parsed.unstated.length > 0 && <span className="muted">Not stated, left as it was on the chart or not compared: {r.parsed.unstated.map((u) => u.replaceAll("_", " ")).join(", ")}. </span>}
             <a href="#target-panel">Edit the target</a>
           </p>
+          {r.parsed.suggestions.length > 0 && (
+            <ul className="small ask-suggest">
+              {r.parsed.suggestions.map((x) => (
+                <li key={x.axis}>
+                  The model suggests: {x.axis.replaceAll("_", " ")} = {valueLabel(x.value)} (not in your question; it is not used unless you apply it).{" "}
+                  <button type="button" className="linklike" disabled={busy} onClick={() => void apply(i, x.axis, x.value)}>
+                    Apply
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
           {r.parsed.conversions.length > 0 && (
             <ul className="small muted ask-assume">
               {r.parsed.conversions.map((c) => (

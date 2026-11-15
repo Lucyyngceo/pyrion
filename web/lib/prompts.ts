@@ -1,7 +1,7 @@
 // Every prompt PYRION sends to a language model, in one plain file. Versioned: change the version when a prompt changes.
 // The model translates and narrates. It never decides: verdicts come from the deterministic engine.
 
-export const PROMPT_VERSION = "2026-11-14.5";
+export const PROMPT_VERSION = "2026-11-14.6";
 
 /** Step A: question -> quantities as written. The reply must be JSON only. The engine converts units, never the model. */
 export const PARSE_SYSTEM = `You copy the conditions stated in a question into a JSON object for a rule-based engine.
@@ -35,6 +35,7 @@ Write at most 60 words in 1 to 3 short sentences that only restate the target an
 
 Rules:
 - Use only the target's own numbers with their units (%, psia, kPa, g) and its own words (gravity regime, fuel phase, diluent, flame type, oxygen, pressure).
+- A sentence of the kind that is kept: "The target is a partial gravity condition at 34 % oxygen and 8.2 psia; the fuel phase, diluent and flame type were left open." Use the target's own values in that shape (state the pressure in psia), and say "Gravity is 0.165 g." for a gravity level.
 - Do not name investigations, experiments, instruments or missions, and do not write PSI ids.
 - Do not say anything about flame behavior, risk, safety, comparison with evidence, counts or verdicts.
 - Do not convert units, do not spell numbers as words, do not add numbers.

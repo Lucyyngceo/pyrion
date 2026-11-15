@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { modelText } from "../lib/narration-check.ts";
-import { buildNarrationInput, isOxygenPartialPressure, parseTargetReply, shapeTarget, supportedByQuestion } from "../lib/ask-core.ts";
+import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, isOxygenPartialPressure, parseTargetReply, questionHasOxygenPartialPressure, shapeTarget, supportedByQuestion } from "../lib/ask-core.ts";
 import { evaluate, targetFromQuantities } from "../../engine/src/index.ts";
 
 const Q = "Would solid fuel burn differently in a lunar base at 30% oxygen and 10.2 psi?";
@@ -39,13 +39,41 @@ test("assumptions: long ones, banned phrases and numbers the question lacks are 
   assert.deepEqual(out.assumptions, ["balance gas not named"]);
 });
 
-test("a regime axis the model filled in without the question stating it is listed as an assumption", () => {
-  const withRod = parseTargetReply(reply({ o2: "30%", fuel_phase: "solid" }), "A PMMA rod at 30% oxygen");
-  assert.match(withRod.assumptions.join(" "), /fuel phase "solid" was inferred/);
+test("a regime axis the question does not state is a suggestion, never part of the target", () => {
+  const rod = parseTargetReply(reply({ o2: "30%", fuel_phase: "solid" }), "A PMMA rod at 30% oxygen");
+  assert.equal(rod.target.regime.fuel_phase, undefined);
+  assert.deepEqual(rod.suggestions.map((x) => [x.axis, x.value]), [["fuel_phase", "solid"]]);
+  assert.ok(rod.unstated.includes("fuel_phase"));
   const stated = parseTargetReply(reply({ o2: "30%", fuel_phase: "solid" }), "A solid fuel at 30% oxygen");
-  assert.ok(!stated.assumptions.join(" ").includes("inferred"));
-  const lunar = parseTargetReply(reply({ gravity: "lunar", gravity_regime: "partial_gravity" }), "a lunar base");
-  assert.ok(!lunar.assumptions.join(" ").includes("gravity regime"));
+  assert.equal(stated.target.regime.fuel_phase, "solid");
+  assert.deepEqual(stated.suggestions, []);
+});
+
+test("the two candle questions give identical targets whatever the model infers", () => {
+  const a = parseTargetReply(reply({ gravity: "0 g", o2: "21%", pressure: "1 atm", fuel_phase: "solid" }), "A candle at 0 g, 21% oxygen and 1 atm");
+  const b = parseTargetReply(reply({ gravity: "microgravity", o2: "21%", pressure: "1 atm", fuel_phase: "liquid", flame_type: "normal", gravity_regime: "microgravity" }), "A candle in microgravity at 21% oxygen and 1 atm");
+  // what the engine compares is identical (the stated 0 g is only shown, as informational)
+  assert.deepEqual({ regime: a.target.regime, continuous: a.target.continuous }, { regime: b.target.regime, continuous: b.target.continuous });
+  assert.equal(a.target.regime.fuel_phase, undefined);
+  assert.equal(b.target.regime.flame_type, undefined);
+  assert.equal(a.target.regime.gravity_regime, "microgravity");
+  assert.equal(b.suggestions.length, 2);
+  // a model that names no axis at all gives the same target again
+  assert.deepEqual(a.target, parseTargetReply(reply({ gravity: "0 g", o2: "21%", pressure: "1 atm" }), "A candle at 0 g, 21% oxygen and 1 atm").target);
+});
+
+test("a gravity regime the question does not state is a suggestion too", () => {
+  const r = parseTargetReply(reply({ o2: "21%", gravity_regime: "microgravity" }), "A candle at 21% oxygen");
+  assert.equal(r.target.regime.gravity_regime, undefined);
+  assert.equal(r.suggestions[0].axis, "gravity_regime");
+});
+
+test("an oxygen partial pressure in the question is refused before any model is called, in plain words", () => {
+  for (const q of ["A cabin with an oxygen partial pressure of 21 kPa", "PMMA at 21 kPa O2", "ppO2 21 kPa in the habitat", "pO2 of 21 kPa"]) assert.equal(questionHasOxygenPartialPressure(q), true, q);
+  assert.equal(questionHasOxygenPartialPressure("ppO2 21 kPa, total 70 kPa"), false);
+  assert.equal(questionHasOxygenPartialPressure("A cabin at 8.2 psia and 34% oxygen"), false);
+  assert.match(PARTIAL_PRESSURE_MESSAGE, /^Oxygen partial pressure is not total pressure/);
+  assert.throws(() => parseTargetReply(reply({ pressure: "21 kPa" }), "PMMA at 21 kPa O2"), (e: Error) => e instanceof PlainError && !e.message.includes("model text"));
 });
 
 test("N3: the model's unit must be the one the question wrote, and a number feeds only one quantity", () => {

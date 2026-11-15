@@ -8,7 +8,7 @@
 import { NoModelAvailable, RateLimited, askLlm, budget, checkContent, providers, selectableModels, visitorId } from "@/lib/llm";
 import { openWeightsLabel } from "@/lib/llm/config";
 import { NARRATE_SYSTEM, PARSE_SYSTEM, PROMPT_VERSION } from "@/lib/prompts";
-import { buildNarrationInput, parseTargetReply, renderVerdicts, shapeTarget } from "@/lib/ask-core";
+import { PARTIAL_PRESSURE_MESSAGE, PlainError, buildNarrationInput, parseTargetReply, questionHasOxygenPartialPressure, renderVerdicts, shapeTarget } from "@/lib/ask-core";
 import { cleanModelText } from "@/lib/llm/clean";
 import { checkContext, type ContextTarget } from "@/lib/context-check";
 import { modelText } from "@/lib/narration-check";
@@ -100,6 +100,8 @@ export async function POST(req: Request) {
       if (q === "" || q.length > 500) return json({ error: "the question must be 1 to 500 characters" }, 400);
       // The rate limit comes first: a visitor over the limit costs nothing, not even a safety call.
       budget().visitor(visitor);
+      // An oxygen partial pressure without a total pressure cannot become a target: say so before any paid call.
+      if (questionHasOxygenPartialPressure(q)) return json({ error: PARTIAL_PRESSURE_MESSAGE }, 422);
       budget().recordSafety();
       const safety = await checkContent(q, providers(), undefined, undefined, deadline);
       const safetyState = safety.flagged ? "flagged" : safety.checked ? "checked" : "unavailable";
@@ -112,6 +114,7 @@ export async function POST(req: Request) {
       try {
         parsed = parseTargetReply(cleanModelText(reply), q);
       } catch (e) {
+        if (e instanceof PlainError) return json({ error: e.message, safety: safetyState, meta: metaOf(c.meta) }, 422);
         return json({ error: `The question could not be turned into a valid target. ${modelText(e instanceof Error ? e.message : "invalid reply")}`, safety: safetyState, ...metaOf(c.meta) }, 422);
       }
       return json({ meta: metaOf(c.meta), promptVersion: PROMPT_VERSION, safety: safetyState, parsed });

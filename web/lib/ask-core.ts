@@ -1,7 +1,7 @@
 // Pure helpers of "Ask PYRION": reading the model's target, and building what the narrator may see.
 // Relative .ts imports on purpose, so the unit tests can run them under `node --test`.
 
-import { targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
+import { REGIME_VALUES, targetFromQuantities, validateTarget, type Evaluation, type Target, type TargetQuantities } from "../../engine/src/index.ts";
 import { BANNED_PATTERNS, modelText } from "./narration-check.ts";
 import { cleanModelText } from "./llm/clean.ts";
 
@@ -16,6 +16,27 @@ export interface ParsedTarget {
   conversions: string[];
   /** Engine notes and plausibility warnings about the values. */
   warnings: string[];
+  /**
+   * Regime axes the model proposed that the question does not state. They are NOT in the target: the target keeps only what
+   * the question states. The user may apply one, and it is then marked as added by the user.
+   */
+  suggestions: { axis: string; value: string; reason: string }[];
+}
+
+/** A problem with the user's input that is shown as written, not as model text. */
+export class PlainError extends Error {}
+
+/** The oxygen-partial-pressure message, shared by the question check and the parse check. */
+export const PARTIAL_PRESSURE_MESSAGE = "Oxygen partial pressure is not total pressure: give the total pressure and the O2 percentage.";
+
+/**
+ * Does the question give an oxygen partial pressure and no total pressure? ("partial pressure", "ppO2", "pO2", "21 kPa O2").
+ * Checked before any model is called. A question that also says "total" is left to the parse step.
+ */
+export function questionHasOxygenPartialPressure(question: string): boolean {
+  const q = question.normalize("NFKC").toLowerCase();
+  const phrased = /partial pressure|\bppo2\b|\bpo2\b|p\(o2\)/.test(q) || /\d\s*(?:kpa|psia|psi|atm|bar|mbar|torr|mmhg|pa)\s*(?:of\s+)?(?:o2|oxygen)\b/.test(q);
+  return phrased && !/\btotal\b/.test(q);
 }
 
 const QUANTITY_KEYS = ["gravity", "o2", "pressure", "flow_velocity", "sample_thickness", "ambient_temperature"] as const;
@@ -126,6 +147,8 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
   const o = raw as Record<string, unknown>;
   const input: Record<string, string> = {};
   const unstated: string[] = [];
+  const suggestions: ParsedTarget["suggestions"] = [];
+  const gravityStated = typeof o.gravity === "string" && o.gravity !== "" && supportedByQuestion(o.gravity, question);
   const dropped: string[] = [];
   const used = new Set<number>();
   for (const k of [...QUANTITY_KEYS, ...REGIME_KEYS]) {
@@ -136,29 +159,35 @@ export function parseTargetReply(reply: string, question: string): ParsedTarget 
     }
     if (typeof v !== "string") throw new Error(`${k} must be text as written in the question, or null`);
     if (k === "pressure" && isOxygenPartialPressure(v, question)) {
-      throw new Error("oxygen partial pressure is not total pressure: give the total pressure and the O2 percentage");
+      throw new PlainError(PARTIAL_PRESSURE_MESSAGE);
     }
     if ((QUANTITY_KEYS as readonly string[]).includes(k) && !supportedByQuestion(v, question, used)) {
       unstated.push(k === "o2" ? "o2_mole_fraction" : k);
       dropped.push(`The model returned a value for ${k.replaceAll("_", " ")} that is not in the question (${modelText(v)}). It was ignored.`);
       continue;
     }
+    // A regime axis the question does not state is a suggestion, never part of the target. A stated gravity gives the gravity regime.
+    if ((REGIME_KEYS as readonly string[]).includes(k)) {
+      if (k === "gravity_regime" && gravityStated) {
+        unstated.push(k);
+        continue;
+      }
+      if (!(REGIME_VALUES[k as keyof typeof REGIME_VALUES] ?? []).includes(v)) throw new Error(`${k} is not an allowed value`);
+      if (!(STATES[v]?.test(question) ?? false)) {
+        suggestions.push({ axis: k, value: v, reason: "proposed by the model; the question does not state it" });
+        unstated.push(k);
+        continue;
+      }
+    }
     input[k] = v;
   }
   const r = targetFromQuantities(input as TargetQuantities);
   if (!r.ok) throw new Error(r.errors.map((e) => `${e.field}: ${e.message}`).join("; "));
-  // A regime axis the model filled in without the question stating it is shown as an assumption.
-  const inferred: string[] = [];
-  for (const k of REGIME_KEYS) {
-    const v = input[k];
-    if (v === undefined) continue;
-    if (k === "gravity_regime" && input.gravity !== undefined) continue; // derived by the engine from the stated gravity
-    if (!(STATES[v]?.test(question) ?? false)) inferred.push(`${k.replaceAll("_", " ")} "${v}" was inferred by the model: the question does not state it.`);
-  }
   const assumptions = Array.isArray(o.assumptions) ? o.assumptions.filter((a): a is string => typeof a === "string" && keepAssumption(a, question)).slice(0, 5) : [];
   return {
     target: r.target,
-    assumptions: [...inferred, ...assumptions].slice(0, 6),
+    assumptions: assumptions.slice(0, 6),
+    suggestions,
     unstated,
     conversions: r.conversions.map((c) => c.display),
     warnings: [...dropped, ...r.conversions.flatMap((c) => [...c.notes, ...c.warnings])],
