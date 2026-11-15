@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ClaimCheck, ClaimClass } from "@/lib/expert/claim";
 import type { Brief } from "@/lib/expert/brief";
+import type { ComparisonResult } from "@/lib/expert/compare";
 import { CitationQuote } from "./CitationPreview";
 import { useTars } from "./TarsProvider";
 
@@ -173,6 +174,120 @@ export function BriefMe({ onClose }: { onClose: () => void }) {
           {brief.left_out.length > 0 && <p className="small muted">{brief.left_out.length} block(s) were left out because they could not be checked.</p>}
           <iframe data-help="tars-brief-preview" ref={frame} title="Evidence brief preview" className="tars-brief-frame" sandbox="allow-same-origin allow-modals" srcDoc={brief.html} />
         </>
+      )}
+    </section>
+  );
+}
+
+/** "Compare atmospheres": pick presets and/or write a condition; a table of what PSI holds near each, and the points on the map. */
+export function CompareAtmospheres({ onClose }: { onClose: () => void }) {
+  const { showOnEnvelope } = useTars();
+  const [presets, setPresets] = useState<{ id: string; label: string }[]>([]);
+  const [picked, setPicked] = useState<string[]>([]);
+  const [name, setName] = useState("");
+  const [o2, setO2] = useState("");
+  const [pressure, setPressure] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const [res, setRes] = useState<ComparisonResult | null>(null);
+  useEffect(() => {
+    void fetch("/api/tars/atmospheres")
+      .then((r) => r.json() as Promise<{ presets: { id: string; label: string }[] }>)
+      .then((j) => setPresets(j.presets))
+      .catch(() => setErr("The list of scenarios could not be loaded."));
+  }, []);
+  const custom = o2.trim() !== "" && pressure.trim() !== "";
+  const count = picked.length + (custom ? 1 : 0);
+  const run = async () => {
+    setBusy(true);
+    setErr(null);
+    setRes(null);
+    try {
+      const conditions: unknown[] = [...picked, ...(custom ? [{ name: name.trim() || "My condition", o2: o2.trim().replace(/%$/, ""), pressure: pressure.trim() }] : [])];
+      setRes(await post<ComparisonResult>("/api/tars/atmospheres", { conditions }));
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "the request failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+  const show = () => {
+    if (!res) return;
+    const pts = res.rows.flatMap((r) => (r.ok && r.o2_percent !== undefined && r.total_kpa !== undefined ? [{ o2: r.o2_percent / 100, pressure: r.total_kpa, label: r.name }] : []));
+    showOnEnvelope({ overlay: pts });
+  };
+  const rowOf = (i: number) => res?.ranking.find((x) => x.index === i)?.rank;
+  return (
+    <section data-help="tars-compare" className="tars-skillpanel" aria-label="Compare atmospheres">
+      <div className="tars-skillhead">
+        <strong>Compare atmospheres</strong>
+        <button data-help="tars-skillpanel-close" type="button" className="linklike small" onClick={onClose}>
+          Close
+        </button>
+      </div>
+      <fieldset data-help="tars-compare-pick" className="tars-cmp-pick">
+        <legend className="small muted">Pick two or more scenarios</legend>
+        {presets.map((p) => (
+          <label key={p.id} className="small">
+            <input data-help="tars-compare-pick" type="checkbox" checked={picked.includes(p.id)} onChange={(e) => setPicked((a) => (e.target.checked ? [...a, p.id] : a.filter((x) => x !== p.id)))} /> {p.label}
+          </label>
+        ))}
+      </fieldset>
+      <div data-help="tars-compare-custom" className="tars-cmp-custom">
+        <span className="small muted">Or add your own:</span>
+        <input data-help="tars-compare-custom" aria-label="Name" value={name} onChange={(e) => setName(e.target.value)} placeholder="name" maxLength={60} />
+        <input data-help="tars-compare-custom" aria-label="Oxygen in percent" value={o2} onChange={(e) => setO2(e.target.value)} placeholder="O2 %, e.g. 34" maxLength={8} />
+        <input data-help="tars-compare-custom" aria-label="Total pressure with unit" value={pressure} onChange={(e) => setPressure(e.target.value)} placeholder="pressure, e.g. 8.2 psia" maxLength={24} />
+      </div>
+      <button data-help="tars-compare-run" type="button" className="tars-btn" disabled={busy || count < 2} onClick={() => void run()}>
+        {busy ? "Comparing…" : `Compare ${count} condition${count === 1 ? "" : "s"}`}
+      </button>
+      {err && <p className="tars-err" role="alert">{err}</p>}
+      {res && (
+        <div data-help="tars-compare-table" className="tars-cmptable">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Condition</th>
+                <th>O₂</th>
+                <th>Total</th>
+                <th>pO₂</th>
+                <th>Comparable / extrapolation</th>
+                <th>Solid fuel</th>
+                <th>Nearest evidence</th>
+                <th>Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              {res.rows.map((r) => (
+                <tr key={r.index}>
+                  <td>{r.index + 1}</td>
+                  <td>{r.name}</td>
+                  {r.ok ? (
+                    <>
+                      <td>{r.o2_percent !== undefined ? `${r.o2_percent} %` : "—"}</td>
+                      <td>{r.total_kpa !== undefined ? `${r.total_kpa} kPa (${r.total_psia} psia)` : "—"}</td>
+                      <td>{r.pO2_display ?? "—"}</td>
+                      <td>{r.counts ? `${r.counts.APPLICABLE} / ${r.counts.EXTRAPOLATION}` : "—"}</td>
+                      <td>{r.solid_fuel ? r.solid_fuel.best.toLowerCase().replace(/_/g, " ") : "—"}</td>
+                      <td>{r.nearest ? `${r.nearest.accession}${r.nearest.acronym ? ` ${r.nearest.acronym}` : ""}` : "none ranked"}</td>
+                      <td>{rowOf(r.index) ?? "—"}</td>
+                    </>
+                  ) : (
+                    <td colSpan={7} className="small muted">
+                      {r.error ?? "could not be computed"}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="small muted">{res.rule}</p>
+          <button data-help="tars-compare-map" type="button" className="tars-btn" onClick={show}>
+            Show these points on the map
+          </button>
+        </div>
       )}
     </section>
   );

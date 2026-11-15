@@ -300,6 +300,12 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
 
   // A pinned target stays on the chart for comparison; its verdict is recomputed with the same engine and options.
   const [pinned, setPinned] = useState<{ state: TargetState; label: string } | null>(null);
+  const [overlay, setOverlay] = useState<{ o2: number; pressure: number; label: string }[] | null>(null);
+  useEffect(() => {
+    const on = (e: Event) => setOverlay((e as CustomEvent<{ o2: number; pressure: number; label: string }[] | null>).detail);
+    window.addEventListener("pyrion:overlay", on);
+    return () => window.removeEventListener("pyrion:overlay", on);
+  }, []);
   const pinnedStatus = useMemo(() => {
     if (!pinned) return null;
     const t = toTarget(pinned.state);
@@ -443,6 +449,7 @@ export default function Explorer({ dataset }: { dataset: Dataset }) {
               targetLabel={view ? view.short : "Custom target"}
               rail={rail}
               pinned={pinned && pinnedStatus ? { o2: pinned.state.o2, pressure: pinned.state.pressure, label: pinned.label, tone: pinnedStatus.tone } : null}
+              overlay={overlay}
               status={status}
               seed={SEED}
               highlight={highlight}

@@ -460,3 +460,11 @@ dialog.help-center[open] { display: flex; flex-direction: column; }
 .tars-badge-bad, .tars-badge-over { color: var(--warn, #ff8a3d); }
 .tars-brief-actions { display: flex; gap: 6px; }
 .tars-brief-frame { width: 100%; height: 320px; border: 1px solid var(--border-strong); background: #fff; }
+
+.compare-mark { fill: none; stroke: var(--neon-2); stroke-width: 2; }
+.tars-cmp-pick { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.tars-cmp-custom { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tars-cmp-custom input { font: inherit; width: 9em; }
+.tars-cmptable { overflow-x: auto; }
+.tars-cmptable table { border-collapse: collapse; font-size: 13px; width: 100%; }
+.tars-cmptable th, .tars-cmptable td { text-align: left; vertical-align: top; padding: 3px 6px; border-top: 1px solid var(--border-strong); }

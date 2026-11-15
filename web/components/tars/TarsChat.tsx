@@ -1,6 +1,6 @@
 "use client";
 
-import { BriefMe, ClaimChecker } from "./TarsSkills";
+import { BriefMe, ClaimChecker, CompareAtmospheres } from "./TarsSkills";
 import { useEffect, useRef, useState } from "react";
 import type { ExperimentsNeeded } from "@/lib/engine";
 import ExperimentsView from "../ExperimentsView";
@@ -142,7 +142,7 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
   const { mode, setMode, messages, busy, status, send, skill } = useTars();
   const [text, setText] = useState("");
   const [historyOpen, setShowHistory] = useState(false);
-  const [panel, setPanel] = useState<null | "claim" | "brief">(null);
+  const [panel, setPanel] = useState<null | "claim" | "brief" | "compare">(null);
   // On the TARS tab the conversation list is always a left sidebar; in the panel it opens with the History button.
   const showHistory = sidebar || historyOpen;
   const input = useRef<HTMLInputElement>(null);
@@ -184,10 +184,14 @@ export default function TarsChat({ autoFocus = false, sidebar = false }: { autoF
           <button data-help="tars-skill-brief" type="button" className="chip" aria-pressed={panel === "brief"} onClick={() => setPanel(panel === "brief" ? null : "brief")}>
             Brief me
           </button>
+          <button data-help="tars-skill-compare" type="button" className="chip" aria-pressed={panel === "compare"} onClick={() => setPanel(panel === "compare" ? null : "compare")}>
+            Compare atmospheres
+          </button>
         </div>
       </div>
       {panel === "claim" && <ClaimChecker onClose={() => setPanel(null)} />}
       {panel === "brief" && <BriefMe onClose={() => setPanel(null)} />}
+      {panel === "compare" && <CompareAtmospheres onClose={() => setPanel(null)} />}
       <p data-help="tars-honesty" className="tars-honesty small muted">{HONESTY}</p>
 
       <div data-help="tars-log" className="tars-log" role="log" aria-live="polite">

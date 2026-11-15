@@ -6,6 +6,8 @@ export interface Pending {
   target?: unknown;
   /** An investigation whose receipt card should open. */
   open?: string;
+  /** Compared points to draw on the map (o2 mole fraction, pressure kPa), or null to clear them. */
+  overlay?: { o2: number; pressure: number; label: string }[] | null;
   /** A control to highlight on arrival. */
   highlight?: string;
 }
@@ -54,9 +56,10 @@ export function highlight(selector: string, tries = 40) {
 /** Deliver what is pending to the page that is showing now (the Envelope page listens for these events). */
 export function deliver(p: Pending) {
   const ready = (tries: number) => {
-    const needsHome = !!(p.target || p.open);
+    const needsHome = !!(p.target || p.open || p.overlay);
     if (!needsHome || document.querySelector(".scenario-strip") || tries <= 0) {
       if (p.target) window.dispatchEvent(new CustomEvent("pyrion:target", { detail: p.target }));
+      if (p.overlay !== undefined) window.dispatchEvent(new CustomEvent("pyrion:overlay", { detail: p.overlay }));
       if (p.open) window.dispatchEvent(new CustomEvent("pyrion:open", { detail: p.open }));
       if (p.highlight) highlight(p.highlight);
     } else window.setTimeout(() => ready(tries - 1), 150);

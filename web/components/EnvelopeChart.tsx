@@ -27,6 +27,8 @@ interface Props {
   rail?: { pressure: number; tone: string }[];
   /** A second, pinned target drawn as a ghost marker for comparison. */
   pinned?: { o2: number; pressure: number; label: string; tone: string } | null;
+  /** Points of a comparison (TARS "Compare atmospheres"), labelled; no verdict is drawn for them here. */
+  overlay?: { o2: number; pressure: number; label: string }[] | null;
   status: EnvelopeStatus;
   /** Values the axes always include (presets), so switching presets never rescales the chart. */
   seed: DomainSeed;
@@ -501,7 +503,7 @@ const PlotLayers = memo(function PlotLayers({ domain, iw, ih, visible, colors, l
   );
 });
 
-function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, rail, evidence, evidenceKey, fs = false, onToggleFs, onZoomedChange }: Props) {
+function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, status, seed, highlight, onPointSelect, onTargetPick, openAxes, pinned, overlay, rail, evidence, evidenceKey, fs = false, onToggleFs, onZoomedChange }: Props) {
   const [dragging, setDragging] = useState(false);
   const [zoom, setZoom] = useState<Win | null>(null);
   // The window the data layers are drawn in. A pan never changes it: the layers are only moved. A zoom re-draws them once, when the scale has drifted.
@@ -1113,6 +1115,14 @@ function EnvelopeChart({ envelopes, colors, layerState, target, targetLabel, sta
                   </text>
                 </g>
               )}
+              {overlay?.map((p, i) => (
+                <g key={i} data-help="chart-compare-overlay" className="compare-pt" transform={`translate(${rx(p.o2)},${ry(p.pressure)})`} aria-hidden="true">
+                  <rect x={-5} y={-5} width={10} height={10} transform="rotate(45)" className="compare-mark" />
+                  <text x={9} y={-8} className="pin-label">
+                    {i + 1}. {p.label}
+                  </text>
+                </g>
+              ))}
               {/* target */}
               <g className="target-guides" aria-hidden="true">
                 <line x1={0} x2={0} y1={-3 * ih} y2={4 * ih} style={{ transform: `translateX(${txyR.x}px)` }} />
