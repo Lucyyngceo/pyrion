@@ -1,18 +1,18 @@
 {
- "generated_at_utc": "2026-11-15T02:10:53Z",
+ "generated_at_utc": "2026-11-15T03:43:39Z",
  "trace_ran": true,
  "stats": {
-  "records": 10022,
+  "records": 10042,
   "units_identity_no_unit_in_source": 207,
-  "units_rechecked": 3240,
+  "units_rechecked": 3250,
   "cells_traced": 8531,
-  "quotes_traced": 922,
-  "text_files_scanned": 54
+  "quotes_traced": 942,
+  "text_files_scanned": 59
  },
  "counts": {
   "BLOCKER": 0,
   "MAJOR": 1,
-  "MINOR": 131
+  "MINOR": 132
  },
  "findings": [
   {
@@ -72,13 +72,19 @@
   {
    "severity": "MINOR",
    "check": "language",
-   "where": "web/lib/llm/safety.ts:36",
+   "where": "engine/README.md:246",
+   "what": "'safe' in: Extrapolation levels (the verdict does not change): `ClusterVerdict.extrapolationLevel` and `InvestigationVerdict.extrap"
+  },
+  {
+   "severity": "MINOR",
+   "check": "language",
+   "where": "web/lib/llm/safety.ts:40",
    "what": "'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s"
   },
   {
    "severity": "MINOR",
    "check": "language",
-   "where": "web/lib/llm/safety.ts:53",
+   "where": "web/lib/llm/safety.ts:58",
    "what": "'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */"
   },
   {

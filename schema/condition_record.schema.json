@@ -7,7 +7,7 @@
   "required": ["accession", "test_id", "variable", "value", "unit", "value_original", "unit_original",
                "method", "source_file", "source_location", "quote", "status"],
   "properties": {
-    "accession": {"type": "string", "pattern": "^PSI-[0-9]+$"},
+    "accession": {"type": "string", "pattern": "^(PSI-[0-9]+|NTRS-[0-9]+)$"},
     "test_id": {"type": "string", "minLength": 1},
     "variable": {
       "type": "string",

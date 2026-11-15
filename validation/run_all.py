@@ -224,7 +224,17 @@ def check_consistency(recs, rep):
 def check_citation(recs, rep):
     with open(MANIFEST / "investigations.csv", encoding="utf-8") as fh:
         inv = {r["accession"]: r for r in csv.DictReader(fh)}
+    with open(MANIFEST / "external_sources.json", encoding="utf-8") as fh:
+        external = {s["id"]: s for s in json.load(fh)["sources"]}
     for acc in sorted({r.get("accession") for r in recs if r.get("accession")}):
+        if acc.startswith("NTRS-"):
+            # External evidence (not PSI): it must be a registered external source with a URL.
+            src = external.get("ntrs-" + acc[len("NTRS-"):])
+            if not src:
+                rep.add("BLOCKER", "citation", acc, "external source not in data/manifest/external_sources.json")
+            elif not src.get("url"):
+                rep.add("BLOCKER", "citation", acc, "external source has no URL")
+            continue
         if acc not in inv:
             rep.add("BLOCKER", "citation", acc, "investigation not in investigations.csv")
         elif not inv[acc]["doi"]:

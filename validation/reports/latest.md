@@ -1,8 +1,8 @@
-# Validation report — 2026-11-15T02:10:53Z
+# Validation report — 2026-11-15T03:43:39Z
 
-Records: 10022 · trace check: ran · cells_traced: 8531 · quotes_traced: 922 · text_files_scanned: 54 · units_identity_no_unit_in_source: 207 · units_rechecked: 3240
+Records: 10042 · trace check: ran · cells_traced: 8531 · quotes_traced: 942 · text_files_scanned: 59 · units_identity_no_unit_in_source: 207 · units_rechecked: 3250
 
-**BLOCKER 0 · MAJOR 1 · MINOR 131**
+**BLOCKER 0 · MAJOR 1 · MINOR 132**
 
 | severity | check | where | what |
 |---|---|---|---|
@@ -15,8 +15,9 @@ Records: 10022 · trace check: ran · cells_traced: 8531 · quotes_traced: 922 �
 | MINOR | consistency | `PSI-68 test Propanol (80%) Glycerol (20%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test Propanol (95%) Glycerol (5%) (mixture)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
 | MINOR | consistency | `PSI-68 test n-Octane (pure)` | diluent lists ['He', 'N2'] in one source cell: summary row covering several conditions |
-| MINOR | language | `web/lib/llm/safety.ts:36` | 'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s |
-| MINOR | language | `web/lib/llm/safety.ts:53` | 'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */ |
+| MINOR | language | `engine/README.md:246` | 'safe' in: Extrapolation levels (the verdict does not change): `ClusterVerdict.extrapolationLevel` and `InvestigationVerdict.extrap |
+| MINOR | language | `web/lib/llm/safety.ts:40` | 'safe' in: * every harmful one): ask the first; if it says safe the input passes. If it flags, ask the second: refuse only if the s |
+| MINOR | language | `web/lib/llm/safety.ts:58` | 'safe' in: /** One guard's opinion: true = flags, false = safe, null = could not answer. */ |
 | MINOR | units | `data/conditions/PSI-26.csv:123` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
 | MINOR | units | `data/conditions/PSI-26.csv:125` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
 | MINOR | units | `data/conditions/PSI-26.csv:127` | documented unit-label mismatch (o2_mole_fraction): unit-label-mismatch: header says % by volume; cells are fractions (0.221 = 22.1 %, ambient air); lis |
