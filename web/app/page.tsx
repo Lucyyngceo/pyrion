@@ -333,7 +333,15 @@ export default async function Landing() {
             <dt>Why the Moon?</dt>
             <dd>
               NASA&apos;s challenge asks about habitats including bases on the Moon and Mars. PSI holds no partial-gravity combustion
-              data, so for those gravities PYRION shows the nearest evidence in other regimes and where new tests would add it.
+              data, so for those gravities PYRION shows the nearest evidence in other regimes and where new tests would add it. Try{" "}
+              <Link data-help="landing-start" href={MOON}>
+                the Moon Base condition
+              </Link>{" "}
+              or{" "}
+              <Link data-help="landing-start" href="/envelope?preset=nesc-8.2psia-34o2-mars">
+                a NASA exploration atmosphere at Mars gravity
+              </Link>
+              .
             </dd>
           </dl>
         </section>

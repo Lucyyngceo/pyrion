@@ -27,6 +27,8 @@ export default async function DataPage() {
   const v = lin.validation;
   const gb = (b: number) => (b >= 1e12 ? `${(b / 1e12).toFixed(1)} TB` : b >= 1e9 ? `${(b / 1e9).toFixed(1)} GB` : `${(b / 1e6).toFixed(0)} MB`);
   const n = (x: number) => x.toLocaleString("en-US");
+  // Measured outcomes per investigation (status not insufficient), for the predictive-modeling section.
+  const outcomes = new Map<string, number>();
   const per = new Map<string, { records: number; verified: number; flagged: number; tests: Set<string>; vars: Set<string>; table: number; doc: number }>();
   for (const f of ds.files) {
     const { records } = parseConditionCsv(f.text, f.name, f.accession);
@@ -37,6 +39,10 @@ export default async function DataPage() {
       if (r.status === "insufficient_evidence") e.flagged++;
       e.tests.add(r.test_id);
       e.vars.add(r.variable);
+      if (r.variable.startsWith("outcome:") && r.status !== "insufficient_evidence") {
+        const k = `${f.accession}|${r.variable}|${r.unit ?? ""}`;
+        outcomes.set(k, (outcomes.get(k) ?? 0) + 1);
+      }
       if (r.method === "table") e.table++;
       else e.doc++;
     }
@@ -198,6 +204,54 @@ export default async function DataPage() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section data-help="data-modeling" className="card" aria-labelledby="mod-h">
+        <div className="card-head">
+          <h2 id="mod-h">For predictive modeling</h2>
+          <p className="muted small">
+            Inputs: the test conditions (oxygen, pressure, gravity regime, fuel and phase, diluent, flow, sample size). Outputs: the
+            measured outcomes below, per test, with the source of each value. Join them on investigation and test id.
+          </p>
+        </div>
+        <div className="tars-cmptable">
+          <table>
+            <thead>
+              <tr>
+                <th>Investigation</th>
+                <th>Measured outcome</th>
+                <th>Unit</th>
+                <th>Values</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...outcomes.entries()]
+                .sort((a, b) => a[0].localeCompare(b[0], "en", { numeric: true }))
+                .map(([k, count]) => {
+                  const [acc, variable, unit] = k.split("|");
+                  return (
+                    <tr key={k}>
+                      <td>{acc}</td>
+                      <td>{variable.replace("outcome:", "").replaceAll("_", " ")}</td>
+                      <td>{unit || "—"}</td>
+                      <td>{n(count)}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <p className="small">
+          Before training anything: these are values extracted and traced to NASA files, not a validated training set. Rows flagged{" "}
+          <em>insufficient evidence</em> are excluded here and must not be used as measurements; tests differ in hardware, fuel and gravity
+          regime, so pool across investigations only with care; and a model fitted to microgravity or normal-gravity tests says nothing
+          direct about partial gravity. More outcomes recorded in NASA spreadsheets (ignition power, smoke measurements) are in the
+          download as <code>outcomes_extra</code>, as recorded.{" "}
+          <a data-help="data-modeling" href="/download">
+            Download the dataset
+          </a>
+          .
+        </p>
       </section>
 
       <section data-help="data-how-a-value-gets-here" className="prose">

@@ -120,6 +120,24 @@ const lunarRegime: PresetValue<string> = {
   source: SOURCES.lunarGravity,
 };
 
+const marsRegime: PresetValue<string> = {
+  value: 'partial_gravity',
+  unit: '',
+  value_original: '0.380',
+  unit_original: 'ratio to Earth surface gravity',
+  note: '0.38 g is between microgravity and 1 g, which is the schema term partial_gravity.',
+  source: SOURCES.marsGravity,
+};
+
+const marsLevel: PresetValue<number> = {
+  value: 0.38,
+  unit: 'g',
+  value_original: '0.380',
+  unit_original: 'ratio to Earth surface gravity',
+  note: 'Mars mean surface gravity as a ratio to Earth, as written in the source (column Ratio).',
+  source: SOURCES.marsGravity,
+};
+
 const lunarLevel: PresetValue<number> = {
   value: 0.16,
   unit: 'g',
@@ -177,6 +195,23 @@ export const PRESETS: readonly Preset[] = [
     limits: [
       'The NESC report names surface habitats but does not state a gravity level; PYRION pairs the atmosphere with lunar gravity (0.16 g, NTRS 20210020446) because the challenge is about the Moon Base.',
       'NESC also considers up to 40% O2 at 8.2 psia for flammability; this preset uses the nominal 34%.',
+      'Fuel phase and diluent are not stated as target conditions; the preset leaves them open.',
+    ],
+  },
+  {
+    id: 'nesc-8.2psia-34o2-mars',
+    label: 'NESC Exploration Atmosphere 8.2 psia / 34% O2, at Mars gravity',
+    description:
+      'The same NESC Exploration Atmosphere at Mars gravity (0.38 g, NASA NSSDC Mars Fact Sheet). The challenge names bases on the lunar and Martian surfaces; no source states a Mars habitat atmosphere.',
+    regime: { gravity_regime: marsRegime },
+    continuous: {
+      o2_mole_fraction: percentO2('34', SOURCES.nescSummary),
+      pressure: psi('8.2', 'psia', SOURCES.nescSummary),
+      gravity_level: marsLevel,
+    },
+    limits: [
+      'No downloaded NASA source states a Mars habitat atmosphere; PYRION pairs the NESC Exploration Atmosphere with Mars gravity as a what-if, labelled as such.',
+      'Mars gravity (0.38 g) comes from the NASA NSSDC Mars Fact Sheet, not from the NESC report.',
       'Fuel phase and diluent are not stated as target conditions; the preset leaves them open.',
     ],
   },
