@@ -66,6 +66,7 @@ const SHORT_LABEL: Record<string, string> = {
   "challenge-lunar-base": "NASA's Moon Base",
   "nesc-10.2psia-26.5o2-lunar": "Exploration atmosphere A",
   "nesc-8.2psia-34o2-lunar": "Exploration atmosphere B",
+  "nesc-8.2psia-34o2-mars": "Exploration atmosphere B at Mars gravity",
 };
 
 export interface PresetView {

@@ -38,7 +38,7 @@ interface Props {
   onGap: (which: "lunar" | "nesc" | "mine") => void;
 }
 
-const TILE_PRESETS = { iss: "iss-cabin-air", lunar: "challenge-lunar-base", nesc: "nesc-8.2psia-34o2-lunar", nescA: "nesc-10.2psia-26.5o2-lunar" } as const;
+const TILE_PRESETS = { iss: "iss-cabin-air", lunar: "challenge-lunar-base", nesc: "nesc-8.2psia-34o2-lunar", nescA: "nesc-10.2psia-26.5o2-lunar", mars: "nesc-8.2psia-34o2-mars" } as const;
 
 /** "21 % O₂ · 14.7 psia · microgravity", from the preset's own source values (a source that says "psi" is quoted as written). */
 function conditionOf(presetId: string) {
@@ -192,6 +192,9 @@ export default function ScenarioStrip({ state, iss, lunar, nesc, nescMicro, with
         <p className="tile-line tile-alt">
           <button data-help="tile-atmosphere-a" type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.nescA)}>
             Or atmosphere A: {cNescA ? `${cNescA.o2} · ${cNescA.pressure}` : ""}
+          </button> ·{" "}
+          <button data-help="tile-mars" type="button" className="linklike small" onClick={() => onPick(TILE_PRESETS.mars)}>
+            At Mars gravity (0.38 g)
           </button>
         </p>
       </Tile>
