@@ -142,6 +142,22 @@ export function ExpertAnswer({ msg }: { msg: Extract<Msg, { kind: "expert" }> })
       {r.claimCheck && <ClaimResultView res={r.claimCheck} />}
       {r.brief && <BriefView brief={r.brief} />}
       {r.comparison && <ComparisonView res={r.comparison} />}
+      {msg.review === "pending" && !msg.skeptic && (
+        <div className="tars-second tars-second-pending" data-help="tars-second-opinion" role="status" aria-live="polite">
+          <strong>{r.lang === "es" ? "Segunda opinión" : "Second opinion"}</strong>{" "}
+          <span className="muted">
+            {r.lang === "es"
+              ? "en curso: otro modelo revisa esta respuesta. Puedes seguir preguntando."
+              : "pending: a model of another family is reviewing this answer. You can keep asking."}
+          </span>
+        </div>
+      )}
+      {msg.review === "unavailable" && !msg.skeptic && (
+        <div className="tars-second tars-second-unavailable" data-help="tars-second-opinion" role="note">
+          <strong>{r.lang === "es" ? "Segunda opinión" : "Second opinion"}</strong>{" "}
+          <span className="muted">{r.lang === "es" ? "no disponible: la revisión no llegó." : "unavailable: the review did not arrive."}</span>
+        </div>
+      )}
       {msg.skeptic && <SecondOpinion s={msg.skeptic} blocks={r.blocks.map((b) => b.layer)} es={r.lang === "es"} />}
       <NextQuestions result={r} />
       {adv && msg.question && <ThreeModels question={msg.question} target={r.target} lang={r.lang} />}

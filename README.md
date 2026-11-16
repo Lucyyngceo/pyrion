@@ -13,7 +13,7 @@
 2. **[The worked example](https://pyrion.us/example)** — two full questions printed step by step, computed by the engine on the server, no AI.
 3. **[Proof](https://pyrion.us/proof)** — the validator report and the scripted judge battery, read from this repository.
 
-437 engine tests and 208 web tests pass on every push (badge above; `cd engine && npm test`, `cd web && npm test`). In a clean clone without the NASA source files, 5 web tests that read them are skipped (203 pass).
+Tests run on every push (badge above; `cd engine && npm test`, `cd web && npm test`): 441 engine tests pass; of 227 web tests, 222 pass and 5 are **skipped** because they read NASA source files that are not in the repository, in CI as in a clean clone (counts measured on 15 November 2026 with Node 26; CI runs Node 24). The skipped ones have not passed; "Reproduce the source checks" below runs them.
 **Where the AI ends:** the verdict is computed by fixed rules in `engine/` and is the same for the same condition. A language model only reads a question into a condition and narrates the result; it never decides a verdict, and every NASA quote it shows is checked against its page. With no API key the envelope, the verdicts and the worked example all work.
 
 PYRION shows how far NASA's Physical Sciences Informatics (PSI) combustion data reaches for a fire question.
@@ -58,7 +58,7 @@ Things we did not know at the start and only found near the deadline, kept here 
 
 ## Run locally
 
-Requires Node.js 24 or newer (the engine runs its TypeScript directly; the public instance runs Node 24, `docs/DEPLOY.md`). A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).
+Requires Node.js 24 or newer (the engine runs its TypeScript directly; the public instance runs Node 24, `docs/DEPLOY.md`). **No API key is needed**: without `web/.env.local` every verdict, the Envelope, the Planner, the MCP server and TARS in structured mode run from code; the keys in `web/.env.example` only add model-written answers. A clean clone builds and passes its tests; the TARS library (`web/.data/corpus/`) is regenerated from `data/raw/` with `tools/build_corpus.py` (see `docs/DEPLOY.md`).
 
 ```bash
 cd web
@@ -85,6 +85,30 @@ The public instance behind nginx, as in `docs/DEPLOY.md`:
 ```bash
 PYRION_TRUST_PROXY=1 PYRION_PROXY_SECRET="<same long random value>" NODE_ENV=production npm --prefix web run start -- -H 127.0.0.1 -p 3000
 ```
+
+## Reproduce the source checks
+
+CI runs only the checks that do not need the NASA files (`python -I validation/run_all.py --no-trace`), and a clean clone skips 5 web tests that read them. A skipped check has not passed. To run them yourself (Python 3.12, standard library; Node 24):
+
+```bash
+python -I tools/reproduce_source_checks.py --fetch P1 --fetch P2 --fetch P3 --fetch P4
+```
+
+This downloads the public files listed in `data/manifest/` into `data/raw/` (`pipeline/fetch.py`: PSI files through the PSI API's pre-signed links, NTRS and NASA web documents directly), verifies every file marked `ok` in `data/manifest/checksums_*.csv` (present, same size, same SHA-256), runs `validation/run_all.py` **with** the `trace` check (each table cell and each quote against its file; result in `validation/reports/latest.md`, fields `trace_ran`, `cells_traced`, `quotes_traced`), and lists which web tests will still skip. It exits non-zero if any step fails. Without `--fetch` it only verifies what is already in `data/raw/`.
+
+Then run the web tests (`cd web && npm test`); `node:test` reports each remaining skip with its reason.
+
+| Web test that skips in a clean clone | Needs | How to enable |
+|---|---|---|
+| `lenses-data`: PSI quotes word for word; timeline dates | `data/raw/` (PSI investigation records) | the command above |
+| `expert-claims`: real-corpus FM2 chamber quote | `web/.data/corpus/pages.jsonl` | add `--corpus` (needs PyMuPDF and openpyxl, as `tools/build_corpus.py`) |
+| `lenses-data` and `more-equipment`: challenge quotes word for word | a text copy of the NASA Space Apps 2026 challenge statement | **manual**: save the statement's text from the challenge page on spaceappschallenge.org to a file and set `PYRION_CHALLENGE=<path>`; the page is not downloaded by the pipeline and its copy is not in the repository |
+
+Limitations, stated rather than worked around:
+
+- `data/raw/` is not committed. The PSI files are CC0-1.0 or U.S. Government works per investigation, except PSI-10, whose license is not stated on PSI; the repository redistributes none of them, only their checksums.
+- PSI downloads depend on the PSI API being reachable; a file the source no longer serves stays "missing" and its trace check fails rather than passing.
+- Some networks block Python's HTTPS (an antivirus that inspects TLS, for example) while browsers and `curl` work; then the download times out and nothing is verified.
 
 ## Features
 
@@ -176,19 +200,32 @@ The library TARS reads: the page-by-page text of the NASA documents downloaded u
 
 Photographs on the home page come from NASA: representative images in the PSI investigation records (`web/public/media/psi/CREDITS.json`) and the NASA Image and Video Library (`web/public/media/nasa/CREDITS.json` and `web/public/media/warp/CREDITS.json`), each credited where shown. No NASA logo is used, and no NASA endorsement is implied. No image on the site or in the demo video is AI-generated.
 
+Rights, as far as they are established (not guessed):
+
+| Images | Source | Rights |
+|---|---|---|
+| PSI-22, PSI-25, PSI-159 representative images | PSI investigation records | the investigation's PSI license is CC0-1.0 (`data/manifest/investigations.csv`) |
+| **PSI-10 representative images** (`acme-flame-design-in-space`, `cir-on-iss`, `acme-hardware`) | PSI-10 record | **unresolved**: PSI states no license for PSI-10; used with NASA credit as a NASA work, pending a stated license |
+| NASA Image and Video Library images (`media/nasa/`, `media/warp/`) | images.nasa.gov, NASA id in each credit | NASA media usage guidelines (generally not copyrighted in the U.S.; some items credit a partner, e.g. NASA/GSFC/Arizona State University); not an SPDX license |
+
 ## Third-party software, fonts and services
 
 | What | Used for | License |
 |---|---|---|
-| Next.js 16, React 19 | web app | MIT |
-| Chakra Petch, IBM Plex Sans, IBM Plex Mono (Google Fonts, via next/font) | typography | SIL Open Font License 1.1 |
-| PyMuPDF | reading NASA PDFs | AGPL-3.0 (used as a tool, not shipped in the app) |
-| openpyxl | reading NASA spreadsheets | MIT |
-| fastembed + BAAI bge-small-en-v1.5 | text-similarity baseline | Apache-2.0 / MIT |
+| Next.js 16.4.6, React 19.3.1, React DOM 19.3.1 (`web/package.json` dependencies) | web app | MIT |
+| TypeScript 5.9.3 (`web/package.json`; the engine type-checks with the same copy) | type checking and build | Apache-2.0 |
+| @types/node 22.20.5, @types/react 19.3.0, @types/react-dom 19.3.0 | type definitions (development only) | MIT |
+| Chakra Petch, IBM Plex Sans, IBM Plex Mono (Google Fonts, via next/font, self-hosted at build) | typography | OFL-1.1 |
+| PyMuPDF (`fitz`) | reading NASA PDFs (`validation/run_all.py`, `extraction/validate.py`, `tools/build_corpus.py`) | AGPL-3.0, dual-licensed with an Artifex commercial license (used as a tool, not shipped in the app; the `-only`/`-or-later` qualifier is not stated on its PyPI page, so none is claimed here) |
+| pypdf | reading PDFs (`extraction/validate.py`) | BSD-3-Clause |
+| openpyxl | reading NASA spreadsheets (validator, extraction, corpus tools) | MIT |
+| NumPy, SciPy | numerical work in `models/` (`build_text_similarity.py`, `flex_model.py`) | BSD-3-Clause |
+| fastembed | running the text-similarity model offline (`models/build_text_similarity.py`) | Apache-2.0 |
+| BAAI bge-small-en-v1.5 | text-similarity baseline, **computed offline once**; the site reads stored rankings and runs no model for it at request time | MIT (per its model card) |
 | OpenTimestamps | timestamp seals | LGPL-3.0 |
 | OpenRouter, NVIDIA NIM | access to the run-time models listed above | service terms of each provider |
-| Remotion, Playwright, FFmpeg, faster-whisper | building the demo video | Remotion License (free for individuals), Apache-2.0, LGPL-2.1+, MIT |
-| ElevenLabs | demo-video voiceover, an AI voice cloned from the team member's own voice | ElevenLabs terms |
+| Remotion, Playwright, FFmpeg, faster-whisper | building the demo video | Remotion License (free for individuals), Apache-2.0, LGPL-2.1-or-later, MIT |
+| ElevenLabs | demo-video voiceover, an AI voice cloned from the team member's own voice | ElevenLabs terms of service |
 
 ## License
 

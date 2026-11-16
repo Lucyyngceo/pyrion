@@ -82,3 +82,25 @@
   .sitenav-links a, .sitenav-links button, .sitenav-brand { min-height: 44px; display: inline-flex; align-items: center; }
 }
 @media (max-width: 760px) { html body main input[type=checkbox], html body main input[type=radio] { min-width: 22px; } }
+
+/* /envelope on phones: the selected condition, its result and the route to its evidence come first;
+   the record counts and the MCP panel follow, collapsed (nothing removed). */
+.hero-status-m { display: none; }
+.tile-evidence { display: block; margin-top: 8px; font-size: 14px; position: relative; z-index: 1; } /* above the tile-pick overlay (::after, inset 0) */
+@media (max-width: 760px) {
+  .envelope-page { display: flex; flex-direction: column; }
+  .envelope-page > * { order: 3; }
+  .envelope-page > .hero { order: 0; }
+  .envelope-page > .scenario-strip { order: 1; }
+  .envelope-page > .mcp-panel { order: 2; }
+  .envelope-page .hero-status { display: none; }
+  .envelope-page .hero-status-m { display: block; margin-top: 4px; }
+  .envelope-page .hero-status-m summary { cursor: pointer; }
+  .tile-evidence { min-height: 44px; display: flex; align-items: center; }
+  .envelope-page .mcp-panel > summary { font-size: 14px; }
+}
+@media (max-width: 760px), (pointer: coarse) {
+  /* Remaining small targets found at 390 x 844: MCP copy buttons and the DOI links beside investigation names. */
+  html body .mcp-copy { min-height: 44px; min-width: 44px; }
+  .where-head a.small, .route-head a.small { min-height: 44px; display: inline-flex; align-items: center; padding: 0 6px; }
+}
